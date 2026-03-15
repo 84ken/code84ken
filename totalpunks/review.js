@@ -372,7 +372,7 @@
 
   function initShout() {
     const pageId = window.location.pathname.replace(/.*\/review\//, '').replace(/\.html?$/, '').replace(/[^a-zA-Z0-9]/g, '_');
-    const apiBase = '/.netlify/functions/comments?page=' + encodeURIComponent(pageId);
+    const apiBase = 'https://totalpunks84.netlify.app/.netlify/functions/comments?page=' + encodeURIComponent(pageId);
     const list = document.getElementById('rv-shout-list');
     const form = document.getElementById('rv-shout-form');
     const closed = document.getElementById('rv-shout-closed');
