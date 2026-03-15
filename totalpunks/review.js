@@ -243,7 +243,7 @@
       // src is like "../../modern/review.js" -> base is "../../modern/"
       return src.replace('review.js', '');
     }
-    return '../../modern/';
+    return '../../';
   }
 
   function getTopPath() {
@@ -327,8 +327,8 @@
     return `
       <header class="rv-header">
         <div class="rv-header-inner">
-          <a href="${topBase}modern/index.html" class="rv-header-logo">TOTAL PUNKS</a>
-          <a href="${topBase}modern/index.html#reviews" class="rv-header-back">&larr; Back to Reviews</a>
+          <a href="${topBase}index.html" class="rv-header-logo">TOTAL PUNKS</a>
+          <a href="${topBase}index.html#reviews" class="rv-header-back">&larr; Back to Reviews</a>
         </div>
       </header>
 
@@ -360,7 +360,7 @@
 
       <footer class="rv-footer">
         <p class="rv-footer-text">
-          <a href="${topBase}modern/index.html">TOTAL PUNKS</a> &mdash; since 2003 &mdash; geocities.jp survivor
+          <a href="${topBase}index.html">TOTAL PUNKS</a> &mdash; since 2003 &mdash; geocities.jp survivor
         </p>
       </footer>
     `;
