@@ -1,11 +1,201 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Total Punks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOTAL PUNKS | パンクディスクレビュー &amp; カルチャーガイド</title>
+  <meta name="description" content="70'sパンク、ハードコア、Oi!/Skins、メロコアなど、パンクカルチャーの全てを紹介するレビューサイト。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="TOTAL PUNKS | パンクディスクレビュー &amp; カルチャーガイド">
+  <meta property="og:description" content="70'sパンク、ハードコア、Oi!/Skins、メロコアなど、パンクカルチャーの全てを紹介。since 2003 geocities.jp survivor">
+  <meta property="og:image" content="https://totalpunks84.netlify.app/modern/ogp.png">
+  <meta property="og:url" content="https://totalpunks84.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TOTAL PUNKS">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TOTAL PUNKS | パンクディスクレビュー &amp; カルチャーガイド">
+  <meta name="twitter:description" content="70'sパンク、ハードコア、Oi!/Skins、メロコアなど、パンクカルチャーの全てを紹介。since 2003">
+  <meta name="twitter:image" content="https://totalpunks84.netlify.app/modern/ogp.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Bebas+Neue&family=Rock+Salt&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Total Punks</h1>
-  <p>テスト中</p>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">TOTAL PUNKS</a>
+      <nav class="nav">
+        <a href="#about" class="nav-link" data-ja="About" data-en="About">About</a>
+        <a href="#reviews" class="nav-link" data-ja="Disc Review" data-en="Disc Review">Disc Review</a>
+        <a href="#genres" class="nav-link" data-ja="Genres" data-en="Genres">Genres</a>
+        <button class="lang-btn" id="lang-toggle">EN</button>
+        <a href="/index_old.html" class="nav-link old-site-btn" title="旧サイトを見る">OLD SITE</a>
+      </nav>
+      <div class="header-right-mobile">
+        <button class="lang-btn" id="lang-toggle-mobile">EN</button>
+        <button class="menu-btn" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#reviews" class="mobile-nav-link">Disc Review</a>
+    <a href="#genres" class="mobile-nav-link">Genres</a>
+    <a href="/index_old.html" class="mobile-nav-link old-site-btn">OLD SITE</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-sub">Punk Culture Guide &amp; Disc Review</p>
+      <h1 class="hero-title">
+        <span class="strike">RULES</span><br>
+        <span class="accent">NO FUTURE</span><br>
+        DESTROY &amp;<br>
+        CREATE.
+      </h1>
+      <p class="hero-credit" data-ja="「パンクとはアティテュードである」 &mdash; Joe Strummer" data-en="&quot;Punk is an attitude, not a style&quot; &mdash; Joe Strummer">"Punk is an attitude, not a style"</p>
+    </div>
+    <div class="hero-stamp">Destroy<br>Design</div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-inner">
+      SEX PISTOLS <span>&#9733;</span> THE CLASH <span>&#9733;</span> RAMONES <span>&#9733;</span> THE DAMNED <span>&#9733;</span> RANCID <span>&#9733;</span> EXPLOITED <span>&#9733;</span> DISCHARGE <span>&#9733;</span> G.B.H <span>&#9733;</span> COCKNEY REJECTS <span>&#9733;</span> COCK SPARRER <span>&#9733;</span> BAD RELIGION <span>&#9733;</span> DEAD KENNEDYS <span>&#9733;</span> OPERATION IVY <span>&#9733;</span> AGNOSTIC FRONT <span>&#9733;</span> BLITZ <span>&#9733;</span> 4SKINS <span>&#9733;</span>
+      SEX PISTOLS <span>&#9733;</span> THE CLASH <span>&#9733;</span> RAMONES <span>&#9733;</span> THE DAMNED <span>&#9733;</span> RANCID <span>&#9733;</span> EXPLOITED <span>&#9733;</span> DISCHARGE <span>&#9733;</span> G.B.H <span>&#9733;</span> COCKNEY REJECTS <span>&#9733;</span> COCK SPARRER <span>&#9733;</span> BAD RELIGION <span>&#9733;</span> DEAD KENNEDYS <span>&#9733;</span> OPERATION IVY <span>&#9733;</span> AGNOSTIC FRONT <span>&#9733;</span> BLITZ <span>&#9733;</span> 4SKINS <span>&#9733;</span>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// About</span>
+        <h2 class="section-title" data-ja="パンクとはなにか？" data-en="What Is Punk?">パンクとはなにか？</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p data-ja="パンクとは人それぞれの考え方次第であり、ひとことで断定できるものではない。音楽だけでなくファッション、小説、アート、生活&mdash;&mdash;全てに通じるもの。" data-en="Punk is something that depends on each person's way of thinking&mdash;it cannot be defined in a single word. It permeates not just music, but fashion, literature, art, and life itself.">パンクとは人それぞれの考え方次第であり、ひとことで断定できるものではない。音楽だけでなくファッション、小説、アート、生活&mdash;&mdash;全てに通じるもの。</p>
+          <p data-ja="モヒカンだから、鋲ジャンだからパンクというわけではない。パンクは自由で何でもありなもの。" data-en="Having a mohawk or wearing a studded jacket doesn't make you punk. Punk is freedom&mdash;anything goes.">モヒカンだから、鋲ジャンだからパンクというわけではない。パンクは自由で何でもありなもの。</p>
+          <p class="about-highlight" data-ja="結論は「自分で考えろ！！！！」" data-en="The answer: &quot;THINK FOR YOURSELF!!!!&quot;">結論は「自分で考えろ！！！！」</p>
+        </div>
+        <div class="about-visual">
+          <img src="images/about.gif" alt="About Punks" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Genre Guide -->
+  <section id="genres" class="section section--dark tartan-bg">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Genre Guide</span>
+        <h2 class="section-title" data-ja="パンクのジャンル" data-en="Punk Genres">パンクのジャンル</h2>
+      </div>
+      <div class="genre-grid">
+        <a href="#" class="genre-card" data-filter="77punk">
+          <span class="genre-card-num">01</span>
+          <h3 class="genre-card-title">77 Punk</h3>
+          <p class="genre-card-desc" data-ja="SEX PISTOLS、THE CLASH、RAMONES&mdash;全てはここから始まった。" data-en="SEX PISTOLS, THE CLASH, RAMONES&mdash;where it all began.">SEX PISTOLS、THE CLASH、RAMONES&mdash;全てはここから始まった。</p>
+        </a>
+        <a href="#" class="genre-card" data-filter="ukhc">
+          <span class="genre-card-num">02</span>
+          <h3 class="genre-card-title">UK Hardcore</h3>
+          <p class="genre-card-desc" data-ja="DISCHARGE、EXPLOITED、G.B.Hなど、より激しく速くなったパンクの進化形。" data-en="DISCHARGE, EXPLOITED, G.B.H&mdash;punk evolved to be faster and more ferocious.">DISCHARGE、EXPLOITED、G.B.Hなど、より激しく速くなったパンクの進化形。</p>
+        </a>
+        <a href="#" class="genre-card" data-filter="oi">
+          <span class="genre-card-num">03</span>
+          <h3 class="genre-card-title">Oi! / Skins</h3>
+          <p class="genre-card-desc" data-ja="COCKNEY REJECTS、4SKINS、BLITZ。ワーキングクラスの怒りと誇り。" data-en="COCKNEY REJECTS, 4SKINS, BLITZ. Working class anger and pride.">COCKNEY REJECTS、4SKINS、BLITZ。ワーキングクラスの怒りと誇り。</p>
+        </a>
+        <a href="#" class="genre-card" data-filter="streetpunk">
+          <span class="genre-card-num">04</span>
+          <h3 class="genre-card-title">Street Punk</h3>
+          <p class="genre-card-desc" data-ja="CASUALTIES、BLANKS 77。ストリートから生まれるリアルなパンク。" data-en="CASUALTIES, BLANKS 77. Real punk born from the streets.">CASUALTIES、BLANKS 77。ストリートから生まれるリアルなパンク。</p>
+        </a>
+        <a href="#" class="genre-card" data-filter="ushc">
+          <span class="genre-card-num">05</span>
+          <h3 class="genre-card-title">US Hardcore</h3>
+          <p class="genre-card-desc" data-ja="DEAD KENNEDYS、AGNOSTIC FRONT。アメリカ独自のハードコアシーン。" data-en="DEAD KENNEDYS, AGNOSTIC FRONT. America's own hardcore scene.">DEAD KENNEDYS、AGNOSTIC FRONT。アメリカ独自のハードコアシーン。</p>
+        </a>
+        <a href="#" class="genre-card" data-filter="melodic">
+          <span class="genre-card-num">06</span>
+          <h3 class="genre-card-title">Melodic / Ska</h3>
+          <p class="genre-card-desc" data-ja="BAD RELIGION、GREENDAY、RANCID。メロディとパンクの融合。" data-en="BAD RELIGION, GREEN DAY, RANCID. Where melody meets punk.">BAD RELIGION、GREENDAY、RANCID。メロディとパンクの融合。</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee 2 -->
+  <div class="marquee">
+    <div class="marquee-inner" style="animation-direction: reverse;">
+      DESTROY <span>&#9733;</span> CREATE <span>&#9733;</span> NO FUTURE <span>&#9733;</span> D.I.Y. <span>&#9733;</span> ANARCHY <span>&#9733;</span> CHAOS <span>&#9733;</span> REBEL <span>&#9733;</span> FIGHT <span>&#9733;</span> RESIST <span>&#9733;</span> UNITE <span>&#9733;</span>
+      DESTROY <span>&#9733;</span> CREATE <span>&#9733;</span> NO FUTURE <span>&#9733;</span> D.I.Y. <span>&#9733;</span> ANARCHY <span>&#9733;</span> CHAOS <span>&#9733;</span> REBEL <span>&#9733;</span> FIGHT <span>&#9733;</span> RESIST <span>&#9733;</span> UNITE <span>&#9733;</span>
+    </div>
+  </div>
+
+  <!-- Disc Reviews -->
+  <section id="reviews" class="section">
+    <div class="container">
+      <div class="section-header" style="position: relative;">
+        <span class="section-label">// Disc Review</span>
+        <h2 class="section-title" data-ja="レビュー" data-en="Reviews">レビュー</h2>
+        <p class="section-desc" data-ja="50以上のバンド、数百枚のアルバムをレビュー。" data-en="Over 50 bands, hundreds of albums reviewed.">50以上のバンド、数百枚のアルバムをレビュー。</p>
+        <span class="sticker sticker--pink" style="top: -10px; right: 20px;">D.I.Y.</span>
+      </div>
+
+      <!-- Filter -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="77punk">77 Punk</button>
+        <button class="filter-btn" data-filter="ukhc">UK HC</button>
+        <button class="filter-btn" data-filter="oi">Oi!</button>
+        <button class="filter-btn" data-filter="streetpunk">Street</button>
+        <button class="filter-btn" data-filter="ushc">US HC</button>
+        <button class="filter-btn" data-filter="melodic">Melodic</button>
+        <button class="filter-btn" data-filter="jp">Japan</button>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="cards-grid" id="cards-grid"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">TOTAL PUNKS</span>
+          <p class="footer-copy">since 2003 &mdash; geocities.jp survivor</p>
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#reviews">Disc Review</a>
+          <a href="#genres">Genres</a>
+        </div>
+      </div>
+      <p class="footer-note">"The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion." &mdash; Albert Camus</p>
+    </div>
+  </footer>
+
+<script src="app.js"></script>
 </body>
 </html>
