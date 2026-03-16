@@ -380,17 +380,49 @@
 
     if (!list || !form) return;
 
+    // Track which comments user already Oi!'d
+    const oiKey = 'totalpunks_oi_' + pageId;
+    function getOiDone() {
+      try { return JSON.parse(localStorage.getItem(oiKey) || '[]'); } catch(e) { return []; }
+    }
+
     function renderComments(comments, isClosed) {
       if (comments.length === 0) {
         list.innerHTML = '<p class="rv-shout-empty">まだ誰も叫んでいない...最初の1人になれ！！</p>';
       } else {
-        list.innerHTML = comments.map(c =>
-          `<div class="rv-shout-item">
+        const done = getOiDone();
+        list.innerHTML = comments.map((c, i) => {
+          const oiCount = c.oi || 0;
+          const alreadyOi = done.includes(i);
+          return `<div class="rv-shout-item">
             <span class="rv-shout-item-name">${escHtml(c.name)}</span>
             <span class="rv-shout-item-text">${escHtml(c.text)}</span>
             <span class="rv-shout-item-date">${c.date || ''}</span>
-          </div>`
-        ).join('');
+            <button class="rv-oi-btn${alreadyOi ? ' rv-oi-done' : ''}" data-index="${i}" ${alreadyOi ? 'disabled' : ''}>Oi!${oiCount > 0 ? ' <span class="rv-oi-count">' + oiCount + '</span>' : ''}</button>
+          </div>`;
+        }).join('');
+
+        // Attach Oi! click handlers
+        list.querySelectorAll('.rv-oi-btn:not(.rv-oi-done)').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const idx = parseInt(this.dataset.index);
+            this.disabled = true;
+            this.textContent = 'Oi!!!!';
+            fetch(apiBase, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ index: idx }),
+            })
+              .then(r => r.json())
+              .then(data => {
+                const d = getOiDone();
+                d.push(idx);
+                localStorage.setItem(oiKey, JSON.stringify(d));
+                renderComments(data.comments || [], data.closed);
+              })
+              .catch(() => { this.disabled = false; this.textContent = 'Oi!'; });
+          });
+        });
       }
       if (isClosed) {
         form.style.display = 'none';
