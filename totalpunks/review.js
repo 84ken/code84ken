@@ -134,9 +134,9 @@
   }
 
   function extractBio() {
-    // Bio is in the first table[width="400"] that does NOT have a td[rowspan]
+    // Bio is in the first table[width] that does NOT have a td[rowspan]
     // Or it could be a <p> before any tables
-    const tables = document.querySelectorAll('table[width="400"]');
+    const tables = document.querySelectorAll('table[width]');
     let bioHtml = '';
 
     // Check for standalone <p> bio text (like EXPLOITED)
@@ -178,7 +178,7 @@
   }
 
   function extractAlbums() {
-    const tables = document.querySelectorAll('table[width="400"]');
+    const tables = document.querySelectorAll('table[width]');
     const albums = [];
 
     tables.forEach(table => {
