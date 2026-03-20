@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BBKK Brand Identity System — Diagram</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1A1818;
+    color: #F5F0E6;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 40px;
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 2.4rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: #C9943A;
+    margin-bottom: 60px;
+  }
+
+  /* ===== メインコンテナ ===== */
+  .diagram {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ===== 各レイヤー ===== */
+  .layer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+  }
+
+  .layer-label {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #C9943A;
+    margin-bottom: 20px;
+  }
+
+  /* ===== Layer 1: Origin ===== */
+  .origin-box {
+    border: 1px solid #C9943A;
+    border-radius: 12px;
+    padding: 32px 48px;
+    text-align: center;
+    max-width: 600px;
+    background: rgba(201, 148, 58, 0.05);
+  }
+
+  .origin-box h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+
+  .origin-box p {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: rgba(245, 240, 230, 0.7);
+  }
+
+  .origin-year {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #C9943A;
+    margin-top: 12px;
+  }
+
+  /* ===== Arrow ===== */
+  .arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0;
+  }
+
+  .arrow-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, #C9943A, rgba(201, 148, 58, 0.3));
+  }
+
+  .arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #C9943A;
+  }
+
+  .arrow-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(201, 148, 58, 0.6);
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  /* ===== Layer 2: Naming ===== */
+  .naming {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .name-bb {
+    flex: 1;
+    background: rgba(212, 160, 104, 0.1);
+    border: 1px solid rgba(212, 160, 104, 0.3);
+    border-radius: 24px 0 0 24px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .name-kk {
+    flex: 1;
+    background: rgba(91, 127, 166, 0.1);
+    border: 1px solid rgba(91, 127, 166, 0.3);
+    border-radius: 0 4px 4px 0;
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .name-char {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 2.2rem;
+    letter-spacing: 0.1em;
+  }
+
+  .name-bb .name-char { color: #D4A068; }
+  .name-kk .name-char { color: #5B7FA6; }
+
+  .name-word {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    margin-top: 4px;
+    color: rgba(245, 240, 230, 0.5);
+  }
+
+  .name-sound {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+
+  .name-bb .name-sound { color: rgba(212, 160, 104, 0.6); }
+  .name-kk .name-sound { color: rgba(91, 127, 166, 0.6); }
+
+  /* ===== Layer 3: Form — split arrow ===== */
+  .split-arrow {
+    display: flex;
+    width: 500px;
+    max-width: 100%;
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  .split-arrow-left,
+  .split-arrow-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+  /* ===== Layer 3: Form Language ===== */
+  .forms {
+    display: flex;
+    gap: 48px;
+    max-width: 700px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-card {
+    flex: 1;
+    padding: 32px 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .form-shape {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-shape svg { width: 100%; height: 100%; }
+
+  .form-label {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+
+  .form-card.bouba .form-label { color: #D4A068; }
+  .form-card.kiki .form-label { color: #5B7FA6; }
+
+  .form-traits {
+    list-style: none;
+    font-size: 0.75rem;
+    line-height: 2;
+    color: rgba(245, 240, 230, 0.6);
+  }
+
+  /* ===== Layer 4: Experience ===== */
+  .experience {
+    display: flex;
+    gap: 48px;
+    max-width: 700px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .exp-card {
+    flex: 1;
+    border-top: 1px solid;
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .exp-card.bouba { border-color: rgba(212, 160, 104, 0.3); }
+  .exp-card.kiki { border-color: rgba(91, 127, 166, 0.3); }
+
+  .exp-card h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .exp-card.bouba h4 { color: #D4A068; }
+  .exp-card.kiki h4 { color: #5B7FA6; }
+
+  .exp-card p {
+    font-size: 0.75rem;
+    line-height: 1.8;
+    color: rgba(245, 240, 230, 0.5);
+  }
+
+  /* ===== Layer 5: Convergence ===== */
+  .converge-arrow {
+    display: flex;
+    width: 500px;
+    max-width: 100%;
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  .converge-box {
+    border: 1px solid rgba(201, 148, 58, 0.3);
+    border-radius: 8px;
+    padding: 28px 48px;
+    text-align: center;
+    max-width: 600px;
+    background: rgba(201, 148, 58, 0.03);
+  }
+
+  .converge-box h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    color: #C9943A;
+    margin-bottom: 12px;
+  }
+
+  .converge-box p {
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: rgba(245, 240, 230, 0.6);
+  }
+
+  /* ===== Layer 6: Touchpoints ===== */
+  .touchpoints {
+    display: flex;
+    gap: 24px;
+    max-width: 800px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tp {
+    border: 1px solid rgba(245, 240, 230, 0.12);
+    border-radius: 6px;
+    padding: 16px 20px;
+    text-align: center;
+    min-width: 140px;
+    flex: 1;
+  }
+
+  .tp-icon {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+
+  .tp-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 230, 0.7);
+  }
+
+  /* ===== Layer 7: Material ===== */
+  .material-bar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 700px;
+    width: 100%;
+    justify-content: center;
+    padding: 24px 32px;
+    border: 1px solid rgba(245, 240, 230, 0.08);
+    border-radius: 8px;
+    background: rgba(74, 44, 10, 0.15);
+  }
+
+  .material-bar .mat-item {
+    text-align: center;
+    flex: 1;
+  }
+
+  .mat-item .mat-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 230, 0.4);
+    margin-bottom: 4px;
+  }
+
+  .mat-item .mat-value {
+    font-size: 0.8rem;
+    color: rgba(245, 240, 230, 0.7);
+  }
+
+  .mat-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(245, 240, 230, 0.1);
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: rgba(245, 240, 230, 0.3);
+    line-height: 2;
+  }
+
+  .footer strong {
+    color: #C9943A;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+
+  <h1>BBKK</h1>
+  <div class="subtitle">Brand Identity System Diagram</div>
+
+  <div class="diagram">
+
+    <!-- Layer 1: Origin -->
+    <div class="layer">
+      <div class="layer-label">Origin — Scientific Foundation</div>
+      <div class="origin-box">
+        <h2>The Bouba-Kiki Effect</h2>
+        <p>Humans universally associate round shapes with the sound "bouba"<br>and angular shapes with "kiki" — across all languages, ages, and cultures.</p>
+        <div class="origin-year">Wolfgang Köhler, 1929 — Ramachandran & Hubbard, 2001</div>
+      </div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+      <div class="arrow-text">Translated into brand</div>
+    </div>
+
+    <!-- Layer 2: Naming -->
+    <div class="layer">
+      <div class="layer-label">Naming — Encoded Duality</div>
+      <div class="naming">
+        <div class="name-bb">
+          <div class="name-char">BB</div>
+          <div class="name-word">Bouba</div>
+          <div class="name-sound">Soft · Round · Warm</div>
+        </div>
+        <div class="name-kk">
+          <div class="name-char">KK</div>
+          <div class="name-word">Kiki</div>
+          <div class="name-sound">Sharp · Angular · Tense</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Split Arrow -->
+    <div class="split-arrow">
+      <div class="split-arrow-left">
+        <div class="arrow-line"></div>
+        <div class="arrow-head"></div>
+      </div>
+      <div class="split-arrow-right">
+        <div class="arrow-line"></div>
+        <div class="arrow-head"></div>
+      </div>
+    </div>
+
+    <!-- Layer 3: Form Language -->
+    <div class="layer">
+      <div class="layer-label">Form Language — Visual Identity</div>
+      <div class="forms">
+        <div class="form-card bouba">
+          <div class="form-shape">
+            <svg viewBox="0 0 120 120">
+              <path d="M60 10 C85 10, 110 30, 108 55 C106 80, 85 110, 60 108 C35 110, 12 85, 10 60 C8 35, 30 10, 60 10Z"
+                    fill="none" stroke="#D4A068" stroke-width="1.5" opacity="0.6"/>
+              <path d="M55 20 C78 18, 100 35, 98 58 C96 78, 78 100, 55 98 C32 100, 18 80, 20 58 C22 38, 35 22, 55 20Z"
+                    fill="rgba(212,160,104,0.08)" stroke="#D4A068" stroke-width="0.5" opacity="0.3"/>
+            </svg>
+          </div>
+          <div class="form-label">Bouba Form</div>
+          <ul class="form-traits">
+            <li>Organic curves</li>
+            <li>Flowing silhouette</li>
+            <li>Gentle rocking rhythm</li>
+            <li>Sense of comfort</li>
+          </ul>
+        </div>
+        <div class="form-card kiki">
+          <div class="form-shape">
+            <svg viewBox="0 0 120 120">
+              <polygon points="60,5 75,30 105,20 85,48 115,60 85,72 105,100 75,90 60,115 45,90 15,100 35,72 5,60 35,48 15,20 45,30"
+                       fill="none" stroke="#5B7FA6" stroke-width="1.5" opacity="0.6"/>
+              <polygon points="60,15 72,35 95,28 80,50 105,60 80,70 95,92 72,85 60,105 48,85 25,92 40,70 15,60 40,50 25,28 48,35"
+                       fill="rgba(91,127,166,0.08)" stroke="#5B7FA6" stroke-width="0.5" opacity="0.3"/>
+            </svg>
+          </div>
+          <div class="form-label">Kiki Form</div>
+          <ul class="form-traits">
+            <li>Sharp geometry</li>
+            <li>Angular silhouette</li>
+            <li>Dynamic rocking rhythm</li>
+            <li>Sense of tension</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Split Arrow -->
+    <div class="split-arrow">
+      <div class="split-arrow-left">
+        <div class="arrow-line"></div>
+        <div class="arrow-head"></div>
+      </div>
+      <div class="split-arrow-right">
+        <div class="arrow-line"></div>
+        <div class="arrow-head"></div>
+      </div>
+    </div>
+
+    <!-- Layer 4: Experience -->
+    <div class="layer">
+      <div class="layer-label">Experience — Physical Perception</div>
+      <div class="experience">
+        <div class="exp-card bouba">
+          <h4>Bouba Experience</h4>
+          <p>Slow, gentle rocking.<br>The body softens.<br>A feeling of calm and nostalgia.</p>
+        </div>
+        <div class="exp-card kiki">
+          <h4>Kiki Experience</h4>
+          <p>Quick, alert rocking.<br>The body sharpens.<br>A feeling of focus and excitement.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Converge Arrow -->
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+      <div class="arrow-text">Same material, same craft — different feeling</div>
+    </div>
+
+    <!-- Layer 5: Brand Message -->
+    <div class="layer">
+      <div class="layer-label">Brand Message</div>
+      <div class="converge-box">
+        <h3>Shape Changes How We Feel</h3>
+        <p>One brand. Two forms. Two sensations.<br>
+        BBKK invites you to discover the invisible link<br>
+        between shape and perception — through your own body.</p>
+      </div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <!-- Layer 6: Touchpoints -->
+    <div class="layer">
+      <div class="layer-label">Brand Touchpoints — Consistent Duality</div>
+      <div class="touchpoints">
+        <div class="tp">
+          <div class="tp-icon">◎</div>
+          <div class="tp-name">Product</div>
+        </div>
+        <div class="tp">
+          <div class="tp-icon">◈</div>
+          <div class="tp-name">Naming</div>
+        </div>
+        <div class="tp">
+          <div class="tp-icon">◇</div>
+          <div class="tp-name">Website</div>
+        </div>
+        <div class="tp">
+          <div class="tp-icon">▣</div>
+          <div class="tp-name">Photography</div>
+        </div>
+        <div class="tp">
+          <div class="tp-icon">◬</div>
+          <div class="tp-name">Exhibition</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <!-- Layer 7: Material Foundation -->
+    <div class="layer">
+      <div class="layer-label">Material Foundation — Identity Through Craft</div>
+      <div class="material-bar">
+        <div class="mat-item">
+          <div class="mat-label">Material</div>
+          <div class="mat-value">Saitama Cedar & Cypress</div>
+        </div>
+        <div class="mat-divider"></div>
+        <div class="mat-item">
+          <div class="mat-label">Fabrication</div>
+          <div class="mat-value">ShopBot CNC + Hand Finishing</div>
+        </div>
+        <div class="mat-divider"></div>
+        <div class="mat-item">
+          <div class="mat-label">Studio</div>
+          <div class="mat-value">TATELab., Yokoze Town</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <strong>BBKK</strong> — Bouba-Kiki Rocking Horse<br>
+    SCHEMA Inc. × TATELab.<br>
+    Grand Prize, Saitama New Product Award 2025
+  </div>
+
+</body>
+</html>

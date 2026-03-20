@@ -3,60 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCHEMA HQ</title>
+<title>SCHEMA HQ — 社内ダッシュボード</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
+          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
+          800:'#13318d',900:'#0e266a',950:'#07194e'
+        }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif']
+      }
+    }
+  }
+}
+</script>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Inter', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-    background: #f8fafc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    color: #334155;
-  }
-  .container {
-    text-align: center;
-    padding: 48px;
-    background: white;
-    border-radius: 16px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    max-width: 480px;
-  }
-  .logo {
-    width: 48px;
-    height: 48px;
-    background: #2b70ef;
-    color: white;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 16px;
-  }
-  h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-  p { font-size: 14px; color: #64748b; line-height: 1.6; }
-  .status {
-    margin-top: 24px;
-    padding: 12px 20px;
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    border-radius: 8px;
-    font-size: 13px;
-    color: #166534;
-  }
+.text-body { color: #3d4b5f; }
+.card-link { transition: all 0.15s ease; }
+.card-link:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+/* NEW / UPDATED バッジ */
+.badge-new {
+  position: relative;
+}
+.badge-new::after {
+  content: 'NEW';
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ef4444;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+.badge-updated::after {
+  content: 'UPDATED';
+  background: #2b70ef;
+}
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
 </style>
+<!--
+  バッジの使い方:
+  - 新規ページ: class に "badge-new" を追加
+  - 更新ページ: class に "badge-new badge-updated" を追加
+  - 解除: badge-new を削除
+-->
 </head>
-<body>
-  <div class="container">
-    <div class="logo">S</div>
-    <h1>SCHEMA HQ</h1>
-    <p>社内ダッシュボードのデプロイテストページです。<br>このページが表示されていれば、デプロイは正常に完了しています。</p>
-    <div class="status">✓ Deploy successful</div>
-    <p style="margin-top: 16px; font-size: 12px; color: #94a3b8;">hq.schema.tokyo — ConoHa WING via GitHub Actions</p>
+<body class="bg-gray-50 min-h-screen">
+<div class="max-w-5xl mx-auto px-8 py-12">
+
+  <!-- ヘッダー -->
+  <div class="mb-10">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-10 h-10 rounded-lg bg-primary-500 text-white font-bold inline-flex items-center justify-center text-sm">S</div>
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">SCHEMA HQ</h1>
+        <p class="text-sm text-slate-500">社内ダッシュボード</p>
+      </div>
+    </div>
+    <p class="text-xs text-slate-400 mt-2">最終更新: 2026年3月20日 ｜ CONFIDENTIAL — 社内限定</p>
   </div>
+
+  <!-- ===== 営業・プロポーザル ===== -->
+  <section class="mb-10">
+    <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">営業・プロポーザル</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <!-- プロポーザルダッシュボード -->
+      <a href="proposal-dashboard.html" class="card-link badge-new bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 inline-flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">行政プロポーザル ダッシュボード</h3>
+            <p class="text-xs text-body mt-1">令和8年度 全13案件のステータス・確度・予算・スケジュール管理</p>
+            <div class="flex gap-2 mt-2">
+              <span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-xs font-medium">提案中 9件</span>
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-medium">¥1.55億</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 事業計画 -->
+      <a href="business-plan-2027-2029.html" class="card-link badge-new bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-primary-50 text-primary-600 inline-flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">3ヶ年事業計画 2027-2029</h3>
+            <p class="text-xs text-body mt-1">売上計画・利益計画・5つの成長エンジン・年次ロードマップ</p>
+            <div class="flex gap-2 mt-2">
+              <span class="bg-primary-100 text-primary-700 px-2 py-0.5 rounded text-xs font-medium">目標 ¥350M</span>
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-medium">行政依存率 40%以下</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== プロポーザル提案書 ===== -->
+  <section class="mb-10">
+    <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">提案書（HTML）</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+      <a href="proposals/agri-branding.html" class="card-link bg-white rounded-xl border border-slate-200 p-4 shadow-sm block">
+        <p class="font-medium text-slate-900 text-sm">農産物ブランド化支援</p>
+        <p class="text-xs text-body mt-1">梨・ぶどう・小玉すいか</p>
+        <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-medium mt-2 inline-block">確度 中</span>
+      </a>
+
+      <a href="proposals/nashi-branding.html" class="card-link bg-white rounded-xl border border-slate-200 p-4 shadow-sm block">
+        <p class="font-medium text-slate-900 text-sm">梨新品種ブランディング</p>
+        <p class="text-xs text-body mt-1">彩姫・彩彦・彩玉</p>
+        <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-medium mt-2 inline-block">確度 中</span>
+      </a>
+
+      <a href="proposals/instagram-wassyoi.html" class="card-link bg-white rounded-xl border border-slate-200 p-4 shadow-sm block">
+        <p class="font-medium text-slate-900 text-sm">埼玉わっしょい Instagram</p>
+        <p class="text-xs text-body mt-1">農産物連動IG運用</p>
+        <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-medium mt-2 inline-block">確度 中</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ===== アワード ===== -->
+  <section class="mb-10">
+    <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">アワード</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <a href="awards/bbkk-brand-diagram.html" class="card-link bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 inline-flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">BBKK木馬 ブランドダイアグラム</h3>
+            <p class="text-xs text-body mt-1">ブランド構造・ポジショニング・デザイン要素の可視化</p>
+          </div>
+        </div>
+      </a>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-500 inline-flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">アワード戦略・エントリー状況</h3>
+            <p class="text-xs text-body mt-1">各アワードのエントリー管理（MDファイル）</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs">IDA Design Awards</span>
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs">Red Dot BCD</span>
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs">戦略MD</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-2">awards/ フォルダ内の .md ファイルを参照</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== エージェントシステム ===== -->
+  <section class="mb-10">
+    <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">社内システム</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 inline-flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">AI エージェントシステム</h3>
+            <p class="text-xs text-body mt-1">7部門・26名の仮想専門家チーム + スキル9冊</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs">営業部</span>
+              <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs">企画部</span>
+              <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs">案件管理部</span>
+              <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs">経理部</span>
+              <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs">他3部門</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-2">CLAUDE.md で定義・Claude Code から起動</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://schema-inc.netlify.app/" target="_blank" class="card-link bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-600 inline-flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">SCHEMA コーポレートサイト</h3>
+            <p class="text-xs text-body mt-1">schema-inc.netlify.app</p>
+            <span class="text-xs text-slate-400 mt-2 inline-block">↗ 外部リンク</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <div class="mt-12 pt-6 border-t border-slate-200 flex items-center justify-between">
+    <p class="text-xs text-slate-400">&copy;2026 SCHEMA, Inc. — Internal use only.</p>
+    <p class="text-xs text-slate-400">Powered by Claude Code + AI Agent System</p>
+  </div>
+
+</div>
 </body>
 </html>

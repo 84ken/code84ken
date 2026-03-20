@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>令和8年度埼玉県梨新品種ブランディング支援業務委託 企画提案書</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
+          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
+          800:'#13318d',900:'#0e266a',950:'#07194e'
+        },
+        sai: { hime: '#e8a0b4', hiko: '#7eb8a0', gyoku: '#d4a843' },
+        nashi: { bg: '#faf8f5', accent: '#8B6914', light: '#f5f0e6' }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  /* A4横 印刷最適化 */
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+  @media print {
+    html, body { margin: 0; padding: 0; }
+    .page { page-break-after: always; page-break-inside: avoid; }
+    .page:last-child { page-break-after: auto; }
+    .no-print { display: none; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  /* ページ共通 - A4横 = 297mm x 210mm */
+  .page {
+    width: 297mm; height: 210mm;
+    padding: 14mm 20mm;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    background: white;
+  }
+  .page-cover { padding: 20mm 28mm; }
+  /* 画面表示用の区切り */
+  @media screen {
+    .page { margin: 0 auto 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+    body { background: #e5e5e5; padding: 16px 0; }
+  }
+  .text-body { color: #3d4b5f; }
+  body { font-size: 12px; line-height: 1.7; font-family: 'Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','Meiryo','sans-serif'; }
+  h1,h2,h3,h4 { line-height: 1.35; }
+  .section-title { border-left: 4px solid #8B6914; padding-left: 12px; }
+  .point-box { background: linear-gradient(135deg, #f5f0e6 0%, #faf8f5 100%); border: 1px solid #d4a843; border-radius: 8px; padding: 12px 16px; }
+  .cover-bg { background: linear-gradient(160deg, #faf8f5 0%, #f5f0e6 40%, #e8dcc8 100%); }
+  table { border-collapse: collapse; width: 100%; }
+  th { background: #f5f0e6; }
+  td, th { border: 1px solid #d4c8a0; padding: 5px 8px; font-size: 11px; }
+  .footer { position: absolute; bottom: 8mm; left: 20mm; font-size: 8px; color: #94a3b8; }
+</style>
+</head>
+<body class="bg-white text-body">
+
+<!-- ============================================ -->
+<!-- 表紙 -->
+<!-- ============================================ -->
+<div class="page page-cover cover-bg flex flex-col justify-between">
+  <div></div>
+  <div class="max-w-3xl">
+    <p class="text-sm text-nashi-accent font-medium tracking-wider mb-4">BRANDING STRATEGY PROPOSAL</p>
+    <h1 class="text-2xl font-bold text-slate-900 mb-6 leading-tight">
+      令和８年度<br>埼玉県梨新品種ブランディング<br>支援業務委託
+    </h1>
+    <p class="text-2xl font-semibold text-nashi-accent mb-2">企画提案書</p>
+    <div class="w-24 h-1 bg-nashi-accent mt-6 mb-8"></div>
+    <p class="text-lg text-slate-700">
+      「彩姫」「彩彦」— 埼玉の夏を、リレーする。
+    </p>
+  </div>
+  <div class="flex justify-between items-end">
+    <div class="text-sm text-slate-600">
+      <img src="SCHEMA_logo.png" alt="SCHEMA, INC." class="h-8 mb-3">
+      <p>2026.04.21</p>
+      <p>〒150-0002 東京都渋谷区渋谷3-17-4 山口ビル5F</p>
+      <p>TEL: 03-6427-2273 / MAIL: info@llschema.com</p>
+    </div>
+    <p class="text-xs text-slate-400">[ CONFIDENTIAL ]</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 目次 -->
+<!-- ============================================ -->
+<div class="page">
+  <h2 class="text-2xl font-bold text-slate-900 mb-6">目次</h2>
+  <div class="space-y-3 max-w-2xl">
+    <div class="flex justify-between items-baseline border-b border-slate-200 pb-3">
+      <span class="text-lg font-semibold text-slate-900">第1章　業務理解と基本方針</span>
+      <span class="text-sm text-slate-500">P3</span>
+    </div>
+    <div class="flex justify-between items-baseline border-b border-slate-200 pb-3">
+      <span class="text-lg font-semibold text-slate-900">第2章　市場環境分析</span>
+      <span class="text-sm text-slate-500">P8</span>
+    </div>
+    <div class="flex justify-between items-baseline border-b border-slate-200 pb-3">
+      <span class="text-lg font-semibold text-slate-900">第3章　ブランディング戦略の方向性</span>
+      <span class="text-sm text-slate-500">P14</span>
+    </div>
+    <div class="flex justify-between items-baseline border-b border-slate-200 pb-3">
+      <span class="text-lg font-semibold text-slate-900">第4章　消費者等調査計画</span>
+      <span class="text-sm text-slate-500">P22</span>
+    </div>
+    <div class="flex justify-between items-baseline border-b border-slate-200 pb-3">
+      <span class="text-lg font-semibold text-slate-900">第5章　素材撮影計画</span>
+      <span class="text-sm text-slate-500">P28</span>
+    </div>
+    <div class="flex justify-between items-baseline border-b border-slate-200 pb-3">
+      <span class="text-lg font-semibold text-slate-900">第6章　自由提案</span>
+      <span class="text-sm text-slate-500">P31</span>
+    </div>
+    <div class="flex justify-between items-baseline border-b border-slate-200 pb-3">
+      <span class="text-lg font-semibold text-slate-900">第7章　実施スケジュール</span>
+      <span class="text-sm text-slate-500">P37</span>
+    </div>
+    <div class="flex justify-between items-baseline border-b border-slate-200 pb-3">
+      <span class="text-lg font-semibold text-slate-900">第8章　運営体制</span>
+      <span class="text-sm text-slate-500">P39</span>
+    </div>
+    <div class="flex justify-between items-baseline border-b border-slate-200 pb-3">
+      <span class="text-lg font-semibold text-slate-900">第9章　関連実績</span>
+      <span class="text-sm text-slate-500">P42</span>
+    </div>
+  </div>
+  <p class="text-xs text-slate-400 mt-16">©2026 SCHEMA, Inc. All rights reserved.</p>
+</div>
+
+<!-- ============================================ -->
+<!-- 第1章 業務理解と基本方針 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="bg-nashi-accent text-white text-center py-6 rounded-xl mb-8">
+    <p class="text-sm tracking-widest mb-2">CHAPTER 01</p>
+    <h2 class="text-2xl font-bold">業務理解と基本方針</h2>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8">本業務の目的</h3>
+  <div class="bg-nashi-light rounded-xl p-8 mb-8">
+    <p class="text-lg text-slate-800 leading-relaxed">
+      埼玉県が開発した梨の新品種<strong>「彩姫（さいひめ）」</strong>及び<strong>「彩彦（さいひこ）」</strong>の今後の販売開始に向けて、県として新品種それぞれの<strong class="text-nashi-accent">ブランディング戦略の策定を行うために必要な支援</strong>を行う。
+    </p>
+  </div>
+
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-6 mt-6">3品種による「彩リレー」構想</h3>
+  <p class="text-body mb-6">
+    新品種2品種と既存品種「彩玉」を合わせた3品種により、7月下旬から9月初旬までの<strong>梨の消費最盛期において、埼玉県オリジナル品種でのリレー販売</strong>が可能となります。
+  </p>
+
+  <!-- リレー図 -->
+  <div class="bg-white rounded-xl border border-slate-200 p-8 mb-8">
+    <div class="flex gap-4 items-stretch">
+      <!-- 彩姫 -->
+      <div class="flex-1 bg-gradient-to-b from-pink-50 to-white rounded-xl border-2 border-sai-hime p-6 text-center">
+        <div class="w-16 h-16 rounded-full bg-sai-hime mx-auto mb-4 flex items-center justify-center">
+          <span class="text-white text-2xl font-bold">姫</span>
+        </div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">彩姫</h4>
+        <p class="text-sm font-semibold text-sai-hime mb-3">7月下旬〜8月上旬</p>
+        <p class="text-sm text-body">夏の序章</p>
+        <p class="text-xs text-slate-500 mt-2">甘みが強く酸味なし<br>幸水より早生</p>
+      </div>
+      <!-- 矢印 -->
+      <div class="flex items-center">
+        <svg class="w-8 h-8 text-nashi-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/></svg>
+      </div>
+      <!-- 彩彦 -->
+      <div class="flex-1 bg-gradient-to-b from-emerald-50 to-white rounded-xl border-2 border-sai-hiko p-6 text-center">
+        <div class="w-16 h-16 rounded-full bg-sai-hiko mx-auto mb-4 flex items-center justify-center">
+          <span class="text-white text-2xl font-bold">彦</span>
+        </div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">彩彦</h4>
+        <p class="text-sm font-semibold text-sai-hiko mb-3">8月上旬〜8月中下旬</p>
+        <p class="text-sm text-body">夏の本番</p>
+        <p class="text-xs text-slate-500 mt-2">甘み+わずかな酸味<br>濃厚な味わい</p>
+      </div>
+      <!-- 矢印 -->
+      <div class="flex items-center">
+        <svg class="w-8 h-8 text-nashi-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/></svg>
+      </div>
+      <!-- 彩玉 -->
+      <div class="flex-1 bg-gradient-to-b from-amber-50 to-white rounded-xl border-2 border-sai-gyoku p-6 text-center">
+        <div class="w-16 h-16 rounded-full bg-sai-gyoku mx-auto mb-4 flex items-center justify-center">
+          <span class="text-white text-2xl font-bold">玉</span>
+        </div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">彩玉</h4>
+        <p class="text-sm font-semibold text-sai-gyoku mb-3">8月下旬〜9月初旬</p>
+        <p class="text-sm text-body">夏の余韻</p>
+        <p class="text-xs text-slate-500 mt-2">大玉・高糖度<br>全国梨選手権最高金賞</p>
+      </div>
+    </div>
+    <p class="text-center text-sm font-semibold text-nashi-accent mt-6">約6週間にわたる「埼玉梨リレー」の実現</p>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8">弊社の基本方針</h3>
+
+  <div class="space-y-4 mb-5">
+    <div class="flex gap-6 items-start">
+      <div class="w-12 h-12 rounded-full bg-nashi-accent flex items-center justify-center flex-shrink-0">
+        <span class="text-white text-lg font-bold">1</span>
+      </div>
+      <div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">「彩シリーズ」として統一的にブランドを設計する</h4>
+        <p class="text-body">3品種を個別に売るのではなく、「彩姫→彩彦→彩玉」のリレーそのものをブランドストーリーとして構築します。愛媛県の柑橘「紅コレクション」（紅まどんな・紅かんぺい・紅プリンセス）の3品種シリーズ化と同じ戦略構造です。</p>
+      </div>
+    </div>
+    <div class="flex gap-6 items-start">
+      <div class="w-12 h-12 rounded-full bg-nashi-accent flex items-center justify-center flex-shrink-0">
+        <span class="text-white text-lg font-bold">2</span>
+      </div>
+      <div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">いちご大學で実証済みのメソッドを梨に転用する</h4>
+        <p class="text-body">2年間の「埼玉いちご大學」で培った、共創型ワークショップ・商品開発・プロモーション・販売のノウハウとネットワークを梨に横展開します。設計済みの「型」を再利用することで、限られた予算で最大の効果を実現します。</p>
+      </div>
+    </div>
+    <div class="flex gap-6 items-start">
+      <div class="w-12 h-12 rounded-full bg-nashi-accent flex items-center justify-center flex-shrink-0">
+        <span class="text-white text-lg font-bold">3</span>
+      </div>
+      <div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">農業者の所得向上に直結する戦略を策定する</h4>
+        <p class="text-body">本業務の最終目標は「県内農業者の所得向上」です。ブランディング戦略は、高単価販売の実現、販売期間の拡大、直売・系統出荷双方での有利販売を可能にする設計とします。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <p class="text-sm font-bold text-nashi-accent mb-2">POINT!</p>
+    <p class="text-body text-sm">
+      弊社は埼玉県庁の<strong>官民連携アドバイザー</strong>として、「リバサポ」「すぽったま」「さいたまつり」「ぶんたま」など<strong>複数課にまたがる事業を推進</strong>してきました。また、<strong>埼玉いちご大學</strong>（農業ビジネス支援課）では県産いちごのブランディングから商品開発・販売までを2年間実施し、埼玉いちご祭りでは全商品完売（売上316,350円）を達成しています。県産農産物のブランディングにおいて、<strong>最も多くの実績と知見を持つパートナー</strong>です。
+    </p>
+  </div>
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 第2章 市場環境分析 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="bg-nashi-accent text-white text-center py-6 rounded-xl mb-8">
+    <p class="text-sm tracking-widest mb-2">CHAPTER 02</p>
+    <h2 class="text-2xl font-bold">市場環境分析</h2>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8">国内梨市場の現状</h3>
+
+  <div class="grid grid-cols-3 gap-6 mb-8">
+    <div class="bg-nashi-light rounded-xl p-6 text-center">
+      <p class="text-2xl font-bold text-nashi-accent">183,400t</p>
+      <p class="text-sm text-slate-600 mt-2">全国収穫量（令和5年）</p>
+      <p class="text-xs text-red-500 mt-1">10年間で約30%減少</p>
+    </div>
+    <div class="bg-nashi-light rounded-xl p-6 text-center">
+      <p class="text-2xl font-bold text-nashi-accent">24億円</p>
+      <p class="text-sm text-slate-600 mt-2">埼玉県 梨の産出額</p>
+      <p class="text-xs text-slate-500 mt-1">県内果樹の約半数を占める</p>
+    </div>
+    <div class="bg-nashi-light rounded-xl p-6 text-center">
+      <p class="text-2xl font-bold text-nashi-accent">310ha</p>
+      <p class="text-sm text-slate-600 mt-2">埼玉県 栽培面積</p>
+      <p class="text-xs text-slate-500 mt-1">全国9位</p>
+    </div>
+  </div>
+
+  <h4 class="text-lg font-bold text-slate-900 mb-4 mt-10">市場縮小時代のブランディング戦略</h4>
+  <div class="bg-white rounded-xl border border-slate-200 p-6 mb-8">
+    <p class="text-body mb-4">
+      国内梨市場は高齢化による離農を主因に縮小が続いています。この環境下で農業者の所得を向上させるには、<strong>「量」ではなく「質と単価」で勝負する</strong>ブランド戦略が不可欠です。
+    </p>
+    <div class="flex gap-4">
+      <div class="flex-1 bg-red-50 rounded-lg p-4">
+        <p class="text-sm font-semibold text-red-700 mb-1">量で戦う ×</p>
+        <p class="text-xs text-red-600">面積減→生産量減→収入減の悪循環</p>
+      </div>
+      <div class="flex items-center"><span class="text-2xl text-slate-300">→</span></div>
+      <div class="flex-1 bg-emerald-50 rounded-lg p-4">
+        <p class="text-sm font-semibold text-emerald-700 mb-1">ブランドで戦う ○</p>
+        <p class="text-xs text-emerald-600">高単価×県限定栽培→生産者の所得向上</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8">競合ブランド梨の分析</h3>
+
+  <table class="w-full mb-8">
+    <thead>
+      <tr>
+        <th class="text-left text-sm">品種</th>
+        <th class="text-left text-sm">産地</th>
+        <th class="text-left text-sm">戦略の核</th>
+        <th class="text-left text-sm">価格帯</th>
+        <th class="text-left text-sm">彩シリーズへの示唆</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="font-semibold">恵水</td>
+        <td>茨城県</td>
+        <td>「幻の恵水」1玉10,800円の超高価格帯で話題化</td>
+        <td>〜10,800円/玉</td>
+        <td>プレミアム枠の設定</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">新甘泉</td>
+        <td>鳥取県</td>
+        <td>県内限定栽培で希少性確保</td>
+        <td>〜690円/玉</td>
+        <td>県限定の価値訴求</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">にっこり</td>
+        <td>栃木県</td>
+        <td>大玉+長期保存+海外展開</td>
+        <td>〜830円/玉</td>
+        <td>保存性の訴求</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">彩玉</td>
+        <td>埼玉県</td>
+        <td>全国梨選手権3年連続最多受賞</td>
+        <td>540〜860円/玉</td>
+        <td>受賞実績の継承</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 class="text-lg font-bold text-slate-900 mb-4 mt-10">果物ブランディングの成功法則</h4>
+  <p class="text-body mb-4">他県の先行事例から、果物ブランディングに共通する成功要因を整理しました。</p>
+
+  <div class="grid grid-cols-2 gap-4 mb-8">
+    <div class="bg-nashi-light rounded-xl p-5">
+      <p class="font-bold text-slate-900 mb-2">あまりん（埼玉県いちご）</p>
+      <p class="text-sm text-body">全国いちご選手権<strong>3連覇</strong>。県内限定栽培+メディア露出で認知拡大。<strong>彩玉の梨選手権3年連続最多受賞と同じ構造。</strong></p>
+    </div>
+    <div class="bg-nashi-light rounded-xl p-5">
+      <p class="font-bold text-slate-900 mb-2">紅コレクション（愛媛県柑橘）</p>
+      <p class="text-sm text-body">紅まどんな・紅かんぺい・紅プリンセスの<strong>3品種シリーズ化</strong>。知事自らトップセールス。<strong>彩シリーズと完全に同じ構造。</strong></p>
+    </div>
+    <div class="bg-nashi-light rounded-xl p-5">
+      <p class="font-bold text-slate-900 mb-2">あまおう（福岡県いちご）</p>
+      <p class="text-sm text-body">「赤い・丸い・大きい・うまい」の頭文字。<strong>秀逸なネーミング</strong>+県内限定栽培+海外展開。</p>
+    </div>
+    <div class="bg-nashi-light rounded-xl p-5">
+      <p class="font-bold text-slate-900 mb-2">ル レクチエ（新潟県洋梨）</p>
+      <p class="text-sm text-body">「洋梨の貴婦人」という<strong>ブランドストーリー</strong>。栽培難度に裏付けられた希少性。ラ・フランスの1.5〜2倍の価格。</p>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <p class="text-sm font-bold text-nashi-accent mb-2">POINT!</p>
+    <p class="text-body text-sm">
+      成功事例に共通するのは、<strong>①県内限定栽培</strong>、<strong>②全国コンテストでの受賞</strong>、<strong>③複数品種のシリーズ化</strong>の3つです。彩姫・彩彦はこの3条件を<strong>すべて満たしている</strong>稀有なケースです。特に「幸水」を全国に広めたのは埼玉県の試行錯誤であったことは、埼玉県産梨の「物語」として極めて強力なブランド資産です。
+    </p>
+  </div>
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 第3章 ブランディング戦略の方向性 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="bg-nashi-accent text-white text-center py-6 rounded-xl mb-8">
+    <p class="text-sm tracking-widest mb-2">CHAPTER 03</p>
+    <h2 class="text-2xl font-bold">ブランディング戦略の方向性</h2>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8">コアコンセプト（案）</h3>
+
+  <div class="bg-nashi-light rounded-2xl p-8 text-center mb-5">
+    <p class="text-sm text-nashi-accent tracking-widest mb-4">CORE CONCEPT</p>
+    <h2 class="text-2xl font-bold text-slate-900 mb-6">夏を、リレーする。</h2>
+    <p class="text-lg text-body max-w-xl mx-auto">
+      7月下旬から9月初旬まで。<br>
+      埼玉の梨が、夏のバトンをつないでいく。<br>
+      彩姫が夏を告げ、彩彦が夏を深め、彩玉が夏を締めくくる。
+    </p>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6 mb-5">
+    <div class="rounded-xl p-6 text-center" style="background: linear-gradient(180deg, #fce4ec 0%, #fff 100%);">
+      <p class="text-3xl mb-3">🌸</p>
+      <h4 class="font-bold text-slate-900 mb-2">彩姫</h4>
+      <p class="text-sm font-semibold text-sai-hime mb-3">夏の序章</p>
+      <p class="text-sm text-body">「いちばん早い、<br>埼玉の夏の甘さ」</p>
+      <div class="mt-4 text-xs text-slate-500 space-y-1">
+        <p>幸水より早い7月下旬〜</p>
+        <p>甘みが強く酸味なし</p>
+        <p>「初物」としての話題性</p>
+      </div>
+    </div>
+    <div class="rounded-xl p-6 text-center" style="background: linear-gradient(180deg, #e0f2f1 0%, #fff 100%);">
+      <p class="text-3xl mb-3">🌿</p>
+      <h4 class="font-bold text-slate-900 mb-2">彩彦</h4>
+      <p class="text-sm font-semibold text-sai-hiko mb-3">夏の本番</p>
+      <p class="text-sm text-body">「甘さと酸味が織りなす、<br>夏の深み」</p>
+      <div class="mt-4 text-xs text-slate-500 space-y-1">
+        <p>盆前需要に対応</p>
+        <p>濃厚な味わい</p>
+        <p>幸水の代替品種候補</p>
+      </div>
+    </div>
+    <div class="rounded-xl p-6 text-center" style="background: linear-gradient(180deg, #fff8e1 0%, #fff 100%);">
+      <p class="text-3xl mb-3">🌾</p>
+      <h4 class="font-bold text-slate-900 mb-2">彩玉</h4>
+      <p class="text-sm font-semibold text-sai-gyoku mb-3">夏の余韻</p>
+      <p class="text-sm text-body">「大玉に詰まった、<br>夏の集大成」</p>
+      <div class="mt-4 text-xs text-slate-500 space-y-1">
+        <p>全国梨選手権最高金賞</p>
+        <p>550〜600g大玉</p>
+        <p>確立済みブランド</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8">ブランドストーリーの方向性</h3>
+
+  <div class="bg-white rounded-xl border border-slate-200 p-8 mb-8">
+    <h4 class="font-bold text-slate-900 mb-4">物語の核：「幸水を全国に広めた埼玉」の次章</h4>
+    <div class="space-y-4 text-body">
+      <p>日本で最も食べられている梨「幸水」。その栽培方法を確立し、全国に広めたのは埼玉県の農業試験場と生産者でした。</p>
+      <p>あれから約40年。埼玉県の梨研究者・島田智人氏は、平成3年の配属以来、一貫してニホンナシの育種研究に携わり続けてきました。「彩玉」の開発に続き、令和6年に世に送り出したのが「彩姫」と「彩彦」です。</p>
+      <p><strong>「幸水」を育てた埼玉が、次の時代の梨をつくる</strong>——この物語は、彩シリーズの揺るぎない正統性を証明します。</p>
+    </div>
+  </div>
+
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8 mt-6">ターゲット設計の方向性</h3>
+
+  <table class="w-full mb-8">
+    <thead>
+      <tr>
+        <th class="text-left text-sm">セグメント</th>
+        <th class="text-left text-sm">特徴</th>
+        <th class="text-left text-sm">チャネル</th>
+        <th class="text-left text-sm">訴求ポイント</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="font-semibold">コア層</td>
+        <td class="text-sm">埼玉県内の梨好き・直売所常連</td>
+        <td class="text-sm">産地直売所</td>
+        <td class="text-sm">「今年の新品種」の初物体験</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">品質重視層</td>
+        <td class="text-sm">首都圏在住、果物にこだわる30-50代</td>
+        <td class="text-sm">百貨店、高級青果店、EC</td>
+        <td class="text-sm">全国梨選手権受賞、県限定栽培の希少性</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">贈答層</td>
+        <td class="text-sm">お中元・暑中見舞い需要</td>
+        <td class="text-sm">系統出荷、百貨店、EC</td>
+        <td class="text-sm">3品種リレーギフトセット</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">体験層</td>
+        <td class="text-sm">観光・体験を求めるファミリー層</td>
+        <td class="text-sm">観光農園、イベント</td>
+        <td class="text-sm">食べ比べ体験、産地訪問</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="point-box">
+    <p class="text-sm font-bold text-nashi-accent mb-2">POINT!</p>
+    <p class="text-body text-sm">
+      ターゲット設計は<strong>消費者等調査の結果を反映して最終化</strong>します。本提案段階では仮説としての方向性を提示し、実際の消費者データに基づいて修正・確定するプロセスを取ります。
+    </p>
+  </div>
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 第4章 消費者等調査計画 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="bg-nashi-accent text-white text-center py-6 rounded-xl mb-8">
+    <p class="text-sm tracking-widest mb-2">CHAPTER 04</p>
+    <h2 class="text-2xl font-bold">消費者等調査計画</h2>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8">100玉の活用計画</h3>
+  <p class="text-body mb-6">各品種100玉という限られた果実を最大限に活用するため、4つの調査と撮影に最適配分します。</p>
+
+  <table class="w-full mb-8">
+    <thead>
+      <tr>
+        <th class="text-left text-sm">調査</th>
+        <th class="text-left text-sm">対象</th>
+        <th class="text-left text-sm">手法</th>
+        <th class="text-left text-sm">時期</th>
+        <th class="text-center text-sm">彩姫</th>
+        <th class="text-center text-sm">彩彦</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="font-semibold text-sm">調査1: 消費者試食会</td>
+        <td class="text-sm">一般消費者30〜40名</td>
+        <td class="text-sm">CLT（ブラインドテスト）</td>
+        <td class="text-sm">8月上旬〜中旬</td>
+        <td class="text-center text-sm">30玉</td>
+        <td class="text-center text-sm">30玉</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">調査2: 3品種リレー体験</td>
+        <td class="text-sm">一般消費者20〜30名</td>
+        <td class="text-sm">食べ比べ+グループインタビュー</td>
+        <td class="text-sm">8月下旬</td>
+        <td class="text-center text-sm">15玉</td>
+        <td class="text-center text-sm">15玉</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">調査3: 実需者ヒアリング</td>
+        <td class="text-sm">バイヤー・飲食店5〜8社</td>
+        <td class="text-sm">個別訪問+半構造化インタビュー</td>
+        <td class="text-sm">8月上旬〜9月</td>
+        <td class="text-center text-sm">15玉</td>
+        <td class="text-center text-sm">15玉</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">調査4: 専門家評価</td>
+        <td class="text-sm">野菜ソムリエ等2〜3名</td>
+        <td class="text-sm">試食+コメント収録</td>
+        <td class="text-sm">8月</td>
+        <td class="text-center text-sm">10玉</td>
+        <td class="text-center text-sm">10玉</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">撮影・予備</td>
+        <td class="text-sm">—</td>
+        <td class="text-sm">スタイリング撮影+予備分</td>
+        <td class="text-sm">7月下旬〜8月</td>
+        <td class="text-center text-sm">30玉</td>
+        <td class="text-center text-sm">30玉</td>
+      </tr>
+      <tr class="font-bold" style="background: #f5f0e6;">
+        <td>合計</td>
+        <td colspan="3"></td>
+        <td class="text-center">100玉</td>
+        <td class="text-center">100玉</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-6">消費者試食会（調査1）の設計</h3>
+
+  <div class="grid grid-cols-2 gap-6 mb-6">
+    <div class="bg-nashi-light rounded-xl p-6">
+      <h4 class="font-bold text-slate-900 mb-3">実施方法</h4>
+      <ul class="text-sm text-body space-y-2">
+        <li>・ ブラインドテスト形式（品種名を伏せてA/B/Cで提供）</li>
+        <li>・ 比較対象として市販の幸水を含める</li>
+        <li>・ 1人あたり各品種2〜3切れ</li>
+        <li>・ 口直し用の水・クラッカーを用意</li>
+        <li>・ 埼玉県在住者を半数以上で構成</li>
+      </ul>
+    </div>
+    <div class="bg-nashi-light rounded-xl p-6">
+      <h4 class="font-bold text-slate-900 mb-3">把握項目</h4>
+      <ul class="text-sm text-body space-y-2">
+        <li>・ 官能評価（甘さ・酸味・食感・果汁量・香り）7段階</li>
+        <li>・ 総合嗜好度と購入意向（価格帯別）</li>
+        <li>・ 品種名の印象評価（親しみ・覚えやすさ・高級感）</li>
+        <li>・ 「彩リレー」コンセプトへの共感度</li>
+        <li>・ 想定適正価格帯（PSM分析）</li>
+        <li>・ 購入チャネル希望（直売所/スーパー/EC/ふるさと納税）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <p class="text-sm font-bold text-nashi-accent mb-2">POINT!</p>
+    <p class="text-body text-sm">
+      <strong>調査2「3品種リレー体験」</strong>が本調査の独自設計です。彩姫→彩彦→彩玉を順に食べ比べることで、味わいの変遷を体験してもらい、「夏を、リレーする。」コンセプトの訴求力を定量的に検証します。
+    </p>
+  </div>
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 第5章 素材撮影計画 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="bg-nashi-accent text-white text-center py-6 rounded-xl mb-8">
+    <p class="text-sm tracking-widest mb-2">CHAPTER 05</p>
+    <h2 class="text-2xl font-bold">素材撮影計画</h2>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-6">撮影方針</h3>
+
+  <table class="w-full mb-8">
+    <thead>
+      <tr>
+        <th class="text-left text-sm">カテゴリ</th>
+        <th class="text-left text-sm">カット例</th>
+        <th class="text-left text-sm">撮影場所</th>
+        <th class="text-left text-sm">時期</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="font-semibold text-sm">樹上カット</td>
+        <td class="text-sm">枝になった状態、葉との対比、生育中の果実</td>
+        <td class="text-sm">久喜試験場</td>
+        <td class="text-sm">7月下旬</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">収穫シーン</td>
+        <td class="text-sm">手で収穫する瞬間、コンテナ、生産者の手</td>
+        <td class="text-sm">久喜試験場</td>
+        <td class="text-sm">7月下旬〜8月</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">正面・俯瞰</td>
+        <td class="text-sm">果実単体、3品種並べた比較、サイズ感</td>
+        <td class="text-sm">スタジオ</td>
+        <td class="text-sm">8月</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">断面・食シーン</td>
+        <td class="text-sm">カット断面の果汁、食べる瞬間、食卓</td>
+        <td class="text-sm">スタジオ</td>
+        <td class="text-sm">8月</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">動画素材</td>
+        <td class="text-sm">果汁が滴る瞬間、カットの音、圃場の風景</td>
+        <td class="text-sm">久喜試験場+スタジオ</td>
+        <td class="text-sm">7月下旬〜8月</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="point-box">
+    <p class="text-sm font-bold text-nashi-accent mb-2">POINT!</p>
+    <p class="text-body text-sm">
+      撮影素材は<strong>来年度以降のプロモーション展開（令和9年度のブランド・シンボル開発やお披露目イベント）にも活用できる資産</strong>として制作します。そのため、トリミング耐性の高い余白を確保した構図、複数の背景バリエーションを撮影し、汎用性の高い素材を納品します。
+    </p>
+  </div>
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 第6章 自由提案 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="bg-nashi-accent text-white text-center py-6 rounded-xl mb-8">
+    <p class="text-sm tracking-widest mb-2">CHAPTER 06</p>
+    <h2 class="text-2xl font-bold">自由提案</h2>
+    <p class="text-sm mt-2 opacity-80">いちご大學メソッドの横展開</p>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-6">いちご大學 → 梨ブランディングへの転用</h3>
+  <p class="text-body mb-6">
+    弊社は2年間の「埼玉いちご大學」事業を通じて、埼玉県産果物のブランディングに必要な<strong>方法論・ネットワーク・運営フォーマット</strong>を蓄積しています。これらを梨に横展開することで、限られた予算内でも充実した施策が実現可能です。
+  </p>
+
+  <!-- いちご大學の実施風景 -->
+  <div class="grid grid-cols-3 gap-3 mb-8">
+    <div class="relative">
+      <img src="file:///C:/Users/84ken/OneDrive/ドキュメント/202407秩父いちご/ichigo/1207_yokoze_v2/1207_yokoze_v2/DSCF9515.jpg" alt="プレゼンテーション" class="rounded-lg w-full h-28 object-cover">
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-2 rounded-b-lg">ワークショップでの発表風景</div>
+    </div>
+    <div class="relative">
+      <img src="file:///C:/Users/84ken/OneDrive/ドキュメント/202407秩父いちご/ichigo/1207_yokoze_v2/1207_yokoze_v2/DSCF9389.jpg" alt="商品アイデア" class="rounded-lg w-full h-28 object-cover">
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-2 rounded-b-lg">共創型アイデア開発の様子</div>
+    </div>
+    <div class="relative">
+      <img src="file:///C:/Users/84ken/OneDrive/ドキュメント/202407秩父いちご/ichigo/1207_yokoze_v2/1207_yokoze_v2/DSCF9449.jpg" alt="行政連携" class="rounded-lg w-full h-28 object-cover">
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-2 rounded-b-lg">地域関係者との連携</div>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+
+    <!-- 提案1 -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6">
+      <div class="flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full bg-sai-hime flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-bold">1</span>
+        </div>
+        <div class="flex-1">
+          <h4 class="font-bold text-slate-900 mb-2">共創型ワークショップ「埼玉なし學」の開催</h4>
+          <p class="text-sm text-body mb-3">いちご大學で検証済みのワークショップ設計を転用し、生産者・消費者・クリエイターが集う共創の場を設けます。ブランディング戦略への生の声の反映と、ファンコミュニティの核となる関係構築を目的とします。</p>
+          <p class="text-xs text-slate-500">いちご大學からの転用：WS設計・ファシリテーション手法・チーム編成方式</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 提案2 -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6">
+      <div class="flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full bg-sai-hiko flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-bold">2</span>
+        </div>
+        <div class="flex-1">
+          <h4 class="font-bold text-slate-900 mb-2">いちご大學ネットワークの梨への活用</h4>
+          <p class="text-sm text-body mb-3">いちご大學で関係構築した地域事業者（小さな洋菓子店Spoon、オーガニックわたあめ福の縁等）や大手企業（資生堂、ライオン系KaleidoPath）との連携を、梨の文脈で再活性化します。次年度以降の加工品開発や体験型商品の種まきを行います。</p>
+          <p class="text-xs text-slate-500">いちご大學からの転用：企業ネットワーク・共同開発検討プロセス</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 提案3 -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6">
+      <div class="flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full bg-sai-gyoku flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-bold">3</span>
+        </div>
+        <div class="flex-1">
+          <h4 class="font-bold text-slate-900 mb-2">いちご（冬）× 梨（夏）の通年ブランディング体制</h4>
+          <p class="text-sm text-body mb-3">いちご（1〜5月）と梨（7〜9月）は収穫期が重ならないため、同じチーム・同じネットワークで<strong>通年の埼玉県産果物ブランディング事業</strong>として運営できます。「埼玉の果物は、一年を通じて美味しい」というメッセージの基盤となります。</p>
+          <p class="text-xs text-slate-500">季節補完型の事業設計により、次年度以降の継続性を確保</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="point-box mt-8">
+    <p class="text-sm font-bold text-nashi-accent mb-2">POINT!</p>
+    <p class="text-body text-sm">
+      自由提案の各施策は、いちご大學の<strong>設計済みフォーマットを再利用</strong>するため、ゼロから設計する場合と比べて<strong>大幅なコスト圧縮</strong>が可能です。これにより、仕様書で求められたブランディング戦略策定業務の品質を最大化しつつ、付加価値のある施策を追加できます。
+    </p>
+  </div>
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 第7章 実施スケジュール -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="bg-nashi-accent text-white text-center py-6 rounded-xl mb-8">
+    <p class="text-sm tracking-widest mb-2">CHAPTER 07</p>
+    <h2 class="text-2xl font-bold">実施スケジュール</h2>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-6">月別タイムライン</h3>
+  <table class="w-full mb-6 text-sm">
+    <thead>
+      <tr>
+        <th class="text-left" style="width:100px">時期</th>
+        <th class="text-left">主要活動</th>
+        <th class="text-left" style="width:200px">マイルストーン</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="font-semibold">5月</td>
+        <td>キックオフ会議 / 県・試験場・JAヒアリング / 市場デスクリサーチ / 調査設計</td>
+        <td class="text-nashi-accent font-semibold">MS1: キックオフ・調査設計確定</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">6月</td>
+        <td>競合ベンチマーク分析 / ターゲット仮説設計 / 調査準備（会場・被験者） / 撮影準備</td>
+        <td></td>
+      </tr>
+      <tr style="background:#fce4ec22">
+        <td class="font-semibold">7月下旬</td>
+        <td><strong>彩姫 収穫期</strong> → 圃場撮影 / 果実撮影 / 彩姫の予備官能評価</td>
+        <td class="text-nashi-accent font-semibold">MS2: 彩姫素材撮影完了</td>
+      </tr>
+      <tr style="background:#e0f2f122">
+        <td class="font-semibold">8月上〜中旬</td>
+        <td><strong>彩姫→彩彦リレー期</strong> → 消費者調査 第1弾 / 彩彦撮影 / 実需者ヒアリング</td>
+        <td class="text-nashi-accent font-semibold">MS3: 調査1完了・彩彦撮影完了</td>
+      </tr>
+      <tr style="background:#fff8e122">
+        <td class="font-semibold">8月下旬〜9月</td>
+        <td><strong>3品種リレー体験調査</strong> / データ集計・分析 / コアコンセプト素案策定</td>
+        <td class="text-nashi-accent font-semibold">MS4: 全調査完了・データ集計</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">10月</td>
+        <td>調査結果報告会（県へ中間報告）/ ブランドコンセプト・ストーリー案の提示</td>
+        <td class="text-nashi-accent font-semibold">MS5: 中間報告・コンセプト案提示</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">11月</td>
+        <td>コンセプト修正・確定 / ブランドストーリー最終化 / ターゲット・チャネル戦略確定</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="font-semibold">12月</td>
+        <td>ブランディング戦略資料ドラフト作成 / 県との協議・フィードバック反映</td>
+        <td class="text-nashi-accent font-semibold">MS6: 戦略資料ドラフト提出</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">1月</td>
+        <td>戦略資料修正・最終化 / 素材データ納品準備 / 次年度展開提言整理</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="font-semibold">2月</td>
+        <td>最終報告会 / 全成果物納品</td>
+        <td class="text-nashi-accent font-semibold">MS7: 最終報告・成果物納品</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">3月</td>
+        <td>業務完了報告書・議事録提出 / 引継ぎ</td>
+        <td class="text-nashi-accent font-semibold">MS8: 業務完了</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="point-box">
+    <p class="text-sm font-bold text-nashi-accent mb-2">POINT!</p>
+    <p class="text-body text-sm">
+      <strong>最重要の制約条件は彩姫の収穫期（7月下旬〜8月上旬の約2週間）</strong>です。この短い期間に撮影と試食用果実の確保を集中させるため、6月中に産地との調整を完了させます。
+    </p>
+  </div>
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 第8章 運営体制 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="bg-nashi-accent text-white text-center py-6 rounded-xl mb-8">
+    <p class="text-sm tracking-widest mb-2">CHAPTER 08</p>
+    <h2 class="text-2xl font-bold">運営体制</h2>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-6">プロジェクト体制</h3>
+
+  <table class="w-full mb-8">
+    <thead>
+      <tr>
+        <th class="text-left text-sm">役割</th>
+        <th class="text-left text-sm">担当</th>
+        <th class="text-left text-sm">主な責務</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="font-semibold text-sm">プロジェクトディレクター</td>
+        <td class="text-sm">橋本 健太郎</td>
+        <td class="text-sm">全体統括、県との窓口、戦略策定リード、品質管理</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">ブランドプランナー</td>
+        <td class="text-sm">社内スタッフ</td>
+        <td class="text-sm">コンセプト開発、ストーリー策定、戦略資料作成</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">リサーチャー</td>
+        <td class="text-sm">社内スタッフ</td>
+        <td class="text-sm">調査設計・実施・分析、報告書作成</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">アートディレクター</td>
+        <td class="text-sm">岡永 梨沙</td>
+        <td class="text-sm">撮影ディレクション、ビジュアル方針策定</td>
+      </tr>
+      <tr>
+        <td class="font-semibold text-sm">フォトグラファー</td>
+        <td class="text-sm">外部パートナー</td>
+        <td class="text-sm">圃場・スタジオ撮影、動画撮影・編集</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8 mt-6">県・関係機関との連携体制</h3>
+
+  <div class="grid grid-cols-2 gap-6 mb-8">
+    <div class="bg-nashi-light rounded-xl p-6">
+      <h4 class="font-bold text-slate-900 mb-3">定例会議体</h4>
+      <ul class="text-sm text-body space-y-2">
+        <li>・ <strong>月次定例会議</strong>：県農林部担当課と進捗報告・方針協議</li>
+        <li>・ <strong>臨時協議</strong>：収穫期の調整等はリアルタイムで連絡</li>
+        <li>・ 打合せ後は議事要旨を作成・提出</li>
+      </ul>
+    </div>
+    <div class="bg-nashi-light rounded-xl p-6">
+      <h4 class="font-bold text-slate-900 mb-3">連携先</h4>
+      <ul class="text-sm text-body space-y-2">
+        <li>・ <strong>農業技術研究センター</strong>：品種データ・圃場撮影</li>
+        <li>・ <strong>産地JA・生産者</strong>：果実調達・取材協力</li>
+        <li>・ <strong>物産観光協会</strong>：ちょこたび連携（弊社既存取引先）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <p class="text-sm font-bold text-nashi-accent mb-2">POINT!</p>
+    <p class="text-body text-sm">
+      プロジェクトディレクターの橋本は<strong>埼玉県官民連携アドバイザー</strong>として、県庁の複数課と継続的に協働しています。また、アートディレクターの岡永は<strong>いちご大學のクリエイティブを担当</strong>しており、埼玉県産果物のビジュアル設計に実績があります。マーケティング実務については、弊社がJTB・日本マクドナルド・資生堂等の大手企業案件で培った知見を活用します。
+    </p>
+  </div>
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 第9章 関連実績 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="bg-nashi-accent text-white text-center py-6 rounded-xl mb-8">
+    <p class="text-sm tracking-widest mb-2">CHAPTER 09</p>
+    <h2 class="text-2xl font-bold">関連実績</h2>
+  </div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-8">埼玉県産果物・農産品のブランディング実績</h3>
+
+  <!-- いちご大學 -->
+  <div class="bg-white rounded-xl border border-slate-200 p-6 mb-6">
+    <div class="flex gap-2 items-center mb-4">
+      <span class="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">最重要実績</span>
+      <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">農業ビジネス支援課</span>
+    </div>
+    <h4 class="text-lg font-bold text-slate-900 mb-2">埼玉いちご大學（令和6-7年度）</h4>
+    <p class="text-sm text-body mb-4">埼玉県産いちごを活用した地域活性化事業。ワークショップ（40名以上参加）→商品開発（いちご塩等）→プロモーション→販売（埼玉いちご祭りで316,350円売上・全商品完売）→教育連携（横瀬小学校48名向けWS）まで一貫して実施。資生堂・ライオン等大手との共同開発検討も推進。</p>
+
+    <!-- いちご大學 写真ギャラリー -->
+    <div class="grid grid-cols-4 gap-3 mb-4">
+      <img src="file:///C:/Users/84ken/OneDrive/ドキュメント/202407秩父いちご/ichigo/1207_yokoze_v2/1207_yokoze_v2/DSCF9507.jpg" alt="埼玉いちご大學 会場外観" class="rounded-lg w-full h-24 object-cover">
+      <img src="file:///C:/Users/84ken/OneDrive/ドキュメント/202407秩父いちご/ichigo/1207_yokoze_v2/1207_yokoze_v2/DSCF9485.jpg" alt="ワークショップの様子" class="rounded-lg w-full h-24 object-cover">
+      <img src="file:///C:/Users/84ken/OneDrive/ドキュメント/202407秩父いちご/ichigo/1207_yokoze_v2/1207_yokoze_v2/DSCF9500.jpg" alt="商品開発プロトタイプ" class="rounded-lg w-full h-24 object-cover">
+      <img src="file:///C:/Users/84ken/OneDrive/ドキュメント/202407秩父いちご/ichigo/1207_yokoze_v2/1207_yokoze_v2/DSCF9496.jpg" alt="チームでの交流" class="rounded-lg w-full h-24 object-cover">
+    </div>
+
+    <div class="flex gap-4">
+      <span class="text-xs bg-nashi-light rounded px-3 py-1">共創型WS設計</span>
+      <span class="text-xs bg-nashi-light rounded px-3 py-1">商品開発</span>
+      <span class="text-xs bg-nashi-light rounded px-3 py-1">パッケージデザイン</span>
+      <span class="text-xs bg-nashi-light rounded px-3 py-1">イベント販売</span>
+      <span class="text-xs bg-nashi-light rounded px-3 py-1">SNS運用</span>
+    </div>
+  </div>
+
+  <!-- 県産品ブランド -->
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <h4 class="font-bold text-slate-900 mb-2 text-sm">COEDO×BRUTUS サウナビール「SAUDE.」</h4>
+      <p class="text-xs text-body">埼玉県川越市のCOEDOビールとBRUTUS誌のコラボ商品企画・パッケージデザイン</p>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <h4 class="font-bold text-slate-900 mb-2 text-sm">KNOW ENOUGH（秩父産ミズナラスティック）</h4>
+      <p class="text-xs text-body"><strong>埼玉県新商品AWARD 2022 グランプリ</strong>受賞。秩父産木材を活用した商品企画・パッケージデザイン</p>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <h4 class="font-bold text-slate-900 mb-2 text-sm">サ山茶（サウナ向け狭山茶）</h4>
+      <p class="text-xs text-body"><strong>埼玉県新商品AWARD 2023 入賞</strong>。県産狭山茶を活用した新ブランド企画・パッケージデザイン</p>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <h4 class="font-bold text-slate-900 mb-2 text-sm">BBKK木馬</h4>
+      <p class="text-xs text-body"><strong>埼玉県新商品AWARD 2025 大賞（工芸・雑貨カテゴリー）</strong>。TATELab.で開発した五感拡張型家具</p>
+    </div>
+  </div>
+
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<div class="page">
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-6">埼玉県庁との継続取引実績</h3>
+
+  <table class="w-full mb-6 text-sm">
+    <thead>
+      <tr>
+        <th class="text-left">プロジェクト</th>
+        <th class="text-left">担当課</th>
+        <th class="text-left">業務内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="font-semibold">ちょこたび埼玉</td>
+        <td>物産観光協会</td>
+        <td>観光プロモーション・LP制作・SNS運用・キャンペーン</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">さいたまのおみやげ</td>
+        <td>物産観光協会</td>
+        <td>県産品パッケージデザイン</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">ぶんたま</td>
+        <td>文化振興課</td>
+        <td>伝統文化アプリ保守運用・プロモーション</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">すぽったま!</td>
+        <td>スポーツ推進課</td>
+        <td>スポーツ情報メディア企画・制作・運用</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">SAITAMAリバサポ</td>
+        <td>水環境課</td>
+        <td>川メディア企画・CI/ロゴ・Web制作</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">サーキュラーエコノミー</td>
+        <td>資源循環推進課</td>
+        <td>ロゴ・動画・イベント運営</td>
+      </tr>
+      <tr>
+        <td class="font-semibold">さいたまつり</td>
+        <td>物産観光協会</td>
+        <td>Web企画・ポスターデザイン・Tシャツ</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title text-xl font-bold text-slate-900 mb-6 mt-10">食品・パッケージデザイン実績（海外含む）</h3>
+  <div class="bg-white rounded-xl border border-slate-200 p-6">
+    <p class="text-sm text-body mb-4">
+      台湾拠点（台北市）を持ち、現地食品メーカーのブランディング・パッケージデザインを多数手がけています。餐御宴食品有限公司（HOMEBAKE）のブランドデザイン+パッケージリデザインでは<strong>reddot award 2016 winner brand design</strong>等、海外賞を複数受賞しています。
+    </p>
+    <p class="text-sm text-body">
+      主要取引先：日本マクドナルド、日本KFC、資生堂、JTB、東芝、学研、リクルート、サンリオ、サイバーエージェント、RIZAP、大塚製薬、高島屋　他
+    </p>
+  </div>
+
+  <div class="footer">©2026 SCHEMA, Inc. All rights reserved.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- 奥付 -->
+<!-- ============================================ -->
+<div class="page page-cover cover-bg flex flex-col justify-between">
+  <div></div>
+  <div class="text-center">
+    <div class="w-24 h-1 bg-nashi-accent mx-auto mb-8"></div>
+    <p class="text-2xl font-bold text-slate-900 mb-4">夏を、リレーする。</p>
+    <p class="text-body mb-6">
+      彩姫が夏を告げ、彩彦が夏を深め、彩玉が夏を締めくくる。<br>
+      埼玉の梨が描く、新しい物語を。
+    </p>
+    <div class="w-24 h-1 bg-nashi-accent mx-auto mb-6"></div>
+    <p class="text-sm text-slate-600 mb-2">株式会社スキーマ / SCHEMA, INC.</p>
+    <p class="text-sm text-slate-600 mb-2">〒150-0002 東京都渋谷区渋谷3-17-4 山口ビル5F</p>
+    <p class="text-sm text-slate-600 mb-2">TEL: 03-6427-2273 / MAIL: info@llschema.com</p>
+    <p class="text-sm text-slate-600">URL: http://www.llschema.com/</p>
+  </div>
+  <p class="text-xs text-slate-400 text-center">©2026 SCHEMA, Inc. All rights reserved. [ CONFIDENTIAL ]</p>
+</div>
+
+</body>
+</html>
