@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCHEMA HQ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #334155;
+  }
+  .container {
+    text-align: center;
+    padding: 48px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    max-width: 480px;
+  }
+  .logo {
+    width: 48px;
+    height: 48px;
+    background: #2b70ef;
+    color: white;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  p { font-size: 14px; color: #64748b; line-height: 1.6; }
+  .status {
+    margin-top: 24px;
+    padding: 12px 20px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #166534;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">S</div>
+    <h1>SCHEMA HQ</h1>
+    <p>社内ダッシュボードのデプロイテストページです。<br>このページが表示されていれば、デプロイは正常に完了しています。</p>
+    <div class="status">✓ Deploy successful</div>
+    <p style="margin-top: 16px; font-size: 12px; color: #94a3b8;">hq.schema.tokyo — ConoHa WING via GitHub Actions</p>
+  </div>
+</body>
+</html>
