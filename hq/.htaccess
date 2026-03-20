@@ -1,4 +1,7 @@
 AuthType Basic
 AuthName "SCHEMA HQ"
 AuthUserFile /home/c4244218/public_html/hq.schema.tokyo/.htpasswd
-Require valid-user
+require valid-user
+
+# Fallback: relative path if absolute doesn't work
+# AuthUserFile .htpasswd
