@@ -1,0 +1,1688 @@
+{
+  "projects": [
+    {
+      "name": "リバサポ広告",
+      "client": "JEKI",
+      "description": "",
+      "manager": "橋本/岡永",
+      "scheduleStart": "2026-03",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "JEKI",
+      "deliverables": "",
+      "contractAmount": 1600000,
+      "estimate": 1600,
+      "sales": 1600,
+      "risks": "",
+      "status": "active",
+      "id": "mmz3la4h0spz",
+      "createdAt": "2026-03-20T16:12:49.409Z",
+      "vendors": []
+    },
+    {
+      "id": "mmz0y85sj1yb",
+      "name": "物産観光協会 スポーツツーリズム",
+      "client": "埼玉県物産観光協会",
+      "description": "スポーツツーリズム推進事業",
+      "manager": "橋本/大西",
+      "scheduleStart": "2025-06",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "物産観光協会　折原・河本",
+      "deliverables": "",
+      "contractAmount": 3399858,
+      "estimate": 0,
+      "sales": 0,
+      "risks": "",
+      "status": "active",
+      "createdAt": "2026-03-20T14:58:54.544Z",
+      "vendors": [
+        {
+          "vendor": "広告関連",
+          "task": "",
+          "amount": 529400,
+          "amountTax": 582340,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz3asnxy9q2"
+        },
+        {
+          "vendor": "キャンペーン関連",
+          "task": "",
+          "amount": 275600,
+          "amountTax": 303160,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz3asnxwkrl"
+        },
+        {
+          "vendor": "コア",
+          "task": "",
+          "amount": 500000,
+          "amountTax": 550000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz3asnxsc4p"
+        },
+        {
+          "vendor": "城内匡",
+          "task": "",
+          "amount": 500000,
+          "amountTax": 550000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz3asnxs0gl"
+        },
+        {
+          "vendor": "タテジマ（大西晃）",
+          "task": "",
+          "amount": 500000,
+          "amountTax": 550000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz3asnx66gl"
+        }
+      ],
+      "billings": []
+    },
+    {
+      "id": "mmyzj34d1958",
+      "createdAt": "2026-03-20T14:19:08.557Z",
+      "name": "リバサポ",
+      "client": "埼玉県庁",
+      "description": "埼玉県リバーサポートプログラム運営支援。河川の魅力発信・環境保全活動の企画運営",
+      "manager": "橋本/大西",
+      "scheduleStart": "2025-07",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "埼玉県 水環境課",
+      "deliverables": "WEBサイト更新、SNS運用、イベント運営、ポスター制作",
+      "estimate": 7958,
+      "sales": 3978,
+      "risks": "年度末納品集中、外注先の稼働確保",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34fsbl9",
+          "vendor": "大澤優揮",
+          "task": "審査員",
+          "amount": 10000,
+          "amountTax": 148132,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fuial",
+          "vendor": "吉田櫻子",
+          "task": "審査員",
+          "amount": 10000,
+          "amountTax": 11000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fqdxp",
+          "vendor": "塚原将也",
+          "task": "フォトコン審査員",
+          "amount": 10000,
+          "amountTax": 10000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fbwb4",
+          "vendor": "城内匡",
+          "task": "コーディング他",
+          "amount": 40000,
+          "amountTax": 44000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fyujk",
+          "vendor": "タテジマ（大西晃）",
+          "task": "商品購入立て替え",
+          "amount": 133620,
+          "amountTax": 146982,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fbd8e",
+          "vendor": "タテジマ（大西晃）",
+          "task": "ディレクション",
+          "amount": 550000,
+          "amountTax": 605000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f6e77",
+          "vendor": "zaki.",
+          "task": "ドット絵イラスト",
+          "amount": 40000,
+          "amountTax": 44000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f8kds",
+          "vendor": "株式会社SHIN LOCAL",
+          "task": "コーディネータサポート",
+          "amount": 33182,
+          "amountTax": 36500,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fjowl",
+          "vendor": "タテジマ（大西晃）",
+          "task": "ディレクション",
+          "amount": 1200000,
+          "amountTax": 1320000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f8u89",
+          "vendor": "倉橋碧",
+          "task": "デザイン他",
+          "amount": 400000,
+          "amountTax": 440000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmz0b4uvtpmf",
+          "vendor": "城内由香",
+          "task": "運用対応（月額¥100,000 × 9ヶ月）",
+          "amount": 900000,
+          "amountTax": 990000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "毎月支払い ¥110,000/月（税込）7月〜3月"
+        },
+        {
+          "id": "mmz0pjnc4j6o",
+          "vendor": "Paid",
+          "task": "ライセンス費（月額¥15,000 × 8ヶ月）",
+          "amount": 120000,
+          "amountTax": 132000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "毎月支払い ¥16,500/月（税込）7月〜2月済"
+        }
+      ],
+      "billings": [
+        {
+          "id": "mmyzy3m6wqu6",
+          "amount": 4376667,
+          "date": "2025-08",
+          "status": "received",
+          "note": "半金請求（1回目）"
+        },
+        {
+          "id": "mmyzy3m6hy42",
+          "amount": 4376667,
+          "date": "2026-03",
+          "status": "planned",
+          "note": "残金請求（2回目）"
+        }
+      ],
+      "contractAmount": 8753334,
+      "contractExTax": 7957576
+    },
+    {
+      "id": "mmyzj34fwqjf",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "すぽったま",
+      "client": "埼玉県庁",
+      "description": "埼玉県スポーツ推進プロジェクト。LINEスタンプラリー",
+      "manager": "橋本/岡永",
+      "scheduleStart": "2025-07",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "埼玉県 スポーツ振興課",
+      "deliverables": "WEBプラットフォーム運用、イベント企画",
+      "estimate": 12066,
+      "sales": 6033,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmz04iky6xjv",
+          "vendor": "浅見制作所",
+          "task": "年間業務（前半）",
+          "amount": 1500000,
+          "amountTax": 1650000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "年間300万の半金・支払済"
+        },
+        {
+          "id": "mmz04ikyhy0w",
+          "vendor": "浅見制作所",
+          "task": "年間業務（後半）",
+          "amount": 1500000,
+          "amountTax": 1650000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "年間300万の残り半金"
+        },
+        {
+          "id": "mmz0pjncx4gx",
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "サービス利用料（月額¥44,000 × 8ヶ月）",
+          "amount": 352000,
+          "amountTax": 387200,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "毎月支払い ¥48,400/月（税込）7月〜2月済"
+        },
+        {
+          "id": "mmz0pjnc6fc7",
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "機能改修・追加開発",
+          "amount": 608850,
+          "amountTax": 669735,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "機能改修275,000 + 追加開発330,000 + 配信増3,850"
+        },
+        {
+          "id": "mmz0pjnc5dao",
+          "vendor": "Paid",
+          "task": "ライセンス費（月額¥15,000 × 8ヶ月）",
+          "amount": 120000,
+          "amountTax": 132000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "毎月支払い ¥16,500/月（税込）7月〜2月済"
+        }
+      ],
+      "billings": [
+        {
+          "id": "mmyzy3m6bxmh",
+          "amount": 6636487,
+          "date": "2025-08",
+          "status": "received",
+          "note": "半金請求"
+        },
+        {
+          "id": "mmyzy3m61coa",
+          "amount": 6636487,
+          "date": "2026-03",
+          "status": "planned",
+          "note": "残金請求"
+        }
+      ],
+      "contractAmount": 13272974,
+      "contractExTax": 12066340
+    },
+    {
+      "id": "mmyzj34fjss7",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "ぶんたま（文化資源）",
+      "client": "埼玉県庁",
+      "description": "埼玉県文化資源の発掘・発信プロジェクト",
+      "manager": "橋本",
+      "scheduleStart": "2025-07",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "埼玉県 文化振興課",
+      "deliverables": "文化資源アーカイブ、WEBコンテンツ",
+      "estimate": 16046,
+      "sales": 8023,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmz04il7wb9m",
+          "vendor": "浅見制作所",
+          "task": "年間業務（前半）",
+          "amount": 1500000,
+          "amountTax": 1650000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "年間300万の半金・支払済"
+        },
+        {
+          "id": "mmz04il74ndy",
+          "vendor": "浅見制作所",
+          "task": "年間業務（後半）",
+          "amount": 1500000,
+          "amountTax": 1650000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "年間300万の残り半金"
+        },
+        {
+          "id": "mmz0pjn6uwup",
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "初期セットアップ",
+          "amount": 150000,
+          "amountTax": 165000,
+          "expectedMonth": "2025-12",
+          "status": "paid",
+          "note": "12月支払済"
+        },
+        {
+          "id": "mmz0pjn6epcj",
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "サービス利用料（月額¥44,000 × 3ヶ月〜）",
+          "amount": 132000,
+          "amountTax": 145200,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "毎月支払い ¥48,400/月（税込）12月〜2月済"
+        },
+        {
+          "id": "mmz1lsdybpao",
+          "vendor": "LINE",
+          "task": "ライセンス費",
+          "amount": 13636,
+          "amountTax": 15000,
+          "expectedMonth": "2025-12",
+          "status": "paid",
+          "note": "12月〜3月"
+        },
+        {
+          "id": "mmz1lsdymm1m",
+          "vendor": "LINE",
+          "task": "ライセンス費",
+          "amount": 13636,
+          "amountTax": 15000,
+          "expectedMonth": "2026-01",
+          "status": "paid",
+          "note": "12月〜3月"
+        },
+        {
+          "id": "mmz1lsdygjel",
+          "vendor": "LINE",
+          "task": "ライセンス費",
+          "amount": 13636,
+          "amountTax": 15000,
+          "expectedMonth": "2026-02",
+          "status": "paid",
+          "note": "12月〜3月"
+        },
+        {
+          "id": "mmz1lsdykvgq",
+          "vendor": "LINE",
+          "task": "ライセンス費",
+          "amount": 13636,
+          "amountTax": 15000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "12月〜3月"
+        }
+      ],
+      "billings": [
+        {
+          "id": "mmyzy3m6ai7y",
+          "amount": 8825498,
+          "date": "2025-08",
+          "status": "received",
+          "note": "半金請求"
+        },
+        {
+          "id": "mmyzy3m66yky",
+          "amount": 8825498,
+          "date": "2026-03",
+          "status": "planned",
+          "note": "残金請求"
+        }
+      ],
+      "contractAmount": 17650996,
+      "contractExTax": 16046360
+    },
+    {
+      "id": "mmyzj34fdhbs",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "サーキュラーエコノミー イベント",
+      "client": "埼玉県庁",
+      "description": "サーキュラーエコノミー推進事業 イベント企画運営",
+      "manager": "橋本",
+      "scheduleStart": "2025-07",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "埼玉県",
+      "deliverables": "イベント企画運営",
+      "estimate": 4496,
+      "sales": 4496,
+      "risks": "",
+      "status": "active",
+      "vendors": [],
+      "billings": [
+        {
+          "id": "mmz0kgk8g4xs",
+          "amount": 4945875,
+          "date": "2026-03",
+          "status": "planned",
+          "note": "一括請求予定"
+        }
+      ],
+      "contractAmount": 4945875,
+      "contractExTax": 4496250
+    },
+    {
+      "id": "mmyzj34fud9q",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "いちご大學",
+      "client": "埼玉県庁",
+      "description": "いちご大學プロジェクト",
+      "manager": "橋本",
+      "scheduleStart": "2025-07",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "埼玉県",
+      "deliverables": "WEBサイト運用",
+      "estimate": 2272,
+      "sales": 2271,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "vendor": "株式会社 ENgaWA",
+          "task": "",
+          "amount": 300000,
+          "amountTax": 330000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz10fvggz6b"
+        },
+        {
+          "vendor": "佐々木哲也",
+          "task": "",
+          "amount": 30000,
+          "amountTax": 33000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz10fvg2vmk"
+        },
+        {
+          "vendor": "malme.design",
+          "task": "",
+          "amount": 300000,
+          "amountTax": 330000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz10fvgx338"
+        },
+        {
+          "vendor": "フリーズドライ",
+          "task": "",
+          "amount": 60000,
+          "amountTax": 66000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz10fvgjc7j"
+        },
+        {
+          "vendor": "小さな洋菓子店Spoon",
+          "task": "",
+          "amount": 6000,
+          "amountTax": 6600,
+          "expectedMonth": "2025-10",
+          "status": "paid",
+          "note": "",
+          "id": "mmz10fvgpcaa"
+        },
+        {
+          "vendor": "印刷関連",
+          "task": "",
+          "amount": 0,
+          "amountTax": 0,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "金額未定",
+          "id": "mmz10fvgy7lh"
+        }
+      ],
+      "billings": []
+    },
+    {
+      "id": "mmyzj34fboez",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "ちょこたび LP制作",
+      "client": "埼玉県物産観光協会",
+      "description": "埼玉県観光プロモーション LP制作・広告運用・番組制作",
+      "manager": "橋本 / 岡永",
+      "scheduleStart": "2025-07",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "埼玉県物産観光協会",
+      "deliverables": "LP、SNS運用、動画番組、広告運用、スポーツツーリズム",
+      "estimate": 26818,
+      "sales": 27299,
+      "risks": "大型案件・外注多数。広告費込みで外注率高め",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34firwi",
+          "vendor": "城内匡",
+          "task": "コーディング他",
+          "amount": 320000,
+          "amountTax": 352000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fzjxx",
+          "vendor": "大澤優揮",
+          "task": "撮影",
+          "amount": 229429,
+          "amountTax": 252372,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34ft3vn",
+          "vendor": "吉田櫻子",
+          "task": "撮影",
+          "amount": 441552,
+          "amountTax": 485707,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fhy9l",
+          "vendor": "河合伶香",
+          "task": "モデル",
+          "amount": 11722,
+          "amountTax": 12894,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fmtkw",
+          "vendor": "安立未優",
+          "task": "モデル",
+          "amount": 10475,
+          "amountTax": 11523,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fjpcl",
+          "vendor": "アソビシステム株式会社",
+          "task": "SNS使用画像、Youtubeサムネイル デザイン",
+          "amount": 200000,
+          "amountTax": 220000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fmdz7",
+          "vendor": "阿部亜由美",
+          "task": "モデル",
+          "amount": 11618,
+          "amountTax": 12780,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34furuu",
+          "vendor": "塚原将也",
+          "task": "撮影",
+          "amount": 93620,
+          "amountTax": 102982,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fiqgx",
+          "vendor": "小林 真美奈",
+          "task": "撮影",
+          "amount": 12781,
+          "amountTax": 14059,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fqeq7",
+          "vendor": "ミカイイブキ",
+          "task": "撮影",
+          "amount": 11981,
+          "amountTax": 13179,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fm27x",
+          "vendor": "吉本工業",
+          "task": "出演：男性ブランコ平井、まゆりか中谷",
+          "amount": 2600000,
+          "amountTax": 2860000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fwzm4",
+          "vendor": "釼持 満秀",
+          "task": "動画",
+          "amount": 250000,
+          "amountTax": 275000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fvh38",
+          "vendor": "スタイリスト\r\n石塚愛理(竹内愛理)",
+          "task": "スタイリング交通費",
+          "amount": 2121,
+          "amountTax": 2333,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fylj5",
+          "vendor": "スタイリスト\r\n石塚愛理(竹内愛理)",
+          "task": "スタイリング",
+          "amount": 150000,
+          "amountTax": 165000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fzwsl",
+          "vendor": "村宮有紗",
+          "task": "ヘアメイク",
+          "amount": 200000,
+          "amountTax": 220000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f1ayi",
+          "vendor": "宋知香",
+          "task": "音楽",
+          "amount": 200000,
+          "amountTax": 220000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fy6l0",
+          "vendor": "株式会社BeCraftique",
+          "task": "撮影",
+          "amount": 200000,
+          "amountTax": 220000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f25va",
+          "vendor": "清宮　レイ",
+          "task": "出演：本人",
+          "amount": 700000,
+          "amountTax": 770000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f17mw",
+          "vendor": "株式会社REVIVE",
+          "task": "出演：大迫さん",
+          "amount": 700000,
+          "amountTax": 770000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fe3f6",
+          "vendor": "meta広告",
+          "task": "広告費（2026年2月）",
+          "amount": 830066,
+          "amountTax": 913073,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fmunw",
+          "vendor": "google広告",
+          "task": "広告費（2026年2月）",
+          "amount": 1345812,
+          "amountTax": 1480393,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fxs20",
+          "vendor": "meta広告",
+          "task": "広告費（2025年10月）",
+          "amount": 768849,
+          "amountTax": 845733,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fzb2t",
+          "vendor": "google広告",
+          "task": "広告費（2025年9月～10月）",
+          "amount": 2119212,
+          "amountTax": 2331132,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fjrt4",
+          "vendor": "meta広告",
+          "task": "広告費（2025年11月）",
+          "amount": 642716,
+          "amountTax": 706988,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fr0ug",
+          "vendor": "google広告",
+          "task": "広告費（2025年11月）",
+          "amount": 818182,
+          "amountTax": 900000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fh14y",
+          "vendor": "meta広告",
+          "task": "広告費（2025年8月）",
+          "amount": 256283,
+          "amountTax": 281911,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fccnl",
+          "vendor": "meta広告",
+          "task": "広告費（2025年9月）",
+          "amount": 256283,
+          "amountTax": 281911,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34feffp",
+          "vendor": "城内匡",
+          "task": "コーディング他",
+          "amount": 1120000,
+          "amountTax": 1232000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34finfx",
+          "vendor": "タテジマ（大西晃）",
+          "task": "ディレクション",
+          "amount": 3792333,
+          "amountTax": 4171566,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f14hr",
+          "vendor": "株式会社like a bird",
+          "task": "ちょこたび映像",
+          "amount": 400000,
+          "amountTax": 440000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34ffkyy",
+          "vendor": "公益財団法人　トトロのふるさと基金",
+          "task": "宿泊LP写真素材（2点）",
+          "amount": 10000,
+          "amountTax": 11000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fevq4",
+          "vendor": "LINE広告",
+          "task": "広告費（2026年2月）",
+          "amount": 0,
+          "amountTax": 0,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34focy5",
+          "vendor": "LINE広告",
+          "task": "広告費（2025年9月～10月）",
+          "amount": 2119212,
+          "amountTax": 2331132,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f8jfg",
+          "vendor": "LINE広告",
+          "task": "広告費（2025年11月）",
+          "amount": 0,
+          "amountTax": 0,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        }
+      ],
+      "billings": [
+        {
+          "id": "mmz07e2z1h1o",
+          "amount": 21799633,
+          "date": "2025-08",
+          "status": "received",
+          "note": "半金請求（入金済）"
+        },
+        {
+          "id": "mmz07e2zzrei",
+          "amount": 21799632,
+          "date": "2026-03",
+          "status": "planned",
+          "note": "残金請求予定"
+        }
+      ],
+      "contractAmount": 43599265,
+      "contractExTax": 39635695
+    },
+    {
+      "id": "mmyzj34flmwh",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "マクドナルド",
+      "client": "日本マクドナルド",
+      "description": "民間最大規模のクライアント。EBIS・運用増員・ロゴ等の複数案件が並走",
+      "manager": "橋本 / 中村",
+      "scheduleStart": "2025-07",
+      "scheduleEnd": "2026-06",
+      "stakeholders": "マクドナルド マーケティング本部",
+      "deliverables": "ロゴ制作、アプリ運用、EBIS",
+      "estimate": 27554,
+      "sales": 17554,
+      "risks": "EBIS案件 ¥10,000千円がヨミ（6月予定）",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34f4ya5",
+          "vendor": "ディスカバリーズ株式会社",
+          "task": "1月運用",
+          "amount": 540000,
+          "amountTax": 594000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f2ifu",
+          "vendor": "ディスカバリーズ株式会社",
+          "task": "エンジニア2名×2カ月",
+          "amount": 4800000,
+          "amountTax": 5280000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f11lj",
+          "vendor": "ディスカバリーズ株式会社",
+          "task": "ポータル移行デザインアドバイス支援",
+          "amount": 4882500,
+          "amountTax": 5370750,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f7f4u",
+          "vendor": "タテジマ（大西晃）",
+          "task": "ディレクション",
+          "amount": 1500000,
+          "amountTax": 1650000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f5ij7",
+          "vendor": "オリジナルプリント",
+          "task": "ポロシャツ印刷",
+          "amount": 27682,
+          "amountTax": 30450,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        }
+      ],
+      "billings": []
+    },
+    {
+      "id": "mmyzj34f50sm",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "リトデポ",
+      "client": "JR東日本 / JR東日本都市開発",
+      "description": "大宮駅西口 都市型ウェルビーイング拠点の総合CD・ブランディング。本体・グッズ/マルシェ・キャンプの3軸",
+      "manager": "橋本",
+      "scheduleStart": "2024-11",
+      "scheduleEnd": "2026-06",
+      "stakeholders": "JR東日本、JR東日本都市開発",
+      "deliverables": "ブランド設計、WEBサイト、グッズ、イベント企画、映像",
+      "estimate": 11433,
+      "sales": 11433,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34fh8ft",
+          "vendor": "中井 章郎",
+          "task": "設計",
+          "amount": 900000,
+          "amountTax": 990000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f54hl",
+          "vendor": "コンテックス株式会社",
+          "task": "タオル、ハンカチ",
+          "amount": 440000,
+          "amountTax": 484000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fq99w",
+          "vendor": "株式会社 CESAR",
+          "task": "サウナウェア、サウナハット制作",
+          "amount": 1340500,
+          "amountTax": 1474550,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fov4h",
+          "vendor": "井上なほ",
+          "task": "モデル出演",
+          "amount": 210000,
+          "amountTax": 231000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f0gq4",
+          "vendor": "釼持 満秀",
+          "task": "撮影",
+          "amount": 250000,
+          "amountTax": 275000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fo1bi",
+          "vendor": "株式会社カンカンピーポー",
+          "task": "登壇",
+          "amount": 30000,
+          "amountTax": 33000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fhg3b",
+          "vendor": "にこにこ合同会社",
+          "task": "登壇",
+          "amount": 30000,
+          "amountTax": 33000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f9qs4",
+          "vendor": "株式会社インダハウス",
+          "task": "ライブ",
+          "amount": 50000,
+          "amountTax": 55000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fdct1",
+          "vendor": "スパワークス 山野 隼",
+          "task": "メディア対応",
+          "amount": 50000,
+          "amountTax": 55000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f7ci6",
+          "vendor": "中井 章郎",
+          "task": "キャンプ場設計",
+          "amount": 1800000,
+          "amountTax": 1980000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fqef0",
+          "vendor": "Gardeneight",
+          "task": "WEBサイト",
+          "amount": 1300000,
+          "amountTax": 1430000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        }
+      ],
+      "billings": []
+    },
+    {
+      "id": "mmyzj34fgc5m",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "GREE運用",
+      "client": "GREE",
+      "description": "GREE HN/CL 定常運用",
+      "manager": "",
+      "scheduleStart": "",
+      "scheduleEnd": "",
+      "stakeholders": "GREE",
+      "deliverables": "運用",
+      "estimate": 6253,
+      "sales": 16962,
+      "risks": "",
+      "status": "active",
+      "vendors": [],
+      "billings": []
+    },
+    {
+      "id": "mmyzj34fsj6q",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "読売新聞スタンプラリー",
+      "client": "読売新聞",
+      "description": "スタンプラリー企画・デザイン",
+      "manager": "",
+      "scheduleStart": "2026-02",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "読売新聞社",
+      "deliverables": "スタンプラリー企画・ツール制作",
+      "estimate": 2960,
+      "sales": 2960,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34fogwu",
+          "vendor": "高橋 亮",
+          "task": "デザイン",
+          "amount": 450000,
+          "amountTax": 495000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmz14r7hcc3t",
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "運用",
+          "amount": 40000,
+          "amountTax": 44000,
+          "expectedMonth": "2025-12",
+          "status": "paid",
+          "note": "12月〜3月契約"
+        },
+        {
+          "id": "mmz14r7h5txb",
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "運用",
+          "amount": 40000,
+          "amountTax": 44000,
+          "expectedMonth": "2026-01",
+          "status": "paid",
+          "note": "12月〜3月契約"
+        },
+        {
+          "id": "mmz14r7huxw0",
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "運用",
+          "amount": 40000,
+          "amountTax": 44000,
+          "expectedMonth": "2026-02",
+          "status": "paid",
+          "note": "12月〜3月契約"
+        },
+        {
+          "id": "mmz14r7hppgk",
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "運用",
+          "amount": 40000,
+          "amountTax": 44000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "12月〜3月契約"
+        },
+        {
+          "id": "mmz160ylat6a",
+          "vendor": "LINE",
+          "task": "LINE運用",
+          "amount": 13636,
+          "amountTax": 15000,
+          "expectedMonth": "2025-12",
+          "status": "paid",
+          "note": "12月〜3月契約"
+        },
+        {
+          "id": "mmz160yl3h6d",
+          "vendor": "LINE",
+          "task": "LINE運用",
+          "amount": 13636,
+          "amountTax": 15000,
+          "expectedMonth": "2026-01",
+          "status": "paid",
+          "note": "12月〜3月契約"
+        },
+        {
+          "id": "mmz160ylshnc",
+          "vendor": "LINE",
+          "task": "LINE運用",
+          "amount": 13636,
+          "amountTax": 15000,
+          "expectedMonth": "2026-02",
+          "status": "paid",
+          "note": "12月〜3月契約"
+        },
+        {
+          "id": "mmz160yl7imx",
+          "vendor": "LINE",
+          "task": "LINE運用",
+          "amount": 13636,
+          "amountTax": 15000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "12月〜3月契約"
+        }
+      ],
+      "billings": []
+    },
+    {
+      "id": "mmyzj34f7nk6",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "ヒロ建工",
+      "client": "ヒロ建工",
+      "description": "WEB運用・コンテンツ制作",
+      "manager": "浅見",
+      "scheduleStart": "",
+      "scheduleEnd": "",
+      "stakeholders": "",
+      "deliverables": "WEBサイト運用",
+      "estimate": 900,
+      "sales": 2101,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34f2j9r",
+          "vendor": "浅見制作所",
+          "task": "運用",
+          "amount": 640000,
+          "amountTax": 704000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f41v4",
+          "vendor": "城内匡",
+          "task": "コーディング他",
+          "amount": 20000,
+          "amountTax": 22000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f0u50",
+          "vendor": "浅見制作所",
+          "task": "撮影",
+          "amount": 40000,
+          "amountTax": 44000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fhg8r",
+          "vendor": "株式会社like a bird",
+          "task": "映像",
+          "amount": 520000,
+          "amountTax": 572000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fl12z",
+          "vendor": "浅見制作所",
+          "task": "LP制作",
+          "amount": 330000,
+          "amountTax": 363000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        }
+      ],
+      "billings": [],
+      "contractAmount": 0
+    },
+    {
+      "id": "mmyzj34f2f36",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "横瀬町",
+      "client": "コア / 横瀬町",
+      "description": "横瀬町 情報発信・ディレクション",
+      "manager": "橋本",
+      "scheduleStart": "",
+      "scheduleEnd": "",
+      "stakeholders": "横瀬町",
+      "deliverables": "ディレクション、運用",
+      "estimate": 1080,
+      "sales": 2160,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34ftncg",
+          "vendor": "浅見制作所",
+          "task": "ディレクション",
+          "amount": 160000,
+          "amountTax": 176000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f9twd",
+          "vendor": "株式会社ポリリズム",
+          "task": "運用",
+          "amount": 720000,
+          "amountTax": 792000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        }
+      ],
+      "billings": []
+    },
+    {
+      "id": "mmyzj34ffme8",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "ウイザース",
+      "client": "ウイザース",
+      "description": "WEBサイト運用・広告運用",
+      "manager": "浅見",
+      "scheduleStart": "",
+      "scheduleEnd": "",
+      "stakeholders": "",
+      "deliverables": "運用、広告",
+      "estimate": 1200,
+      "sales": 2400,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34f92wp",
+          "vendor": "浅見制作所",
+          "task": "サーバランニング",
+          "amount": 89600,
+          "amountTax": 98560,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34fizxm",
+          "vendor": "浅見制作所",
+          "task": "広告",
+          "amount": 314422,
+          "amountTax": 345864,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        }
+      ],
+      "billings": [],
+      "contractAmount": 0
+    },
+    {
+      "id": "mmyzj34fc231",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "ADDReC / DA",
+      "client": "ADDReC",
+      "description": "DA（デベロッパーエージェント）案件",
+      "manager": "岡永",
+      "scheduleStart": "2026-01",
+      "scheduleEnd": "2026-05",
+      "stakeholders": "",
+      "deliverables": "DA制作",
+      "estimate": 2000,
+      "sales": 2000,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "vendor": "城内匡",
+          "task": "",
+          "amount": 400000,
+          "amountTax": 440000,
+          "expectedMonth": "",
+          "status": "planned",
+          "note": "",
+          "id": "mmz3fw1vwy9c"
+        }
+      ],
+      "billings": [],
+      "contractAmount": 0
+    },
+    {
+      "id": "mmyzj34fy6w7",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "JT案件（REDD）",
+      "client": "JT",
+      "description": "サイトリニューアル",
+      "manager": "岡永",
+      "scheduleStart": "2026-03",
+      "scheduleEnd": "2026-06",
+      "stakeholders": "JT",
+      "deliverables": "WEBサイトリニューアル",
+      "estimate": 4000,
+      "sales": 4000,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "vendor": "城内匡",
+          "task": "WEB制作",
+          "amount": 1000000,
+          "amountTax": 1100000,
+          "expectedMonth": "2026-05",
+          "status": "planned",
+          "note": "",
+          "id": "mmz3gthkvnnx"
+        }
+      ],
+      "billings": [],
+      "contractAmount": 0
+    },
+    {
+      "id": "mmyzj34fy4bu",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "INTEGRATE / stons",
+      "client": "INTEGRATE",
+      "description": "サウナブランド stons ポスター・ラベル制作",
+      "manager": "しんたろう",
+      "scheduleStart": "2026-02",
+      "scheduleEnd": "",
+      "stakeholders": "INTEGRATE",
+      "deliverables": "ポスター制作",
+      "estimate": 1000,
+      "sales": 1726,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34f9v74",
+          "vendor": "高橋 亮",
+          "task": "cask＆forest　パッケージデザイン費",
+          "amount": 150000,
+          "amountTax": 165000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f4hb5",
+          "vendor": "高橋 亮",
+          "task": "ston s ポスターデザイン費",
+          "amount": 150000,
+          "amountTax": 165000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f1mem",
+          "vendor": "株式会社ニュー",
+          "task": "ston s ポスターデザイン費",
+          "amount": 250000,
+          "amountTax": 275000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmyzj34f6yrx",
+          "vendor": "高橋 亮",
+          "task": "デザイン",
+          "amount": 150000,
+          "amountTax": 165000,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        }
+      ],
+      "billings": [],
+      "contractAmount": 0
+    },
+    {
+      "id": "mmyzj34f5ch2",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "ヘッドスパ リブランディング",
+      "client": "ヘッドスパ",
+      "description": "リブランディング案件",
+      "manager": "",
+      "scheduleStart": "2026-05",
+      "scheduleEnd": "",
+      "stakeholders": "",
+      "deliverables": "ブランディング",
+      "estimate": 1500,
+      "sales": 0,
+      "risks": "ヨミ段階",
+      "status": "active",
+      "vendors": [],
+      "billings": []
+    },
+    {
+      "id": "mmyzj34f1gz0",
+      "createdAt": "2026-03-20T14:19:08.559Z",
+      "name": "アットパーキング",
+      "client": "アットパーキング",
+      "description": "サイトリニューアル",
+      "manager": "",
+      "scheduleStart": "2026-06",
+      "scheduleEnd": "",
+      "stakeholders": "",
+      "deliverables": "WEBサイトリニューアル",
+      "estimate": 4000,
+      "sales": 0,
+      "risks": "ヨミ段階",
+      "status": "active",
+      "vendors": [],
+      "billings": []
+    },
+    {
+      "id": "mmyzq0khbbs3",
+      "createdAt": "2026-03-20T14:24:31.841Z",
+      "name": "ADDReC / レペルティオ",
+      "client": "ADDReC",
+      "description": "レペルティオ案件",
+      "manager": "岡永",
+      "scheduleStart": "2026-01",
+      "scheduleEnd": "2026-06",
+      "stakeholders": "ADDReC福島",
+      "deliverables": "レペルティオ",
+      "estimate": 2000,
+      "sales": 2000,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "vendor": "城内匡",
+          "task": "",
+          "amount": 400000,
+          "amountTax": 440000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz3jeqwu4ou"
+        }
+      ],
+      "billings": [],
+      "contractAmount": 0
+    },
+    {
+      "id": "mmz07e4w1b3h",
+      "createdAt": "2026-03-20T14:38:02.576Z",
+      "name": "ちょこたび SNS運用",
+      "client": "埼玉県物産観光協会",
+      "description": "ちょこたび埼玉 SNS運用業務",
+      "manager": "橋本 / 岡永",
+      "scheduleStart": "2025-07",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "埼玉県物産観光協会",
+      "deliverables": "SNS運用（Instagram等）",
+      "contractAmount": 12425500,
+      "contractExTax": 11295909,
+      "estimate": 11296,
+      "sales": 11296,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "id": "mmyzj34ft63f",
+          "vendor": "EmpaC",
+          "task": "SNS運用全般",
+          "amount": 3845658,
+          "amountTax": 4230224,
+          "expectedMonth": "",
+          "status": "paid",
+          "note": "実績（自動取込）"
+        },
+        {
+          "id": "mmz1irbj0vg8",
+          "vendor": "EmpaC",
+          "task": "SNS運用（残金）",
+          "amount": 3845659,
+          "amountTax": 4230225,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "3月末請求予定"
+        }
+      ],
+      "billings": [
+        {
+          "id": "mmz07e50vyvg",
+          "amount": 6212750,
+          "date": "2025-08",
+          "status": "received",
+          "note": "半金請求（入金済）"
+        },
+        {
+          "id": "mmz07e50rln7",
+          "amount": 6212750,
+          "date": "2026-03",
+          "status": "planned",
+          "note": "残金請求予定"
+        }
+      ]
+    },
+    {
+      "id": "mmz09lnsxoy8",
+      "createdAt": "2026-03-20T14:39:45.640Z",
+      "name": "サーキュラーエコノミー ロゴ・動画",
+      "client": "埼玉県庁",
+      "description": "サーキュラーエコノミー推進事業 ロゴ制作・動画制作",
+      "manager": "橋本",
+      "scheduleStart": "2025-07",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "埼玉県",
+      "deliverables": "ロゴデザイン、動画制作",
+      "contractAmount": 2399430,
+      "contractExTax": 2181300,
+      "estimate": 2181,
+      "sales": 2181,
+      "risks": "",
+      "status": "active",
+      "vendors": [
+        {
+          "vendor": "株式会社like a bird",
+          "task": "動画制作",
+          "amount": 500000,
+          "amountTax": 550000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mmz37w3l1aex"
+        }
+      ],
+      "billings": [
+        {
+          "id": "mmz0kgkw3hlp",
+          "amount": 2399430,
+          "date": "2026-03",
+          "status": "planned",
+          "note": "一括請求予定"
+        }
+      ]
+    }
+  ]
+}

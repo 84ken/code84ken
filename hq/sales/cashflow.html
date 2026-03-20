@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>キャッシュフロー — SCHEMA, Inc.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: { 50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',800:'#13318d',900:'#0e266a',950:'#07194e' }
+      },
+      fontFamily: { sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+.text-body { color: #3d4b5f; }
+body { font-size: 14px; line-height: 1.7; }
+.bar-fill { transition: width 0.8s ease; }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- Nav -->
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 32px;display:flex;align-items:center;gap:12px;">
+  <a href="/" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
+    <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span> HQ
+  </a>
+  <span style="color:#cbd5e1;">/</span>
+  <a href="/sales-dashboard.html" style="color:#64748b;font-size:13px;text-decoration:none;">売上</a>
+  <a href="/vendor-search.html" style="color:#64748b;font-size:13px;text-decoration:none;">外注先</a>
+  <a href="/vendor-memo.html" style="color:#64748b;font-size:13px;text-decoration:none;">プロジェクト</a>
+  <span style="color:#334155;font-size:13px;font-weight:600;">キャッシュフロー</span>
+</div>
+
+<div class="max-w-6xl mx-auto px-8 py-12" id="app">
+  <p class="text-slate-400 text-center py-20">データ読み込み中...</p>
+</div>
+
+<script>
+var FMT = function(n) { return n ? '¥' + Math.round(n).toLocaleString() : '¥0'; };
+var NOW = (function() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); })();
+
+// Generate month range for fiscal year (Jul-Jun)
+function getFiscalMonths(startYear) {
+  var months = [];
+  for (var m = 7; m <= 12; m++) months.push(startYear + '-' + String(m).padStart(2,'0'));
+  for (var m = 1; m <= 6; m++) months.push((startYear+1) + '-' + String(m).padStart(2,'0'));
+  return months;
+}
+
+function monthLabel(ym) {
+  var parts = ym.split('-');
+  return parseInt(parts[1]) + '月';
+}
+
+async function init() {
+  try {
+  // Fetch all data sources in parallel
+  var results = await Promise.all([
+    fetch('vendor-memos.json').then(function(r){return r.json()}),
+    fetch('sales-data.json').then(function(r){return r.json()}),
+    fetch('vendor-data.json').then(function(r){return r.json()})
+  ]);
+  var memos = results[0];
+  var sales = results[1];
+  var vendors = results[2];
+
+  // ===== Build monthly cashflow =====
+  var cf = {}; // { '2026-01': { salesIn, billingIn, vendorOut, vendorPlanned, details } }
+
+  function ensure(ym) {
+    if (!cf[ym]) cf[ym] = { salesIn: 0, billingIn: 0, billingPlanned: 0, vendorActual: 0, vendorPlanned: 0, inDetails: [], outDetails: [] };
+  }
+
+  // 1. Sales data (入金 - 売上実績ベース、千円単位)
+  // sheets から全期間を取得（currentPeriod と重複しないよう sheets のみ使用）
+  (sales.sheets || []).forEach(function(sheet) {
+    var isSecondHalf = sheet.half === 'second';
+    var yearMatch = sheet.sheetName ? sheet.sheetName.match(/(\d{4})/) : null;
+    if (!yearMatch) return;
+    var year = parseInt(yearMatch[1]);
+    var monthKeys = isSecondHalf
+      ? { '7月': year+'-07','8月': year+'-08','9月': year+'-09','10月': year+'-10','11月': year+'-11','12月': year+'-12' }
+      : { '1月': year+'-01','2月': year+'-02','3月': year+'-03','4月': year+'-04','5月': year+'-05','6月': year+'-06' };
+
+    (sheet.clients || []).forEach(function(client) {
+      (client.entries || []).forEach(function(entry) {
+        var ym = monthKeys[entry.month];
+        if (!ym) return;
+        ensure(ym);
+        if (entry.sales) cf[ym].salesIn += entry.sales * 1000;
+      });
+    });
+  });
+
+  // 2. Billing schedules — 表示用のみ（salesIn には加算しない）
+
+  // 3. Vendor actual payments (出金実績 - vendor-data.json)
+  (vendors.months || []).forEach(function(m) {
+    var ym = m.period;
+    ensure(ym);
+    cf[ym].vendorActual = m.totalIncTax || 0;
+    (m.entries || []).forEach(function(e) {
+      cf[ym].outDetails.push({ project: e.project, vendor: e.vendor, amount: e.amountIncTax || e.amountExTax, status: 'paid' });
+    });
+  });
+
+  // 4. Vendor planned payments (出金予定 - memos)
+  (memos.projects || []).forEach(function(p) {
+    (p.vendors || []).forEach(function(v) {
+      if (v.status === 'paid') return; // already in vendor-data
+      if (!v.expectedMonth) return;
+      var ym = v.expectedMonth;
+      ensure(ym);
+      cf[ym].vendorPlanned += v.amountTax || v.amount || 0;
+      cf[ym].outDetails.push({ project: p.name, vendor: v.vendor, amount: v.amountTax || v.amount, amountExTax: v.amount || 0, task: v.task || '', status: v.status });
+    });
+  });
+
+  render(cf, vendors);
+  } catch(e) {
+    document.getElementById('app').innerHTML = '<div class="p-8 bg-red-50 rounded-xl border border-red-200 text-red-800"><h2 class="font-bold mb-2">エラー</h2><pre class="text-sm whitespace-pre-wrap">' + e.message + '\n' + (e.stack||'') + '</pre></div>';
+  }
+}
+
+function render(cf, vendors) {
+  // Sort months, focus on current fiscal year
+  var currentYear = new Date().getMonth() >= 7 ? new Date().getFullYear() : new Date().getFullYear() - 1;
+  var fiscalMonths = getFiscalMonths(currentYear);
+
+  // Also add months outside fiscal year if they have data
+  var allMonths = Object.keys(cf).sort();
+  var displayMonths = fiscalMonths.filter(function(m) { return cf[m]; });
+  // Add any months with data not in fiscal year
+  allMonths.forEach(function(m) {
+    if (displayMonths.indexOf(m) === -1 && cf[m]) displayMonths.push(m);
+  });
+  displayMonths.sort();
+
+  // Focus on recent 12 months by default
+  var recentMonths = displayMonths.filter(function(m) { return m >= fiscalMonths[0]; });
+  if (recentMonths.length === 0) recentMonths = displayMonths.slice(-12);
+
+  // KPI calculations for displayed period
+  var totalIn = 0, totalOut = 0, totalPlannedOut = 0, thisMonthNet = 0;
+  recentMonths.forEach(function(m) {
+    var d = cf[m];
+    totalIn += d.salesIn;
+    totalOut += d.vendorActual;
+    totalPlannedOut += d.vendorPlanned;
+  });
+  var thisMo = cf[NOW];
+  if (thisMo) {
+    thisMonthNet = thisMo.salesIn - (thisMo.vendorActual + thisMo.vendorPlanned);
+  }
+
+  // Find max for chart scaling
+  var maxVal = 0;
+  recentMonths.forEach(function(m) {
+    var d = cf[m];
+    var inTotal = d.salesIn;
+    var outTotal = d.vendorActual + d.vendorPlanned;
+    maxVal = Math.max(maxVal, inTotal, outTotal);
+  });
+
+  var h = '';
+
+  // Header
+  h += '<div class="flex items-center justify-between mb-8">';
+  h += '<div><h1 class="text-3xl font-bold text-slate-900">キャッシュフロー</h1>';
+  h += '<p class="text-body mt-1">第16期（' + currentYear + '.7 〜 ' + (currentYear+1) + '.6）入出金の月別推移</p></div>';
+  h += '<div class="flex gap-2">';
+  h += '<a href="/vendor-memo.html" class="inline-flex items-center justify-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50">プロジェクト管理</a>';
+  h += '<a href="/sales-dashboard.html" class="inline-flex items-center justify-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50">売上ダッシュボード</a>';
+  h += '</div></div>';
+
+  // KPI Cards
+  h += '<div class="grid grid-cols-4 gap-4 mb-8">';
+  h += kpiCard('売上入金（実績）', FMT(totalIn), '');
+  h += kpiCard('外注支払（実績）', FMT(totalOut), '');
+  h += kpiCard('外注予定（未払い）', FMT(totalPlannedOut), totalPlannedOut > 0 ? '<span class="text-amber-600 font-medium">支払い予定あり</span>' : '');
+  var netColor = thisMonthNet >= 0 ? 'text-emerald-600' : 'text-red-600';
+  h += kpiCard('今月ネット', '<span class="' + netColor + '">' + FMT(thisMonthNet) + '</span>', NOW);
+  h += '</div>';
+
+  // Legend
+  h += '<div class="flex items-center gap-6 mb-4 text-xs text-slate-500">';
+  h += '<div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded bg-primary-400"></div>売上計上</div>';
+  h += '<div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded bg-red-400"></div>外注支払（実績）</div>';
+  h += '<div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded bg-amber-300"></div>外注予定（未払い）</div>';
+  h += '</div>';
+
+  // Monthly Chart
+  h += '<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-8">';
+  h += '<div class="p-5 border-b border-slate-200"><h2 class="text-base font-bold text-slate-900">月別入出金チャート</h2></div>';
+  h += '<div class="p-5 space-y-3">';
+
+  recentMonths.forEach(function(m) {
+    var d = cf[m];
+    var inActual = d.salesIn;
+    var outActual = d.vendorActual;
+    var outPlanned = d.vendorPlanned;
+    var net = inActual - outActual - outPlanned;
+    var isCurrent = m === NOW;
+
+    var inActualPct = maxVal > 0 ? (inActual / maxVal * 100) : 0;
+    var outActualPct = maxVal > 0 ? (outActual / maxVal * 100) : 0;
+    var outPlannedPct = maxVal > 0 ? (outPlanned / maxVal * 100) : 0;
+
+    h += '<div class="' + (isCurrent ? 'bg-primary-50/50 -mx-5 px-5 py-3 rounded-lg border border-primary-100' : '') + '">';
+    h += '<div class="flex items-center gap-3 mb-1">';
+    h += '<div class="w-12 text-sm font-medium ' + (isCurrent ? 'text-primary-600' : 'text-slate-600') + '">' + monthLabel(m) + '</div>';
+    h += '<div class="flex-1">';
+
+    // Income bar
+    h += '<div class="flex items-center gap-2 mb-1">';
+    h += '<div class="w-6 text-xs text-slate-400">入</div>';
+    h += '<div class="flex-1 bg-slate-100 rounded h-5 relative overflow-hidden flex">';
+    if (inActualPct > 0) h += '<div class="bg-primary-400 h-5 bar-fill" style="width:' + inActualPct + '%"></div>';
+    h += '</div>';
+    h += '<div class="w-28 text-right text-xs text-slate-600">' + FMT(inActual) + '</div>';
+    h += '</div>';
+
+    // Outgoing bar
+    h += '<div class="flex items-center gap-2">';
+    h += '<div class="w-6 text-xs text-slate-400">出</div>';
+    h += '<div class="flex-1 bg-slate-100 rounded h-5 relative overflow-hidden flex">';
+    if (outActualPct > 0) h += '<div class="bg-red-400 h-5 bar-fill" style="width:' + outActualPct + '%"></div>';
+    if (outPlannedPct > 0) h += '<div class="bg-amber-300 h-5 bar-fill" style="width:' + outPlannedPct + '%"></div>';
+    h += '</div>';
+    h += '<div class="w-28 text-right text-xs text-slate-600">' + FMT(outActual + outPlanned) + '</div>';
+    h += '</div>';
+
+    // Net
+    h += '<div class="flex items-center gap-2 mt-0.5">';
+    h += '<div class="w-6"></div>';
+    h += '<div class="text-xs ' + (net >= 0 ? 'text-emerald-600' : 'text-red-600') + ' font-medium">差引 ' + FMT(net) + '</div>';
+    h += '</div>';
+
+    h += '</div>'; // flex-1
+    h += '</div>'; // flex row
+    h += '</div>'; // wrapper
+  });
+
+  h += '</div></div>';
+
+  // Monthly Detail Table
+  h += '<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-8">';
+  h += '<div class="p-5 border-b border-slate-200"><h2 class="text-base font-bold text-slate-900">月別サマリー</h2></div>';
+  h += '<table class="w-full text-sm"><thead><tr class="border-b border-slate-200 bg-gray-50">';
+  h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">月</th>';
+  h += '<th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">売上計上</th>';
+  h += '<th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">外注実績</th>';
+  h += '<th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">外注予定</th>';
+  h += '<th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">差引</th>';
+  h += '</tr></thead><tbody>';
+
+  var cumNet = 0;
+  recentMonths.forEach(function(m) {
+    var d = cf[m];
+    var inActual = d.salesIn;
+    var outTotal = d.vendorActual + d.vendorPlanned;
+    var net = inActual - outTotal;
+    cumNet += net;
+    var isCurrent = m === NOW;
+
+    h += '<tr class="border-b border-slate-100 hover:bg-gray-50 ' + (isCurrent ? 'bg-primary-50/30' : '') + '" onclick="toggleDetail(this,\'' + m + '\')" style="cursor:pointer">';
+    h += '<td class="py-3 px-4 font-medium ' + (isCurrent ? 'text-primary-600' : 'text-slate-900') + '">' + m + (isCurrent ? ' <span class="text-xs bg-primary-100 text-primary-600 px-1.5 py-0.5 rounded">今月</span>' : '') + '</td>';
+    h += '<td class="py-3 px-4 text-right">' + FMT(d.salesIn) + '</td>';
+    h += '<td class="py-3 px-4 text-right">' + FMT(d.vendorActual) + '</td>';
+    h += '<td class="py-3 px-4 text-right text-amber-600">' + (d.vendorPlanned > 0 ? FMT(d.vendorPlanned) : '-') + '</td>';
+    h += '<td class="py-3 px-4 text-right font-medium ' + (net >= 0 ? 'text-emerald-600' : 'text-red-600') + '">' + FMT(net) + '</td>';
+    h += '</tr>';
+  });
+
+  // Totals row
+  var grandIn = 0, grandOutActual = 0, grandOutPlanned = 0;
+  recentMonths.forEach(function(m) {
+    var d = cf[m];
+    grandIn += d.salesIn;
+    grandOutActual += d.vendorActual;
+    grandOutPlanned += d.vendorPlanned;
+  });
+  var grandNet = grandIn - grandOutActual - grandOutPlanned;
+  h += '<tr class="bg-slate-50 font-bold">';
+  h += '<td class="py-3 px-4 text-slate-900">合計</td>';
+  h += '<td class="py-3 px-4 text-right">' + FMT(grandIn) + '</td>';
+  h += '<td class="py-3 px-4 text-right">' + FMT(grandOutActual) + '</td>';
+  h += '<td class="py-3 px-4 text-right text-amber-600">' + FMT(grandOutPlanned) + '</td>';
+  h += '<td class="py-3 px-4 text-right ' + (grandNet >= 0 ? 'text-emerald-600' : 'text-red-600') + '">' + FMT(grandNet) + '</td>';
+  h += '</tr>';
+
+  h += '</tbody></table></div>';
+
+  // Upcoming payments (next 2 months)
+  var upcoming = [];
+  (Object.keys(cf)).sort().forEach(function(m) {
+    if (m < NOW) return;
+    var d = cf[m];
+    d.outDetails.forEach(function(det) {
+      if (det.status !== 'paid') {
+        upcoming.push({ month: m, project: det.project, vendor: det.vendor, amount: det.amount, amountExTax: det.amountExTax || 0, task: det.task || '', status: det.status });
+      }
+    });
+  });
+
+  // Build vendor lookup from vendor-data for enrichment (invoice, type, bank)
+  var vendorLookup = {};
+  (vendors.vendors || []).forEach(function(v) {
+    vendorLookup[v.name] = { invoice: v.invoice || '', type: v.type || '', bankInfo: v.bankInfo || '', address: v.address || '', phone: v.phone || '' };
+  });
+
+  // Enrich upcoming with vendor-data info
+  upcoming.forEach(function(u) {
+    var info = vendorLookup[u.vendor] || {};
+    u.invoice = info.invoice || '';
+    u.type = info.type || '';
+    u.bankInfo = info.bankInfo || '';
+    u.address = info.address || '';
+  });
+
+  // Store globally for export/scan
+  window._upcoming = upcoming;
+  window._vendorLookup = vendorLookup;
+
+  if (upcoming.length) {
+    h += '<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-8">';
+    h += '<div class="p-5 border-b border-slate-200">';
+    h += '<div class="flex items-center justify-between">';
+    h += '<div><h2 class="text-base font-bold text-slate-900">今後の支払い予定</h2>';
+    h += '<p class="text-xs text-slate-400 mt-1">' + upcoming.length + '件 / ' + FMT(upcoming.reduce(function(s,u){return s+(u.amount||0)},0)) + '</p></div>';
+    h += '<div class="flex gap-2">';
+    h += '<button onclick="scanAndMatch()" class="inline-flex items-center justify-center gap-2 h-9 px-3 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">請求書PDF照合</button>';
+    h += '<button onclick="exportCSV()" class="inline-flex items-center justify-center gap-2 h-9 px-3 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">外注費リストCSV出力</button>';
+    h += '</div></div></div>';
+
+    h += '<div id="scan-result"></div>';
+
+    h += '<table class="w-full text-sm" id="upcoming-table"><thead><tr class="border-b border-slate-200 bg-gray-50">';
+    h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">支払月</th>';
+    h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">外注先</th>';
+    h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">インボイス</th>';
+    h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">案件</th>';
+    h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">内容</th>';
+    h += '<th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">税抜</th>';
+    h += '<th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">税込</th>';
+    h += '<th scope="col" class="text-center py-3 px-4 text-xs font-medium text-slate-500 uppercase">状態</th>';
+    h += '<th scope="col" class="text-center py-3 px-4 text-xs font-medium text-slate-500 uppercase">PDF</th>';
+    h += '</tr></thead><tbody>';
+
+    upcoming.sort(function(a,b){ return a.month < b.month ? -1 : a.month > b.month ? 1 : 0; });
+    upcoming.forEach(function(u, idx) {
+      var sc = u.status === 'planned' ? 'bg-blue-50 text-blue-700' : 'bg-amber-50 text-amber-700';
+      var sl = u.status === 'planned' ? '予定' : '請求済';
+      var isOverdue = u.month < NOW;
+      var exTax = u.amountExTax || (u.amount ? Math.round(u.amount / 1.1) : 0);
+      h += '<tr class="border-b border-slate-100 hover:bg-gray-50' + (isOverdue ? ' bg-red-50' : '') + '" id="row-' + idx + '">';
+      h += '<td class="py-3 px-4 font-medium text-slate-900">' + u.month + (isOverdue ? ' <span class="text-xs text-red-500 font-medium">超過</span>' : '') + '</td>';
+      h += '<td class="py-3 px-4 text-slate-900">' + (u.vendor || '') + '</td>';
+      h += '<td class="py-3 px-4 text-xs text-slate-400">' + (u.invoice || '-') + '</td>';
+      h += '<td class="py-3 px-4 text-body">' + (u.project || '') + '</td>';
+      h += '<td class="py-3 px-4 text-xs text-body">' + (u.task || '') + '</td>';
+      h += '<td class="py-3 px-4 text-right">' + FMT(exTax) + '</td>';
+      h += '<td class="py-3 px-4 text-right font-medium">' + FMT(u.amount) + '</td>';
+      h += '<td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-medium ' + sc + '">' + sl + '</span></td>';
+      h += '<td class="py-3 px-4 text-center" id="pdf-' + idx + '"><span class="text-xs text-slate-300">—</span></td>';
+      h += '</tr>';
+    });
+    h += '</tbody></table></div>';
+  }
+
+  document.getElementById('app').innerHTML = h;
+
+  // Store cf globally for detail toggle
+  window._cf = cf;
+}
+
+function toggleDetail(row, month) {
+  var next = row.nextElementSibling;
+  if (next && next.classList.contains('detail-row')) {
+    next.remove();
+    return;
+  }
+  var d = window._cf[month];
+  if (!d) return;
+
+  var tr = document.createElement('tr');
+  tr.className = 'detail-row';
+  var td = document.createElement('td');
+  td.colSpan = 5;
+  td.className = 'p-4 bg-slate-50';
+
+  var html = '<div class="grid grid-cols-2 gap-4">';
+
+  // Income details
+  html += '<div><h4 class="text-xs font-bold text-slate-500 uppercase mb-2">入金内訳</h4>';
+  if (d.inDetails.length) {
+    d.inDetails.forEach(function(det) {
+      html += '<div class="flex items-center justify-between text-sm py-1 border-b border-slate-100">';
+      html += '<span class="text-body">' + det.project + ' <span class="text-xs text-slate-400">' + det.vendor + '</span></span>';
+      html += '<span class="font-medium">' + FMT(det.amount) + '</span></div>';
+    });
+  } else {
+    html += '<p class="text-xs text-slate-400">請求データなし（売上計上のみ）</p>';
+  }
+  html += '</div>';
+
+  // Outgoing details
+  html += '<div><h4 class="text-xs font-bold text-slate-500 uppercase mb-2">出金内訳</h4>';
+  if (d.outDetails.length) {
+    d.outDetails.forEach(function(det) {
+      var sc = det.status === 'paid' ? 'text-emerald-600' : det.status === 'invoiced' ? 'text-amber-600' : 'text-blue-600';
+      var sl = det.status === 'paid' ? '済' : det.status === 'invoiced' ? '請求' : '予定';
+      html += '<div class="flex items-center justify-between text-sm py-1 border-b border-slate-100">';
+      html += '<span class="text-body">' + (det.project||'') + ' <span class="text-xs text-slate-400">' + det.vendor + '</span></span>';
+      html += '<span class="font-medium">' + FMT(det.amount) + ' <span class="text-xs ' + sc + '">' + sl + '</span></span></div>';
+    });
+  } else {
+    html += '<p class="text-xs text-slate-400">出金データなし</p>';
+  }
+  html += '</div>';
+
+  html += '</div>';
+  td.innerHTML = html;
+  tr.appendChild(td);
+  row.parentNode.insertBefore(tr, row.nextSibling);
+}
+
+function kpiCard(label, val, sub) {
+  return '<div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">' +
+    '<p class="text-xs font-medium text-slate-500 uppercase">' + label + '</p>' +
+    '<p class="text-2xl font-bold text-slate-900 mt-1">' + val + '</p>' +
+    (sub ? '<p class="text-xs text-slate-400 mt-1">' + sub + '</p>' : '') + '</div>';
+}
+
+// ===== CSV EXPORT (外注費リスト形式) =====
+function exportCSV() {
+  var upcoming = window._upcoming || [];
+  if (!upcoming.length) return;
+
+  // Group by month for separate sheets (CSV = one file, grouped by month)
+  var byMonth = {};
+  upcoming.forEach(function(u) {
+    if (!byMonth[u.month]) byMonth[u.month] = [];
+    byMonth[u.month].push(u);
+  });
+
+  // Excel columns: No, 外注先名, インボイス, 法人/個人, 案件, 内容, 税抜, 税込, (空), 支払額, 振込先
+  var BOM = '\uFEFF';
+  var header = 'No,外注先名,インボイス,法人/個人,案件,内容,税抜金額,税込金額,,支払額,振込先';
+  var lines = [header];
+
+  var months = Object.keys(byMonth).sort();
+  months.forEach(function(m) {
+    // Month separator
+    var mLabel = m.replace('-', '年') + '月';
+    lines.push('');
+    lines.push('# ' + mLabel);
+    lines.push(header);
+
+    byMonth[m].forEach(function(u, i) {
+      var exTax = u.amountExTax || (u.amount ? Math.round(u.amount / 1.1) : 0);
+      var cols = [
+        i + 1,
+        csvEscape(u.vendor || ''),
+        csvEscape(u.invoice || ''),
+        csvEscape(u.type || ''),
+        csvEscape(u.project || ''),
+        csvEscape(u.task || ''),
+        exTax,
+        u.amount || 0,
+        '',
+        u.amount || 0,
+        csvEscape(u.bankInfo || '')
+      ];
+      lines.push(cols.join(','));
+    });
+  });
+
+  var blob = new Blob([BOM + lines.join('\n')], { type: 'text/csv;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = '外注費リスト_支払予定_' + NOW + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function csvEscape(s) {
+  if (!s) return '';
+  s = String(s);
+  if (s.indexOf(',') >= 0 || s.indexOf('"') >= 0 || s.indexOf('\n') >= 0) {
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  return s;
+}
+
+// ===== PDF SCAN & MATCH =====
+async function scanAndMatch() {
+  var scanDiv = document.getElementById('scan-result');
+  scanDiv.innerHTML = '<div class="p-4 text-sm text-slate-400">請求書PDFをスキャン中...</div>';
+
+  try {
+    var r = await (await Promise.resolve({json:function(){return {totalFiles:0,allInvoices:[]}}})).json();
+    var upcoming = window._upcoming || [];
+
+    if (!r.totalFiles) {
+      scanDiv.innerHTML = '<div class="p-4 text-center text-slate-400"><p>invoices/ フォルダにPDFがありません</p><p class="text-xs mt-1">sales/invoices/ に請求書PDFを入れてください</p></div>';
+      return;
+    }
+
+    var matched = 0, unmatched = 0;
+
+    // Try to match each upcoming payment with a scanned invoice
+    upcoming.forEach(function(u, idx) {
+      var pdfCell = document.getElementById('pdf-' + idx);
+      if (!pdfCell) return;
+
+      var found = r.allInvoices.find(function(inv) {
+        // Match by vendor name
+        var vendorMatch = inv.vendor && u.vendor &&
+          (u.vendor.includes(inv.vendor) || inv.vendor.includes(u.vendor));
+        // Match by amount (within ±500 tolerance)
+        var amountMatch = inv.amount && u.amount &&
+          Math.abs(inv.amount - u.amount) < 500;
+        // Also try tax-excluded match
+        var exTax = u.amountExTax || (u.amount ? Math.round(u.amount / 1.1) : 0);
+        var exTaxMatch = inv.amount && exTax && Math.abs(inv.amount - exTax) < 500;
+        return vendorMatch || amountMatch || exTaxMatch;
+      });
+
+      if (found) {
+        matched++;
+        pdfCell.innerHTML = '<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700" title="' + found.file + '">PDF有</span>';
+        var row = document.getElementById('row-' + idx);
+        if (row) row.classList.add('bg-emerald-50/30');
+      } else {
+        unmatched++;
+        pdfCell.innerHTML = '<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-red-50 text-red-500">未着</span>';
+      }
+    });
+
+    // Summary
+    var sh = '<div class="p-4 flex items-center gap-4 border-b border-slate-200 bg-slate-50">';
+    sh += '<span class="text-sm font-medium text-slate-700">PDF照合結果:</span>';
+    sh += '<span class="text-sm text-emerald-600 font-medium">一致 ' + matched + '件</span>';
+    sh += '<span class="text-sm text-red-500 font-medium">未着 ' + unmatched + '件</span>';
+    sh += '<span class="text-xs text-slate-400">（スキャン対象: ' + r.totalFiles + 'ファイル）</span>';
+
+    // Show unmatched PDFs (invoices that don't match any upcoming payment)
+    var unmatchedPDFs = r.allInvoices.filter(function(inv) {
+      return !upcoming.some(function(u) {
+        var vendorMatch = inv.vendor && u.vendor &&
+          (u.vendor.includes(inv.vendor) || inv.vendor.includes(u.vendor));
+        var amountMatch = inv.amount && u.amount && Math.abs(inv.amount - u.amount) < 500;
+        var exTax = u.amountExTax || (u.amount ? Math.round(u.amount / 1.1) : 0);
+        var exTaxMatch = inv.amount && exTax && Math.abs(inv.amount - exTax) < 500;
+        return vendorMatch || amountMatch || exTaxMatch;
+      });
+    });
+
+    if (unmatchedPDFs.length) {
+      sh += '<span class="text-sm text-amber-600 font-medium">未登録PDF ' + unmatchedPDFs.length + '件</span>';
+    }
+    sh += '</div>';
+
+    if (unmatchedPDFs.length) {
+      sh += '<div class="p-4 border-b border-slate-200"><h4 class="text-xs font-bold text-amber-700 uppercase mb-2">支払予定に未登録のPDF</h4>';
+      sh += '<div class="space-y-1">';
+      unmatchedPDFs.forEach(function(inv) {
+        sh += '<div class="flex items-center justify-between text-sm py-1.5 px-3 bg-amber-50 rounded">';
+        sh += '<span class="text-body"><strong>' + inv.file + '</strong>';
+        if (inv.vendor) sh += ' — ' + inv.vendor;
+        sh += '</span>';
+        if (inv.amount) sh += '<span class="font-medium">' + FMT(inv.amount) + '</span>';
+        sh += '</div>';
+      });
+      sh += '</div></div>';
+    }
+
+    scanDiv.innerHTML = sh;
+
+  } catch(e) {
+    scanDiv.innerHTML = '<div class="p-4 text-red-500 text-sm">エラー: ' + e.message + '</div>';
+  }
+}
+
+init();
+</script>
+</body>
+</html>

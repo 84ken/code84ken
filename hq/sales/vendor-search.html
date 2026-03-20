@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外注先検索 — SCHEMA, Inc.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: { 50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',800:'#13318d',900:'#0e266a',950:'#07194e' }
+      },
+      fontFamily: { sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+.text-body { color: #3d4b5f; }
+body { font-size: 14px; line-height: 1.7; }
+.detail-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.detail-panel.open { max-height: 2000px; }
+.highlight { background: #fef08a; border-radius: 2px; padding: 0 2px; }
+.tab-active { color: #2b70ef; border-bottom: 2px solid #2b70ef; font-weight: 600; }
+.tab-inactive { color: #64748b; border-bottom: 2px solid transparent; }
+.tab-inactive:hover { color: #334155; }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- HQ Nav -->
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 32px;display:flex;align-items:center;gap:12px;">
+  <a href="/index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
+    <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span>
+    HQ
+  </a>
+  <span style="color:#cbd5e1;">/</span>
+  <a href="/sales-dashboard.html" style="color:#64748b;font-size:13px;text-decoration:none;">売上</a>
+  <span style="color:#334155;font-size:13px;font-weight:600;">外注先</span>
+  <a href="/vendor-memo.html" style="color:#64748b;font-size:13px;text-decoration:none;">プロジェクト</a>
+  <a href="/cashflow.html" style="color:#64748b;font-size:13px;text-decoration:none;">キャッシュフロー</a>
+</div>
+
+<div class="max-w-6xl mx-auto px-8 py-12">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-slate-900">外注先管理</h1>
+    <p class="text-body mt-1" id="summary">読み込み中...</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex gap-1 mb-6 border-b border-slate-200" id="tab-bar">
+    <button data-tab="search" class="px-4 py-3 text-sm cursor-pointer tab-active">外注先検索</button>
+    <button data-tab="monthly" class="px-4 py-3 text-sm cursor-pointer tab-inactive">月別ビュー</button>
+    <button data-tab="crossref" class="px-4 py-3 text-sm cursor-pointer tab-inactive">案件別 売上 vs 外注</button>
+  </div>
+
+  <!-- All panels rendered here -->
+  <div id="app"></div>
+</div>
+
+<script>
+const FMT = n => (n != null && n !== 0) ? '¥' + Math.round(n).toLocaleString() : '¥0';
+
+let allVendors = [];
+let monthlyData = [];
+let salesCrossRef = null;
+let currentTab = 'search';
+
+// ===== INIT =====
+async function init() {
+  const res = await fetch('vendor-data.json');
+  const data = await res.json();
+  allVendors = data.vendors || [];
+  monthlyData = data.months || [];
+  salesCrossRef = data.salesCrossRef || null;
+
+  document.getElementById('summary').textContent =
+    `${data.vendorCount}社の外注先 — データ更新: ${new Date(data.generatedAt).toLocaleDateString('ja-JP')}`;
+
+  // Tab click handlers
+  document.getElementById('tab-bar').addEventListener('click', e => {
+    const btn = e.target.closest('button[data-tab]');
+    if (!btn) return;
+    currentTab = btn.dataset.tab;
+    document.querySelectorAll('#tab-bar button').forEach(b => {
+      b.className = b === btn
+        ? 'px-4 py-3 text-sm cursor-pointer tab-active'
+        : 'px-4 py-3 text-sm cursor-pointer tab-inactive';
+    });
+    render();
+  });
+
+  render();
+}
+
+function render() {
+  const app = document.getElementById('app');
+  switch (currentTab) {
+    case 'search': renderSearchTab(app); break;
+    case 'monthly': renderMonthlyTab(app); break;
+    case 'crossref': renderCrossRefTab(app); break;
+  }
+}
+
+// ===== TAB 1: SEARCH =====
+function renderSearchTab(container) {
+  // Build quick tags
+  const projectCounts = {};
+  allVendors.forEach(v => v.projects.forEach(p => {
+    if (p.name !== '(不明)' && p.name !== '社内活用') projectCounts[p.name] = (projectCounts[p.name] || 0) + 1;
+  }));
+  const topProjects = Object.entries(projectCounts).sort((a, b) => b[1] - a[1]).slice(0, 12);
+  const tagsHtml = topProjects.map(([name]) =>
+    `<button class="quick-tag px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-primary-50 hover:text-primary-600 cursor-pointer" data-q="${name}">${name}</button>`
+  ).join('');
+
+  container.innerHTML = `
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+      <div class="flex gap-4 items-end flex-wrap">
+        <div class="flex-1 min-w-[240px] leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">キーワード検索</label>
+          <input type="text" id="q" placeholder="外注先名・案件名・内容で検索..." class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500">
+        </div>
+        <div class="leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">区分</label>
+          <select id="fType" class="appearance-none pl-3 pr-10 py-2 text-base border border-slate-300 rounded-lg bg-white">
+            <option value="">すべて</option><option value="法人">法人</option><option value="個人">個人</option>
+          </select>
+        </div>
+        <div class="leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">並び替え</label>
+          <select id="fSort" class="appearance-none pl-3 pr-10 py-2 text-base border border-slate-300 rounded-lg bg-white">
+            <option value="totalDesc">累計金額（大→小）</option><option value="totalAsc">累計金額（小→大）</option>
+            <option value="recent">最終取引（新しい順）</option><option value="months">取引月数（多い順）</option><option value="name">名前順</option>
+          </select>
+        </div>
+        <div class="leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">期間</label>
+          <select id="fPeriod" class="appearance-none pl-3 pr-10 py-2 text-base border border-slate-300 rounded-lg bg-white">
+            <option value="">全期間</option><option value="2026">2026年</option><option value="2025">2025年</option>
+            <option value="2024">2024年</option><option value="2023">2023年</option><option value="2022">2022年以前</option>
+          </select>
+        </div>
+      </div>
+      <div class="mt-3 flex gap-2 flex-wrap">${tagsHtml}</div>
+    </div>
+    <div id="search-results" class="space-y-3"></div>
+    <div id="search-count" class="text-sm text-slate-400 mt-4"></div>
+  `;
+
+  // Bind events
+  const doFilter = () => filterVendors();
+  document.getElementById('q').addEventListener('input', doFilter);
+  document.getElementById('fType').addEventListener('change', doFilter);
+  document.getElementById('fSort').addEventListener('change', doFilter);
+  document.getElementById('fPeriod').addEventListener('change', doFilter);
+  container.querySelectorAll('.quick-tag').forEach(btn => {
+    btn.addEventListener('click', () => { document.getElementById('q').value = btn.dataset.q; doFilter(); });
+  });
+
+  filterVendors();
+}
+
+function filterVendors() {
+  const query = (document.getElementById('q')?.value || '').trim().toLowerCase();
+  const filterType = document.getElementById('fType')?.value || '';
+  const sortBy = document.getElementById('fSort')?.value || 'totalDesc';
+  const filterPeriod = document.getElementById('fPeriod')?.value || '';
+
+  let results = allVendors.filter(v => {
+    if (filterType && v.type !== filterType) return false;
+    if (filterPeriod) {
+      if (filterPeriod === '2022') {
+        if (v.firstMonth > '2022-12') return false;
+      } else {
+        const hasYear = v.lastMonth.startsWith(filterPeriod) || v.firstMonth.startsWith(filterPeriod) ||
+          (v.recentPayments || []).some(p => p.period.startsWith(filterPeriod));
+        if (!hasYear) return false;
+      }
+    }
+    if (query) {
+      const s = [v.name, v.invoice, ...v.projects.map(p => p.name), ...v.projects.flatMap(p => p.tasks)].join(' ').toLowerCase();
+      return s.includes(query);
+    }
+    return true;
+  });
+
+  switch (sortBy) {
+    case 'totalDesc': results.sort((a, b) => b.totalExTax - a.totalExTax); break;
+    case 'totalAsc': results.sort((a, b) => a.totalExTax - b.totalExTax); break;
+    case 'recent': results.sort((a, b) => b.lastMonth.localeCompare(a.lastMonth)); break;
+    case 'months': results.sort((a, b) => b.monthCount - a.monthCount); break;
+    case 'name': results.sort((a, b) => a.name.localeCompare(b.name, 'ja')); break;
+  }
+
+  const max = 50;
+  const out = document.getElementById('search-results');
+  if (!results.length) { out.innerHTML = '<div class="text-center py-16 text-slate-400">該当なし</div>'; document.getElementById('search-count').textContent = ''; return; }
+
+  const hl = (t) => {
+    if (!query || !t) return String(t);
+    const s = String(t);
+    const idx = s.toLowerCase().indexOf(query);
+    if (idx === -1) return s;
+    return s.slice(0, idx) + '<span class="highlight">' + s.slice(idx, idx + query.length) + '</span>' + s.slice(idx + query.length);
+  };
+
+  let html = '';
+  results.slice(0, max).forEach((v, i) => {
+    const tags = v.projects.slice(0, 8).map(p => `<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600">${hl(p.name)}</span>`).join('');
+    html += `
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="p-4 cursor-pointer hover:bg-gray-50 transition-colors" onclick="document.getElementById('det${i}').classList.toggle('open')">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-8 h-8 rounded-full ${v.type === '法人' ? 'bg-primary-50 text-primary-600' : 'bg-amber-50 text-amber-600'} inline-flex items-center justify-center flex-shrink-0 text-xs font-bold">${v.type === '法人' ? '法' : '個'}</div>
+            <div class="min-w-0">
+              <h3 class="font-bold text-slate-900 text-sm truncate">${hl(v.name)}</h3>
+              <p class="text-xs text-slate-400">${v.firstMonth} 〜 ${v.lastMonth} | ${v.monthCount}ヶ月${v.invoice ? ' | ' + v.invoice : ''}</p>
+            </div>
+          </div>
+          <div class="text-right flex-shrink-0 ml-4">
+            <p class="font-bold text-slate-900 text-sm">${FMT(v.totalExTax)}</p>
+            <p class="text-xs text-slate-400">税抜累計</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1.5 mt-2">${tags}</div>
+      </div>
+      <div class="detail-panel" id="det${i}">
+        <div class="border-t border-slate-100 px-4 py-4 bg-gray-50">
+          <div class="grid grid-cols-3 gap-6">
+            <div class="col-span-2">
+              <h4 class="text-xs font-bold text-slate-500 uppercase mb-2">案件別内訳</h4>
+              <table class="w-full text-sm"><thead><tr class="border-b border-slate-200">
+                <th scope="col" class="text-left py-2 text-xs text-slate-500">案件</th>
+                <th scope="col" class="text-left py-2 text-xs text-slate-500">内容</th>
+                <th scope="col" class="text-right py-2 text-xs text-slate-500">月数</th>
+                <th scope="col" class="text-right py-2 text-xs text-slate-500">累計</th>
+              </tr></thead><tbody>
+              ${v.projects.map(p => `<tr class="border-b border-slate-100"><td class="py-2">${hl(p.name)}</td><td class="py-2 text-xs text-body">${p.tasks.join(', ')}</td><td class="py-2 text-right text-slate-500">${p.monthCount}</td><td class="py-2 text-right font-medium">${FMT(p.totalExTax)}</td></tr>`).join('')}
+              </tbody></table>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-500 uppercase mb-2">連絡先</h4>
+              ${v.phone ? `<p class="text-xs text-slate-400">電話</p><p class="text-sm mb-2">${v.phone}</p>` : ''}
+              ${v.address ? `<p class="text-xs text-slate-400">住所</p><p class="text-xs mb-2">${v.address}</p>` : ''}
+              ${v.bankInfo ? `<p class="text-xs text-slate-400">振込先</p><p class="text-xs mb-2">${v.bankInfo}</p>` : ''}
+              ${!v.phone && !v.address && !v.bankInfo ? '<p class="text-xs text-slate-400">登録なし</p>' : ''}
+              ${(v.recentPayments || []).length ? `<h4 class="text-xs font-bold text-slate-500 uppercase mt-4 mb-1">直近支払い</h4>${v.recentPayments.slice(0,6).map(p=>`<div class="flex justify-between text-xs"><span class="text-slate-500">${p.period}</span><span>${FMT(p.amountExTax)}</span></div>`).join('')}` : ''}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  });
+  out.innerHTML = html;
+  document.getElementById('search-count').textContent = results.length <= max ? results.length + '件' : `${results.length}件中 ${max}件表示`;
+}
+
+// ===== TAB 2: MONTHLY =====
+function renderMonthlyTab(container) {
+  console.log('renderMonthlyTab called, monthlyData.length:', monthlyData.length);
+
+  if (!monthlyData.length) {
+    container.innerHTML = '<div class="text-center py-16 text-slate-400">月別データがありません</div>';
+    return;
+  }
+
+  const options = monthlyData.slice(0, 36).map((m, i) =>
+    '<option value="' + m.period + '"' + (i === 0 ? ' selected' : '') + '>' + m.period.replace('-', '年') + '月</option>'
+  ).join('');
+
+  // Build fiscal year chart (7月〜6月)
+  var fyOptions = '<option value="2025-07">第17期（2025.7〜2026.6）</option>' +
+    '<option value="2024-07">第16期（2024.7〜2025.6）</option>' +
+    '<option value="2023-07">第15期（2023.7〜2024.6）</option>' +
+    '<option value="2022-07">第14期（2022.7〜2023.6）</option>';
+
+  container.innerHTML =
+    '<div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">' +
+      '<div class="flex items-center justify-between mb-4">' +
+        '<h2 class="text-sm font-bold text-slate-900">年間推移（売上 vs 外注費）</h2>' +
+        '<select id="fySel" class="appearance-none pl-3 pr-8 py-1.5 text-sm border border-slate-300 rounded-lg bg-white">' + fyOptions + '</select>' +
+      '</div>' +
+      '<div id="fy-chart"></div>' +
+    '</div>' +
+    '<div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">' +
+      '<label class="block text-sm font-medium text-slate-700 mb-1">月別詳細</label>' +
+      '<select id="mSel" class="appearance-none pl-3 pr-10 py-2 text-base border border-slate-300 rounded-lg bg-white">' + options + '</select>' +
+    '</div>' +
+    '<div id="monthly-out"></div>';
+
+  var sel = document.getElementById('mSel');
+  console.log('mSel element:', sel, 'value:', sel ? sel.value : 'null');
+  if (sel) {
+    sel.addEventListener('change', function() { showMonth(); });
+    showMonth();
+  }
+
+  var fySel = document.getElementById('fySel');
+  if (fySel) {
+    fySel.addEventListener('change', function() { renderFYChart(); });
+    renderFYChart();
+  }
+}
+
+function renderFYChart() {
+  var startPeriod = document.getElementById('fySel')?.value || '2025-07';
+  var out = document.getElementById('fy-chart');
+  if (!out) return;
+
+  // Generate 12 months from start
+  var startYear = parseInt(startPeriod.split('-')[0]);
+  var startMonth = parseInt(startPeriod.split('-')[1]);
+  var months12 = [];
+  for (var i = 0; i < 12; i++) {
+    var mm = startMonth + i;
+    var yy = startYear;
+    if (mm > 12) { mm -= 12; yy += 1; }
+    months12.push(yy + '-' + String(mm).padStart(2, '0'));
+  }
+
+  // Gather data
+  var chartData = months12.map(function(p) {
+    var md = monthlyData.find(function(d) { return d.period === p; });
+    return {
+      period: p,
+      label: p.split('-')[1].replace(/^0/, '') + '月',
+      sales: md && md.salesThousand ? md.salesThousand * 1000 : 0, // convert to 円
+      cost: md ? md.totalExTax : 0,
+      ratio: md && md.costRatio != null ? md.costRatio : null,
+    };
+  });
+
+  var maxVal = Math.max.apply(null, chartData.map(function(d) { return Math.max(d.sales, d.cost); }));
+  if (maxVal === 0) maxVal = 1;
+
+  // Totals
+  var totalSales = chartData.reduce(function(s, d) { return s + d.sales; }, 0);
+  var totalCost = chartData.reduce(function(s, d) { return s + d.cost; }, 0);
+  var totalRatio = totalSales > 0 ? totalCost / totalSales : 0;
+  var totalRatioColor = totalRatio <= 0.3 ? 'text-emerald-600' : totalRatio <= 0.5 ? 'text-amber-600' : 'text-red-600';
+
+  var html = '';
+
+  // Summary row
+  html += '<div class="flex gap-6 mb-5 text-sm">' +
+    '<div><span class="text-slate-500">年間売上:</span> <strong>' + FMT(totalSales) + '</strong></div>' +
+    '<div><span class="text-slate-500">年間外注費:</span> <strong>' + FMT(totalCost) + '</strong></div>' +
+    '<div><span class="text-slate-500">年間利益:</span> <strong>' + FMT(totalSales - totalCost) + '</strong></div>' +
+    '<div><span class="text-slate-500">外注費率:</span> <strong class="' + totalRatioColor + '">' + (totalRatio * 100).toFixed(1) + '%</strong></div>' +
+  '</div>';
+
+  // Legend
+  html += '<div class="flex gap-4 mb-3 text-xs text-slate-500">' +
+    '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-primary-400 inline-block"></span> 売上</span>' +
+    '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-red-300 inline-block"></span> 外注費</span>' +
+    '<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-600 inline-block"></span> 外注費率</span>' +
+  '</div>';
+
+  // Chart
+  html += '<div class="flex items-end gap-2" style="height:200px">';
+  chartData.forEach(function(d) {
+    var salesH = maxVal > 0 ? (d.sales / maxVal * 170) : 0;
+    var costH = maxVal > 0 ? (d.cost / maxVal * 170) : 0;
+    var ratioText = d.ratio != null ? (d.ratio * 100).toFixed(0) + '%' : '';
+    var ratioColor = d.ratio == null ? '#cbd5e1' : d.ratio <= 0.3 ? '#059669' : d.ratio <= 0.5 ? '#d97706' : '#dc2626';
+
+    html += '<div class="flex-1 flex flex-col items-center">';
+
+    // Ratio dot
+    if (ratioText) {
+      html += '<div class="text-xs font-medium mb-1" style="color:' + ratioColor + '">' + ratioText + '</div>';
+    } else {
+      html += '<div class="text-xs mb-1">&nbsp;</div>';
+    }
+
+    // Bars
+    html += '<div class="flex gap-0.5 items-end" style="height:170px">' +
+      '<div class="w-5 rounded-t bg-primary-400 transition-all" style="height:' + Math.max(salesH, 2) + 'px" title="売上: ' + FMT(d.sales) + '"></div>' +
+      '<div class="w-5 rounded-t bg-red-300 transition-all" style="height:' + Math.max(costH, 2) + 'px" title="外注: ' + FMT(d.cost) + '"></div>' +
+    '</div>';
+
+    // Label
+    html += '<div class="text-xs text-slate-500 mt-2">' + d.label + '</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  out.innerHTML = html;
+}
+
+function showMonth() {
+  const period = document.getElementById('mSel')?.value;
+  const m = monthlyData.find(d => d.period === period);
+  const out = document.getElementById('monthly-out');
+  if (!m) { out.innerHTML = '<p class="text-slate-400 text-center py-8">データなし</p>'; return; }
+
+  var ratioText = '-';
+  var ratioColor = 'text-slate-300';
+  if (m.costRatio != null) {
+    ratioText = (m.costRatio * 100).toFixed(1) + '%';
+    ratioColor = m.costRatio <= 0.3 ? 'text-emerald-600' : m.costRatio <= 0.5 ? 'text-amber-600' : 'text-red-600';
+  }
+
+  let html = `
+  <div class="grid grid-cols-4 gap-4 mb-6">
+    <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+      <p class="text-xs font-medium text-slate-500 uppercase">売上</p>
+      <p class="text-2xl font-bold text-slate-900 mt-1">${m.salesThousand ? FMT(m.salesThousand) : '-'}<span class="text-sm font-normal text-slate-400 ml-1">千円</span></p>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+      <p class="text-xs font-medium text-slate-500 uppercase">外注費（税抜）</p>
+      <p class="text-2xl font-bold text-slate-900 mt-1">${FMT(m.totalExTax)}</p>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+      <p class="text-xs font-medium text-slate-500 uppercase">外注費率</p>
+      <p class="text-2xl font-bold ${ratioColor} mt-1">${ratioText}</p>
+      <p class="text-xs text-slate-400 mt-1">目標: 40%以下</p>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+      <p class="text-xs font-medium text-slate-500 uppercase">案件数 / 明細数</p>
+      <p class="text-2xl font-bold text-slate-900 mt-1">${m.projects.length} / ${m.entryCount}</p>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+    <div class="px-6 py-3 bg-gray-50 border-b border-slate-200"><h3 class="text-sm font-bold text-slate-900">案件別内訳</h3></div>
+    <table class="w-full"><thead><tr class="border-b border-slate-200 bg-gray-50">
+      <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">案件</th>
+      <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">税抜</th>
+      <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">税込</th>
+      <th scope="col" class="text-center py-3 px-4 text-xs font-medium text-slate-500 uppercase">外注先数</th>
+      <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">外注先</th>
+    </tr></thead><tbody>`;
+
+  m.projects.forEach(p => {
+    html += `<tr class="hover:bg-gray-50 border-b border-slate-100">
+      <td class="py-3 px-4 text-sm font-medium text-slate-900">${p.name}</td>
+      <td class="py-3 px-4 text-sm text-right">${FMT(p.exTax)}</td>
+      <td class="py-3 px-4 text-sm text-right text-slate-500">${FMT(p.incTax)}</td>
+      <td class="py-3 px-4 text-sm text-center text-slate-500">${p.vendorCount}</td>
+      <td class="py-3 px-4 text-xs text-body">${p.vendors.join(', ')}</td>
+    </tr>`;
+  });
+  html += `</tbody></table></div>`;
+
+  // Detail entries
+  html += `<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+    <div class="px-6 py-3 bg-gray-50 border-b border-slate-200"><h3 class="text-sm font-bold text-slate-900">明細一覧</h3></div>
+    <table class="w-full"><thead><tr class="border-b border-slate-200 bg-gray-50">
+      <th scope="col" class="text-left py-2 px-4 text-xs font-medium text-slate-500 uppercase">外注先</th>
+      <th scope="col" class="text-left py-2 px-4 text-xs font-medium text-slate-500 uppercase">区分</th>
+      <th scope="col" class="text-left py-2 px-4 text-xs font-medium text-slate-500 uppercase">案件</th>
+      <th scope="col" class="text-left py-2 px-4 text-xs font-medium text-slate-500 uppercase">内容</th>
+      <th scope="col" class="text-right py-2 px-4 text-xs font-medium text-slate-500 uppercase">税抜</th>
+      <th scope="col" class="text-right py-2 px-4 text-xs font-medium text-slate-500 uppercase">税込</th>
+    </tr></thead><tbody>`;
+
+  m.entries.sort((a, b) => b.amountExTax - a.amountExTax).forEach(e => {
+    html += `<tr class="hover:bg-gray-50 border-b border-slate-100">
+      <td class="py-2 px-4 text-sm">${e.vendor}</td>
+      <td class="py-2 px-4"><span class="px-2 py-0.5 rounded-full text-xs font-medium ${e.type === '法人' ? 'bg-primary-50 text-primary-600' : 'bg-amber-50 text-amber-600'}">${e.type || '-'}</span></td>
+      <td class="py-2 px-4 text-sm text-body">${e.project}</td>
+      <td class="py-2 px-4 text-sm text-body">${e.task}</td>
+      <td class="py-2 px-4 text-sm text-right font-medium">${FMT(e.amountExTax)}</td>
+      <td class="py-2 px-4 text-sm text-right text-slate-500">${FMT(e.amountIncTax)}</td>
+    </tr>`;
+  });
+  html += `</tbody></table></div>`;
+
+  out.innerHTML = html;
+}
+
+// ===== TAB 3: CROSS-REF =====
+function renderCrossRefTab(container) {
+  if (!salesCrossRef) {
+    container.innerHTML = '<div class="text-center py-16 text-slate-400">売上データが見つかりません。<br><code>node generate-sales-data.js</code> を先に実行してください。</div>';
+    return;
+  }
+
+  var sb = salesCrossRef.salesByClient;
+  var pm = salesCrossRef.projectToSalesMap;
+  var currentMonths = monthlyData.filter(function(m) { return m.period >= '2025-07'; });
+
+  // Aggregate vendor costs by client AND by vendor project
+  var costByClient = {};
+  currentMonths.forEach(function(m) {
+    m.entries.forEach(function(e) {
+      var client = pm[e.project];
+      if (!client) return;
+      if (!costByClient[client]) costByClient[client] = { cost: 0, vendorProjects: {}, vendors: {} };
+      costByClient[client].cost += e.amountExTax;
+      // By vendor project name
+      if (!costByClient[client].vendorProjects[e.project]) costByClient[client].vendorProjects[e.project] = { cost: 0, vendors: {} };
+      costByClient[client].vendorProjects[e.project].cost += e.amountExTax;
+      // By vendor
+      var vKey = e.vendor + '|' + e.project + '|' + e.task;
+      if (!costByClient[client].vendors[vKey]) costByClient[client].vendors[vKey] = { vendor: e.vendor, project: e.project, task: e.task, cost: 0 };
+      costByClient[client].vendors[vKey].cost += e.amountExTax;
+    });
+  });
+
+  // Build rows
+  var rows = [];
+  var allClients = new Set(Object.keys(sb).concat(Object.keys(costByClient)));
+  allClients.forEach(function(client) {
+    var sales = sb[client] ? sb[client].sales : 0;
+    var actions = sb[client] ? (sb[client].actions || []) : [];
+    var cost = costByClient[client] ? costByClient[client].cost : 0;
+    var profit = (sales * 1000) - cost;
+    var margin = sales > 0 ? profit / (sales * 1000) : null;
+    var vendorDetail = costByClient[client] ? Object.values(costByClient[client].vendors).sort(function(a,b) { return b.cost - a.cost; }) : [];
+    if (sales > 0 || cost > 0) rows.push({ client: client, sales: sales, actions: actions, cost: cost, profit: profit, margin: margin, vendorDetail: vendorDetail });
+  });
+  rows.sort(function(a, b) { return (b.sales * 1000) - (a.sales * 1000); });
+
+  var html = '<div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm mb-6">' +
+    '<p class="text-sm text-body">売上データ（' + salesCrossRef.period + '）と外注費（2025年7月〜）を案件名で照合。クリックで詳細展開。</p>' +
+    '<p class="text-xs text-slate-400 mt-1">売上=千円単位 / 外注費=円単位 / 利益=売上-外注費（概算）</p>' +
+  '</div><div class="space-y-3">';
+
+  rows.forEach(function(r, idx) {
+    var mc = r.margin === null ? 'text-slate-300' : r.margin >= 0.6 ? 'text-emerald-600' : r.margin >= 0.5 ? 'text-amber-600' : 'text-red-600';
+    var marginText = r.margin != null ? (r.margin * 100).toFixed(1) + '%' : '-';
+
+    html += '<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">';
+
+    // Header row (clickable)
+    html += '<div class="p-4 cursor-pointer hover:bg-gray-50 transition-colors" onclick="document.getElementById(\'cr' + idx + '\').classList.toggle(\'open\')">' +
+      '<div class="flex items-center justify-between">' +
+        '<div class="flex items-center gap-3">' +
+          '<h3 class="font-bold text-slate-900 text-sm">' + r.client + '</h3>' +
+          '<span class="text-xs text-slate-400">' + (r.actions.length || 0) + '案件</span>' +
+        '</div>' +
+        '<div class="flex items-center gap-6 text-sm">' +
+          '<div class="text-right"><span class="text-xs text-slate-400 mr-2">売上</span><strong>' + (r.sales ? FMT(r.sales) + '千' : '-') + '</strong></div>' +
+          '<div class="text-right"><span class="text-xs text-slate-400 mr-2">外注費</span><strong class="text-slate-700">' + (r.cost ? FMT(r.cost) : '-') + '</strong></div>' +
+          '<div class="text-right"><span class="text-xs text-slate-400 mr-2">利益率</span><strong class="' + mc + '">' + marginText + '</strong></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
+    // Detail panel
+    html += '<div class="detail-panel" id="cr' + idx + '">' +
+      '<div class="border-t border-slate-100 px-4 py-4 bg-gray-50">' +
+        '<div class="grid grid-cols-2 gap-6">';
+
+    // Left: sales actions
+    html += '<div>' +
+      '<h4 class="text-xs font-bold text-slate-500 uppercase mb-2">売上内訳（案件別）</h4>';
+    if (r.actions.length > 0) {
+      html += '<table class="w-full text-sm"><thead><tr class="border-b border-slate-200">' +
+        '<th scope="col" class="text-left py-2 text-xs text-slate-500">案件</th>' +
+        '<th scope="col" class="text-right py-2 text-xs text-slate-500">売上（千円）</th>' +
+        '<th scope="col" class="text-right py-2 text-xs text-slate-500">ヨミ</th>' +
+        '</tr></thead><tbody>';
+      r.actions.forEach(function(a) {
+        html += '<tr class="border-b border-slate-100">' +
+          '<td class="py-1.5 text-slate-900">' + a.action + '</td>' +
+          '<td class="py-1.5 text-right font-medium">' + (a.sales ? FMT(a.sales) : '-') + '</td>' +
+          '<td class="py-1.5 text-right text-emerald-600">' + (a.yomi ? FMT(a.yomi) : '-') + '</td>' +
+        '</tr>';
+      });
+      html += '</tbody></table>';
+    } else {
+      html += '<p class="text-xs text-slate-400">案件詳細なし</p>';
+    }
+    html += '</div>';
+
+    // Right: vendor costs
+    html += '<div>' +
+      '<h4 class="text-xs font-bold text-slate-500 uppercase mb-2">外注費内訳</h4>';
+    if (r.vendorDetail.length > 0) {
+      html += '<table class="w-full text-sm"><thead><tr class="border-b border-slate-200">' +
+        '<th scope="col" class="text-left py-2 text-xs text-slate-500">外注先</th>' +
+        '<th scope="col" class="text-left py-2 text-xs text-slate-500">内容</th>' +
+        '<th scope="col" class="text-right py-2 text-xs text-slate-500">金額（税抜）</th>' +
+        '</tr></thead><tbody>';
+      r.vendorDetail.forEach(function(v) {
+        html += '<tr class="border-b border-slate-100">' +
+          '<td class="py-1.5 text-slate-900">' + v.vendor + '</td>' +
+          '<td class="py-1.5 text-xs text-body">' + v.task + '</td>' +
+          '<td class="py-1.5 text-right font-medium">' + FMT(v.cost) + '</td>' +
+        '</tr>';
+      });
+      html += '</tbody></table>';
+    } else {
+      html += '<p class="text-xs text-slate-400">外注データなし（未マッチ）</p>';
+    }
+    html += '</div>';
+
+    html += '</div></div></div></div>';
+  });
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+init().catch(e => {
+  document.getElementById('app').innerHTML = `<p class="text-red-500 text-center py-20">エラー: ${e.message}</p>`;
+});
+</script>
+</body>
+</html>
