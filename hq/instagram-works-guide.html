@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram WORKS投稿ガイド — SCHEMA, Inc.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
+          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
+          800:'#13318d',900:'#0e266a',950:'#07194e'
+        },
+        ig: { pink:'#E1306C', purple:'#833AB4', orange:'#F77737' }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+.text-body { color: #3d4b5f; }
+.template-box {
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+}
+.template-box .placeholder {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- HQ Nav -->
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 32px;display:flex;align-items:center;gap:12px;">
+  <a href="/index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
+    <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span>
+    HQ
+  </a>
+  <span style="color:#cbd5e1;">／</span>
+  <span style="color:#334155;font-size:13px;font-weight:500;">Instagram WORKS投稿ガイド</span>
+</div>
+
+<div class="max-w-4xl mx-auto px-8 py-12">
+
+  <!-- ヘッダー -->
+  <div class="mb-10">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-ig-purple via-ig-pink to-ig-orange text-white font-bold inline-flex items-center justify-center text-sm">IG</div>
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">Instagram WORKS投稿ガイド</h1>
+        <p class="text-sm text-body">@schema.inc 制作実績投稿のフォーマット・ルール</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 1. 投稿の基本構成 ===== -->
+  <section class="mb-12">
+    <h2 class="text-xl font-bold text-slate-900 mb-6">1. キャプション構成（6パート）</h2>
+
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+      <div class="space-y-4">
+
+        <!-- パート1 -->
+        <div class="flex gap-4">
+          <div class="w-8 h-8 rounded-full bg-primary-500 text-white font-bold inline-flex items-center justify-center flex-shrink-0 text-sm">1</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-slate-900 text-sm">タグライン</h3>
+            <p class="text-sm text-body mt-1">投稿の種類を示す固定タグ。1行目に単独配置。</p>
+            <div class="mt-2 bg-slate-50 rounded px-3 py-2 text-sm font-medium text-slate-700">【WORKS】</div>
+            <p class="text-xs text-slate-400 mt-1">※ 他の種類: 【EVENT】【NEWS】【COLUMN】など展開可能</p>
+          </div>
+        </div>
+
+        <hr class="border-slate-100">
+
+        <!-- パート2 -->
+        <div class="flex gap-4">
+          <div class="w-8 h-8 rounded-full bg-primary-500 text-white font-bold inline-flex items-center justify-center flex-shrink-0 text-sm">2</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-slate-900 text-sm">What — 何をしたか（1-2文）</h3>
+            <p class="text-sm text-body mt-1">制作物の概要を端的に。クライアント名 + 制作物の種類 + 「担当させていただきました」の構文。</p>
+            <div class="mt-2 bg-slate-50 rounded px-3 py-2 text-sm text-body">
+              埼玉県横瀬町で開催される台湾文化交流イベントのメインビジュアルを担当させていただきました。
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-slate-100">
+
+        <!-- パート3 -->
+        <div class="flex gap-4">
+          <div class="w-8 h-8 rounded-full bg-primary-500 text-white font-bold inline-flex items-center justify-center flex-shrink-0 text-sm">3</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-slate-900 text-sm">Why / Background — 背景・文脈（2-3文）</h3>
+            <p class="text-sm text-body mt-1">プロジェクトの背景や意図。読み手が「なぜこのデザインなのか」を理解できるように。</p>
+            <div class="mt-2 bg-slate-50 rounded px-3 py-2 text-sm text-body">
+              今回の企画は以前熊本県で開催され大盛況で幕を閉じた「台熊祭々2024 in 合志」のコンセプトを引き継いだイベントとなっています。会場では、台湾から多くのブランド様に出店いただき、台湾の食や生活文化を紹介する飲食ブースや物販ブースが設けられる予定です。
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-slate-100">
+
+        <!-- パート4 -->
+        <div class="flex gap-4">
+          <div class="w-8 h-8 rounded-full bg-primary-500 text-white font-bold inline-flex items-center justify-center flex-shrink-0 text-sm">4</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-slate-900 text-sm">How — デザインの工夫・こだわり（2-3文）</h3>
+            <p class="text-sm text-body mt-1">クリエイティブの意図を語る。協力者がいればクレジットと共に。<strong>スキーマの専門性が伝わるパート。</strong></p>
+            <div class="mt-2 bg-slate-50 rounded px-3 py-2 text-sm text-body">
+              メインビジュアルは深川優さんにご協力いただいております。<br>
+              深川さんの魅力でもあるシンプルで綺麗な線と独特な色遣いで、当日体験いただける「台湾の日常」をテーマに制作いただきました。
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-slate-100">
+
+        <!-- パート5 -->
+        <div class="flex gap-4">
+          <div class="w-8 h-8 rounded-full bg-primary-500 text-white font-bold inline-flex items-center justify-center flex-shrink-0 text-sm">5</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-slate-900 text-sm">CTA — 呼びかけ（1文）</h3>
+            <p class="text-sm text-body mt-1">親しみのあるトーンで締める。堅すぎず、カジュアルすぎず。</p>
+            <div class="mt-2 bg-slate-50 rounded px-3 py-2 text-sm text-body">
+              イベントまでワクワクしてもらえるようなビジュアルになったと思います。台湾ラバーの皆さま、是非遊びに来てください〜〜〜！
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-slate-100">
+
+        <!-- パート6 -->
+        <div class="flex gap-4">
+          <div class="w-8 h-8 rounded-full bg-primary-500 text-white font-bold inline-flex items-center justify-center flex-shrink-0 text-sm">6</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-slate-900 text-sm">Info — 基本情報＋クレジット</h3>
+            <p class="text-sm text-body mt-1">構造化された情報ブロック。イベント系は日時・場所を明記。関係者のInstagramアカウントをタグ付き紹介。</p>
+            <div class="mt-2 bg-slate-50 rounded px-3 py-2 text-sm text-body leading-relaxed">
+              名称：台湾祭々 in 秩父・横瀬<br>
+              日時：2025年3月1日(土)〜2日(日) 10:00〜16:00<br>
+              会場：横瀬町町民会館・横瀬町町民会館駐車場<br>
+              住所：横瀬町大字横瀬2000番地<br>
+              交通：西武鉄道横瀬駅下車 徒歩10分<br>
+              主催：台湾祭々実行委員会<br><br>
+              ▼アカウント名<br>
+              Instagram：@account_name<br>
+              URL
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. テンプレート ===== -->
+  <section class="mb-12">
+    <h2 class="text-xl font-bold text-slate-900 mb-6">2. コピペ用テンプレート</h2>
+
+    <!-- テンプレートA: イベント・ビジュアル系 -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+      <h3 class="font-bold text-slate-900 text-sm mb-1">テンプレートA：イベント・ビジュアル制作</h3>
+      <p class="text-xs text-slate-400 mb-4">ポスター、メインビジュアル、フライヤー等</p>
+      <div class="template-box">【WORKS】
+<span class="placeholder">{クライアント名/イベント名}</span>の<span class="placeholder">{制作物}</span>を担当させていただきました。
+
+<span class="placeholder">{プロジェクトの背景・経緯を2-3文で}</span>
+
+<span class="placeholder">{デザインの工夫・こだわり・協力者クレジットを2-3文で}</span>
+
+<span class="placeholder">{親しみのある呼びかけ1文}</span>
+
+名称：<span class="placeholder">{イベント名}</span>
+日時：<span class="placeholder">{日時}</span>
+会場：<span class="placeholder">{会場名}</span>
+住所：<span class="placeholder">{住所}</span>
+主催：<span class="placeholder">{主催者}</span>
+
+▼ <span class="placeholder">{関係者名}</span>
+Instagram：@<span class="placeholder">{account}</span></div>
+    </div>
+
+    <!-- テンプレートB: WEB・アプリ系 -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+      <h3 class="font-bold text-slate-900 text-sm mb-1">テンプレートB：WEB・アプリ制作</h3>
+      <p class="text-xs text-slate-400 mb-4">WEBサイト、アプリ、LP等</p>
+      <div class="template-box">【WORKS】
+<span class="placeholder">{クライアント名}</span>様の<span class="placeholder">{WEBサイト/アプリ/LP}</span>を制作させていただきました。
+
+<span class="placeholder">{クライアントの事業・サービスの概要を1-2文で}</span>
+
+<span class="placeholder">{デザインコンセプト・技術的な工夫を2-3文で。「〇〇をテーマに」「〇〇を意識して」等}</span>
+
+<span class="placeholder">{仕上がりへの一言。「ぜひご覧ください」等}</span>
+
+▼ <span class="placeholder">{サイト名/サービス名}</span>
+<span class="placeholder">{URL}</span>
+▼ <span class="placeholder">{クライアント名}</span>
+Instagram：@<span class="placeholder">{account}</span></div>
+    </div>
+
+    <!-- テンプレートC: ブランディング系 -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+      <h3 class="font-bold text-slate-900 text-sm mb-1">テンプレートC：ブランディング・ロゴ</h3>
+      <p class="text-xs text-slate-400 mb-4">ロゴ、CI/VI、パッケージ、ブランド戦略等</p>
+      <div class="template-box">【WORKS】
+<span class="placeholder">{ブランド名/クライアント名}</span>の<span class="placeholder">{ロゴ/CI/パッケージ}</span>デザインを担当させていただきました。
+
+<span class="placeholder">{ブランドの背景・想い・課題を2-3文で}</span>
+
+<span class="placeholder">{デザインの意図・シンボルの意味・色やフォントの選定理由を2-3文で}</span>
+
+<span class="placeholder">{ブランドへの期待や想いを1文}</span>
+
+▼ <span class="placeholder">{ブランド名}</span>
+Instagram：@<span class="placeholder">{account}</span>
+<span class="placeholder">{URL}</span></div>
+    </div>
+  </section>
+
+  <!-- ===== 3. 画像ルール ===== -->
+  <section class="mb-12">
+    <h2 class="text-xl font-bold text-slate-900 mb-6">3. 画像ルール</h2>
+
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div class="grid grid-cols-2 gap-6">
+
+        <!-- フォーマット -->
+        <div>
+          <h3 class="font-bold text-slate-900 text-sm mb-3">フォーマット</h3>
+          <table class="w-full text-sm">
+            <tbody>
+              <tr class="border-b border-slate-100">
+                <td class="py-2 text-slate-500 w-32">フィード投稿</td>
+                <td class="py-2 text-slate-900 font-medium">1080 × 1080px（1:1）</td>
+              </tr>
+              <tr class="border-b border-slate-100">
+                <td class="py-2 text-slate-500">カルーセル</td>
+                <td class="py-2 text-slate-900 font-medium">1080 × 1080px（統一）</td>
+              </tr>
+              <tr class="border-b border-slate-100">
+                <td class="py-2 text-slate-500">縦長（推奨）</td>
+                <td class="py-2 text-slate-900 font-medium">1080 × 1350px（4:5）</td>
+              </tr>
+              <tr class="border-b border-slate-100">
+                <td class="py-2 text-slate-500">ファイル形式</td>
+                <td class="py-2 text-slate-900 font-medium">JPG / PNG（最大30MB）</td>
+              </tr>
+              <tr>
+                <td class="py-2 text-slate-500">画質</td>
+                <td class="py-2 text-slate-900 font-medium">sRGB、圧縮は最小限に</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 枚数・構成 -->
+        <div>
+          <h3 class="font-bold text-slate-900 text-sm mb-3">カルーセル構成（推奨5-8枚）</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center gap-3">
+              <span class="bg-primary-100 text-primary-700 px-2 py-0.5 rounded text-xs font-bold w-8 text-center">1枚目</span>
+              <span class="text-body">メインビジュアル / 完成形（サムネイルになる）</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-bold w-8 text-center">2</span>
+              <span class="text-body">制作物の全体像 / 使用シーン</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-bold w-8 text-center">3-5</span>
+              <span class="text-body">ディテール / バリエーション / 展開物</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-bold w-8 text-center">6</span>
+              <span class="text-body">実際の使用風景 / 設置写真（あれば）</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs font-bold w-8 text-center">最後</span>
+              <span class="text-body">ロゴ / クレジットカード（任意）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-slate-200 my-6">
+
+      <!-- 画像のDo / Don't -->
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-bold text-emerald-700 text-sm mb-3">Do（推奨）</h3>
+          <ul class="text-sm text-body space-y-1.5">
+            <li>・高解像度の完成ビジュアルを1枚目に</li>
+            <li>・余白を活かしたクリーンな見せ方</li>
+            <li>・モックアップでリアルな使用感を演出</li>
+            <li>・色味はsRGB統一、ブランドカラーを意識</li>
+            <li>・テキストは最小限（画像で語る）</li>
+            <li>・グリッドで並んだ時の統一感を意識</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-red-700 text-sm mb-3">Don't（避ける）</h3>
+          <ul class="text-sm text-body space-y-1.5">
+            <li>・低解像度・ぼやけた画像</li>
+            <li>・テキストだらけの画像（保存されにくい）</li>
+            <li>・色味がバラバラなカルーセル</li>
+            <li>・スクリーンショットそのまま（枠を付ける）</li>
+            <li>・過度なフィルター・彩度上げ</li>
+            <li>・1枚だけの投稿（カルーセル推奨）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. 文章ルール ===== -->
+  <section class="mb-12">
+    <h2 class="text-xl font-bold text-slate-900 mb-6">4. 文章ルール</h2>
+
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div class="grid grid-cols-2 gap-6">
+
+        <div>
+          <h3 class="font-bold text-slate-900 text-sm mb-3">トーン＆ボイス</h3>
+          <ul class="text-sm text-body space-y-2">
+            <li>・<strong>基調</strong>：知的かつ親しみやすい。押し付けがましくない</li>
+            <li>・<strong>敬語</strong>：丁寧語ベース。「〜させていただきました」「〜いただいております」</li>
+            <li>・<strong>CTA部分</strong>：ややカジュアルに崩してOK（「〜〜〜！」等）</li>
+            <li>・<strong>主語</strong>：基本は省略。必要時は「弊社」ではなく文脈で示す</li>
+            <li>・<strong>専門用語</strong>：デザイン用語は使うが、一般読者にも伝わる表現で</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-slate-900 text-sm mb-3">フォーマットルール</h3>
+          <ul class="text-sm text-body space-y-2">
+            <li>・<strong>1行目</strong>：必ず【WORKS】から始める</li>
+            <li>・<strong>段落間</strong>：空行1行で区切る</li>
+            <li>・<strong>文字数</strong>：300-500文字が目安（Info部分除く）</li>
+            <li>・<strong>改行</strong>：Info部分は「項目：値」の1行形式</li>
+            <li>・<strong>記号</strong>：▼ でアカウント紹介を始める</li>
+            <li>・<strong>絵文字</strong>：基本不使用（ブランドトーンに合わない）</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="border-slate-200 my-6">
+
+      <div>
+        <h3 class="font-bold text-slate-900 text-sm mb-3">禁止表現（ブランドガイドライン準拠）</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs font-medium">「激安」「爆速」等の煽り</span>
+          <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs font-medium">「絶対」「確実」等の断言</span>
+          <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs font-medium">競合の名指し批判</span>
+          <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs font-medium">過度なカタカナ語</span>
+          <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs font-medium">「バズる」「映える」等の流行語</span>
+          <span class="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs font-medium">絵文字の多用</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. ハッシュタグ ===== -->
+  <section class="mb-12">
+    <h2 class="text-xl font-bold text-slate-900 mb-6">5. ハッシュタグセット</h2>
+
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <p class="text-sm text-body mb-4">投稿の最初のコメントにハッシュタグを入れる（キャプション本文には入れない）。</p>
+
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-bold text-slate-900 text-sm mb-3">固定タグ（毎回使用）</h3>
+          <div class="template-box text-xs leading-loose">#schema_inc #スキーマ #デザイン会社
+#design #graphicdesign #branding
+#ウェルネスデザイン #健康につよいデザイン会社</div>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-slate-900 text-sm mb-3">カテゴリ別（該当するものを追加）</h3>
+          <div class="space-y-3 text-xs">
+            <div>
+              <p class="font-medium text-slate-700 mb-1">ビジュアル・グラフィック</p>
+              <p class="text-slate-500">#メインビジュアル #ポスターデザイン #フライヤーデザイン #イラストレーション</p>
+            </div>
+            <div>
+              <p class="font-medium text-slate-700 mb-1">WEB・デジタル</p>
+              <p class="text-slate-500">#webdesign #ウェブデザイン #LP制作 #アプリデザイン #UIデザイン</p>
+            </div>
+            <div>
+              <p class="font-medium text-slate-700 mb-1">ブランディング</p>
+              <p class="text-slate-500">#ブランディング #ロゴデザイン #CI #VI #パッケージデザイン</p>
+            </div>
+            <div>
+              <p class="font-medium text-slate-700 mb-1">地域・行政</p>
+              <p class="text-slate-500">#地方創生 #埼玉 #saitama #地域デザイン #観光プロモーション</p>
+            </div>
+            <div>
+              <p class="font-medium text-slate-700 mb-1">ウェルネス・サウナ</p>
+              <p class="text-slate-500">#サウナ #温浴施設 #ウェルネス #healthdesign</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg p-3 text-xs flex items-start gap-2">
+        <span class="font-bold flex-shrink-0">TIP:</span>
+        <span>ハッシュタグは20-25個が最適。30個上限に近づけすぎるとスパム判定リスクあり。地域名・イベント名の固有タグも忘れずに。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. 投稿チェックリスト ===== -->
+  <section class="mb-12">
+    <h2 class="text-xl font-bold text-slate-900 mb-6">6. 投稿前チェックリスト</h2>
+
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-bold text-slate-900 text-sm mb-3">キャプション</h3>
+          <ul class="text-sm text-body space-y-2">
+            <li>☐ 【WORKS】で始まっている</li>
+            <li>☐ What → Why → How → CTA → Info の順になっている</li>
+            <li>☐ クライアントの確認・許諾を得ている</li>
+            <li>☐ 関係者のInstagramアカウントが正しい</li>
+            <li>☐ 日時・場所等の事実情報が正確</li>
+            <li>☐ 誤字脱字チェック済み</li>
+            <li>☐ 禁止表現が含まれていない</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-sm mb-3">画像</h3>
+          <ul class="text-sm text-body space-y-2">
+            <li>☐ 1枚目がメインビジュアル（サムネイル映え）</li>
+            <li>☐ 解像度 1080px以上</li>
+            <li>☐ カルーセル5枚以上</li>
+            <li>☐ 色味が統一されている</li>
+            <li>☐ クレジット表記が必要な素材はないか確認</li>
+          </ul>
+          <h3 class="font-bold text-slate-900 text-sm mb-3 mt-4">投稿設定</h3>
+          <ul class="text-sm text-body space-y-2">
+            <li>☐ 位置情報タグ（該当する場合）</li>
+            <li>☐ 関係者をタグ付け</li>
+            <li>☐ 最初のコメントにハッシュタグセット</li>
+            <li>☐ ストーリーズにもシェア</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <div class="mt-12 pt-6 border-t border-slate-200">
+    <p class="text-xs text-slate-400">&copy;2026 SCHEMA, Inc. — @schema.inc Instagram運用ガイド</p>
+  </div>
+
+</div>
+</body>
+</html>
