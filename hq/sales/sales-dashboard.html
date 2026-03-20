@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>売上ダッシュボード — SCHEMA, Inc.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
+          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
+          800:'#13318d',900:'#0e266a',950:'#07194e'
+        }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+.text-body { color: #3d4b5f; }
+body { font-size: 14px; line-height: 1.7; }
+.bar-fill { transition: width 0.8s ease; }
+.sparkbar { display: inline-block; height: 20px; border-radius: 2px; min-width: 2px; }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- HQ Nav -->
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 32px;display:flex;align-items:center;gap:12px;">
+  <a href="/index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
+    <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span>
+    HQ
+  </a>
+  <span style="color:#cbd5e1;">/</span>
+  <span style="color:#334155;font-size:13px;font-weight:500;">売上ダッシュボード</span>
+  <span style="color:#cbd5e1;margin-left:auto;font-size:11px;" id="updated-at"></span>
+</div>
+
+<div class="max-w-7xl mx-auto px-8 py-12" id="app">
+  <p class="text-slate-400 text-center py-20">データ読み込み中...</p>
+</div>
+
+<script>
+const FMT = (n) => n ? n.toLocaleString() : '0';
+const PCT = (n) => n ? (n * 100).toFixed(1) + '%' : '-';
+const YEN = (n) => '¥' + FMT(n);
+
+async function init() {
+  const res = await fetch('sales-data.json');
+  const data = await res.json();
+
+  document.getElementById('updated-at').textContent = '更新: ' + new Date(data.generatedAt).toLocaleString('ja-JP');
+
+  const cp = data.currentPeriod;
+  const summary = data.summary;
+  const prevPeriods = data.sheets.slice(1); // past periods
+
+  // Previous period for comparison
+  const latestSummary = summary[summary.length - 1];
+  const prevSummary = summary[summary.length - 2];
+  const target = 95400; // max target from Excel
+
+  // Classify clients
+  const govClients = ['埼玉県庁', '物産観光協会'];
+  const govSales = cp.clients.filter(c => govClients.includes(c.name)).reduce((s, c) => s + c.totalSales, 0);
+  const govYomi = cp.clients.filter(c => govClients.includes(c.name)).reduce((s, c) => s + c.totalYomi, 0);
+  const privSales = cp.totalSales - govSales;
+  const privYomi = cp.totalYomi - govYomi;
+
+  const months = ['1月','2月','3月','4月','5月','6月'];
+  const maxMonthSales = Math.max(...Object.values(cp.monthTotals).map(m => m.sales));
+
+  let html = '';
+
+  // ===== Header =====
+  html += `
+  <div class="mb-10">
+    <h1 class="text-3xl font-bold text-slate-900">売上ダッシュボード</h1>
+    <p class="text-body mt-1">株式会社スキーマ — ${cp.period}</p>
+  </div>`;
+
+  // ===== KPI Cards =====
+  const salesProgress = cp.totalSales / target;
+  const totalWithYomi = cp.totalSales + cp.totalYomi;
+  const totalProgress = totalWithYomi / target;
+
+  html += `
+  <div class="grid grid-cols-4 gap-6 mb-8">
+    <!-- Total Sales -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">確定売上</p>
+      <p class="text-2xl font-bold text-slate-900 mt-2">${YEN(cp.totalSales)}<span class="text-sm font-normal text-slate-400 ml-1">千円</span></p>
+      <div class="mt-3 bg-slate-200 rounded-full h-2">
+        <div class="bg-primary-500 rounded-full h-2 bar-fill" style="width:${Math.min(salesProgress * 100, 100)}%"></div>
+      </div>
+      <p class="text-xs text-slate-400 mt-1">目標 ${YEN(target)}千円の <strong class="text-slate-700">${PCT(salesProgress)}</strong></p>
+    </div>
+
+    <!-- Yomi -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">確定 + ヨミ</p>
+      <p class="text-2xl font-bold text-slate-900 mt-2">${YEN(totalWithYomi)}<span class="text-sm font-normal text-slate-400 ml-1">千円</span></p>
+      <div class="mt-3 bg-slate-200 rounded-full h-2">
+        <div class="bg-emerald-500 rounded-full h-2 bar-fill" style="width:${Math.min(totalProgress * 100, 100)}%"></div>
+      </div>
+      <p class="text-xs text-slate-400 mt-1">ヨミ ${YEN(cp.totalYomi)}千円を含む</p>
+    </div>
+
+    <!-- Gov vs Private -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">行政案件</p>
+      <p class="text-2xl font-bold text-slate-900 mt-2">${YEN(govSales)}<span class="text-sm font-normal text-slate-400 ml-1">千円</span></p>
+      <p class="text-xs text-slate-400 mt-2">全体の <strong class="text-slate-700">${PCT(govSales / cp.totalSales)}</strong></p>
+      <p class="text-xs text-slate-400">ヨミ: ${YEN(govYomi)}千円</p>
+    </div>
+
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">民間案件</p>
+      <p class="text-2xl font-bold text-slate-900 mt-2">${YEN(privSales)}<span class="text-sm font-normal text-slate-400 ml-1">千円</span></p>
+      <p class="text-xs text-slate-400 mt-2">全体の <strong class="text-slate-700">${PCT(privSales / cp.totalSales)}</strong></p>
+      <p class="text-xs text-slate-400">ヨミ: ${YEN(privYomi)}千円</p>
+    </div>
+  </div>`;
+
+  // ===== Monthly Chart =====
+  let cumulative = 0;
+  html += `
+  <div class="grid grid-cols-3 gap-6 mb-8">
+    <div class="col-span-2 bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <h2 class="text-sm font-bold text-slate-900 mb-4">月別売上推移</h2>
+      <div class="space-y-3">`;
+
+  months.forEach(m => {
+    const v = cp.monthTotals[m];
+    cumulative += v.sales;
+    const pct = maxMonthSales > 0 ? (v.sales / maxMonthSales * 100) : 0;
+    html += `
+      <div class="flex items-center gap-3">
+        <span class="w-8 text-xs text-slate-500 text-right">${m}</span>
+        <div class="flex-1 bg-slate-100 rounded h-6 relative overflow-hidden">
+          <div class="bg-primary-500 h-6 rounded bar-fill" style="width:${pct}%"></div>
+        </div>
+        <span class="w-20 text-xs text-right font-medium text-slate-700">${FMT(v.sales)}</span>
+        <span class="w-24 text-xs text-right text-slate-400">累計 ${FMT(cumulative)}</span>
+      </div>`;
+  });
+
+  html += `
+      </div>
+    </div>
+
+    <!-- Period Comparison -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <h2 class="text-sm font-bold text-slate-900 mb-4">期別推移（直近5期）</h2>
+      <div class="space-y-3">`;
+
+  const recentPeriods = summary.slice(-5);
+  const maxPeriodTotal = Math.max(...recentPeriods.map(p => p.total));
+
+  recentPeriods.forEach((p, i) => {
+    const isCurrent = i === recentPeriods.length - 1;
+    const pct = maxPeriodTotal > 0 ? (p.total / maxPeriodTotal * 100) : 0;
+    html += `
+      <div>
+        <div class="flex justify-between text-xs mb-1">
+          <span class="${isCurrent ? 'font-bold text-primary-500' : 'text-slate-500'}">${p.period}</span>
+          <span class="${isCurrent ? 'font-bold text-slate-900' : 'text-slate-700'}">${FMT(p.total)}千円</span>
+        </div>
+        <div class="bg-slate-100 rounded h-3">
+          <div class="${isCurrent ? 'bg-primary-500' : 'bg-slate-300'} h-3 rounded bar-fill" style="width:${pct}%"></div>
+        </div>
+        ${p.totalGrowth ? `<p class="text-xs text-slate-400 mt-0.5">前年比 ${PCT(p.totalGrowth)}</p>` : ''}
+      </div>`;
+  });
+
+  html += `
+      </div>
+    </div>
+  </div>`;
+
+  // ===== Client Table =====
+  const maxClientSales = Math.max(...cp.clients.map(c => c.totalSales + c.totalYomi));
+
+  html += `
+  <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mb-8">
+    <div class="px-6 py-4 border-b border-slate-200 bg-gray-50 flex items-center justify-between">
+      <h2 class="text-sm font-bold text-slate-900">クライアント別売上</h2>
+      <span class="text-xs text-slate-400">${cp.clients.length}社</span>
+    </div>
+    <table class="w-full">
+      <thead>
+        <tr class="border-b border-slate-200 bg-gray-50">
+          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider w-48">クライアント</th>
+          <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider w-24">確定</th>
+          <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider w-24">ヨミ</th>
+          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">月別内訳</th>
+          <th scope="col" class="text-center py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider w-20">区分</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+  cp.clients.forEach(c => {
+    const isGov = govClients.includes(c.name);
+    const barW = maxClientSales > 0 ? ((c.totalSales + c.totalYomi) / maxClientSales * 100) : 0;
+
+    // Month sparkline
+    let sparkHtml = '<div class="flex items-end gap-0.5 h-5">';
+    months.forEach(m => {
+      const v = c.byMonth[m] || 0;
+      const h = maxClientSales > 0 ? Math.max(2, v / maxClientSales * 100) : 2;
+      sparkHtml += `<div class="sparkbar bg-primary-${v > 0 ? '400' : '100'}" style="width:12px;height:${v > 0 ? h + '%' : '2px'}" title="${m}: ${FMT(v)}千円"></div>`;
+    });
+    sparkHtml += '</div>';
+
+    html += `
+        <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
+          <td class="py-3 px-4">
+            <span class="text-sm font-medium text-slate-900">${c.name}</span>
+          </td>
+          <td class="py-3 px-4 text-right">
+            <span class="text-sm font-medium text-slate-900">${FMT(c.totalSales)}</span>
+          </td>
+          <td class="py-3 px-4 text-right">
+            ${c.totalYomi > 0 ? `<span class="text-sm text-emerald-600">${FMT(c.totalYomi)}</span>` : '<span class="text-xs text-slate-300">-</span>'}
+          </td>
+          <td class="py-3 px-4">${sparkHtml}</td>
+          <td class="py-3 px-4 text-center">
+            <span class="px-2 py-0.5 rounded-full text-xs font-medium ${isGov ? 'bg-amber-50 text-amber-700' : 'bg-slate-100 text-slate-600'}">${isGov ? '行政' : '民間'}</span>
+          </td>
+        </tr>`;
+  });
+
+  html += `
+      </tbody>
+    </table>
+  </div>`;
+
+  // ===== Actions/Pipeline =====
+  const pipelineClients = cp.clients.filter(c => c.totalYomi > 0);
+  if (pipelineClients.length > 0) {
+    html += `
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-8">
+      <h2 class="text-sm font-bold text-slate-900 mb-4">パイプライン（ヨミ案件）</h2>
+      <div class="space-y-3">`;
+
+    pipelineClients.forEach(c => {
+      html += `
+        <div class="flex items-center gap-4 py-2">
+          <span class="text-sm font-medium text-slate-900 w-40">${c.name}</span>
+          <div class="flex-1 bg-slate-100 rounded h-4">
+            <div class="bg-emerald-400 h-4 rounded bar-fill" style="width:${c.totalYomi / Math.max(...pipelineClients.map(p => p.totalYomi)) * 100}%"></div>
+          </div>
+          <span class="text-sm font-medium text-emerald-600 w-28 text-right">${YEN(c.totalYomi)}千円</span>
+        </div>`;
+    });
+
+    html += `
+      </div>
+      <div class="mt-4 pt-4 border-t border-slate-200 flex justify-between">
+        <span class="text-xs text-slate-500">パイプライン合計</span>
+        <span class="text-sm font-bold text-emerald-600">${YEN(cp.totalYomi)}千円</span>
+      </div>
+    </div>`;
+  }
+
+  // ===== Footer note =====
+  html += `
+  <div class="mt-8 pt-6 border-t border-slate-200 flex items-center justify-between">
+    <p class="text-xs text-slate-400">
+      データソース: 2026年1-6月 SCHEMA,Inc.売上.xlsx
+      &mdash; <code class="bg-slate-100 px-1 rounded">node sales/generate-sales-data.js</code> で更新
+    </p>
+    <p class="text-xs text-slate-400">&copy;2026 SCHEMA, Inc.</p>
+  </div>`;
+
+  document.getElementById('app').innerHTML = html;
+}
+
+init().catch(e => {
+  document.getElementById('app').innerHTML = `<p class="text-red-500 text-center py-20">エラー: ${e.message}<br><span class="text-xs text-slate-400">sales-data.json が同じディレクトリにあるか確認してください</span></p>`;
+});
+</script>
+</body>
+</html>

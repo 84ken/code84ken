@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram WORKS投稿ジェネレーター — SCHEMA, Inc.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
+          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
+          800:'#13318d',900:'#0e266a',950:'#07194e'
+        },
+        ig: { pink:'#E1306C', purple:'#833AB4', orange:'#F77737' }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+.text-body { color: #3d4b5f; }
+
+/* Drop zone */
+.drop-zone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #f8fafc;
+}
+.drop-zone:hover, .drop-zone.dragover {
+  border-color: #2b70ef;
+  background: #f0f5ff;
+}
+
+/* Slide preview */
+.slide-preview {
+  width: 270px;
+  height: 337px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  background: #f1f5f9;
+}
+.slide-canvas {
+  width: 270px;
+  height: 337px;
+}
+
+/* Image thumb */
+.img-thumb {
+  width: 100px;
+  height: 125px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+.img-item {
+  position: relative;
+  cursor: grab;
+}
+.img-item .remove-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  background: #ef4444;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.img-item:hover .remove-btn { opacity: 1; }
+
+/* Caption */
+.caption-box {
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  cursor: pointer;
+  position: relative;
+}
+.caption-box:hover::after {
+  content: 'クリックでコピー';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #2b70ef;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Toast */
+.copy-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #10b981;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+.copy-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Slide number badge */
+.slide-badge {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 11px;
+  padding: 1px 8px;
+  border-radius: 4px;
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- HQ Nav -->
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 32px;display:flex;align-items:center;gap:12px;">
+  <a href="/index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
+    <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span>
+    HQ
+  </a>
+  <span style="color:#cbd5e1;">/</span>
+  <a href="instagram-works-guide.html" style="color:#2b70ef;font-size:13px;text-decoration:none;">投稿ガイド</a>
+  <span style="color:#cbd5e1;">/</span>
+  <span style="color:#334155;font-size:13px;font-weight:500;">WORKS投稿ジェネレーター</span>
+</div>
+
+<div class="max-w-7xl mx-auto px-8 py-12">
+
+  <!-- Header -->
+  <div class="mb-10">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-ig-purple via-ig-pink to-ig-orange text-white font-bold inline-flex items-center justify-center text-sm">IG</div>
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">WORKS投稿ジェネレーター</h1>
+        <p class="text-sm text-body">画像＋情報を入力 → カルーセル＋キャプションを自動生成</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex gap-8">
+    <!-- ===== Left: Input ===== -->
+    <div class="flex-1 min-w-0 space-y-6">
+
+      <!-- Images Upload -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-lg font-bold text-slate-900 mb-1">制作物の画像</h2>
+        <p class="text-xs text-slate-400 mb-4">ドラッグ&ドロップまたはクリックで追加。並び替え可能。1枚目がカバーになります。</p>
+
+        <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+          <svg class="w-8 h-8 mx-auto text-slate-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <p class="text-sm text-slate-500">画像をドロップ or クリック</p>
+          <p class="text-xs text-slate-400 mt-1">推奨: 正方形〜4:5比率の高解像度画像</p>
+        </div>
+        <input type="file" id="file-input" multiple accept="image/*" class="hidden" onchange="handleFiles(this.files)">
+
+        <div class="flex flex-wrap gap-3 mt-4" id="image-list"></div>
+      </div>
+
+      <!-- Project Info -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-lg font-bold text-slate-900 mb-6">プロジェクト情報</h2>
+
+        <div class="mb-4 leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">プロジェクト名 / ブランド名 <span class="text-red-500">*</span></label>
+          <input type="text" id="projectName" placeholder="例：リトルリトリートデポ（リトデポ）" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+        </div>
+
+        <div class="mb-4 leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">クライアント</label>
+          <input type="text" id="clientName" placeholder="例：JR東日本 / JR東日本都市開発" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div class="leading-normal">
+            <label class="block text-sm font-medium text-slate-700 mb-1">制作物 <span class="text-red-500">*</span></label>
+            <input type="text" id="deliverable" placeholder="例：ブランディング / WEBサイト" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+          </div>
+          <div class="leading-normal">
+            <label class="block text-sm font-medium text-slate-700 mb-1">カテゴリ（英語）</label>
+            <input type="text" id="category" placeholder="例：Branding / Web Design" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+          </div>
+        </div>
+
+        <div class="mb-4 leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">What — 何をしたか（1-2文） <span class="text-red-500">*</span></label>
+          <textarea id="whatText" rows="2" placeholder="〇〇のブランディングを担当させていただきました。" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()"></textarea>
+        </div>
+
+        <div class="mb-4 leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">Why — 背景・文脈（2-3文）</label>
+          <textarea id="whyText" rows="3" placeholder="プロジェクトの背景や意図..." class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()"></textarea>
+        </div>
+
+        <div class="mb-4 leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">How — デザインの工夫（2-3文）</label>
+          <textarea id="howText" rows="3" placeholder="デザインのこだわりや協力者クレジット..." class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()"></textarea>
+        </div>
+
+        <div class="mb-4 leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">CTA — 呼びかけ（1文）</label>
+          <input type="text" id="ctaText" placeholder="ぜひご覧ください！" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+        </div>
+
+        <div class="mb-4 leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">URL</label>
+          <input type="text" id="projectUrl" placeholder="https://..." class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+        </div>
+      </div>
+
+      <!-- Credits -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-sm font-bold text-slate-900 mb-4">クレジット・関連アカウント</h2>
+        <div id="credits-container">
+          <div class="grid grid-cols-2 gap-4 mb-3 credit-row">
+            <div class="leading-normal">
+              <label class="block text-xs font-medium text-slate-500 mb-1">名前</label>
+              <input type="text" placeholder="名前" class="credit-name w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+            </div>
+            <div class="leading-normal">
+              <label class="block text-xs font-medium text-slate-500 mb-1">Instagram @</label>
+              <input type="text" placeholder="account" class="credit-ig w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+            </div>
+          </div>
+        </div>
+        <button onclick="addCredit()" class="inline-flex items-center gap-1.5 h-8 px-3 text-sm font-medium text-primary-500 hover:bg-primary-50 rounded-lg cursor-pointer">+ 追加</button>
+
+        <hr class="border-slate-200 my-4">
+
+        <div class="leading-normal">
+          <label class="block text-sm font-medium text-slate-700 mb-1">SCHEMA担当</label>
+          <input type="text" id="schemaRole" placeholder="企画 / ディレクション / ブランディング" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+        </div>
+      </div>
+
+      <!-- Slide Options -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-sm font-bold text-slate-900 mb-4">テキストスライド設定</h2>
+        <div class="flex gap-3">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="colorTheme" value="dark" checked onchange="generate()" class="accent-primary-500"> <span class="text-sm">ダーク</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="colorTheme" value="light" onchange="generate()" class="accent-primary-500"> <span class="text-sm">ライト</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="colorTheme" value="brand" onchange="generate()" class="accent-primary-500"> <span class="text-sm">ブランド</span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== Right: Preview ===== -->
+    <div class="w-[620px] flex-shrink-0">
+
+      <!-- Carousel Preview -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold text-slate-900">カルーセルプレビュー</h2>
+          <button onclick="downloadAll()" class="inline-flex items-center justify-center gap-2 h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            全スライドDL
+          </button>
+        </div>
+        <p class="text-xs text-slate-400 mb-4">1080 x 1350px（4:5）で出力。画像スライド → テキストスライド → クレジットの順。</p>
+
+        <div class="flex gap-3 overflow-x-auto pb-4" id="slides-container">
+          <div class="text-center text-sm text-slate-400 py-16 w-full">画像を追加するとプレビューが表示されます</div>
+        </div>
+      </div>
+
+      <!-- Caption -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold text-slate-900">キャプション</h2>
+          <button onclick="copyCaption()" class="inline-flex items-center justify-center gap-2 h-8 px-3 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">コピー</button>
+        </div>
+        <div class="caption-box" id="caption-output" onclick="copyCaption()">情報を入力するとキャプションが生成されます...</div>
+      </div>
+
+      <!-- Hashtags -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold text-slate-900">ハッシュタグ（1コメ用）</h2>
+          <button onclick="copyHashtags()" class="inline-flex items-center justify-center gap-2 h-8 px-3 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">コピー</button>
+        </div>
+        <div class="caption-box text-xs leading-loose" id="hashtag-output" onclick="copyHashtags()">ハッシュタグが生成されます...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="copy-toast" id="copy-toast">コピーしました</div>
+
+<script>
+// ===== STATE =====
+const uploadedImages = []; // { id, file, dataUrl, img }
+const LOGO_SRC = 'data:image/png;base64,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';
+const logoImg = new Image();
+logoImg.src = LOGO_SRC;
+
+const themes = {
+  dark:  { bg: '#1a1a1a', text: '#ffffff', sub: '#999999', accent: '#2b70ef', line: '#333333' },
+  light: { bg: '#ffffff', text: '#1a1a1a', sub: '#666666', accent: '#2b70ef', line: '#e2e8f0' },
+  brand: { bg: '#2b70ef', text: '#ffffff', sub: '#c0d4ff', accent: '#ffffff', line: '#4a8af5' },
+};
+
+function getTheme() {
+  return themes[document.querySelector('input[name="colorTheme"]:checked')?.value || 'dark'];
+}
+function val(id) { return document.getElementById(id)?.value?.trim() || ''; }
+
+// ===== IMAGE HANDLING =====
+const dropZone = document.getElementById('drop-zone');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  handleFiles(e.dataTransfer.files);
+});
+
+function handleFiles(files) {
+  Array.from(files).forEach(file => {
+    if (!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        uploadedImages.push({ id: Date.now() + Math.random(), file, dataUrl: e.target.result, img });
+        renderImageList();
+        generate();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function removeImage(id) {
+  const idx = uploadedImages.findIndex(i => i.id === id);
+  if (idx > -1) uploadedImages.splice(idx, 1);
+  renderImageList();
+  generate();
+}
+
+function renderImageList() {
+  const list = document.getElementById('image-list');
+  list.innerHTML = '';
+  uploadedImages.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'img-item';
+    div.innerHTML = `
+      <img src="${item.dataUrl}" class="img-thumb" alt="画像${i+1}">
+      <div class="remove-btn" onclick="removeImage(${item.id})">x</div>
+      <div class="text-xs text-center text-slate-400 mt-1">${i + 1}枚目</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+// ===== CREDITS =====
+function getCredits() {
+  const credits = [];
+  document.querySelectorAll('.credit-row').forEach(r => {
+    const name = r.querySelector('.credit-name')?.value?.trim();
+    const ig = r.querySelector('.credit-ig')?.value?.trim();
+    if (name || ig) credits.push({ name, ig });
+  });
+  return credits;
+}
+
+function addCredit() {
+  const container = document.getElementById('credits-container');
+  const div = document.createElement('div');
+  div.className = 'grid grid-cols-2 gap-4 mb-3 credit-row';
+  div.innerHTML = `
+    <div class="leading-normal">
+      <label class="block text-xs font-medium text-slate-500 mb-1">名前</label>
+      <input type="text" placeholder="名前" class="credit-name w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+    </div>
+    <div class="leading-normal">
+      <label class="block text-xs font-medium text-slate-500 mb-1">Instagram @</label>
+      <input type="text" placeholder="account" class="credit-ig w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500" oninput="generate()">
+    </div>
+  `;
+  container.appendChild(div);
+}
+
+// ===== CANVAS UTILS =====
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  if (!text) return y;
+  const lines = text.split('\n');
+  let currentY = y;
+  lines.forEach(line => {
+    let currentLine = '';
+    for (let i = 0; i < line.length; i++) {
+      const testLine = currentLine + line[i];
+      if (ctx.measureText(testLine).width > maxWidth && currentLine) {
+        ctx.fillText(currentLine, x, currentY);
+        currentLine = line[i];
+        currentY += lineHeight;
+      } else {
+        currentLine = testLine;
+      }
+    }
+    ctx.fillText(currentLine, x, currentY);
+    currentY += lineHeight;
+  });
+  return currentY;
+}
+
+function drawLogo(ctx, W, H, t, size, yPos) {
+  if (!logoImg.complete) return;
+  const logoH = size || 32;
+  const logoW = logoImg.width * (logoH / logoImg.height);
+  ctx.save();
+  if (t.bg !== '#ffffff') ctx.filter = 'invert(1)';
+  ctx.drawImage(logoImg, 80, yPos || (H - 100), logoW, logoH);
+  ctx.restore();
+}
+
+// ===== SLIDE RENDERERS =====
+
+// Image slide: fill 1080x1350 with cover crop
+function drawImageSlide(canvas, imgData) {
+  const ctx = canvas.getContext('2d');
+  const W = 1080, H = 1350;
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, W, H);
+
+  const img = imgData.img;
+  const imgRatio = img.width / img.height;
+  const canvasRatio = W / H;
+  let sx, sy, sw, sh;
+  if (imgRatio > canvasRatio) {
+    sh = img.height;
+    sw = sh * canvasRatio;
+    sx = (img.width - sw) / 2;
+    sy = 0;
+  } else {
+    sw = img.width;
+    sh = sw / canvasRatio;
+    sx = 0;
+    sy = (img.height - sh) / 2;
+  }
+  ctx.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
+}
+
+// Text overview slide
+function drawTextSlide(canvas) {
+  const ctx = canvas.getContext('2d');
+  const t = getTheme();
+  const W = 1080, H = 1350;
+
+  ctx.fillStyle = t.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Top tag
+  ctx.fillStyle = t.accent;
+  ctx.font = 'bold 28px Inter, Hiragino Sans, sans-serif';
+  ctx.fillText('WORKS', 80, 100);
+
+  ctx.strokeStyle = t.line;
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(80, 130); ctx.lineTo(W - 80, 130); ctx.stroke();
+
+  // Category
+  ctx.fillStyle = t.sub;
+  ctx.font = '22px Inter, Hiragino Sans, sans-serif';
+  ctx.fillText(val('category') || 'Design Work', 80, 175);
+
+  // Project name
+  ctx.fillStyle = t.text;
+  ctx.font = 'bold 52px Hiragino Sans, Noto Sans JP, sans-serif';
+  let y = wrapText(ctx, val('projectName') || 'プロジェクト名', 80, 260, W - 160, 68);
+
+  // Deliverable
+  const del = val('deliverable');
+  if (del) {
+    y += 10;
+    ctx.fillStyle = t.sub;
+    ctx.font = '26px Hiragino Sans, sans-serif';
+    ctx.fillText(del, 80, y);
+    y += 50;
+  }
+
+  // Divider
+  y += 10;
+  ctx.strokeStyle = t.line;
+  ctx.beginPath(); ctx.moveTo(80, y); ctx.lineTo(W - 80, y); ctx.stroke();
+  y += 50;
+
+  // What
+  ctx.fillStyle = t.text;
+  ctx.font = '28px Hiragino Sans, sans-serif';
+  y = wrapText(ctx, val('whatText'), 80, y, W - 160, 44);
+
+  // Why
+  if (val('whyText')) {
+    y += 30;
+    ctx.fillStyle = t.text;
+    ctx.font = '26px Hiragino Sans, sans-serif';
+    y = wrapText(ctx, val('whyText'), 80, y, W - 160, 42);
+  }
+
+  // How
+  if (val('howText')) {
+    y += 30;
+    ctx.fillStyle = t.text;
+    ctx.font = '26px Hiragino Sans, sans-serif';
+    y = wrapText(ctx, val('howText'), 80, y, W - 160, 42);
+  }
+
+  // Bottom logo
+  drawLogo(ctx, W, H, t);
+
+  // Role
+  const role = val('schemaRole');
+  if (role) {
+    ctx.fillStyle = t.sub;
+    ctx.font = '20px Hiragino Sans, sans-serif';
+    ctx.fillText('[SCHEMA : ' + role + ']', 80, H - 60);
+  }
+}
+
+// Credit slide
+function drawCreditSlide(canvas) {
+  const ctx = canvas.getContext('2d');
+  const t = getTheme();
+  const W = 1080, H = 1350;
+
+  ctx.fillStyle = t.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Center logo
+  if (logoImg.complete) {
+    const logoH = 56;
+    const logoW = logoImg.width * (logoH / logoImg.height);
+    ctx.save();
+    if (t.bg !== '#ffffff') ctx.filter = 'invert(1)';
+    ctx.drawImage(logoImg, (W - logoW) / 2, (H / 2) - 100, logoW, logoH);
+    ctx.restore();
+  }
+
+  ctx.textAlign = 'center';
+
+  // Tagline
+  ctx.fillStyle = t.sub;
+  ctx.font = '24px Hiragino Sans, sans-serif';
+  ctx.fillText('健康につよいデザイン会社', W / 2, H / 2 - 10);
+
+  // Role
+  const role = val('schemaRole');
+  if (role) {
+    ctx.fillStyle = t.sub;
+    ctx.font = '20px Hiragino Sans, sans-serif';
+    ctx.fillText('[担当 : ' + role + ']', W / 2, H / 2 + 40);
+  }
+
+  // Credits
+  const credits = getCredits();
+  if (credits.length > 0) {
+    let y = H / 2 + 100;
+    ctx.strokeStyle = t.line;
+    ctx.beginPath(); ctx.moveTo(W/2 - 120, y - 20); ctx.lineTo(W/2 + 120, y - 20); ctx.stroke();
+
+    credits.forEach(c => {
+      if (c.name) {
+        ctx.fillStyle = t.text;
+        ctx.font = '22px Hiragino Sans, sans-serif';
+        ctx.fillText(c.name, W / 2, y + 10);
+        y += 30;
+      }
+      if (c.ig) {
+        ctx.fillStyle = t.sub;
+        ctx.font = '20px Hiragino Sans, sans-serif';
+        ctx.fillText('@' + c.ig, W / 2, y + 10);
+        y += 40;
+      }
+    });
+  }
+
+  // Bottom
+  ctx.fillStyle = t.sub;
+  ctx.font = '20px Inter, sans-serif';
+  ctx.fillText('@schema.inc', W / 2, H - 100);
+
+  ctx.textAlign = 'left';
+}
+
+// ===== MAIN GENERATE =====
+function generate() {
+  const container = document.getElementById('slides-container');
+  container.innerHTML = '';
+
+  const allSlides = []; // { type, canvas }
+
+  // 1. Image slides
+  uploadedImages.forEach((imgData, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'slide-preview';
+    const canvas = document.createElement('canvas');
+    canvas.width = 1080; canvas.height = 1350;
+    canvas.className = 'slide-canvas';
+    canvas.style.width = '270px'; canvas.style.height = '337px';
+    wrap.appendChild(canvas);
+    const badge = document.createElement('div');
+    badge.className = 'slide-badge';
+    badge.textContent = (i + 1) + ' / 画像';
+    wrap.appendChild(badge);
+
+    drawImageSlide(canvas, imgData);
+    container.appendChild(wrap);
+    allSlides.push({ type: 'image', canvas });
+  });
+
+  // 2. Text slide
+  const textWrap = document.createElement('div');
+  textWrap.className = 'slide-preview';
+  const textCanvas = document.createElement('canvas');
+  textCanvas.width = 1080; textCanvas.height = 1350;
+  textCanvas.className = 'slide-canvas';
+  textCanvas.style.width = '270px'; textCanvas.style.height = '337px';
+  textWrap.appendChild(textCanvas);
+  const textBadge = document.createElement('div');
+  textBadge.className = 'slide-badge';
+  textBadge.textContent = (uploadedImages.length + 1) + ' / テキスト';
+  textWrap.appendChild(textBadge);
+  drawTextSlide(textCanvas);
+  container.appendChild(textWrap);
+  allSlides.push({ type: 'text', canvas: textCanvas });
+
+  // 3. Credit slide
+  const credWrap = document.createElement('div');
+  credWrap.className = 'slide-preview';
+  const credCanvas = document.createElement('canvas');
+  credCanvas.width = 1080; credCanvas.height = 1350;
+  credCanvas.className = 'slide-canvas';
+  credCanvas.style.width = '270px'; credCanvas.style.height = '337px';
+  credWrap.appendChild(credCanvas);
+  const credBadge = document.createElement('div');
+  credBadge.className = 'slide-badge';
+  credBadge.textContent = (uploadedImages.length + 2) + ' / クレジット';
+  credWrap.appendChild(credBadge);
+  drawCreditSlide(credCanvas);
+  container.appendChild(credWrap);
+  allSlides.push({ type: 'credit', canvas: credCanvas });
+
+  // Store for download
+  window._allSlides = allSlides;
+
+  // Caption & Hashtags
+  generateCaption();
+  generateHashtags();
+}
+
+// ===== CAPTION =====
+function generateCaption() {
+  let c = '【WORKS】\n';
+  c += val('whatText') || '';
+  c += '\n\n';
+  if (val('whyText')) c += val('whyText') + '\n\n';
+  if (val('howText')) c += val('howText') + '\n\n';
+  if (val('ctaText')) c += val('ctaText') + '\n\n';
+
+  const url = val('projectUrl');
+  if (url) c += url + '\n';
+
+  const credits = getCredits();
+  if (credits.length > 0) {
+    c += '\n';
+    credits.forEach(cr => {
+      if (cr.name) c += '▼ ' + cr.name + '\n';
+      if (cr.ig) c += 'Instagram：@' + cr.ig + '\n';
+    });
+  }
+
+  const role = val('schemaRole');
+  if (role) c += '\n[SCHEMA担当：' + role + ']';
+
+  document.getElementById('caption-output').textContent = c;
+}
+
+function generateHashtags() {
+  let t = '#schema_inc #スキーマ #デザイン会社\n';
+  t += '#design #graphicdesign #branding\n';
+  t += '#ウェルネスデザイン #健康につよいデザイン会社\n';
+  t += '#ブランディング #ロゴデザイン #CI #VI\n';
+  t += '#webdesign #ウェブデザイン #クリエイティブディレクション';
+  document.getElementById('hashtag-output').textContent = t;
+}
+
+// ===== COPY & DOWNLOAD =====
+function showToast(msg) {
+  const t = document.getElementById('copy-toast');
+  t.textContent = msg || 'コピーしました';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function copyCaption() {
+  navigator.clipboard.writeText(document.getElementById('caption-output').textContent)
+    .then(() => showToast('キャプションをコピーしました'));
+}
+
+function copyHashtags() {
+  navigator.clipboard.writeText(document.getElementById('hashtag-output').textContent)
+    .then(() => showToast('ハッシュタグをコピーしました'));
+}
+
+function downloadAll() {
+  const slides = window._allSlides || [];
+  if (slides.length === 0) { showToast('スライドがありません'); return; }
+
+  const name = val('projectName') || 'works';
+  slides.forEach((s, i) => {
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.download = `${name}_slide_${i + 1}.png`;
+      link.href = s.canvas.toDataURL('image/png');
+      link.click();
+    }, i * 300);
+  });
+  showToast(slides.length + '枚のスライドをダウンロード中...');
+}
+
+// ===== PREFILL =====
+function prefill(data) {
+  if (data.projectName) document.getElementById('projectName').value = data.projectName;
+  if (data.clientName) document.getElementById('clientName').value = data.clientName;
+  if (data.deliverable) document.getElementById('deliverable').value = data.deliverable;
+  if (data.category) document.getElementById('category').value = data.category;
+  if (data.whatText) document.getElementById('whatText').value = data.whatText;
+  if (data.whyText) document.getElementById('whyText').value = data.whyText;
+  if (data.howText) document.getElementById('howText').value = data.howText;
+  if (data.ctaText) document.getElementById('ctaText').value = data.ctaText;
+  if (data.projectUrl) document.getElementById('projectUrl').value = data.projectUrl;
+  if (data.schemaRole) document.getElementById('schemaRole').value = data.schemaRole;
+  if (data.credits) {
+    const container = document.getElementById('credits-container');
+    data.credits.forEach((c, i) => {
+      if (i > 0) addCredit();
+      const rows = container.querySelectorAll('.credit-row');
+      const row = rows[rows.length - 1];
+      if (c.name) row.querySelector('.credit-name').value = c.name;
+      if (c.ig) row.querySelector('.credit-ig').value = c.ig;
+    });
+  }
+  generate();
+}
+
+// Demo data
+const demoData = {
+  projectName: 'リトルリトリートデポ（リトデポ）',
+  clientName: 'JR東日本 / JR東日本都市開発',
+  deliverable: '総合クリエイティブ・ディレクション / ブランディング',
+  category: 'Placemaking / Creative Direction / Branding',
+  whatText: '大宮駅西口の車両整備車庫跡地を「都市型ウェルビーイング拠点」へと再生するプロジェクトの総合クリエイティブ・ディレクションを担当させていただきました。',
+  whyText: '遊休地となった鉄道インフラ跡地を、商業施設ではなく都市の「心のインフラ」として再定義するプロジェクトです。サウナ、キャンプ、BBQなどの体験を核に、地域文化と都市が循環するハブを目指しています。',
+  howText: '理念策定からパートナー選定、イベント・デジタル・空間・映像の統合ディレクションまで、多層な体験を束ねる「指揮者の役割」を実践しました。複数領域のトップクリエイターをアセンブルし、コンセプトの一貫性を保ちながら実装しています。',
+  ctaText: 'サウナ好き、アウトドア好きの皆さま、ぜひ大宮の新しいスポットへ遊びに来てください！',
+  projectUrl: 'https://www.jreast.co.jp/lrd/',
+  schemaRole: '総合クリエイティブ・ディレクション / 企画設計 / ブランド骨格設計',
+  credits: [
+    { name: 'Your film（映像制作）', ig: 'mocchy_1' }
+  ]
+};
+
+// Init
+logoImg.onload = () => prefill(demoData);
+if (logoImg.complete) prefill(demoData);
+</script>
+</body>
+</html>
