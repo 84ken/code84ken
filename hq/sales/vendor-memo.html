@@ -35,7 +35,7 @@ body { font-size: 14px; line-height: 1.7; }
 <!-- Nav -->
 <div id="topnav" style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;">
   <a href="../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
-    <img src="../logo_SCHEMA.jpg" alt="SCHEMA" style="width:24px;height:24px;border-radius:4px;object-fit:cover;"> HQ
+    <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span> HQ
   </a>
   <span style="color:#cbd5e1;">/</span>
   <a href="sales-dashboard.html" style="color:#64748b;font-size:13px;text-decoration:none;">売上</a>
@@ -235,6 +235,25 @@ var view = 'active';
 var groupMode = true;
 var NOW = (function() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); })();
 
+// 期の計算（7月〜6月）
+function getFiscalYear(ym) {
+  var parts = ym.split('-'); var y = parseInt(parts[0]); var m = parseInt(parts[1]);
+  return m >= 7 ? y : y - 1; // 7月始まり
+}
+function getFiscalHalf(ym) {
+  var m = parseInt(ym.split('-')[1]);
+  return m >= 7 ? '前期' : '後期'; // 7-12=前期, 1-6=後期
+}
+function getCurrentFiscalYear() {
+  var d = new Date(); return d.getMonth() >= 6 ? d.getFullYear() : d.getFullYear() - 1;
+}
+function getFiscalMonths(fy) {
+  var months = [];
+  for (var m = 7; m <= 12; m++) months.push(fy + '-' + String(m).padStart(2,'0'));
+  for (var m = 1; m <= 6; m++) months.push((fy+1) + '-' + String(m).padStart(2,'0'));
+  return months;
+}
+
 function gid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 
 // ===== VENDOR AUTOCOMPLETE =====
@@ -337,6 +356,8 @@ async function save() {
 }
 
 // ===== RENDER =====
+var monthFilter = ''; // 請求月フィルター
+
 function render() {
   renderKPI();
   renderFilters();
@@ -359,6 +380,101 @@ function renderKPI() {
     kpiCard('外注費 / 利益', FMT(tc), '<span class="' + (ts-tc>=0?'text-emerald-600':'text-red-600') + '">利益 ' + FMT(ts-tc) + '</span>') +
     kpiCard('未払い予定', FMT(tp), al > 0 ? '<span class="text-red-500 font-medium">⚠ '+al+'件超過</span>' : '');
 }
+function renderMonthlySummary_unused() { // 未使用
+  var fy = getCurrentFiscalYear();
+  var months = getFiscalMonths(fy);
+  var period = '第' + (fy - 2010 + 1) + '期（' + fy + '.7〜' + (fy+1) + '.6）';
+
+  // 月別集計: 請求（契約からの按分）と外注費
+  var monthData = {};
+  months.forEach(function(m) { monthData[m] = { sales: 0, vendorCost: 0, projects: [] }; });
+
+  D.projects.forEach(function(p) {
+    // 外注費を請求月で集計
+    (p.vendors || []).forEach(function(v) {
+      var m = v.expectedMonth;
+      if (m && monthData[m]) {
+        monthData[m].vendorCost += v.amountTax || v.amount || 0;
+        if (monthData[m].projects.indexOf(p.name) < 0) monthData[m].projects.push(p.name);
+      }
+    });
+
+    // 契約金額を期間で按分（スケジュールがある場合）
+    if (p.contractAmount && p.scheduleStart && p.scheduleEnd) {
+      var start = p.scheduleStart, end = p.scheduleEnd;
+      var spanMonths = [];
+      months.forEach(function(m) { if (m >= start && m <= end) spanMonths.push(m); });
+      if (spanMonths.length > 0) {
+        var perMonth = Math.round(p.contractAmount / spanMonths.length);
+        spanMonths.forEach(function(m) {
+          if (monthData[m]) {
+            monthData[m].sales += perMonth;
+            if (monthData[m].projects.indexOf(p.name) < 0) monthData[m].projects.push(p.name);
+          }
+        });
+      }
+    }
+  });
+
+  // 前期・後期の合計
+  var firstHalf = { sales: 0, cost: 0 };
+  var secondHalf = { sales: 0, cost: 0 };
+  months.forEach(function(m) {
+    var d = monthData[m];
+    if (getFiscalHalf(m) === '前期') { firstHalf.sales += d.sales; firstHalf.cost += d.vendorCost; }
+    else { secondHalf.sales += d.sales; secondHalf.cost += d.vendorCost; }
+  });
+
+  var h = '<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">';
+  h += '<div class="px-4 sm:px-6 py-3 border-b border-slate-200 bg-gray-50 flex flex-wrap items-center justify-between gap-2">';
+  h += '<h2 class="text-sm font-bold text-slate-900">月別サマリー <span class="text-xs font-normal text-slate-400">' + period + '</span></h2>';
+  h += '<div class="flex gap-3 text-xs">';
+  h += '<span class="text-slate-500">前期 売上' + FMT(firstHalf.sales) + ' / 外注' + FMT(firstHalf.cost) + '</span>';
+  h += '<span class="text-slate-500">後期 売上' + FMT(secondHalf.sales) + ' / 外注' + FMT(secondHalf.cost) + '</span>';
+  h += '</div></div>';
+
+  h += '<div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b border-slate-200 bg-gray-50">';
+  h += '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">月</th>';
+  h += '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">売上（税抜）</th>';
+  h += '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">外注費</th>';
+  h += '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">粗利</th>';
+  h += '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500 hidden sm:table-cell">案件</th>';
+  h += '</tr></thead><tbody>';
+
+  var cumSales = 0, cumCost = 0;
+  months.forEach(function(m, i) {
+    var d = monthData[m];
+    cumSales += d.sales; cumCost += d.vendorCost;
+    var profit = d.sales - d.vendorCost;
+    var isCurrent = m === NOW;
+    var isHalfBorder = (i === 5); // 12月の後に区切り
+
+    var monthLabel = parseInt(m.split('-')[1]) + '月';
+    var halfLabel = (i === 0) ? '<span class="text-xs text-slate-400 mr-1">前期</span>' : (i === 6) ? '<span class="text-xs text-slate-400 mr-1">後期</span>' : '';
+
+    h += '<tr class="border-b border-slate-100 hover:bg-gray-50 ' + (isCurrent ? 'bg-primary-50/30' : '') + (isHalfBorder ? ' border-b-2 border-b-slate-300' : '') + '">';
+    h += '<td class="py-2 px-3 font-medium ' + (isCurrent ? 'text-primary-600' : 'text-slate-700') + '">' + halfLabel + monthLabel + (isCurrent ? ' <span class="text-[10px] bg-primary-100 text-primary-600 px-1 rounded">今月</span>' : '') + '</td>';
+    h += '<td class="py-2 px-3 text-right">' + (d.sales ? FMT(d.sales) : '<span class="text-slate-300">-</span>') + '</td>';
+    h += '<td class="py-2 px-3 text-right">' + (d.vendorCost ? FMT(d.vendorCost) : '<span class="text-slate-300">-</span>') + '</td>';
+    h += '<td class="py-2 px-3 text-right font-medium ' + (profit >= 0 ? 'text-emerald-600' : 'text-red-600') + '">' + (d.sales || d.vendorCost ? FMT(profit) : '<span class="text-slate-300">-</span>') + '</td>';
+    h += '<td class="py-2 px-3 text-xs text-body hidden sm:table-cell">' + d.projects.join(', ') + '</td>';
+    h += '</tr>';
+  });
+
+  // 合計行
+  var totalProfit = cumSales - cumCost;
+  h += '<tr class="bg-slate-50 font-bold">';
+  h += '<td class="py-2 px-3 text-slate-900">合計</td>';
+  h += '<td class="py-2 px-3 text-right">' + FMT(cumSales) + '</td>';
+  h += '<td class="py-2 px-3 text-right">' + FMT(cumCost) + '</td>';
+  h += '<td class="py-2 px-3 text-right ' + (totalProfit >= 0 ? 'text-emerald-600' : 'text-red-600') + '">' + FMT(totalProfit) + '</td>';
+  h += '<td class="py-2 px-3 hidden sm:table-cell"></td>';
+  h += '</tr>';
+
+  h += '</tbody></table></div></div>';
+  el('monthly-summary').innerHTML = h;
+}
+
 function kpiCard(label, val, sub) {
   return '<div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-sm overflow-hidden">' +
     '<p class="text-xs font-medium text-slate-500 uppercase truncate">' + label + '</p>' +
@@ -376,6 +492,39 @@ function renderFilters() {
   h += '<span style="border-left:1px solid #e2e8f0;height:20px;margin:0 4px"></span>';
   h += '<button onclick="groupMode=!groupMode;renderProjects();renderFilters()" class="px-3 py-1.5 text-xs font-medium rounded-full cursor-pointer ' +
     (groupMode ? 'bg-slate-700 text-white' : 'bg-slate-100 text-slate-600') + '">クライアント別</button>';
+
+  // 請求月フィルター
+  var allMonths = {};
+  D.projects.forEach(function(p) {
+    (p.vendors||[]).forEach(function(v) {
+      if (v.expectedMonth) allMonths[v.expectedMonth] = true;
+    });
+  });
+  var sortedMonths = Object.keys(allMonths).sort().reverse();
+  h += '<span style="border-left:1px solid #e2e8f0;height:20px;margin:0 4px"></span>';
+  h += '<select onchange="monthFilter=this.value;render()" class="px-2 py-1 text-xs border border-slate-200 rounded-lg bg-white cursor-pointer">';
+  h += '<option value="">全月</option>';
+  sortedMonths.forEach(function(m) {
+    var label = m.replace('-','年') + '月';
+    var selected = m === monthFilter ? ' selected' : '';
+    h += '<option value="' + m + '"' + selected + '>' + label + '</option>';
+  });
+  h += '</select>';
+
+  // 月が選択されている場合、その月のサマリーを表示
+  if (monthFilter) {
+    var mSales = 0, mCost = 0, mCount = 0;
+    D.projects.forEach(function(p) {
+      (p.vendors||[]).forEach(function(v) {
+        if (v.expectedMonth === monthFilter) {
+          mCost += v.amountTax || v.amount || 0;
+          mCount++;
+        }
+      });
+    });
+    h += '<span class="text-xs text-slate-500 ml-2">外注 ' + mCount + '件 ' + FMT(mCost) + '</span>';
+  }
+
   el('filters').innerHTML = h;
 }
 
@@ -386,6 +535,13 @@ function renderProjects() {
   if (view === 'alert') list = list.filter(function(p){
     return (p.vendors||[]).some(function(v){return v.status==='planned' && v.expectedMonth && v.expectedMonth < NOW});
   });
+
+  // 請求月フィルター: その月に外注がある案件のみ表示
+  if (monthFilter) {
+    list = list.filter(function(p) {
+      return (p.vendors||[]).some(function(v){ return v.expectedMonth === monthFilter; });
+    });
+  }
 
   if (!list.length) {
     el('projects').innerHTML = '<div class="text-center py-16 text-slate-400">プロジェクトがありません</div>';
