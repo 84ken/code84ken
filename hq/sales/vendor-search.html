@@ -62,7 +62,7 @@ body { font-size: 14px; line-height: 1.7; }
 
 <!-- Edit Vendor Modal -->
 <div id="editModal" class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center" style="display:none">
-  <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 mx-4 max-h-[85vh] overflow-y-auto">
+  <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl p-6 mx-4 max-h-[85vh] overflow-y-auto">
     <div class="flex items-center justify-between mb-4">
       <h2 class="text-lg font-bold text-slate-900" id="editModalTitle">案件紐づけ編集</h2>
       <button onclick="closeEditModal()" class="text-xl text-slate-400 hover:text-slate-600 cursor-pointer">&times;</button>
@@ -112,7 +112,49 @@ function getDisplayProjects(vendor) {
 
 function hasCorrections(vendorName) {
   const c = corrections[vendorName];
-  return c && ((c.projectMappings && c.projectMappings.length > 0) || (c.addedProjects && c.addedProjects.length > 0));
+  return c && ((c.projectMappings && c.projectMappings.length > 0) || (c.addedProjects && c.addedProjects.length > 0) || (c.entryCorrections && c.entryCorrections.length > 0));
+}
+
+// 明細レベルの修正を適用して表示用プロジェクト名を返す
+function getCorrectedEntryProject(vendorName, period, originalProject, amount) {
+  const c = corrections[vendorName];
+  if (!c || !c.entryCorrections) return null;
+  const match = c.entryCorrections.find(ec =>
+    ec.period === period && ec.originalProject === originalProject && Math.abs((ec.amount||0) - (amount||0)) < 10
+  );
+  return match ? match.correctedProject : null;
+}
+
+// 外注先の月別エントリーを取得
+function getVendorEntries(vendorName) {
+  const entries = [];
+  monthlyData.forEach(m => {
+    (m.entries || []).forEach(e => {
+      if (e.vendor === vendorName) {
+        entries.push({ period: m.period, project: e.project, task: e.task, amount: e.amountExTax, incTax: e.amountIncTax });
+      }
+    });
+  });
+  return entries.sort((a, b) => b.period.localeCompare(a.period));
+}
+
+// 汎用的な案件名かどうか（手入力が必要そうな名前）
+function isGenericProject(name) {
+  const generic = ['コーディング','デザイン','開発','運用','ディレクション','制作','その他','(不明)','コーディング・CMS実装'];
+  return generic.includes(name);
+}
+
+// 同月に他の外注先が動いていた案件名を取得（サジェスト用）
+function getSameMonthProjects(period, excludeVendor) {
+  const projects = new Set();
+  const m = monthlyData.find(d => d.period === period);
+  if (!m) return [];
+  (m.entries || []).forEach(e => {
+    if (e.vendor !== excludeVendor && !isGenericProject(e.project)) {
+      projects.add(e.project);
+    }
+  });
+  return [...projects];
 }
 
 // ===== INIT =====
@@ -656,20 +698,127 @@ function renderCrossRefTab(container) {
 
 // ===== VENDOR EDIT =====
 let editingVendor = null;
+let editTab = 'entries'; // 'entries' or 'projects'
 
 function openEditModal(vendorName) {
   const v = allVendors.find(v => v.name === vendorName);
   if (!v) return;
   editingVendor = v;
-
   document.getElementById('editModalTitle').textContent = v.name + ' — 案件紐づけ編集';
+  editTab = 'entries';
+  renderEditModal();
+  document.getElementById('editModal').style.display = 'flex';
+}
 
-  const c = corrections[v.name] || { projectMappings: [], addedProjects: [] };
+function renderEditModal() {
+  const v = editingVendor;
+  if (!v) return;
+  const c = corrections[v.name] || { projectMappings: [], addedProjects: [], entryCorrections: [] };
+
+  // Tab bar
+  let html = '<div class="flex gap-1 mb-4 border-b border-slate-200">';
+  html += '<button onclick="editTab=\'entries\';renderEditModal()" class="px-3 py-2 text-sm cursor-pointer ' + (editTab === 'entries' ? 'font-semibold text-primary-600 border-b-2 border-primary-500' : 'text-slate-500') + '">明細別に修正</button>';
+  html += '<button onclick="editTab=\'projects\';renderEditModal()" class="px-3 py-2 text-sm cursor-pointer ' + (editTab === 'projects' ? 'font-semibold text-primary-600 border-b-2 border-primary-500' : 'text-slate-500') + '">案件名一括修正</button>';
+  html += '</div>';
+
+  if (editTab === 'entries') {
+    html += renderEntriesTab(v, c);
+  } else {
+    html += renderProjectsTab(v, c);
+  }
+
+  // Note + Buttons (shared)
+  html += '<div class="leading-normal mb-4 mt-4 pt-4 border-t border-slate-200"><label class="block text-sm font-medium text-slate-700 mb-1">メモ</label>';
+  html += '<input type="text" id="editNote" value="' + ((c.note || '').replace(/"/g, '&quot;')) + '" placeholder="修正理由等" class="w-full px-3 py-1.5 text-sm border border-slate-300 rounded-lg"></div>';
+  html += '<div class="flex justify-between gap-2 pt-2">';
+  html += '<button onclick="resetCorrections()" class="h-10 px-4 text-sm font-medium text-red-500 hover:bg-red-50 rounded-lg cursor-pointer">リセット</button>';
+  html += '<div class="flex gap-2">';
+  html += '<button onclick="closeEditModal()" class="h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg cursor-pointer">キャンセル</button>';
+  html += '<button onclick="saveEditModal()" class="h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">保存</button>';
+  html += '</div></div>';
+
+  document.getElementById('editModalBody').innerHTML = html;
+}
+
+function renderEntriesTab(v, c) {
+  const entries = getVendorEntries(v.name);
+  const genericEntries = entries.filter(e => isGenericProject(e.project));
+  const correctedCount = (c.entryCorrections || []).length;
+
+  let html = '<p class="text-xs text-slate-500 mb-3">「コーディング」等の汎用名を、実際の案件名に修正します。' +
+    (correctedCount > 0 ? ' <span class="text-primary-500 font-medium">' + correctedCount + '件修正済</span>' : '') + '</p>';
+
+  if (!genericEntries.length) {
+    html += '<div class="text-center py-8 text-slate-400 text-sm">汎用名の明細はありません（すべて案件名付き）</div>';
+    return html;
+  }
+
+  // Stats
+  const totalGeneric = genericEntries.reduce((s, e) => s + (e.amount || 0), 0);
+  html += '<div class="flex gap-4 text-xs text-slate-500 mb-3">';
+  html += '<span>対象: <strong class="text-slate-700">' + genericEntries.length + '件</strong></span>';
+  html += '<span>合計: <strong class="text-slate-700">' + FMT(totalGeneric) + '</strong></span>';
+  html += '</div>';
+
+  // Group by year, newest first
+  const byYear = {};
+  genericEntries.forEach(e => {
+    const year = e.period.substring(0, 4);
+    if (!byYear[year]) byYear[year] = [];
+    byYear[year].push(e);
+  });
+
+  const years = Object.keys(byYear).sort().reverse();
+  years.forEach(year => {
+    const yearEntries = byYear[year];
+    html += '<div class="mb-3">';
+    html += '<div class="flex items-center gap-2 mb-2 cursor-pointer" onclick="this.nextElementSibling.classList.toggle(\'hidden\')">';
+    html += '<span class="text-xs font-bold text-slate-500 uppercase">' + year + '年</span>';
+    html += '<span class="text-xs text-slate-400">' + yearEntries.length + '件 / ' + FMT(yearEntries.reduce((s, e) => s + (e.amount || 0), 0)) + '</span>';
+    const yCorrected = yearEntries.filter(e => getCorrectedEntryProject(v.name, e.period, e.project, e.amount)).length;
+    if (yCorrected) html += '<span class="text-xs text-primary-500 font-medium">' + yCorrected + '件修正済</span>';
+    html += '<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>';
+    html += '</div>';
+    // Default: show newest year, hide older
+    html += '<div class="space-y-2' + (year !== years[0] ? ' hidden' : '') + '">';
+
+    yearEntries.forEach((e, idx) => {
+      const corrected = getCorrectedEntryProject(v.name, e.period, e.project, e.amount) || '';
+      const sameMonthProjects = getSameMonthProjects(e.period, v.name);
+      const entryKey = e.period + '_' + e.project + '_' + (e.amount || 0);
+
+      html += '<div class="p-3 rounded-lg border ' + (corrected ? 'border-primary-200 bg-primary-50/30' : 'border-slate-200') + '">';
+      html += '<div class="flex items-center gap-3 mb-2">';
+      html += '<span class="text-xs font-medium text-slate-600 w-16 flex-shrink-0">' + e.period.substring(5) + '月</span>';
+      html += '<span class="text-xs text-slate-400 flex-shrink-0">' + FMT(e.amount) + '</span>';
+      html += '<span class="text-xs text-slate-300 flex-1 truncate">' + (e.project || '') + '</span>';
+      if (corrected) html += '<span class="text-xs text-primary-500 font-medium flex-shrink-0">→ ' + corrected + '</span>';
+      html += '</div>';
+      html += '<input type="text" data-entry-key="' + entryKey.replace(/"/g, '&quot;') + '" data-period="' + e.period + '" data-original="' + (e.project || '').replace(/"/g, '&quot;') + '" data-amount="' + (e.amount || 0) + '" value="' + corrected.replace(/"/g, '&quot;') + '" placeholder="正しい案件名を入力..." class="entry-correction-input w-full px-3 py-1.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50">';
+
+      // Same month suggestions
+      if (sameMonthProjects.length && !corrected) {
+        html += '<div class="flex flex-wrap gap-1 mt-1.5">';
+        html += '<span class="text-[10px] text-slate-400">同月の案件:</span>';
+        sameMonthProjects.slice(0, 6).forEach(p => {
+          html += '<button onclick="this.closest(\'div\').previousElementSibling.value=\'' + p.replace(/'/g, "\\'") + '\';this.closest(\'div\').previousElementSibling.classList.add(\'border-primary-400\')" class="px-1.5 py-0.5 rounded text-[10px] bg-slate-100 text-slate-600 hover:bg-primary-100 hover:text-primary-600 cursor-pointer">' + p + '</button>';
+        });
+        html += '</div>';
+      }
+      html += '</div>';
+    });
+
+    html += '</div></div>';
+  });
+
+  return html;
+}
+
+function renderProjectsTab(v, c) {
   const projects = v.projects || [];
 
-  let html = '<p class="text-xs text-slate-500 mb-4">Excel取込の案件名を正しい案件名に修正できます。修正はvendor-corrections.jsonに保存されます。</p>';
+  let html = '<p class="text-xs text-slate-500 mb-4">案件カテゴリ単位で一括修正（例: 全「コーディング」→「リバサポ」）。明細レベルの修正が優先されます。</p>';
 
-  // Existing projects
   html += '<div class="space-y-3 mb-4" id="editProjectList">';
   projects.forEach((p, i) => {
     const mapping = (c.projectMappings || []).find(m => m.original === p.name);
@@ -685,29 +834,15 @@ function openEditModal(vendorName) {
   });
   html += '</div>';
 
-  // Add new project button
   html += '<div class="mb-4" id="addedProjectsContainer">';
   const added = c.addedProjects || [];
-  added.forEach((name, i) => {
+  added.forEach(name => {
     html += '<div class="flex items-center gap-2 mb-2"><input type="text" class="added-project-input flex-1 px-3 py-1.5 text-sm border border-emerald-300 rounded-lg bg-emerald-50" value="' + name.replace(/"/g, '&quot;') + '" placeholder="追加案件名"><button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-600 cursor-pointer text-sm">&times;</button></div>';
   });
   html += '</div>';
-  html += '<button onclick="addProjectField()" class="inline-flex items-center gap-1 text-sm text-primary-500 hover:text-primary-700 cursor-pointer mb-6">+ 案件を手動追加</button>';
+  html += '<button onclick="addProjectField()" class="inline-flex items-center gap-1 text-sm text-primary-500 hover:text-primary-700 cursor-pointer">+ 案件を手動追加</button>';
 
-  // Note
-  html += '<div class="leading-normal mb-4"><label class="block text-sm font-medium text-slate-700 mb-1">メモ</label>';
-  html += '<input type="text" id="editNote" value="' + ((c.note || '').replace(/"/g, '&quot;')) + '" placeholder="修正理由等" class="w-full px-3 py-1.5 text-sm border border-slate-300 rounded-lg"></div>';
-
-  // Buttons
-  html += '<div class="flex justify-between gap-2 pt-2">';
-  html += '<button onclick="resetCorrections()" class="h-10 px-4 text-sm font-medium text-red-500 hover:bg-red-50 rounded-lg cursor-pointer">リセット</button>';
-  html += '<div class="flex gap-2">';
-  html += '<button onclick="closeEditModal()" class="h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg cursor-pointer">キャンセル</button>';
-  html += '<button onclick="saveEditModal()" class="h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">保存</button>';
-  html += '</div></div>';
-
-  document.getElementById('editModalBody').innerHTML = html;
-  document.getElementById('editModal').style.display = 'flex';
+  return html;
 }
 
 function closeEditModal() {
@@ -726,6 +861,7 @@ function addProjectField() {
 async function saveEditModal() {
   if (!editingVendor) return;
 
+  // Collect project-level mappings
   const projectMappings = [];
   document.querySelectorAll('.edit-project-input').forEach(input => {
     const original = input.dataset.original;
@@ -741,12 +877,41 @@ async function saveEditModal() {
     if (val) addedProjects.push(val);
   });
 
+  // Collect entry-level corrections
+  const entryCorrections = [];
+  document.querySelectorAll('.entry-correction-input').forEach(input => {
+    const val = input.value.trim();
+    if (val) {
+      entryCorrections.push({
+        period: input.dataset.period,
+        originalProject: input.dataset.original,
+        amount: parseFloat(input.dataset.amount) || 0,
+        correctedProject: val
+      });
+    }
+  });
+
+  // Also keep existing entry corrections that weren't shown (different tab)
+  const existing = corrections[editingVendor.name] || {};
+  const existingEntries = existing.entryCorrections || [];
+  // Merge: current UI entries override, keep others
+  const shownKeys = new Set();
+  document.querySelectorAll('.entry-correction-input').forEach(input => {
+    shownKeys.add(input.dataset.period + '_' + input.dataset.original + '_' + input.dataset.amount);
+  });
+  existingEntries.forEach(ec => {
+    const key = ec.period + '_' + ec.originalProject + '_' + ec.amount;
+    if (!shownKeys.has(key) && ec.correctedProject) {
+      entryCorrections.push(ec);
+    }
+  });
+
   const note = document.getElementById('editNote').value.trim();
 
-  const correction = { projectMappings, addedProjects, note };
+  const correction = { projectMappings, addedProjects, entryCorrections, note };
 
-  if (projectMappings.length === 0 && addedProjects.length === 0 && !note) {
-    // No corrections - delete
+  const hasData = projectMappings.length > 0 || addedProjects.length > 0 || entryCorrections.length > 0 || note;
+  if (!hasData) {
     delete corrections[editingVendor.name];
     await fetch('/api/corrections/' + encodeURIComponent(editingVendor.name), { method: 'DELETE' });
   } else {
