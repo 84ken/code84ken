@@ -62,7 +62,7 @@ async function init() {
   try {
   // Fetch all data sources in parallel
   var results = await Promise.all([
-    fetch('/api/memos').then(function(r){return r.json()}),
+    fetch('/api/memos').then(function(r){ if(!r.ok) throw new Error(); return r.json(); }).catch(function(){ return fetch('vendor-memos.json').then(function(r){return r.json()}); }),
     fetch('sales-data.json').then(function(r){return r.json()}),
     fetch('vendor-data.json').then(function(r){return r.json()})
   ]);
