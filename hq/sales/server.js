@@ -7,7 +7,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const pdfParse = require('pdf-parse');
+const PDFParser = require('pdf2json');
 
 const app = express();
 const PORT = 3456;
@@ -86,19 +86,52 @@ app.delete('/api/corrections/:vendorName', (req, res) => {
 // Ensure invoice directory exists
 if (!fs.existsSync(INVOICE_DIR)) fs.mkdirSync(INVOICE_DIR, { recursive: true });
 
+// PDF テキスト抽出（pdf2json使用）
+function extractPDFText(filepath) {
+  return new Promise((resolve, reject) => {
+    const parser = new PDFParser();
+    const timeout = setTimeout(() => { reject(new Error('PDF解析タイムアウト')); }, 15000);
+
+    parser.on('pdfParser_dataReady', (pdfData) => {
+      clearTimeout(timeout);
+      try {
+        let text = pdfData.Pages.map(page =>
+          page.Texts.map(t => decodeURIComponent(t.R[0].T)).join(' ')
+        ).join('\n');
+        // 日本語文字間スペース除去
+        text = text.replace(/([\u3000-\u9FFF\uFF00-\uFFEF])\s+([\u3000-\u9FFF\uFF00-\uFFEF])/g, '$1$2');
+        text = text.replace(/([\u3000-\u9FFF\uFF00-\uFFEF])\s+([\u3000-\u9FFF\uFF00-\uFFEF])/g, '$1$2');
+        text = text.replace(/([\u3000-\u9FFF\uFF00-\uFFEF])\s+([\u3000-\u9FFF\uFF00-\uFFEF])/g, '$1$2');
+        text = text.replace(/(\d)\s+,\s+(\d)/g, '$1,$2');
+        text = text.replace(/(\d)\s+(\d)/g, '$1$2');
+        text = text.replace(/(\d)\s+(\d)/g, '$1$2');
+        resolve(text);
+      } catch (e) { reject(e); }
+    });
+    parser.on('pdfParser_dataError', (err) => {
+      clearTimeout(timeout);
+      reject(new Error(err.parserError || String(err)));
+    });
+    try { parser.loadPDF(filepath); } catch(e) { clearTimeout(timeout); reject(e); }
+  });
+}
+
 // Scan invoices folder and extract info
+// ?month=2026-03 で月別フォルダ対応
 app.get('/api/invoices/scan', async (req, res) => {
   try {
-    const files = fs.readdirSync(INVOICE_DIR).filter(f => f.toLowerCase().endsWith('.pdf'));
+    const month = req.query.month || '';
+    const scanDir = month ? path.join(INVOICE_DIR, month) : INVOICE_DIR;
+
+    // フォルダがなければ作成
+    if (!fs.existsSync(scanDir)) fs.mkdirSync(scanDir, { recursive: true });
+
+    const files = fs.readdirSync(scanDir).filter(f => f.toLowerCase().endsWith('.pdf'));
     const results = [];
 
     for (const file of files) {
       try {
-        const buf = fs.readFileSync(path.join(INVOICE_DIR, file));
-        const pdf = await pdfParse(buf);
-        const text = pdf.text;
-
-        // Extract key info from PDF text
+        const text = await extractPDFText(path.join(scanDir, file));
         const info = extractInvoiceInfo(text, file);
         results.push(info);
       } catch (e) {
@@ -111,40 +144,81 @@ app.get('/api/invoices/scan', async (req, res) => {
     const memos = [];
     (raw.projects || []).forEach(p => {
       (p.vendors || []).forEach(v => {
-        memos.push({ ...v, project: p.name, client: p.client });
+        memos.push({ ...v, project: p.name, client: p.client, pid: p.id });
       });
     });
+
+    // 月でフィルター（指定月の予定のみ）
+    const targetMemos = month
+      ? memos.filter(m => m.expectedMonth === month && m.status !== 'paid')
+      : memos.filter(m => m.status !== 'paid');
+
     const matched = [];
     const unmatchedInvoices = [];
-    const unmatchedMemos = [];
-
     const usedMemoIds = new Set();
 
     results.forEach(inv => {
-      // Try to find matching memo
-      const match = memos.find(m => {
-        if (usedMemoIds.has(m.id)) return false;
-        const vendorMatch = inv.vendor && m.vendor &&
-          (m.vendor.includes(inv.vendor) || inv.vendor.includes(m.vendor));
-        const amountMatch = inv.amount && m.amount &&
-          (Math.abs(inv.amount - m.amount) < 100 || Math.abs(inv.amount - m.amountTax) < 100);
-        return vendorMatch || amountMatch;
+      if (!inv.vendor && !inv.amount) { unmatchedInvoices.push(inv); return; }
+
+      let bestMatch = null;
+      let bestScore = 0;
+      let bestDiff = 0;
+
+      targetMemos.forEach(m => {
+        if (usedMemoIds.has(m.id)) return;
+
+        // ベンダー名スコア
+        let vendorScore = 0;
+        if (inv.vendor && m.vendor) {
+          const a = inv.vendor.toLowerCase(), b = m.vendor.toLowerCase();
+          if (a === b) vendorScore = 100;
+          else if (a.includes(b) || b.includes(a)) {
+            const ratio = Math.min(a.length, b.length) / Math.max(a.length, b.length);
+            vendorScore = ratio > 0.3 ? 80 : 40;
+          }
+        }
+
+        // 金額スコア
+        let amountScore = 0;
+        let amountDiff = 0;
+        if (inv.amount) {
+          const targets = [m.amountTax, m.amount, m.amountTax ? Math.round(m.amountTax / 1.1) : 0].filter(Boolean);
+          for (const t of targets) {
+            const diff = Math.abs(inv.amount - t);
+            if (diff === 0) { amountScore = 100; amountDiff = 0; break; }
+            if (diff < 500) { amountScore = Math.max(amountScore, 90); amountDiff = inv.amount - t; }
+            else if (diff / t < 0.05) { amountScore = Math.max(amountScore, 70); amountDiff = inv.amount - t; }
+          }
+        }
+
+        const combined = vendorScore * 0.6 + amountScore * 0.4;
+        if (combined > bestScore && combined >= 40) {
+          bestScore = combined;
+          bestMatch = m;
+          bestDiff = amountDiff;
+        }
       });
 
-      if (match) {
-        usedMemoIds.add(match.id);
-        matched.push({ invoice: inv, memo: match });
+      if (bestMatch) {
+        usedMemoIds.add(bestMatch.id);
+        matched.push({
+          invoice: inv,
+          memo: bestMatch,
+          amountDiff: bestDiff,
+          matchConfidence: Math.round(bestScore),
+        });
       } else {
         unmatchedInvoices.push(inv);
       }
     });
 
-    memos.filter(m => !usedMemoIds.has(m.id) && m.status !== 'paid').forEach(m => {
-      unmatchedMemos.push(m);
-    });
+    // 未マッチの予定
+    const unmatchedMemos = targetMemos.filter(m => !usedMemoIds.has(m.id));
 
     res.json({
       scannedAt: new Date().toISOString(),
+      month: month || 'all',
+      scanDir: scanDir,
       totalFiles: files.length,
       matched,
       unmatchedInvoices,

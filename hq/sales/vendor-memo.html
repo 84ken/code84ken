@@ -80,8 +80,13 @@ body { font-size: 14px; line-height: 1.7; }
         </div>
         <div class="leading-normal">
           <label class="block text-sm font-medium text-slate-700 mb-1">クライアント</label>
-          <input type="text" id="pm-client" placeholder="埼玉県庁" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg">
+          <input type="text" id="pm-client" placeholder="マクドナルド" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg">
         </div>
+      </div>
+
+      <div class="leading-normal">
+        <label class="block text-sm font-medium text-slate-700 mb-1">請求先 <span class="text-xs text-slate-400 font-normal">（空欄ならクライアントに請求）</span></label>
+        <input type="text" id="pm-billing" placeholder="株式会社ゆめみ" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg">
       </div>
 
       <div class="leading-normal">
@@ -114,18 +119,16 @@ body { font-size: 14px; line-height: 1.7; }
         <textarea id="pm-deliverables" rows="2" placeholder="WEBサイト更新、SNS運用、報告書 等" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg"></textarea>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="leading-normal">
-          <label class="block text-sm font-medium text-slate-700 mb-1">契約金額（税込・円）</label>
-          <input type="number" id="pm-contract" placeholder="8753334" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg">
+          <label class="block text-sm font-medium text-slate-700 mb-1">契約金額（税抜・円）</label>
+          <input type="number" id="pm-contract" placeholder="7957576" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg" oninput="showTaxIncluded()">
+          <p class="text-xs text-slate-400 mt-1" id="pm-tax-display"></p>
         </div>
         <div class="leading-normal">
-          <label class="block text-sm font-medium text-slate-700 mb-1">見積金額（千円・税抜）</label>
-          <input type="number" id="pm-estimate" placeholder="5000" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg">
-        </div>
-        <div class="leading-normal">
-          <label class="block text-sm font-medium text-slate-700 mb-1">確定売上（千円）</label>
-          <input type="number" id="pm-sales" placeholder="3978" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg">
+          <label class="block text-sm font-medium text-slate-700 mb-1">契約金額（税込・円）から入力</label>
+          <input type="number" id="pm-contract-inc" placeholder="8753334" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg" oninput="calcExTax()">
+          <p class="text-xs text-slate-400 mt-1">税込で入力すると税抜に自動変換</p>
         </div>
       </div>
 
@@ -176,7 +179,7 @@ body { font-size: 14px; line-height: 1.7; }
           <input type="number" id="vm-tax" placeholder="110000" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg" oninput="autoExTax()">
         </div>
         <div class="leading-normal">
-          <label class="block text-sm font-medium text-slate-700 mb-1">支払予定月</label>
+          <label class="block text-sm font-medium text-slate-700 mb-1">請求月</label>
           <input type="month" id="vm-month" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg">
         </div>
       </div>
@@ -288,6 +291,21 @@ document.addEventListener('click', function(e) {
   }
 });
 
+// 契約金額（税抜）→ 税込表示
+function showTaxIncluded() {
+  var a = parseFloat(el('pm-contract').value);
+  el('pm-tax-display').textContent = a ? '税込: ¥' + Math.round(a * 1.1).toLocaleString() : '';
+  el('pm-contract-inc').value = a ? Math.round(a * 1.1) : '';
+}
+// 税込入力 → 税抜に変換
+function calcExTax() {
+  var a = parseFloat(el('pm-contract-inc').value);
+  if (a) {
+    el('pm-contract').value = Math.round(a / 1.1);
+    el('pm-tax-display').textContent = '税込: ¥' + Math.round(a).toLocaleString();
+  }
+}
+
 var _taxDir = ''; // 'ex' or 'inc' - which field was last edited
 function autoTax() {
   _taxDir = 'ex';
@@ -302,20 +320,12 @@ function autoExTax() {
 
 // ===== LOAD / SAVE =====
 async function load() {
-  try {
-    var resp = await fetch('/api/memos');
-    if (!resp.ok) throw new Error();
-    var r = await resp.json();
-  } catch(e) {
-    var r = await (await fetch('vendor-memos.json')).json();
-  }
+  var r = await (await fetch('/api/memos')).json();
   D = r.projects ? r : { projects: [] };
   render();
 }
 async function save() {
-  try {
-    await fetch('/api/memos', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(D) });
-  } catch(e) { /* HQ版ではAPIなし */ }
+  await fetch('/api/memos', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(D) });
 }
 
 // ===== RENDER =====
@@ -328,7 +338,7 @@ function render() {
 function renderKPI() {
   var ts = 0, tc = 0, tp = 0, al = 0;
   D.projects.forEach(function(p) {
-    ts += p.contractAmount || (p.sales || 0) * 1000;
+    ts += p.contractAmount || 0;
     (p.vendors||[]).forEach(function(v) {
       var a = v.amountTax || v.amount || 0;
       tc += a;
@@ -391,7 +401,7 @@ function renderProjects() {
         return false;
       });
       if (!items.length) return;
-      var groupTotal = items.reduce(function(s,p){ return s + (p.contractAmount || (p.sales||0)*1000); }, 0);
+      var groupTotal = items.reduce(function(s,p){ return s + (p.contractAmount || 0); }, 0);
       var groupVendor = items.reduce(function(s,p){ return s + (p.vendors||[]).reduce(function(s2,v){return s2+(v.amountTax||v.amount||0)},0); }, 0);
       html += '<div class="mb-6">';
       html += '<div class="flex flex-wrap items-center gap-3 mb-3">';
@@ -413,7 +423,7 @@ function renderProjects() {
 
 function renderProjectCard(p) {
     var vc = (p.vendors||[]).reduce(function(s,v){return s+(v.amountTax||v.amount||0)},0);
-    var contractBase = p.contractAmount || (p.sales||0)*1000;
+    var contractBase = p.contractAmount || 0;
     var pr = contractBase - vc;
     var mr = contractBase > 0 ? pr/contractBase : null;
     var mc = mr==null?'text-slate-300':mr>=0.6?'text-emerald-600':mr>=0.3?'text-amber-600':'text-red-600';
@@ -428,6 +438,7 @@ function renderProjectCard(p) {
       '<div class="flex flex-wrap items-center gap-3">' +
         '<h3 class="text-lg font-bold text-slate-900">' + p.name + '</h3>' +
         (p.client ? '<span class="text-sm text-slate-400">' + p.client + '</span>' : '') +
+        (p.billingTo && p.billingTo !== p.client ? '<span class="text-xs text-amber-500 ml-1">→ 請求先: ' + p.billingTo + '</span>' : '') +
         '<span class="px-2 py-0.5 rounded-full text-xs font-medium ' + (p.status==='active'?'bg-primary-50 text-primary-600':'bg-slate-100 text-slate-500') + '">' + (p.status==='active'?'進行中':'完了') + '</span>' +
       '</div>' +
       '<div class="flex gap-1">' +
@@ -452,7 +463,7 @@ function renderProjectCard(p) {
     // Metrics
     var contractAmt = p.contractAmount || 0;
     h += '<div class="flex flex-wrap gap-4 sm:gap-6 text-sm mb-4">' +
-      '<div><span class="text-slate-400">契約</span> <strong>' + FMT(contractBase) + '</strong>' + (contractAmt ? '<span class="text-xs text-slate-400">税込</span>' : '<span class="text-xs text-slate-400">千円換算</span>') + '</div>' +
+      '<div><span class="text-slate-400">契約</span> <strong>' + FMT(contractBase) + '</strong><span class="text-xs text-slate-400">税抜</span>' + (contractBase ? ' <span class="text-xs text-slate-300">(税込' + FMT(Math.round(contractBase*1.1)) + ')</span>' : '') + '</div>' +
       '<div><span class="text-slate-400">外注費</span> <strong>' + FMT(vc) + '</strong></div>' +
       '<div><span class="text-slate-400">利益</span> <strong class="' + (pr>=0?'':'text-red-600') + '">' + FMT(pr) + '</strong></div>' +
       '<div><span class="text-slate-400">利益率</span> <strong class="' + mc + '">' + mt + '</strong></div>' +
@@ -502,7 +513,7 @@ function renderProjectCard(p) {
         '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">外注先 / 費用</th>' +
         '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">内容</th>' +
         '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">金額</th>' +
-        '<th scope="col" class="text-center py-2 px-3 text-xs font-medium text-slate-500">支払月</th>' +
+        '<th scope="col" class="text-center py-2 px-3 text-xs font-medium text-slate-500">請求月</th>' +
         '<th scope="col" class="text-center py-2 px-3 text-xs font-medium text-slate-500">状態</th>' +
         '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">メモ</th>' +
         '<th scope="col" class="w-28"></th></tr></thead><tbody>';
@@ -544,6 +555,7 @@ function showProjectForm(id) {
   el('pm-id').value = p ? p.id : '';
   el('pm-name').value = p ? p.name : '';
   el('pm-client').value = p ? (p.client||'') : '';
+  el('pm-billing').value = p ? (p.billingTo||'') : '';
   el('pm-desc').value = p ? (p.description||'') : '';
   el('pm-manager').value = p ? (p.manager||'') : '';
   el('pm-start').value = p ? (p.scheduleStart||'') : '';
@@ -551,8 +563,8 @@ function showProjectForm(id) {
   el('pm-stakeholders').value = p ? (p.stakeholders||'') : '';
   el('pm-deliverables').value = p ? (p.deliverables||'') : '';
   el('pm-contract').value = p ? (p.contractAmount||'') : '';
-  el('pm-estimate').value = p ? (p.estimate||'') : '';
-  el('pm-sales').value = p ? (p.sales||'') : '';
+  el('pm-contract-inc').value = p && p.contractAmount ? Math.round(p.contractAmount * 1.1) : '';
+  if (p && p.contractAmount) showTaxIncluded();
   el('pm-risks').value = p ? (p.risks||'') : '';
   el('pm-status').value = p ? (p.status||'active') : 'active';
   el('pm').style.display = 'flex';
@@ -563,11 +575,12 @@ el('pm-form').addEventListener('submit', async function(e) {
   var id = el('pm-id').value;
   var obj = {
     name: el('pm-name').value, client: el('pm-client').value,
+    billingTo: el('pm-billing').value,
     description: el('pm-desc').value, manager: el('pm-manager').value,
     scheduleStart: el('pm-start').value, scheduleEnd: el('pm-end').value,
     stakeholders: el('pm-stakeholders').value, deliverables: el('pm-deliverables').value,
     contractAmount: parseFloat(el('pm-contract').value)||0,
-    estimate: parseFloat(el('pm-estimate').value)||0, sales: parseFloat(el('pm-sales').value)||0,
+    estimate: 0, sales: 0,
     risks: el('pm-risks').value, status: el('pm-status').value,
   };
   if (id) {
@@ -645,109 +658,111 @@ async function runMonthScan() {
   el('scan-out').innerHTML = '<p class="text-slate-400">スキャン中...</p>';
 
   try {
-    var r = await (await fetch('/api/invoices/scan')).json();
+    // サーバー側で月別フォルダスキャン＆照合
+    var r = await (await fetch('/api/invoices/scan?month=' + month)).json();
 
-    // Collect all vendor payments for selected month
-    var expected = [];
-    D.projects.forEach(function(p) {
-      (p.vendors || []).forEach(function(v) {
-        if (v.expectedMonth === month && v.status !== 'paid') {
-          expected.push({ pid: p.id, vid: v.id, project: p.name, vendor: v.vendor, amount: v.amount || 0, amountTax: v.amountTax || 0, task: v.task || '', status: v.status, matched: null });
-        }
-      });
-    });
+    var matched = r.matched || [];
+    var unmatchedInvoices = r.unmatchedInvoices || [];
+    var unmatchedMemos = r.unmatchedMemos || [];
 
-    if (!expected.length && !r.totalFiles) {
-      el('scan-out').innerHTML = '<div class="text-center py-8 text-slate-400"><p>' + month + ' の支払予定がありません</p></div>';
-      return;
-    }
-
-    // Try matching each expected payment with a scanned PDF
-    var usedFiles = {};
-    expected.forEach(function(e) {
-      if (!r.allInvoices) return;
-      var best = null;
-      r.allInvoices.forEach(function(inv) {
-        if (usedFiles[inv.file]) return;
-        var vendorMatch = inv.vendor && e.vendor && (e.vendor.indexOf(inv.vendor) >= 0 || inv.vendor.indexOf(e.vendor) >= 0);
-        var amtMatch = inv.amount && (Math.abs(inv.amount - e.amountTax) < 500 || Math.abs(inv.amount - e.amount) < 500);
-        if (vendorMatch || amtMatch) best = inv;
-      });
-      if (best) {
-        e.matched = best;
-        usedFiles[best.file] = true;
+    // プロジェクトIDを補完（markInvoiced用）
+    matched.forEach(function(m) {
+      if (!m.memo.pid) {
+        D.projects.forEach(function(p) {
+          (p.vendors||[]).forEach(function(v) {
+            if (v.id === m.memo.id) m.memo.pid = p.id;
+          });
+        });
       }
     });
-
-    // Unmatched PDFs (PDFs that didn't match any expected payment)
-    var unmatchedPDFs = (r.allInvoices || []).filter(function(inv) { return !usedFiles[inv.file]; });
-
-    // Render results
-    var matched = expected.filter(function(e){ return e.matched; });
-    var missing = expected.filter(function(e){ return !e.matched; });
-    var totalExpected = expected.reduce(function(s,e){ return s + (e.amountTax || e.amount); }, 0);
-    var totalMatched = matched.reduce(function(s,e){ return s + (e.amountTax || e.amount); }, 0);
 
     var h = '';
 
     // Summary bar
+    var totalExpected = matched.length + unmatchedMemos.length;
     h += '<div class="flex flex-wrap items-center gap-4 p-4 bg-slate-50 rounded-lg mb-4">';
     h += '<div class="text-sm"><span class="text-slate-500">対象月:</span> <strong>' + month + '</strong></div>';
-    h += '<div class="text-sm"><span class="text-slate-500">支払予定:</span> <strong>' + expected.length + '件</strong> ' + FMT(totalExpected) + '</div>';
-    h += '<div class="text-sm text-emerald-600 font-medium">照合済 ' + matched.length + '件</div>';
-    if (missing.length) h += '<div class="text-sm text-red-500 font-medium">未着 ' + missing.length + '件</div>';
-    if (unmatchedPDFs.length) h += '<div class="text-sm text-amber-600 font-medium">未登録PDF ' + unmatchedPDFs.length + '件</div>';
+    h += '<div class="text-sm"><span class="text-slate-500">PDF:</span> <strong>' + r.totalFiles + '件</strong></div>';
+    h += '<div class="text-sm"><span class="text-slate-500">支払予定:</span> <strong>' + totalExpected + '件</strong></div>';
+    if (matched.length) h += '<div class="text-sm text-emerald-600 font-medium">照合OK ' + matched.length + '件</div>';
+    var diffCount = matched.filter(function(m){ return m.amountDiff !== 0; }).length;
+    if (diffCount) h += '<div class="text-sm text-amber-600 font-medium">金額差異 ' + diffCount + '件</div>';
+    if (unmatchedMemos.length) h += '<div class="text-sm text-red-500 font-medium">PDF未着 ' + unmatchedMemos.length + '件</div>';
+    if (unmatchedInvoices.length) h += '<div class="text-sm text-amber-600 font-medium">予定外PDF ' + unmatchedInvoices.length + '件</div>';
     h += '</div>';
 
-    // Expected payments table
-    h += '<div class="overflow-x-auto"><table class="w-full text-sm mb-4 min-w-[600px]"><thead><tr class="border-b border-slate-200 bg-gray-50">';
-    h += '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">プロジェクト</th>';
-    h += '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">外注先</th>';
-    h += '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">内容</th>';
-    h += '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">税込金額</th>';
-    h += '<th scope="col" class="text-center py-2 px-3 text-xs font-medium text-slate-500">PDF</th>';
-    h += '<th scope="col" class="text-center py-2 px-3 text-xs font-medium text-slate-500">操作</th>';
-    h += '</tr></thead><tbody>';
+    // 照合結果テーブル
+    if (matched.length) {
+      h += '<h3 class="text-xs font-bold text-slate-500 uppercase mb-2">照合結果</h3>';
+      h += '<div class="overflow-x-auto"><table class="w-full text-sm mb-4 min-w-[600px]"><thead><tr class="border-b border-slate-200 bg-gray-50">';
+      h += '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">プロジェクト</th>';
+      h += '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">外注先</th>';
+      h += '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">予定金額</th>';
+      h += '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">請求金額</th>';
+      h += '<th scope="col" class="text-center py-2 px-3 text-xs font-medium text-slate-500">差異</th>';
+      h += '<th scope="col" class="text-center py-2 px-3 text-xs font-medium text-slate-500">確度</th>';
+      h += '<th scope="col" class="text-center py-2 px-3 text-xs font-medium text-slate-500">操作</th>';
+      h += '</tr></thead><tbody>';
 
-    expected.forEach(function(e) {
-      var rowClass = e.matched ? 'bg-emerald-50/50' : 'bg-red-50/50';
-      h += '<tr class="border-b border-slate-100 ' + rowClass + '">';
-      h += '<td class="py-2 px-3 text-body">' + e.project + '</td>';
-      h += '<td class="py-2 px-3 font-medium text-slate-900">' + e.vendor + '</td>';
-      h += '<td class="py-2 px-3 text-xs text-body">' + e.task + '</td>';
-      h += '<td class="py-2 px-3 text-right font-medium">' + FMT(e.amountTax || e.amount) + '</td>';
-      if (e.matched) {
-        h += '<td class="py-2 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700" title="' + e.matched.file + '">PDF有</span></td>';
-        h += '<td class="py-2 px-3 text-center"><button onclick="markInvoiced(\'' + e.pid + '\',\'' + e.vid + '\')" class="px-2 py-0.5 text-xs bg-amber-50 text-amber-700 rounded cursor-pointer">請求済に</button></td>';
-      } else {
-        h += '<td class="py-2 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-600">未着</span></td>';
-        h += '<td class="py-2 px-3 text-center text-xs text-slate-400">—</td>';
-      }
-      h += '</tr>';
-    });
-    h += '</tbody></table></div>';
+      matched.forEach(function(m) {
+        var hasDiff = m.amountDiff !== 0;
+        var rowClass = hasDiff ? 'bg-amber-50/50' : 'bg-emerald-50/50';
+        var expectedAmt = m.memo.amountTax || m.memo.amount || 0;
+        var invoiceAmt = m.invoice.amount || 0;
+        var conf = m.matchConfidence || 0;
+        var confClass = conf >= 80 ? 'bg-emerald-100 text-emerald-700' : conf >= 60 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-600';
 
-    // Unmatched PDFs
-    if (unmatchedPDFs.length) {
-      h += '<div class="mt-4"><h3 class="text-xs font-bold text-amber-700 uppercase mb-2">支払予定に未登録のPDF（' + unmatchedPDFs.length + '件）</h3>';
+        h += '<tr class="border-b border-slate-100 ' + rowClass + '">';
+        h += '<td class="py-2 px-3 text-body">' + (m.memo.project||'') + '</td>';
+        h += '<td class="py-2 px-3 font-medium text-slate-900">' + (m.memo.vendor||'') + '<div class="text-xs text-slate-400" title="' + (m.invoice.file||'') + '">PDF: ' + (m.invoice.vendor||'不明') + '</div></td>';
+        h += '<td class="py-2 px-3 text-right">' + FMT(expectedAmt) + '</td>';
+        h += '<td class="py-2 px-3 text-right font-medium">' + FMT(invoiceAmt) + '</td>';
+        if (hasDiff) {
+          var diffStr = (m.amountDiff > 0 ? '+' : '') + FMT(m.amountDiff);
+          h += '<td class="py-2 px-3 text-center"><span class="text-xs font-medium text-red-600">' + diffStr + '</span></td>';
+        } else {
+          h += '<td class="py-2 px-3 text-center"><span class="text-xs text-emerald-600 font-bold">✓</span></td>';
+        }
+        h += '<td class="py-2 px-3 text-center"><span class="px-1.5 py-0.5 rounded text-xs font-medium ' + confClass + '">' + conf + '%</span></td>';
+        h += '<td class="py-2 px-3 text-center"><button onclick="markInvoiced(\'' + (m.memo.pid||'') + '\',\'' + (m.memo.id||'') + '\')" class="px-2 py-0.5 text-xs bg-primary-50 text-primary-700 rounded cursor-pointer hover:bg-primary-100">請求済に</button></td>';
+        h += '</tr>';
+      });
+      h += '</tbody></table></div>';
+    }
+
+    // PDF未着（予定はあるがPDFなし）
+    if (unmatchedMemos.length) {
+      h += '<h3 class="text-xs font-bold text-red-600 uppercase mb-2 mt-4">PDF未着（' + unmatchedMemos.length + '件）</h3>';
+      h += '<div class="space-y-1 mb-4">';
+      unmatchedMemos.forEach(function(m) {
+        h += '<div class="flex items-center justify-between text-sm py-2 px-3 bg-red-50 rounded-lg">';
+        h += '<div><strong>' + (m.vendor||'') + '</strong> <span class="text-xs text-body">' + (m.project||'') + '</span></div>';
+        h += '<span class="font-medium">' + FMT(m.amountTax || m.amount) + '</span>';
+        h += '</div>';
+      });
+      h += '</div>';
+    }
+
+    // 予定外PDF（PDFはあるが予定に登録なし）
+    if (unmatchedInvoices.length) {
+      h += '<h3 class="text-xs font-bold text-amber-700 uppercase mb-2 mt-4">予定外のPDF（' + unmatchedInvoices.length + '件）</h3>';
       h += '<div class="space-y-1">';
-      unmatchedPDFs.forEach(function(inv) {
+      unmatchedInvoices.forEach(function(inv) {
         h += '<div class="flex items-center justify-between text-sm py-2 px-3 bg-amber-50 rounded-lg">';
-        h += '<div><strong>' + inv.file + '</strong>';
+        h += '<div><strong>' + (inv.file||'') + '</strong>';
         if (inv.vendor) h += '<span class="text-xs text-slate-500 ml-2">' + inv.vendor + '</span>';
-        if (inv.date) h += '<span class="text-xs text-slate-400 ml-2">' + inv.date + '</span>';
         h += '</div>';
         if (inv.amount) h += '<span class="font-medium">' + FMT(inv.amount) + '</span>';
         h += '</div>';
       });
-      h += '</div></div>';
+      h += '</div>';
     }
 
-    // No PDFs at all
+    // PDFなし案内
     if (!r.totalFiles) {
       h += '<div class="mt-4 p-4 bg-slate-50 rounded-lg text-center text-slate-400">';
-      h += '<p>invoices/ フォルダにPDFがありません</p>';
-      h += '<p class="text-xs mt-1">sales/invoices/ に請求書PDFを入れてスキャンしてください</p>';
+      h += '<p>invoices/' + month + '/ フォルダにPDFがありません</p>';
+      h += '<p class="text-xs mt-1">sales/invoices/' + month + '/ に請求書PDFを入れてスキャンしてください</p>';
       h += '</div>';
     }
 
