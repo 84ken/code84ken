@@ -1,0 +1,904 @@
+{
+  "corrections": {
+    "タテジマ（大西晃）": {
+      "entryCorrections": [
+        {
+          "period": "2023-08",
+          "originalProject": "ディレクション・デザイン",
+          "amount": 704000,
+          "correctedProject": "ゆめみ：角川"
+        },
+        {
+          "period": "2023-07",
+          "originalProject": "ディレクション・デザイン",
+          "amount": 1298000,
+          "correctedProject": "ゆめみ：角川"
+        },
+        {
+          "period": "2023-06",
+          "originalProject": "ディレクション",
+          "amount": 1408000,
+          "correctedProject": "ゆめみ：角川"
+        },
+        {
+          "period": "2023-05",
+          "originalProject": "ディレクション",
+          "amount": 1408000,
+          "correctedProject": "ゆめみ：角川"
+        },
+        {
+          "period": "2023-04",
+          "originalProject": "ディレクション",
+          "amount": 880000,
+          "correctedProject": "ゆめみ：角川"
+        },
+        {
+          "period": "2023-03",
+          "originalProject": "ディレクション",
+          "amount": 563200,
+          "correctedProject": "ゆめみ：角川"
+        },
+        {
+          "period": "2023-03",
+          "originalProject": "ディレクション",
+          "amount": 2640000,
+          "correctedProject": "ゆめみ：角川"
+        },
+        {
+          "period": "2022-12",
+          "originalProject": "ディレクション",
+          "amount": 187000,
+          "correctedProject": "リバサポ"
+        },
+        {
+          "period": "2022-10",
+          "originalProject": "ディレクション",
+          "amount": 605000,
+          "correctedProject": "リバサポ"
+        },
+        {
+          "period": "2022-03",
+          "originalProject": "ディレクション",
+          "amount": 627000,
+          "correctedProject": "リバサポ"
+        },
+        {
+          "period": "2021-12",
+          "originalProject": "ディレクション",
+          "amount": 583000,
+          "correctedProject": "リバサポ"
+        },
+        {
+          "period": "2021-12",
+          "originalProject": "ディレクション",
+          "amount": 154000,
+          "correctedProject": "リバサポ"
+        },
+        {
+          "period": "2021-10",
+          "originalProject": "ディレクション",
+          "amount": 550000,
+          "correctedProject": "リバサポ"
+        },
+        {
+          "period": "2021-09",
+          "originalProject": "ディレクション",
+          "amount": 550000,
+          "correctedProject": "リバサポ"
+        }
+      ],
+      "note": "2023年3〜8月の高額ディレクション = ゆめみ：角川案件（橋本確認済）。2021年9月〜2022年のディレクション = リバサポ（橋本確認済）"
+    },
+    "株式会社ポリリズム": {
+      "entryCorrections": [
+        {
+          "period": "2023-08",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2023-07",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2023-06",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2023-05",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2023-04",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2023-03",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2023-02",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2023-01",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-12",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-11",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-10",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-09",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-08",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-07",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-06",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-05",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-04",
+          "originalProject": "運用",
+          "amount": 99000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-03",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-02",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2022-01",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-12",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-12",
+          "originalProject": "運用",
+          "amount": 220000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-11",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-10",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-09",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-08",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-07",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-06",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-05",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-04",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-03",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-02",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-01",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2021-01",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2020-12",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2020-11",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2020-10",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2020-09",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2020-08",
+          "originalProject": "運用",
+          "amount": 55000,
+          "correctedProject": "横瀬町"
+        },
+        {
+          "period": "2020-09",
+          "originalProject": "開発",
+          "amount": 275000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-08",
+          "originalProject": "開発",
+          "amount": 66000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-08",
+          "originalProject": "開発",
+          "amount": 13200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-08",
+          "originalProject": "開発",
+          "amount": 555500,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-05",
+          "originalProject": "開発",
+          "amount": 1584000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-04",
+          "originalProject": "開発",
+          "amount": 313500,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-03",
+          "originalProject": "開発",
+          "amount": 1457500,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-03",
+          "originalProject": "開発",
+          "amount": 770000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-02",
+          "originalProject": "開発",
+          "amount": 434500,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-01",
+          "originalProject": "開発",
+          "amount": 341000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-01",
+          "originalProject": "開発",
+          "amount": 332750,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-12",
+          "originalProject": "開発",
+          "amount": 390500,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-11",
+          "originalProject": "開発",
+          "amount": 2282500,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-10",
+          "originalProject": "開発",
+          "amount": 1787500,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-09",
+          "originalProject": "開発",
+          "amount": 326700,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-08",
+          "originalProject": "開発",
+          "amount": 326700,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-07",
+          "originalProject": "開発",
+          "amount": 464400,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-07",
+          "originalProject": "開発",
+          "amount": 2025000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-06",
+          "originalProject": "開発",
+          "amount": 351000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-05",
+          "originalProject": "開発",
+          "amount": 426600,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-04",
+          "originalProject": "開発",
+          "amount": 426600,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-04",
+          "originalProject": "開発",
+          "amount": 1404000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-03",
+          "originalProject": "開発",
+          "amount": 826200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-03",
+          "originalProject": "開発",
+          "amount": 68040,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-02",
+          "originalProject": "開発",
+          "amount": 799200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-01",
+          "originalProject": "開発",
+          "amount": 324000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-12",
+          "originalProject": "開発",
+          "amount": 280800,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-11",
+          "originalProject": "開発",
+          "amount": 140400,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-10",
+          "originalProject": "開発",
+          "amount": 637200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-09",
+          "originalProject": "開発",
+          "amount": 75600,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-08",
+          "originalProject": "開発",
+          "amount": 351000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-07",
+          "originalProject": "開発",
+          "amount": 378000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-06",
+          "originalProject": "開発",
+          "amount": 91800,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-05",
+          "originalProject": "開発",
+          "amount": 367200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-04",
+          "originalProject": "開発",
+          "amount": 286200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-03",
+          "originalProject": "開発",
+          "amount": 151200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-02",
+          "originalProject": "開発",
+          "amount": 448200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-01",
+          "originalProject": "開発",
+          "amount": 356400,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-01",
+          "originalProject": "開発",
+          "amount": 583200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2017-11",
+          "originalProject": "開発",
+          "amount": 2160000,
+          "correctedProject": "エン・ジャパン"
+        }
+      ],
+      "note": "2020年8月〜の月額「運用」= 横瀬町サーバー保守（橋本確認済）。2017年11月〜の「開発」= エン・ジャパン案件（橋本確認済）"
+    },
+    "株式会社イロリ(細田)": {
+      "entryCorrections": [
+        {
+          "period": "2016-12",
+          "originalProject": "デザイン",
+          "amount": 324000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-12",
+          "originalProject": "デザイン",
+          "amount": 324000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-12",
+          "originalProject": "デザイン",
+          "amount": 140400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-11",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-10",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-10",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-09",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-09",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-09",
+          "originalProject": "デザイン",
+          "amount": 216000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-08",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-08",
+          "originalProject": "デザイン",
+          "amount": 129600,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-08",
+          "originalProject": "デザイン",
+          "amount": 54000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-08",
+          "originalProject": "デザイン・コーディング",
+          "amount": 216000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-08",
+          "originalProject": "デザイン・コーディング",
+          "amount": 54000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-07",
+          "originalProject": "デザイン",
+          "amount": 194400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-07",
+          "originalProject": "デザイン",
+          "amount": 43200,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-07",
+          "originalProject": "デザイン",
+          "amount": 32400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-06",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-06",
+          "originalProject": "デザイン",
+          "amount": 54000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-05",
+          "originalProject": "デザイン・コーディング",
+          "amount": 64800,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-05",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-05",
+          "originalProject": "デザイン",
+          "amount": 54000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-04",
+          "originalProject": "デザイン・コーディング",
+          "amount": 140400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-04",
+          "originalProject": "デザイン",
+          "amount": 270000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-04",
+          "originalProject": "デザイン",
+          "amount": 54000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-02",
+          "originalProject": "デザイン",
+          "amount": 270000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-02",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-02",
+          "originalProject": "デザイン",
+          "amount": 86400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-02",
+          "originalProject": "デザイン",
+          "amount": 21600,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2016-01",
+          "originalProject": "デザイン",
+          "amount": 108000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-12",
+          "originalProject": "デザイン",
+          "amount": 32400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-12",
+          "originalProject": "デザイン",
+          "amount": 86400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-12",
+          "originalProject": "デザイン",
+          "amount": 86400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-11",
+          "originalProject": "デザイン",
+          "amount": 324000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-11",
+          "originalProject": "デザイン",
+          "amount": 32400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-10",
+          "originalProject": "デザイン・コーディング",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-10",
+          "originalProject": "デザイン",
+          "amount": 54000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-09",
+          "originalProject": "UIデザイン",
+          "amount": 432000,
+          "correctedProject": "ARUHI"
+        },
+        {
+          "period": "2015-09",
+          "originalProject": "デザイン",
+          "amount": 324000,
+          "correctedProject": "ARUHI"
+        },
+        {
+          "period": "2015-09",
+          "originalProject": "デザイン・コーディング",
+          "amount": 216000,
+          "correctedProject": "ARUHI"
+        },
+        {
+          "period": "2015-09",
+          "originalProject": "デザイン",
+          "amount": 324000,
+          "correctedProject": "ARUHI"
+        },
+        {
+          "period": "2015-08",
+          "originalProject": "デザイン",
+          "amount": 162000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-08",
+          "originalProject": "デザイン",
+          "amount": 75600,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-07",
+          "originalProject": "デザイン",
+          "amount": 324000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-07",
+          "originalProject": "デザイン",
+          "amount": 108000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-07",
+          "originalProject": "デザイン",
+          "amount": 540000,
+          "correctedProject": "アダストリア"
+        },
+        {
+          "period": "2015-07",
+          "originalProject": "デザイン",
+          "amount": 54000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-07",
+          "originalProject": "デザイン",
+          "amount": 21600,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-06",
+          "originalProject": "デザイン",
+          "amount": 108000,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-06",
+          "originalProject": "デザイン",
+          "amount": 86400,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-05",
+          "originalProject": "デザイン",
+          "amount": 0,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-04",
+          "originalProject": "デザイン",
+          "amount": 0,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-03",
+          "originalProject": "デザイン",
+          "amount": 0,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        },
+        {
+          "period": "2015-02",
+          "originalProject": "デザイン",
+          "amount": 0,
+          "correctedProject": "エクシング（ジョイサウンド）"
+        }
+      ],
+      "note": "2015〜2016のデザイン = エクシング（ジョイサウンド）。2015-07 ¥540,000 = アダストリア（橋本確認済）。2015-09 = ARUHI（橋本確認済）",
+      "projectMappings": [],
+      "addedProjects": []
+    }
+  },
+  "updatedAt": "2026-03-21T05:44:22.310Z"
+}
