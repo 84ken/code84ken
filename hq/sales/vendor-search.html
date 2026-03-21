@@ -84,7 +84,14 @@ let corrections = {};
 
 async function loadCorrections() {
   try {
-    const r = await fetch('/api/corrections');
+    // まずAPI（ローカルサーバー）を試行、なければ静的JSONファイルをfetch
+    let r;
+    try {
+      r = await fetch('/api/corrections');
+      if (!r.ok || r.headers.get('content-type')?.includes('text/html')) throw new Error('not API');
+    } catch(e) {
+      r = await fetch('vendor-corrections.json');
+    }
     const data = await r.json();
     corrections = data.corrections || {};
   } catch(e) {}
