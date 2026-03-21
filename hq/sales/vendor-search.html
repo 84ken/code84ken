@@ -101,13 +101,65 @@ async function saveVendorCorrection(vendorName, correction) {
 
 function getDisplayProjects(vendor) {
   const c = corrections[vendor.name];
-  if (!c || !c.projectMappings) return vendor.projects;
-  // Apply corrections
-  return vendor.projects.map(p => {
-    const mapping = c.projectMappings.find(m => m.original === p.name);
+  if (!c) return vendor.projects;
+
+  // Start with project-level mappings
+  let result = vendor.projects.map(p => {
+    const mapping = (c.projectMappings || []).find(m => m.original === p.name);
     if (mapping) return { ...p, name: mapping.corrected, originalName: p.name };
-    return p;
-  }).concat((c.addedProjects || []).map(name => ({ name, tasks: [], monthCount: 0, totalExTax: 0, added: true })));
+    return { ...p };
+  });
+
+  // Apply entry-level corrections: aggregate corrected project names from entryCorrections
+  if (c.entryCorrections && c.entryCorrections.length > 0) {
+    const entrySummary = {}; // correctedProject → { count, total }
+    c.entryCorrections.forEach(ec => {
+      if (!entrySummary[ec.correctedProject]) entrySummary[ec.correctedProject] = { count: 0, total: 0 };
+      entrySummary[ec.correctedProject].count++;
+      entrySummary[ec.correctedProject].total += ec.amount || 0;
+    });
+
+    // For each corrected project, check if it already exists in result
+    Object.entries(entrySummary).forEach(([projName, stats]) => {
+      const existing = result.find(p => p.name === projName);
+      if (existing) {
+        // Already exists (from named entries or project mapping), boost it
+        existing.totalExTax = (existing.totalExTax || 0) + stats.total;
+        existing.monthCount = (existing.monthCount || 0) + stats.count;
+        existing.hasCorrectedEntries = true;
+      } else {
+        // New project name from entry corrections
+        result.push({ name: projName, tasks: [], monthCount: stats.count, totalExTax: stats.total, correctedFromEntries: true });
+      }
+    });
+
+    // Reduce totals from original generic projects that were corrected
+    const correctedOriginals = {};
+    c.entryCorrections.forEach(ec => {
+      if (!correctedOriginals[ec.originalProject]) correctedOriginals[ec.originalProject] = { count: 0, total: 0 };
+      correctedOriginals[ec.originalProject].count++;
+      correctedOriginals[ec.originalProject].total += ec.amount || 0;
+    });
+    result = result.map(p => {
+      const co = correctedOriginals[p.name];
+      if (co && !p.correctedFromEntries && !p.originalName) {
+        const remaining = (p.totalExTax || 0) - co.total;
+        const remainingMonths = (p.monthCount || 0) - co.count;
+        if (remaining <= 0 && remainingMonths <= 0) return null; // fully corrected away
+        return { ...p, totalExTax: Math.max(0, remaining), monthCount: Math.max(0, remainingMonths) };
+      }
+      return p;
+    }).filter(Boolean);
+  }
+
+  // Add manually added projects
+  (c.addedProjects || []).forEach(name => {
+    if (!result.find(p => p.name === name)) {
+      result.push({ name, tasks: [], monthCount: 0, totalExTax: 0, added: true });
+    }
+  });
+
+  return result;
 }
 
 function hasCorrections(vendorName) {
