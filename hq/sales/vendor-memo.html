@@ -320,12 +320,20 @@ function autoExTax() {
 
 // ===== LOAD / SAVE =====
 async function load() {
-  var r = await (await fetch('/api/memos')).json();
+  try {
+    var resp = await fetch('/api/memos');
+    if (!resp.ok) throw new Error();
+    var r = await resp.json();
+  } catch(e) {
+    var r = await (await fetch('vendor-memos.json')).json();
+  }
   D = r.projects ? r : { projects: [] };
   render();
 }
 async function save() {
-  await fetch('/api/memos', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(D) });
+  try {
+    await fetch('/api/memos', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(D) });
+  } catch(e) { /* HQ版ではAPIなし */ }
 }
 
 // ===== RENDER =====
