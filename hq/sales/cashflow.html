@@ -26,18 +26,18 @@ body { font-size: 14px; line-height: 1.7; }
 <body class="bg-gray-50 min-h-screen">
 
 <!-- Nav -->
-<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 32px;display:flex;align-items:center;gap:12px;">
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;">
   <a href="/" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
     <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span> HQ
   </a>
   <span style="color:#cbd5e1;">/</span>
-  <a href="sales-dashboard.html" style="color:#64748b;font-size:13px;text-decoration:none;">売上</a>
-  <a href="vendor-search.html" style="color:#64748b;font-size:13px;text-decoration:none;">外注先</a>
-  <a href="vendor-memo.html" style="color:#64748b;font-size:13px;text-decoration:none;">プロジェクト</a>
+  <a href="/sales-dashboard.html" style="color:#64748b;font-size:13px;text-decoration:none;">売上</a>
+  <a href="/vendor-search.html" style="color:#64748b;font-size:13px;text-decoration:none;">外注先</a>
+  <a href="/vendor-memo.html" style="color:#64748b;font-size:13px;text-decoration:none;">プロジェクト</a>
   <span style="color:#334155;font-size:13px;font-weight:600;">キャッシュフロー</span>
 </div>
 
-<div class="max-w-6xl mx-auto px-8 py-12" id="app">
+<div class="max-w-6xl mx-auto px-4 sm:px-8 py-6 sm:py-12" id="app">
   <p class="text-slate-400 text-center py-20">データ読み込み中...</p>
 </div>
 
@@ -62,7 +62,7 @@ async function init() {
   try {
   // Fetch all data sources in parallel
   var results = await Promise.all([
-    fetch('vendor-memos.json').then(function(r){return r.json()}),
+    fetch('/api/memos').then(function(r){return r.json()}),
     fetch('sales-data.json').then(function(r){return r.json()}),
     fetch('vendor-data.json').then(function(r){return r.json()})
   ]);
@@ -171,16 +171,16 @@ function render(cf, vendors) {
   var h = '';
 
   // Header
-  h += '<div class="flex items-center justify-between mb-8">';
+  h += '<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">';
   h += '<div><h1 class="text-3xl font-bold text-slate-900">キャッシュフロー</h1>';
   h += '<p class="text-body mt-1">第16期（' + currentYear + '.7 〜 ' + (currentYear+1) + '.6）入出金の月別推移</p></div>';
   h += '<div class="flex gap-2">';
-  h += '<a href="vendor-memo.html" class="inline-flex items-center justify-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50">プロジェクト管理</a>';
-  h += '<a href="sales-dashboard.html" class="inline-flex items-center justify-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50">売上ダッシュボード</a>';
+  h += '<a href="/vendor-memo.html" class="inline-flex items-center justify-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50">プロジェクト管理</a>';
+  h += '<a href="/sales-dashboard.html" class="inline-flex items-center justify-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50">売上ダッシュボード</a>';
   h += '</div></div>';
 
   // KPI Cards
-  h += '<div class="grid grid-cols-4 gap-4 mb-8">';
+  h += '<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">';
   h += kpiCard('売上入金（実績）', FMT(totalIn), '');
   h += kpiCard('外注支払（実績）', FMT(totalOut), '');
   h += kpiCard('外注予定（未払い）', FMT(totalPlannedOut), totalPlannedOut > 0 ? '<span class="text-amber-600 font-medium">支払い予定あり</span>' : '');
@@ -223,7 +223,7 @@ function render(cf, vendors) {
     h += '<div class="flex-1 bg-slate-100 rounded h-5 relative overflow-hidden flex">';
     if (inActualPct > 0) h += '<div class="bg-primary-400 h-5 bar-fill" style="width:' + inActualPct + '%"></div>';
     h += '</div>';
-    h += '<div class="w-28 text-right text-xs text-slate-600">' + FMT(inActual) + '</div>';
+    h += '<div class="w-20 sm:w-28 text-right text-xs text-slate-600">' + FMT(inActual) + '</div>';
     h += '</div>';
 
     // Outgoing bar
@@ -233,7 +233,7 @@ function render(cf, vendors) {
     if (outActualPct > 0) h += '<div class="bg-red-400 h-5 bar-fill" style="width:' + outActualPct + '%"></div>';
     if (outPlannedPct > 0) h += '<div class="bg-amber-300 h-5 bar-fill" style="width:' + outPlannedPct + '%"></div>';
     h += '</div>';
-    h += '<div class="w-28 text-right text-xs text-slate-600">' + FMT(outActual + outPlanned) + '</div>';
+    h += '<div class="w-20 sm:w-28 text-right text-xs text-slate-600">' + FMT(outActual + outPlanned) + '</div>';
     h += '</div>';
 
     // Net
@@ -252,6 +252,7 @@ function render(cf, vendors) {
   // Monthly Detail Table
   h += '<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-8">';
   h += '<div class="p-5 border-b border-slate-200"><h2 class="text-base font-bold text-slate-900">月別サマリー</h2></div>';
+  h += '<div class="overflow-x-auto">';
   h += '<table class="w-full text-sm"><thead><tr class="border-b border-slate-200 bg-gray-50">';
   h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">月</th>';
   h += '<th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">売上計上</th>';
@@ -295,7 +296,7 @@ function render(cf, vendors) {
   h += '<td class="py-3 px-4 text-right ' + (grandNet >= 0 ? 'text-emerald-600' : 'text-red-600') + '">' + FMT(grandNet) + '</td>';
   h += '</tr>';
 
-  h += '</tbody></table></div>';
+  h += '</tbody></table></div></div>';
 
   // Upcoming payments (next 2 months)
   var upcoming = [];
@@ -331,7 +332,7 @@ function render(cf, vendors) {
   if (upcoming.length) {
     h += '<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-8">';
     h += '<div class="p-5 border-b border-slate-200">';
-    h += '<div class="flex items-center justify-between">';
+    h += '<div class="flex flex-wrap items-center justify-between gap-3">';
     h += '<div><h2 class="text-base font-bold text-slate-900">今後の支払い予定</h2>';
     h += '<p class="text-xs text-slate-400 mt-1">' + upcoming.length + '件 / ' + FMT(upcoming.reduce(function(s,u){return s+(u.amount||0)},0)) + '</p></div>';
     h += '<div class="flex gap-2">';
@@ -341,12 +342,13 @@ function render(cf, vendors) {
 
     h += '<div id="scan-result"></div>';
 
+    h += '<div class="overflow-x-auto">';
     h += '<table class="w-full text-sm" id="upcoming-table"><thead><tr class="border-b border-slate-200 bg-gray-50">';
     h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">支払月</th>';
     h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">外注先</th>';
-    h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">インボイス</th>';
+    h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase hidden sm:table-cell">インボイス</th>';
     h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">案件</th>';
-    h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase">内容</th>';
+    h += '<th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase hidden sm:table-cell">内容</th>';
     h += '<th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">税抜</th>';
     h += '<th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase">税込</th>';
     h += '<th scope="col" class="text-center py-3 px-4 text-xs font-medium text-slate-500 uppercase">状態</th>';
@@ -362,16 +364,16 @@ function render(cf, vendors) {
       h += '<tr class="border-b border-slate-100 hover:bg-gray-50' + (isOverdue ? ' bg-red-50' : '') + '" id="row-' + idx + '">';
       h += '<td class="py-3 px-4 font-medium text-slate-900">' + u.month + (isOverdue ? ' <span class="text-xs text-red-500 font-medium">超過</span>' : '') + '</td>';
       h += '<td class="py-3 px-4 text-slate-900">' + (u.vendor || '') + '</td>';
-      h += '<td class="py-3 px-4 text-xs text-slate-400">' + (u.invoice || '-') + '</td>';
+      h += '<td class="py-3 px-4 text-xs text-slate-400 hidden sm:table-cell">' + (u.invoice || '-') + '</td>';
       h += '<td class="py-3 px-4 text-body">' + (u.project || '') + '</td>';
-      h += '<td class="py-3 px-4 text-xs text-body">' + (u.task || '') + '</td>';
+      h += '<td class="py-3 px-4 text-xs text-body hidden sm:table-cell">' + (u.task || '') + '</td>';
       h += '<td class="py-3 px-4 text-right">' + FMT(exTax) + '</td>';
       h += '<td class="py-3 px-4 text-right font-medium">' + FMT(u.amount) + '</td>';
       h += '<td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-medium ' + sc + '">' + sl + '</span></td>';
       h += '<td class="py-3 px-4 text-center" id="pdf-' + idx + '"><span class="text-xs text-slate-300">—</span></td>';
       h += '</tr>';
     });
-    h += '</tbody></table></div>';
+    h += '</tbody></table></div></div>';
   }
 
   document.getElementById('app').innerHTML = h;
@@ -395,7 +397,7 @@ function toggleDetail(row, month) {
   td.colSpan = 5;
   td.className = 'p-4 bg-slate-50';
 
-  var html = '<div class="grid grid-cols-2 gap-4">';
+  var html = '<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">';
 
   // Income details
   html += '<div><h4 class="text-xs font-bold text-slate-500 uppercase mb-2">入金内訳</h4>';
@@ -506,7 +508,7 @@ async function scanAndMatch() {
   scanDiv.innerHTML = '<div class="p-4 text-sm text-slate-400">請求書PDFをスキャン中...</div>';
 
   try {
-    var r = await (await Promise.resolve({json:function(){return {totalFiles:0,allInvoices:[]}}})).json();
+    var r = await (await fetch('/api/invoices/scan')).json();
     var upcoming = window._upcoming || [];
 
     if (!r.totalFiles) {
@@ -546,7 +548,7 @@ async function scanAndMatch() {
     });
 
     // Summary
-    var sh = '<div class="p-4 flex items-center gap-4 border-b border-slate-200 bg-slate-50">';
+    var sh = '<div class="p-4 flex flex-wrap items-center gap-4 border-b border-slate-200 bg-slate-50">';
     sh += '<span class="text-sm font-medium text-slate-700">PDF照合結果:</span>';
     sh += '<span class="text-sm text-emerald-600 font-medium">一致 ' + matched + '件</span>';
     sh += '<span class="text-sm text-red-500 font-medium">未着 ' + unmatched + '件</span>';
