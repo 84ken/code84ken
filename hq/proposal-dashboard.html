@@ -29,10 +29,9 @@ tailwind.config = {
   .confidence-high { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
   .confidence-mid { background: #fffbeb; color: #92400e; border-color: #fde68a; }
   .confidence-low { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
-  .status-proposed { background: #eff6ff; color: #1e40af; }
-  .status-lost { background: #f3f4f6; color: #6b7280; }
-  .status-preparing { background: #faf5ff; color: #7c3aed; }
   .bar-fill { transition: width 0.8s ease; }
+  .staff-dropdown { display: none; }
+  .staff-dropdown.open { display: block; }
   @media print {
     body { background: white !important; }
     .no-print { display: none; }
@@ -40,58 +39,65 @@ tailwind.config = {
 </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
-<!-- HQ Nav -->
-<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 32px;display:flex;align-items:center;gap:12px;font-family:Inter,'Hiragino Sans','Noto Sans JP',sans-serif;">
-  <a href="/index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
-    <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span>
-    HQ
-  </a>
-  <span style="color:#cbd5e1;">／</span>
-  <span style="color:#334155;font-size:13px;font-weight:500;">プロポーザル ダッシュボード</span>
-</div>
 
-<div class="max-w-7xl mx-auto px-8 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-12">
 
   <!-- ヘッダー -->
-  <div class="flex items-center justify-between mb-10">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 sm:mb-10 gap-2">
     <div>
-      <h1 class="text-3xl font-bold text-slate-900">行政プロポーザル ダッシュボード</h1>
-      <p class="text-body mt-1">株式会社スキーマ — 令和8年度 案件一覧・確度分析</p>
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">行政プロポーザル ダッシュボード</h1>
+      <p class="text-body mt-1 text-sm">株式会社スキーマ — 令和8年度 案件一覧・確度分析</p>
     </div>
-    <div class="text-right">
-      <p class="text-sm text-slate-500">最終更新: 2026年3月20日</p>
+    <div class="sm:text-right">
+      <p class="text-sm text-slate-500">最終更新: 2026年3月21日</p>
       <p class="text-sm text-slate-500">CONFIDENTIAL</p>
     </div>
   </div>
 
   <!-- サマリーカード -->
-  <div class="grid grid-cols-4 gap-6 mb-10">
-    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-      <p class="text-sm text-slate-500 mb-1">案件総数</p>
-      <p class="text-3xl font-bold text-slate-900">13<span class="text-lg font-medium text-slate-400 ml-1">件</span></p>
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-10">
+    <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
+      <p class="text-xs sm:text-sm text-slate-500 mb-1">案件総数</p>
+      <p class="text-2xl sm:text-3xl font-bold text-slate-900">14<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
     </div>
-    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-      <p class="text-sm text-slate-500 mb-1">提案中</p>
-      <p class="text-3xl font-bold text-primary-600">9<span class="text-lg font-medium text-slate-400 ml-1">件</span></p>
+    <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
+      <p class="text-xs sm:text-sm text-slate-500 mb-1">提案中</p>
+      <p class="text-2xl sm:text-3xl font-bold text-primary-600">10<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
       <p class="text-xs text-slate-400 mt-1">＋予定2件</p>
     </div>
-    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-      <p class="text-sm text-slate-500 mb-1">失注</p>
-      <p class="text-3xl font-bold text-slate-400">2<span class="text-lg font-medium text-slate-400 ml-1">件</span></p>
+    <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
+      <p class="text-xs sm:text-sm text-slate-500 mb-1">完了（失注）</p>
+      <p class="text-2xl sm:text-3xl font-bold text-slate-400">2<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
     </div>
-    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-      <p class="text-sm text-slate-500 mb-1">判明予算合計（提案中）</p>
-      <p class="text-2xl font-bold text-slate-900">¥155,002,360</p>
+    <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
+      <p class="text-xs sm:text-sm text-slate-500 mb-1">判明予算合計（提案中）</p>
+      <p class="text-xl sm:text-2xl font-bold text-slate-900">¥155,002,360</p>
       <p class="text-xs text-slate-400 mt-1">予定2件（¥8M）含む</p>
     </div>
   </div>
 
+  <!-- ステータスフィルタータブ -->
+  <div class="flex flex-wrap gap-2 mb-6 no-print">
+    <button onclick="filterStatus('all')" data-filter="all" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-primary-500 text-white cursor-pointer">
+      すべて <span class="bg-white/20 px-1.5 py-0.5 rounded text-xs">14</span>
+    </button>
+    <button onclick="filterStatus('進行中')" data-filter="進行中" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
+      進行中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">0</span>
+    </button>
+    <button onclick="filterStatus('提案中')" data-filter="提案中" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
+      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">10</span>
+    </button>
+    <button onclick="filterStatus('完了')" data-filter="完了" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
+      完了 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">2</span>
+    </button>
+  </div>
+
   <!-- 確度別パイプライン -->
-  <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-10">
-    <h2 class="text-lg font-bold text-slate-900 mb-6">確度別パイプライン（提案中7件）</h2>
-    <div class="grid grid-cols-3 gap-6">
+  <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm mb-8 sm:mb-10">
+    <h2 class="text-lg font-bold text-slate-900 mb-4 sm:mb-6">確度別パイプライン（提案中）</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
       <!-- 高 -->
-      <div class="rounded-lg border-2 border-emerald-200 bg-emerald-50/50 p-5">
+      <div class="rounded-lg border-2 border-emerald-200 bg-emerald-50/50 p-4 sm:p-5">
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
           <span class="text-sm font-bold text-emerald-800">確度 高</span>
@@ -110,11 +116,11 @@ tailwind.config = {
         </div>
       </div>
       <!-- 中 -->
-      <div class="rounded-lg border-2 border-amber-200 bg-amber-50/50 p-5">
+      <div class="rounded-lg border-2 border-amber-200 bg-amber-50/50 p-4 sm:p-5">
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 rounded-full bg-amber-500"></span>
           <span class="text-sm font-bold text-amber-800">確度 中</span>
-          <span class="ml-auto text-2xl font-bold text-amber-700">2件</span>
+          <span class="ml-auto text-2xl font-bold text-amber-700">3件</span>
         </div>
         <div class="space-y-2 text-sm">
           <div class="flex justify-between"><span class="text-amber-800">農産物ブランド化支援</span><span class="font-medium">¥9,900,000</span></div>
@@ -127,16 +133,17 @@ tailwind.config = {
         </div>
       </div>
       <!-- 低 -->
-      <div class="rounded-lg border-2 border-red-200 bg-red-50/50 p-5">
+      <div class="rounded-lg border-2 border-red-200 bg-red-50/50 p-4 sm:p-5">
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 rounded-full bg-red-400"></span>
           <span class="text-sm font-bold text-red-800">確度 低</span>
-          <span class="ml-auto text-2xl font-bold text-red-600">1件</span>
+          <span class="ml-auto text-2xl font-bold text-red-600">2件</span>
         </div>
         <div class="space-y-2 text-sm">
           <div class="flex justify-between"><span class="text-red-800">埼玉グルメPJ</span><span class="font-medium">¥47,730,000</span></div>
+          <div class="flex justify-between"><span class="text-red-800">アットパーキング</span><span class="font-medium">—</span></div>
           <div class="border-t border-red-200 pt-2 mt-3 flex justify-between font-bold text-red-900">
-            <span>小計</span><span>¥47,730,000</span>
+            <span>小計</span><span>¥47,730,000+</span>
           </div>
         </div>
       </div>
@@ -144,180 +151,49 @@ tailwind.config = {
   </div>
 
   <!-- 案件一覧テーブル -->
-  <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mb-10">
-    <div class="px-6 py-4 border-b border-slate-200 bg-gray-50">
+  <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mb-8 sm:mb-10">
+    <div class="px-4 sm:px-6 py-4 border-b border-slate-200 bg-gray-50">
       <h2 class="text-lg font-bold text-slate-900">案件一覧</h2>
     </div>
-    <table class="w-full">
-      <thead>
-        <tr class="border-b border-slate-200 bg-gray-50">
-          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider w-8">#</th>
-          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">案件名</th>
-          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">発注元</th>
-          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">予算上限</th>
-          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">提出日</th>
-          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">審査</th>
-          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">ステータス</th>
-          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">確度</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-slate-100">
-        <!-- 0. 観光客誘致 -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4 text-sm text-slate-400">1</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">観光客誘致・戦略的情報発信<br><span class="text-xs text-body">12LP更新＋動画5本制作＋ターゲティング広告</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県物産<br>観光協会<span class="text-xs text-slate-400"><br>DMO事業本部</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">¥39,600,000</td>
-          <td class="py-3 px-4 text-sm text-body">3/31</td>
-          <td class="py-3 px-4 text-sm text-body">プレゼン 4/10<br><span class="text-xs text-slate-400">結果 4/13</span></td>
-          <td class="py-3 px-4"><span class="status-proposed px-2.5 py-1 rounded-full text-xs font-medium">提案中</span></td>
-          <td class="py-3 px-4"><span class="confidence-high border px-2.5 py-1 rounded-full text-xs font-medium">高</span></td>
-        </tr>
-        <!-- 2. ぶんたま -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4 text-sm text-slate-400">2</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">伝統文化魅力発信アプリ「ぶんたま」<br><span class="text-xs text-body">保守運用及び利用促進プロモーション業務</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県<br><span class="text-xs text-slate-400">県民文化部</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">¥16,783,000</td>
-          <td class="py-3 px-4 text-sm text-body">3/13</td>
-          <td class="py-3 px-4 text-sm text-body">プレゼン 3/23</td>
-          <td class="py-3 px-4"><span class="status-proposed px-2.5 py-1 rounded-full text-xs font-medium">提案中</span></td>
-          <td class="py-3 px-4"><span class="confidence-high border px-2.5 py-1 rounded-full text-xs font-medium">高</span></td>
-        </tr>
-        <!-- 2. すぽったま運用保守 -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4 text-sm text-slate-400">2</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">すぽったま！運用保守<br><span class="text-xs text-body">スマホスタンプラリー等観戦促進業務</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県<br><span class="text-xs text-slate-400">県民生活部</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">¥15,259,000</td>
-          <td class="py-3 px-4 text-sm text-body">3/16</td>
-          <td class="py-3 px-4 text-sm text-body">プレゼン 3/23</td>
-          <td class="py-3 px-4"><span class="status-proposed px-2.5 py-1 rounded-full text-xs font-medium">提案中</span></td>
-          <td class="py-3 px-4"><span class="confidence-high border px-2.5 py-1 rounded-full text-xs font-medium">高</span></td>
-        </tr>
-        <!-- 3. リバサポ -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4 text-sm text-slate-400">3</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">SAITAMAリバーサポーターズPJ<br><span class="text-xs text-body">事業支援＋リバサポ・クエスト業務</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県<br><span class="text-xs text-slate-400">県土整備部</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">¥8,753,360</td>
-          <td class="py-3 px-4 text-sm text-body">3/6</td>
-          <td class="py-3 px-4 text-sm text-body">プレゼン 3/23</td>
-          <td class="py-3 px-4"><span class="status-proposed px-2.5 py-1 rounded-full text-xs font-medium">提案中</span></td>
-          <td class="py-3 px-4"><span class="confidence-high border px-2.5 py-1 rounded-full text-xs font-medium">高</span></td>
-        </tr>
-        <!-- 4. すぽったまコンテンツ -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4 text-sm text-slate-400">4</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">すぽったま！コンテンツ制作<br><span class="text-xs text-body">試合観戦促進コンテンツ制作等業務</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県<br><span class="text-xs text-slate-400">県民生活部</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">¥3,527,000</td>
-          <td class="py-3 px-4 text-sm text-body">3/18</td>
-          <td class="py-3 px-4 text-sm text-body">プレゼン 3/23</td>
-          <td class="py-3 px-4"><span class="status-proposed px-2.5 py-1 rounded-full text-xs font-medium">提案中</span></td>
-          <td class="py-3 px-4"><span class="confidence-high border px-2.5 py-1 rounded-full text-xs font-medium">高</span></td>
-        </tr>
-        <!-- 5. 農産物ブランド化 -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4 text-sm text-slate-400">5</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">埼玉県産農産物ブランド化支援<br><span class="text-xs text-body">重点品目（梨・ぶどう・小玉すいか）</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県<br><span class="text-xs text-slate-400">農林部</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">¥9,900,000</td>
-          <td class="py-3 px-4 text-sm text-body">4/21</td>
-          <td class="py-3 px-4 text-sm text-body">プレゼン<br>4月下旬〜5月上旬</td>
-          <td class="py-3 px-4"><span class="status-proposed px-2.5 py-1 rounded-full text-xs font-medium">提案中</span></td>
-          <td class="py-3 px-4"><span class="confidence-mid border px-2.5 py-1 rounded-full text-xs font-medium">中</span></td>
-        </tr>
-        <!-- 6. 梨ブランディング -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4 text-sm text-slate-400">6</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">埼玉県梨新品種ブランディング<br><span class="text-xs text-body">彩姫・彩彦・彩玉のブランド戦略</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県<br><span class="text-xs text-slate-400">農林部</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">¥3,470,000</td>
-          <td class="py-3 px-4 text-sm text-body">4/21</td>
-          <td class="py-3 px-4 text-sm text-body">プレゼン<br>4月下旬〜5月上旬</td>
-          <td class="py-3 px-4"><span class="status-proposed px-2.5 py-1 rounded-full text-xs font-medium">提案中</span></td>
-          <td class="py-3 px-4"><span class="confidence-mid border px-2.5 py-1 rounded-full text-xs font-medium">中</span></td>
-        </tr>
-        <!-- 7. グルメ -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4 text-sm text-slate-400">7</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">埼玉グルメプロジェクト<br><span class="text-xs text-body">県民投票型グルメブランディング</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県物産<br>観光協会<span class="text-xs text-slate-400"><br>DMO事業本部</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">¥47,730,000</td>
-          <td class="py-3 px-4 text-sm text-body">3/11</td>
-          <td class="py-3 px-4 text-sm text-body">プレゼン 3/23</td>
-          <td class="py-3 px-4"><span class="status-proposed px-2.5 py-1 rounded-full text-xs font-medium">提案中</span></td>
-          <td class="py-3 px-4"><span class="confidence-low border px-2.5 py-1 rounded-full text-xs font-medium">低</span></td>
-        </tr>
-        <!-- 予定案件 -->
-        <tr class="hover:bg-gray-50 transition-colors border-l-4 border-l-purple-300">
-          <td class="py-3 px-4 text-sm text-slate-400">—</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">いちご大學<br><span class="text-xs text-body">継続案件・随意契約見込み</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県<br><span class="text-xs text-slate-400">（推定）</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">〜¥4,000,000</td>
-          <td class="py-3 px-4 text-sm text-slate-400">未定</td>
-          <td class="py-3 px-4 text-sm text-slate-400">随契見込</td>
-          <td class="py-3 px-4"><span class="status-preparing px-2.5 py-1 rounded-full text-xs font-medium">予定</span></td>
-          <td class="py-3 px-4"><span class="confidence-high border px-2.5 py-1 rounded-full text-xs font-medium">高</span></td>
-        </tr>
-        <tr class="hover:bg-gray-50 transition-colors border-l-4 border-l-purple-300">
-          <td class="py-3 px-4 text-sm text-slate-400">—</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">サーキュラーエコノミー イベント<br><span class="text-xs text-body">新規案件・公示予定</span></td>
-          <td class="py-3 px-4 text-sm text-body">未定</td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">〜¥4,000,000</td>
-          <td class="py-3 px-4 text-sm text-slate-400">未定</td>
-          <td class="py-3 px-4 text-sm text-slate-400">公示待ち</td>
-          <td class="py-3 px-4"><span class="status-preparing px-2.5 py-1 rounded-full text-xs font-medium">予定</span></td>
-          <td class="py-3 px-4"><span class="confidence-mid border px-2.5 py-1 rounded-full text-xs font-medium">中</span></td>
-        </tr>
-        <!-- 8. ちょこたび（失注） -->
-        <tr class="hover:bg-gray-50 transition-colors opacity-60">
-          <td class="py-3 px-4 text-sm text-slate-400">8</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-500">「ちょこたび埼玉」SNS情報発信<br><span class="text-xs text-slate-400">Instagram・X・Facebook運用</span></td>
-          <td class="py-3 px-4 text-sm text-slate-400">埼玉県DMO<br><span class="text-xs text-slate-400">（物産観光協会）</span></td>
-          <td class="py-3 px-4 text-sm text-slate-400">非公開</td>
-          <td class="py-3 px-4 text-sm text-slate-400">3/9</td>
-          <td class="py-3 px-4 text-sm text-slate-400">プレゼン 3/18</td>
-          <td class="py-3 px-4"><span class="status-lost px-2.5 py-1 rounded-full text-xs font-medium">失注</span></td>
-          <td class="py-3 px-4"><span class="text-xs text-slate-400">—</span></td>
-        </tr>
-        <!-- 9. Instagram公式（失注） -->
-        <tr class="hover:bg-gray-50 transition-colors opacity-60">
-          <td class="py-3 px-4 text-sm text-slate-400">9</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-500">Instagram埼玉県公式アカウント運用<br><span class="text-xs text-slate-400">運用サポート業務</span></td>
-          <td class="py-3 px-4 text-sm text-slate-400">埼玉県<br><span class="text-xs text-slate-400">広聴広報課</span></td>
-          <td class="py-3 px-4 text-sm text-slate-400">¥2,904,000</td>
-          <td class="py-3 px-4 text-sm text-slate-400">~3/5</td>
-          <td class="py-3 px-4 text-sm text-slate-400">1次 3月上旬<br>2次 3月中旬</td>
-          <td class="py-3 px-4"><span class="status-lost px-2.5 py-1 rounded-full text-xs font-medium">失注</span></td>
-          <td class="py-3 px-4"><span class="text-xs text-slate-400">—</span></td>
-        </tr>
-        <!-- 10. わっしょいInstagram -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-3 px-4 text-sm text-slate-400">10</td>
-          <td class="py-3 px-4 text-sm font-medium text-slate-900">埼玉県公式Instagram「埼玉わっしょい」<br><span class="text-xs text-body">運用支援業務（農産物連動）</span></td>
-          <td class="py-3 px-4 text-sm text-body">埼玉県<br><span class="text-xs text-slate-400">農林部</span></td>
-          <td class="py-3 px-4 text-sm text-slate-900 font-medium">¥1,980,000</td>
-          <td class="py-3 px-4 text-sm text-body">4/17</td>
-          <td class="py-3 px-4 text-sm text-body">プレゼン<br>4月下旬〜5月上旬</td>
-          <td class="py-3 px-4"><span class="status-proposed px-2.5 py-1 rounded-full text-xs font-medium">提案中</span></td>
-          <td class="py-3 px-4"><span class="confidence-mid border px-2.5 py-1 rounded-full text-xs font-medium">中</span></td>
-        </tr>
-      </tbody>
-    </table>
+
+    <!-- モバイル: カード表示 -->
+    <div class="block lg:hidden divide-y divide-slate-100" id="mobile-list">
+      <!-- JSで生成 -->
+    </div>
+
+    <!-- デスクトップ: テーブル表示 -->
+    <div class="hidden lg:block overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider w-8">#</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">案件名</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">発注元</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">予算上限</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">提出日</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">審査</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">ステータス</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">確度</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[200px]">担当</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100" id="desktop-tbody">
+          <!-- JSで生成 -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- 確度分析セクション -->
-  <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-10">
-    <h2 class="text-lg font-bold text-slate-900 mb-6">確度分析 — 判断根拠</h2>
+  <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm mb-8 sm:mb-10">
+    <h2 class="text-lg font-bold text-slate-900 mb-4 sm:mb-6">確度分析 — 判断根拠</h2>
 
     <div class="space-y-6">
       <!-- 高確度グループ -->
       <div>
         <div class="flex items-center gap-2 mb-3">
           <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-          <h3 class="font-bold text-slate-900">確度 高（4件）— 継続案件 × 実績優位</h3>
+          <h3 class="font-bold text-slate-900">確度 高（6件）— 継続案件 × 実績優位</h3>
         </div>
         <div class="bg-emerald-50 rounded-lg p-4 space-y-3 text-sm text-body">
           <div>
@@ -375,7 +251,7 @@ tailwind.config = {
       <div>
         <div class="flex items-center gap-2 mb-3">
           <span class="w-3 h-3 rounded-full bg-red-400"></span>
-          <h3 class="font-bold text-slate-900">確度 低（1件）— 新規 × 競合多数</h3>
+          <h3 class="font-bold text-slate-900">確度 低（2件）— 新規 × 競合多数</h3>
         </div>
         <div class="bg-red-50 rounded-lg p-4 space-y-3 text-sm text-body">
           <div>
@@ -384,6 +260,10 @@ tailwind.config = {
             <strong>審査:</strong> 11項目で総合評価。プレゼン30分（説明20分+質疑10分）、参加2名まで、結果通知3/24。
             <strong>懸念:</strong> 同じDMO発注の「ちょこたび」が失注済。予算規模が大きいため大手広告代理店の参入が予想される。出展費用・設営費も受託者負担で原価率が高くなりうる。
             <strong>勝機:</strong> スキーマの提案（県民投票→代表チーム結成→動画→スタンプラリー）は仕様書要件を超える独自企画を含む。埼玉県関連の豊富な実績（すぽったま・リバサポ・ぶんたま等）で信頼性をアピールできる。</p>
+          </div>
+          <div>
+            <p class="font-medium text-slate-900">アットパーキング</p>
+            <p>新規提案中の案件。詳細は別途確認。</p>
           </div>
         </div>
       </div>
@@ -409,105 +289,105 @@ tailwind.config = {
   </div>
 
   <!-- タイムライン -->
-  <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-10">
-    <h2 class="text-lg font-bold text-slate-900 mb-6">審査スケジュール</h2>
+  <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm mb-8 sm:mb-10">
+    <h2 class="text-lg font-bold text-slate-900 mb-4 sm:mb-6">審査スケジュール</h2>
 
     <!-- 3/23 タイムテーブル -->
     <div class="mb-8">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">3日後</span>
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <span class="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">本日</span>
         <h3 class="font-bold text-slate-900">3月23日（月）— プレゼン集中日 タイムテーブル</h3>
       </div>
-      <div class="relative border-l-2 border-slate-200 ml-6 space-y-0">
+      <div class="relative border-l-2 border-slate-200 ml-4 sm:ml-6 space-y-0">
         <!-- 9:30 リバサポ -->
-        <div class="relative pl-8 pb-6">
+        <div class="relative pl-6 sm:pl-8 pb-6">
           <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white"></div>
-          <div class="flex items-start gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
             <div class="w-16 flex-shrink-0">
               <p class="text-lg font-bold text-slate-900">9:30</p>
             </div>
-            <div class="flex-1 bg-emerald-50 rounded-lg border border-emerald-200 p-4">
-              <div class="flex items-center justify-between mb-1">
+            <div class="flex-1 bg-emerald-50 rounded-lg border border-emerald-200 p-3 sm:p-4">
+              <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
                 <p class="font-bold text-emerald-900">リバサポ</p>
                 <span class="confidence-high border px-2 py-0.5 rounded-full text-xs font-medium">確度 高</span>
               </div>
               <p class="text-sm text-emerald-800">SAITAMAリバーサポーターズPJ事業支援 — ¥8,753,360</p>
-              <div class="flex items-center gap-4 mt-2 text-xs text-emerald-700">
-                <span class="flex items-center gap-1">📍 埼玉県庁（対面）</span>
+              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-2 text-xs text-emerald-700">
+                <span>📍 埼玉県庁（対面）</span>
                 <span>継続案件</span>
               </div>
             </div>
           </div>
         </div>
         <!-- 移動 -->
-        <div class="relative pl-8 pb-6">
+        <div class="relative pl-6 sm:pl-8 pb-6">
           <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-slate-300"></div>
-          <div class="flex items-center gap-4 text-xs text-slate-500 italic pl-16">
+          <div class="flex items-center gap-4 text-xs text-slate-500 italic sm:pl-16 pl-0">
             ↓ 埼玉県庁 → ソニックシティ（物産観光協会）へ移動
           </div>
         </div>
         <!-- 13:15 すぽったま -->
-        <div class="relative pl-8 pb-6">
+        <div class="relative pl-6 sm:pl-8 pb-6">
           <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white"></div>
-          <div class="flex items-start gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
             <div class="w-16 flex-shrink-0">
               <p class="text-lg font-bold text-slate-900">13:15</p>
             </div>
-            <div class="flex-1 bg-emerald-50 rounded-lg border border-emerald-200 p-4">
-              <div class="flex items-center justify-between mb-1">
+            <div class="flex-1 bg-emerald-50 rounded-lg border border-emerald-200 p-3 sm:p-4">
+              <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
                 <p class="font-bold text-emerald-900">すぽったま（運用保守 + コンテンツ）</p>
                 <span class="confidence-high border px-2 py-0.5 rounded-full text-xs font-medium">確度 高</span>
               </div>
               <p class="text-sm text-emerald-800">スポーツアプリ運用保守 ¥15,259,000 ＋ コンテンツ制作 ¥3,527,000</p>
-              <div class="flex items-center gap-4 mt-2 text-xs text-emerald-700">
-                <span class="flex items-center gap-1">💻 オンライン（ソニックシティのブースから）</span>
+              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-2 text-xs text-emerald-700">
+                <span>💻 オンライン（ソニックシティのブースから）</span>
                 <span>継続案件</span>
               </div>
             </div>
           </div>
         </div>
         <!-- 14:45 ぶんたま -->
-        <div class="relative pl-8 pb-6">
+        <div class="relative pl-6 sm:pl-8 pb-6">
           <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white"></div>
-          <div class="flex items-start gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
             <div class="w-16 flex-shrink-0">
               <p class="text-lg font-bold text-slate-900">14:45</p>
             </div>
-            <div class="flex-1 bg-emerald-50 rounded-lg border border-emerald-200 p-4">
-              <div class="flex items-center justify-between mb-1">
+            <div class="flex-1 bg-emerald-50 rounded-lg border border-emerald-200 p-3 sm:p-4">
+              <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
                 <p class="font-bold text-emerald-900">ぶんたま</p>
                 <span class="confidence-high border px-2 py-0.5 rounded-full text-xs font-medium">確度 高</span>
               </div>
               <p class="text-sm text-emerald-800">伝統文化魅力発信アプリ保守運用 — ¥16,783,000</p>
-              <div class="flex items-center gap-4 mt-2 text-xs text-emerald-700">
-                <span class="flex items-center gap-1">💻 オンライン（ソニックシティのブースから）</span>
+              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-2 text-xs text-emerald-700">
+                <span>💻 オンライン（ソニックシティのブースから）</span>
                 <span>継続案件</span>
               </div>
             </div>
           </div>
         </div>
         <!-- 移動不要 -->
-        <div class="relative pl-8 pb-6">
+        <div class="relative pl-6 sm:pl-8 pb-6">
           <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-slate-300"></div>
-          <div class="flex items-center gap-4 text-xs text-slate-500 italic pl-16">
+          <div class="flex items-center gap-4 text-xs text-slate-500 italic sm:pl-16 pl-0">
             ↓ 同じソニックシティ内で移動（オンラインブース → 物産観光協会7F）
           </div>
         </div>
         <!-- 15:25 グルメ -->
-        <div class="relative pl-8 pb-6">
+        <div class="relative pl-6 sm:pl-8 pb-6">
           <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-red-400 border-2 border-white"></div>
-          <div class="flex items-start gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
             <div class="w-16 flex-shrink-0">
               <p class="text-lg font-bold text-slate-900">15:25</p>
             </div>
-            <div class="flex-1 bg-red-50 rounded-lg border border-red-200 p-4">
-              <div class="flex items-center justify-between mb-1">
+            <div class="flex-1 bg-red-50 rounded-lg border border-red-200 p-3 sm:p-4">
+              <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
                 <p class="font-bold text-red-900">埼玉グルメPJ</p>
                 <span class="confidence-low border px-2 py-0.5 rounded-full text-xs font-medium">確度 低</span>
               </div>
               <p class="text-sm text-red-800">埼玉グルメプロジェクト業務 — ¥47,730,000</p>
-              <div class="flex items-center gap-4 mt-2 text-xs text-red-700">
-                <span class="flex items-center gap-1">📍 物産観光協会 7F（ソニックシティ5F）</span>
+              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-2 text-xs text-red-700">
+                <span>📍 物産観光協会 7F（ソニックシティ5F）</span>
                 <span>新規・説明20分+質疑10分・2名まで</span>
               </div>
             </div>
@@ -520,32 +400,32 @@ tailwind.config = {
     <div>
       <h3 class="font-bold text-slate-900 mb-4">4月以降 — 残り4案件</h3>
       <div class="space-y-3 text-sm">
-        <div class="flex items-center gap-3">
-          <span class="w-40 text-right text-body font-medium">観光客誘致</span>
-          <div class="flex-1 bg-slate-100 rounded-full h-6 relative">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <span class="w-full sm:w-40 sm:text-right text-body font-medium">観光客誘致</span>
+          <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
             <div class="absolute left-0 h-6 bg-emerald-200 rounded-full bar-fill" style="width:40%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-emerald-800 px-2">提出 3/31 → プレゼン 4/10 → 結果 4/13</span>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-emerald-800 px-2 whitespace-nowrap">提出 3/31 → プレゼン 4/10 → 結果 4/13</span>
           </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="w-40 text-right text-body font-medium">わっしょいIG</span>
-          <div class="flex-1 bg-slate-100 rounded-full h-6 relative">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <span class="w-full sm:w-40 sm:text-right text-body font-medium">わっしょいIG</span>
+          <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
             <div class="absolute left-0 h-6 bg-amber-200 rounded-full bar-fill" style="width:28%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2">提出 4/17 → プレゼン 4月下旬〜5月上旬</span>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2 whitespace-nowrap">提出 4/17 → プレゼン 4月下旬〜5月上旬</span>
           </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="w-40 text-right text-body font-medium">農産物ブランド化</span>
-          <div class="flex-1 bg-slate-100 rounded-full h-6 relative">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <span class="w-full sm:w-40 sm:text-right text-body font-medium">農産物ブランド化</span>
+          <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
             <div class="absolute left-0 h-6 bg-amber-200 rounded-full bar-fill" style="width:30%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2">提出 4/21 → プレゼン 4月下旬〜5月上旬</span>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2 whitespace-nowrap">提出 4/21 → プレゼン 4月下旬〜5月上旬</span>
           </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="w-40 text-right text-body font-medium">梨ブランディング</span>
-          <div class="flex-1 bg-slate-100 rounded-full h-6 relative">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <span class="w-full sm:w-40 sm:text-right text-body font-medium">梨ブランディング</span>
+          <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
             <div class="absolute left-0 h-6 bg-amber-200 rounded-full bar-fill" style="width:30%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2">提出 4/21 → プレゼン 4月下旬〜5月上旬</span>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2 whitespace-nowrap">提出 4/21 → プレゼン 4月下旬〜5月上旬</span>
           </div>
         </div>
       </div>
@@ -553,221 +433,228 @@ tailwind.config = {
   </div>
 
   <!-- 手続きチェックリスト -->
-  <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-10">
+  <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm mb-8 sm:mb-10">
     <h2 class="text-lg font-bold text-slate-900 mb-2">手続きチェックリスト</h2>
-    <p class="text-xs text-slate-400 mb-6">各案件の参加意向届・資料提出・プレゼン・結果通知の進捗管理</p>
+    <p class="text-xs text-slate-400 mb-4 sm:mb-6">各案件の参加意向届・資料提出・プレゼン・結果通知の進捗管理</p>
 
-    <table class="w-full">
-      <thead>
-        <tr class="border-b border-slate-200 bg-gray-50">
-          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">案件</th>
-          <th scope="col" class="text-center py-3 px-3 text-xs font-medium text-slate-500 uppercase tracking-wider">参加意向届</th>
-          <th scope="col" class="text-center py-3 px-3 text-xs font-medium text-slate-500 uppercase tracking-wider">資料提出</th>
-          <th scope="col" class="text-center py-3 px-3 text-xs font-medium text-slate-500 uppercase tracking-wider">プレゼン</th>
-          <th scope="col" class="text-center py-3 px-3 text-xs font-medium text-slate-500 uppercase tracking-wider">結果通知</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-slate-100">
+    <!-- モバイル: カードリスト -->
+    <div class="block sm:hidden space-y-3" id="checklist-mobile">
+      <!-- JSで生成 -->
+    </div>
 
-        <!-- 確度高グループ -->
-        <tr class="bg-emerald-50/30">
-          <td colspan="5" class="py-2 px-4 text-xs font-bold text-emerald-700">確度 高 — 継続案件</td>
-        </tr>
+    <!-- デスクトップ: テーブル -->
+    <div class="hidden sm:block overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">案件</th>
+            <th scope="col" class="text-center py-3 px-3 text-xs font-medium text-slate-500 uppercase tracking-wider">参加意向届</th>
+            <th scope="col" class="text-center py-3 px-3 text-xs font-medium text-slate-500 uppercase tracking-wider">資料提出</th>
+            <th scope="col" class="text-center py-3 px-3 text-xs font-medium text-slate-500 uppercase tracking-wider">プレゼン</th>
+            <th scope="col" class="text-center py-3 px-3 text-xs font-medium text-slate-500 uppercase tracking-wider">結果通知</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
 
-        <!-- リバサポ -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-2.5 px-4 text-sm font-medium text-slate-900">リバサポ</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/6 済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 9:30<br>＠県庁</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="text-xs text-slate-400">—</span>
-          </td>
-        </tr>
+          <!-- 確度高グループ -->
+          <tr class="bg-emerald-50/30">
+            <td colspan="5" class="py-2 px-4 text-xs font-bold text-emerald-700">確度 高 — 継続案件</td>
+          </tr>
 
-        <!-- すぽったま運用保守 -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-2.5 px-4 text-sm font-medium text-slate-900">すぽったま（運用保守）</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/10 済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/16 済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 13:15<br>＠オンライン</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="text-xs text-slate-400">—</span>
-          </td>
-        </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">リバサポ</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/6 済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 9:30<br>＠県庁</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">—</span>
+            </td>
+          </tr>
 
-        <!-- すぽったまコンテンツ -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-2.5 px-4 text-sm font-medium text-slate-900">すぽったま（コンテンツ）</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/12 済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/18 済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 13:15<br>＠オンライン</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="text-xs text-slate-400">—</span>
-          </td>
-        </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">すぽったま（運用保守）</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/10 済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/16 済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 13:15<br>＠オンライン</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">—</span>
+            </td>
+          </tr>
 
-        <!-- ぶんたま -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-2.5 px-4 text-sm font-medium text-slate-900">ぶんたま</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/13 済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 14:45<br>＠オンライン</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="text-xs text-slate-400">—</span>
-          </td>
-        </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">すぽったま（コンテンツ）</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/12 済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/18 済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 13:15<br>＠オンライン</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">—</span>
+            </td>
+          </tr>
 
-        <!-- 観光客誘致 -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-2.5 px-4 text-sm font-medium text-slate-900">観光客誘致・戦略的情報発信</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-red-700 font-medium bg-red-100 px-2 py-0.5 rounded">3/23 17時</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-red-700 font-medium bg-red-100 px-2 py-0.5 rounded">3/31 12時</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/10<br>＠物産観光協会7F</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="text-xs text-slate-400">4/13</span>
-          </td>
-        </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">ぶんたま</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/13 済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 14:45<br>＠オンライン</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">—</span>
+            </td>
+          </tr>
 
-        <!-- 確度中グループ -->
-        <tr class="bg-amber-50/30">
-          <td colspan="5" class="py-2 px-4 text-xs font-bold text-amber-700">確度 中 — 農林部セット</td>
-        </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">観光客誘致・戦略的情報発信</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-red-700 font-medium bg-red-100 px-2 py-0.5 rounded">3/23 17時</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-red-700 font-medium bg-red-100 px-2 py-0.5 rounded">3/31 12時</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/10<br>＠物産観光協会7F</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">4/13</span>
+            </td>
+          </tr>
 
-        <!-- わっしょいIG -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-2.5 px-4 text-sm font-medium text-slate-900">わっしょいInstagram</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/6 17時</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/17 17時</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4月下旬〜5月上旬</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="text-xs text-slate-400">5月上・中旬</span>
-          </td>
-        </tr>
+          <!-- 確度中グループ -->
+          <tr class="bg-amber-50/30">
+            <td colspan="5" class="py-2 px-4 text-xs font-bold text-amber-700">確度 中 — 農林部セット</td>
+          </tr>
 
-        <!-- 農産物ブランド化 -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-2.5 px-4 text-sm font-medium text-slate-900">農産物ブランド化支援</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/7 17時</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/21 17時</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4月下旬〜5月上旬</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="text-xs text-slate-400">5月上・中旬</span>
-          </td>
-        </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">わっしょいInstagram</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/6 17時</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/17 17時</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4月下旬〜5月上旬</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">5月上・中旬</span>
+            </td>
+          </tr>
 
-        <!-- 梨ブランディング -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-2.5 px-4 text-sm font-medium text-slate-900">梨新品種ブランディング</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/7 17時</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/21 17時</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4月下旬〜5月上旬</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="text-xs text-slate-400">5月上・中旬</span>
-          </td>
-        </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">農産物ブランド化支援</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/7 17時</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/21 17時</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4月下旬〜5月上旬</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">5月上・中旬</span>
+            </td>
+          </tr>
 
-        <!-- 確度低グループ -->
-        <tr class="bg-red-50/30">
-          <td colspan="5" class="py-2 px-4 text-xs font-bold text-red-700">確度 低 — 新規</td>
-        </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">梨新品種ブランディング</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/7 17時</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/21 17時</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4月下旬〜5月上旬</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">5月上・中旬</span>
+            </td>
+          </tr>
 
-        <!-- グルメPJ -->
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="py-2.5 px-4 text-sm font-medium text-slate-900">埼玉グルメPJ</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">2/25 済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/11 済</span></span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 15:25<br>＠物産観光協会7F</span>
-          </td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="text-xs text-slate-400">3/24</span>
-          </td>
-        </tr>
+          <!-- 確度低グループ -->
+          <tr class="bg-red-50/30">
+            <td colspan="5" class="py-2 px-4 text-xs font-bold text-red-700">確度 低 — 新規</td>
+          </tr>
 
-        <!-- 失注グループ -->
-        <tr class="bg-slate-50">
-          <td colspan="5" class="py-2 px-4 text-xs font-bold text-slate-400">失注</td>
-        </tr>
-        <tr class="opacity-50">
-          <td class="py-2.5 px-4 text-sm text-slate-500">ちょこたび埼玉 SNS</td>
-          <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 済</span></td>
-          <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 3/9 済</span></td>
-          <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 3/18 済</span></td>
-          <td class="py-2.5 px-3 text-center"><span class="text-xs text-red-400">失注</span></td>
-        </tr>
-        <tr class="opacity-50">
-          <td class="py-2.5 px-4 text-sm text-slate-500">Instagram公式アカウント</td>
-          <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 済</span></td>
-          <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ ~3/5 済</span></td>
-          <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 済</span></td>
-          <td class="py-2.5 px-3 text-center"><span class="text-xs text-red-400">失注</span></td>
-        </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">埼玉グルメPJ</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">2/25 済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/11 済</span></span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/23 15:25<br>＠物産観光協会7F</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">3/24</span>
+            </td>
+          </tr>
 
-      </tbody>
-    </table>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">アットパーキング</td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">—</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">—</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">—</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">—</span></td>
+          </tr>
+
+          <!-- 失注グループ -->
+          <tr class="bg-slate-50">
+            <td colspan="5" class="py-2 px-4 text-xs font-bold text-slate-400">完了（失注）</td>
+          </tr>
+          <tr class="opacity-50">
+            <td class="py-2.5 px-4 text-sm text-slate-500">ちょこたび埼玉 SNS</td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 済</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 3/9 済</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 3/18 済</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-red-400">失注</span></td>
+          </tr>
+          <tr class="opacity-50">
+            <td class="py-2.5 px-4 text-sm text-slate-500">Instagram公式アカウント</td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 済</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ ~3/5 済</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 済</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-red-400">失注</span></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- 事業計画との整合 -->
-  <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-10">
+  <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm mb-8 sm:mb-10">
     <h2 class="text-lg font-bold text-slate-900 mb-2">事業計画との整合（2026→2027目標）</h2>
-    <p class="text-xs text-slate-400 mb-6">3ヶ年事業計画（2027-2029）のYear 0にあたる令和8年度案件の目標設定</p>
+    <p class="text-xs text-slate-400 mb-4 sm:mb-6">3ヶ年事業計画（2027-2029）のYear 0にあたる令和8年度案件の目標設定</p>
 
     <!-- 事業計画KPI -->
-    <div class="grid grid-cols-3 gap-6 mb-8">
-      <div class="bg-white rounded-xl border-2 border-slate-200 p-5 text-center">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8">
+      <div class="bg-white rounded-xl border-2 border-slate-200 p-4 sm:p-5 text-center">
         <p class="text-xs text-slate-500 mb-1">事業計画 年間売上目標</p>
         <p class="text-sm text-slate-400 mb-1">2026年 → 2027年</p>
         <div class="flex items-center justify-center gap-2">
@@ -777,7 +664,7 @@ tailwind.config = {
         </div>
         <p class="text-xs text-primary-500 font-medium mt-1">+25% 成長</p>
       </div>
-      <div class="bg-white rounded-xl border-2 border-slate-200 p-5 text-center">
+      <div class="bg-white rounded-xl border-2 border-slate-200 p-4 sm:p-5 text-center">
         <p class="text-xs text-slate-500 mb-1">行政（埼玉）目標</p>
         <p class="text-sm text-slate-400 mb-1">2026年 → 2027年</p>
         <div class="flex items-center justify-center gap-2">
@@ -787,7 +674,7 @@ tailwind.config = {
         </div>
         <p class="text-xs text-slate-500 mt-1">微増で維持（依存率低減）</p>
       </div>
-      <div class="bg-white rounded-xl border-2 border-slate-200 p-5 text-center">
+      <div class="bg-white rounded-xl border-2 border-slate-200 p-4 sm:p-5 text-center">
         <p class="text-xs text-slate-500 mb-1">行政依存率 目標</p>
         <p class="text-sm text-slate-400 mb-1">2026年 → 2027年</p>
         <div class="flex items-center justify-center gap-2">
@@ -802,78 +689,80 @@ tailwind.config = {
     <!-- 受注シナリオ -->
     <h3 class="text-sm font-bold text-slate-900 mb-4">受注シナリオ分析（令和8年度 行政案件）</h3>
     <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mb-6">
-      <table class="w-full">
-        <thead>
-          <tr class="border-b border-slate-200 bg-gray-50">
-            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">シナリオ</th>
-            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">受注額</th>
-            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">対計画</th>
-            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">受注案件</th>
-          </tr>
-        </thead>
-        <tbody class="text-sm">
-          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
-            <td class="py-3 px-4 font-medium text-emerald-700">ベスト（全勝）</td>
-            <td class="py-3 px-4 text-right font-bold text-emerald-700">¥155.0M</td>
-            <td class="py-3 px-4 text-right text-emerald-600 text-xs">計画の141%<br>（¥110M目標超過）</td>
-            <td class="py-3 px-4 text-body text-xs">確度高6件 + 確度中4件 + グルメPJ（予定2件含む）</td>
-          </tr>
-          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 bg-primary-50/30">
-            <td class="py-3 px-4 font-medium text-primary-700">想定（高＋中）</td>
-            <td class="py-3 px-4 text-right font-bold text-primary-700">¥107.3M</td>
-            <td class="py-3 px-4 text-right text-primary-600 text-xs">計画の98%<br>（ほぼ達成）</td>
-            <td class="py-3 px-4 text-body text-xs">確度高6件（¥87.9M）+ 確度中4件（¥19.4M）</td>
-          </tr>
-          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
-            <td class="py-3 px-4 font-medium text-amber-700">堅実（高のみ）</td>
-            <td class="py-3 px-4 text-right font-bold text-amber-700">¥87.9M</td>
-            <td class="py-3 px-4 text-right text-amber-600 text-xs">計画の80%<br>（¥22M不足）</td>
-            <td class="py-3 px-4 text-body text-xs">継続6件（ぶんたま・すぽったま2件・リバサポ・観光客誘致・いちご大學）</td>
-          </tr>
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="py-3 px-4 font-medium text-red-700">リスク</td>
-            <td class="py-3 px-4 text-right font-bold text-red-700">¥44.3M</td>
-            <td class="py-3 px-4 text-right text-red-600 text-xs">計画の40%<br>（大幅未達）</td>
-            <td class="py-3 px-4 text-body text-xs">継続4件のみ（観光客誘致を落とした場合）</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-slate-200 bg-gray-50">
+              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">シナリオ</th>
+              <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">受注額</th>
+              <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">対計画</th>
+              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider hidden sm:table-cell">受注案件</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
+              <td class="py-3 px-4 font-medium text-emerald-700">ベスト（全勝）</td>
+              <td class="py-3 px-4 text-right font-bold text-emerald-700">¥155.0M</td>
+              <td class="py-3 px-4 text-right text-emerald-600 text-xs">計画の141%</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">確度高6件 + 確度中4件 + グルメPJ（予定2件含む）</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 bg-primary-50/30">
+              <td class="py-3 px-4 font-medium text-primary-700">想定（高＋中）</td>
+              <td class="py-3 px-4 text-right font-bold text-primary-700">¥107.3M</td>
+              <td class="py-3 px-4 text-right text-primary-600 text-xs">計画の98%</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">確度高6件（¥87.9M）+ 確度中4件（¥19.4M）</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
+              <td class="py-3 px-4 font-medium text-amber-700">堅実（高のみ）</td>
+              <td class="py-3 px-4 text-right font-bold text-amber-700">¥87.9M</td>
+              <td class="py-3 px-4 text-right text-amber-600 text-xs">計画の80%</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">継続6件</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="py-3 px-4 font-medium text-red-700">リスク</td>
+              <td class="py-3 px-4 text-right font-bold text-red-700">¥44.3M</td>
+              <td class="py-3 px-4 text-right text-red-600 text-xs">計画の40%</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">継続4件のみ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- 目標設定 -->
     <h3 class="text-sm font-bold text-slate-900 mb-4">令和8年度 行政案件 目標設定</h3>
-    <div class="grid grid-cols-2 gap-6">
-      <div class="rounded-lg border border-primary-200 bg-primary-50/30 p-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+      <div class="rounded-lg border border-primary-200 bg-primary-50/30 p-4 sm:p-5">
         <p class="text-sm font-bold text-primary-900 mb-3">受注目標</p>
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>必達ライン: ¥107M（想定シナリオ）</strong><br>確度高6件 + 確度中4件の全取り。事業計画の行政売上¥110M目標の98%を確保。失注2件の分を予定2件で補填。</span>
+            <span><strong>必達ライン: ¥107M（想定シナリオ）</strong><br>確度高6件 + 確度中4件の全取り。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>挑戦ライン: ¥155M（ベストシナリオ）</strong><br>グルメPJ（¥47.7M）を含む全案件受注。2連敗の巻き返しで計画超過を狙う。</span>
+            <span><strong>挑戦ライン: ¥155M（ベストシナリオ）</strong><br>グルメPJ（¥47.7M）を含む全案件受注。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>受注件数: 10件以上</strong>（提案中9件＋予定2件中）<br>失注は2件で止める。これ以上の失注は計画未達リスク。</span>
+            <span><strong>受注件数: 10件以上</strong>（提案中10件＋予定2件中）</span>
           </li>
         </ul>
       </div>
-      <div class="rounded-lg border border-slate-200 bg-white p-5">
+      <div class="rounded-lg border border-slate-200 bg-white p-4 sm:p-5">
         <p class="text-sm font-bold text-slate-900 mb-3">事業計画上の注意点</p>
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>行政依存率</strong>: 全案件受注で¥147M / ¥200M = <strong>73.5%</strong>（目標60%を大幅超過）。行政案件を取りつつも、民間¥55M + ウェルネス新規¥15M + その他¥10M の獲得が不可欠。</span>
+            <span><strong>行政依存率</strong>: 全案件受注で¥147M / ¥200M = <strong>73.5%</strong>（目標60%を超過）。民間の獲得が不可欠。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>予算＝売上ではない</strong>: 予算上限額での受注は稀。実契約は上限の80-90%が目安。想定シナリオ¥99Mの実契約は<strong>¥80-90M</strong>程度を見込む。</span>
+            <span><strong>予算＝売上ではない</strong>: 実契約は上限の80-90%が目安。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
-            <span><strong>グルメPJの戦略的価値</strong>: ¥47.7Mは行政依存率を上げるが、DMOとの大型実績は「他県横展開（2027年¥10M目標）」の布石となる。短期の依存率より中期の横展開を優先すべき。</span>
+            <span><strong>グルメPJの戦略的価値</strong>: DMOとの大型実績は他県横展開の布石。</span>
           </li>
         </ul>
       </div>
@@ -881,28 +770,24 @@ tailwind.config = {
   </div>
 
   <!-- 所感・ネクストアクション -->
-  <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+  <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
     <h2 class="text-lg font-bold text-slate-900 mb-4">所感・ネクストアクション</h2>
-    <div class="grid grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
       <div>
         <h3 class="text-sm font-bold text-slate-900 mb-3">今週の重要イベント</h3>
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
             <span><strong>3/23（月）— 4案件プレゼン集中日</strong><br>
-            9:30 リバサポ＠県庁 → ソニックシティへ移動 → 13:15 すぽったま＠オンライン → 14:45 ぶんたま＠オンライン → 15:25 グルメPJ＠物産観光協会7F。オンライン2本＋グルメPJはすべてソニックシティ内で完結。</span>
+            9:30 リバサポ＠県庁 → 13:15 すぽったま＠オンライン → 14:45 ぶんたま＠オンライン → 15:25 グルメPJ＠物産観光協会7F</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>グルメPJ（¥4,773万）</strong>— 最終枠15:25。説明20分+質疑10分、2名まで。直前にオンライン2本をこなした後の対面プレゼンのため、集中力の配分を意識。結果通知は翌3/24。</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
-            <span><strong>継続3案件</strong>— ぶんたま・すぽったま・リバサポは前年度の成果数値を明確に提示。特にぶんたま（LINE +1,722人、UU +10,878）、すぽったま（アプリ基盤構築実績）が強み。</span>
+            <span><strong>グルメPJ（¥4,773万）</strong>— 最終枠15:25。説明20分+質疑10分、2名まで。結果通知は翌3/24。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-2 flex-shrink-0"></span>
-            <span><strong>3/23（月）— 観光客誘致 参加意向届 提出期限</strong>（延期後）。同日はプレゼン4本と重なるため事前提出推奨。<strong>3/31（火）12時 — 提案書提出期限</strong>。プレゼンは4/10＠物産観光協会7F。</span>
+            <span><strong>観光客誘致 参加意向届 提出期限</strong>（3/23 17時）。<strong>提案書 3/31 12時</strong>。プレゼンは4/10。</span>
           </li>
         </ul>
       </div>
@@ -911,15 +796,11 @@ tailwind.config = {
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 flex-shrink-0"></span>
-            <span>DMO（物産観光協会）発注案件で2件中1件が失注（ちょこたび）。<strong>グルメPJ・観光客誘致も同じDMO発注</strong>。観光客誘致は前年継続で優位だが、グルメPJは新規のため差別化が特に重要。</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 flex-shrink-0"></span>
-            <span>Instagram公式（広聴広報課）は小規模案件（¥290万）。EmpaC主導だったため自社主導の提案との差も検証すべき。</span>
+            <span>DMO発注案件で2件中1件が失注。<strong>グルメPJ・観光客誘致も同じDMO発注</strong>。差別化が特に重要。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-2 flex-shrink-0"></span>
-            <span><strong>農産物ブランド化（4/21提出）</strong>は失注の知見を反映できる唯一の新規案件。仕様書の「埼玉わっしょい」活用要件を強調する戦略を推奨。</span>
+            <span><strong>農産物ブランド化（4/21提出）</strong>は失注の知見を反映できる新規案件。「埼玉わっしょい」活用要件を強調する戦略を推奨。</span>
           </li>
         </ul>
       </div>
@@ -931,6 +812,390 @@ tailwind.config = {
   </div>
 
 </div>
+
+<!-- 担当者ドロップダウン（共通、JSで移動） -->
+<div id="staff-dropdown-global" class="fixed z-50 bg-white rounded-xl border border-slate-200 shadow-md p-3 w-48 hidden">
+  <p class="text-xs font-medium text-slate-500 mb-2">担当者を選択</p>
+  <div id="staff-options" class="space-y-1"></div>
+</div>
+
+<script>
+// ============================================================
+// データ定義
+// ============================================================
+const STAFF_LIST = ['志連','橋本','岡永','中村','大西','浅見'];
+
+const STAFF_COLORS = {
+  '志連': { bg: 'bg-primary-100', text: 'text-primary-700' },
+  '橋本': { bg: 'bg-emerald-100', text: 'text-emerald-700' },
+  '岡永': { bg: 'bg-amber-100', text: 'text-amber-700' },
+  '中村': { bg: 'bg-rose-100', text: 'text-rose-700' },
+  '大西': { bg: 'bg-violet-100', text: 'text-violet-700' },
+  '浅見': { bg: 'bg-cyan-100', text: 'text-cyan-700' },
+};
+
+const projects = [
+  {
+    id: 'kanko', num: 1, name: '観光客誘致・戦略的情報発信',
+    sub: '12LP更新＋動画5本制作＋ターゲティング広告',
+    client: '埼玉県物産観光協会', clientSub: 'DMO事業本部',
+    budget: '¥39,600,000', submitDate: '3/31', review: 'プレゼン 4/10',
+    reviewSub: '結果 4/13',
+    status: '提案中', confidence: '高', staff: []
+  },
+  {
+    id: 'buntama', num: 2, name: '伝統文化魅力発信アプリ「ぶんたま」',
+    sub: '保守運用及び利用促進プロモーション業務',
+    client: '埼玉県', clientSub: '県民文化部',
+    budget: '¥16,783,000', submitDate: '3/13', review: 'プレゼン 3/23',
+    reviewSub: '',
+    status: '提案中', confidence: '高', staff: []
+  },
+  {
+    id: 'spottama-ops', num: 3, name: 'すぽったま！運用保守',
+    sub: 'スマホスタンプラリー等観戦促進業務',
+    client: '埼玉県', clientSub: '県民生活部',
+    budget: '¥15,259,000', submitDate: '3/16', review: 'プレゼン 3/23',
+    reviewSub: '',
+    status: '提案中', confidence: '高', staff: []
+  },
+  {
+    id: 'rivasapo', num: 4, name: 'SAITAMAリバーサポーターズPJ',
+    sub: '事業支援＋リバサポ・クエスト業務',
+    client: '埼玉県', clientSub: '県土整備部',
+    budget: '¥8,753,360', submitDate: '3/6', review: 'プレゼン 3/23',
+    reviewSub: '',
+    status: '提案中', confidence: '高', staff: []
+  },
+  {
+    id: 'spottama-content', num: 5, name: 'すぽったま！コンテンツ制作',
+    sub: '試合観戦促進コンテンツ制作等業務',
+    client: '埼玉県', clientSub: '県民生活部',
+    budget: '¥3,527,000', submitDate: '3/18', review: 'プレゼン 3/23',
+    reviewSub: '',
+    status: '提案中', confidence: '高', staff: []
+  },
+  {
+    id: 'agri', num: 6, name: '埼玉県産農産物ブランド化支援',
+    sub: '重点品目（梨・ぶどう・小玉すいか）',
+    client: '埼玉県', clientSub: '農林部',
+    budget: '¥9,900,000', submitDate: '4/21', review: 'プレゼン 4月下旬〜5月上旬',
+    reviewSub: '',
+    status: '提案中', confidence: '中', staff: []
+  },
+  {
+    id: 'nashi', num: 7, name: '埼玉県梨新品種ブランディング',
+    sub: '彩姫・彩彦・彩玉のブランド戦略',
+    client: '埼玉県', clientSub: '農林部',
+    budget: '¥3,470,000', submitDate: '4/21', review: 'プレゼン 4月下旬〜5月上旬',
+    reviewSub: '',
+    status: '提案中', confidence: '中', staff: []
+  },
+  {
+    id: 'gourmet', num: 8, name: '埼玉グルメプロジェクト',
+    sub: '県民投票型グルメブランディング',
+    client: '埼玉県物産観光協会', clientSub: 'DMO事業本部',
+    budget: '¥47,730,000', submitDate: '3/11', review: 'プレゼン 3/23',
+    reviewSub: '',
+    status: '提案中', confidence: '低', staff: []
+  },
+  {
+    id: 'atparking', num: 9, name: 'アットパーキング',
+    sub: '新規提案案件',
+    client: '—', clientSub: '',
+    budget: '—', submitDate: '—', review: '—',
+    reviewSub: '',
+    status: '提案中', confidence: '低', staff: []
+  },
+  {
+    id: 'ichigo', num: '—', name: 'いちご大學',
+    sub: '継続案件・随意契約見込み',
+    client: '埼玉県', clientSub: '（推定）',
+    budget: '〜¥4,000,000', submitDate: '未定', review: '随契見込',
+    reviewSub: '',
+    status: '提案中', confidence: '高', staff: []
+  },
+  {
+    id: 'circular', num: '—', name: 'サーキュラーエコノミー イベント',
+    sub: '新規案件・公示予定',
+    client: '未定', clientSub: '',
+    budget: '〜¥4,000,000', submitDate: '未定', review: '公示待ち',
+    reviewSub: '',
+    status: '提案中', confidence: '中', staff: []
+  },
+  {
+    id: 'chokotabi', num: 10, name: '「ちょこたび埼玉」SNS情報発信',
+    sub: 'Instagram・X・Facebook運用',
+    client: '埼玉県DMO', clientSub: '（物産観光協会）',
+    budget: '非公開', submitDate: '3/9', review: 'プレゼン 3/18',
+    reviewSub: '',
+    status: '完了', confidence: '—', staff: [], lost: true
+  },
+  {
+    id: 'ig-official', num: 11, name: 'Instagram埼玉県公式アカウント運用',
+    sub: '運用サポート業務',
+    client: '埼玉県', clientSub: '広聴広報課',
+    budget: '¥2,904,000', submitDate: '~3/5', review: '1次 3月上旬',
+    reviewSub: '2次 3月中旬',
+    status: '完了', confidence: '—', staff: [], lost: true
+  },
+  {
+    id: 'wassyoi', num: 12, name: '埼玉県公式Instagram「埼玉わっしょい」',
+    sub: '運用支援業務（農産物連動）',
+    client: '埼玉県', clientSub: '農林部',
+    budget: '¥1,980,000', submitDate: '4/17', review: 'プレゼン 4月下旬〜5月上旬',
+    reviewSub: '',
+    status: '提案中', confidence: '中', staff: []
+  }
+];
+
+// ============================================================
+// localStorage に担当者データを保存/復元
+// ============================================================
+const STORAGE_KEY = 'proposal-dashboard-staff';
+
+function loadStaffData() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const data = JSON.parse(saved);
+      projects.forEach(p => {
+        if (data[p.id]) p.staff = data[p.id];
+      });
+    }
+  } catch(e) {}
+}
+
+function saveStaffData() {
+  const data = {};
+  projects.forEach(p => { data[p.id] = p.staff; });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+// ============================================================
+// 描画
+// ============================================================
+function getStatusBadge(status, lost) {
+  if (lost) return '<span class="bg-gray-100 text-slate-500 px-2.5 py-1 rounded-full text-xs font-medium">失注</span>';
+  const map = {
+    '進行中': 'bg-emerald-100 text-emerald-700',
+    '提案中': 'bg-primary-50 text-primary-700',
+    '完了':   'bg-gray-100 text-slate-500',
+  };
+  const cls = map[status] || 'bg-gray-100 text-slate-500';
+  return `<span class="${cls} px-2.5 py-1 rounded-full text-xs font-medium">${status}</span>`;
+}
+
+function getConfidenceBadge(conf) {
+  if (conf === '—') return '<span class="text-xs text-slate-400">—</span>';
+  const map = {
+    '高': 'confidence-high border',
+    '中': 'confidence-mid border',
+    '低': 'confidence-low border',
+  };
+  return `<span class="${map[conf]} px-2.5 py-1 rounded-full text-xs font-medium">${conf}</span>`;
+}
+
+function renderStaffTags(project) {
+  const tags = project.staff.map((s, idx) => {
+    const c = STAFF_COLORS[s] || { bg:'bg-slate-100', text:'text-slate-700' };
+    return `<span class="inline-flex items-center gap-1 ${c.bg} ${c.text} px-2 py-0.5 rounded-full text-xs font-medium">
+      ${s}
+      <button onclick="removeStaff('${project.id}', ${idx})" class="hover:text-red-500 cursor-pointer" aria-label="${s}を削除">&times;</button>
+    </span>`;
+  }).join('');
+  return `<div class="flex flex-wrap gap-1 items-center">
+    ${tags}
+    <button onclick="openStaffDropdown(event, '${project.id}')" class="w-6 h-6 inline-flex items-center justify-center rounded-full border border-dashed border-slate-300 text-slate-400 hover:border-primary-400 hover:text-primary-500 cursor-pointer text-xs" aria-label="担当者を追加">+</button>
+  </div>`;
+}
+
+function renderDesktopTable(filtered) {
+  const tbody = document.getElementById('desktop-tbody');
+  tbody.innerHTML = filtered.map(p => {
+    const rowClass = p.lost ? 'opacity-60' : '';
+    const nameClass = p.lost ? 'text-slate-500' : 'text-slate-900';
+    return `<tr class="hover:bg-gray-50 transition-colors ${rowClass}" data-status="${p.status}">
+      <td class="py-3 px-4 text-sm text-slate-400">${p.num}</td>
+      <td class="py-3 px-4 text-sm font-medium ${nameClass}">${p.name}<br><span class="text-xs text-body">${p.sub}</span></td>
+      <td class="py-3 px-4 text-sm text-body">${p.client}${p.clientSub ? '<br><span class="text-xs text-slate-400">'+p.clientSub+'</span>' : ''}</td>
+      <td class="py-3 px-4 text-sm ${p.lost ? 'text-slate-400' : 'text-slate-900'} font-medium">${p.budget}</td>
+      <td class="py-3 px-4 text-sm text-body">${p.submitDate}</td>
+      <td class="py-3 px-4 text-sm text-body">${p.review}${p.reviewSub ? '<br><span class="text-xs text-slate-400">'+p.reviewSub+'</span>' : ''}</td>
+      <td class="py-3 px-4">${getStatusBadge(p.status, p.lost)}</td>
+      <td class="py-3 px-4">${getConfidenceBadge(p.confidence)}</td>
+      <td class="py-3 px-4">${renderStaffTags(p)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderMobileList(filtered) {
+  const container = document.getElementById('mobile-list');
+  container.innerHTML = filtered.map(p => {
+    const opacity = p.lost ? 'opacity-60' : '';
+    return `<div class="p-4 ${opacity}" data-status="${p.status}">
+      <div class="flex items-start justify-between gap-2 mb-2">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium ${p.lost ? 'text-slate-500' : 'text-slate-900'} truncate">${p.name}</p>
+          <p class="text-xs text-body">${p.sub}</p>
+        </div>
+        <div class="flex flex-col gap-1 items-end flex-shrink-0">
+          ${getStatusBadge(p.status, p.lost)}
+          ${getConfidenceBadge(p.confidence)}
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-2 text-xs text-body mb-2">
+        <div><span class="text-slate-400">発注元:</span> ${p.client}</div>
+        <div><span class="text-slate-400">予算:</span> ${p.budget}</div>
+        <div><span class="text-slate-400">提出:</span> ${p.submitDate}</div>
+        <div><span class="text-slate-400">審査:</span> ${p.review}</div>
+      </div>
+      <div class="flex items-center gap-1 flex-wrap">
+        <span class="text-xs text-slate-400 mr-1">担当:</span>
+        ${renderStaffTags(p)}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderChecklistMobile() {
+  const container = document.getElementById('checklist-mobile');
+  if (!container) return;
+
+  const checklistData = [
+    { name: 'リバサポ', group: '高', intent: '✓ 済', submit: '✓ 3/6 済', pres: '3/23 9:30 ＠県庁', result: '—' },
+    { name: 'すぽったま（運用保守）', group: '高', intent: '✓ 3/10 済', submit: '✓ 3/16 済', pres: '3/23 13:15 ＠オンライン', result: '—' },
+    { name: 'すぽったま（コンテンツ）', group: '高', intent: '✓ 3/12 済', submit: '✓ 3/18 済', pres: '3/23 13:15 ＠オンライン', result: '—' },
+    { name: 'ぶんたま', group: '高', intent: '✓ 済', submit: '✓ 3/13 済', pres: '3/23 14:45 ＠オンライン', result: '—' },
+    { name: '観光客誘致', group: '高', intent: '3/23 17時', submit: '3/31 12時', pres: '4/10 ＠物産観光協会7F', result: '4/13' },
+    { name: 'わっしょいIG', group: '中', intent: '4/6 17時', submit: '4/17 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
+    { name: '農産物ブランド化', group: '中', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
+    { name: '梨ブランディング', group: '中', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
+    { name: 'グルメPJ', group: '低', intent: '✓ 2/25 済', submit: '✓ 3/11 済', pres: '3/23 15:25 ＠物産観光協会7F', result: '3/24' },
+    { name: 'アットパーキング', group: '低', intent: '—', submit: '—', pres: '—', result: '—' },
+  ];
+
+  container.innerHTML = checklistData.map(c => {
+    const groupColor = c.group === '高' ? 'border-l-emerald-400' : c.group === '中' ? 'border-l-amber-400' : 'border-l-red-400';
+    return `<div class="bg-white rounded-lg border border-slate-200 border-l-4 ${groupColor} p-3">
+      <p class="text-sm font-medium text-slate-900 mb-2">${c.name}</p>
+      <div class="grid grid-cols-2 gap-1 text-xs">
+        <div><span class="text-slate-400">意向届:</span> ${c.intent}</div>
+        <div><span class="text-slate-400">提出:</span> ${c.submit}</div>
+        <div><span class="text-slate-400">プレゼン:</span> ${c.pres}</div>
+        <div><span class="text-slate-400">結果:</span> ${c.result}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// フィルター
+// ============================================================
+let currentFilter = 'all';
+
+function filterStatus(status) {
+  currentFilter = status;
+
+  // タブ更新
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    if (btn.dataset.filter === status) {
+      btn.className = 'filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-primary-500 text-white cursor-pointer';
+    } else {
+      btn.className = 'filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer';
+    }
+  });
+
+  const filtered = status === 'all' ? projects : projects.filter(p => p.status === status);
+  renderDesktopTable(filtered);
+  renderMobileList(filtered);
+}
+
+// ============================================================
+// 担当者の追加・削除
+// ============================================================
+let activeDropdownProject = null;
+
+function openStaffDropdown(event, projectId) {
+  event.stopPropagation();
+  const dropdown = document.getElementById('staff-dropdown-global');
+  const project = projects.find(p => p.id === projectId);
+  activeDropdownProject = projectId;
+
+  // オプション生成
+  const optionsEl = document.getElementById('staff-options');
+  optionsEl.innerHTML = STAFF_LIST.map(s => {
+    const assigned = project.staff.includes(s);
+    const c = STAFF_COLORS[s];
+    return `<button onclick="toggleStaff('${projectId}','${s}')" class="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm hover:bg-gray-50 cursor-pointer ${assigned ? 'font-medium' : ''}">
+      <span class="w-4 h-4 inline-flex items-center justify-center rounded border ${assigned ? 'bg-primary-500 border-primary-500 text-white' : 'border-slate-300'}">
+        ${assigned ? '<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>' : ''}
+      </span>
+      <span class="${c.bg} ${c.text} px-2 py-0.5 rounded-full text-xs">${s}</span>
+    </button>`;
+  }).join('');
+
+  // ポジション
+  const rect = event.target.getBoundingClientRect();
+  const dropdownW = 192;
+  let left = rect.left;
+  if (left + dropdownW > window.innerWidth) left = window.innerWidth - dropdownW - 8;
+  dropdown.style.top = (rect.bottom + window.scrollY + 4) + 'px';
+  dropdown.style.left = left + 'px';
+  dropdown.classList.remove('hidden');
+}
+
+function toggleStaff(projectId, staffName) {
+  const project = projects.find(p => p.id === projectId);
+  const idx = project.staff.indexOf(staffName);
+  if (idx >= 0) {
+    project.staff.splice(idx, 1);
+  } else {
+    project.staff.push(staffName);
+  }
+  saveStaffData();
+  renderAll();
+  // ドロップダウンを再描画
+  if (activeDropdownProject === projectId) {
+    const btn = document.querySelector(`[onclick="openStaffDropdown(event, '${projectId}')"]`);
+    if (btn) {
+      const fakeEvent = { stopPropagation: () => {}, target: btn, };
+      // getBoundingRect用に実際のbtnを使う
+      fakeEvent.target = { getBoundingClientRect: () => btn.getBoundingClientRect() };
+      openStaffDropdown(fakeEvent, projectId);
+    }
+  }
+}
+
+function removeStaff(projectId, staffIdx) {
+  const project = projects.find(p => p.id === projectId);
+  project.staff.splice(staffIdx, 1);
+  saveStaffData();
+  renderAll();
+}
+
+// ドロップダウン外クリックで閉じる
+document.addEventListener('click', (e) => {
+  const dropdown = document.getElementById('staff-dropdown-global');
+  if (!dropdown.contains(e.target)) {
+    dropdown.classList.add('hidden');
+    activeDropdownProject = null;
+  }
+});
+
+// ============================================================
+// 初期化
+// ============================================================
+function renderAll() {
+  const filtered = currentFilter === 'all' ? projects : projects.filter(p => p.status === currentFilter);
+  renderDesktopTable(filtered);
+  renderMobileList(filtered);
+  renderChecklistMobile();
+}
+
+loadStaffData();
+renderAll();
+</script>
 
 </body>
 </html>
