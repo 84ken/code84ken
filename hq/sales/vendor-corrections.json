@@ -85,9 +85,39 @@
           "originalProject": "ディレクション",
           "amount": 550000,
           "correctedProject": "リバサポ"
+        },
+        {
+          "period": "2016-10",
+          "originalProject": "ディレクション",
+          "amount": 648000,
+          "correctedProject": "マクドナルド"
+        },
+        {
+          "period": "2016-07",
+          "originalProject": "ディレクション",
+          "amount": 432000,
+          "correctedProject": "マクドナルド"
+        },
+        {
+          "period": "2016-05",
+          "originalProject": "ディレクション",
+          "amount": 831600,
+          "correctedProject": "ゆめみ：ライザップ"
+        },
+        {
+          "period": "2016-03",
+          "originalProject": "ディレクション",
+          "amount": 162000,
+          "correctedProject": "マクドナルド"
+        },
+        {
+          "period": "2016-02",
+          "originalProject": "ディレクション",
+          "amount": 162000,
+          "correctedProject": "マクドナルド"
         }
       ],
-      "note": "2023年3〜8月の高額ディレクション = ゆめみ：角川案件（橋本確認済）。2021年9月〜2022年のディレクション = リバサポ（橋本確認済）"
+      "note": "2023年3〜8月の高額ディレクション = ゆめみ：角川案件（橋本確認済）。2021年9月〜2022年のディレクション = リバサポ（橋本確認済）。2016年 = ゆめみ：ライザップ(5月) + マクドナルド(2,3,7,10月)（橋本確認済）"
     },
     "株式会社ポリリズム": {
       "entryCorrections": [
@@ -898,7 +928,700 @@
       "note": "2015〜2016のデザイン = エクシング（ジョイサウンド）。2015-07 ¥540,000 = アダストリア（橋本確認済）。2015-09 = ARUHI（橋本確認済）",
       "projectMappings": [],
       "addedProjects": []
+    },
+    "浅見制作所": {
+      "entryCorrections": [
+        {
+          "period": "2023-08",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-08",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-07",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-07",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-07",
+          "originalProject": "撮影",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-06",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-06",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-06",
+          "originalProject": "ディレクション",
+          "amount": 550000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-05",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-05",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-04",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-04",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-03",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-03",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-03",
+          "originalProject": "企画",
+          "amount": 220000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-03",
+          "originalProject": "ディレクション",
+          "amount": 13750,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-03",
+          "originalProject": "ディレクション",
+          "amount": 330000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-02",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-02",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-02",
+          "originalProject": "撮影",
+          "amount": 44000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-01",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-01",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-01",
+          "originalProject": "撮影",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-12",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-12",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-12",
+          "originalProject": "撮影",
+          "amount": 44000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-11",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-11",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-11",
+          "originalProject": "ディレクション",
+          "amount": 55000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-10",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-10",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-10",
+          "originalProject": "撮影",
+          "amount": 44000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-09",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-09",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-09",
+          "originalProject": "撮影",
+          "amount": 44000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-08",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-08",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-08",
+          "originalProject": "撮影",
+          "amount": 44000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-07",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-07",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-06",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-06",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-06",
+          "originalProject": "撮影",
+          "amount": 44000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-06",
+          "originalProject": "ディレクション",
+          "amount": 55000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-05",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-05",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-05",
+          "originalProject": "ディレクション",
+          "amount": 220000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-05",
+          "originalProject": "撮影",
+          "amount": 44000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-05",
+          "originalProject": "撮影",
+          "amount": 44000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-04",
+          "originalProject": "ディレクション",
+          "amount": 11000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-04",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-03",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-03",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-02",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-02",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-01",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-01",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2022-01",
+          "originalProject": "撮影",
+          "amount": 44000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2021-12",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2021-12",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2021-12",
+          "originalProject": "ディレクション",
+          "amount": 330000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2021-11",
+          "originalProject": "ディレクション",
+          "amount": 22000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2021-11",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2021-10",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2021-09",
+          "originalProject": "運用",
+          "amount": 88000,
+          "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        }
+      ],
+      "note": "2021-09〜2023-08の汎用名（ディレクション/運用/撮影/企画）= ヒロ建工/ヒロベース/ウィーザス案件（橋本確認済）",
+      "projectMappings": [],
+      "addedProjects": []
+    },
+    "株式会社GUM（城内匡）": {
+      "entryCorrections": [
+        {
+          "period": "2016-11",
+          "originalProject": "コーディング",
+          "amount": 108000,
+          "correctedProject": "リクルート：ペットイベント"
+        },
+        {
+          "period": "2016-11",
+          "originalProject": "コーディング",
+          "amount": 324000,
+          "correctedProject": "リクルート：ペットイベント"
+        },
+        {
+          "period": "2016-11",
+          "originalProject": "コーディング",
+          "amount": 129600,
+          "correctedProject": "リクルート：ペットイベント"
+        },
+        {
+          "period": "2018-03",
+          "originalProject": "コーディング",
+          "amount": 43200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-03",
+          "originalProject": "コーディング",
+          "amount": 86400,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-03",
+          "originalProject": "コーディング",
+          "amount": 43200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-02",
+          "originalProject": "コーディング",
+          "amount": 43200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-02",
+          "originalProject": "コーディング",
+          "amount": 270000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-02",
+          "originalProject": "コーディング",
+          "amount": 270000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-01",
+          "originalProject": "コーディング",
+          "amount": 540000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-01",
+          "originalProject": "コーディング",
+          "amount": 54000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-01",
+          "originalProject": "コーディング",
+          "amount": 43200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2017-11",
+          "originalProject": "コーディング",
+          "amount": 43200,
+          "correctedProject": "エン・ジャパン"
+        }
+      ],
+      "projectMappings": [],
+      "addedProjects": [],
+      "note": "2016-11 = リクルート：ペットイベント（橋本確認済）。ポリリズムと同期間のコーディング = エン・ジャパン（橋本確認済）"
+    },
+    "城内匡": {
+      "entryCorrections": [
+        {
+          "period": "2020-08",
+          "originalProject": "コーディング",
+          "amount": 550000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-08",
+          "originalProject": "コーディング",
+          "amount": 110000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-05",
+          "originalProject": "コーディング",
+          "amount": 88000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-03",
+          "originalProject": "コーディング",
+          "amount": 660000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-03",
+          "originalProject": "コーディング",
+          "amount": 770000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-03",
+          "originalProject": "コーディング",
+          "amount": 44000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-02",
+          "originalProject": "コーディング",
+          "amount": 165000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-02",
+          "originalProject": "コーディング",
+          "amount": 550000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2020-02",
+          "originalProject": "コーディング",
+          "amount": 44000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-12",
+          "originalProject": "コーディング",
+          "amount": 550000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-12",
+          "originalProject": "コーディング",
+          "amount": 550000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-11",
+          "originalProject": "コーディング",
+          "amount": 550000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-08",
+          "originalProject": "コーディング",
+          "amount": 32400,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-08",
+          "originalProject": "コーディング",
+          "amount": 756000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-07",
+          "originalProject": "コーディング",
+          "amount": 32400,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-06",
+          "originalProject": "コーディング",
+          "amount": 54000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-05",
+          "originalProject": "コーディング",
+          "amount": 108000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-04",
+          "originalProject": "コーディング",
+          "amount": 21600,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-04",
+          "originalProject": "コーディング",
+          "amount": 21600,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-03",
+          "originalProject": "コーディング",
+          "amount": 756000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-03",
+          "originalProject": "コーディング",
+          "amount": 270000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-03",
+          "originalProject": "コーディング",
+          "amount": 135000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-02",
+          "originalProject": "コーディング",
+          "amount": 135000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-01",
+          "originalProject": "コーディング",
+          "amount": 135000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-01",
+          "originalProject": "コーディング",
+          "amount": 135000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2019-01",
+          "originalProject": "コーディング",
+          "amount": 43200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-12",
+          "originalProject": "コーディング",
+          "amount": 135000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-12",
+          "originalProject": "コーディング",
+          "amount": 43200,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-10",
+          "originalProject": "コーディング",
+          "amount": 129600,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-09",
+          "originalProject": "コーディング",
+          "amount": 270000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-08",
+          "originalProject": "コーディング",
+          "amount": 756000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-07",
+          "originalProject": "コーディング",
+          "amount": 540000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-06",
+          "originalProject": "コーディング・CMS実装",
+          "amount": 216000,
+          "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2018-05",
+          "originalProject": "コーディング・CMS実装",
+          "amount": 540000,
+          "correctedProject": "エン・ジャパン"
+        }
+      ],
+      "projectMappings": [],
+      "addedProjects": [],
+      "note": "ポリリズムと同期間（2017-11〜2020-09）のコーディング = エン・ジャパン（橋本確認済）。"
     }
   },
-  "updatedAt": "2026-03-21T05:44:22.310Z"
+  "updatedAt": "2026-03-21T06:04:03.793Z"
 }

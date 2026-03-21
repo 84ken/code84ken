@@ -112,11 +112,13 @@ function getDisplayProjects(vendor) {
 
   // Apply entry-level corrections: aggregate corrected project names from entryCorrections
   if (c.entryCorrections && c.entryCorrections.length > 0) {
-    const entrySummary = {}; // correctedProject → { count, total }
+    const entrySummary = {}; // correctedProject → { count, total, firstPeriod, lastPeriod }
     c.entryCorrections.forEach(ec => {
-      if (!entrySummary[ec.correctedProject]) entrySummary[ec.correctedProject] = { count: 0, total: 0 };
+      if (!entrySummary[ec.correctedProject]) entrySummary[ec.correctedProject] = { count: 0, total: 0, firstPeriod: ec.period, lastPeriod: ec.period };
       entrySummary[ec.correctedProject].count++;
       entrySummary[ec.correctedProject].total += ec.amount || 0;
+      if (ec.period < entrySummary[ec.correctedProject].firstPeriod) entrySummary[ec.correctedProject].firstPeriod = ec.period;
+      if (ec.period > entrySummary[ec.correctedProject].lastPeriod) entrySummary[ec.correctedProject].lastPeriod = ec.period;
     });
 
     // For each corrected project, check if it already exists in result
@@ -129,7 +131,7 @@ function getDisplayProjects(vendor) {
         existing.hasCorrectedEntries = true;
       } else {
         // New project name from entry corrections
-        result.push({ name: projName, tasks: [], monthCount: stats.count, totalExTax: stats.total, correctedFromEntries: true });
+        result.push({ name: projName, tasks: [], monthCount: stats.count, totalExTax: stats.total, correctedFromEntries: true, firstPeriod: stats.firstPeriod, lastPeriod: stats.lastPeriod });
       }
     });
 
@@ -353,7 +355,12 @@ function filterVendors() {
   results.slice(0, max).forEach((v, i) => {
     const displayProjects = getDisplayProjects(v);
     const hasCor = hasCorrections(v.name);
-    const tags = displayProjects.slice(0, 8).map(p => `<span class="px-2 py-0.5 rounded-full text-xs font-medium ${p.originalName ? 'bg-primary-100 text-primary-700' : p.added ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'}">${hl(p.name)}${p.originalName ? ' <span class="text-primary-400 text-[10px]">← ' + p.originalName + '</span>' : ''}</span>`).join('');
+    const tags = displayProjects.slice(0, 10).map(p => {
+      const bgClass = p.correctedFromEntries ? 'bg-primary-100 text-primary-700' : p.originalName ? 'bg-primary-100 text-primary-700' : p.added ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600';
+      const periodLabel = p.firstPeriod && p.lastPeriod ? ' <span class="text-[10px] opacity-60">' + p.firstPeriod.substring(0,7) + '〜' + p.lastPeriod.substring(0,7) + '</span>' : (p.firstMonth && p.lastMonth ? ' <span class="text-[10px] opacity-60">' + p.firstMonth + '〜' + p.lastMonth + '</span>' : '');
+      const originLabel = p.originalName ? ' <span class="text-primary-400 text-[10px]">← ' + p.originalName + '</span>' : '';
+      return `<span class="px-2 py-0.5 rounded-full text-xs font-medium ${bgClass}">${hl(p.name)}${periodLabel}${originLabel}</span>`;
+    }).join('');
     html += `
     <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
       <div class="p-4 cursor-pointer hover:bg-gray-50 transition-colors" onclick="document.getElementById('det${i}').classList.toggle('open')">
