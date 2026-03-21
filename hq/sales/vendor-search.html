@@ -31,19 +31,19 @@ body { font-size: 14px; line-height: 1.7; }
 <body class="bg-gray-50 min-h-screen">
 
 <!-- HQ Nav -->
-<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 32px;display:flex;align-items:center;gap:12px;">
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;gap:8px;">
   <a href="/index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
     <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span>
     HQ
   </a>
   <span style="color:#cbd5e1;">/</span>
-  <a href="sales-dashboard.html" style="color:#64748b;font-size:13px;text-decoration:none;">売上</a>
+  <a href="/sales-dashboard.html" style="color:#64748b;font-size:13px;text-decoration:none;">売上</a>
   <span style="color:#334155;font-size:13px;font-weight:600;">外注先</span>
-  <a href="vendor-memo.html" style="color:#64748b;font-size:13px;text-decoration:none;">プロジェクト</a>
-  <a href="cashflow.html" style="color:#64748b;font-size:13px;text-decoration:none;">キャッシュフロー</a>
+  <a href="/vendor-memo.html" style="color:#64748b;font-size:13px;text-decoration:none;">プロジェクト</a>
+  <a href="/cashflow.html" style="color:#64748b;font-size:13px;text-decoration:none;">キャッシュフロー</a>
 </div>
 
-<div class="max-w-6xl mx-auto px-8 py-12">
+<div class="max-w-6xl mx-auto px-4 sm:px-8 py-6 sm:py-12">
   <div class="mb-8">
     <h1 class="text-3xl font-bold text-slate-900">外注先管理</h1>
     <p class="text-body mt-1" id="summary">読み込み中...</p>
@@ -60,6 +60,18 @@ body { font-size: 14px; line-height: 1.7; }
   <div id="app"></div>
 </div>
 
+<!-- Edit Vendor Modal -->
+<div id="editModal" class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center" style="display:none">
+  <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 mx-4 max-h-[85vh] overflow-y-auto">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-slate-900" id="editModalTitle">案件紐づけ編集</h2>
+      <button onclick="closeEditModal()" class="text-xl text-slate-400 hover:text-slate-600 cursor-pointer">&times;</button>
+    </div>
+    <div id="editModalBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast" style="position:fixed;bottom:24px;right:24px;background:#10b981;color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;transform:translateY(80px);opacity:0;transition:all 0.3s;z-index:100;"></div>
+
 <script>
 const FMT = n => (n != null && n !== 0) ? '¥' + Math.round(n).toLocaleString() : '¥0';
 
@@ -68,6 +80,41 @@ let monthlyData = [];
 let salesCrossRef = null;
 let currentTab = 'search';
 
+let corrections = {};
+
+async function loadCorrections() {
+  try {
+    const r = await fetch('/api/corrections');
+    const data = await r.json();
+    corrections = data.corrections || {};
+  } catch(e) {}
+}
+
+async function saveVendorCorrection(vendorName, correction) {
+  corrections[vendorName] = correction;
+  await fetch('/api/corrections/' + encodeURIComponent(vendorName), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(correction)
+  });
+}
+
+function getDisplayProjects(vendor) {
+  const c = corrections[vendor.name];
+  if (!c || !c.projectMappings) return vendor.projects;
+  // Apply corrections
+  return vendor.projects.map(p => {
+    const mapping = c.projectMappings.find(m => m.original === p.name);
+    if (mapping) return { ...p, name: mapping.corrected, originalName: p.name };
+    return p;
+  }).concat((c.addedProjects || []).map(name => ({ name, tasks: [], monthCount: 0, totalExTax: 0, added: true })));
+}
+
+function hasCorrections(vendorName) {
+  const c = corrections[vendorName];
+  return c && ((c.projectMappings && c.projectMappings.length > 0) || (c.addedProjects && c.addedProjects.length > 0));
+}
+
 // ===== INIT =====
 async function init() {
   const res = await fetch('vendor-data.json');
@@ -75,6 +122,7 @@ async function init() {
   allVendors = data.vendors || [];
   monthlyData = data.months || [];
   salesCrossRef = data.salesCrossRef || null;
+  await loadCorrections();
 
   document.getElementById('summary').textContent =
     `${data.vendorCount}社の外注先 — データ更新: ${new Date(data.generatedAt).toLocaleDateString('ja-JP')}`;
@@ -209,7 +257,9 @@ function filterVendors() {
 
   let html = '';
   results.slice(0, max).forEach((v, i) => {
-    const tags = v.projects.slice(0, 8).map(p => `<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600">${hl(p.name)}</span>`).join('');
+    const displayProjects = getDisplayProjects(v);
+    const hasCor = hasCorrections(v.name);
+    const tags = displayProjects.slice(0, 8).map(p => `<span class="px-2 py-0.5 rounded-full text-xs font-medium ${p.originalName ? 'bg-primary-100 text-primary-700' : p.added ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'}">${hl(p.name)}${p.originalName ? ' <span class="text-primary-400 text-[10px]">← ' + p.originalName + '</span>' : ''}</span>`).join('');
     html += `
     <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
       <div class="p-4 cursor-pointer hover:bg-gray-50 transition-colors" onclick="document.getElementById('det${i}').classList.toggle('open')">
@@ -217,13 +267,18 @@ function filterVendors() {
           <div class="flex items-center gap-3 min-w-0">
             <div class="w-8 h-8 rounded-full ${v.type === '法人' ? 'bg-primary-50 text-primary-600' : 'bg-amber-50 text-amber-600'} inline-flex items-center justify-center flex-shrink-0 text-xs font-bold">${v.type === '法人' ? '法' : '個'}</div>
             <div class="min-w-0">
-              <h3 class="font-bold text-slate-900 text-sm truncate">${hl(v.name)}</h3>
+              <h3 class="font-bold text-slate-900 text-sm truncate">${hl(v.name)}${hasCor ? ' <span class="text-xs font-medium text-primary-500 bg-primary-50 px-1.5 py-0.5 rounded">修正済</span>' : ''}</h3>
               <p class="text-xs text-slate-400">${v.firstMonth} 〜 ${v.lastMonth} | ${v.monthCount}ヶ月${v.invoice ? ' | ' + v.invoice : ''}</p>
             </div>
           </div>
-          <div class="text-right flex-shrink-0 ml-4">
-            <p class="font-bold text-slate-900 text-sm">${FMT(v.totalExTax)}</p>
-            <p class="text-xs text-slate-400">税抜累計</p>
+          <div class="flex items-center gap-3 flex-shrink-0 ml-4">
+            <div class="text-right">
+              <p class="font-bold text-slate-900 text-sm">${FMT(v.totalExTax)}</p>
+              <p class="text-xs text-slate-400">税抜累計</p>
+            </div>
+            <button onclick="event.stopPropagation();openEditModal('${v.name.replace(/'/g, "\\'")}')" class="w-8 h-8 inline-flex items-center justify-center rounded-lg border border-slate-200 hover:bg-primary-50 hover:border-primary-300 cursor-pointer text-slate-400 hover:text-primary-500 flex-shrink-0" aria-label="案件紐づけ編集" title="案件紐づけ編集">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </button>
           </div>
         </div>
         <div class="flex flex-wrap gap-1.5 mt-2">${tags}</div>
@@ -239,7 +294,7 @@ function filterVendors() {
                 <th scope="col" class="text-right py-2 text-xs text-slate-500">月数</th>
                 <th scope="col" class="text-right py-2 text-xs text-slate-500">累計</th>
               </tr></thead><tbody>
-              ${v.projects.map(p => `<tr class="border-b border-slate-100"><td class="py-2">${hl(p.name)}</td><td class="py-2 text-xs text-body">${p.tasks.join(', ')}</td><td class="py-2 text-right text-slate-500">${p.monthCount}</td><td class="py-2 text-right font-medium">${FMT(p.totalExTax)}</td></tr>`).join('')}
+              ${displayProjects.map(p => `<tr class="border-b border-slate-100"><td class="py-2">${hl(p.name)}${p.originalName ? ' <span class="text-xs text-primary-400">← ' + p.originalName + '</span>' : ''}${p.added ? ' <span class="text-xs text-emerald-400">手動追加</span>' : ''}</td><td class="py-2 text-xs text-body">${(p.tasks || []).join(', ')}</td><td class="py-2 text-right text-slate-500">${p.monthCount || 0}</td><td class="py-2 text-right font-medium">${FMT(p.totalExTax)}</td></tr>`).join('')}
               </tbody></table>
             </div>
             <div>
@@ -406,7 +461,7 @@ function showMonth() {
   }
 
   let html = `
-  <div class="grid grid-cols-4 gap-4 mb-6">
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
     <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
       <p class="text-xs font-medium text-slate-500 uppercase">売上</p>
       <p class="text-2xl font-bold text-slate-900 mt-1">${m.salesThousand ? FMT(m.salesThousand) : '-'}<span class="text-sm font-normal text-slate-400 ml-1">千円</span></p>
@@ -546,7 +601,7 @@ function renderCrossRefTab(container) {
     // Detail panel
     html += '<div class="detail-panel" id="cr' + idx + '">' +
       '<div class="border-t border-slate-100 px-4 py-4 bg-gray-50">' +
-        '<div class="grid grid-cols-2 gap-6">';
+        '<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">';
 
     // Left: sales actions
     html += '<div>' +
@@ -597,6 +652,128 @@ function renderCrossRefTab(container) {
 
   html += '</div>';
   container.innerHTML = html;
+}
+
+// ===== VENDOR EDIT =====
+let editingVendor = null;
+
+function openEditModal(vendorName) {
+  const v = allVendors.find(v => v.name === vendorName);
+  if (!v) return;
+  editingVendor = v;
+
+  document.getElementById('editModalTitle').textContent = v.name + ' — 案件紐づけ編集';
+
+  const c = corrections[v.name] || { projectMappings: [], addedProjects: [] };
+  const projects = v.projects || [];
+
+  let html = '<p class="text-xs text-slate-500 mb-4">Excel取込の案件名を正しい案件名に修正できます。修正はvendor-corrections.jsonに保存されます。</p>';
+
+  // Existing projects
+  html += '<div class="space-y-3 mb-4" id="editProjectList">';
+  projects.forEach((p, i) => {
+    const mapping = (c.projectMappings || []).find(m => m.original === p.name);
+    const corrected = mapping ? mapping.corrected : '';
+    const isModified = !!corrected;
+    html += '<div class="flex items-center gap-2 p-3 rounded-lg border ' + (isModified ? 'border-primary-200 bg-primary-50/30' : 'border-slate-200') + '">';
+    html += '<div class="flex-1 min-w-0">';
+    html += '<div class="text-xs text-slate-400 mb-1">元の名前: ' + p.name + ' <span class="text-slate-300">(' + FMT(p.totalExTax) + ' / ' + p.monthCount + 'ヶ月)</span></div>';
+    html += '<input type="text" data-original="' + p.name.replace(/"/g, '&quot;') + '" value="' + (corrected || p.name).replace(/"/g, '&quot;') + '" placeholder="修正後の案件名" class="edit-project-input w-full px-3 py-1.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50">';
+    html += '</div>';
+    if (isModified) html += '<span class="text-xs text-primary-500 font-medium flex-shrink-0">修正済</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // Add new project button
+  html += '<div class="mb-4" id="addedProjectsContainer">';
+  const added = c.addedProjects || [];
+  added.forEach((name, i) => {
+    html += '<div class="flex items-center gap-2 mb-2"><input type="text" class="added-project-input flex-1 px-3 py-1.5 text-sm border border-emerald-300 rounded-lg bg-emerald-50" value="' + name.replace(/"/g, '&quot;') + '" placeholder="追加案件名"><button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-600 cursor-pointer text-sm">&times;</button></div>';
+  });
+  html += '</div>';
+  html += '<button onclick="addProjectField()" class="inline-flex items-center gap-1 text-sm text-primary-500 hover:text-primary-700 cursor-pointer mb-6">+ 案件を手動追加</button>';
+
+  // Note
+  html += '<div class="leading-normal mb-4"><label class="block text-sm font-medium text-slate-700 mb-1">メモ</label>';
+  html += '<input type="text" id="editNote" value="' + ((c.note || '').replace(/"/g, '&quot;')) + '" placeholder="修正理由等" class="w-full px-3 py-1.5 text-sm border border-slate-300 rounded-lg"></div>';
+
+  // Buttons
+  html += '<div class="flex justify-between gap-2 pt-2">';
+  html += '<button onclick="resetCorrections()" class="h-10 px-4 text-sm font-medium text-red-500 hover:bg-red-50 rounded-lg cursor-pointer">リセット</button>';
+  html += '<div class="flex gap-2">';
+  html += '<button onclick="closeEditModal()" class="h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg cursor-pointer">キャンセル</button>';
+  html += '<button onclick="saveEditModal()" class="h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">保存</button>';
+  html += '</div></div>';
+
+  document.getElementById('editModalBody').innerHTML = html;
+  document.getElementById('editModal').style.display = 'flex';
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').style.display = 'none';
+  editingVendor = null;
+}
+
+function addProjectField() {
+  const container = document.getElementById('addedProjectsContainer');
+  const div = document.createElement('div');
+  div.className = 'flex items-center gap-2 mb-2';
+  div.innerHTML = '<input type="text" class="added-project-input flex-1 px-3 py-1.5 text-sm border border-emerald-300 rounded-lg bg-emerald-50" placeholder="追加案件名"><button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-600 cursor-pointer text-sm">&times;</button>';
+  container.appendChild(div);
+}
+
+async function saveEditModal() {
+  if (!editingVendor) return;
+
+  const projectMappings = [];
+  document.querySelectorAll('.edit-project-input').forEach(input => {
+    const original = input.dataset.original;
+    const corrected = input.value.trim();
+    if (corrected && corrected !== original) {
+      projectMappings.push({ original, corrected });
+    }
+  });
+
+  const addedProjects = [];
+  document.querySelectorAll('.added-project-input').forEach(input => {
+    const val = input.value.trim();
+    if (val) addedProjects.push(val);
+  });
+
+  const note = document.getElementById('editNote').value.trim();
+
+  const correction = { projectMappings, addedProjects, note };
+
+  if (projectMappings.length === 0 && addedProjects.length === 0 && !note) {
+    // No corrections - delete
+    delete corrections[editingVendor.name];
+    await fetch('/api/corrections/' + encodeURIComponent(editingVendor.name), { method: 'DELETE' });
+  } else {
+    await saveVendorCorrection(editingVendor.name, correction);
+  }
+
+  closeEditModal();
+  showToast('保存しました');
+  render();
+}
+
+async function resetCorrections() {
+  if (!editingVendor) return;
+  if (!confirm(editingVendor.name + ' の修正をリセットしますか？')) return;
+  delete corrections[editingVendor.name];
+  await fetch('/api/corrections/' + encodeURIComponent(editingVendor.name), { method: 'DELETE' });
+  closeEditModal();
+  showToast('リセットしました');
+  render();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.transform = 'translateY(0)';
+  t.style.opacity = '1';
+  setTimeout(() => { t.style.transform = 'translateY(80px)'; t.style.opacity = '0'; }, 2000);
 }
 
 init().catch(e => {
