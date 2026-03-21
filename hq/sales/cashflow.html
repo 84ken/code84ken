@@ -434,10 +434,10 @@ function toggleDetail(row, month) {
 }
 
 function kpiCard(label, val, sub) {
-  return '<div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">' +
-    '<p class="text-xs font-medium text-slate-500 uppercase">' + label + '</p>' +
-    '<p class="text-2xl font-bold text-slate-900 mt-1">' + val + '</p>' +
-    (sub ? '<p class="text-xs text-slate-400 mt-1">' + sub + '</p>' : '') + '</div>';
+  return '<div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-sm overflow-hidden">' +
+    '<p class="text-xs font-medium text-slate-500 uppercase truncate">' + label + '</p>' +
+    '<p class="text-lg sm:text-2xl font-bold text-slate-900 mt-1 truncate">' + val + '</p>' +
+    (sub ? '<p class="text-xs text-slate-400 mt-1 truncate">' + sub + '</p>' : '') + '</div>';
 }
 
 // ===== CSV EXPORT (外注費リスト形式) =====
