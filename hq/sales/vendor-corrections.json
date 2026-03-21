@@ -1632,6 +1632,34 @@
           "originalProject": "コーディング・CMS実装",
           "amount": 540000,
           "correctedProject": "エン・ジャパン"
+        },
+        {
+          "period": "2022-05",
+          "originalProject": "コーディング",
+          "amount": 770000,
+          "correctedProject": "Tea Planning Lab サイト構築",
+          "source": "pdf-read"
+        },
+        {
+          "period": "2022-06",
+          "originalProject": "コーディング",
+          "amount": 660000,
+          "correctedProject": "獨協大学 入試情報 サイト構築",
+          "source": "pdf-read"
+        },
+        {
+          "period": "2023-06",
+          "originalProject": "コーディング",
+          "amount": 88000,
+          "correctedProject": "横瀬サイト検索改修/カーセブン/リバサポ",
+          "source": "pdf-read"
+        },
+        {
+          "period": "2023-06",
+          "originalProject": "コーディング",
+          "amount": 220000,
+          "correctedProject": "横瀬サイト検索改修/カーセブン/リバサポ",
+          "source": "pdf-read"
         }
       ],
       "projectMappings": [],
@@ -1727,5 +1755,5 @@
       ]
     }
   },
-  "updatedAt": "2026-03-21T07:13:24.696Z"
+  "updatedAt": "2026-03-21T07:17:30.511Z"
 }
