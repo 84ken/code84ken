@@ -6,43 +6,43 @@
           "period": "2023-08",
           "originalProject": "ディレクション・デザイン",
           "amount": 704000,
-          "correctedProject": "ゆめみ：角川"
+          "correctedProject": "ゆめみ：角川（コミックウォーカー）"
         },
         {
           "period": "2023-07",
           "originalProject": "ディレクション・デザイン",
           "amount": 1298000,
-          "correctedProject": "ゆめみ：角川"
+          "correctedProject": "ゆめみ：角川（コミックウォーカー）"
         },
         {
           "period": "2023-06",
           "originalProject": "ディレクション",
           "amount": 1408000,
-          "correctedProject": "ゆめみ：角川"
+          "correctedProject": "ゆめみ：角川（コミックウォーカー）"
         },
         {
           "period": "2023-05",
           "originalProject": "ディレクション",
           "amount": 1408000,
-          "correctedProject": "ゆめみ：角川"
+          "correctedProject": "ゆめみ：角川（コミックウォーカー）"
         },
         {
           "period": "2023-04",
           "originalProject": "ディレクション",
           "amount": 880000,
-          "correctedProject": "ゆめみ：角川"
+          "correctedProject": "ゆめみ：角川（コミックウォーカー）"
         },
         {
           "period": "2023-03",
           "originalProject": "ディレクション",
           "amount": 563200,
-          "correctedProject": "ゆめみ：角川"
+          "correctedProject": "ゆめみ：角川（コミックウォーカー）"
         },
         {
           "period": "2023-03",
           "originalProject": "ディレクション",
           "amount": 2640000,
-          "correctedProject": "ゆめみ：角川"
+          "correctedProject": "ゆめみ：角川（コミックウォーカー）"
         },
         {
           "period": "2022-12",
@@ -1320,6 +1320,22 @@
           "originalProject": "運用",
           "amount": 88000,
           "correctedProject": "ヒロ建工/ヒロベース/ウィーザス"
+        },
+        {
+          "period": "2023-09",
+          "originalProject": "ＮＬＰウイスキー企画",
+          "amount": 50000,
+          "correctedProject": "ストーリーページ制作",
+          "source": "scan-invoices",
+          "sourceFile": "株式会社スキーマ御中_月次制作業務_請求書_INV-0000000047-1.pdf"
+        },
+        {
+          "period": "2023-08",
+          "originalProject": "広告用LP展開",
+          "amount": 55000,
+          "correctedProject": "月度制作",
+          "source": "scan-invoices",
+          "sourceFile": "株式会社スキーマ御中_2023年8月度-制作業務_請求書_INV-0000000010-1.pdf"
         }
       ],
       "note": "2021-09〜2023-08の汎用名（ディレクション/運用/撮影/企画）= ヒロ建工/ヒロベース/ウィーザス案件（橋本確認済）",
@@ -1621,7 +1637,95 @@
       "projectMappings": [],
       "addedProjects": [],
       "note": "ポリリズムと同期間（2017-11〜2020-09）のコーディング = エン・ジャパン（橋本確認済）。"
+    },
+    "株式会社Rockaku": {
+      "entryCorrections": [
+        {
+          "period": "2023-03",
+          "originalProject": "編集",
+          "amount": 605000,
+          "correctedProject": "企画・原稿制作",
+          "source": "scan-invoices",
+          "sourceFile": "リバサポ2022年度後期分請求.pdf"
+        },
+        {
+          "period": "2022-10",
+          "originalProject": "編集",
+          "amount": 605000,
+          "correctedProject": "企画・原稿制作",
+          "source": "scan-invoices",
+          "sourceFile": "スキーマ御中_ご請求書_リバサポ1027.pdf"
+        }
+      ]
+    },
+    "aoiem　\n加藤 健太": {
+      "entryCorrections": [
+        {
+          "period": "2023-03",
+          "originalProject": "プロダクト開発",
+          "amount": 891778,
+          "correctedProject": "tate.lab プロジェクト",
+          "source": "scan-invoices",
+          "sourceFile": "請求書-株式会社スキーマ御中 (4).pdf"
+        },
+        {
+          "period": "2023-03",
+          "originalProject": "施工材料費他",
+          "amount": 1450800,
+          "correctedProject": "ocomori sauna",
+          "source": "scan-invoices",
+          "sourceFile": "請求書-株式会社スキーマ御中-ocomori-サウナ関連.pdf"
+        },
+        {
+          "period": "2023-05",
+          "originalProject": "家具制作原価",
+          "amount": 165000,
+          "correctedProject": "HEBEL HAUS関連 家具⼀式",
+          "source": "scan-invoices",
+          "sourceFile": "請求書-株式会社スキーマ御中-HEBEL-HAUS関連.pdf"
+        },
+        {
+          "period": "2023-06",
+          "originalProject": "施工材料費他",
+          "amount": 110000,
+          "correctedProject": "TISサウナプロジェクト材料費",
+          "source": "scan-invoices",
+          "sourceFile": "請求書-株式会社スキーマ御中-TISサウナプロジェクト材料費.pdf"
+        }
+      ]
+    },
+    "株式会社ＡＬＬＯＹ": {
+      "entryCorrections": [
+        {
+          "period": "2023-03",
+          "originalProject": "プロダクト開発",
+          "amount": 451550,
+          "correctedProject": "新プロダクト開発",
+          "source": "scan-invoices",
+          "sourceFile": "請求書_プロダクト開発S2303-05.pdf"
+        }
+      ]
+    },
+    "umi.design": {
+      "entryCorrections": [
+        {
+          "period": "2023-07",
+          "originalProject": "コーディング",
+          "amount": 220000,
+          "correctedProject": "サイト制作",
+          "source": "scan-invoices",
+          "sourceFile": "Invoice_20230731-011.pdf"
+        },
+        {
+          "period": "2022-11",
+          "originalProject": "コーディング",
+          "amount": 385000,
+          "correctedProject": "サイト制作",
+          "source": "scan-invoices",
+          "sourceFile": "Invoice_20221202-001.pdf"
+        }
+      ]
     }
   },
-  "updatedAt": "2026-03-21T06:04:03.793Z"
+  "updatedAt": "2026-03-21T06:44:46.570Z"
 }
