@@ -30,15 +30,15 @@ tailwind.config = {
 </head>
 <body class="bg-gray-50 min-h-screen">
 <!-- HQ Nav -->
-<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 32px;display:flex;align-items:center;gap:12px;font-family:Inter,'Hiragino Sans','Noto Sans JP',sans-serif;">
-  <a href="/index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:Inter,'Hiragino Sans','Noto Sans JP',sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
     <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span>
     HQ
   </a>
   <span style="color:#cbd5e1;">／</span>
   <span style="color:#334155;font-size:13px;font-weight:500;">3ヶ年事業計画</span>
 </div>
-<div class="max-w-5xl mx-auto px-8 py-12">
+<div class="max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-12">
 
   <!-- ヘッダー -->
   <div class="mb-12">
@@ -72,7 +72,7 @@ tailwind.config = {
     </div>
 
     <!-- SWOT -->
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
         <h3 class="text-sm font-semibold text-emerald-700 uppercase tracking-wider mb-3">Strengths（強み）</h3>
         <ul class="text-sm text-body space-y-1.5">
@@ -128,7 +128,7 @@ tailwind.config = {
         書籍出版・メディア露出により業界での認知を全国区に拡大。<br>
         自社プロダクト/ストック収益が売上の15%を占める。
       </p>
-      <div class="flex items-center gap-8">
+      <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
         <div class="text-center">
           <p class="text-3xl font-bold text-primary-500">350</p>
           <p class="text-xs text-slate-500">百万円（年商目標）</p>
@@ -195,6 +195,7 @@ tailwind.config = {
 
     <!-- メイン売上テーブル -->
     <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mb-8">
+      <div class="overflow-x-auto">
       <table class="w-full">
         <thead>
           <tr class="border-b border-slate-200 bg-gray-50">
@@ -272,6 +273,7 @@ tailwind.config = {
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
     <p class="text-xs text-slate-500 mb-8">※ 単位: 百万円（税抜）</p>
 
@@ -354,6 +356,7 @@ tailwind.config = {
     <h2 class="text-2xl font-bold text-slate-900 mb-6">4. 利益計画</h2>
 
     <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mb-6">
+      <div class="overflow-x-auto">
       <table class="w-full">
         <thead>
           <tr class="border-b border-slate-200 bg-gray-50">
@@ -430,6 +433,7 @@ tailwind.config = {
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
     <p class="text-xs text-slate-500 mb-4">※ 単位: 百万円。粗利率向上の主因: AI活用による制作工数削減＋ストック収益のミックス改善</p>
 
@@ -602,6 +606,7 @@ tailwind.config = {
     <h2 class="text-2xl font-bold text-slate-900 mb-6">6. 重点投資計画</h2>
 
     <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mb-6">
+      <div class="overflow-x-auto">
       <table class="w-full">
         <thead>
           <tr class="border-b border-slate-200 bg-gray-50">
@@ -657,6 +662,7 @@ tailwind.config = {
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
     <p class="text-xs text-slate-500">※ 単位: 百万円。投資は販管費に含む。営業利益はこれを差し引いた後の数値</p>
   </section>
@@ -719,6 +725,7 @@ tailwind.config = {
     <h2 class="text-2xl font-bold text-slate-900 mb-6">8. ベンチマーク企業と学び</h2>
 
     <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+      <div class="overflow-x-auto">
       <table class="w-full">
         <thead>
           <tr class="border-b border-slate-200 bg-gray-50">
@@ -761,6 +768,7 @@ tailwind.config = {
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </section>
 
