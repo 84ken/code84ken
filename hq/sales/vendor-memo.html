@@ -141,8 +141,17 @@ body { font-size: 14px; line-height: 1.7; }
         <label class="block text-sm font-medium text-slate-700 mb-1">ステータス</label>
         <select id="pm-status" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg bg-white">
           <option value="active">進行中</option>
+          <option value="proposal">提案中（ヨミ）</option>
           <option value="closed">完了</option>
         </select>
+      </div>
+
+      <div class="leading-normal">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="pm-recurring" class="w-4 h-4 rounded border-slate-300 text-primary-500 cursor-pointer">
+          <span class="text-sm font-medium text-slate-700">毎月請求あり</span>
+          <span class="text-xs text-slate-400">（月別フィルターで常に表示）</span>
+        </label>
       </div>
 
       <div class="flex justify-end gap-2 pt-2">
@@ -365,19 +374,25 @@ function render() {
 }
 
 function renderKPI() {
-  var ts = 0, tc = 0, tp = 0, al = 0;
+  var ts = 0, ty = 0, tc = 0, tp = 0, al = 0;
   D.projects.forEach(function(p) {
-    ts += p.contractAmount || 0;
+    if (p.status === 'proposal') {
+      ty += p.contractAmount || 0; // 提案中 = ヨミ
+    } else {
+      ts += p.contractAmount || 0; // 進行中 = 確定
+    }
     (p.vendors||[]).forEach(function(v) {
       var a = v.amountTax || v.amount || 0;
       tc += a;
       if (v.status === 'planned') { tp += a; if (v.expectedMonth && v.expectedMonth < NOW) al++; }
     });
   });
+  var activeCount = D.projects.filter(function(p){return p.status==='active'}).length;
+  var proposalCount = D.projects.filter(function(p){return p.status==='proposal'}).length;
   el('kpi').innerHTML =
-    kpiCard('プロジェクト', D.projects.length, '進行中 ' + D.projects.filter(function(p){return p.status==='active'}).length) +
-    kpiCard('契約金額合計', FMT(ts), '') +
-    kpiCard('外注費 / 利益', FMT(tc), '<span class="' + (ts-tc>=0?'text-emerald-600':'text-red-600') + '">利益 ' + FMT(ts-tc) + '</span>') +
+    kpiCard('プロジェクト', D.projects.length, '進行中 ' + activeCount + ' / 提案中 ' + proposalCount) +
+    kpiCard('確定売上', FMT(ts), ty > 0 ? '<span class="text-violet-500">ヨミ ' + FMT(ty) + '</span>' : '') +
+    kpiCard('外注費 / 粗利', FMT(tc), '<span class="' + (ts-tc>=0?'text-emerald-600':'text-red-600') + '">粗利 ' + FMT(ts-tc) + '</span>') +
     kpiCard('未払い予定', FMT(tp), al > 0 ? '<span class="text-red-500 font-medium">⚠ '+al+'件超過</span>' : '');
 }
 function renderMonthlySummary_unused() { // 未使用
@@ -483,7 +498,7 @@ function kpiCard(label, val, sub) {
 }
 
 function renderFilters() {
-  var tabs = [['active','進行中'],['all','すべて'],['closed','完了'],['alert','要確認']];
+  var tabs = [['active','進行中'],['proposal','提案中'],['all','すべて'],['closed','完了'],['alert','要確認']];
   var h = tabs.map(function(t) {
     var active = t[0] === view;
     return '<button onclick="view=\'' + t[0] + '\';renderProjects();renderFilters()" class="px-3 py-1.5 text-xs font-medium rounded-full cursor-pointer ' +
@@ -530,16 +545,17 @@ function renderFilters() {
 
 function renderProjects() {
   var list = D.projects;
-  if (view === 'active') list = list.filter(function(p){return p.status==='active'});
+  if (view === 'active') list = list.filter(function(p){return p.status==='active' || p.status==='proposal'});
+  if (view === 'proposal') list = list.filter(function(p){return p.status==='proposal'});
   if (view === 'closed') list = list.filter(function(p){return p.status==='closed'});
   if (view === 'alert') list = list.filter(function(p){
     return (p.vendors||[]).some(function(v){return v.status==='planned' && v.expectedMonth && v.expectedMonth < NOW});
   });
 
-  // 請求月フィルター: その月に外注がある案件のみ表示
+  // 請求月フィルター: その月に外注がある案件 OR 毎月請求ありの案件を表示
   if (monthFilter) {
     list = list.filter(function(p) {
-      return (p.vendors||[]).some(function(v){ return v.expectedMonth === monthFilter; });
+      return p.recurring || (p.vendors||[]).some(function(v){ return v.expectedMonth === monthFilter; });
     });
   }
 
@@ -603,7 +619,8 @@ function renderProjectCard(p) {
         '<h3 class="text-lg font-bold text-slate-900">' + p.name + '</h3>' +
         (p.client ? '<span class="text-sm text-slate-400">' + p.client + '</span>' : '') +
         (p.billingTo && p.billingTo !== p.client ? '<span class="text-xs text-amber-500 ml-1">→ 請求先: ' + p.billingTo + '</span>' : '') +
-        '<span class="px-2 py-0.5 rounded-full text-xs font-medium ' + (p.status==='active'?'bg-primary-50 text-primary-600':'bg-slate-100 text-slate-500') + '">' + (p.status==='active'?'進行中':'完了') + '</span>' +
+        '<span class="px-2 py-0.5 rounded-full text-xs font-medium ' + (p.status==='active'?'bg-primary-50 text-primary-600':p.status==='proposal'?'bg-violet-50 text-violet-600':'bg-slate-100 text-slate-500') + '">' + (p.status==='active'?'進行中':p.status==='proposal'?'提案中':'完了') + '</span>' +
+        (p.recurring ? '<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-600">毎月請求</span>' : '') +
       '</div>' +
       '<div class="flex gap-1">' +
         '<button onclick="showProjectForm(\'' + p.id + '\')" class="px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded cursor-pointer hover:bg-slate-200">編集</button>' +
@@ -636,19 +653,23 @@ function renderProjectCard(p) {
     '</div></div>';
 
     // === Billing schedule (client invoices) ===
-    if ((p.billings||[]).length) {
-      var billed = (p.billings||[]).filter(function(b){return b.status==='received'}).reduce(function(s,b){return s+b.amount},0);
-      var unbilled = (p.billings||[]).filter(function(b){return b.status!=='received'}).reduce(function(s,b){return s+b.amount},0);
+    var billings = p.billings || [];
+    var billedTotal = billings.filter(function(b){return b.status==='received' || b.status==='invoiced'}).reduce(function(s,b){return s+b.amount},0);
+    var remaining = contractBase - billedTotal;
 
-      h += '<div class="px-5 mb-3">' +
-        '<div class="flex flex-wrap items-center gap-3 mb-2">' +
-          '<h4 class="text-xs font-bold text-slate-500 uppercase">請求スケジュール（クライアントへ）</h4>' +
-          '<span class="text-xs text-emerald-600 font-medium">入金済 ' + FMT(billed) + '</span>' +
-          (unbilled > 0 ? '<span class="text-xs text-amber-600 font-medium">未請求 ' + FMT(unbilled) + '</span>' : '') +
-        '</div>' +
-        '<div class="flex gap-2 flex-wrap">';
+    h += '<div class="px-5 mb-3">';
+    h += '<div class="flex flex-wrap items-center gap-3 mb-2">';
+    h += '<h4 class="text-xs font-bold text-slate-500 uppercase">請求スケジュール（クライアントへ）</h4>';
+    if (contractBase > 0) {
+      h += '<span class="text-xs text-slate-500">契約 ' + FMT(contractBase) + '</span>';
+      if (billedTotal > 0) h += '<span class="text-xs text-emerald-600 font-medium">請求済 ' + FMT(billedTotal) + '</span>';
+      h += '<span class="text-xs font-medium ' + (remaining > 0 ? 'text-amber-600' : remaining === 0 ? 'text-emerald-600' : 'text-red-600') + '">残り ' + FMT(remaining) + '</span>';
+    }
+    h += '</div>';
 
-      (p.billings||[]).forEach(function(b) {
+    if (billings.length) {
+      h += '<div class="flex gap-2 flex-wrap">';
+      billings.forEach(function(b) {
         var bc = b.status==='received' ? 'bg-emerald-50 border-emerald-200 text-emerald-800' :
                  b.status==='invoiced' ? 'bg-amber-50 border-amber-200 text-amber-800' :
                  'bg-slate-50 border-slate-200 text-slate-700';
@@ -658,15 +679,17 @@ function renderProjectCard(p) {
           '<span class="text-xs">' + (b.date||'') + '</span>' +
           '<span class="px-1.5 py-0.5 rounded text-xs font-medium bg-white/50">' + bs + '</span>' +
           (b.note ? '<span class="text-xs opacity-70">' + b.note + '</span>' : '') +
-          '<button onclick="cycleBilling(\'' + p.id + '\',\'' + b.id + '\')" class="ml-1 px-1 py-0.5 text-xs rounded cursor-pointer hover:bg-white/50" title="ステータス切替">&#x21bb;</button>' +
+          '<button onclick="editBilling(\'' + p.id + '\',\'' + b.id + '\')" class="ml-1 px-1 py-0.5 text-xs rounded cursor-pointer hover:bg-white/50" title="編集">✎</button>' +
+          '<button onclick="cycleBilling(\'' + p.id + '\',\'' + b.id + '\')" class="px-1 py-0.5 text-xs rounded cursor-pointer hover:bg-white/50" title="ステータス切替">&#x21bb;</button>' +
         '</div>';
       });
-
       h += '<button onclick="addBilling(\'' + p.id + '\')" class="px-3 py-2 rounded-lg border border-dashed border-slate-300 text-xs text-slate-400 hover:border-primary-300 hover:text-primary-500 cursor-pointer">+ 請求追加</button>';
-      h += '</div></div>';
+      h += '</div>';
     } else {
-      h += '<div class="px-5 mb-3"><button onclick="addBilling(\'' + p.id + '\')" class="text-xs text-slate-400 hover:text-primary-500 cursor-pointer">+ 請求スケジュールを追加</button></div>';
+      // 請求スケジュール未登録でも残額表示
+      h += '<button onclick="addBilling(\'' + p.id + '\')" class="text-xs text-primary-500 hover:text-primary-700 cursor-pointer">+ 請求スケジュールを追加</button>';
     }
+    h += '</div>';
 
     // === Vendor table (outgoing costs) ===
     h += '<div class="px-5"><h4 class="text-xs font-bold text-slate-500 uppercase mb-2">外注・費用（支払い）</h4></div>';
@@ -729,6 +752,7 @@ function showProjectForm(id) {
   el('pm-contract').value = p ? (p.contractAmount||'') : '';
   el('pm-contract-inc').value = p && p.contractAmount ? Math.round(p.contractAmount * 1.1) : '';
   if (p && p.contractAmount) showTaxIncluded();
+  el('pm-recurring').checked = p ? !!p.recurring : false;
   el('pm-risks').value = p ? (p.risks||'') : '';
   el('pm-status').value = p ? (p.status||'active') : 'active';
   el('pm').style.display = 'flex';
@@ -745,6 +769,7 @@ el('pm-form').addEventListener('submit', async function(e) {
     stakeholders: el('pm-stakeholders').value, deliverables: el('pm-deliverables').value,
     contractAmount: parseFloat(el('pm-contract').value)||0,
     estimate: 0, sales: 0,
+    recurring: el('pm-recurring').checked,
     risks: el('pm-risks').value, status: el('pm-status').value,
   };
   if (id) {
@@ -946,15 +971,38 @@ async function markInvoiced(pid, vid) {
 async function addBilling(pid) {
   var p = D.projects.find(function(x){return x.id===pid});
   if (!p) return;
-  var amount = prompt('請求金額（税込・円）を入力:', '');
+  // 残額を計算してデフォルト値にする
+  var billedTotal = (p.billings||[]).filter(function(b){return b.status==='received' || b.status==='invoiced'}).reduce(function(s,b){return s+b.amount},0);
+  var remaining = (p.contractAmount || 0) - billedTotal;
+  var taxIncRemaining = remaining > 0 ? Math.round(remaining * 1.1) : '';
+  var amount = prompt('請求金額（税抜・円）を入力:', remaining > 0 ? remaining : '');
   if (!amount) return;
+  var amountNum = parseFloat(amount) || 0;
   var date = prompt('請求月（例: 2026-03）:', NOW);
   if (!p.billings) p.billings = [];
   p.billings.push({
-    id: gid(), amount: parseFloat(amount)||0, date: date||'',
+    id: gid(), amount: amountNum, date: date||'',
     status: 'planned', note: '',
   });
   await save(); toast('請求追加'); render();
+}
+
+async function editBilling(pid, bid) {
+  var p = D.projects.find(function(x){return x.id===pid});
+  if (!p) return;
+  var b = (p.billings||[]).find(function(x){return x.id===bid});
+  if (!b) return;
+  var amount = prompt('請求金額（税抜・円）:', b.amount||'');
+  if (amount === null) return;
+  var date = prompt('請求月:', b.date||'');
+  if (date === null) return;
+  var note = prompt('メモ:', b.note||'');
+  b.amount = parseFloat(amount)||0;
+  b.date = date;
+  b.note = note !== null ? note : b.note;
+  var del = confirm('この請求を削除しますか？（キャンセル=残す）');
+  if (del) { p.billings = p.billings.filter(function(x){return x.id!==bid}); }
+  await save(); toast('更新'); render();
 }
 
 async function cycleBilling(pid, bid) {

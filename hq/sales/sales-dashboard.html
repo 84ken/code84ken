@@ -63,10 +63,14 @@ async function init() {
 
   // プロジェクト管理のデータを月別に集計（7月〜6月の期）
   const projects = memos.projects || [];
-  const projectSummary = { totalContract: 0, totalVendorCost: 0, projectCount: projects.filter(p => p.status === 'active').length };
+  const projectSummary = { totalContract: 0, totalYomi: 0, totalVendorCost: 0, projectCount: projects.filter(p => p.status === 'active').length, proposalCount: projects.filter(p => p.status === 'proposal').length };
   const vendorByMonth = {}; // { '2026-03': { cost: 0, count: 0 } }
   projects.forEach(p => {
-    projectSummary.totalContract += p.contractAmount || 0;
+    if (p.status === 'proposal') {
+      projectSummary.totalYomi += p.contractAmount || 0;
+    } else {
+      projectSummary.totalContract += p.contractAmount || 0;
+    }
     (p.vendors || []).forEach(v => {
       const amt = v.amountTax || v.amount || 0;
       projectSummary.totalVendorCost += amt;
@@ -162,12 +166,13 @@ async function init() {
     </div>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       <div class="p-3 bg-slate-50 rounded-lg">
-        <p class="text-xs text-slate-500">進行中案件</p>
-        <p class="text-lg font-bold text-slate-900">${projectSummary.projectCount}件</p>
+        <p class="text-xs text-slate-500">案件数</p>
+        <p class="text-lg font-bold text-slate-900">${projectSummary.projectCount}件<span class="text-sm font-normal text-violet-500 ml-1">${projectSummary.proposalCount ? '+提案' + projectSummary.proposalCount + '件' : ''}</span></p>
       </div>
       <div class="p-3 bg-slate-50 rounded-lg">
-        <p class="text-xs text-slate-500">契約合計（税抜）</p>
+        <p class="text-xs text-slate-500">確定 + ヨミ</p>
         <p class="text-lg font-bold text-slate-900">${YEN(projectSummary.totalContract)}</p>
+        ${projectSummary.totalYomi ? '<p class="text-xs text-violet-500">ヨミ ' + YEN(projectSummary.totalYomi) + '</p>' : ''}
       </div>
       <div class="p-3 bg-slate-50 rounded-lg">
         <p class="text-xs text-slate-500">外注費合計</p>
