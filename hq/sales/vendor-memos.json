@@ -1,22 +1,62 @@
 {
   "projects": [
     {
-      "name": "リバサポ広告",
+      "name": "リトデポチラシ更新",
+      "client": "JEKI",
+      "description": "リトデポのチラシ更新",
+      "manager": "橋本/岡永",
+      "scheduleStart": "2026-03",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "JEKI、JR東日本",
+      "deliverables": "チラシデータ",
+      "contractAmount": 165000,
+      "estimate": 0,
+      "sales": 0,
+      "risks": "",
+      "status": "active",
+      "id": "mn00zgvn8tu9",
+      "createdAt": "2026-03-21T07:47:38.675Z",
+      "vendors": [
+        {
+          "vendor": "みくゆう",
+          "task": "写真活用",
+          "amount": 30000,
+          "amountTax": 33000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mn016r4kyrct"
+        }
+      ]
+    },
+    {
+      "name": "リトデポ広告",
       "client": "JEKI",
       "description": "",
       "manager": "橋本/岡永",
       "scheduleStart": "2026-03",
       "scheduleEnd": "2026-03",
-      "stakeholders": "JEKI",
+      "stakeholders": "JEKI・インターメディア",
       "deliverables": "",
-      "contractAmount": 1600000,
-      "estimate": 1600,
-      "sales": 1600,
-      "risks": "",
+      "contractAmount": 1650000,
+      "estimate": 0,
+      "sales": 0,
+      "risks": "請求先はインターメディア",
       "status": "active",
       "id": "mmz3la4h0spz",
       "createdAt": "2026-03-20T16:12:49.409Z",
-      "vendors": []
+      "vendors": [
+        {
+          "vendor": "倉橋碧",
+          "task": "画面デザイン展開",
+          "amount": 50000,
+          "amountTax": 55000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mn00x2oqndmw"
+        }
+      ]
     },
     {
       "id": "mmz0y85sj1yb",
@@ -223,6 +263,26 @@
           "expectedMonth": "",
           "status": "paid",
           "note": "毎月支払い ¥16,500/月（税込）7月〜2月済"
+        },
+        {
+          "vendor": "株式会社Rockaku",
+          "task": "ライティング業務",
+          "amount": 500000,
+          "amountTax": 550000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mn01f7ie05vk"
+        },
+        {
+          "vendor": "S.SKYDESIGN",
+          "task": "毎月デザイン",
+          "amount": 500000,
+          "amountTax": 550000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mn01hqi1o9xa"
         }
       ],
       "billings": [
@@ -309,6 +369,26 @@
           "expectedMonth": "",
           "status": "paid",
           "note": "毎月支払い ¥16,500/月（税込）7月〜2月済"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "2026年3月利用分",
+          "amount": 44000,
+          "amountTax": 48400,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mn01k31e03yl"
+        },
+        {
+          "vendor": "Paid",
+          "task": "LINEライセンス2026年3月分",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mn01l28z5cby"
         }
       ],
       "billings": [
@@ -1138,12 +1218,15 @@
       "scheduleEnd": "",
       "stakeholders": "GREE",
       "deliverables": "運用",
-      "estimate": 6253,
-      "sales": 16962,
+      "estimate": 0,
+      "sales": 0,
       "risks": "",
       "status": "active",
       "vendors": [],
-      "billings": []
+      "billings": [],
+      "billingTo": "",
+      "contractAmount": 0,
+      "recurring": true
     },
     {
       "id": "mmyzj34fsj6q",
@@ -1151,13 +1234,13 @@
       "name": "読売新聞スタンプラリー",
       "client": "読売新聞",
       "description": "スタンプラリー企画・デザイン",
-      "manager": "",
-      "scheduleStart": "2026-02",
+      "manager": "橋本/中村",
+      "scheduleStart": "2025-10",
       "scheduleEnd": "2026-03",
       "stakeholders": "読売新聞社",
       "deliverables": "スタンプラリー企画・ツール制作",
-      "estimate": 2960,
-      "sales": 2960,
+      "estimate": 0,
+      "sales": 0,
       "risks": "",
       "status": "active",
       "vendors": [
@@ -1252,7 +1335,18 @@
           "note": "12月〜3月契約"
         }
       ],
-      "billings": []
+      "billings": [
+        {
+          "id": "mn0zrp9nibiq",
+          "amount": 2664750,
+          "date": "2026-02",
+          "status": "invoiced",
+          "note": ""
+        }
+      ],
+      "billingTo": "",
+      "contractAmount": 2752750,
+      "recurring": false
     },
     {
       "id": "mmyzj34f7nk6",
@@ -1265,8 +1359,8 @@
       "scheduleEnd": "",
       "stakeholders": "",
       "deliverables": "WEBサイト運用",
-      "estimate": 900,
-      "sales": 2101,
+      "estimate": 0,
+      "sales": 0,
       "risks": "",
       "status": "active",
       "vendors": [
@@ -1322,7 +1416,9 @@
         }
       ],
       "billings": [],
-      "contractAmount": 0
+      "contractAmount": 0,
+      "billingTo": "",
+      "recurring": true
     },
     {
       "id": "mmyzj34f2f36",
@@ -1335,8 +1431,8 @@
       "scheduleEnd": "",
       "stakeholders": "横瀬町",
       "deliverables": "ディレクション、運用",
-      "estimate": 1080,
-      "sales": 2160,
+      "estimate": 0,
+      "sales": 0,
       "risks": "",
       "status": "active",
       "vendors": [
@@ -1361,7 +1457,10 @@
           "note": "実績（自動取込）"
         }
       ],
-      "billings": []
+      "billings": [],
+      "billingTo": "",
+      "contractAmount": 0,
+      "recurring": true
     },
     {
       "id": "mmyzj34ffme8",
@@ -1374,8 +1473,8 @@
       "scheduleEnd": "",
       "stakeholders": "",
       "deliverables": "運用、広告",
-      "estimate": 1200,
-      "sales": 2400,
+      "estimate": 0,
+      "sales": 0,
       "risks": "",
       "status": "active",
       "vendors": [
@@ -1401,7 +1500,9 @@
         }
       ],
       "billings": [],
-      "contractAmount": 0
+      "contractAmount": 0,
+      "billingTo": "",
+      "recurring": true
     },
     {
       "id": "mmyzj34fc231",
@@ -1410,12 +1511,12 @@
       "client": "ADDReC",
       "description": "DA（デベロッパーエージェント）案件",
       "manager": "岡永",
-      "scheduleStart": "2026-01",
-      "scheduleEnd": "2026-05",
-      "stakeholders": "",
+      "scheduleStart": "2025-10",
+      "scheduleEnd": "2026-04",
+      "stakeholders": "ADDReC福島",
       "deliverables": "DA制作",
-      "estimate": 2000,
-      "sales": 2000,
+      "estimate": 0,
+      "sales": 0,
       "risks": "",
       "status": "active",
       "vendors": [
@@ -1424,14 +1525,24 @@
           "task": "",
           "amount": 400000,
           "amountTax": 440000,
-          "expectedMonth": "",
+          "expectedMonth": "2026-03",
           "status": "planned",
           "note": "",
           "id": "mmz3fw1vwy9c"
         }
       ],
-      "billings": [],
-      "contractAmount": 0
+      "billings": [
+        {
+          "id": "mn0zvgziar2x",
+          "amount": 2000000,
+          "date": "2026-01",
+          "status": "invoiced",
+          "note": ""
+        }
+      ],
+      "contractAmount": 2000000,
+      "billingTo": "",
+      "recurring": false
     },
     {
       "id": "mmyzj34fy6w7",
@@ -1440,12 +1551,12 @@
       "client": "JT",
       "description": "サイトリニューアル",
       "manager": "岡永",
-      "scheduleStart": "2026-03",
+      "scheduleStart": "2025-10",
       "scheduleEnd": "2026-06",
       "stakeholders": "JT",
       "deliverables": "WEBサイトリニューアル",
-      "estimate": 4000,
-      "sales": 4000,
+      "estimate": 0,
+      "sales": 0,
       "risks": "",
       "status": "active",
       "vendors": [
@@ -1461,7 +1572,9 @@
         }
       ],
       "billings": [],
-      "contractAmount": 0
+      "contractAmount": 4000000,
+      "billingTo": "",
+      "recurring": false
     },
     {
       "id": "mmyzj34fy4bu",
@@ -1567,11 +1680,11 @@
       "description": "レペルティオ案件",
       "manager": "岡永",
       "scheduleStart": "2026-01",
-      "scheduleEnd": "2026-06",
+      "scheduleEnd": "2026-03",
       "stakeholders": "ADDReC福島",
       "deliverables": "レペルティオ",
-      "estimate": 2000,
-      "sales": 2000,
+      "estimate": 0,
+      "sales": 0,
       "risks": "",
       "status": "active",
       "vendors": [
@@ -1587,7 +1700,8 @@
         }
       ],
       "billings": [],
-      "contractAmount": 0
+      "contractAmount": 2000000,
+      "billingTo": ""
     },
     {
       "id": "mmz07e4w1b3h",
