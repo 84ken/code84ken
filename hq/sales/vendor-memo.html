@@ -662,39 +662,64 @@ function renderProjectCard(p) {
       h += '</div>';
       if (md.length) {
         var mdTotalRev = 0, mdTotalCost = 0;
-        md.forEach(function(d){ mdTotalRev += d.revenue; mdTotalCost += d.vendorCost; });
-        var mdTotalProfit = mdTotalRev - mdTotalCost;
-        h += '<div class="overflow-x-auto"><table class="w-full text-sm mb-3 min-w-[600px]"><thead><tr class="border-b border-slate-200 bg-gray-50">';
-        h += '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">月</th>';
-        h += '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">売上(税抜)</th>';
-        h += '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">外注費(税抜)</th>';
-        h += '<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">粗利</th>';
-        h += '<th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">備考</th>';
-        h += '<th scope="col" class="w-28"></th>';
-        h += '</tr></thead><tbody>';
-        md.forEach(function(d) {
-          var profit = d.revenue - d.vendorCost;
-          h += '<tr class="border-b border-slate-100 hover:bg-gray-50">';
-          h += '<td class="py-2 px-3 font-medium text-slate-700">' + d.month + '</td>';
-          h += '<td class="py-2 px-3 text-right">' + FMT(d.revenue) + '</td>';
-          h += '<td class="py-2 px-3 text-right">' + FMT(d.vendorCost) + '</td>';
-          h += '<td class="py-2 px-3 text-right font-medium ' + (profit >= 0 ? 'text-emerald-600' : 'text-red-600') + '">' + FMT(profit) + '</td>';
-          h += '<td class="py-2 px-3 text-xs text-body">' + (d.note || '') + '</td>';
-          h += '<td class="py-2 px-3 text-center"><div class="flex gap-1 justify-center">';
-          h += '<button onclick="editMonthly(\'' + p.id + '\',\'' + d.month + '\')" class="px-1.5 py-0.5 text-xs bg-slate-100 text-slate-600 rounded cursor-pointer">編集</button>';
-          h += '<button onclick="delMonthly(\'' + p.id + '\',\'' + d.month + '\')" class="px-1.5 py-0.5 text-xs text-red-400 rounded cursor-pointer">削除</button>';
-          h += '</div></td>';
-          h += '</tr>';
+        md.forEach(function(d){
+          mdTotalRev += d.revenue || 0;
+          var vc = (d.vendors||[]).reduce(function(s,v){return s+(v.amount||0)},0);
+          mdTotalCost += d.vendorCost || vc;
         });
-        h += '<tr class="border-t-2 border-slate-300 font-bold">';
-        h += '<td class="py-2 px-3 text-slate-900">合計</td>';
-        h += '<td class="py-2 px-3 text-right">' + FMT(mdTotalRev) + '</td>';
-        h += '<td class="py-2 px-3 text-right">' + FMT(mdTotalCost) + '</td>';
-        h += '<td class="py-2 px-3 text-right ' + (mdTotalProfit >= 0 ? 'text-emerald-600' : 'text-red-600') + '">' + FMT(mdTotalProfit) + '</td>';
-        h += '<td class="py-2 px-3"></td>';
-        h += '<td class="py-2 px-3"></td>';
-        h += '</tr>';
-        h += '</tbody></table></div>';
+        var mdTotalProfit = mdTotalRev - mdTotalCost;
+        h += '<div class="overflow-x-auto">';
+        md.forEach(function(d) {
+          var dVendors = d.vendors || [];
+          var dCost = dVendors.length ? dVendors.reduce(function(s,v){return s+(v.amount||0)},0) : (d.vendorCost || 0);
+          var profit = (d.revenue||0) - dCost;
+          // Month header row
+          h += '<div class="border border-slate-200 rounded-lg mb-3 overflow-hidden">';
+          h += '<div class="flex flex-wrap items-center justify-between gap-2 px-4 py-3 bg-gray-50 border-b border-slate-200">';
+          h += '<div class="flex flex-wrap items-center gap-4">';
+          h += '<span class="font-bold text-slate-900">' + d.month + '</span>';
+          h += '<span class="text-sm text-slate-500">売上 <strong class="text-slate-900">' + FMT(d.revenue||0) + '</strong></span>';
+          h += '<span class="text-sm text-slate-500">外注費 <strong class="text-slate-900">' + FMT(dCost) + '</strong></span>';
+          h += '<span class="text-sm text-slate-500">粗利 <strong class="' + (profit>=0?'text-emerald-600':'text-red-600') + '">' + FMT(profit) + '</strong></span>';
+          if (d.note) h += '<span class="text-xs text-body">' + d.note + '</span>';
+          h += '</div>';
+          h += '<div class="flex gap-1">';
+          h += '<button onclick="editMonthly(\'' + p.id + '\',\'' + d.month + '\')" class="px-1.5 py-0.5 text-xs bg-slate-100 text-slate-600 rounded cursor-pointer hover:bg-slate-200">編集</button>';
+          h += '<button onclick="addMonthlyVendor(\'' + p.id + '\',\'' + d.month + '\')" class="px-1.5 py-0.5 text-xs bg-primary-50 text-primary-600 rounded cursor-pointer hover:bg-primary-100">+ 外注</button>';
+          h += '<button onclick="delMonthly(\'' + p.id + '\',\'' + d.month + '\')" class="px-1.5 py-0.5 text-xs text-red-400 rounded cursor-pointer hover:bg-red-50">削除</button>';
+          h += '</div></div>';
+          // Vendor sub-table
+          if (dVendors.length) {
+            h += '<table class="w-full text-sm"><thead><tr class="border-b border-slate-100">';
+            h += '<th scope="col" class="text-left py-1.5 px-4 text-xs font-medium text-slate-400">外注先</th>';
+            h += '<th scope="col" class="text-left py-1.5 px-3 text-xs font-medium text-slate-400">内容</th>';
+            h += '<th scope="col" class="text-right py-1.5 px-3 text-xs font-medium text-slate-400">金額(税抜)</th>';
+            h += '<th scope="col" class="w-20"></th>';
+            h += '</tr></thead><tbody>';
+            dVendors.forEach(function(v){
+              h += '<tr class="border-b border-slate-50 hover:bg-gray-50">';
+              h += '<td class="py-1.5 px-4 font-medium text-slate-700">' + v.vendor + '</td>';
+              h += '<td class="py-1.5 px-3 text-body">' + (v.task||'') + '</td>';
+              h += '<td class="py-1.5 px-3 text-right font-medium">' + FMT(v.amount||0) + '</td>';
+              h += '<td class="py-1.5 px-3 text-center"><div class="flex gap-1 justify-center">';
+              h += '<button onclick="editMonthlyVendor(\'' + p.id + '\',\'' + d.month + '\',\'' + v.id + '\')" class="px-1 py-0.5 text-xs bg-slate-100 text-slate-600 rounded cursor-pointer">編集</button>';
+              h += '<button onclick="delMonthlyVendor(\'' + p.id + '\',\'' + d.month + '\',\'' + v.id + '\')" class="px-1 py-0.5 text-xs text-red-400 rounded cursor-pointer">削除</button>';
+              h += '</div></td></tr>';
+            });
+            h += '</tbody></table>';
+          } else {
+            h += '<div class="px-4 py-2 text-xs text-slate-400">外注先未登録</div>';
+          }
+          h += '</div>';
+        });
+        // Grand total
+        h += '<div class="flex flex-wrap gap-4 px-2 py-2 text-sm font-bold">';
+        h += '<span class="text-slate-500">合計</span>';
+        h += '<span>売上 ' + FMT(mdTotalRev) + '</span>';
+        h += '<span>外注費 ' + FMT(mdTotalCost) + '</span>';
+        h += '<span class="' + (mdTotalProfit>=0?'text-emerald-600':'text-red-600') + '">粗利 ' + FMT(mdTotalProfit) + '</span>';
+        h += '</div>';
+        h += '</div>';
       }
       h += '</div>';
     }
@@ -1064,18 +1089,21 @@ async function cycleBilling(pid, bid) {
 }
 
 // ===== MONTHLY DATA CRUD =====
+// === Monthly data CRUD ===
 async function addMonthly(pid) {
   var p = D.projects.find(function(x){ return x.id === pid; });
   if (!p) return;
   var month = prompt('月を入力 (例: 2026-03)', NOW);
   if (!month) return;
   var revenue = parseFloat(prompt('売上（税抜）', '0')) || 0;
-  var vendorCost = parseFloat(prompt('外注費（税抜）', '0')) || 0;
   var note = prompt('備考（任意）', '') || '';
   if (!p.monthlyData) p.monthlyData = [];
-  p.monthlyData.push({ month: month, revenue: revenue, vendorCost: vendorCost, note: note });
+  // 同月がすでにあれば警告
+  var exists = p.monthlyData.find(function(d){ return d.month === month; });
+  if (exists) { alert(month + ' は既に登録されています。既存の行を編集してください。'); return; }
+  p.monthlyData.push({ month: month, revenue: revenue, vendors: [], note: note });
   p.monthlyData.sort(function(a, b){ return b.month.localeCompare(a.month); });
-  await save(); render(); toast('月別データ追加');
+  await save(); render(); toast('月追加');
 }
 
 async function editMonthly(pid, month) {
@@ -1085,25 +1113,66 @@ async function editMonthly(pid, month) {
   if (!entry) return;
   var newMonth = prompt('月', entry.month);
   if (newMonth === null) return;
-  var revenue = prompt('売上（税抜）', entry.revenue);
+  var revenue = prompt('売上（税抜）', entry.revenue || 0);
   if (revenue === null) return;
-  var vendorCost = prompt('外注費（税抜）', entry.vendorCost);
-  if (vendorCost === null) return;
   var note = prompt('備考（任意）', entry.note || '');
   entry.month = newMonth || entry.month;
   entry.revenue = parseFloat(revenue) || 0;
-  entry.vendorCost = parseFloat(vendorCost) || 0;
   entry.note = note !== null ? note : entry.note;
   p.monthlyData.sort(function(a, b){ return b.month.localeCompare(a.month); });
-  await save(); render(); toast('月別データ更新');
+  await save(); render(); toast('月データ更新');
 }
 
 async function delMonthly(pid, month) {
-  if (!confirm(month + ' のデータを削除しますか？')) return;
+  if (!confirm(month + ' のデータを削除しますか？（外注先データも削除されます）')) return;
   var p = D.projects.find(function(x){ return x.id === pid; });
   if (!p || !p.monthlyData) return;
   p.monthlyData = p.monthlyData.filter(function(d){ return d.month !== month; });
-  await save(); render(); toast('月別データ削除');
+  await save(); render(); toast('月データ削除');
+}
+
+// === Monthly vendor CRUD ===
+async function addMonthlyVendor(pid, month) {
+  var p = D.projects.find(function(x){ return x.id === pid; });
+  if (!p || !p.monthlyData) return;
+  var entry = p.monthlyData.find(function(d){ return d.month === month; });
+  if (!entry) return;
+  var vendor = prompt('外注先名', '');
+  if (!vendor) return;
+  var task = prompt('内容', '') || '';
+  var amount = parseFloat(prompt('金額（税抜）', '0')) || 0;
+  if (!entry.vendors) entry.vendors = [];
+  entry.vendors.push({ id: gid(), vendor: vendor, task: task, amount: amount });
+  await save(); render(); toast('外注先追加');
+}
+
+async function editMonthlyVendor(pid, month, vid) {
+  var p = D.projects.find(function(x){ return x.id === pid; });
+  if (!p || !p.monthlyData) return;
+  var entry = p.monthlyData.find(function(d){ return d.month === month; });
+  if (!entry || !entry.vendors) return;
+  var v = entry.vendors.find(function(x){ return x.id === vid; });
+  if (!v) return;
+  var vendor = prompt('外注先名', v.vendor);
+  if (vendor === null) return;
+  var task = prompt('内容', v.task || '');
+  if (task === null) return;
+  var amount = prompt('金額（税抜）', v.amount || 0);
+  if (amount === null) return;
+  v.vendor = vendor || v.vendor;
+  v.task = task;
+  v.amount = parseFloat(amount) || 0;
+  await save(); render(); toast('外注先更新');
+}
+
+async function delMonthlyVendor(pid, month, vid) {
+  if (!confirm('この外注先を削除しますか？')) return;
+  var p = D.projects.find(function(x){ return x.id === pid; });
+  if (!p || !p.monthlyData) return;
+  var entry = p.monthlyData.find(function(d){ return d.month === month; });
+  if (!entry || !entry.vendors) return;
+  entry.vendors = entry.vendors.filter(function(x){ return x.id !== vid; });
+  await save(); render(); toast('外注先削除');
 }
 
 function toast(msg) { var t=el('toast'); t.textContent=msg+'しました'; t.classList.add('show'); setTimeout(function(){t.classList.remove('show')},2000); }
