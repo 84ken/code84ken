@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>戦略ノート 2026年3月 — SCHEMA HQ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
+          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
+          800:'#13318d',900:'#0e266a',950:'#07194e'
+        }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+.text-body { color: #3d4b5f; }
+@media print { .no-print { display: none !important; } body { background: white; } }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- Sticky Nav -->
+<nav class="sticky top-0 z-50 bg-white border-b border-slate-200 no-print" aria-label="メインナビゲーション">
+  <div class="max-w-5xl mx-auto px-4 sm:px-8 py-2 flex items-center gap-3 text-sm">
+    <a href="index.html" class="text-primary-500 font-medium hover:underline">S HQ</a>
+    <span class="text-slate-300">/</span>
+    <span class="text-slate-700 font-medium">戦略ノート 2026年3月</span>
+    <div class="ml-auto flex gap-4">
+      <a href="../schema/proposal-dashboard.html" class="text-slate-500 hover:text-slate-700">プロポーザル</a>
+      <a href="sales/sales-dashboard.html" class="text-slate-500 hover:text-slate-700">売上</a>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-12">
+
+  <!-- ヘッダー -->
+  <div class="mb-10">
+    <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">戦略ノート — 2026年3月</h1>
+    <p class="text-sm text-body mt-1">4-5月の営業戦略・プロポーザル状況整理</p>
+    <p class="text-xs text-slate-400 mt-2">最終更新: 2026年3月25日 ｜ CONFIDENTIAL — 役員限定</p>
+  </div>
+
+  <!-- ===== サマリーカード ===== -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+      <p class="text-xs text-slate-500 font-medium">結果待ち</p>
+      <p class="text-2xl font-bold text-slate-900 mt-1">5件</p>
+      <p class="text-xs text-body mt-1">¥62.0M</p>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+      <p class="text-xs text-slate-500 font-medium">4-5月提出予定</p>
+      <p class="text-2xl font-bold text-slate-900 mt-1">4件</p>
+      <p class="text-xs text-body mt-1">¥54.9M</p>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+      <p class="text-xs text-slate-500 font-medium">DMO戦績</p>
+      <p class="text-2xl font-bold text-red-600 mt-1">0勝2敗</p>
+      <p class="text-xs text-body mt-1">残2案件で要判断</p>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+      <p class="text-xs text-slate-500 font-medium">4-5月 確定売上</p>
+      <p class="text-2xl font-bold text-amber-600 mt-1">¥3.3M</p>
+      <p class="text-xs text-body mt-1">固定収入のみ</p>
+    </div>
+  </div>
+
+  <!-- ===== 1. 現状認識 ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-4">1. 現状認識</h2>
+
+    <div class="space-y-4 text-sm text-body leading-relaxed">
+      <div class="rounded-lg bg-amber-50 border border-amber-200 p-4">
+        <p class="font-medium text-amber-800 mb-1">4-5月の売上谷が今年も来る</p>
+        <p class="text-amber-700">3月に県庁案件が一括計上（¥60.7M／全体の76%）される構造上、4-5月は月¥1.5〜1.8M（固定収入のみ）まで落ち込む。販管費 約¥7M/月に対し、<strong>毎月▲¥5Mの出血が2ヶ月続く</strong>構造。現預金（¥65.6M）で吸収はできるが、この谷を浅くする施策が中期的に必要。</p>
+      </div>
+
+      <div class="rounded-lg bg-red-50 border border-red-200 p-4">
+        <p class="font-medium text-red-800 mb-1">DMO案件 2戦2敗 — 構造的な課題の可能性</p>
+        <p class="text-red-700">ちょこたびSNS（前年実績あり＋成果も出ていた）、グルメPJ（¥47.7M）ともに失注。<strong>実績・成果があっても勝てない</strong>ということは、価格・体制・評価基準のいずれかで構造的にミスマッチが起きている可能性がある。複数案件に同時提案していること自体がマイナス印象を与えている懸念も。</p>
+      </div>
+
+      <div class="rounded-lg bg-emerald-50 border border-emerald-200 p-4">
+        <p class="font-medium text-emerald-800 mb-1">県直発注の継続案件は堅い</p>
+        <p class="text-emerald-700">ぶんたま・すぽったま・リバサポの3本柱（¥44.3M）は県直発注の継続案件で、3/23プレゼン済み。結果は今週〜来週に判明見込み。ここを落とすことは考えにくいが、万一の場合は経営に大きな影響。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. プロポーザル全体マップ ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-4">2. プロポーザル全体マップ</h2>
+
+    <!-- 結果待ち -->
+    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">結果待ち（5件 / ¥62.0M）</h3>
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">案件</th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">予算</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">発注元</th>
+            <th scope="col" class="text-center py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">確度</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">結果見込</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">ぶんたま（保守運用）</td>
+            <td class="py-3 px-4 text-right text-slate-900">¥16,783,000</td>
+            <td class="py-3 px-4 text-body">県民文化部</td>
+            <td class="py-3 px-4 text-center"><span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs font-medium">高</span></td>
+            <td class="py-3 px-4 text-body">今週</td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">すぽったま（運用保守）</td>
+            <td class="py-3 px-4 text-right text-slate-900">¥15,259,000</td>
+            <td class="py-3 px-4 text-body">県民生活部</td>
+            <td class="py-3 px-4 text-center"><span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs font-medium">高</span></td>
+            <td class="py-3 px-4 text-body">今週</td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">リバサポ</td>
+            <td class="py-3 px-4 text-right text-slate-900">¥8,753,360</td>
+            <td class="py-3 px-4 text-body">県土整備部</td>
+            <td class="py-3 px-4 text-center"><span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs font-medium">高</span></td>
+            <td class="py-3 px-4 text-body">今週</td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">すぽったま（コンテンツ）</td>
+            <td class="py-3 px-4 text-right text-slate-900">¥3,527,000</td>
+            <td class="py-3 px-4 text-body">県民生活部</td>
+            <td class="py-3 px-4 text-center"><span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs font-medium">高</span></td>
+            <td class="py-3 px-4 text-body">今週</td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">埼玉観光サポートサイト</td>
+            <td class="py-3 px-4 text-right text-slate-900">¥17,617,000</td>
+            <td class="py-3 px-4 text-body">DMO</td>
+            <td class="py-3 px-4 text-center"><span class="bg-red-100 text-red-700 px-2 py-0.5 rounded-full text-xs font-medium">低</span></td>
+            <td class="py-3 px-4 text-body">3/27プレゼン→4月上旬</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4-5月提出 -->
+    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">4-5月 提出予定（4件 / ¥54.9M）</h3>
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">案件</th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">予算</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">提出</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">プレゼン</th>
+            <th scope="col" class="text-center py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">判断</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">観光客誘致・戦略的情報発信</td>
+            <td class="py-3 px-4 text-right text-slate-900">¥39,600,000</td>
+            <td class="py-3 px-4 text-body">3/31</td>
+            <td class="py-3 px-4 text-body">4/10</td>
+            <td class="py-3 px-4 text-center"><span class="bg-red-100 text-red-700 px-2 py-0.5 rounded-full text-xs font-medium">要判断</span></td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">農産物ブランド化支援（梨・ぶどう等）</td>
+            <td class="py-3 px-4 text-right text-slate-900">¥9,900,000</td>
+            <td class="py-3 px-4 text-body">4/21</td>
+            <td class="py-3 px-4 text-body">4月下旬〜5月上旬</td>
+            <td class="py-3 px-4 text-center"><span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full text-xs font-medium">攻める</span></td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">梨新品種ブランディング</td>
+            <td class="py-3 px-4 text-right text-slate-900">¥3,470,000</td>
+            <td class="py-3 px-4 text-body">4/21</td>
+            <td class="py-3 px-4 text-body">4月下旬〜5月上旬</td>
+            <td class="py-3 px-4 text-center"><span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full text-xs font-medium">攻める</span></td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">埼玉わっしょいInstagram運用</td>
+            <td class="py-3 px-4 text-right text-slate-900">¥1,980,000</td>
+            <td class="py-3 px-4 text-body">4/17</td>
+            <td class="py-3 px-4 text-body">4月下旬〜5月上旬</td>
+            <td class="py-3 px-4 text-center"><span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full text-xs font-medium">攻める</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 失注 -->
+    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">失注（3件）</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm opacity-60">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">案件</th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">予算</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">発注元</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-slate-100">
+            <td class="py-3 px-4 text-slate-900">ちょこたびSNS情報発信</td>
+            <td class="py-3 px-4 text-right">非公開</td>
+            <td class="py-3 px-4">DMO</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="py-3 px-4 text-slate-900">埼玉グルメプロジェクト</td>
+            <td class="py-3 px-4 text-right">¥47,730,000</td>
+            <td class="py-3 px-4">DMO</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 text-slate-900">Instagram県公式アカウント運用</td>
+            <td class="py-3 px-4 text-right">¥2,904,000</td>
+            <td class="py-3 px-4">広聴広報課</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 3. DMO敗因分析 ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-4">3. DMO 2連敗の分析と仮説</h2>
+
+    <div class="space-y-4 text-sm text-body leading-relaxed">
+      <p>DMO（物産観光協会）発注案件で2戦2敗。県庁直発注では高い受注率を維持しているだけに、DMO特有の構造的要因を整理する必要がある。</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="rounded-lg border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-900 mb-2">仮説①：実績があっても価格で負ける</h4>
+          <p>ちょこたびSNSは前年運用で成果を出していたにもかかわらず失注。DMOは県庁より民間寄りの評価基準（ROI・コスパ重視）を持つ可能性が高い。成果の質より<strong>価格競争力</strong>で判断された可能性。</p>
+        </div>
+
+        <div class="rounded-lg border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-900 mb-2">仮説②：企画の詰めが足りなかった</h4>
+          <p>グルメPJ（¥47.7M）は大型案件ゆえに企画の具体性・実現性が問われる。正直なところ<strong>企画を詰め切れなかった</strong>面がある。大手競合が具体的な実行プランを提示してきた場合、企画力の差が出やすい。</p>
+        </div>
+
+        <div class="rounded-lg border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-900 mb-2">仮説③：複数案件同時提案の印象リスク</h4>
+          <p>DMOの複数案件に同時に手を挙げていることが「どれも本気度が低い」「リソースは足りるのか」という<strong>ネガティブ印象</strong>を与えている可能性。県庁は課ごとに独立しているが、DMOは事業本部で横串の視点がある。</p>
+        </div>
+
+        <div class="rounded-lg border border-slate-200 p-4">
+          <h4 class="font-bold text-slate-900 mb-2">仮説④：大手企業の参入</h4>
+          <p>¥39.6M・¥47.7M規模の案件には大手広告代理店やPR会社が参入してくる。体制・実績・価格のすべてでスキーマが単独で対抗するのは構造的に厳しい可能性。</p>
+        </div>
+      </div>
+
+      <div class="rounded-lg bg-primary-50 border border-primary-200 p-4">
+        <p class="font-medium text-primary-800 mb-1">論点：DMO案件への姿勢を決める</p>
+        <p class="text-primary-700">残り2件（観光サポートサイト ¥17.6M＝3/27プレゼン済、観光客誘致 ¥39.6M＝3/31提出）のうち、特に<strong>観光客誘致をどうするか</strong>が最大の意思決定ポイント。下記「判断フレーム」で議論したい。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. 観光客誘致の判断フレーム ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-4">4. 【要決定】観光客誘致（¥39.6M）の判断フレーム</h2>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">選択肢</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">メリット</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">リスク</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">リソース影響</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">A. 全力で取りに行く</td>
+            <td class="py-3 px-4 text-body">勝てば年間最大案件</td>
+            <td class="py-3 px-4 text-body">3敗目で信頼毀損。同じやり方なら同じ結果になる</td>
+            <td class="py-3 px-4 text-body">3/31まで集中必要。農林部に影響</td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">B. パートナーと組む</td>
+            <td class="py-3 px-4 text-body">DMOが求める体制を作れる。勝率UP</td>
+            <td class="py-3 px-4 text-body">利益率低下。3/31までにパートナー確定が必要</td>
+            <td class="py-3 px-4 text-body">パートナー調整コスト発生</td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors bg-emerald-50/30">
+            <td class="py-3 px-4 font-medium text-slate-900">C. 見送り→農林部に集中</td>
+            <td class="py-3 px-4 text-body">¥15.4Mを確実に取りに行ける。新規開拓</td>
+            <td class="py-3 px-4 text-body">¥39.6Mの機会損失。DMOルート撤退に見える</td>
+            <td class="py-3 px-4 text-body">4/21まで余裕ができる</td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4 font-medium text-slate-900">D. 提案はするが農林部優先</td>
+            <td class="py-3 px-4 text-body">DMOとの関係維持。農林部に注力可能</td>
+            <td class="py-3 px-4 text-body">中途半端な提案で4敗目のリスク</td>
+            <td class="py-3 px-4 text-body">最小限のリソースで提案書作成</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 rounded-lg bg-slate-50 border border-slate-200 p-4 text-sm text-body">
+      <p class="font-medium text-slate-900 mb-1">提案：3/27の観光サポートサイトの結果を見てから判断</p>
+      <p>3/27プレゼン→結果が4月上旬に出る。もし受注できれば「DMOでも勝てる」根拠になり、観光客誘致にも全力を出す意味がある。3敗目になった場合は、DMO案件の構造的課題を認め、Cの農林部集中にシフトする判断が合理的。</p>
+    </div>
+  </section>
+
+  <!-- ===== 5. 4-5月 アクションプラン ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-6">5. 4-5月 アクションプラン</h2>
+
+    <!-- Week by week -->
+    <div class="space-y-6">
+
+      <!-- 今週 -->
+      <div class="border-l-2 border-primary-500 pl-4">
+        <h3 class="font-bold text-slate-900 text-sm">3/25-28（今週）</h3>
+        <ul class="mt-2 space-y-2 text-sm text-body">
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-red-100 text-red-700 text-xs font-bold flex-shrink-0 text-center leading-5">!</span>
+            <span><strong>3/27 観光サポートサイト プレゼン</strong> — DMO3戦目。過去2敗の分析を踏まえた提案に</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-emerald-100 text-emerald-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>確度高4件の結果フォロー（県直発注分）</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-primary-100 text-primary-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>3/31 観光客誘致 提出書類準備（Go/NoGoは3/27結果次第で最終判断）</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 4月前半 -->
+      <div class="border-l-2 border-primary-300 pl-4">
+        <h3 class="font-bold text-slate-900 text-sm">4/1-10</h3>
+        <ul class="mt-2 space-y-2 text-sm text-body">
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-red-100 text-red-700 text-xs font-bold flex-shrink-0 text-center leading-5">!</span>
+            <span><strong>4/10 観光客誘致 プレゼン</strong>（提出する場合）@物産観光協会7F</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-emerald-100 text-emerald-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>受注案件のキックオフ準備 — 初回請求を最速で切るための段取り</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-amber-100 text-amber-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>サーキュラーエコノミー（CE）新年度の公示ウォッチ開始 — 事例を公開済みで即応体制</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-slate-100 text-slate-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>農林部3件の提案書着手（CE事例をブランディング実績として活用）</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 4月後半 -->
+      <div class="border-l-2 border-primary-300 pl-4">
+        <h3 class="font-bold text-slate-900 text-sm">4/14-30</h3>
+        <ul class="mt-2 space-y-2 text-sm text-body">
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-red-100 text-red-700 text-xs font-bold flex-shrink-0 text-center leading-5">!</span>
+            <span><strong>4/17 埼玉わっしょいIG 提出</strong></span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-red-100 text-red-700 text-xs font-bold flex-shrink-0 text-center leading-5">!</span>
+            <span><strong>4/21 農産物ブランド化 + 梨新品種 提出</strong></span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-slate-100 text-slate-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>農林部3件は「農のブランディングパートナー」として横串ストーリーで提案</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-slate-100 text-slate-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>マクドナルドEBIS（¥10M）6月着地フォロー</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 5月 -->
+      <div class="border-l-2 border-slate-200 pl-4">
+        <h3 class="font-bold text-slate-900 text-sm">5/1-31</h3>
+        <ul class="mt-2 space-y-2 text-sm text-body">
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-red-100 text-red-700 text-xs font-bold flex-shrink-0 text-center leading-5">!</span>
+            <span><strong>農林部3件プレゼン</strong>（4月下旬〜5月上旬）</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-emerald-100 text-emerald-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>受注済み案件の初回請求 — 5月中に請求を切る段取り</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-slate-100 text-slate-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>下期（7月〜）の仕込み — 新規ドメイン（DX・ウェルネス・教育）リサーチ</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block w-5 h-5 rounded bg-slate-100 text-slate-700 text-xs font-bold flex-shrink-0 text-center leading-5">→</span>
+            <span>いちご大學の随契確定フォロー（〜¥4M）</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. 売上シナリオ ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-4">6. 4-6月 売上シナリオ</h2>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">シナリオ</th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">4-6月 売上</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">条件</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4">
+              <span class="bg-red-100 text-red-700 px-2 py-0.5 rounded-full text-xs font-medium">最悪</span>
+            </td>
+            <td class="py-3 px-4 text-right font-medium text-slate-900">¥5.5M</td>
+            <td class="py-3 px-4 text-body">固定収入のみ（¥1.8M×3ヶ月）。県庁案件は受注するが請求は7月以降</td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4">
+              <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full text-xs font-medium">堅実</span>
+            </td>
+            <td class="py-3 px-4 text-right font-medium text-slate-900">¥17-22M</td>
+            <td class="py-3 px-4 text-body">確度高受注＋初回請求を5-6月に前倒し。マクドナルドEBIS（¥10M）着地</td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-4">
+              <span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs font-medium">楽観</span>
+            </td>
+            <td class="py-3 px-4 text-right font-medium text-slate-900">¥30M+</td>
+            <td class="py-3 px-4 text-body">上記＋DMO案件受注＋農林部1件以上受注</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 text-sm text-body">
+      <p><strong>現実的な着地点:</strong> 4-5月の売上自体は薄いまま推移する可能性が高い。この期間は「6月以降の売上パイプラインを確定させる投資期間」と位置づけ、提案書の質とキックオフの速度に集中する。</p>
+    </div>
+  </section>
+
+  <!-- ===== 7. 中期課題 ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-4">7. 中期課題（この議論で方向性を決めたい）</h2>
+
+    <div class="space-y-4 text-sm text-body leading-relaxed">
+      <div class="flex items-start gap-3">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs font-bold flex-shrink-0">1</span>
+        <div>
+          <p class="font-medium text-slate-900">DMOとの付き合い方の方針</p>
+          <p class="mt-1">撤退するのか、やり方を変えて再挑戦するのか。やり方を変えるなら何を変えるのか（パートナー戦略・価格・提案本数の絞り込み）。</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs font-bold flex-shrink-0">2</span>
+        <div>
+          <p class="font-medium text-slate-900">4-5月の谷を構造的に埋める施策</p>
+          <p class="mt-1">民間案件のパイプライン強化（GREE追加スコープ、アットパーキング拡大、新規民間開拓）。県庁案件の請求タイミング交渉（四半期分割など）。</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs font-bold flex-shrink-0">3</span>
+        <div>
+          <p class="font-medium text-slate-900">農林部 = 新規開拓チャネルの位置づけ</p>
+          <p class="mt-1">県庁内で県民文化部・県民生活部・県土整備部に続く4つ目の入口になりうる。CE事例がブランディング実績として使えるタイミング。3件同時にどう攻めるか。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="text-center text-xs text-slate-400 py-8 border-t border-slate-200">
+    <p>SCHEMA HQ — 戦略ノート 2026年3月 ｜ CONFIDENTIAL</p>
+    <p class="mt-1">データソース: proposal-dashboard.html / sales-dashboard.html ｜ 更新: 2026-03-25</p>
+  </footer>
+
+</div>
+</body>
+</html>

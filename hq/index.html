@@ -67,7 +67,7 @@ tailwind.config = {
   <!-- ヘッダー -->
   <div class="mb-10">
     <div class="flex items-center gap-3 mb-2">
-      <img src="logo_SCHEMA.jpg" alt="SCHEMA" class="w-10 h-10 rounded-lg object-cover">
+      <div class="w-10 h-10 rounded-lg bg-primary-500 text-white font-bold inline-flex items-center justify-center text-sm">S</div>
       <div>
         <h1 class="text-2xl font-bold text-slate-900">SCHEMA HQ</h1>
         <p class="text-sm text-slate-500">社内ダッシュボード</p>
@@ -82,7 +82,7 @@ tailwind.config = {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
       <!-- プロポーザルダッシュボード -->
-      <a href="proposal-dashboard.html" class="card-link badge-new bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
+      <a href="../schema/proposal-dashboard.html" class="card-link badge-new bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
         <div class="flex items-start gap-4">
           <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 inline-flex items-center justify-center flex-shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
@@ -115,49 +115,18 @@ tailwind.config = {
         </div>
       </a>
 
-      <!-- 外注先検索 -->
-      <a href="sales/vendor-search.html" class="card-link badge-new bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
-        <div class="flex items-start gap-4">
-          <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 inline-flex items-center justify-center flex-shrink-0">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-          </div>
-          <div>
-            <h3 class="font-bold text-slate-900 text-sm">外注先検索</h3>
-            <p class="text-xs text-body mt-1">716社の外注先データ・月別ビュー・案件別売上vs外注</p>
-            <div class="flex gap-2 mt-2">
-              <span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-xs font-medium">716社</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <!-- プロジェクト管理 -->
-      <a href="sales/vendor-memo.html" class="card-link badge-new bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
+      <!-- 戦略ノート -->
+      <a href="strategy-note-2026q1.html" class="card-link badge-new bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
         <div class="flex items-start gap-4">
           <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 inline-flex items-center justify-center flex-shrink-0">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
           </div>
           <div>
-            <h3 class="font-bold text-slate-900 text-sm">プロジェクト管理</h3>
-            <p class="text-xs text-body mt-1">案件別の外注費・請求スケジュール・収支管理（閲覧専用）</p>
+            <h3 class="font-bold text-slate-900 text-sm">戦略ノート 2026年3月</h3>
+            <p class="text-xs text-body mt-1">4-5月戦略・DMO敗因分析・プロポーザル判断フレーム</p>
             <div class="flex gap-2 mt-2">
-              <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-medium">閲覧専用</span>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <!-- キャッシュフロー -->
-      <a href="sales/cashflow.html" class="card-link badge-new bg-white rounded-xl border border-slate-200 p-5 shadow-sm block">
-        <div class="flex items-start gap-4">
-          <div class="w-10 h-10 rounded-lg bg-violet-50 text-violet-600 inline-flex items-center justify-center flex-shrink-0">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
-          </div>
-          <div>
-            <h3 class="font-bold text-slate-900 text-sm">キャッシュフロー</h3>
-            <p class="text-xs text-body mt-1">月別入出金チャート・支払予定一覧・CSV出力</p>
-            <div class="flex gap-2 mt-2">
-              <span class="bg-violet-100 text-violet-700 px-2 py-0.5 rounded text-xs font-medium">新機能</span>
+              <span class="bg-red-100 text-red-700 px-2 py-0.5 rounded text-xs font-medium">DMO 0勝2敗</span>
+              <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-medium">要決定事項あり</span>
             </div>
           </div>
         </div>
@@ -187,19 +156,19 @@ tailwind.config = {
     <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">提案書（HTML）</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-      <a href="proposals/agri-branding.html" class="card-link bg-white rounded-xl border border-slate-200 p-4 shadow-sm block">
+      <a href="../schema/proposal-agri-branding.html" class="card-link bg-white rounded-xl border border-slate-200 p-4 shadow-sm block">
         <p class="font-medium text-slate-900 text-sm">農産物ブランド化支援</p>
         <p class="text-xs text-body mt-1">梨・ぶどう・小玉すいか</p>
         <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-medium mt-2 inline-block">確度 中</span>
       </a>
 
-      <a href="proposals/nashi-branding.html" class="card-link bg-white rounded-xl border border-slate-200 p-4 shadow-sm block">
+      <a href="../schema/proposal-nashi-branding.html" class="card-link bg-white rounded-xl border border-slate-200 p-4 shadow-sm block">
         <p class="font-medium text-slate-900 text-sm">梨新品種ブランディング</p>
         <p class="text-xs text-body mt-1">彩姫・彩彦・彩玉</p>
         <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-medium mt-2 inline-block">確度 中</span>
       </a>
 
-      <a href="proposals/instagram-wassyoi.html" class="card-link bg-white rounded-xl border border-slate-200 p-4 shadow-sm block">
+      <a href="../schema/proposal-instagram-wassyoi.html" class="card-link bg-white rounded-xl border border-slate-200 p-4 shadow-sm block">
         <p class="font-medium text-slate-900 text-sm">埼玉わっしょい Instagram</p>
         <p class="text-xs text-body mt-1">農産物連動IG運用</p>
         <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-medium mt-2 inline-block">確度 中</span>
