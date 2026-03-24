@@ -69,11 +69,11 @@ tailwind.config = {
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-10">
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">案件総数</p>
-      <p class="text-2xl sm:text-3xl font-bold text-slate-900">15<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
+      <p class="text-2xl sm:text-3xl font-bold text-slate-900">14<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">提案中</p>
-      <p class="text-2xl sm:text-3xl font-bold text-primary-600">10<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
+      <p class="text-2xl sm:text-3xl font-bold text-primary-600">9<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
       <p class="text-xs text-slate-400 mt-1">＋予定2件</p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
@@ -81,22 +81,22 @@ tailwind.config = {
       <p class="text-2xl sm:text-3xl font-bold text-slate-400">3<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
-      <p class="text-xs sm:text-sm text-slate-500 mb-1">判明予算合計（提案中）</p>
-      <p class="text-xl sm:text-2xl font-bold text-slate-900">¥124,889,360</p>
-      <p class="text-xs text-slate-400 mt-1">予定2件（¥8M）含む</p>
+      <p class="text-xs sm:text-sm text-slate-500 mb-1">受注ヨミ（確度 高＋中）</p>
+      <p class="text-xl sm:text-2xl font-bold text-slate-900">¥67,672,360</p>
+      <p class="text-xs text-slate-400 mt-1">確度低2件（¥57,217,000）含まず</p>
     </div>
   </div>
 
   <!-- ステータスフィルタータブ -->
   <div class="flex flex-wrap gap-2 mb-6 no-print">
     <button onclick="filterStatus('all')" data-filter="all" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-primary-500 text-white cursor-pointer">
-      すべて <span class="bg-white/20 px-1.5 py-0.5 rounded text-xs">15</span>
+      すべて <span class="bg-white/20 px-1.5 py-0.5 rounded text-xs">14</span>
     </button>
     <button onclick="filterStatus('進行中')" data-filter="進行中" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
       進行中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">0</span>
     </button>
     <button onclick="filterStatus('提案中')" data-filter="提案中" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
-      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">10</span>
+      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">9</span>
     </button>
     <button onclick="filterStatus('完了')" data-filter="完了" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
       完了 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">3</span>
@@ -147,14 +147,13 @@ tailwind.config = {
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 rounded-full bg-red-400"></span>
           <span class="text-sm font-bold text-red-800">確度 低</span>
-          <span class="ml-auto text-2xl font-bold text-red-600">3件</span>
+          <span class="ml-auto text-2xl font-bold text-red-600">2件</span>
         </div>
         <div class="space-y-2 text-sm">
           <div class="flex justify-between"><span class="text-red-800">観光客誘致・戦略的情報発信</span><span class="font-medium">¥39,600,000</span></div>
           <div class="flex justify-between"><span class="text-red-800">観光サポートサイト・SNS運営</span><span class="font-medium">¥17,617,000</span></div>
-          <div class="flex justify-between"><span class="text-red-800">アットパーキング</span><span class="font-medium">—</span></div>
           <div class="border-t border-red-200 pt-2 mt-3 flex justify-between font-bold text-red-900">
-            <span>小計</span><span>¥57,217,000+</span>
+            <span>小計</span><span>¥57,217,000</span>
           </div>
         </div>
       </div>
@@ -258,7 +257,7 @@ tailwind.config = {
       <div>
         <div class="flex items-center gap-2 mb-3">
           <span class="w-3 h-3 rounded-full bg-red-400"></span>
-          <h3 class="font-bold text-slate-900">確度 低（3件）— DMO発注 × 新規</h3>
+          <h3 class="font-bold text-slate-900">確度 低（2件）— DMO発注 × 新規</h3>
         </div>
         <div class="bg-red-50 rounded-lg p-4 space-y-3 text-sm text-body">
           <div>
@@ -268,10 +267,6 @@ tailwind.config = {
           <div>
             <p class="font-medium text-slate-900">埼玉観光サポートサイト・SNS運営（¥17,617,000）</p>
             <p>ちょこたび埼玉のサポートサイト・SNS運営業務。DMO発注。プレゼン3/27（金）10:30〜。DMO案件の失注傾向から確度低と判断。</p>
-          </div>
-          <div>
-            <p class="font-medium text-slate-900">アットパーキング</p>
-            <p>新規提案中の案件。詳細は別途確認。</p>
           </div>
         </div>
       </div>
@@ -660,14 +655,6 @@ tailwind.config = {
             <td class="py-2.5 px-3 text-center"><span class="text-xs text-red-400">失注</span></td>
           </tr>
 
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">アットパーキング</td>
-            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">—</span></td>
-            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">—</span></td>
-            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">—</span></td>
-            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">—</span></td>
-          </tr>
-
           <!-- 失注グループ -->
           <tr class="bg-slate-50">
             <td colspan="5" class="py-2 px-4 text-xs font-bold text-slate-400">完了（失注）</td>
@@ -749,7 +736,7 @@ tailwind.config = {
               <td class="py-3 px-4 font-medium text-emerald-700">ベスト（全勝）</td>
               <td class="py-3 px-4 text-right font-bold text-emerald-700">¥124.9M</td>
               <td class="py-3 px-4 text-right text-emerald-600 text-xs">計画の114%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">確度高5件 + 確度中4件 + 確度低3件（予定2件含む）</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">確度高5件 + 確度中4件 + 確度低2件（予定2件含む）</td>
             </tr>
             <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 bg-primary-50/30">
               <td class="py-3 px-4 font-medium text-primary-700">想定（高＋中）</td>
@@ -790,7 +777,7 @@ tailwind.config = {
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>受注件数: 10件以上</strong>（提案中10件＋予定2件中）</span>
+            <span><strong>受注件数: 9件以上</strong>（提案中9件＋予定2件中）</span>
           </li>
         </ul>
       </div>
@@ -954,14 +941,6 @@ const projects = [
     status: '完了', confidence: '—', staff: [], lost: true
   },
   {
-    id: 'atparking', num: 10, name: 'アットパーキング',
-    sub: '新規提案案件',
-    client: '—', clientSub: '',
-    budget: '—', submitDate: '—', review: '—',
-    reviewSub: '',
-    status: '提案中', confidence: '低', staff: []
-  },
-  {
     id: 'ichigo', num: '—', name: 'いちご大學',
     sub: '継続案件・随意契約見込み',
     client: '埼玉県', clientSub: '（推定）',
@@ -978,7 +957,7 @@ const projects = [
     status: '提案中', confidence: '中', staff: []
   },
   {
-    id: 'chokotabi', num: 11, name: '「ちょこたび埼玉」SNS情報発信',
+    id: 'chokotabi', num: 10, name: '「ちょこたび埼玉」SNS情報発信',
     sub: 'Instagram・X・Facebook運用',
     client: '埼玉県DMO', clientSub: '（物産観光協会）',
     budget: '非公開', submitDate: '3/9', review: 'プレゼン 3/18',
@@ -986,7 +965,7 @@ const projects = [
     status: '完了', confidence: '—', staff: [], lost: true
   },
   {
-    id: 'ig-official', num: 12, name: 'Instagram埼玉県公式アカウント運用',
+    id: 'ig-official', num: 11, name: 'Instagram埼玉県公式アカウント運用',
     sub: '運用サポート業務',
     client: '埼玉県', clientSub: '広聴広報課',
     budget: '¥2,904,000', submitDate: '~3/5', review: '1次 3月上旬',
@@ -994,7 +973,7 @@ const projects = [
     status: '完了', confidence: '—', staff: [], lost: true
   },
   {
-    id: 'wassyoi', num: 13, name: '埼玉県公式Instagram「埼玉わっしょい」',
+    id: 'wassyoi', num: 12, name: '埼玉県公式Instagram「埼玉わっしょい」',
     sub: '運用支援業務（農産物連動）',
     client: '埼玉県', clientSub: '農林部',
     budget: '¥1,980,000', submitDate: '4/17', review: 'プレゼン 4月下旬〜5月上旬',
@@ -1127,7 +1106,6 @@ function renderChecklistMobile() {
     { name: '農産物ブランド化', group: '中', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
     { name: '梨ブランディング', group: '中', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
     { name: 'グルメPJ', group: '低', intent: '✓ 2/25 済', submit: '✓ 3/11 済', pres: '✓ 3/23 済', result: '失注' },
-    { name: 'アットパーキング', group: '低', intent: '—', submit: '—', pres: '—', result: '—' },
   ];
 
   container.innerHTML = checklistData.map(c => {
