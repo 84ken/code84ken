@@ -1797,6 +1797,68 @@
           "note": "一括請求予定"
         }
       ]
+    },
+    {
+      "name": "stonSポスター印刷",
+      "client": "株式会社インテグレート",
+      "description": "stonSポスター印刷",
+      "manager": "橋本",
+      "scheduleStart": "2026-03",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "株式会社インテグレート",
+      "deliverables": "ポスター印刷",
+      "contractAmount": 423500,
+      "contractExTax": 385000,
+      "estimate": 385000,
+      "sales": 0,
+      "risks": "印刷原価227,073円（税別）",
+      "status": "active",
+      "id": "mn1a0ston01",
+      "createdAt": "2026-03-25T00:00:00.000Z",
+      "vendors": [
+        {
+          "vendor": "印刷会社",
+          "task": "ポスター印刷",
+          "amount": 227073,
+          "amountTax": 249780,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "印刷原価",
+          "id": "mn1a0ston02"
+        }
+      ],
+      "billings": []
+    },
+    {
+      "name": "泡盛ラベルデザイン",
+      "client": "株式会社カスクアンドフォレスト",
+      "description": "泡盛ラベルデザイン",
+      "manager": "橋本",
+      "scheduleStart": "2026-03",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "株式会社カスクアンドフォレスト",
+      "deliverables": "ラベルデザイン",
+      "contractAmount": 935000,
+      "contractExTax": 850000,
+      "estimate": 850000,
+      "sales": 0,
+      "risks": "",
+      "status": "active",
+      "id": "mn1a0awamori01",
+      "createdAt": "2026-03-25T00:00:00.000Z",
+      "vendors": [
+        {
+          "vendor": "高橋",
+          "task": "ラベルデザイン外注",
+          "amount": 400000,
+          "amountTax": 440000,
+          "expectedMonth": "2026-03",
+          "status": "planned",
+          "note": "",
+          "id": "mn1a0awamori02"
+        }
+      ],
+      "billings": []
     }
   ]
 }
