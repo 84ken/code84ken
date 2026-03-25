@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ねんりんピック彩の国さいたま2026 eスポーツイベント企画提案書（たたき）</title>
+<style>
+  @media print {
+    body { font-size: 11pt; }
+    .page-break { page-break-before: always; }
+    .no-print { display: none; }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    color: #333; background: #f5f5f5; line-height: 1.8;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(135deg, #1a40b5 0%, #2b70ef 50%, #6492ff 100%);
+    color: #fff; text-align: center; padding: 80px 40px; border-radius: 12px;
+    margin-bottom: 40px; position: relative; overflow: hidden;
+  }
+  .cover::before {
+    content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+    background: rgba(255,255,255,0.05); border-radius: 50%;
+  }
+  .cover h1 { font-size: 28px; font-weight: 700; margin-bottom: 16px; letter-spacing: 2px; }
+  .cover .subtitle { font-size: 18px; opacity: 0.9; margin-bottom: 40px; }
+  .cover .meta { font-size: 14px; opacity: 0.7; }
+  .cover .meta span { display: inline-block; margin: 0 12px; }
+  .cover .jv-badge {
+    display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4);
+    padding: 8px 24px; border-radius: 100px; font-size: 14px; margin-top: 24px;
+  }
+
+  /* Section */
+  .section {
+    background: #fff; border-radius: 12px; padding: 40px; margin-bottom: 32px;
+    border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .section-number {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; background: #2b70ef; color: #fff;
+    border-radius: 8px; font-size: 14px; font-weight: 700; margin-right: 12px;
+  }
+  .section h2 {
+    font-size: 22px; font-weight: 700; color: #1e293b; margin-bottom: 24px;
+    display: flex; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #e2e8f0;
+  }
+  .section h3 {
+    font-size: 17px; font-weight: 700; color: #334155; margin: 24px 0 12px;
+    padding-left: 12px; border-left: 3px solid #2b70ef;
+  }
+  .section h4 {
+    font-size: 15px; font-weight: 600; color: #475569; margin: 16px 0 8px;
+  }
+  .section p, .section li { font-size: 14px; color: #475569; line-height: 1.9; }
+  .section ul, .section ol { padding-left: 24px; margin: 8px 0; }
+  .section li { margin-bottom: 4px; }
+
+  /* Cards grid */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 16px 0; }
+  .card {
+    border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px;
+    background: #f8fafc;
+  }
+  .card .card-title {
+    font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card .card-icon { font-size: 24px; }
+  .card p { font-size: 13px; color: #64748b; line-height: 1.7; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 28px; margin: 16px 0; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px;
+    width: 2px; background: #cbd5e1;
+  }
+  .timeline-item { position: relative; margin-bottom: 20px; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -24px; top: 6px;
+    width: 12px; height: 12px; background: #2b70ef; border-radius: 50%;
+    border: 2px solid #fff; box-shadow: 0 0 0 2px #2b70ef;
+  }
+  .timeline-item .date { font-size: 12px; font-weight: 700; color: #2b70ef; }
+  .timeline-item .desc { font-size: 14px; color: #475569; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: #f1f5f9; text-align: left; padding: 10px 14px; font-weight: 600; color: #475569; border: 1px solid #e2e8f0; }
+  td { padding: 10px 14px; border: 1px solid #e2e8f0; color: #475569; }
+
+  /* Highlight box */
+  .highlight {
+    background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px;
+    padding: 20px; margin: 16px 0;
+  }
+  .highlight .label { font-size: 12px; font-weight: 700; color: #2b70ef; text-transform: uppercase; margin-bottom: 4px; }
+
+  /* Concept */
+  .concept-box {
+    background: linear-gradient(135deg, #f0f5ff, #eff6ff); border: 1px solid #c0d4ff;
+    border-radius: 12px; padding: 32px; text-align: center; margin: 24px 0;
+  }
+  .concept-box .concept-title { font-size: 24px; font-weight: 700; color: #1a40b5; margin-bottom: 8px; }
+  .concept-box .concept-sub { font-size: 14px; color: #64748b; }
+
+  /* Tag */
+  .tag {
+    display: inline-block; background: #eff6ff; color: #2b70ef; font-size: 12px;
+    font-weight: 600; padding: 4px 12px; border-radius: 100px; margin: 2px 4px 2px 0;
+  }
+  .tag.green { background: #ecfdf5; color: #059669; }
+  .tag.orange { background: #fff7ed; color: #ea580c; }
+
+  /* Timetable */
+  .timetable { display: flex; flex-direction: column; gap: 4px; margin: 16px 0; }
+  .tt-row { display: flex; align-items: stretch; min-height: 48px; }
+  .tt-time {
+    width: 100px; flex-shrink: 0; background: #f1f5f9; display: flex; align-items: center;
+    justify-content: center; font-size: 13px; font-weight: 600; color: #475569;
+    border-radius: 6px 0 0 6px; border: 1px solid #e2e8f0;
+  }
+  .tt-stage {
+    flex: 1; padding: 8px 14px; font-size: 13px; color: #475569;
+    border: 1px solid #e2e8f0; border-left: none; display: flex; align-items: center;
+  }
+  .tt-forest {
+    flex: 1; padding: 8px 14px; font-size: 13px; color: #475569;
+    border: 1px solid #e2e8f0; border-left: none; border-radius: 0 6px 6px 0;
+    display: flex; align-items: center;
+  }
+  .tt-header .tt-time { background: #2b70ef; color: #fff; font-size: 12px; }
+  .tt-header .tt-stage, .tt-header .tt-forest {
+    background: #2b70ef; color: #fff; font-weight: 600; font-size: 12px;
+    justify-content: center;
+  }
+  .tt-active { background: #eff6ff; font-weight: 600; color: #1a40b5; }
+
+  /* Budget */
+  .budget-total {
+    background: #1e293b; color: #fff; border-radius: 10px; padding: 20px;
+    display: flex; justify-content: space-between; align-items: center; margin-top: 16px;
+  }
+  .budget-total .label { font-size: 14px; opacity: 0.8; }
+  .budget-total .amount { font-size: 28px; font-weight: 700; }
+
+  /* Draft notice */
+  .draft-banner {
+    background: #fef3c7; border: 2px dashed #f59e0b; border-radius: 10px;
+    padding: 16px 24px; margin-bottom: 32px; text-align: center;
+    font-size: 14px; font-weight: 600; color: #92400e;
+  }
+
+  /* Org chart */
+  .org-chart { display: flex; gap: 24px; margin: 16px 0; flex-wrap: wrap; }
+  .org-member {
+    flex: 1; min-width: 200px; border: 1px solid #e2e8f0; border-radius: 10px;
+    padding: 20px; text-align: center;
+  }
+  .org-member .role { font-size: 12px; color: #2b70ef; font-weight: 700; margin-bottom: 4px; }
+  .org-member .name { font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+  .org-member .company { font-size: 12px; color: #94a3b8; }
+
+  .note { font-size: 12px; color: #94a3b8; margin-top: 8px; }
+  .todo { background: #fef9c3; padding: 2px 8px; border-radius: 4px; font-size: 12px; color: #854d0e; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Draft Notice -->
+<div class="draft-banner no-print">
+  DRAFT（たたき台） — 社内検討・JVパートナー相談用 / 2026年3月25日時点
+</div>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="subtitle">ねんりんピック彩の国さいたま2026</div>
+  <h1>オリジナルイベント「eスポーツ」<br>企画提案書</h1>
+  <div class="meta">
+    <span>2026年11月8日（日）</span>
+    <span>埼玉県こども動物自然公園</span>
+  </div>
+  <div class="jv-badge">共同企業体：イナズマ株式会社 × 株式会社スキーマ</div>
+</div>
+
+<!-- ===== 1. コンセプト ===== -->
+<div class="section">
+  <h2><span class="section-number">1</span>企画コンセプト</h2>
+
+  <div class="concept-box">
+    <div class="concept-title">「はじめてのeスポーツ、世代をこえて。」</div>
+    <div class="concept-sub">
+      ゲームを"観る・触れる・競う"3つの体験で、<br>
+      eスポーツの楽しさを全世代に届ける1日
+    </div>
+  </div>
+
+  <h3>基本方針</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title"><span class="card-icon">&#127919;</span> 低バリア設計</div>
+      <p>高齢者・eスポーツ未経験者が「やってみたい」と思える、わかりやすく親しみやすい体験設計。太鼓の達人など直感操作タイトルを中心に据える。</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="card-icon">&#129309;</span> 世代間交流</div>
+      <p>おじいちゃん×孫チーム戦、地元高校生サポーターなど、異なる世代が自然に交わる仕掛けを各所に配置。</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="card-icon">&#127881;</span> お祭り感</div>
+      <p>ねんりんピックの「祭典」にふさわしい華やかさ。コバトン・さいたまっちも活用し、動物自然公園の雰囲気と調和した演出。</p>
+    </div>
+  </div>
+
+  <h3>ターゲット設定</h3>
+  <table>
+    <tr><th>層</th><th>想定割合</th><th>アプローチ</th></tr>
+    <tr><td>高齢者（60歳以上）</td><td>40%</td><td>太鼓の達人・ぷよぷよ等の馴染みあるタイトル、座って体験できる環境</td></tr>
+    <tr><td>ファミリー（親子・祖父母孫）</td><td>35%</td><td>チーム戦・世代ミックス対戦、動物園来園ついでの誘導</td></tr>
+    <tr><td>若年層（学生・20-30代）</td><td>25%</td><td>グランツーリスモ・バーチャルサイクリング等のガチ体験、大会出場</td></tr>
+  </table>
+</div>
+
+<!-- ===== 2. 野外ステージ ===== -->
+<div class="section page-break">
+  <h2><span class="section-number">2</span>野外ステージ企画</h2>
+
+  <h3>（ア）ステージイベント</h3>
+
+  <h4>出演者構成 <span class="todo">要検討：具体的な出演者候補</span></h4>
+  <table>
+    <tr><th>役割</th><th>人数</th><th>候補イメージ</th><th>選定理由</th></tr>
+    <tr>
+      <td>MC（司会者）</td><td>1組</td>
+      <td>eスポーツ実況経験のある芸人 or フリーアナウンサー<br><span class="todo">候補：要リストアップ</span></td>
+      <td>高齢者にもわかりやすい進行ができ、eスポーツの解説もできる人材</td>
+    </tr>
+    <tr>
+      <td>ゲスト（タレント等）</td><td>1〜2組</td>
+      <td>ゲーム系YouTuber / eスポーツ選手 / 埼玉ゆかりのタレント<br><span class="todo">候補：要リストアップ</span></td>
+      <td>集客力＋高齢者への親しみやすさ。埼玉県出身or在住なら尚可</td>
+    </tr>
+  </table>
+
+  <h4>ステージプログラム</h4>
+  <div class="highlight">
+    <div class="label">ポイント</div>
+    <p>「観る → 知る → やりたくなる」の流れを設計。ステージを観た来場者が森の教室の体験会に足を運ぶ動線をつくる。</p>
+  </div>
+
+  <p><strong>プログラム1：オープニング＆eスポーツ入門トーク（30分）</strong></p>
+  <ul>
+    <li>MC＋ゲストによるeスポーツ入門トーク。「ゲームがスポーツ？」の疑問を楽しく解消</li>
+    <li>埼玉県内のeスポーツ取組紹介（シニア向けeスポーツ教室等）</li>
+    <li>コバトン＆さいたまっちがステージに登場し、会場を盛り上げ</li>
+  </ul>
+
+  <p><strong>プログラム2：来場者チャレンジ「ステージでeスポーツ体験」（各回20分×2回）</strong></p>
+  <ul>
+    <li>来場者（高齢者優先枠あり）をステージ上に招き、ゲストと一緒にeスポーツ体験</li>
+    <li>使用タイトル：<span class="tag">太鼓の達人</span><span class="tag">ぷよぷよeスポーツ</span></li>
+    <li>MCが操作方法をやさしく実況。初めてでも楽しめるお祭りムードで進行</li>
+    <li>参加者には参加記念品（コバトングッズ等）を贈呈</li>
+  </ul>
+
+  <h3>（イ）大会</h3>
+
+  <h4>大会コンセプト：「彩の国eスポーツグランプリ」</h4>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">シニア部門（60歳以上）</div>
+      <p><span class="tag green">太鼓の達人</span><br>
+      事前募集16名によるトーナメント戦。「かんたん」モードで実施。操作がシンプルで初心者でも楽しめ、ステージ映えするタイトル。MC＋ゲストが実況解説。</p>
+    </div>
+    <div class="card">
+      <div class="card-title">オープン部門（全年齢）</div>
+      <p><span class="tag green">ぷよぷよeスポーツ</span> or <span class="tag green">テトリス</span><br>
+      事前募集8名＋当日参加枠4名。世代を超えた対戦を実現。高齢者と孫の「世代ミックスペア戦」も検討。</p>
+    </div>
+  </div>
+
+  <h4>副賞</h4>
+  <ul>
+    <li>優勝：埼玉県特産品詰め合わせ（狭山茶・草加せんべい等）＋こども動物自然公園年間パスポート</li>
+    <li>準優勝・3位：埼玉県特産品</li>
+    <li>参加賞：コバトンオリジナルグッズ</li>
+  </ul>
+
+  <h3>（ウ）視聴・音響・装飾計画</h3>
+
+  <h4>モニター・音響配置</h4>
+  <table>
+    <tr><th>設備</th><th>仕様</th><th>設置場所</th></tr>
+    <tr><td>LEDビジョン or 大型モニター</td><td>65インチ以上 × 2台<br><span class="todo">屋外輝度対応モニター要確認</span></td><td>ステージ左右（客席から視認しやすい位置）</td></tr>
+    <tr><td>ゲームプレイ用モニター</td><td>27インチ × 2〜4台</td><td>ステージ上（プレイヤー用）</td></tr>
+    <tr><td>PAシステム</td><td>出力80dB以下対応<br>会場設備との事前確認実施</td><td>ステージ両サイド＋客席後方</td></tr>
+    <tr><td>ワイヤレスマイク</td><td>4本</td><td>MC・ゲスト・来場者体験用</td></tr>
+  </table>
+  <p class="note">※ 音量は80dB以下の規定に準拠。事前に会場設備を確認し、音響テストを実施。</p>
+
+  <h4>装飾計画</h4>
+  <ul>
+    <li><strong>ステージ装飾</strong>：バックパネル（イベントキービジュアル＋ねんりんピックロゴ）、ステージ前面バナー</li>
+    <li><strong>立体装飾</strong>：エアアーチ（入口）、のぼり旗（導線上に設置）→ 遠くからイベント開催を認知可能に</li>
+    <li><strong>案内サイン</strong>：駐車場→園内入口→野外ステージ/森の教室の導線に案内看板を設置</li>
+    <li><strong>デザイントーン</strong>：明るく温かみのある配色。高齢者にも読みやすい大きな文字サイズ</li>
+  </ul>
+
+  <h4>雨天・荒天時対応計画</h4>
+  <table>
+    <tr><th>天候</th><th>対応</th></tr>
+    <tr><td>小雨</td><td>テント・タープ設置で続行。機材の防水養生を実施。来場者にポンチョ配布</td></tr>
+    <tr><td>強雨・荒天</td><td>ステージイベントを森の教室（屋内）に集約して縮小開催。事前に縮小版プログラムを策定</td></tr>
+    <tr><td>台風等</td><td>中止判断基準を事前に委託者と協議・合意。前日17時までに判断</td></tr>
+  </table>
+</div>
+
+<!-- ===== 3. 森の教室 ===== -->
+<div class="section page-break">
+  <h2><span class="section-number">3</span>森の教室：eスポーツ体験会</h2>
+
+  <div class="highlight">
+    <div class="label">審査配点 20/100（最大ウェイト）</div>
+    <p>eスポーツ未経験者・高齢者が「体験したくなる」環境づくりが最重要。常時6組以上が体験できる体制を整備。</p>
+  </div>
+
+  <h3>体験ブース構成（常時6組以上）</h3>
+  <table>
+    <tr><th>ブース</th><th>タイトル</th><th>台数</th><th>特徴</th><th>ターゲット</th></tr>
+    <tr>
+      <td>A</td>
+      <td><span class="tag">太鼓の達人</span></td>
+      <td>2台</td>
+      <td>直感操作。バチで叩くだけで誰でも楽しい。一番人気になるメインブース</td>
+      <td>高齢者・ファミリー</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td><span class="tag">ぷよぷよeスポーツ</span></td>
+      <td>2台</td>
+      <td>対戦形式で盛り上がる。ルールがわかりやすくシニアにも好評</td>
+      <td>高齢者・全世代</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td><span class="tag">テトリス</span></td>
+      <td>1台</td>
+      <td>長年の認知度が高く、高齢者にも馴染みあり</td>
+      <td>高齢者</td>
+    </tr>
+    <tr>
+      <td>D</td>
+      <td><span class="tag">グランツーリスモ</span></td>
+      <td>1台</td>
+      <td>ハンドルコントローラーで没入感のあるレース体験。見た目のインパクト大</td>
+      <td>全世代・男性</td>
+    </tr>
+    <tr>
+      <td>E</td>
+      <td><span class="tag orange">バーチャルサイクリング</span></td>
+      <td>1〜2台</td>
+      <td>実際のエアロバイクを漕いで仮想コースを走行。健康×eスポーツの文脈でシニアに訴求</td>
+      <td>健康志向の高齢者</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td><span class="tag orange">追加候補</span></td>
+      <td>1台</td>
+      <td>桃太郎電鉄 など埼玉ステージがあるタイトル or Nintendo Switch Sports<br><span class="todo">要検討：IPホルダー許諾の難易度</span></td>
+      <td>ファミリー</td>
+    </tr>
+  </table>
+  <p><strong>合計：8〜9台（常時6組以上体験可能）</strong></p>
+
+  <h3>高齢者が「体験したくなる」工夫</h3>
+  <ul>
+    <li><strong>椅子に座ってプレイ</strong> — 全ブースにイス設置。立ちっぱなし不要</li>
+    <li><strong>大きなフォントの操作ガイド</strong> — 各ブースにA3サイズのイラスト付き操作説明パネル</li>
+    <li><strong>「初めて歓迎」の雰囲気づくり</strong> — 「eスポーツはじめてさん大歓迎！」の大きなPOP</li>
+    <li><strong>サポーター研修</strong> — 委託者手配のサポーターに対し、高齢者への声かけ・ペース配慮・操作補助の研修を実施</li>
+    <li><strong>体験カード</strong> — 3タイトル以上体験でオリジナルステッカーをプレゼント（回遊促進）</li>
+    <li><strong>健康×eスポーツの訴求</strong> — バーチャルサイクリングブースに「eスポーツで健康づくり」の解説パネル設置</li>
+  </ul>
+
+  <h3>バリアフリー対応</h3>
+  <ul>
+    <li>車椅子でもプレイ可能なブース配置（通路幅90cm以上確保）</li>
+    <li>聴覚障害者向け：ゲーム画面に字幕表示があるタイトルを優先選定</li>
+    <li>視覚に配慮した高コントラストの案内表示</li>
+  </ul>
+
+  <h3>パネル展示（3枚程度）</h3>
+  <table>
+    <tr><th>パネル</th><th>内容</th></tr>
+    <tr><td>パネル1</td><td>「eスポーツってなに？」— eスポーツの概要・競技人口・高齢者の活用事例をイラスト交えて紹介</td></tr>
+    <tr><td>パネル2</td><td>「埼玉のeスポーツ」— 県内の取組紹介（シニアeスポーツ教室、学校での導入事例等）</td></tr>
+    <tr><td>パネル3</td><td>「はじめてみよう」— 自宅やコミュニティで始められるeスポーツの紹介・県内施設マップ</td></tr>
+  </table>
+  <p class="note">※ デザイン・内容は委託者と協議の上決定。スキーマがデザイン制作を担当。</p>
+</div>
+
+<!-- ===== 4. タイムテーブル ===== -->
+<div class="section page-break">
+  <h2><span class="section-number">4</span>当日タイムテーブル（案）</h2>
+
+  <div class="timetable">
+    <div class="tt-row tt-header">
+      <div class="tt-time">時間</div>
+      <div class="tt-stage">野外ステージ</div>
+      <div class="tt-forest">森の教室</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">8:30-10:30</div>
+      <div class="tt-stage">設営・テクリハ（前日から継続）</div>
+      <div class="tt-forest">設営・機材セットアップ</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">11:00-11:30</div>
+      <div class="tt-stage tt-active">オープニング＆eスポーツ入門トーク<br>MC＋ゲスト＋コバトン登場</div>
+      <div class="tt-forest tt-active">体験会スタート（常時6組以上）</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">11:30-12:00</div>
+      <div class="tt-stage tt-active">来場者チャレンジ① <br>太鼓の達人（高齢者優先枠）</div>
+      <div class="tt-forest">体験会 継続</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">12:00-12:30</div>
+      <div class="tt-stage">休憩・フリー観覧タイム</div>
+      <div class="tt-forest">体験会 継続</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">12:30-13:30</div>
+      <div class="tt-stage tt-active">大会①：シニア部門<br>太鼓の達人トーナメント（60歳以上）</div>
+      <div class="tt-forest">体験会 継続</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">13:30-14:00</div>
+      <div class="tt-stage tt-active">来場者チャレンジ②<br>ぷよぷよeスポーツ</div>
+      <div class="tt-forest">体験会 継続</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">14:00-15:00</div>
+      <div class="tt-stage tt-active">大会②：オープン部門<br>ぷよぷよ or テトリス（全年齢）</div>
+      <div class="tt-forest">体験会 継続</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">15:00-15:30</div>
+      <div class="tt-stage tt-active">エキシビション<br>ゲスト vs 大会優勝者 ドリームマッチ</div>
+      <div class="tt-forest">体験会 継続</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">15:30-16:00</div>
+      <div class="tt-stage tt-active">表彰式＆エンディング<br>副賞授与・記念撮影</div>
+      <div class="tt-forest">体験会終了・アンケート回収</div>
+    </div>
+    <div class="tt-row">
+      <div class="tt-time">16:00-20:00</div>
+      <div class="tt-stage">撤収</div>
+      <div class="tt-forest">撤収</div>
+    </div>
+  </div>
+  <p class="note">※ 前日11/7（土）8:30〜 テクニカルリハーサル実施。搬入は開園時間外（8:30-9:30）に完了。</p>
+</div>
+
+<!-- ===== 5. 広報・来場促進 ===== -->
+<div class="section">
+  <h2><span class="section-number">5</span>広報・来場促進策</h2>
+
+  <h3>広報施策</h3>
+  <table>
+    <tr><th>施策</th><th>内容</th><th>時期</th><th>担当</th></tr>
+    <tr>
+      <td>告知LP制作</td>
+      <td>イベント概要・大会エントリー・アクセス情報を掲載。スマホファーストで高齢者にも見やすいデザイン</td>
+      <td>7月〜</td>
+      <td>スキーマ</td>
+    </tr>
+    <tr>
+      <td>SNS発信</td>
+      <td>ねんりんピック公式SNSと連携した告知投稿。出演者告知・カウントダウン・タイトル紹介等</td>
+      <td>8月〜</td>
+      <td>スキーマ</td>
+    </tr>
+    <tr>
+      <td>チラシ・ポスター</td>
+      <td>県内公共施設（公民館・地域包括支援センター・老人福祉センター等）への配布。大きな文字で読みやすいデザイン</td>
+      <td>9月〜</td>
+      <td>スキーマ（デザイン）<br>イナズマ（配布協力）</td>
+    </tr>
+    <tr>
+      <td>プレスリリース</td>
+      <td>県政記者クラブ・地元メディアへの情報提供</td>
+      <td>10月</td>
+      <td>共同</td>
+    </tr>
+    <tr>
+      <td>動画制作</td>
+      <td>15-30秒のティザー動画。SNS広告出稿用</td>
+      <td>9月〜</td>
+      <td>スキーマ</td>
+    </tr>
+  </table>
+
+  <h3>来場促進策（園内来園者 → イベント誘導）</h3>
+  <div class="highlight">
+    <div class="label">課題</div>
+    <p>野外ステージ・森の教室は来園者が目的とする展示エリアから離れており、往来が多い場所ではない。一般来園者をいかに誘導するかが鍵。</p>
+  </div>
+  <ul>
+    <li><strong>園内入口でのチラシ配布＋スタッフ声かけ</strong> — 入園時にイベントチラシを全来園者に手渡し</li>
+    <li><strong>園内導線への案内サイン設置</strong> — 駐車場→入口→主要展示→会場の経路に誘導看板</li>
+    <li><strong>園内放送</strong> — 開園中に定期的にイベント開催を案内（施設管理者と調整）</li>
+    <li><strong>体験カード（スタンプラリー連動）</strong> — 園内の動物スタンプラリーとeスポーツ体験を連動。動物スタンプ3個＋eスポーツ体験でオリジナルグッズ進呈<br><span class="todo">要確認：施設管理者との連携可否</span></li>
+    <li><strong>コバトン巡回</strong> — コバトン着ぐるみが園内の人気エリアを巡回し、イベント会場へ誘導</li>
+  </ul>
+
+  <h3>大会参加者募集</h3>
+  <ul>
+    <li>応募フォーム（インターネット）を制作・運用 — スキーマが構築</li>
+    <li>募集期間：9月中旬〜10月中旬（約1ヶ月間）</li>
+    <li>応募者管理・出場者との連絡調整を事務局にて実施</li>
+    <li>応募が集まりにくい場合の対策：県内eスポーツ施設・シニア団体への直接案内</li>
+  </ul>
+</div>
+
+<!-- ===== 6. 業務管理体制 ===== -->
+<div class="section page-break">
+  <h2><span class="section-number">6</span>業務管理体制</h2>
+
+  <h3>JV体制図</h3>
+  <div class="org-chart">
+    <div class="org-member">
+      <div class="role">業務責任者</div>
+      <div class="name"><span class="todo">○○ ○○</span></div>
+      <div class="company">イナズマ株式会社</div>
+      <p style="font-size:12px; margin-top:8px; color:#64748b;">eスポーツイベント企画運営の統括。<br>とちぎeスポーツフェスタ等の実績。</p>
+    </div>
+    <div class="org-member">
+      <div class="role">連絡調整担当者</div>
+      <div class="name"><span class="todo">○○ ○○</span></div>
+      <div class="company">株式会社スキーマ</div>
+      <p style="font-size:12px; margin-top:8px; color:#64748b;">委託者との窓口。進捗報告・スケジュール管理。<br>行政案件の運営管理実績多数。</p>
+    </div>
+  </div>
+
+  <h3>役割分担</h3>
+  <table>
+    <tr><th>業務領域</th><th>イナズマ</th><th>スキーマ</th></tr>
+    <tr><td>イベント全体企画・演出</td><td><strong>主担当</strong></td><td>協力</td></tr>
+    <tr><td>ステージ運営・進行台本</td><td><strong>主担当</strong></td><td>協力</td></tr>
+    <tr><td>大会企画・運営</td><td><strong>主担当</strong></td><td>応募管理</td></tr>
+    <tr><td>体験会運営・サポーター研修</td><td><strong>主担当</strong></td><td>協力</td></tr>
+    <tr><td>機材調達・設営・撤収</td><td><strong>主担当</strong></td><td>—</td></tr>
+    <tr><td>出演者キャスティング・調整</td><td><strong>主担当</strong></td><td>—</td></tr>
+    <tr><td>IPホルダー使用許諾交渉</td><td><strong>主担当</strong></td><td>—</td></tr>
+    <tr><td>装飾・会場サイン</td><td>施工</td><td><strong>デザイン</strong></td></tr>
+    <tr><td>広報LP・SNS・動画</td><td>—</td><td><strong>主担当</strong></td></tr>
+    <tr><td>チラシ・ポスター制作</td><td>—</td><td><strong>主担当</strong></td></tr>
+    <tr><td>パネル展示制作</td><td>—</td><td><strong>主担当</strong></td></tr>
+    <tr><td>応募フォーム構築・応募者管理</td><td>—</td><td><strong>主担当</strong></td></tr>
+    <tr><td>事務局運営（問い合わせ対応）</td><td>協力</td><td><strong>主担当</strong></td></tr>
+    <tr><td>運営マニュアル作成</td><td><strong>主担当</strong></td><td>協力</td></tr>
+    <tr><td>実績報告書・写真DVD作成</td><td>写真撮影</td><td><strong>報告書作成</strong></td></tr>
+  </table>
+
+  <h3>実績</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">イナズマ株式会社</div>
+      <p><strong>とちぎeスポーツフェスタ2024</strong><br>
+      来場者約9,000人 / 配信視聴約30,000人<br>
+      イベント運営・キービジュアル・告知サイト・会場装飾を担当<br>
+      <span class="todo">他実績もイナズマに確認して追記</span></p>
+    </div>
+    <div class="card">
+      <div class="card-title">株式会社スキーマ</div>
+      <p><strong>埼玉県行政案件の豊富な実績</strong><br>
+      ぶんたま（伝統文化アプリ運用・プロモーション）、すぽったま（スポーツ振興サイト運用）、リバサポ（河川環境サイト）等<br>
+      LP制作・SNS運用・動画制作・WEBアプリ開発</p>
+    </div>
+  </div>
+
+  <h3>業務スケジュール</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="date">5月下旬</div>
+      <div class="desc">契約締結 → キックオフミーティング → 業務スケジュール提出</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">6月</div>
+      <div class="desc">企画詳細設計・出演者キャスティング開始・IPホルダー交渉開始</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">7月</div>
+      <div class="desc">告知LP制作・キービジュアル確定・チラシ入稿・広報計画確定</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">8月</div>
+      <div class="desc">SNS告知開始・装飾デザイン確定・パネル展示制作</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">9月</div>
+      <div class="desc">大会参加者募集開始・応募フォーム公開・チラシ配布開始</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">10月</div>
+      <div class="desc">募集締切・出場者確定・運営マニュアル作成・台本作成・機材手配確定</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">10月下旬</div>
+      <div class="desc">サポーター研修実施・最終リハーサル調整</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">11/7（土）</div>
+      <div class="desc">会場設営・テクニカルリハーサル</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">11/8（日）</div>
+      <div class="desc">イベント本番（11:00-16:00）→ 撤収（〜20:00）</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">12月〜1月</div>
+      <div class="desc">実績報告書作成・参加者数分析・写真DVD提出 → 1/15契約期間終了</div>
+    </div>
+  </div>
+  <p class="note">※ 定例ミーティング：月1回以上（オンライン）。必要に応じて随時打合せ。議事録は毎回速やかに提出。</p>
+</div>
+
+<!-- ===== 7. 経費見積 ===== -->
+<div class="section page-break">
+  <h2><span class="section-number">7</span>経費見積（概算）</h2>
+
+  <p class="note" style="margin-bottom:16px;">※ たたき台段階の概算です。イナズマとの協議後に精査します。</p>
+
+  <table>
+    <tr><th>費目</th><th>内訳</th><th>金額（税抜）</th></tr>
+    <tr>
+      <td rowspan="2">出演者費</td>
+      <td>MC（司会者）1組</td>
+      <td style="text-align:right;"><span class="todo">¥300,000〜500,000</span></td>
+    </tr>
+    <tr>
+      <td>ゲスト（タレント等）1〜2組</td>
+      <td style="text-align:right;"><span class="todo">¥500,000〜1,500,000</span></td>
+    </tr>
+    <tr>
+      <td rowspan="3">機材・設備費</td>
+      <td>ゲーム機材一式（本体・モニター・コントローラー・レーシングホイール等）</td>
+      <td style="text-align:right;">¥600,000〜800,000</td>
+    </tr>
+    <tr>
+      <td>音響・映像機材（PA・モニター・ケーブル類）</td>
+      <td style="text-align:right;">¥400,000〜600,000</td>
+    </tr>
+    <tr>
+      <td>インターネット回線（屋外仮設）</td>
+      <td style="text-align:right;">¥200,000〜400,000</td>
+    </tr>
+    <tr>
+      <td rowspan="3">装飾・制作費</td>
+      <td>ステージ装飾（バックパネル・バナー）</td>
+      <td style="text-align:right;">¥300,000〜400,000</td>
+    </tr>
+    <tr>
+      <td>立体装飾（エアアーチ・のぼり旗）・案内サイン</td>
+      <td style="text-align:right;">¥200,000〜300,000</td>
+    </tr>
+    <tr>
+      <td>パネル展示制作（3枚）</td>
+      <td style="text-align:right;">¥100,000〜150,000</td>
+    </tr>
+    <tr>
+      <td rowspan="3">広報費</td>
+      <td>告知LP制作</td>
+      <td style="text-align:right;">¥300,000〜400,000</td>
+    </tr>
+    <tr>
+      <td>チラシ・ポスター（デザイン＋印刷）</td>
+      <td style="text-align:right;">¥150,000〜200,000</td>
+    </tr>
+    <tr>
+      <td>SNS運用・動画制作</td>
+      <td style="text-align:right;">¥200,000〜300,000</td>
+    </tr>
+    <tr>
+      <td>応募管理</td>
+      <td>応募フォーム構築・応募者管理・事務局運営</td>
+      <td style="text-align:right;">¥200,000〜300,000</td>
+    </tr>
+    <tr>
+      <td rowspan="2">運営人件費</td>
+      <td>当日運営スタッフ（15〜20名想定）</td>
+      <td style="text-align:right;">¥400,000〜600,000</td>
+    </tr>
+    <tr>
+      <td>前日リハーサル・設営スタッフ</td>
+      <td style="text-align:right;">¥150,000〜200,000</td>
+    </tr>
+    <tr>
+      <td>サポーター経費</td>
+      <td>昼食提供＋交通費（委託者手配サポーター分）</td>
+      <td style="text-align:right;">¥100,000〜200,000</td>
+    </tr>
+    <tr>
+      <td>副賞・消耗品</td>
+      <td>大会副賞（県特産品等）・参加記念品・体験カード等</td>
+      <td style="text-align:right;">¥100,000〜150,000</td>
+    </tr>
+    <tr>
+      <td>IPホルダー関連</td>
+      <td>ゲームタイトル使用許諾関連費用</td>
+      <td style="text-align:right;"><span class="todo">¥0〜要確認</span></td>
+    </tr>
+    <tr>
+      <td>交通・宿泊費</td>
+      <td>出演者・スタッフ交通費、前泊費</td>
+      <td style="text-align:right;">¥200,000〜300,000</td>
+    </tr>
+    <tr>
+      <td>報告書作成</td>
+      <td>実績報告書・写真DVD・参加者分析</td>
+      <td style="text-align:right;">¥100,000〜150,000</td>
+    </tr>
+    <tr>
+      <td colspan="2" style="font-weight:700;">直接原価 小計</td>
+      <td style="text-align:right; font-weight:700;"><span class="todo">¥4,500,000〜7,450,000</span></td>
+    </tr>
+    <tr>
+      <td>業務管理費</td>
+      <td>ディレクション・進捗管理・定例MTG・諸経費</td>
+      <td style="text-align:right;"><span class="todo">調整枠</span></td>
+    </tr>
+  </table>
+
+  <div class="budget-total">
+    <div>
+      <div class="label">見積上限額（税込）</div>
+    </div>
+    <div class="amount">¥9,900,000</div>
+  </div>
+
+  <div class="highlight" style="margin-top:16px;">
+    <div class="label">予算配分の考え方</div>
+    <p>出演者のランクが最大の変動要因。eスポーツ系インフルエンサー（フォロワー10万人〜）であれば予算内で収まりやすい。地上波タレントクラスは予算的に厳しい。イナズマの出演者ネットワークを活かしてコストパフォーマンスの高いキャスティングを実現する。</p>
+  </div>
+</div>
+
+<!-- ===== 概要（1枚サマリー） ===== -->
+<div class="section page-break">
+  <h2><span class="section-number">S</span>企画提案書概要（A4横 1枚用）</h2>
+  <p class="note">※ 提出要件：「企画提案書概要（A4版横型、片面刷り1枚）」が別途必要。以下を1枚にレイアウト。</p>
+
+  <div style="border: 2px solid #e2e8f0; border-radius: 10px; padding: 24px; margin-top: 16px;">
+    <h4 style="text-align:center; font-size:18px; color:#1a40b5; margin-bottom:16px;">
+      「はじめてのeスポーツ、世代をこえて。」
+    </h4>
+    <div class="card-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div>
+        <h4>ステージ</h4>
+        <ul style="font-size:12px;">
+          <li>MC＋ゲスト2組以上</li>
+          <li>入門トーク→来場者チャレンジ→大会2部門→表彰式</li>
+          <li>シニア部門（太鼓の達人）＋オープン部門（ぷよぷよ/テトリス）</li>
+        </ul>
+      </div>
+      <div>
+        <h4>体験会</h4>
+        <ul style="font-size:12px;">
+          <li>常時8〜9台（6組以上）</li>
+          <li>5タイトル以上</li>
+          <li>椅子プレイ・大文字ガイド・体験カードで高齢者配慮</li>
+        </ul>
+      </div>
+      <div>
+        <h4>広報・来場促進</h4>
+        <ul style="font-size:12px;">
+          <li>告知LP・SNS・チラシ・動画</li>
+          <li>園内誘導（サイン・放送・コバトン巡回）</li>
+          <li>動物スタンプラリー連動</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:16px; font-size:13px; color:#64748b;">
+      共同企業体：イナズマ株式会社（eスポーツイベント企画運営）× 株式会社スキーマ（広報・デジタル・デザイン）
+    </div>
+  </div>
+</div>
+
+<!-- ===== TODO ===== -->
+<div class="section no-print" style="background: #fefce8; border-color: #fde68a;">
+  <h2 style="color: #92400e;"><span class="section-number" style="background:#f59e0b;">!</span>残課題・検討事項</h2>
+  <table>
+    <tr><th>項目</th><th>内容</th><th>担当</th><th>期限</th></tr>
+    <tr><td>JV合意</td><td>イナズマに正式打診・JV参加合意</td><td>橋本</td><td>3/28</td></tr>
+    <tr><td>参加意思表明書</td><td>様式2号・3号・JV協定書（案）作成・提出</td><td>共同</td><td>3/31</td></tr>
+    <tr><td>実績証明書類</td><td>イナズマのeスポーツフェスタ契約書写し等</td><td>イナズマ</td><td>3/31</td></tr>
+    <tr><td>出演者候補リスト</td><td>MC候補・ゲスト候補のリストアップ＋概算ギャラ</td><td>イナズマ</td><td>4/10</td></tr>
+    <tr><td>IPホルダー確認</td><td>太鼓の達人（バンナム）・ぷよぷよ（セガ）等の使用許諾の難易度・費用確認</td><td>イナズマ</td><td>4/10</td></tr>
+    <tr><td>会場下見</td><td>こども動物自然公園の野外ステージ・森の教室を実地確認</td><td>共同</td><td>4月中旬</td></tr>
+    <tr><td>見積精査</td><td>概算を精査し、上限¥990万以内で確定</td><td>共同</td><td>4/18</td></tr>
+    <tr><td>提案書完成</td><td>企画提案書本体＋概要1枚＋見積書の仕上げ</td><td>共同</td><td>4/21</td></tr>
+    <tr><td>提出</td><td>郵送＋電子メール（10部＋電子データ）</td><td>スキーマ</td><td>4/23</td></tr>
+  </table>
+</div>
+
+</div>
+</body>
+</html>
