@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今年度の予定 | 中山田青少年育成会</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
+            forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
+            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .tab-scroll::-webkit-scrollbar { display: none; }
+    .tab-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    .month-card { scroll-margin-top: 8rem; }
+  </style>
+</head>
+<body class="bg-warm-bg min-h-screen">
+
+  <!-- ヘッダー -->
+  <header class="bg-white border-b border-warm-border sticky top-0 z-20">
+    <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
+      <a href="index.html" class="w-10 h-10 inline-flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors flex-shrink-0" aria-label="トップへ戻る">
+        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </a>
+      <div>
+        <h1 class="text-lg font-bold text-slate-900 leading-tight">今年度の予定</h1>
+        <p class="text-xs text-slate-500">令和8年度（2026）年間スケジュール</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- 月タブバー -->
+  <nav class="bg-white border-b border-warm-border sticky top-[60px] z-10" aria-label="月別ナビゲーション">
+    <div class="max-w-lg mx-auto">
+      <div id="month-tabs" class="tab-scroll flex overflow-x-auto px-2 py-2 gap-1">
+        <!-- JSで生成 -->
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-lg mx-auto px-4 py-6 space-y-4">
+
+    <!-- カテゴリ凡例 -->
+    <div class="bg-white rounded-xl border border-warm-border p-4">
+      <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">カテゴリ</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-sky-50 text-sky-700">
+          <span class="w-2 h-2 rounded-full bg-sky-500"></span>総会・理事会
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+          <span class="w-2 h-2 rounded-full bg-slate-500"></span>事務・管理
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>奉仕活動
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-forest-50 text-forest-700">
+          <span class="w-2 h-2 rounded-full bg-forest-500"></span>スポーツ活動
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700">
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span>社会文化活動
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-purple-50 text-purple-700">
+          <span class="w-2 h-2 rounded-full bg-purple-500"></span>青育協
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-rose-50 text-rose-700">
+          <span class="w-2 h-2 rounded-full bg-rose-500"></span>年度末・引継
+        </span>
+      </div>
+    </div>
+
+    <!-- 月カード群（JSで生成） -->
+    <div id="month-cards" class="space-y-4"></div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-white border-t border-warm-border mt-8">
+    <div class="max-w-lg mx-auto px-4 py-6 text-center">
+      <p class="text-xs text-slate-500">中山田青少年育成会</p>
+      <p class="text-xs text-slate-400 mt-1">会長: 橋本 健太郎</p>
+      <p class="text-xs text-slate-400 mt-1">&copy; 2026 Nakayamada Ikuseikai</p>
+    </div>
+  </footer>
+
+  <script>
+    // ===== データ定義 =====
+    const fiscalMonths = [3,4,5,6,7,8,9,10,11,12,1,2];
+
+    const categoryConfig = {
+      '総会・理事会': { bg: 'bg-sky-50',    text: 'text-sky-700',     dot: 'bg-sky-500' },
+      '事務・管理':   { bg: 'bg-slate-100',  text: 'text-slate-700',   dot: 'bg-slate-500' },
+      'スポーツ活動': { bg: 'bg-forest-50',  text: 'text-forest-700',  dot: 'bg-forest-500' },
+      '社会文化活動': { bg: 'bg-amber-50',   text: 'text-amber-700',   dot: 'bg-amber-500' },
+      '奉仕活動':     { bg: 'bg-emerald-50', text: 'text-emerald-700', dot: 'bg-emerald-500' },
+      '青育協':       { bg: 'bg-purple-50',  text: 'text-purple-700',  dot: 'bg-purple-500' },
+      '年度末・引継': { bg: 'bg-rose-50',    text: 'text-rose-700',    dot: 'bg-rose-500' }
+    };
+
+    const importanceConfig = {
+      '高': { bg: 'bg-red-100',   text: 'text-red-700' },
+      '中': { bg: 'bg-amber-100', text: 'text-amber-700' },
+      '低': { bg: 'bg-emerald-100', text: 'text-emerald-700' }
+    };
+
+    const schedule = {
+      3:  { importance: '高', tasks: [
+        { name: '定期総会・第1回理事会', cat: '総会・理事会' },
+        { name: '役員名簿・連絡網・在校生名簿の作成', cat: '事務・管理' },
+        { name: '回覧配布表の作成', cat: '事務・管理' },
+        { name: '中学生イベント参加', cat: '社会文化活動' },
+        { name: '役割分担表の作成', cat: '事務・管理' }
+      ]},
+      4:  { importance: '中', tasks: [
+        { name: '第2回理事会', cat: '総会・理事会' },
+        { name: '歓送迎会（要検討）', cat: '社会文化活動' },
+        { name: '育成会費の集金準備・回覧', cat: '事務・管理' }
+      ]},
+      5:  { importance: '中', tasks: [
+        { name: '育成会費の集金・取りまとめ', cat: '事務・管理' },
+        { name: '青育協クリーン美化（5/18）', cat: '青育協' }
+      ]},
+      6:  { importance: '高', tasks: [
+        { name: '前期廃品回収・クリーン美化', cat: '奉仕活動' },
+        { name: '第3回理事会', cat: '総会・理事会' },
+        { name: '廃品回収収支報告・回覧', cat: '事務・管理' },
+        { name: '青育協指導者研修会（6/7）', cat: '青育協' }
+      ]},
+      7:  { importance: '低', tasks: [
+        { name: '納涼祭（要検討）', cat: '社会文化活動' }
+      ]},
+      8:  { importance: '低', tasks: [
+        { name: 'ラジオ体操（要検討）', cat: '社会文化活動' },
+        { name: '夏休み夜間パトロール', cat: '奉仕活動' }
+      ]},
+      9:  { importance: '中', tasks: [
+        { name: '少年団バレーボール大会', cat: 'スポーツ活動' },
+        { name: '第4回理事会', cat: '総会・理事会' }
+      ]},
+      10: { importance: '中', tasks: [
+        { name: 'フットベース高篠大会', cat: 'スポーツ活動' }
+      ]},
+      11: { importance: '高', tasks: [
+        { name: '後期廃品回収', cat: '奉仕活動' },
+        { name: '理事会（年度による）', cat: '総会・理事会' }
+      ]},
+      12: { importance: '中', tasks: [
+        { name: '連合クリスマス会', cat: '社会文化活動' }
+      ]},
+      1:  { importance: '低', tasks: [
+        { name: '次年度役員選出の準備', cat: '年度末・引継' }
+      ]},
+      2:  { importance: '高', tasks: [
+        { name: '最終理事会（役員選出）', cat: '総会・理事会' },
+        { name: '功労者推薦', cat: '事務・管理' },
+        { name: 'チケット配布', cat: '事務・管理' },
+        { name: '次年度名簿作成依頼', cat: '年度末・引継' },
+        { name: '総会資料の作成開始', cat: '年度末・引継' },
+        { name: '安全共済保険説明会（2/27）', cat: '青育協' }
+      ]}
+    };
+
+    // ===== 現在月 =====
+    const currentMonth = new Date().getMonth() + 1;
+
+    // ===== タブ生成 =====
+    const tabContainer = document.getElementById('month-tabs');
+    fiscalMonths.forEach(m => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = m + '月';
+      btn.dataset.month = m;
+      const isCurrent = m === currentMonth;
+      btn.className = [
+        'flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer whitespace-nowrap',
+        isCurrent
+          ? 'bg-sky-500 text-white'
+          : 'text-slate-600 hover:bg-slate-100'
+      ].join(' ');
+      if (isCurrent) btn.setAttribute('aria-current', 'true');
+      btn.addEventListener('click', () => {
+        const target = document.getElementById('month-' + m);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      tabContainer.appendChild(btn);
+    });
+
+    // ===== カード生成 =====
+    const cardsContainer = document.getElementById('month-cards');
+
+    fiscalMonths.forEach(m => {
+      const data = schedule[m];
+      const imp = importanceConfig[data.importance];
+      const isCurrent = m === currentMonth;
+
+      const card = document.createElement('div');
+      card.id = 'month-' + m;
+      card.className = 'month-card bg-white rounded-xl border border-warm-border overflow-hidden'
+        + (isCurrent ? ' ring-2 ring-sky-500 ring-offset-2' : '');
+
+      // ヘッダー部分
+      const header = document.createElement('div');
+      header.className = 'flex items-center justify-between px-5 py-4 border-b border-warm-border';
+
+      const left = document.createElement('div');
+      left.className = 'flex items-center gap-3';
+
+      const monthNum = document.createElement('div');
+      monthNum.className = 'w-12 h-12 rounded-xl inline-flex items-center justify-center font-bold text-lg'
+        + (isCurrent ? ' bg-sky-500 text-white' : ' bg-slate-100 text-slate-700');
+      monthNum.textContent = m;
+
+      const monthLabel = document.createElement('div');
+      const monthTitle = document.createElement('p');
+      monthTitle.className = 'text-base font-bold text-slate-900';
+      monthTitle.textContent = m + '月';
+      const monthSub = document.createElement('p');
+      monthSub.className = 'text-xs text-slate-500 mt-0.5';
+      const monthNames = {1:'睦月',2:'如月',3:'弥生',4:'卯月',5:'皐月',6:'水無月',7:'文月',8:'葉月',9:'長月',10:'神無月',11:'霜月',12:'師走'};
+      monthSub.textContent = monthNames[m];
+      monthLabel.appendChild(monthTitle);
+      monthLabel.appendChild(monthSub);
+
+      left.appendChild(monthNum);
+      left.appendChild(monthLabel);
+
+      const right = document.createElement('div');
+      right.className = 'flex items-center gap-2';
+
+      if (isCurrent) {
+        const nowBadge = document.createElement('span');
+        nowBadge.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-sky-50 text-sky-700';
+        nowBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></span>今月';
+        right.appendChild(nowBadge);
+      }
+
+      const impBadge = document.createElement('span');
+      impBadge.className = 'px-2.5 py-1 rounded-full text-xs font-medium ' + imp.bg + ' ' + imp.text;
+      impBadge.textContent = '重要度: ' + data.importance;
+      right.appendChild(impBadge);
+
+      header.appendChild(left);
+      header.appendChild(right);
+      card.appendChild(header);
+
+      // タスクリスト
+      const taskList = document.createElement('div');
+      taskList.className = 'divide-y divide-slate-100';
+
+      data.tasks.forEach(task => {
+        const cat = categoryConfig[task.cat];
+        const row = document.createElement('div');
+        row.className = 'flex items-start gap-3 px-5 py-3';
+
+        const dot = document.createElement('span');
+        dot.className = 'w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1.5 ' + cat.dot;
+
+        const content = document.createElement('div');
+        content.className = 'flex-1 min-w-0';
+
+        const taskName = document.createElement('p');
+        taskName.className = 'text-sm text-slate-900';
+        taskName.textContent = task.name;
+
+        const catBadge = document.createElement('span');
+        catBadge.className = 'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium mt-1 ' + cat.bg + ' ' + cat.text;
+        catBadge.textContent = task.cat;
+
+        content.appendChild(taskName);
+        content.appendChild(catBadge);
+
+        row.appendChild(dot);
+        row.appendChild(content);
+        taskList.appendChild(row);
+      });
+
+      card.appendChild(taskList);
+
+      // タスク数フッター
+      const footer = document.createElement('div');
+      footer.className = 'px-5 py-3 bg-slate-50 text-xs text-slate-500';
+      footer.textContent = data.tasks.length + '件のタスク';
+      card.appendChild(footer);
+
+      cardsContainer.appendChild(card);
+    });
+
+    // ===== 初期スクロール =====
+    window.addEventListener('DOMContentLoaded', () => {
+      // タブの現在月をビューに
+      const activeTab = tabContainer.querySelector('[aria-current="true"]');
+      if (activeTab) {
+        activeTab.scrollIntoView({ inline: 'center', block: 'nearest' });
+      }
+      // カードの現在月へスクロール
+      setTimeout(() => {
+        const target = document.getElementById('month-' + currentMonth);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    });
+
+    // ===== スクロール連動タブハイライト =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const m = entry.target.id.replace('month-', '');
+          tabContainer.querySelectorAll('button').forEach(btn => {
+            const isMatch = btn.dataset.month === m;
+            const isCurrentMonth = parseInt(btn.dataset.month) === currentMonth;
+            if (isMatch) {
+              btn.className = 'flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer whitespace-nowrap bg-sky-500 text-white';
+              btn.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+            } else {
+              btn.className = 'flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer whitespace-nowrap text-slate-600 hover:bg-slate-100';
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-120px 0px -60% 0px', threshold: 0.1 });
+
+    document.querySelectorAll('.month-card').forEach(card => observer.observe(card));
+  </script>
+
+</body>
+</html>

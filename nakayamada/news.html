@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>子育て便利情報 | 中山田青少年育成会</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
+            forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
+            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-warm-bg min-h-screen">
+
+  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+    <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
+      <a href="index.html" class="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="ホームに戻る">
+        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </a>
+      <h1 class="text-lg font-bold text-slate-900">子育て便利情報</h1>
+    </div>
+  </header>
+
+  <main class="max-w-lg mx-auto px-4 py-6">
+
+    <!-- カテゴリフィルター -->
+    <div class="flex gap-2 overflow-x-auto pb-3 mb-6 -mx-4 px-4" id="category-filter">
+      <button data-cat="all" class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium bg-sky-500 text-white cursor-pointer transition-colors">すべて</button>
+      <button data-cat="event" class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium bg-white text-slate-600 border border-warm-border cursor-pointer hover:bg-slate-50 transition-colors">地域イベント</button>
+      <button data-cat="school" class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium bg-white text-slate-600 border border-warm-border cursor-pointer hover:bg-slate-50 transition-colors">学校関連</button>
+      <button data-cat="subsidy" class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium bg-white text-slate-600 border border-warm-border cursor-pointer hover:bg-slate-50 transition-colors">助成金・制度</button>
+      <button data-cat="seasonal" class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium bg-white text-slate-600 border border-warm-border cursor-pointer hover:bg-slate-50 transition-colors">季節の情報</button>
+    </div>
+
+    <!-- ニュース一覧 -->
+    <div class="space-y-4" id="news-list">
+
+      <!-- 記事1 -->
+      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">NEW</span>
+          <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
+          <span class="text-xs text-slate-400">2026.03.28</span>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">育成会サイトを開設しました</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          中山田青少年育成会の情報をまとめたサイトを開設しました。年間予定、役員情報、廃品回収マニュアルなどをまとめています。ぜひブックマークしてご活用ください。
+        </p>
+      </article>
+
+      <!-- 記事2 -->
+      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="subsidy">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">NEW</span>
+          <span class="inline-block bg-amber-100 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">助成金・制度</span>
+          <span class="text-xs text-slate-400">2026.03.28</span>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">令和8年度の改革方針について</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          今年度は「負担を減らし、やる意味を高める」をテーマに改革を進めます。行事のスリム化（15件→9件）、外部助成金の活用（子どもゆめ基金等）、LINEグループでの連絡効率化を予定しています。
+        </p>
+      </article>
+
+      <!-- 記事3 -->
+      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
+          <span class="text-xs text-slate-400">2026.03.28</span>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">3月: 定期総会・第1回理事会のお知らせ</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          令和8年度の定期総会と第1回理事会を開催します。場所は4区公会堂です。総会資料は事前に配布いたします。新年度の役員顔合わせも行います。
+        </p>
+      </article>
+
+      <!-- 記事4 -->
+      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="seasonal">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block bg-forest-100 text-forest-700 text-xs font-medium px-2 py-0.5 rounded-full">季節の情報</span>
+          <span class="text-xs text-slate-400">2026.03.28</span>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">新年度の準備：入学・進級おめでとうございます</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          4月から新年度が始まります。新1年生の保護者の方は育成会への加入手続きをお願いします。会費は毎戸1口1,000円＋子供1人1,000円（小学生以上）です。
+        </p>
+      </article>
+
+      <!-- 記事5 -->
+      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="subsidy">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block bg-amber-100 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">助成金・制度</span>
+          <span class="text-xs text-slate-400">2026.03.28</span>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">子どもゆめ基金をご存知ですか？</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          自然体験キャンプや科学実験教室などの活動に最大100万円の助成が受けられる制度です。今年度は積極的に活用を検討しています。詳しくは便利リンクの「子どもゆめ基金」をご覧ください。
+        </p>
+      </article>
+
+    </div>
+
+    <!-- もっと見る -->
+    <div class="text-center mt-6">
+      <p class="text-sm text-slate-500">新しい情報は随時更新されます</p>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-warm-border mt-8">
+    <div class="max-w-lg mx-auto px-4 py-6 text-center">
+      <p class="text-xs text-slate-500">中山田青少年育成会</p>
+      <p class="text-xs text-slate-400 mt-1">会長: 橋本 健太郎 / 〒368 秩父市中山田</p>
+      <p class="text-xs text-slate-400 mt-1">&copy; 2026 Nakayamada Ikuseikai</p>
+    </div>
+  </footer>
+
+  <script>
+    // カテゴリフィルター
+    const buttons = document.querySelectorAll('#category-filter button');
+    const articles = document.querySelectorAll('#news-list article');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.cat;
+
+        // ボタンスタイル切替
+        buttons.forEach(b => {
+          b.classList.remove('bg-sky-500', 'text-white');
+          b.classList.add('bg-white', 'text-slate-600', 'border', 'border-warm-border');
+        });
+        btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-warm-border');
+        btn.classList.add('bg-sky-500', 'text-white');
+
+        // 記事フィルター
+        articles.forEach(article => {
+          if (cat === 'all' || article.dataset.category === cat) {
+            article.style.display = 'block';
+          } else {
+            article.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

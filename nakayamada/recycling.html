@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>廃品回収について | 中山田青少年育成会</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
+            forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
+            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-warm-bg min-h-screen">
+
+  <!-- ヘッダー -->
+  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+    <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
+      <a href="index.html" class="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="ホームに戻る">
+        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </a>
+      <h1 class="text-lg font-bold text-slate-900">廃品回収について</h1>
+    </div>
+  </header>
+
+  <main class="max-w-lg mx-auto px-4 py-6">
+
+    <!-- 概要 -->
+    <section class="mb-6">
+      <div class="bg-white rounded-xl border border-warm-border p-5">
+        <h2 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-forest-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          廃品回収とは
+        </h2>
+        <p class="text-sm text-slate-700 leading-relaxed mb-3">
+          地域の環境美化と育成会の活動資金確保を目的とした回収活動です。年2回（前期6月・後期11月）、小中学生とご家族、役員全員で実施します。
+        </p>
+        <div class="grid grid-cols-2 gap-3 text-center">
+          <div class="bg-forest-50 rounded-lg p-3">
+            <p class="text-xs text-slate-500">実施回数</p>
+            <p class="text-lg font-bold text-forest-600">年2回</p>
+            <p class="text-xs text-slate-500">6月・11月</p>
+          </div>
+          <div class="bg-sky-50 rounded-lg p-3">
+            <p class="text-xs text-slate-500">集合時間</p>
+            <p class="text-lg font-bold text-sky-600">8:30</p>
+            <p class="text-xs text-slate-500">今泉薬局駐車場</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 回収品目 -->
+    <section class="mb-6">
+      <div class="bg-white rounded-xl border border-warm-border p-5">
+        <h2 class="text-base font-bold text-slate-900 mb-3">回収品目</h2>
+        <div class="space-y-2">
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-forest-50">
+            <span class="w-8 h-8 rounded-full bg-forest-500 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0">○</span>
+            <div>
+              <p class="text-sm font-medium text-slate-900">新聞紙</p>
+              <p class="text-xs text-slate-500">唯一の売上品目（R6: ¥2/kg）</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-forest-50">
+            <span class="w-8 h-8 rounded-full bg-forest-500 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0">○</span>
+            <div>
+              <p class="text-sm font-medium text-slate-900">ダンボール</p>
+              <p class="text-xs text-slate-500">売上¥0 / 重量で助成金に貢献</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-forest-50">
+            <span class="w-8 h-8 rounded-full bg-forest-500 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0">○</span>
+            <div>
+              <p class="text-sm font-medium text-slate-900">雑誌</p>
+              <p class="text-xs text-slate-500">売上¥0 / 重量で助成金に貢献</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-forest-50">
+            <span class="w-8 h-8 rounded-full bg-forest-500 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0">○</span>
+            <div>
+              <p class="text-sm font-medium text-slate-900">布類</p>
+              <p class="text-xs text-slate-500">量が少ない（90〜160kg）</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-red-50">
+            <span class="w-8 h-8 rounded-full bg-red-400 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0">✕</span>
+            <div>
+              <p class="text-sm font-medium text-slate-900">ビールビン等</p>
+              <p class="text-xs text-red-600">回収対象外</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 回収エリア -->
+    <section class="mb-6">
+      <div class="bg-white rounded-xl border border-warm-border p-5">
+        <h2 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          回収エリア
+        </h2>
+        <p class="text-xs text-slate-500 mb-3">各エリアの担当班で回収を行います</p>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-sky-500"></span>
+              <span class="text-sm font-medium text-slate-900">4区西エリア</span>
+            </div>
+            <span class="text-sm text-slate-500">76世帯</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-forest-500"></span>
+              <span class="text-sm font-medium text-slate-900">4区東エリア</span>
+            </div>
+            <span class="text-sm text-slate-500">103世帯</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+              <span class="text-sm font-medium text-slate-900">5区エリア</span>
+            </div>
+            <span class="text-sm text-slate-500">50世帯</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-purple-500"></span>
+              <span class="text-sm font-medium text-slate-900">6区エリア</span>
+            </div>
+            <span class="text-sm text-slate-500">29世帯</span>
+          </div>
+        </div>
+        <div class="mt-4 p-3 bg-sky-50 rounded-lg border border-sky-100">
+          <p class="text-xs text-sky-700 flex items-center gap-1.5">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            マップ機能は今後追加予定です。回収ルートの詳細は各エリア担当者にご確認ください。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 当日タイムスケジュール -->
+    <section class="mb-6">
+      <div class="bg-white rounded-xl border border-warm-border p-5">
+        <h2 class="text-base font-bold text-slate-900 mb-4">当日のながれ</h2>
+        <div class="relative">
+          <!-- タイムライン線 -->
+          <div class="absolute left-4 top-2 bottom-2 w-0.5 bg-slate-200"></div>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-4 relative">
+              <div class="w-8 h-8 rounded-full bg-sky-500 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0 z-10">1</div>
+              <div>
+                <p class="text-sm font-medium text-slate-900">8:00 役員集合</p>
+                <p class="text-xs text-slate-500">トラック確認・ルート最終確認・軍手/飲み物配布</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 relative">
+              <div class="w-8 h-8 rounded-full bg-sky-500 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0 z-10">2</div>
+              <div>
+                <p class="text-sm font-medium text-slate-900">8:30 全体集合・作業開始</p>
+                <p class="text-xs text-slate-500">今泉薬局駐車場に集合</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 relative">
+              <div class="w-8 h-8 rounded-full bg-forest-500 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0 z-10">3</div>
+              <div>
+                <p class="text-sm font-medium text-slate-900">8:30〜 回収作業</p>
+                <p class="text-xs text-slate-500">各エリアで廃品回収を実施</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 relative">
+              <div class="w-8 h-8 rounded-full bg-forest-500 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0 z-10">4</div>
+              <div>
+                <p class="text-sm font-medium text-slate-900">10:30頃 回収完了・計量</p>
+                <p class="text-xs text-slate-500">集積場所にて計量・記録</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 relative">
+              <div class="w-8 h-8 rounded-full bg-slate-400 text-white inline-flex items-center justify-center text-xs font-bold flex-shrink-0 z-10">5</div>
+              <div>
+                <p class="text-sm font-medium text-slate-900">11:00頃 片付け・解散</p>
+                <p class="text-xs text-slate-500">お疲れさまでした！</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 持ち物チェックリスト -->
+    <section class="mb-6">
+      <div class="bg-white rounded-xl border border-warm-border p-5">
+        <h2 class="text-base font-bold text-slate-900 mb-3">当日の持ち物</h2>
+        <p class="text-xs text-slate-500 mb-3">タップでチェックできます</p>
+        <div class="space-y-2" id="checklist">
+          <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors">
+            <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-forest-500 focus:ring-forest-500/50">
+            <span class="text-sm text-slate-700">軍手 <span class="text-red-500 text-xs">（必須）</span></span>
+          </label>
+          <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors">
+            <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-forest-500 focus:ring-forest-500/50">
+            <span class="text-sm text-slate-700">飲み物</span>
+          </label>
+          <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors">
+            <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-forest-500 focus:ring-forest-500/50">
+            <span class="text-sm text-slate-700">汚れてもよい服装</span>
+          </label>
+          <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors">
+            <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-forest-500 focus:ring-forest-500/50">
+            <span class="text-sm text-slate-700">帽子（夏季）</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- 準備チェックリスト（役員向け） -->
+    <section class="mb-6">
+      <div class="bg-white rounded-xl border border-warm-border p-5">
+        <h2 class="text-base font-bold text-slate-900 mb-1">役員向け準備リスト</h2>
+        <p class="text-xs text-slate-500 mb-3">2〜3週間前から準備が必要です</p>
+
+        <!-- 2〜3週間前 -->
+        <div class="mb-4">
+          <h3 class="text-xs font-semibold text-sky-600 uppercase tracking-wider mb-2">2〜3週間前</h3>
+          <div class="space-y-1.5">
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-sky-500 focus:ring-sky-500/50">
+              <span class="text-sm text-slate-700">日程確定</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-sky-500 focus:ring-sky-500/50">
+              <span class="text-sm text-slate-700">回覧板お知らせ配布</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-sky-500 focus:ring-sky-500/50">
+              <span class="text-sm text-slate-700">安全共済保険への登録 <span class="text-red-500 text-xs">（必須）</span></span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-sky-500 focus:ring-sky-500/50">
+              <span class="text-sm text-slate-700">トラック手配（MT運転者確保）</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-sky-500 focus:ring-sky-500/50">
+              <span class="text-sm text-slate-700">回収業者に連絡</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-sky-500 focus:ring-sky-500/50">
+              <span class="text-sm text-slate-700">秩父市届出</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 前日 -->
+        <div class="mb-4">
+          <h3 class="text-xs font-semibold text-amber-600 uppercase tracking-wider mb-2">前日</h3>
+          <div class="space-y-1.5">
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-amber-500 focus:ring-amber-500/50">
+              <span class="text-sm text-slate-700">天気予報確認</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-amber-500 focus:ring-amber-500/50">
+              <span class="text-sm text-slate-700">中止時の連絡方法確認</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-amber-500 focus:ring-amber-500/50">
+              <span class="text-sm text-slate-700">軍手・飲み物・ゴミ袋を購入</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-amber-500 focus:ring-amber-500/50">
+              <span class="text-sm text-slate-700">ルート最終確認</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 終了後 -->
+        <div>
+          <h3 class="text-xs font-semibold text-forest-600 uppercase tracking-wider mb-2">終了後</h3>
+          <div class="space-y-1.5">
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-forest-500 focus:ring-forest-500/50">
+              <span class="text-sm text-slate-700">計量結果を記録</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-forest-500 focus:ring-forest-500/50">
+              <span class="text-sm text-slate-700">収支報告書を作成</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-forest-500 focus:ring-forest-500/50">
+              <span class="text-sm text-slate-700">回覧板で報告</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-forest-500 focus:ring-forest-500/50">
+              <span class="text-sm text-slate-700">秩父市に助成金申請</span>
+            </label>
+            <label class="flex items-center gap-3 p-1.5 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-forest-500 focus:ring-forest-500/50">
+              <span class="text-sm text-slate-700">業者からの入金確認</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 過去実績 -->
+    <section class="mb-6">
+      <div class="bg-white rounded-xl border border-warm-border p-5">
+        <h2 class="text-base font-bold text-slate-900 mb-3">過去の実績</h2>
+        <div class="space-y-3">
+          <div class="p-3 bg-slate-50 rounded-lg">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-medium text-slate-900">令和5年 前期</span>
+              <span class="text-xs text-forest-600 font-medium">純利益 ¥22,695</span>
+            </div>
+            <div class="text-xs text-slate-500 space-y-0.5">
+              <p>回収量: 5,140kg / 売上: ¥11,080 / 助成金: ¥25,700</p>
+            </div>
+            <div class="mt-2 w-full bg-slate-200 rounded-full h-1.5">
+              <div class="bg-forest-500 h-1.5 rounded-full" style="width: 100%"></div>
+            </div>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-lg">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-medium text-slate-900">令和6年 前期</span>
+              <span class="text-xs text-amber-600 font-medium">売上 ¥3,920（▲65%）</span>
+            </div>
+            <div class="text-xs text-slate-500 space-y-0.5">
+              <p>回収量: 3,980kg（▲22%） / 新聞紙単価: ¥4→¥2に下落</p>
+            </div>
+            <div class="mt-2 w-full bg-slate-200 rounded-full h-1.5">
+              <div class="bg-amber-500 h-1.5 rounded-full" style="width: 35%"></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+          助成金の仕組み: 秩父市は回収量(kg)ベースで1kg×¥5を支給。売上¥0の品目でも助成金の対象になります。
+        </p>
+      </div>
+    </section>
+
+    <!-- 注意事項 -->
+    <section class="mb-6">
+      <div class="bg-amber-50 rounded-xl border border-amber-200 p-4">
+        <h3 class="text-sm font-semibold text-amber-800 mb-2 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+          安全共済保険について
+        </h3>
+        <p class="text-sm text-amber-800 leading-relaxed">
+          ケガ等をした場合、<strong>事前に行事計画に記載されていないと保険金が下りません</strong>。廃品回収の日程は必ず事前に登録してください。
+        </p>
+      </div>
+    </section>
+
+    <!-- 雨天時 -->
+    <section class="mb-6">
+      <div class="bg-sky-50 rounded-xl border border-sky-100 p-4">
+        <h3 class="text-sm font-semibold text-sky-800 mb-2 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+          雨天時の対応
+        </h3>
+        <p class="text-sm text-sky-800 leading-relaxed">
+          <strong>小雨決行・雨天中止</strong>が基本です。延期日を事前に設定しておきましょう。中止の場合はLINEグループまたは連絡網で連絡します。
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-white border-t border-warm-border mt-8">
+    <div class="max-w-lg mx-auto px-4 py-6 text-center">
+      <p class="text-xs text-slate-500">中山田青少年育成会</p>
+      <p class="text-xs text-slate-400 mt-1">会長: 橋本 健太郎 / 〒368 秩父市中山田</p>
+      <p class="text-xs text-slate-400 mt-1">&copy; 2026 Nakayamada Ikuseikai</p>
+    </div>
+  </footer>
+
+  <script>
+    // チェックリストの状態をlocalStorageに保存
+    document.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
+      const key = 'recycling-check-' + i;
+      cb.checked = localStorage.getItem(key) === 'true';
+      cb.addEventListener('change', () => {
+        localStorage.setItem(key, cb.checked);
+      });
+    });
+  </script>
+
+</body>
+</html>
