@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>配布資料 | 中山田青少年育成会</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
+            forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
+            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-warm-bg min-h-screen">
+
+  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+    <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
+      <a href="index.html" class="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="ホームに戻る">
+        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </a>
+      <h1 class="text-lg font-bold text-slate-900">配布資料</h1>
+    </div>
+  </header>
+
+  <main class="max-w-lg mx-auto px-4 py-6">
+
+    <p class="text-sm text-slate-500 mb-6 leading-relaxed">各イベントの配布資料をカテゴリ別にまとめています。PDFをタップするとダウンロードできます。</p>
+
+    <!-- 総会・理事会 -->
+    <section class="mb-5">
+      <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-sky-500"></span>
+        総会・理事会
+      </h2>
+      <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-100">
+        <div class="px-4 py-3 flex items-center gap-3" id="sokai-list">
+          <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <p class="text-sm text-slate-400">資料はまだありません</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 前期廃品回収 -->
+    <section class="mb-5">
+      <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-forest-500"></span>
+        前期廃品回収（6月）
+      </h2>
+      <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-100">
+        <div class="px-4 py-3 flex items-center gap-3">
+          <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <p class="text-sm text-slate-400">資料はまだありません</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 後期廃品回収 -->
+    <section class="mb-5">
+      <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-forest-500"></span>
+        後期廃品回収（11月）
+      </h2>
+      <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-100">
+        <div class="px-4 py-3 flex items-center gap-3">
+          <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <p class="text-sm text-slate-400">資料はまだありません</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- バレーボール大会 -->
+    <section class="mb-5">
+      <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+        少年団バレーボール大会（9月）
+      </h2>
+      <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-100">
+        <div class="px-4 py-3 flex items-center gap-3">
+          <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <p class="text-sm text-slate-400">資料はまだありません</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- フットベース -->
+    <section class="mb-5">
+      <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+        フットベース高篠大会（10月）
+      </h2>
+      <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-100">
+        <div class="px-4 py-3 flex items-center gap-3">
+          <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <p class="text-sm text-slate-400">資料はまだありません</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- クリスマス会 -->
+    <section class="mb-5">
+      <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-purple-500"></span>
+        連合クリスマス会（12月）
+      </h2>
+      <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-100">
+        <div class="px-4 py-3 flex items-center gap-3">
+          <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <p class="text-sm text-slate-400">資料はまだありません</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 夜間パトロール -->
+    <section class="mb-5">
+      <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-slate-500"></span>
+        夏休み夜間パトロール（8月）
+      </h2>
+      <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-100">
+        <div class="px-4 py-3 flex items-center gap-3">
+          <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <p class="text-sm text-slate-400">資料はまだありません</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- その他 -->
+    <section class="mb-5">
+      <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+        その他の資料
+      </h2>
+      <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-100">
+        <a href="docs/other/R8_ikuseikai_tasks.pdf" class="px-4 py-3 flex items-center gap-3 hover:bg-slate-50 transition-colors" download>
+          <svg class="w-8 h-8 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-slate-900">令和8年度_育成会タスク一覧</p>
+            <p class="text-xs text-slate-400">PDF · 年間タスクカレンダー</p>
+          </div>
+          <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ファイル追加方法の説明 -->
+    <div class="bg-sky-50 rounded-xl border border-sky-100 p-4 mt-4">
+      <h3 class="text-sm font-semibold text-sky-800 mb-1 flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        資料の追加方法（管理者向け）
+      </h3>
+      <p class="text-xs text-sky-800 leading-relaxed">
+        PDFを <code class="bg-sky-100 px-1 rounded">nakayamada/docs/（イベント名）/</code> フォルダに追加してgit pushするとこのページに反映されます。
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-warm-border mt-8">
+    <div class="max-w-lg mx-auto px-4 py-6 text-center">
+      <p class="text-xs text-slate-500">中山田青少年育成会</p>
+      <p class="text-xs text-slate-400 mt-1">会長: 橋本 健太郎 / 〒368 秩父市中山田</p>
+      <p class="text-xs text-slate-400 mt-1">&copy; 2026 Nakayamada Ikuseikai</p>
+    </div>
+  </footer>
+
+</body>
+</html>
