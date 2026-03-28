@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>収支報告 | 中山田青少年育成会</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
+            forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
+            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-warm-bg min-h-screen">
+
+  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+    <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
+      <a href="index.html" class="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="ホームに戻る">
+        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </a>
+      <div>
+        <h1 class="text-lg font-bold text-slate-900 leading-tight">収支報告</h1>
+        <p class="text-xs text-slate-500">中山田青少年育成会</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-lg mx-auto px-4 py-6 space-y-6">
+
+    <!-- タブ切替 -->
+    <div class="bg-white rounded-xl border border-warm-border p-1 flex gap-1">
+      <button id="tab-r7" onclick="showTab('r7')"
+        class="flex-1 py-2 text-sm font-semibold text-slate-900 rounded-lg bg-slate-100 transition-colors cursor-pointer">
+        令和7年度<span class="block text-xs font-normal text-slate-500">収支決算（実績）</span>
+      </button>
+      <button id="tab-r8" onclick="showTab('r8')"
+        class="flex-1 py-2 text-sm font-medium text-slate-500 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer">
+        令和8年度<span class="block text-xs font-normal text-slate-400">収支予算案</span>
+      </button>
+    </div>
+
+    <!-- ===== 令和7年度 決算 ===== -->
+    <div id="panel-r7">
+
+      <!-- サマリーカード -->
+      <div class="grid grid-cols-3 gap-3 mb-4">
+        <div class="bg-white rounded-xl border border-warm-border p-3 text-center">
+          <p class="text-xs text-slate-500 mb-1">収入</p>
+          <p class="text-base font-bold text-sky-500">157.9万</p>
+          <p class="text-[10px] text-slate-400">1,579,452円</p>
+        </div>
+        <div class="bg-white rounded-xl border border-warm-border p-3 text-center">
+          <p class="text-xs text-slate-500 mb-1">支出</p>
+          <p class="text-base font-bold text-rose-500">29.7万</p>
+          <p class="text-[10px] text-slate-400">296,858円</p>
+        </div>
+        <div class="bg-white rounded-xl border border-warm-border p-3 text-center">
+          <p class="text-xs text-slate-500 mb-1">次期繰越</p>
+          <p class="text-base font-bold text-forest-500">128.3万</p>
+          <p class="text-[10px] text-slate-400">1,282,594円</p>
+        </div>
+      </div>
+
+      <!-- 収入の部 -->
+      <div class="bg-white rounded-xl border border-warm-border overflow-hidden mb-4">
+        <div class="px-4 py-3 bg-sky-50 border-b border-sky-100 flex items-center gap-2">
+          <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/></svg>
+          <h2 class="text-sm font-bold text-sky-800">収入の部</h2>
+          <span class="ml-auto text-xs text-sky-600 font-medium">単位：円</span>
+        </div>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <th scope="col" class="text-left py-2 px-4 text-xs font-medium text-slate-500">費目</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">予算</th>
+              <th scope="col" class="text-right py-2 px-4 text-xs font-medium text-slate-500">決算</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-50">
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">会費</td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">400,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">342,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">補助金<span class="ml-1 text-xs text-slate-400">中山田町会</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">120,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">90,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">諸収入 廃品回収<br><span class="text-xs text-slate-400">前期¥30,305 後期¥23,934 市助成¥22,800</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">150,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">77,039</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">諸収入 その他<span class="ml-1 text-xs text-slate-400">利息</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">10</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">522</td>
+            </tr>
+            <tr class="hover:bg-slate-50 bg-slate-50/50">
+              <td class="py-2.5 px-4 text-slate-700">繰越金</td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">832,243</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">1,069,891</td>
+            </tr>
+            <tr class="bg-sky-50">
+              <td class="py-3 px-4 font-bold text-sky-800">合　計</td>
+              <td class="py-3 px-3 text-right text-slate-500 text-xs font-medium">1,502,253</td>
+              <td class="py-3 px-4 text-right font-bold text-sky-700">1,579,452</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 会費内訳 -->
+      <div class="bg-white rounded-xl border border-warm-border overflow-hidden mb-4">
+        <div class="px-4 py-3 border-b border-slate-100">
+          <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider">別表1 — 会費内訳</h3>
+        </div>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <th scope="col" class="text-left py-2 px-4 text-xs font-medium text-slate-500">区</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">総戸数</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">口数</th>
+              <th scope="col" class="text-right py-2 px-4 text-xs font-medium text-slate-500">会費</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-50">
+            <tr class="hover:bg-slate-50"><td class="py-2 px-4 text-slate-700">4区西</td><td class="py-2 px-3 text-right text-slate-500 text-xs">98</td><td class="py-2 px-3 text-right text-slate-500 text-xs">18</td><td class="py-2 px-4 text-right font-medium text-slate-900">116,000</td></tr>
+            <tr class="hover:bg-slate-50"><td class="py-2 px-4 text-slate-700">4区東</td><td class="py-2 px-3 text-right text-slate-500 text-xs">103</td><td class="py-2 px-3 text-right text-slate-500 text-xs">34</td><td class="py-2 px-4 text-right font-medium text-slate-900">137,000</td></tr>
+            <tr class="hover:bg-slate-50"><td class="py-2 px-4 text-slate-700">5区</td><td class="py-2 px-3 text-right text-slate-500 text-xs">53</td><td class="py-2 px-3 text-right text-slate-500 text-xs">7</td><td class="py-2 px-4 text-right font-medium text-slate-900">60,000</td></tr>
+            <tr class="hover:bg-slate-50"><td class="py-2 px-4 text-slate-700">6区</td><td class="py-2 px-3 text-right text-slate-500 text-xs">27</td><td class="py-2 px-3 text-right text-slate-500 text-xs">2</td><td class="py-2 px-4 text-right font-medium text-slate-900">29,000</td></tr>
+            <tr class="bg-slate-50"><td class="py-2 px-4 font-bold text-slate-700">計</td><td class="py-2 px-3 text-right text-xs font-medium text-slate-600">281</td><td class="py-2 px-3 text-right text-xs font-medium text-slate-600">61</td><td class="py-2 px-4 text-right font-bold text-slate-900">342,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 支出の部 -->
+      <div class="bg-white rounded-xl border border-warm-border overflow-hidden mb-4">
+        <div class="px-4 py-3 bg-rose-50 border-b border-rose-100 flex items-center gap-2">
+          <svg class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"/></svg>
+          <h2 class="text-sm font-bold text-rose-800">支出の部</h2>
+          <span class="ml-auto text-xs text-rose-600 font-medium">単位：円</span>
+        </div>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <th scope="col" class="text-left py-2 px-4 text-xs font-medium text-slate-500">費目</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">予算</th>
+              <th scope="col" class="text-right py-2 px-4 text-xs font-medium text-slate-500">決算</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-50">
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">事業費①スポーツ<br><span class="text-xs text-slate-400">連合クラブ負担金</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">150,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">100,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">事業費②社会・文化・レク<br><span class="text-xs text-slate-400">記念品・負担金 他</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">550,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">179,521</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">会議費</td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">30,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">0</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">事務費<br><span class="text-xs text-slate-400">消耗品・コピー代等</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">30,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">17,337</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">その他経費</td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">10,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">0</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">予備費</td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">0</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">0</td>
+            </tr>
+            <tr class="bg-rose-50">
+              <td class="py-3 px-4 font-bold text-rose-800">合　計</td>
+              <td class="py-3 px-3 text-right text-slate-500 text-xs font-medium">770,000</td>
+              <td class="py-3 px-4 text-right font-bold text-rose-700">296,858</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 執行率バー -->
+      <div class="bg-white rounded-xl border border-warm-border p-4 mb-4">
+        <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">予算執行率</h3>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-slate-600">収入達成率</span>
+              <span class="font-medium text-slate-900">105.1%</span>
+            </div>
+            <div class="bg-slate-200 rounded-full h-2" role="progressbar" aria-valuenow="105" aria-valuemin="0" aria-valuemax="100">
+              <div class="bg-sky-500 rounded-full h-2 w-full"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-slate-600">支出執行率</span>
+              <span class="font-medium text-slate-900">38.6%</span>
+            </div>
+            <div class="bg-slate-200 rounded-full h-2" role="progressbar" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100">
+              <div class="bg-rose-400 rounded-full h-2" style="width:38.6%"></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-3">支出を大幅に抑えた結果、次期繰越金が <span class="text-forest-600 font-semibold">1,282,594円</span> となりました。</p>
+      </div>
+
+    </div><!-- /panel-r7 -->
+
+    <!-- ===== 令和8年度 予算案 ===== -->
+    <div id="panel-r8" class="hidden">
+
+      <!-- 仮バナー -->
+      <div class="flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg mb-4">
+        <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+        <div>
+          <p class="text-sm font-semibold mb-0.5">令和8年3月27日 総会提案（案）</p>
+          <p class="text-xs leading-relaxed">繰越金は令和7年度決算確定後に更新予定。承認後に正式版に差し替えます。</p>
+        </div>
+      </div>
+
+      <!-- サマリーカード -->
+      <div class="grid grid-cols-3 gap-3 mb-4">
+        <div class="bg-white rounded-xl border border-warm-border p-3 text-center">
+          <p class="text-xs text-slate-500 mb-1">収入予算</p>
+          <p class="text-base font-bold text-sky-500">150.2万</p>
+          <p class="text-[10px] text-slate-400">1,502,253円</p>
+        </div>
+        <div class="bg-white rounded-xl border border-warm-border p-3 text-center">
+          <p class="text-xs text-slate-500 mb-1">支出予算</p>
+          <p class="text-base font-bold text-rose-500">77.0万</p>
+          <p class="text-[10px] text-slate-400">770,000円</p>
+        </div>
+        <div class="bg-white rounded-xl border border-warm-border p-3 text-center">
+          <p class="text-xs text-slate-500 mb-1">繰越金（仮）</p>
+          <p class="text-base font-bold text-amber-500">83.2万</p>
+          <p class="text-[10px] text-slate-400">832,243円</p>
+        </div>
+      </div>
+
+      <!-- 収入の部 -->
+      <div class="bg-white rounded-xl border border-warm-border overflow-hidden mb-4">
+        <div class="px-4 py-3 bg-sky-50 border-b border-sky-100 flex items-center gap-2">
+          <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/></svg>
+          <h2 class="text-sm font-bold text-sky-800">収入の部</h2>
+          <span class="ml-auto text-xs text-sky-600 font-medium">単位：円</span>
+        </div>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <th scope="col" class="text-left py-2 px-4 text-xs font-medium text-slate-500">費目</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">R7決算</th>
+              <th scope="col" class="text-right py-2 px-4 text-xs font-medium text-slate-500">R8予算</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-50">
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">会費<br><span class="text-xs text-slate-400">毎戸1口千円＋子供1人千円（小学生以上）</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">342,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">400,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">補助金<br><span class="text-xs text-slate-400">中山田町会・連合旅行・補助金</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">90,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">120,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">諸収入 廃品回収<br><span class="text-xs text-slate-400">売上げ＋報償金</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">77,039</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">150,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">諸収入 その他<br><span class="text-xs text-slate-400">一般御芳志・預金利子他</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">522</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">10</td>
+            </tr>
+            <tr class="hover:bg-slate-50 bg-slate-50/50">
+              <td class="py-2.5 px-4 text-slate-700">繰越金 <span class="text-amber-600 text-xs">※仮</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">1,069,891</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">832,243</td>
+            </tr>
+            <tr class="bg-sky-50">
+              <td class="py-3 px-4 font-bold text-sky-800">合　計</td>
+              <td class="py-3 px-3 text-right text-slate-500 text-xs font-medium">1,579,452</td>
+              <td class="py-3 px-4 text-right font-bold text-sky-700">1,502,253</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 支出の部 -->
+      <div class="bg-white rounded-xl border border-warm-border overflow-hidden mb-4">
+        <div class="px-4 py-3 bg-rose-50 border-b border-rose-100 flex items-center gap-2">
+          <svg class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"/></svg>
+          <h2 class="text-sm font-bold text-rose-800">支出の部</h2>
+          <span class="ml-auto text-xs text-rose-600 font-medium">単位：円</span>
+        </div>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <th scope="col" class="text-left py-2 px-4 text-xs font-medium text-slate-500">費目</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">R7決算</th>
+              <th scope="col" class="text-right py-2 px-4 text-xs font-medium text-slate-500">R8予算</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-50">
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">事業費①スポーツ<br><span class="text-xs text-slate-400">用具購入・大会参加費・負担金等</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">100,000</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">150,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">事業費②社会・文化・レク<br><span class="text-xs text-slate-400">歓送迎会・納涼大会・バス旅行・負担金等</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">179,521</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">550,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">会議費<br><span class="text-xs text-slate-400">総会・理事会等</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">0</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">30,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">事務費<br><span class="text-xs text-slate-400">消耗品・コピー代等</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">17,337</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">30,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">その他経費<br><span class="text-xs text-slate-400">慶弔費</span></td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">0</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">10,000</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-4 text-slate-700">予備費</td>
+              <td class="py-2.5 px-3 text-right text-slate-400 text-xs">0</td>
+              <td class="py-2.5 px-4 text-right font-medium text-slate-900">0</td>
+            </tr>
+            <tr class="bg-rose-50">
+              <td class="py-3 px-4 font-bold text-rose-800">合　計</td>
+              <td class="py-3 px-3 text-right text-slate-500 text-xs font-medium">296,858</td>
+              <td class="py-3 px-4 text-right font-bold text-rose-700">770,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 会費の仕組み -->
+      <div class="bg-white rounded-xl border border-warm-border p-4">
+        <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">会費の仕組み（令和8年度）</h3>
+        <div class="space-y-2">
+          <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+            <span class="text-sm">🏠</span>
+            <div>
+              <p class="text-sm font-medium text-slate-900">世帯口数割</p>
+              <p class="text-xs text-slate-500">毎戸数1口 × 1,000円</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+            <span class="text-sm">👦</span>
+            <div>
+              <p class="text-sm font-medium text-slate-900">子供割</p>
+              <p class="text-xs text-slate-500">子供1人 × 1,000円（小学生以上）</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /panel-r8 -->
+
+  </main>
+
+  <footer class="bg-white border-t border-warm-border mt-8">
+    <div class="max-w-lg mx-auto px-4 py-6 text-center">
+      <p class="text-xs text-slate-500">中山田青少年育成会</p>
+      <p class="text-xs text-slate-400 mt-1">会長: 橋本 健太郎 / 〒368 秩父市中山田</p>
+      <p class="text-xs text-slate-400 mt-1">&copy; 2026 Nakayamada Ikuseikai</p>
+    </div>
+  </footer>
+
+  <script>
+    function showTab(tab) {
+      document.getElementById('panel-r7').classList.toggle('hidden', tab !== 'r7');
+      document.getElementById('panel-r8').classList.toggle('hidden', tab !== 'r8');
+      const r7Cls = tab === 'r7'
+        ? 'flex-1 py-2 text-sm font-semibold text-slate-900 rounded-lg bg-slate-100 transition-colors cursor-pointer'
+        : 'flex-1 py-2 text-sm font-medium text-slate-500 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer';
+      const r8Cls = tab === 'r8'
+        ? 'flex-1 py-2 text-sm font-semibold text-slate-900 rounded-lg bg-slate-100 transition-colors cursor-pointer'
+        : 'flex-1 py-2 text-sm font-medium text-slate-500 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer';
+      document.getElementById('tab-r7').className = r7Cls;
+      document.getElementById('tab-r8').className = r8Cls;
+    }
+  </script>
+
+</body>
+</html>
