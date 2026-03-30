@@ -7,942 +7,790 @@
 <meta name="description" content="異業種6名が富山・ヘルジアンウッドに集い、サウナでととのい、新しい事業のタネを見つける。2026.04.02–03">
 <meta property="og:title" content="蒸気会議 — Healthian Wood Hive Tour 2026">
 <meta property="og:description" content="異業種が交わり、ととのい、新しい事業のタネが生まれる。富山・立山 2026.04.02–03">
+<meta property="og:image" content="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-a466297eddc9ab000d18b1de0756d71d-3840x2160.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://toyama.schema.tokyo/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♨️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap');
-
-  :root {
-    --color-bg: #f7f3ee;
-    --color-text: #2c2520;
-    --color-text-light: #6b5e52;
-    --color-accent: #c4713b;
-    --color-accent-soft: #e8a96c;
-    --color-warm: #d4a574;
-    --color-sage: #7a8c6e;
-    --color-sage-light: #d4dbc8;
-    --color-steam: rgba(255,255,255,0.7);
-    --color-card: #fffcf7;
-    --color-border: #e6ddd3;
-    --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--font-body);
-    background: var(--color-bg);
-    color: var(--color-text);
-    line-height: 1.8;
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ─── HERO ─── */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-    background: linear-gradient(170deg, #3a3028 0%, #5a4a3a 40%, #7a8c6e 70%, #a8b898 100%);
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 70% 30%, rgba(196,113,59,0.12) 0%, transparent 50%);
-  }
-
-  /* Steam animation */
-  .steam-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .steam {
-    position: absolute;
-    bottom: -20px;
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: rise 8s ease-in infinite;
-    filter: blur(20px);
-  }
-
-  .steam:nth-child(1) { left: 15%; animation-delay: 0s; animation-duration: 7s; }
-  .steam:nth-child(2) { left: 35%; animation-delay: 2s; animation-duration: 9s; width: 100px; height: 100px; }
-  .steam:nth-child(3) { left: 55%; animation-delay: 4s; animation-duration: 8s; }
-  .steam:nth-child(4) { left: 75%; animation-delay: 1s; animation-duration: 10s; width: 60px; height: 60px; }
-  .steam:nth-child(5) { left: 45%; animation-delay: 3s; animation-duration: 7.5s; width: 90px; height: 90px; }
-  .steam:nth-child(6) { left: 25%; animation-delay: 5s; animation-duration: 8.5s; width: 70px; height: 70px; }
-  .steam:nth-child(7) { left: 65%; animation-delay: 6s; animation-duration: 9.5s; width: 85px; height: 85px; }
-
-  @keyframes rise {
-    0% { transform: translateY(0) scale(1); opacity: 0; }
-    15% { opacity: 0.5; }
-    100% { transform: translateY(-500px) scale(2.5); opacity: 0; }
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    padding: 2rem;
-  }
-
-  .hero-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--color-accent-soft);
-    margin-bottom: 1.5rem;
-    font-weight: 400;
-  }
-
-  .hero-title {
-    font-size: clamp(3rem, 10vw, 6rem);
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.15em;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-  }
-
-  .hero-subtitle {
-    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-    color: rgba(255,255,255,0.7);
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-date {
-    display: inline-block;
-    padding: 0.6rem 2rem;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 100px;
-    color: rgba(255,255,255,0.9);
-    font-size: 0.85rem;
-    letter-spacing: 0.15em;
-    font-weight: 400;
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255,255,255,0.4);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.8; }
-  }
-
-  /* ─── NAV ─── */
-  .nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(247,243,238,0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-border);
-    padding: 0.8rem 0;
-  }
-
-  .nav-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 0 1rem;
-    flex-wrap: wrap;
-  }
-
-  .nav a {
-    text-decoration: none;
-    color: var(--color-text-light);
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    font-weight: 400;
-    transition: color 0.3s;
-  }
-
-  .nav a:hover, .nav a.active { color: var(--color-accent); }
-
-  /* ─── SECTIONS ─── */
-  .section {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-  }
-
-  .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-  }
-
-  .section-title {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: 0.05em;
-    line-height: 1.4;
-  }
-
-  .section-lead {
-    color: var(--color-text-light);
-    font-size: 0.95rem;
-    max-width: 600px;
-    margin-bottom: 3rem;
-  }
-
-  .divider {
-    width: 40px;
-    height: 2px;
-    background: var(--color-accent-soft);
-    margin: 0 auto 4rem;
-  }
-
-  /* Fade-in animation */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ─── CONCEPT ─── */
-  #concept {
-    text-align: center;
-    background: linear-gradient(180deg, var(--color-bg) 0%, #f0ece4 100%);
-    padding: 6rem 2rem;
-    max-width: 100%;
-  }
-
-  #concept .section { padding: 0; }
-
-  .concept-text {
-    max-width: 640px;
-    margin: 0 auto;
-    font-size: 1rem;
-    line-height: 2.2;
-    color: var(--color-text);
-  }
-
-  .concept-keywords {
-    display: flex;
-    justify-content: center;
-    gap: 0.8rem;
-    margin-top: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .keyword {
-    padding: 0.5rem 1.2rem;
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: 100px;
-    font-size: 0.8rem;
-    color: var(--color-text-light);
-    letter-spacing: 0.05em;
-  }
-
-  /* ─── MEMBERS ─── */
-  .members-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .member-card {
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: 2rem 1.5rem;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .member-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(44,37,32,0.08);
-  }
-
-  .member-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-
-  .member-name {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 0.3rem;
-  }
-
-  .member-org {
-    font-size: 0.8rem;
-    color: var(--color-accent);
-    font-weight: 400;
-    margin-bottom: 0.8rem;
-    letter-spacing: 0.03em;
-  }
-
-  .member-desc {
-    font-size: 0.82rem;
-    color: var(--color-text-light);
-    line-height: 1.7;
-  }
-
-  /* ─── VENUE ─── */
-  .venue-card {
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .venue-header {
-    background: linear-gradient(135deg, #3a3028, #5a4a3a);
-    padding: 2.5rem 2rem;
-    color: #fff;
-  }
-
-  .venue-header h3 {
-    font-size: 1.3rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    margin-bottom: 0.3rem;
-  }
-
-  .venue-header p {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
-  }
-
-  .venue-body {
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .venue-feature {
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .venue-feature-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-
-  .venue-feature h4 {
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 0.3rem;
-  }
-
-  .venue-feature p {
-    font-size: 0.78rem;
-    color: var(--color-text-light);
-  }
-
-  .venue-link {
-    display: block;
-    text-align: center;
-    padding: 1rem;
-    border-top: 1px solid var(--color-border);
-    color: var(--color-accent);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    transition: background 0.3s;
-  }
-
-  .venue-link:hover { background: rgba(196,113,59,0.05); }
-
-  /* ─── SCHEDULE ─── */
-  .timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, var(--color-accent-soft), var(--color-sage-light));
-  }
-
-  .timeline-day { margin-bottom: 3rem; }
-
-  .timeline-day-label {
-    position: relative;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-  }
-
-  .timeline-day-label::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    margin-left: 1px;
-  }
-
-  .timeline-item {
-    position: relative;
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 1rem;
-    margin-left: 1.5rem;
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -1.5rem;
-    top: 1.5rem;
-    width: calc(1.5rem - 8px);
-    height: 1px;
-    background: var(--color-border);
-  }
-
-  .timeline-time {
-    font-size: 0.75rem;
-    color: var(--color-accent);
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
-
-  .timeline-title {
-    font-size: 1rem;
-    font-weight: 500;
-    margin: 0.2rem 0;
-  }
-
-  .timeline-note {
-    font-size: 0.82rem;
-    color: var(--color-text-light);
-    line-height: 1.6;
-  }
-
-  .timeline-tag {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    background: var(--color-sage-light);
-    color: var(--color-sage);
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 500;
-    margin-top: 0.5rem;
-    margin-right: 0.3rem;
-    letter-spacing: 0.03em;
-  }
-
-  /* ─── LIVE UPDATES ─── */
-  #updates {
-    background: #2c2520;
-    max-width: 100%;
-    padding: 5rem 2rem;
-    color: #fff;
-  }
-
-  #updates .section {
-    padding: 0;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  #updates .section-label { color: var(--color-accent-soft); }
-  #updates .section-title { color: #fff; }
-  #updates .section-lead { color: rgba(255,255,255,0.5); }
-
-  .updates-status {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-  }
-
-  .live-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.3rem 0.8rem;
-    background: rgba(196,113,59,0.2);
-    border-radius: 100px;
-    font-size: 0.7rem;
-    color: var(--color-accent-soft);
-    letter-spacing: 0.05em;
-  }
-
-  .live-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-accent-soft);
-    animation: blink 2s ease-in-out infinite;
-  }
-
-  .updates-count {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 0.05em;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .updates-feed {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .update-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    padding: 1.5rem;
-    transition: background 0.3s;
-  }
-
-  .update-card:hover { background: rgba(255,255,255,0.1); }
-
-  .update-header {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .update-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 500;
-    flex-shrink: 0;
-  }
-
-  .update-meta { display: flex; flex-direction: column; }
-
-  .update-author {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #fff;
-  }
-
-  .update-time {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 0.05em;
-  }
-
-  .update-text {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.8;
-    padding-left: calc(36px + 0.8rem);
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-
-  .update-image {
-    margin-top: 0.8rem;
-    padding-left: calc(36px + 0.8rem);
-  }
-
-  .update-image img {
-    max-width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-    object-fit: cover;
-  }
-
-  .update-reactions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.8rem;
-    padding-left: calc(36px + 0.8rem);
-    flex-wrap: wrap;
-  }
-
-  .reaction {
-    padding: 0.2rem 0.5rem;
-    background: rgba(255,255,255,0.08);
-    border-radius: 100px;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.5);
-  }
-
-  .updates-loading {
-    text-align: center;
-    padding: 3rem 0;
-    color: rgba(255,255,255,0.3);
-    font-size: 0.85rem;
-  }
-
-  .updates-loading .spinner {
-    width: 24px;
-    height: 24px;
-    border: 2px solid rgba(255,255,255,0.1);
-    border-top-color: var(--color-accent-soft);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 1rem;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  /* ─── FOOTER ─── */
-  .footer {
-    text-align: center;
-    padding: 4rem 2rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .footer-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-sub {
-    font-size: 0.8rem;
-    color: var(--color-text-light);
-    letter-spacing: 0.05em;
-  }
-
-  .footer-contact {
-    margin-top: 2rem;
-    font-size: 0.78rem;
-    color: var(--color-text-light);
-  }
-
-  .footer-contact a {
-    color: var(--color-accent);
-    text-decoration: none;
-  }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 600px) {
-    .section { padding: 3rem 1.2rem; }
-    #concept { padding: 4rem 1.2rem; }
-    .nav-inner { gap: 1rem; }
-    .nav a { font-size: 0.7rem; }
-    .members-grid { grid-template-columns: 1fr; }
-    .venue-body { grid-template-columns: 1fr 1fr; }
-    .update-text, .update-reactions, .update-image { padding-left: 0; margin-top: 0.5rem; }
-    .hero-title { letter-spacing: 0.08em; }
-  }
-
-  @media (max-width: 400px) {
-    .venue-body { grid-template-columns: 1fr; }
-    .concept-keywords { gap: 0.5rem; }
-    .keyword { font-size: 0.72rem; padding: 0.4rem 0.9rem; }
-  }
+:root {
+  --c-bg: #f5f0ea;
+  --c-dark: #1a1714;
+  --c-text: #2c2520;
+  --c-text-light: #6b5e52;
+  --c-accent: #c4713b;
+  --c-accent-soft: #e8a96c;
+  --c-sage: #7a8c6e;
+  --c-sage-light: #d4dbc8;
+  --c-card: #fffcf7;
+  --c-border: #e6ddd3;
+  --font: 'Noto Sans JP', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--c-bg);
+  color: var(--c-text);
+  line-height: 1.8;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── UTILITY ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(.23,1,.32,1), transform 0.8s cubic-bezier(.23,1,.32,1);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-d10b1fb106169d0e398c8ed469275413-3840x2160.jpg') center/cover no-repeat;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(26,23,20,0.95) 0%,
+    rgba(26,23,20,0.5) 35%,
+    rgba(26,23,20,0.15) 60%,
+    rgba(26,23,20,0.05) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 2rem 6rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--c-accent-soft);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 12vw, 7rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  margin-bottom: 0.8rem;
+}
+
+.hero-sub {
+  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+  color: rgba(255,255,255,0.65);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-date {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 100px;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  font-weight: 400;
+}
+
+.hero-location {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  writing-mode: vertical-rl;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245,240,234,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav a {
+  text-decoration: none;
+  color: var(--c-text-light);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  font-weight: 400;
+  white-space: nowrap;
+  padding: 0.4rem 0.7rem;
+  border-radius: 100px;
+  transition: all 0.3s;
+}
+
+.nav a:hover, .nav a.active {
+  color: var(--c-accent);
+  background: rgba(196,113,59,0.08);
+}
+
+.nav-logo {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--c-text);
+  letter-spacing: 0.06em;
+  margin-right: auto;
+  flex-shrink: 0;
+}
+
+/* ─── PHOTO BREAK ─── */
+.photo-break {
+  position: relative;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.photo-break img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-break-caption {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+}
+
+/* ─── SECTION COMMON ─── */
+.sec { padding: 7rem 0; }
+.sec-dark { background: var(--c-dark); color: #fff; }
+.sec-alt { background: #efebe4; }
+
+.sec-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+.sec-dark .sec-eyebrow { color: var(--c-accent-soft); }
+
+.sec-title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.sec-lead {
+  font-size: 0.95rem;
+  color: var(--c-text-light);
+  max-width: 560px;
+  margin-bottom: 3.5rem;
+}
+
+.sec-dark .sec-lead { color: rgba(255,255,255,0.45); }
+
+/* ─── CONCEPT ─── */
+.concept-statement {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 500;
+  line-height: 2.2;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.concept-statement strong {
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+.concept-keywords {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.concept-keywords span {
+  padding: 0.45rem 1.1rem;
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  color: var(--c-text-light);
+  letter-spacing: 0.04em;
+}
+
+/* ─── MEMBERS ─── */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+.member-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  transition: transform 0.4s cubic-bezier(.23,1,.32,1), box-shadow 0.4s;
+}
+
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(44,37,32,0.1);
+}
+
+.m-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.m-name { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
+.m-org { font-size: 0.72rem; color: var(--c-accent); font-weight: 400; margin-bottom: 0.7rem; letter-spacing: 0.02em; line-height: 1.5; }
+.m-desc { font-size: 0.78rem; color: var(--c-text-light); line-height: 1.7; }
+
+/* ─── VENUE ─── */
+.venue-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.venue-img { border-radius: 16px; overflow: hidden; aspect-ratio: 16/10; }
+.venue-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(.23,1,.32,1); }
+.venue-img:hover img { transform: scale(1.04); }
+.venue-img.wide { grid-column: 1 / -1; aspect-ratio: 21/9; }
+
+.venue-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--c-border);
+}
+
+.venue-feat { text-align: center; }
+.venue-feat-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.venue-feat h4 { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.3rem; }
+.venue-feat p { font-size: 0.72rem; color: var(--c-text-light); line-height: 1.5; }
+
+.venue-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+  color: var(--c-accent);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: gap 0.3s;
+}
+.venue-link:hover { gap: 0.8rem; }
+
+/* ─── SCHEDULE ─── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--c-accent-soft), var(--c-sage-light)); }
+.tl-day { margin-bottom: 3rem; }
+.tl-day-label { position: relative; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--c-accent); font-weight: 700; margin-bottom: 1.2rem; padding-left: 1.5rem; }
+.tl-day-label::before { content: ''; position: absolute; left: -2rem; top: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background: var(--c-accent); margin-left: 1px; }
+.tl-item { background: var(--c-card); border: 1px solid var(--c-border); border-radius: 12px; padding: 1.2rem 1.5rem; margin-bottom: 0.8rem; margin-left: 1.5rem; position: relative; }
+.tl-item::before { content: ''; position: absolute; left: -1.5rem; top: 1.4rem; width: calc(1.5rem - 8px); height: 1px; background: var(--c-border); }
+.tl-time { font-size: 0.7rem; color: var(--c-accent); font-weight: 700; letter-spacing: 0.05em; }
+.tl-title { font-size: 0.95rem; font-weight: 700; margin: 0.15rem 0; }
+.tl-note { font-size: 0.78rem; color: var(--c-text-light); line-height: 1.6; }
+.tl-tag { display: inline-block; padding: 0.15rem 0.5rem; background: var(--c-sage-light); color: var(--c-sage); border-radius: 4px; font-size: 0.65rem; font-weight: 500; margin-top: 0.4rem; margin-right: 0.2rem; }
+
+/* ─── INTERACTIVE: UPLOAD ZONE ─── */
+.upload-zone {
+  border: 2px dashed var(--c-border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+  margin-bottom: 2rem;
+}
+.upload-zone:hover, .upload-zone.dragover { border-color: var(--c-accent); background: rgba(196,113,59,0.04); }
+.upload-zone-icon { font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.4; }
+.upload-zone p { font-size: 0.82rem; color: var(--c-text-light); }
+.upload-zone small { font-size: 0.7rem; color: var(--c-text-light); opacity: 0.6; }
+
+.upload-form-row {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.upload-form-row input, .upload-form-row select {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  background: #fff;
+  flex: 1;
+  min-width: 120px;
+}
+.upload-form-row input:focus, .upload-form-row select:focus {
+  outline: none;
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 3px rgba(196,113,59,0.1);
+}
+
+/* ─── GALLERY ─── */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.8rem; }
+.gallery-item { border-radius: 12px; overflow: hidden; aspect-ratio: 1; position: relative; cursor: pointer; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(.23,1,.32,1); }
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s; }
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay span { color: #fff; font-size: 0.72rem; font-weight: 400; }
+
+/* ─── POSTS ─── */
+.post-composer { background: var(--c-card); border: 1px solid var(--c-border); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem; }
+.post-composer textarea { width: 100%; border: none; resize: none; font-family: var(--font); font-size: 0.95rem; line-height: 1.7; background: transparent; color: var(--c-text); min-height: 80px; outline: none; }
+.post-composer textarea::placeholder { color: var(--c-text-light); opacity: 0.5; }
+.post-composer-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--c-border); flex-wrap: wrap; gap: 0.6rem; }
+.post-composer-footer .left { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+
+.category-chip { padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.7rem; font-weight: 500; border: 1px solid var(--c-border); background: #fff; cursor: pointer; transition: all 0.2s; font-family: var(--font); }
+.category-chip.active, .category-chip:hover { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
+
+.post-feed { display: flex; flex-direction: column; gap: 1rem; }
+.post-card { background: var(--c-card); border: 1px solid var(--c-border); border-radius: 14px; padding: 1.5rem; }
+.post-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.6rem; }
+.post-avatar { width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.post-meta { display: flex; flex-direction: column; }
+.post-author { font-size: 0.82rem; font-weight: 700; }
+.post-time { font-size: 0.65rem; color: var(--c-text-light); }
+.post-category-badge { margin-left: auto; padding: 0.2rem 0.6rem; border-radius: 100px; font-size: 0.6rem; font-weight: 500; }
+.cat-idea { background: #fef3c7; color: #92400e; }
+.cat-question { background: #dbeafe; color: #1e40af; }
+.cat-plan { background: #d1fae5; color: #065f46; }
+.cat-memo { background: #f3e8ff; color: #6b21a8; }
+.post-text { font-size: 0.9rem; line-height: 1.8; white-space: pre-wrap; word-break: break-word; }
+
+/* ─── DOCUMENTS ─── */
+.docs-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.doc-item { display: flex; align-items: center; gap: 1rem; background: var(--c-card); border: 1px solid var(--c-border); border-radius: 12px; padding: 1rem 1.2rem; text-decoration: none; color: var(--c-text); transition: transform 0.2s, box-shadow 0.2s; }
+.doc-item:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.doc-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.doc-icon.pdf { background: #fee2e2; } .doc-icon.doc { background: #dbeafe; } .doc-icon.xls { background: #d1fae5; } .doc-icon.ppt { background: #fef3c7; } .doc-icon.img { background: #f3e8ff; } .doc-icon.other { background: #f1f5f9; }
+.doc-info { flex: 1; min-width: 0; }
+.doc-name { font-size: 0.85rem; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.doc-meta-row { font-size: 0.68rem; color: var(--c-text-light); }
+.doc-dl { font-size: 0.7rem; color: var(--c-accent); font-weight: 500; flex-shrink: 0; }
+
+/* ─── LIVE UPDATES ─── */
+.live-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.8rem; background: rgba(196,113,59,0.2); border-radius: 100px; font-size: 0.65rem; color: var(--c-accent-soft); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c-accent-soft); animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.updates-feed { display: flex; flex-direction: column; gap: 0.8rem; }
+.update-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.2rem 1.5rem; transition: background 0.3s; }
+.update-card:hover { background: rgba(255,255,255,0.1); }
+.update-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.6rem; }
+.update-avatar { width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+.update-author { font-size: 0.82rem; font-weight: 500; color: #fff; }
+.update-time { font-size: 0.65rem; color: rgba(255,255,255,0.3); }
+.update-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.8; padding-left: calc(32px + 0.7rem); white-space: pre-wrap; word-break: break-word; }
+.update-reactions { display: flex; gap: 0.4rem; margin-top: 0.5rem; padding-left: calc(32px + 0.7rem); flex-wrap: wrap; }
+.reaction { padding: 0.15rem 0.45rem; background: rgba(255,255,255,0.08); border-radius: 100px; font-size: 0.7rem; color: rgba(255,255,255,0.5); }
+
+/* ─── PLANNING ─── */
+.planning-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+.planning-card { background: var(--c-card); border: 1px solid var(--c-border); border-radius: 16px; padding: 2rem; }
+.planning-card-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+.planning-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+.planning-card p { font-size: 0.8rem; color: var(--c-text-light); line-height: 1.7; }
+
+/* ─── BUTTONS ─── */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.6rem 1.4rem; font-size: 0.82rem; font-weight: 500; font-family: var(--font); border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+.btn-primary { background: var(--c-accent); color: #fff; }
+.btn-primary:hover { background: #a5602f; }
+
+/* ─── FOOTER ─── */
+.footer { text-align: center; padding: 5rem 2rem; border-top: 1px solid var(--c-border); }
+.footer-title { font-size: 1.8rem; font-weight: 900; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+.footer-sub { font-size: 0.75rem; color: var(--c-text-light); letter-spacing: 0.06em; margin-bottom: 2rem; }
+.footer-contact { font-size: 0.72rem; color: var(--c-text-light); }
+.footer-contact a { color: var(--c-accent); text-decoration: none; }
+
+/* ─── MODAL ─── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 200; display: none; align-items: center; justify-content: center; padding: 2rem; }
+.modal-overlay.open { display: flex; }
+.modal-img { max-width: 90vw; max-height: 85vh; border-radius: 12px; object-fit: contain; }
+.modal-close { position: absolute; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(255,255,255,0.15); color: #fff; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+/* ─── EMPTY STATE ─── */
+.empty-state { text-align: center; padding: 3rem 1rem; color: var(--c-text-light); font-size: 0.85rem; }
+.empty-state-icon { font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.3; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .sec { padding: 4.5rem 0; }
+  .members-grid { grid-template-columns: 1fr 1fr; }
+  .venue-grid { grid-template-columns: 1fr; }
+  .venue-features { grid-template-columns: 1fr 1fr; }
+  .planning-grid { grid-template-columns: 1fr; }
+  .hero-content { padding: 0 1.5rem 4rem; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 1.2rem; }
+  .members-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .nav-logo { display: none; }
+  .photo-break { height: 35vh; }
+  .update-text, .update-reactions { padding-left: 0; margin-top: 0.4rem; }
+}
 </style>
 </head>
 <body>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="steam-container">
-    <div class="steam"></div>
-    <div class="steam"></div>
-    <div class="steam"></div>
-    <div class="steam"></div>
-    <div class="steam"></div>
-    <div class="steam"></div>
-    <div class="steam"></div>
-  </div>
+  <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-label">Healthian Wood Hive Tour 2026</p>
+    <p class="hero-eyebrow">Healthian Wood Hive Tour 2026</p>
     <h1 class="hero-title">蒸気会議</h1>
-    <p class="hero-subtitle">異業種が交わり、ととのい、新しい事業のタネが生まれる</p>
-    <span class="hero-date">2026.04.02 — 04.03 ／ 富山・立山</span>
+    <p class="hero-sub">異業種が交わり、ととのい、<br>新しい事業のタネが生まれる。</p>
+    <div class="hero-meta">
+      <span class="hero-date">2026.04.02 — 04.03</span>
+      <span class="hero-location">Toyama, Tateyama</span>
+    </div>
   </div>
-  <span class="scroll-hint">scroll</span>
+  <span class="hero-scroll">scroll</span>
 </section>
 
 <!-- NAV -->
 <nav class="nav" aria-label="メインナビゲーション">
   <div class="nav-inner">
+    <span class="nav-logo">蒸気会議</span>
     <a href="#concept">Concept</a>
     <a href="#members">Members</a>
     <a href="#venue">Venue</a>
     <a href="#schedule">Schedule</a>
-    <a href="#updates">Live Updates</a>
+    <a href="#photos">Photos</a>
+    <a href="#board">Board</a>
+    <a href="#docs">Docs</a>
+    <a href="#updates">Slack</a>
+    <a href="#planning">Planning</a>
   </div>
 </nav>
 
 <!-- CONCEPT -->
-<section id="concept">
-  <div class="section">
-    <p class="section-label fade-in">Concept</p>
-    <h2 class="section-title fade-in">サウナで、ととのえる。<br>事業で、つながる。</h2>
-    <div class="divider fade-in"></div>
-    <div class="concept-text fade-in">
-      建築、ハーブ、クリエイティブ、地域活性、マーケット、コンサルティング。<br><br>
-      それぞれの領域で活動する6人が、<br>
-      立山の麓にある「ヘルジアンウッド」に集まる。<br><br>
-      サウナの蒸気の中で思考をリセットし、<br>
+<section id="concept" class="sec">
+  <div class="container" style="text-align:center;">
+    <p class="sec-eyebrow fade-up">Concept</p>
+    <h2 class="sec-title fade-up">サウナで、ととのえる。<br>事業で、つながる。</h2>
+    <div class="concept-statement fade-up">
+      建築、ハーブ、クリエイティブ、<br>
+      地域活性、マーケット、コンサルティング。<br><br>
+      6人が立山の麓に集まり、<br>
+      蒸気の中で思考をリセットし、<br>
       焚き火を囲みながらアイデアを交わす。<br><br>
-      この2日間は、ただの視察ではない。<br>
       異なる専門性が化学反応を起こし、<br>
-      新しい事業のタネが生まれる場所。<br><br>
-      <strong>蒸気会議</strong>、はじまります。
+      <strong>新しい事業のタネ</strong>が生まれる場所。
     </div>
-    <div class="concept-keywords fade-in">
-      <span class="keyword">Wellness × Business</span>
-      <span class="keyword">異業種コラボレーション</span>
-      <span class="keyword">地域再生</span>
-      <span class="keyword">サウナ思考</span>
-      <span class="keyword">共同事業の種まき</span>
+    <div class="concept-keywords fade-up">
+      <span>Wellness × Business</span>
+      <span>異業種コラボレーション</span>
+      <span>地域再生</span>
+      <span>サウナ思考</span>
+      <span>共同事業の種まき</span>
     </div>
   </div>
 </section>
 
+<!-- PHOTO BREAK 1 -->
+<div class="photo-break fade-up">
+  <img src="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-a466297eddc9ab000d18b1de0756d71d-3840x2160.jpg" alt="Healthian Wood" loading="lazy">
+  <span class="photo-break-caption">Healthian Wood — The Hive</span>
+</div>
+
 <!-- MEMBERS -->
-<section id="members" class="section">
-  <p class="section-label fade-in">Members</p>
-  <h2 class="section-title fade-in">参加メンバー</h2>
-  <p class="section-lead fade-in">異なるフィールドから集まった6名。それぞれの視点がヘルジアンウッドの可能性を掘り起こす。</p>
-
-  <div class="members-grid">
-    <div class="member-card fade-in">
-      <div class="member-icon" style="background:#f0e6da;color:#c4713b;">建</div>
-      <p class="member-name">宇那木さん</p>
-      <p class="member-org">club Mai architects ── 一級建築士事務所</p>
-      <p class="member-desc">空間設計のプロフェッショナル。隈研吾設計のヘルジアンウッドの建築を、建築家の目線で読み解く。</p>
-    </div>
-
-    <div class="member-card fade-in">
-      <div class="member-icon" style="background:#dce8d4;color:#7a8c6e;">茶</div>
-      <p class="member-name">田部井さん</p>
-      <p class="member-org">ALL MY TEA ── ハーブティー専門店</p>
-      <p class="member-desc">ハーブの専門家。ヘルジアンウッドのアロマ園・ハーブガーデンとの親和性は抜群。</p>
-    </div>
-
-    <div class="member-card fade-in">
-      <div class="member-icon" style="background:#e0d8f0;color:#7a6b9a;">創</div>
-      <p class="member-name">84ken</p>
-      <p class="member-org">株式会社スキーマ / TATELab. ── 五感拡張型クリエイティブ</p>
-      <p class="member-desc">企画とクリエイティブの起点。スキーマの事業構想力とTATELab.の表現力で、プロジェクトを形にする。</p>
-    </div>
-
-    <div class="member-card fade-in">
-      <div class="member-icon" style="background:#dae5f0;color:#5a7a9a;">地</div>
-      <p class="member-name">渡邊さん</p>
-      <p class="member-org">ローカルボーイズ / TOYAMA MARKET</p>
-      <p class="member-desc">富山のローカルを知り尽くす。地域と事業をつなぐキーパーソン。</p>
-    </div>
-
-    <div class="member-card fade-in">
-      <div class="member-icon" style="background:#f0dada;color:#9a5a5a;">策</div>
-      <p class="member-name">菊池さん</p>
-      <p class="member-org">NPO NLP / P&Dコンサルティング</p>
-      <p class="member-desc">まちづくりとコンサルティングの二刀流。今回のツアーの発起人・コーディネーター。</p>
-    </div>
-
-    <div class="member-card fade-in">
-      <div class="member-icon" style="background:#f0ead8;color:#8a7a5a;">繋</div>
-      <p class="member-name">川相さん</p>
-      <p class="member-org">P&Dコンサルティング</p>
-      <p class="member-desc">事業戦略と組織デザインの専門家。異業種の知見を事業へ昇華させる推進力。</p>
+<section id="members" class="sec">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Members</p>
+    <h2 class="sec-title fade-up">参加メンバー</h2>
+    <p class="sec-lead fade-up">異なるフィールドから集まった6名。<br>それぞれの視点がヘルジアンウッドの可能性を掘り起こす。</p>
+    <div class="members-grid">
+      <div class="member-card fade-up">
+        <div class="m-icon" style="background:#f0e6da;color:#c4713b;">建</div>
+        <p class="m-name">宇那木さん</p>
+        <p class="m-org">club Mai architects ── 一級建築士事務所</p>
+        <p class="m-desc">空間設計のプロフェッショナル。隈研吾設計のヘルジアンウッドの建築を、建築家の目線で読み解く。</p>
+      </div>
+      <div class="member-card fade-up">
+        <div class="m-icon" style="background:#dce8d4;color:#7a8c6e;">茶</div>
+        <p class="m-name">田部井さん</p>
+        <p class="m-org">ALL MY TEA ── ハーブティー専門店</p>
+        <p class="m-desc">ハーブの専門家。ヘルジアンウッドのアロマ園・ハーブガーデンとの親和性は抜群。</p>
+      </div>
+      <div class="member-card fade-up">
+        <div class="m-icon" style="background:#e0d8f0;color:#7a6b9a;">創</div>
+        <p class="m-name">84ken</p>
+        <p class="m-org">株式会社スキーマ / TATELab. ── 五感拡張型クリエイティブ</p>
+        <p class="m-desc">企画とクリエイティブの起点。スキーマの事業構想力とTATELab.の表現力で、プロジェクトを形にする。</p>
+      </div>
+      <div class="member-card fade-up">
+        <div class="m-icon" style="background:#dae5f0;color:#5a7a9a;">地</div>
+        <p class="m-name">渡邊さん</p>
+        <p class="m-org">ローカルボーイズ / TOYAMA MARKET</p>
+        <p class="m-desc">富山のローカルを知り尽くす。地域と事業をつなぐキーパーソン。</p>
+      </div>
+      <div class="member-card fade-up">
+        <div class="m-icon" style="background:#f0dada;color:#9a5a5a;">策</div>
+        <p class="m-name">菊池さん</p>
+        <p class="m-org">NPO NLP / P&Dコンサルティング</p>
+        <p class="m-desc">まちづくりとコンサルティングの二刀流。今回のツアーの発起人・コーディネーター。</p>
+      </div>
+      <div class="member-card fade-up">
+        <div class="m-icon" style="background:#f0ead8;color:#8a7a5a;">繋</div>
+        <p class="m-name">川相さん</p>
+        <p class="m-org">P&Dコンサルティング</p>
+        <p class="m-desc">事業戦略と組織デザインの専門家。異業種の知見を事業へ昇華させる推進力。</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- VENUE -->
-<section id="venue" class="section">
-  <p class="section-label fade-in">Venue</p>
-  <h2 class="section-title fade-in">ヘルジアンウッド</h2>
-  <p class="section-lead fade-in">前田薬品工業が手がける、美と健康の複合施設。立山連峰の麓、限界集落を「1000人の桃源郷」にする挑戦。</p>
-
-  <div class="venue-card fade-in">
-    <div class="venue-header">
-      <h3>Healthian Wood — The Hive</h3>
-      <p>富山県中新川郡立山町吉峰野開12 ／ 前田社長が直接ご案内</p>
+<section id="venue" class="sec sec-alt">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Venue</p>
+    <h2 class="sec-title fade-up">ヘルジアンウッド</h2>
+    <p class="sec-lead fade-up">前田薬品工業が手がける、美と健康の複合施設。<br>立山連峰の麓、限界集落を「1000人の桃源郷」にする挑戦。</p>
+    <div class="venue-grid fade-up">
+      <div class="venue-img wide"><img src="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-464bb470a7b4e87330ec55bfbc3e15d8-3840x2160.jpg" alt="The Hive 外観" loading="lazy"></div>
+      <div class="venue-img"><img src="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-94062f8c1b7b1146ecd706f4af4117a2-3840x2160.jpg" alt="サウナ" loading="lazy"></div>
+      <div class="venue-img"><img src="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-79af4537a1915f5bad4eb3dfd7a2790b-3840x2160.jpg" alt="ガーデン" loading="lazy"></div>
+      <div class="venue-img"><img src="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-cecd0438ca0d1536a440eaca5dec414a-3900x2600.jpg" alt="建築" loading="lazy"></div>
+      <div class="venue-img"><img src="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-df775e4c9c372ae804f37e9a321190c4-3840x2160.jpg" alt="焚き火" loading="lazy"></div>
     </div>
-    <div class="venue-body">
-      <div class="venue-feature">
-        <div class="venue-feature-icon">♨️</div>
-        <h4>サウナ</h4>
-        <p>The Hive サウナ施設。水着着用で共同利用。</p>
-      </div>
-      <div class="venue-feature">
-        <div class="venue-feature-icon">🌿</div>
-        <h4>ハーブガーデン</h4>
-        <p>和ハーブを中心とした広大なアロマガーデン。</p>
-      </div>
-      <div class="venue-feature">
-        <div class="venue-feature-icon">🏛</div>
-        <h4>隈研吾建築</h4>
-        <p>自然と調和する建築群。立山連峰のパノラマ。</p>
-      </div>
-      <div class="venue-feature">
-        <div class="venue-feature-icon">🔥</div>
-        <h4>焚き火ディナー</h4>
-        <p>全13品のコース料理。焚き火セット付き。</p>
-      </div>
+    <div class="venue-features fade-up">
+      <div class="venue-feat"><div class="venue-feat-icon">♨️</div><h4>サウナ</h4><p>The Hive サウナ施設。水着着用。</p></div>
+      <div class="venue-feat"><div class="venue-feat-icon">🌿</div><h4>ハーブガーデン</h4><p>和ハーブ中心の広大なアロマガーデン。</p></div>
+      <div class="venue-feat"><div class="venue-feat-icon">🏛</div><h4>隈研吾建築</h4><p>自然と調和する建築群。</p></div>
+      <div class="venue-feat"><div class="venue-feat-icon">🔥</div><h4>焚き火ディナー</h4><p>全13品のコース＋焚き火セット。</p></div>
     </div>
-    <a href="https://healthian-wood.jp/" target="_blank" rel="noopener noreferrer" class="venue-link">Healthian Wood 公式サイト →</a>
+    <a href="https://healthian-wood.jp/" target="_blank" rel="noopener noreferrer" class="venue-link fade-up">Healthian Wood 公式サイト <span>→</span></a>
   </div>
 </section>
 
 <!-- SCHEDULE -->
-<section id="schedule" class="section">
-  <p class="section-label fade-in">Schedule</p>
-  <h2 class="section-title fade-in">2日間の流れ</h2>
-  <p class="section-lead fade-in">富山駅集合から解散まで。食・建築・サウナ・対話を通じて新しい価値を探る。</p>
-
-  <div class="timeline">
-    <div class="timeline-day">
-      <div class="timeline-day-label fade-in">Day 1 — 4月2日（木）</div>
-
-      <div class="timeline-item fade-in">
-        <span class="timeline-time">11:00 – 11:30</span>
-        <p class="timeline-title">富山駅集合・買い出し</p>
-        <p class="timeline-note">翌朝食の買い出し、飲み物の調達など</p>
+<section id="schedule" class="sec">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Schedule</p>
+    <h2 class="sec-title fade-up">2日間の流れ</h2>
+    <p class="sec-lead fade-up">食・建築・サウナ・対話を通じて新しい価値を探る。</p>
+    <div class="timeline">
+      <div class="tl-day">
+        <div class="tl-day-label fade-up">Day 1 — 4月2日（木）</div>
+        <div class="tl-item fade-up"><span class="tl-time">11:00 – 11:30</span><p class="tl-title">富山駅集合・買い出し</p><p class="tl-note">翌朝食の買い出し、飲み物の調達</p></div>
+        <div class="tl-item fade-up"><span class="tl-time">11:45</span><p class="tl-title">ランチ — 四六八ちゃ 個室別館</p><p class="tl-note">富山の旬を味わう寿司ランチ。白エビ・ホタルイカが旬。</p><span class="tl-tag">🍣 寿司</span></div>
+        <div class="tl-item fade-up"><span class="tl-time">14:30</span><p class="tl-title">ヘルジアンウッド到着</p><p class="tl-note">前田社長から直接ご説明。施設全体を視察。</p><span class="tl-tag">📍 視察</span></div>
+        <div class="tl-item fade-up"><span class="tl-time">夕方〜</span><p class="tl-title">サウナ → 焚き火ディナー</p><p class="tl-note">The Hiveでサウナ。焚き火を囲んでディナーコース全13品。</p><span class="tl-tag">♨️ サウナ</span><span class="tl-tag">🔥 焚き火</span></div>
+        <div class="tl-item fade-up"><span class="tl-time">夜</span><p class="tl-title">Hive coHive 宿泊</p><p class="tl-note">アメニティ完備。水着レンタル500円/枚。タオル持参不要。</p></div>
       </div>
-
-      <div class="timeline-item fade-in">
-        <span class="timeline-time">11:45</span>
-        <p class="timeline-title">ランチ — 四六八ちゃ 個室別館</p>
-        <p class="timeline-note">富山の旬を味わう寿司ランチ。白エビ・ホタルイカが旬。宇那木さん予約済。</p>
-        <span class="timeline-tag">🍣 寿司</span>
-      </div>
-
-      <div class="timeline-item fade-in">
-        <span class="timeline-time">14:30</span>
-        <p class="timeline-title">ヘルジアンウッド到着</p>
-        <p class="timeline-note">前田社長から直接ご説明。施設全体を視察。</p>
-        <span class="timeline-tag">📍 視察メイン</span>
-      </div>
-
-      <div class="timeline-item fade-in">
-        <span class="timeline-time">夕方〜</span>
-        <p class="timeline-title">サウナ → 焚き火ディナー</p>
-        <p class="timeline-note">The Hiveでサウナを堪能。その後、焚き火を囲んでディナーコース全13品。カレー5種、炊き込みご飯2種、焼き狸3種、デザート2種、サラダ。</p>
-        <span class="timeline-tag">♨️ サウナ</span>
-        <span class="timeline-tag">🔥 焚き火</span>
-      </div>
-
-      <div class="timeline-item fade-in">
-        <span class="timeline-time">夜</span>
-        <p class="timeline-title">Hive coHive 宿泊</p>
-        <p class="timeline-note">アメニティ完備。水着レンタル500円/枚。タオル持参不要。</p>
+      <div class="tl-day">
+        <div class="tl-day-label fade-up">Day 2 — 4月3日（金）</div>
+        <div class="tl-item fade-up"><span class="tl-time">AM</span><p class="tl-title">朝の時間（未定）</p><p class="tl-note">朝サウナ？散歩？メンバー次第。</p></div>
+        <div class="tl-item fade-up"><span class="tl-time">12:30</span><p class="tl-title">ランチ — ピアット スズキ チンクエ</p><p class="tl-note">岩瀬エリアのイタリアン。岩瀬地区の散策もおすすめ。</p><span class="tl-tag">🍝 イタリアン</span><span class="tl-tag">🏘️ 岩瀬</span></div>
+        <div class="tl-item fade-up"><span class="tl-time">16:00</span><p class="tl-title">富山駅 解散</p><p class="tl-note">ここからが本当のはじまり。</p></div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="timeline-day">
-      <div class="timeline-day-label fade-in">Day 2 — 4月3日（金）</div>
+<!-- PHOTO BREAK 2 -->
+<div class="photo-break fade-up">
+  <img src="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-ffc97dcc7a1428f884fabec7292eaf7a-3900x2600.jpg" alt="Healthian Wood 風景" loading="lazy">
+</div>
 
-      <div class="timeline-item fade-in">
-        <span class="timeline-time">AM</span>
-        <p class="timeline-title">朝の時間（未定）</p>
-        <p class="timeline-note">朝サウナ？散歩？ここでの過ごし方はメンバー次第。</p>
+<!-- PHOTOS -->
+<section id="photos" class="sec">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Photos</p>
+    <h2 class="sec-title fade-up">旅の記録</h2>
+    <p class="sec-lead fade-up">写真を撮ったらここにアップ。みんなの視点で旅を残そう。</p>
+    <div class="upload-zone fade-up" id="photo-dropzone" onclick="document.getElementById('photo-input').click()">
+      <div class="upload-zone-icon">📷</div>
+      <p>写真をドラッグ＆ドロップ、またはタップして選択</p>
+      <small>JPG, PNG, WebP, HEIC — 最大20MB</small>
+      <input type="file" id="photo-input" accept="image/*" multiple hidden>
+    </div>
+    <div class="upload-form-row fade-up" id="photo-upload-form" style="display:none;">
+      <input type="text" id="photo-name" placeholder="あなたの名前">
+      <input type="text" id="photo-caption" placeholder="キャプション（任意）">
+      <button class="btn btn-primary" id="photo-submit">アップロード</button>
+    </div>
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="empty-state" id="gallery-empty"><div class="empty-state-icon">🏔</div><p>まだ写真がありません。<br>旅が始まったら写真をアップしよう！</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOARD -->
+<section id="board" class="sec sec-alt">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Board</p>
+    <h2 class="sec-title fade-up">アイデアボード</h2>
+    <p class="sec-lead fade-up">思いついたことを気軽にポスト。<br>旅の前も中も後も、ここに書き残そう。</p>
+    <div class="post-composer fade-up">
+      <textarea id="post-text" placeholder="ここに思いついたことを書く..."></textarea>
+      <div class="post-composer-footer">
+        <div class="left">
+          <input type="text" id="post-name" placeholder="名前" style="width:120px;padding:0.4rem 0.8rem;border:1px solid var(--c-border);border-radius:8px;font-size:0.8rem;font-family:var(--font);">
+          <button class="category-chip active" data-cat="idea">💡 アイデア</button>
+          <button class="category-chip" data-cat="question">❓ 質問</button>
+          <button class="category-chip" data-cat="plan">📋 プラン</button>
+          <button class="category-chip" data-cat="memo">📝 メモ</button>
+        </div>
+        <button class="btn btn-primary" id="post-submit">投稿する</button>
       </div>
+    </div>
+    <div class="post-feed" id="post-feed">
+      <div class="empty-state" id="posts-empty"><div class="empty-state-icon">💬</div><p>まだ投稿がありません。<br>最初のアイデアを書いてみよう！</p></div>
+    </div>
+  </div>
+</section>
 
-      <div class="timeline-item fade-in">
-        <span class="timeline-time">12:30</span>
-        <p class="timeline-title">ランチ — ピアット スズキ チンクエ</p>
-        <p class="timeline-note">岩瀬エリアのイタリアン。菊池さん予約済。岩瀬地区の散策もおすすめ。</p>
-        <span class="timeline-tag">🍝 イタリアン</span>
-        <span class="timeline-tag">🏘️ 岩瀬エリア</span>
-      </div>
-
-      <div class="timeline-item fade-in">
-        <span class="timeline-time">16:00</span>
-        <p class="timeline-title">富山駅 解散</p>
-        <p class="timeline-note">お疲れさまでした。ここからが本当のはじまり。</p>
-      </div>
+<!-- DOCUMENTS -->
+<section id="docs" class="sec">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Documents</p>
+    <h2 class="sec-title fade-up">共有資料</h2>
+    <p class="sec-lead fade-up">旅の資料やリサーチをここに集約。</p>
+    <div class="upload-zone fade-up" id="doc-dropzone" onclick="document.getElementById('doc-input').click()">
+      <div class="upload-zone-icon">📄</div>
+      <p>ファイルをドラッグ＆ドロップ、またはタップして選択</p>
+      <small>PDF, Word, Excel, PowerPoint, 画像 — 最大50MB</small>
+      <input type="file" id="doc-input" hidden>
+    </div>
+    <div class="upload-form-row fade-up" id="doc-upload-form" style="display:none;">
+      <input type="text" id="doc-name" placeholder="あなたの名前">
+      <input type="text" id="doc-desc" placeholder="説明（任意）">
+      <button class="btn btn-primary" id="doc-submit">アップロード</button>
+    </div>
+    <div class="docs-list" id="docs-list">
+      <div class="empty-state" id="docs-empty"><div class="empty-state-icon">📁</div><p>まだ資料がありません。</p></div>
     </div>
   </div>
 </section>
 
 <!-- LIVE UPDATES -->
-<section id="updates">
-  <div class="section">
-    <p class="section-label fade-in">Live Updates</p>
-    <h2 class="section-title fade-in">現場からの声</h2>
-    <p class="section-lead fade-in">Slackチャンネル #healthian-wood-hive-tour からの最新投稿</p>
-
-    <div class="updates-status fade-in">
-      <div class="live-badge">
-        <span class="live-dot"></span>
-        <span id="live-status">Synced with Slack</span>
-      </div>
-      <span class="updates-count" id="updates-count"></span>
-    </div>
-
+<section id="updates" class="sec sec-dark">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Live Updates</p>
+    <h2 class="sec-title fade-up" style="color:#fff;">現場からの声</h2>
+    <p class="sec-lead fade-up">Slack #healthian-wood-hive-tour の最新投稿</p>
+    <div class="live-badge fade-up"><span class="live-dot"></span><span id="live-status">Synced with Slack</span></div>
     <div class="updates-feed" id="updates-feed">
-      <div class="updates-loading" id="updates-loading">
-        <div class="spinner"></div>
-        読み込み中...
+      <div class="empty-state" style="color:rgba(255,255,255,0.3);"><div class="empty-state-icon">⏳</div><p>読み込み中...</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANNING -->
+<section id="planning" class="sec sec-alt">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Planning</p>
+    <h2 class="sec-title fade-up">これからのこと</h2>
+    <p class="sec-lead fade-up">旅が終わってからが本番。<br>蒸気会議から生まれるアクションを形にしよう。</p>
+    <div class="planning-grid fade-up">
+      <div class="planning-card"><div class="planning-card-icon">🌱</div><h4>事業のタネ</h4><p>旅で見つけたアイデアや可能性をBoardに投稿して、メンバーとシェアしよう。</p></div>
+      <div class="planning-card"><div class="planning-card-icon">🤝</div><h4>コラボレーション</h4><p>誰と誰の専門性を掛け合わせる？具体的なペアリングやチームをここで構想。</p></div>
+      <div class="planning-card"><div class="planning-card-icon">📅</div><h4>Next Meeting</h4><p>次に集まるのはいつ？オンラインでもオフラインでも、次の一歩を決めよう。</p></div>
+    </div>
+    <div style="margin-top:3rem;">
+      <p class="sec-eyebrow fade-up" style="margin-bottom:1rem;">Action Items</p>
+      <div class="post-feed" id="plan-feed">
+        <div class="empty-state"><div class="empty-state-icon">🗺</div><p>Boardの「📋 プラン」カテゴリの投稿がここに表示されます。</p></div>
       </div>
     </div>
   </div>
@@ -951,168 +799,172 @@
 <!-- FOOTER -->
 <footer class="footer">
   <p class="footer-title">蒸気会議</p>
-  <p class="footer-sub">Healthian Wood Hive Tour 2026 — 富山・立山</p>
-  <p class="footer-contact">
-    緊急連絡先：菊池 TEL <a href="tel:09040964109">090-4096-4109</a>
-  </p>
+  <p class="footer-sub">Healthian Wood Hive Tour 2026 — Toyama, Tateyama</p>
+  <p class="footer-contact">緊急連絡先：菊池 TEL <a href="tel:09040964109">090-4096-4109</a></p>
 </footer>
 
+<!-- PHOTO MODAL -->
+<div class="modal-overlay" id="photo-modal">
+  <button class="modal-close" onclick="closeModal()">&times;</button>
+  <img class="modal-img" id="modal-img" src="" alt="">
+</div>
+
 <script>
-// ─── Scroll fade-in ───
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+// ─── Fade-in ───
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-// ─── Nav active state ───
+// ─── Nav active ───
 const navLinks = document.querySelectorAll('.nav a');
-const sections = document.querySelectorAll('section[id]');
+const navObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) {
+    navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+  }});
+}, { threshold: 0.25 });
+document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
 
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
-      });
-    }
-  });
-}, { threshold: 0.3 });
+// ─── Helpers ───
+function esc(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+function fmtDate(ts) {
+  const d = new Date(ts * 1000 || ts);
+  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+function fmtSize(b) { if(b<1024) return b+'B'; if(b<1048576) return (b/1024).toFixed(0)+'KB'; return (b/1048576).toFixed(1)+'MB'; }
+function docIcon(type) { if(type.includes('pdf')) return['📕','pdf']; if(type.includes('word')||type.includes('document')) return['📘','doc']; if(type.includes('sheet')||type.includes('excel')||type.includes('csv')) return['📗','xls']; if(type.includes('presentation')||type.includes('powerpoint')) return['📙','ppt']; if(type.includes('image')) return['🖼','img']; return['📄','other']; }
 
-sections.forEach(s => navObserver.observe(s));
+const MC = {'宇那木':'#c4713b','田部井':'#7a8c6e','84ken':'#7a6b9a','渡邊':'#5a7a9a','渡邉':'#5a7a9a','菊池':'#9a5a5a','川相':'#8a7a5a'};
+function getC(n) { for(const[k,v]of Object.entries(MC)) if(n.includes(k)) return v; return '#6b5e52'; }
 
-// ─── Slack integration ───
-const SLACK_PROXY_URL = '/api/slack.php'; // PHP proxy on ConoHa WING
-const POLL_INTERVAL = 3 * 60 * 1000; // 3 minutes
+// ─── Photo Gallery ───
+let selPhotos = [];
+const pDrop = document.getElementById('photo-dropzone');
+const pInput = document.getElementById('photo-input');
+const pForm = document.getElementById('photo-upload-form');
 
-// Member display name mapping
-const MEMBER_MAP = {
-  'M Unaki':    { name: '宇那木さん', initial: '宇', bg: '#c4713b' },
-  '田部井秀明': { name: '田部井さん', initial: '田', bg: '#7a8c6e' },
-  '84ken':      { name: '84ken',      initial: '創', bg: '#7a6b9a' },
-  '渡邉博昭':   { name: '渡邊さん',   initial: '渡', bg: '#5a7a9a' },
-  'KIKUCHI':    { name: '菊池さん',   initial: '菊', bg: '#9a5a5a' },
-  '菊池裕':     { name: '菊池さん',   initial: '菊', bg: '#9a5a5a' },
-  'kawai':      { name: '川相さん',   initial: '川', bg: '#8a7a5a' },
-};
+['dragover','dragenter'].forEach(e => pDrop.addEventListener(e, ev => { ev.preventDefault(); pDrop.classList.add('dragover'); }));
+['dragleave','drop'].forEach(e => pDrop.addEventListener(e, () => pDrop.classList.remove('dragover')));
+pDrop.addEventListener('drop', e => { e.preventDefault(); selPhotos = [...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')); if(selPhotos.length) pForm.style.display='flex'; });
+pInput.addEventListener('change', () => { selPhotos = [...pInput.files].filter(f=>f.type.startsWith('image/')); if(selPhotos.length) pForm.style.display='flex'; });
 
-// Fallback sample data
-const SAMPLE_MESSAGES = [
-  {
-    user: '渡邉博昭',
-    text: 'サウナ完全初心者の渡邉です。水着ってビーチで着るものと同じでいいんでしょうか？それともサウナ用みたいなものがあるのでしょうか？',
-    ts: '2026-03-27T14:26:00',
-    reactions: []
-  },
-  {
-    user: 'KIKUCHI',
-    text: '2日目のランチ（イタリアン）のご案内です。ピアット スズキ チンクエ。このお店のある岩瀬地区も面白そうです。',
-    ts: '2026-03-27T10:53:00',
-    reactions: [{ name: '😆', count: 1 }, { name: '❤️', count: 2 }, { name: '👍', count: 1 }]
-  },
-  {
-    user: '田部井秀明',
-    text: '早いですね！桜も満開の時期で嬉しいです。高崎からはくたか555号（09:28発→11:20富山着）で伺います。水着は大丈夫です。持って行きます。',
-    ts: '2026-03-26T10:24:00',
-    reactions: [{ name: '👍', count: 1 }]
-  },
-  {
-    user: 'M Unaki',
-    text: 'Hiveのアメニティ情報です。バスタオル、フェスタオル、ポンチョ、ハット、サウナマット、歯ブラシなど全て人数分ご用意いただけます。水着レンタルは1枚500円。',
-    ts: '2026-03-25T13:42:00',
-    reactions: []
+document.getElementById('photo-submit').addEventListener('click', async () => {
+  const name = document.getElementById('photo-name').value.trim() || '匿名';
+  const cap = document.getElementById('photo-caption').value.trim();
+  const btn = document.getElementById('photo-submit');
+  btn.disabled = true; btn.textContent = 'アップロード中...';
+  for (const f of selPhotos) {
+    const fd = new FormData(); fd.append('file',f); fd.append('name',name); fd.append('caption',cap);
+    try { await fetch('/api/photos.php',{method:'POST',body:fd}); } catch(e){}
   }
-];
+  selPhotos=[]; pForm.style.display='none'; pInput.value='';
+  btn.disabled=false; btn.textContent='アップロード'; loadPhotos();
+});
 
-function getMember(username) {
-  return MEMBER_MAP[username] || {
-    name: username,
-    initial: username.charAt(0),
-    bg: '#6b5e52'
-  };
+async function loadPhotos() {
+  try {
+    const r = await fetch('/api/photos.php'); const d = await r.json();
+    if(d.ok && d.photos.length) {
+      const g = document.getElementById('gallery-grid');
+      const em = document.getElementById('gallery-empty'); if(em) em.remove();
+      g.innerHTML = d.photos.map(p => `<div class="gallery-item" onclick="openModal('${esc(p.url)}')"><img src="${esc(p.url)}" alt="${esc(p.caption||'')}" loading="lazy"><div class="gallery-overlay"><span>${esc(p.name)} · ${fmtDate(p.ts)}</span></div></div>`).join('');
+    }
+  } catch(e){}
 }
 
-function formatDate(ts) {
-  const d = new Date(ts);
-  const yyyy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, '0');
-  const dd = String(d.getDate()).padStart(2, '0');
-  const hh = String(d.getHours()).padStart(2, '0');
-  const min = String(d.getMinutes()).padStart(2, '0');
-  return `${yyyy}.${mm}.${dd} ${hh}:${min}`;
+function openModal(src) { document.getElementById('modal-img').src=src; document.getElementById('photo-modal').classList.add('open'); }
+function closeModal() { document.getElementById('photo-modal').classList.remove('open'); }
+document.getElementById('photo-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// ─── Posts ───
+let selCat = 'idea';
+document.querySelectorAll('.category-chip').forEach(c => {
+  c.addEventListener('click', () => { document.querySelectorAll('.category-chip').forEach(x=>x.classList.remove('active')); c.classList.add('active'); selCat=c.dataset.cat; });
+});
+
+document.getElementById('post-submit').addEventListener('click', async () => {
+  const name=document.getElementById('post-name').value.trim();
+  const text=document.getElementById('post-text').value.trim();
+  if(!name||!text) return;
+  const btn=document.getElementById('post-submit'); btn.disabled=true;
+  try { await fetch('/api/posts.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,text,category:selCat})}); document.getElementById('post-text').value=''; loadPosts(); } catch(e){}
+  btn.disabled=false;
+});
+
+const CL = {idea:'💡 アイデア',question:'❓ 質問',plan:'📋 プラン',memo:'📝 メモ'};
+
+async function loadPosts() {
+  try {
+    const r=await fetch('/api/posts.php'); const d=await r.json();
+    if(d.ok && d.posts.length) {
+      renderPosts(d.posts.filter(p=>p.category!=='plan'),'post-feed','posts-empty');
+      renderPosts(d.posts.filter(p=>p.category==='plan'),'plan-feed',null);
+    }
+  } catch(e){}
 }
 
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
+function renderPosts(posts,cid,eid) {
+  const c=document.getElementById(cid); if(!c) return;
+  if(eid){const em=document.getElementById(eid); if(em) em.remove();}
+  if(!posts.length && cid==='plan-feed'){c.innerHTML='<div class="empty-state"><div class="empty-state-icon">🗺</div><p>まだプランの投稿がありません。</p></div>'; return;}
+  if(!posts.length) return;
+  c.innerHTML = posts.map(p=>`<div class="post-card"><div class="post-header"><div class="post-avatar" style="background:${getC(p.name)}">${esc(p.name.charAt(0))}</div><div class="post-meta"><span class="post-author">${esc(p.name)}</span><span class="post-time">${fmtDate(p.ts)}</span></div><span class="post-category-badge cat-${p.category}">${CL[p.category]||p.category}</span></div><p class="post-text">${esc(p.text)}</p></div>`).join('');
 }
 
-function renderMessages(messages) {
-  const feed = document.getElementById('updates-feed');
-  const loading = document.getElementById('updates-loading');
-  if (loading) loading.remove();
+// ─── Documents ───
+let selDoc=null;
+const dDrop=document.getElementById('doc-dropzone'), dInput=document.getElementById('doc-input'), dForm=document.getElementById('doc-upload-form');
+['dragover','dragenter'].forEach(e=>dDrop.addEventListener(e,ev=>{ev.preventDefault();dDrop.classList.add('dragover');}));
+['dragleave','drop'].forEach(e=>dDrop.addEventListener(e,()=>dDrop.classList.remove('dragover')));
+dDrop.addEventListener('drop',e=>{e.preventDefault();selDoc=e.dataTransfer.files[0];if(selDoc)dForm.style.display='flex';});
+dInput.addEventListener('change',()=>{selDoc=dInput.files[0];if(selDoc)dForm.style.display='flex';});
 
-  const countEl = document.getElementById('updates-count');
-  if (countEl) countEl.textContent = messages.length + '件の投稿';
+document.getElementById('doc-submit').addEventListener('click',async()=>{
+  if(!selDoc) return;
+  const name=document.getElementById('doc-name').value.trim()||'匿名';
+  const desc=document.getElementById('doc-desc').value.trim();
+  const btn=document.getElementById('doc-submit'); btn.disabled=true; btn.textContent='アップロード中...';
+  const fd=new FormData(); fd.append('file',selDoc); fd.append('name',name); fd.append('description',desc);
+  try{await fetch('/api/docs.php',{method:'POST',body:fd});}catch(e){}
+  selDoc=null; dForm.style.display='none'; dInput.value='';
+  btn.disabled=false; btn.textContent='アップロード'; loadDocs();
+});
 
-  feed.innerHTML = messages.map(msg => {
-    const member = getMember(msg.user);
-    const reactionsHtml = msg.reactions && msg.reactions.length > 0
-      ? `<div class="update-reactions">${msg.reactions.map(r =>
-          `<span class="reaction">${r.name} ${r.count}</span>`
-        ).join('')}</div>`
-      : '';
+async function loadDocs() {
+  try {
+    const r=await fetch('/api/docs.php'); const d=await r.json();
+    if(d.ok && d.docs.length) {
+      const l=document.getElementById('docs-list');
+      const em=document.getElementById('docs-empty'); if(em) em.remove();
+      l.innerHTML = d.docs.map(doc=>{const[ic,cls]=docIcon(doc.type); return `<a class="doc-item" href="${esc(doc.url)}" target="_blank" rel="noopener"><div class="doc-icon ${cls}">${ic}</div><div class="doc-info"><p class="doc-name">${esc(doc.originalName)}</p><p class="doc-meta-row">${esc(doc.name)} · ${fmtDate(doc.ts)} · ${fmtSize(doc.size)}</p>${doc.description?`<p class="doc-meta-row">${esc(doc.description)}</p>`:''}</div><span class="doc-dl">開く →</span></a>`;}).join('');
+    }
+  } catch(e){}
+}
 
-    const imageHtml = msg.image
-      ? `<div class="update-image"><img src="${escapeHtml(msg.image)}" alt="投稿画像" loading="lazy"></div>`
-      : '';
+// ─── Slack ───
+const MM={'M Unaki':{n:'宇那木さん',i:'宇',b:'#c4713b'},'田部井秀明':{n:'田部井さん',i:'田',b:'#7a8c6e'},'84ken':{n:'84ken',i:'創',b:'#7a6b9a'},'渡邉博昭':{n:'渡邊さん',i:'渡',b:'#5a7a9a'},'KIKUCHI':{n:'菊池さん',i:'菊',b:'#9a5a5a'},'菊池裕':{n:'菊池さん',i:'菊',b:'#9a5a5a'},'kawai':{n:'川相さん',i:'川',b:'#8a7a5a'}};
+const SM=[{user:'渡邉博昭',text:'サウナ完全初心者の渡邉です。水着ってビーチで着るものと同じでいいんでしょうか？',ts:'2026-03-27T14:26:00',reactions:[]},{user:'KIKUCHI',text:'2日目のランチ（イタリアン）のご案内です。ピアット スズキ チンクエ。岩瀬地区も面白そうです。',ts:'2026-03-27T10:53:00',reactions:[{name:'😆',count:1},{name:'❤️',count:2},{name:'👍',count:1}]},{user:'田部井秀明',text:'桜も満開の時期で嬉しいです。高崎からはくたか555号で伺います。',ts:'2026-03-26T10:24:00',reactions:[{name:'👍',count:1}]},{user:'M Unaki',text:'Hiveのアメニティ情報です。バスタオル、ポンチョ、ハット、サウナマット、歯ブラシなど全て人数分ご用意。水着レンタル500円。',ts:'2026-03-25T13:42:00',reactions:[]}];
 
-    return `
-      <div class="update-card">
-        <div class="update-header">
-          <div class="update-avatar" style="background:${member.bg};color:#fff;">${member.initial}</div>
-          <div class="update-meta">
-            <span class="update-author">${escapeHtml(member.name)}</span>
-            <span class="update-time">${formatDate(msg.ts)}</span>
-          </div>
-        </div>
-        <p class="update-text">${escapeHtml(msg.text)}</p>
-        ${imageHtml}
-        ${reactionsHtml}
-      </div>
-    `;
+function gm(u){return MM[u]||{n:u,i:u.charAt(0),b:'#6b5e52'};}
+
+function renderSlack(msgs) {
+  document.getElementById('updates-feed').innerHTML = msgs.map(msg=>{
+    const m=gm(msg.user);
+    const rx=msg.reactions?.length?`<div class="update-reactions">${msg.reactions.map(r=>`<span class="reaction">${r.name} ${r.count}</span>`).join('')}</div>`:'';
+    return `<div class="update-card"><div class="update-header"><div class="update-avatar" style="background:${m.b};color:#fff;">${m.i}</div><div style="display:flex;flex-direction:column;"><span class="update-author">${esc(m.n)}</span><span class="update-time">${fmtDate(msg.ts)}</span></div></div><p class="update-text">${esc(msg.text)}</p>${rx}</div>`;
   }).join('');
 }
 
-async function fetchSlackMessages() {
-  try {
-    const res = await fetch(SLACK_PROXY_URL);
-    if (!res.ok) throw new Error('API error');
-    const data = await res.json();
-    if (data.messages && data.messages.length > 0) {
-      renderMessages(data.messages);
-      document.getElementById('live-status').textContent = 'Synced with Slack';
-      return;
-    }
-  } catch (e) {
-    // API not available — use sample data
-  }
-  renderMessages(SAMPLE_MESSAGES);
-  document.getElementById('live-status').textContent = 'Sample data';
+async function fetchSlack() {
+  try { const r=await fetch('/api/slack.php'); if(!r.ok) throw 0; const d=await r.json(); if(d.messages?.length){renderSlack(d.messages); document.getElementById('live-status').textContent='Synced with Slack'; return;} } catch(e){}
+  renderSlack(SM); document.getElementById('live-status').textContent='Sample data';
 }
 
-// Initial load
-fetchSlackMessages();
-
-// Poll for updates
-setInterval(fetchSlackMessages, POLL_INTERVAL);
+// ─── Init ───
+fetchSlack(); loadPhotos(); loadPosts(); loadDocs();
+setInterval(fetchSlack, 180000);
+setInterval(()=>{loadPhotos();loadPosts();loadDocs();}, 60000);
 </script>
-
 </body>
 </html>
