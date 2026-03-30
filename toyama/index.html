@@ -490,6 +490,12 @@ body {
 .cat-plan { background: #d1fae5; color: #065f46; }
 .cat-memo { background: #f3e8ff; color: #6b21a8; }
 .post-text { font-size: 0.9rem; line-height: 1.8; white-space: pre-wrap; word-break: break-word; }
+.post-footer { display: flex; align-items: center; justify-content: flex-end; margin-top: 0.6rem; }
+.post-like { display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: 1px solid var(--c-border); border-radius: 100px; padding: 0.25rem 0.7rem; font-size: 0.75rem; color: var(--c-text-light); cursor: pointer; transition: all 0.2s; touch-action: manipulation; }
+.post-like:hover { border-color: #e57373; color: #e57373; background: rgba(229,115,115,0.06); }
+.post-like.liked { border-color: #e57373; color: #e57373; background: rgba(229,115,115,0.08); }
+.post-like svg { width: 14px; height: 14px; transition: transform 0.25s cubic-bezier(.4,2,.6,1); }
+.post-like.liked svg { transform: scale(1.2); }
 
 /* ─── DOCUMENTS ─── */
 .docs-list { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -1016,7 +1022,22 @@ function renderPosts(posts,cid,eid) {
   if(eid){const em=document.getElementById(eid); if(em) em.remove();}
   if(!posts.length && cid==='plan-feed'){c.innerHTML='<div class="empty-state"><div class="empty-state-icon">🗺</div><p>まだプランの投稿がありません。</p></div>'; return;}
   if(!posts.length) return;
-  c.innerHTML = posts.map(p=>`<div class="post-card"><div class="post-header"><div class="post-avatar" style="background:${getC(p.name)}">${esc(p.name.charAt(0))}</div><div class="post-meta"><span class="post-author">${esc(p.name)}</span><span class="post-time">${fmtDate(p.ts)}</span></div><span class="post-category-badge cat-${p.category}">${CL[p.category]||p.category}</span></div><p class="post-text">${esc(p.text)}</p></div>`).join('');
+  const heartSvg = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+  c.innerHTML = posts.map(p=>{
+    const likes = p.likes||0;
+    const liked = (localStorage.getItem('liked_'+p.id)==='1');
+    return `<div class="post-card"><div class="post-header"><div class="post-avatar" style="background:${getC(p.name)}">${esc(p.name.charAt(0))}</div><div class="post-meta"><span class="post-author">${esc(p.name)}</span><span class="post-time">${fmtDate(p.ts)}</span></div><span class="post-category-badge cat-${p.category}">${CL[p.category]||p.category}</span></div><p class="post-text">${esc(p.text)}</p><div class="post-footer"><button class="post-like${liked?' liked':''}" onclick="likePost('${p.id}',this)" ${liked?'disabled':''}>${heartSvg}<span>${likes}</span></button></div></div>`;
+  }).join('');
+}
+
+async function likePost(id,btn) {
+  btn.disabled=true; btn.classList.add('liked');
+  localStorage.setItem('liked_'+id,'1');
+  try {
+    const r=await fetch('/api/posts.php',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+    const d=await r.json();
+    if(d.ok) btn.querySelector('span').textContent=d.likes;
+  } catch(e){}
 }
 
 // ─── Documents ───

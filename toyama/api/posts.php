@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'name' => $name,
         'text' => $text,
         'category' => $category,
+        'likes' => 0,
         'ts' => time(),
     ];
 
@@ -62,6 +63,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     saveData($dataFile, $posts);
 
     echo json_encode(['ok' => true, 'post' => $post]);
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
+    $input = json_decode(file_get_contents('php://input'), true);
+    $id = $input['id'] ?? '';
+    if (!$id) {
+        http_response_code(400);
+        echo json_encode(['error' => 'No id']);
+        exit;
+    }
+    $posts = loadData($dataFile);
+    foreach ($posts as &$p) {
+        if ($p['id'] === $id) {
+            $p['likes'] = ($p['likes'] ?? 0) + 1;
+            saveData($dataFile, $posts);
+            echo json_encode(['ok' => true, 'likes' => $p['likes']]);
+            exit;
+        }
+    }
+    http_response_code(404);
+    echo json_encode(['error' => 'Post not found']);
     exit;
 }
 
