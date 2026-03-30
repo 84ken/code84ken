@@ -4,209 +4,513 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STUDY QUEST - 勉強クエスト</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
-          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
-          800:'#13318d',900:'#0e266a',950:'#07194e'
-        }
-      },
-      fontFamily: {
-        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'],
-        game: ['"Press Start 2P"', 'monospace']
-      }
-    }
-  }
-}
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
-  @keyframes hitFlash { 0%{opacity:1} 50%{opacity:0.2} 100%{opacity:1} }
-  @keyframes slideUp { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
-  @keyframes damageNum { 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(-60px);opacity:0} }
-  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
-  @keyframes levelUp { 0%{transform:scale(0.5);opacity:0} 50%{transform:scale(1.2);opacity:1} 100%{transform:scale(1);opacity:1} }
-  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --yellow: #ffff00;
+    --red: #ff0000;
+    --orange: #ff6600;
+    --hp-yellow: #ffff00;
+    --soul-red: #ff0000;
+    --gray: #808080;
+    --dark-gray: #333333;
+    --border: 3px solid var(--white);
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DotGothic16', 'Press Start 2P', monospace;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    image-rendering: pixelated;
+  }
+
+  /* ===== Pixel Font Classes ===== */
+  .font-pixel { font-family: 'Press Start 2P', monospace; }
+  .font-jp { font-family: 'DotGothic16', monospace; }
+
+  /* ===== App Container ===== */
+  #app {
+    width: 100%;
+    max-width: 640px;
+    padding: 16px;
+    position: relative;
+  }
+
+  /* ===== Soul Heart ===== */
+  .soul {
+    display: inline-block;
+    width: 16px; height: 16px;
+    position: relative;
+  }
+  .soul::before, .soul::after {
+    content: '';
+    position: absolute;
+    background: var(--soul-red);
+  }
+  .soul::before {
+    width: 16px; height: 12px;
+    bottom: 0; left: 0;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+  }
+  .soul::after {
+    width: 16px; height: 8px;
+    top: 0; left: 0;
+    border-radius: 50% 50% 0 0;
+    background: linear-gradient(90deg, var(--soul-red) 0%, var(--soul-red) 45%, transparent 45%, transparent 55%, var(--soul-red) 55%);
+    /* Two half circles */
+  }
+
+  /* Better soul using SVG inline */
+  .soul-heart {
+    fill: var(--soul-red);
+    width: 18px; height: 18px;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 4px rgba(255,0,0,0.5));
+  }
+  .soul-heart-large {
+    fill: var(--soul-red);
+    width: 48px; height: 48px;
+    filter: drop-shadow(0 0 8px rgba(255,0,0,0.6));
+  }
+  .soul-heart-title {
+    fill: var(--soul-red);
+    width: 64px; height: 64px;
+    filter: drop-shadow(0 0 12px rgba(255,0,0,0.7));
+  }
+
+  /* ===== Undertale-style Box ===== */
+  .ut-box {
+    border: 3px solid var(--white);
+    background: var(--black);
+    padding: 20px;
+    position: relative;
+  }
+
+  /* ===== HP Bar (Undertale style) ===== */
+  .hp-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hp-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--white);
+    white-space: nowrap;
+  }
+  .hp-bar-bg {
+    width: 120px; height: 20px;
+    background: var(--red);
+    position: relative;
+  }
+  .hp-bar-fill {
+    height: 100%;
+    background: var(--hp-yellow);
+    transition: width 0.4s ease-out;
+  }
+  .hp-num {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  /* ===== EXP Bar ===== */
+  .exp-bar-bg {
+    width: 100%; height: 6px;
+    background: var(--dark-gray);
+  }
+  .exp-bar-fill {
+    height: 100%;
+    background: var(--yellow);
+    transition: width 0.6s ease-out;
+  }
+
+  /* ===== Battle Menu Buttons (FIGHT/ACT/ITEM/MERCY style) ===== */
+  .ut-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border: 3px solid var(--white);
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background 0.1s;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .ut-btn:hover, .ut-btn:focus {
+    background: #222;
+  }
+  .ut-btn-selected {
+    color: var(--yellow);
+  }
+
+  /* ===== Choice Buttons (Answer) ===== */
+  .choice-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 16px;
+    border: none;
+    background: transparent;
+    color: var(--white);
+    font-family: 'DotGothic16', monospace;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.1s;
+  }
+  .choice-btn:hover {
+    color: var(--yellow);
+  }
+  .choice-btn:hover .choice-soul { fill: var(--soul-red); }
+  .choice-soul { fill: transparent; transition: fill 0.1s; }
+
+  /* ===== Animations ===== */
+  @keyframes shake { 0%,100%{transform:translate(0)} 10%{transform:translate(-6px,-2px)} 30%{transform:translate(6px,2px)} 50%{transform:translate(-4px,4px)} 70%{transform:translate(4px,-4px)} 90%{transform:translate(-2px,2px)} }
+  @keyframes hitFlash { 0%{opacity:1} 20%{opacity:0} 40%{opacity:1} 60%{opacity:0} 80%{opacity:1} 100%{opacity:1} }
+  @keyframes damageFloat { 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(-50px);opacity:0} }
+  @keyframes soulBreak { 0%{transform:scale(1);opacity:1} 30%{transform:scale(1.3);opacity:1} 100%{transform:scale(0);opacity:0;filter:blur(4px)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes textReveal { from{clip-path:inset(0 100% 0 0)} to{clip-path:inset(0 0 0 0)} }
+  @keyframes floatBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  @keyframes starTwinkle { 0%,100%{opacity:0.3} 50%{opacity:1} }
+  @keyframes comboFlash { 0%{color:#fff} 25%{color:#ff0} 50%{color:#f80} 75%{color:#ff0} 100%{color:#fff} }
+
   .shake { animation: shake 0.3s ease-in-out; }
-  .hit-flash { animation: hitFlash 0.3s ease-in-out 2; }
-  .slide-up { animation: slideUp 0.4s ease-out; }
-  .damage-num { animation: damageNum 1s ease-out forwards; }
-  .pulse { animation: pulse 2s ease-in-out infinite; }
-  .level-up { animation: levelUp 0.6s ease-out; }
-  .bounce { animation: bounce 1s ease-in-out infinite; }
-  .hp-bar { transition: width 0.5s ease-out; }
-  .exp-bar { transition: width 0.8s ease-out; }
-  .btn-choice { transition: all 0.15s ease; }
-  .btn-choice:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-  .btn-choice:active { transform: translateY(0); }
-  .monster-idle { animation: bounce 2s ease-in-out infinite; }
-  .screen-flash { animation: hitFlash 0.15s ease-in-out; }
-  body { background: #0f172a; }
+  .hit-flash { animation: hitFlash 0.4s steps(1); }
+  .damage-float { animation: damageFloat 1s ease-out forwards; }
+  .soul-break { animation: soulBreak 0.8s ease-in forwards; }
+  .fade-in { animation: fadeIn 0.5s ease-out; }
+  .float-bounce { animation: floatBounce 2s ease-in-out infinite; }
+  .combo-flash { animation: comboFlash 0.5s ease-in-out; }
+
+  /* ===== Stars background ===== */
+  .star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: starTwinkle 3s ease-in-out infinite;
+  }
+
+  /* ===== Screens ===== */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ===== Music Toggle ===== */
+  .music-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: 2px solid var(--gray);
+    color: var(--gray);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  .music-toggle:hover { border-color: var(--white); color: var(--white); }
+  .music-toggle.on { border-color: var(--yellow); color: var(--yellow); }
+
+  /* ===== Subject Select Grid ===== */
+  .subject-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .subject-btn {
+    border: 3px solid var(--white);
+    background: var(--black);
+    color: var(--white);
+    padding: 20px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DotGothic16', monospace;
+  }
+  .subject-btn:hover {
+    background: #1a1a2e;
+    border-color: var(--yellow);
+    color: var(--yellow);
+  }
+  .subject-btn .emoji { font-size: 32px; margin-bottom: 8px; }
+  .subject-btn .label { font-family: 'Press Start 2P', monospace; font-size: 10px; }
+
+  /* ===== Monster Sprite Area ===== */
+  .monster-area {
+    text-align: center;
+    padding: 30px 0;
+    min-height: 160px;
+    position: relative;
+  }
+  .monster-sprite {
+    font-size: 80px;
+    display: inline-block;
+    animation: floatBounce 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
+  }
+  .monster-name-plate {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .damage-number {
+    position: absolute;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 24px;
+    color: var(--yellow);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .miss-text { color: var(--gray); }
+
+  /* ===== Text Box (dialogue) ===== */
+  .text-box {
+    border: 3px solid var(--white);
+    background: var(--black);
+    padding: 16px 20px;
+    min-height: 60px;
+    font-family: 'DotGothic16', monospace;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--white);
+  }
+  .text-box .asterisk {
+    color: var(--white);
+    margin-right: 8px;
+  }
+
+  /* ===== Overlay Screens ===== */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+  }
+  .overlay-content {
+    text-align: center;
+    max-width: 480px;
+    padding: 32px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 480px) {
+    .monster-sprite { font-size: 60px; }
+    .ut-btn { font-size: 9px; padding: 5px 10px; }
+    .choice-btn { font-size: 14px; padding: 8px 12px; }
+  }
 </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body>
 
-<div id="app" class="w-full max-w-2xl mx-auto">
+<button id="musicToggle" class="music-toggle" onclick="toggleMusic()">&#9834; OFF</button>
 
-  <!-- タイトル画面 -->
-  <div id="titleScreen" class="text-center">
-    <div class="mb-8">
-      <div class="text-6xl mb-4">&#9876;&#65039;</div>
-      <h1 class="font-game text-2xl text-yellow-400 mb-2 leading-relaxed">STUDY QUEST</h1>
-      <p class="font-game text-xs text-slate-400 leading-relaxed">&#12316; 勉強クエスト &#12316;</p>
-    </div>
+<div id="app">
+  <!-- ===== Background Stars ===== -->
+  <div id="stars" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;"></div>
 
-    <div class="bg-slate-800/80 rounded-2xl border border-slate-700 p-6 mb-6">
-      <p class="font-game text-xs text-emerald-400 mb-4 leading-relaxed">&#9733; 教科をえらべ &#9733;</p>
-      <div class="grid grid-cols-2 gap-3">
-        <button onclick="startGame('math')" class="btn-choice bg-gradient-to-br from-red-500 to-red-700 text-white rounded-xl p-4 cursor-pointer border-2 border-red-400">
-          <div class="text-3xl mb-2">&#128520;</div>
-          <div class="font-game text-xs">さんすう</div>
-        </button>
-        <button onclick="startGame('japanese')" class="btn-choice bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-xl p-4 cursor-pointer border-2 border-blue-400">
-          <div class="text-3xl mb-2">&#128214;</div>
-          <div class="font-game text-xs">国語</div>
-        </button>
-        <button onclick="startGame('science')" class="btn-choice bg-gradient-to-br from-green-500 to-green-700 text-white rounded-xl p-4 cursor-pointer border-2 border-green-400">
-          <div class="text-3xl mb-2">&#128300;</div>
-          <div class="font-game text-xs">理科</div>
-        </button>
-        <button onclick="startGame('social')" class="btn-choice bg-gradient-to-br from-purple-500 to-purple-700 text-white rounded-xl p-4 cursor-pointer border-2 border-purple-400">
-          <div class="text-3xl mb-2">&#127759;</div>
-          <div class="font-game text-xs">社会</div>
-        </button>
+  <!-- ===== TITLE SCREEN ===== -->
+  <div id="titleScreen" class="screen active" style="position:relative;z-index:1;">
+    <div style="text-align:center; padding-top:40px;">
+      <!-- Title -->
+      <div style="margin-bottom:24px;">
+        <svg class="soul-heart-title" viewBox="0 0 24 24" style="display:block;margin:0 auto 16px;">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <h1 class="font-pixel" style="font-size:20px; color:var(--white); letter-spacing:4px; margin-bottom:8px;">STUDY QUEST</h1>
+        <p class="font-jp" style="font-size:14px; color:var(--gray);">&#12316; 勉強クエスト &#12316;</p>
       </div>
-    </div>
 
-    <div id="savedStatus" class="bg-slate-800/60 rounded-xl border border-slate-700 p-4 mb-4">
-      <p class="font-game text-xs text-slate-500">データ ロードちゅう...</p>
-    </div>
+      <!-- Subject Select -->
+      <div class="ut-box" style="margin-bottom:20px;">
+        <p class="font-jp" style="font-size:16px; color:var(--yellow); margin-bottom:16px;">
+          * きょうかを えらんでください
+        </p>
+        <div class="subject-grid">
+          <button class="subject-btn" onclick="startGame('math')">
+            <div class="emoji">&#128520;</div>
+            <div class="label">MATH</div>
+            <div class="font-jp" style="font-size:12px;margin-top:4px;color:var(--gray);">さんすう</div>
+          </button>
+          <button class="subject-btn" onclick="startGame('japanese')">
+            <div class="emoji">&#128214;</div>
+            <div class="label">KOKUGO</div>
+            <div class="font-jp" style="font-size:12px;margin-top:4px;color:var(--gray);">国語</div>
+          </button>
+          <button class="subject-btn" onclick="startGame('science')">
+            <div class="emoji">&#128300;</div>
+            <div class="label">SCIENCE</div>
+            <div class="font-jp" style="font-size:12px;margin-top:4px;color:var(--gray);">理科</div>
+          </button>
+          <button class="subject-btn" onclick="startGame('social')">
+            <div class="emoji">&#127759;</div>
+            <div class="label">SOCIAL</div>
+            <div class="font-jp" style="font-size:12px;margin-top:4px;color:var(--gray);">社会</div>
+          </button>
+        </div>
+      </div>
 
-    <p class="font-game text-[8px] text-slate-600 leading-relaxed">もんだいに正解して てきをたおせ!</p>
+      <!-- Save Info -->
+      <div id="savedStatus" class="ut-box" style="text-align:left;font-size:13px;">
+        <span class="font-jp" style="color:var(--gray);">データ ロードちゅう...</span>
+      </div>
+
+      <p class="font-pixel" style="font-size:7px; color:var(--dark-gray); margin-top:20px;">
+        PRESS A SUBJECT TO START
+      </p>
+    </div>
   </div>
 
-  <!-- バトル画面 -->
-  <div id="battleScreen" class="hidden">
-    <!-- ステータスバー -->
-    <div class="flex items-center justify-between mb-3 px-1">
-      <div class="font-game text-[8px] text-yellow-400">
-        <span id="playerName">ゆうしゃ</span> Lv.<span id="playerLevel">1</span>
+  <!-- ===== BATTLE SCREEN ===== -->
+  <div id="battleScreen" class="screen" style="position:relative;z-index:1;">
+    <!-- Top Status -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding:0 4px;">
+      <div class="font-pixel" style="font-size:8px;">
+        <span style="color:var(--yellow);">LV <span id="playerLevel">1</span></span>
       </div>
-      <div class="font-game text-[8px] text-slate-500">
-        STAGE <span id="stageNum">1</span>
+      <div class="font-pixel" style="font-size:8px; color:var(--gray);">
+        STAGE <span id="stageNum" style="color:var(--white);">1</span>
       </div>
-      <div class="font-game text-[8px] text-emerald-400">
+      <div id="comboDisplay" class="font-pixel" style="font-size:8px; color:var(--gray);">
         <span id="comboCount">0</span> COMBO
       </div>
     </div>
 
-    <!-- EXPバー -->
-    <div class="mb-4 px-1">
-      <div class="flex items-center gap-2">
-        <span class="font-game text-[8px] text-yellow-500">EXP</span>
-        <div class="flex-1 bg-slate-700 rounded-full h-2 overflow-hidden">
-          <div id="expBar" class="exp-bar bg-gradient-to-r from-yellow-400 to-yellow-500 h-full rounded-full" style="width:0%"></div>
-        </div>
+    <!-- EXP Bar -->
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px;padding:0 4px;">
+      <span class="font-pixel" style="font-size:7px;color:var(--yellow);">EXP</span>
+      <div class="exp-bar-bg" style="flex:1;">
+        <div id="expBar" class="exp-bar-fill" style="width:0%"></div>
       </div>
     </div>
 
-    <!-- バトルフィールド -->
-    <div id="battleField" class="bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl border border-slate-700 p-6 mb-4 relative overflow-hidden">
-      <!-- 背景エフェクト -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-4 left-8 text-4xl">&#9733;</div>
-        <div class="absolute top-12 right-12 text-2xl">&#9733;</div>
-        <div class="absolute bottom-8 left-16 text-xl">&#9733;</div>
-      </div>
-
-      <!-- 敵のHP -->
-      <div class="relative mb-4">
-        <div class="flex items-center justify-between mb-1">
-          <span id="enemyName" class="font-game text-xs text-red-400">スライム</span>
-          <span id="enemyHpText" class="font-game text-[8px] text-slate-400">10/10</span>
-        </div>
-        <div class="bg-slate-700 rounded-full h-3 overflow-hidden">
-          <div id="enemyHpBar" class="hp-bar bg-gradient-to-r from-red-500 to-red-400 h-full rounded-full" style="width:100%"></div>
+    <!-- Battle Field -->
+    <div id="battleField" class="ut-box" style="margin-bottom:0; border-bottom:none; padding-bottom:0;">
+      <!-- Enemy HP -->
+      <div style="margin-bottom:12px;">
+        <div class="hp-container">
+          <span id="enemyName" class="hp-label" style="color:var(--white);min-width:100px;"></span>
+          <div class="hp-bar-bg" style="flex:1;">
+            <div id="enemyHpBar" class="hp-bar-fill" style="width:100%"></div>
+          </div>
+          <span id="enemyHpText" class="hp-num"></span>
         </div>
       </div>
 
-      <!-- 敵キャラ -->
-      <div class="text-center py-6 relative">
-        <div id="enemySprite" class="text-7xl monster-idle inline-block">&#128126;</div>
-        <div id="damageDisplay" class="absolute top-0 left-1/2 -translate-x-1/2 font-game text-2xl text-yellow-400 hidden">-10</div>
-      </div>
-
-      <!-- プレイヤーHP -->
-      <div class="relative">
-        <div class="flex items-center justify-between mb-1">
-          <span class="font-game text-xs text-emerald-400">&#9876;&#65039; きみ</span>
-          <span id="playerHpText" class="font-game text-[8px] text-slate-400">100/100</span>
-        </div>
-        <div class="bg-slate-700 rounded-full h-3 overflow-hidden">
-          <div id="playerHpBar" class="hp-bar bg-gradient-to-r from-emerald-500 to-emerald-400 h-full rounded-full" style="width:100%"></div>
-        </div>
+      <!-- Monster -->
+      <div class="monster-area">
+        <div id="enemySprite" class="monster-sprite">&#128126;</div>
       </div>
     </div>
 
-    <!-- メッセージ -->
-    <div id="messageBox" class="bg-slate-800/80 rounded-xl border border-slate-700 p-4 mb-4">
-      <p id="messageText" class="font-game text-xs text-white text-center leading-relaxed">もんだいが あらわれた!</p>
-    </div>
-
-    <!-- 問題エリア -->
-    <div id="questionArea" class="bg-slate-800/80 rounded-2xl border border-slate-700 p-5 mb-4">
-      <p id="questionText" class="font-game text-xs text-white text-center leading-loose mb-5">1 + 1 = ?</p>
-      <div id="choicesArea" class="grid grid-cols-2 gap-3">
+    <!-- Player HP -->
+    <div class="ut-box" style="border-top:none; padding-top:12px; padding-bottom:12px; margin-bottom:0;">
+      <div class="hp-container">
+        <svg class="soul-heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span class="hp-label" style="color:var(--white);">きみ</span>
+        <span class="hp-label">HP</span>
+        <div class="hp-bar-bg" style="flex:1;max-width:160px;">
+          <div id="playerHpBar" class="hp-bar-fill" style="width:100%"></div>
+        </div>
+        <span id="playerHpText" class="hp-num"></span>
+        <span class="font-pixel" style="font-size:8px;color:var(--gray);margin-left:8px;">ATK <span id="playerAtkText">15</span></span>
       </div>
     </div>
 
-    <!-- 下部ボタン -->
-    <div class="flex justify-between items-center px-1">
-      <button onclick="goTitle()" class="font-game text-[8px] text-slate-500 hover:text-slate-300 cursor-pointer">&#9664; もどる</button>
-      <div class="font-game text-[8px] text-slate-600">
-        たおした: <span id="totalDefeated" class="text-yellow-500">0</span>
+    <!-- Text Box / Message -->
+    <div id="messageBox" class="text-box" style="border-top: none; margin-bottom:0;">
+      <span class="asterisk">*</span>
+      <span id="messageText">てきが あらわれた!</span>
+    </div>
+
+    <!-- Question Area -->
+    <div id="questionArea" class="ut-box" style="border-top:none; padding-top:16px;">
+      <p id="questionText" class="font-jp" style="font-size:16px; text-align:center; margin-bottom:20px; line-height:1.8; color:var(--yellow);"></p>
+      <div id="choicesArea" style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding:0 4px;">
+      <button class="ut-btn" onclick="goTitle()">&#9664; BACK</button>
+      <div class="font-pixel" style="font-size:8px; color:var(--gray);">
+        DEFEATED: <span id="totalDefeated" style="color:var(--yellow);">0</span>
       </div>
     </div>
   </div>
 
-  <!-- レベルアップ画面 -->
-  <div id="levelUpScreen" class="hidden text-center">
-    <div class="bg-slate-800/90 rounded-2xl border-2 border-yellow-500 p-8 level-up">
-      <div class="text-5xl mb-4">&#127775;</div>
-      <h2 class="font-game text-lg text-yellow-400 mb-2">LEVEL UP!</h2>
-      <p class="font-game text-sm text-white mb-1">Lv.<span id="newLevel">2</span></p>
-      <p id="levelUpBonus" class="font-game text-[8px] text-emerald-400 mb-6 leading-relaxed">こうげき力が あがった!</p>
-      <button onclick="closeLevelUp()" class="font-game text-xs bg-yellow-500 hover:bg-yellow-400 text-slate-900 rounded-xl px-8 py-3 cursor-pointer">OK</button>
+  <!-- ===== LEVEL UP OVERLAY ===== -->
+  <div id="levelUpScreen" class="screen overlay">
+    <div class="overlay-content fade-in">
+      <svg class="soul-heart-large" viewBox="0 0 24 24" style="display:block;margin:0 auto 20px;">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+      <h2 class="font-pixel" style="font-size:18px; color:var(--yellow); margin-bottom:12px;">LEVEL UP!</h2>
+      <p class="font-pixel" style="font-size:12px; margin-bottom:4px;">LV <span id="newLevel">2</span></p>
+      <p id="levelUpBonus" class="font-jp" style="font-size:14px; color:var(--yellow); margin-bottom:24px; line-height:1.8;"></p>
+      <button class="ut-btn" onclick="closeLevelUp()" style="font-size:12px;padding:8px 24px;">
+        <svg class="soul-heart" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        OK
+      </button>
     </div>
   </div>
 
-  <!-- 勝利画面 -->
-  <div id="victoryScreen" class="hidden text-center">
-    <div class="bg-slate-800/90 rounded-2xl border-2 border-emerald-500 p-8 slide-up">
-      <div class="text-5xl mb-4">&#127942;</div>
-      <h2 class="font-game text-lg text-emerald-400 mb-2">VICTORY!</h2>
-      <p id="victoryMsg" class="font-game text-[8px] text-slate-400 mb-2 leading-relaxed">てきを たおした!</p>
-      <p class="font-game text-[8px] text-yellow-400 mb-6">+<span id="expGained">10</span> EXP</p>
-      <button onclick="nextBattle()" class="font-game text-xs bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl px-8 py-3 cursor-pointer">つぎのてき &#9654;</button>
+  <!-- ===== VICTORY OVERLAY ===== -->
+  <div id="victoryScreen" class="screen overlay">
+    <div class="overlay-content fade-in">
+      <p class="font-pixel" style="font-size:14px; color:var(--yellow); margin-bottom:8px;">* YOU WON!</p>
+      <p id="victoryMsg" class="font-jp" style="font-size:16px; color:var(--white); margin-bottom:8px; line-height:1.8;"></p>
+      <p class="font-pixel" style="font-size:10px; color:var(--yellow); margin-bottom:24px;">
+        +<span id="expGained">10</span> EXP
+      </p>
+      <button class="ut-btn" onclick="nextBattle()" style="font-size:12px;padding:8px 24px;">
+        <svg class="soul-heart" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        NEXT &#9654;
+      </button>
     </div>
   </div>
 
-  <!-- ゲームオーバー画面 -->
-  <div id="gameOverScreen" class="hidden text-center">
-    <div class="bg-slate-800/90 rounded-2xl border-2 border-red-500 p-8 slide-up">
-      <div class="text-5xl mb-4">&#128128;</div>
-      <h2 class="font-game text-lg text-red-400 mb-2">GAME OVER</h2>
-      <p class="font-game text-[8px] text-slate-400 mb-2 leading-relaxed">やられてしまった...</p>
-      <p class="font-game text-[8px] text-slate-500 mb-6">でも けいけんちは のこるぞ!</p>
-      <div class="flex gap-3 justify-center">
-        <button onclick="retryBattle()" class="font-game text-xs bg-red-500 hover:bg-red-400 text-white rounded-xl px-6 py-3 cursor-pointer">リトライ</button>
-        <button onclick="goTitle()" class="font-game text-xs bg-slate-600 hover:bg-slate-500 text-white rounded-xl px-6 py-3 cursor-pointer">タイトルへ</button>
+  <!-- ===== GAME OVER OVERLAY ===== -->
+  <div id="gameOverScreen" class="screen overlay">
+    <div class="overlay-content fade-in">
+      <div id="soulBreakAnim" style="margin-bottom:24px;">
+        <svg class="soul-heart-large" viewBox="0 0 24 24" style="display:block;margin:0 auto;">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      <p class="font-jp" style="font-size:18px; color:var(--red); margin-bottom:8px; line-height:1.8;">
+        * きみは たおれてしまった...
+      </p>
+      <p class="font-jp" style="font-size:13px; color:var(--gray); margin-bottom:24px; line-height:1.8;">
+        でも けいけんちは のこるぞ!<br>けつい が みちている。
+      </p>
+      <div style="display:flex; gap:12px; justify-content:center;">
+        <button class="ut-btn" onclick="retryBattle()" style="color:var(--yellow);">
+          <svg class="soul-heart" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          RETRY
+        </button>
+        <button class="ut-btn" onclick="goTitle()">TITLE</button>
       </div>
     </div>
   </div>
@@ -214,171 +518,374 @@ tailwind.config = {
 </div>
 
 <script>
-// ===== 問題データ（小学5年生レベル）=====
+// ===================================================================
+// CHIPTUNE MUSIC ENGINE (Web Audio API)
+// ===================================================================
+class ChiptunePlayer {
+  constructor() {
+    this.ctx = null;
+    this.playing = false;
+    this.nodes = [];
+    this.nextNoteTime = 0;
+    this.currentNote = 0;
+    this.timerID = null;
+    this.tempo = 140;
+    this.gainNode = null;
+  }
+
+  init() {
+    if (this.ctx) return;
+    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    this.gainNode = this.ctx.createGain();
+    this.gainNode.gain.value = 0.15;
+    this.gainNode.connect(this.ctx.destination);
+  }
+
+  // Undertale-inspired melody (heroic + mysterious)
+  getMelody() {
+    // Notes as [frequency, duration_in_16ths, type]
+    const C4=261.63,D4=293.66,E4=329.63,F4=349.23,G4=392,A4=440,B4=493.88;
+    const C5=523.25,D5=587.33,E5=659.25,F5=698.46,G5=784;
+    const R=0; // rest
+
+    return [
+      // Main theme - hopeful & determined
+      [E4,2],[G4,2],[B4,2],[C5,4],[B4,2],[G4,2],
+      [A4,2],[B4,2],[A4,2],[G4,2],[E4,4],
+      [D4,2],[E4,2],[G4,2],[A4,4],[G4,2],[E4,2],
+      [F4,2],[E4,2],[D4,2],[E4,4],[R,2],
+      // Rising part
+      [E4,2],[G4,2],[B4,2],[D5,4],[C5,2],[B4,2],
+      [A4,2],[B4,2],[C5,2],[B4,2],[G4,4],
+      [A4,2],[G4,2],[E4,2],[G4,4],[E4,2],[D4,2],
+      [E4,8],[R,4],
+      // Emotional bridge
+      [C5,2],[B4,2],[G4,2],[A4,4],[G4,2],
+      [E4,2],[G4,2],[A4,2],[B4,4],[R,2],
+      [C5,2],[D5,2],[C5,2],[B4,2],[A4,2],[G4,2],
+      [E4,4],[G4,4],[E4,4],[R,4],
+    ];
+  }
+
+  getBass() {
+    const C3=130.81,D3=146.83,E3=164.81,F3=174.61,G3=196,A3=220,B3=246.94;
+    const R=0;
+    return [
+      [E3,4],[E3,4],[E3,4],[E3,4],
+      [A3,4],[A3,4],[G3,4],[G3,4],
+      [D3,4],[D3,4],[A3,4],[A3,4],
+      [D3,4],[D3,4],[E3,4],[E3,4],
+      [E3,4],[E3,4],[G3,4],[G3,4],
+      [A3,4],[A3,4],[G3,4],[G3,4],
+      [A3,4],[A3,4],[G3,4],[G3,4],
+      [E3,8],[E3,4],[R,4],
+      [C3,4],[C3,4],[A3,4],[A3,4],
+      [E3,4],[E3,4],[B3,4],[B3,4],
+      [C3,4],[D3,4],[C3,4],[B3,4],
+      [E3,4],[G3,4],[E3,4],[R,4],
+    ];
+  }
+
+  playSquare(freq, startTime, duration, type='square') {
+    if (!this.ctx || freq === 0) return;
+    const osc = this.ctx.createOscillator();
+    const env = this.ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    env.gain.setValueAtTime(0.3, startTime);
+    env.gain.exponentialRampToValueAtTime(0.01, startTime + duration * 0.9);
+    osc.connect(env);
+    env.connect(this.gainNode);
+    osc.start(startTime);
+    osc.stop(startTime + duration);
+  }
+
+  start() {
+    this.init();
+    if (this.ctx.state === 'suspended') this.ctx.resume();
+    this.playing = true;
+    this.currentNote = 0;
+    this.nextNoteTime = this.ctx.currentTime + 0.1;
+    this.schedule();
+  }
+
+  schedule() {
+    if (!this.playing) return;
+    const melody = this.getMelody();
+    const bass = this.getBass();
+    const secPer16th = 60 / this.tempo / 4;
+
+    while (this.nextNoteTime < this.ctx.currentTime + 0.2) {
+      const mIdx = this.currentNote % melody.length;
+      const bIdx = this.currentNote % bass.length;
+      const [mFreq, mDur] = melody[mIdx];
+      const [bFreq, bDur] = bass[bIdx];
+
+      this.playSquare(mFreq, this.nextNoteTime, mDur * secPer16th * 0.9, 'square');
+      this.playSquare(bFreq, this.nextNoteTime, bDur * secPer16th * 0.8, 'triangle');
+
+      this.nextNoteTime += mDur * secPer16th;
+      this.currentNote++;
+    }
+    this.timerID = setTimeout(() => this.schedule(), 50);
+  }
+
+  stop() {
+    this.playing = false;
+    if (this.timerID) clearTimeout(this.timerID);
+  }
+
+  // SFX
+  playSfx(type) {
+    this.init();
+    if (this.ctx.state === 'suspended') this.ctx.resume();
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    gain.gain.value = 0.2;
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    if (type === 'correct') {
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(523, now);
+      osc.frequency.setValueAtTime(659, now + 0.08);
+      osc.frequency.setValueAtTime(784, now + 0.16);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+      osc.start(now); osc.stop(now + 0.3);
+    } else if (type === 'wrong') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(200, now);
+      osc.frequency.exponentialRampToValueAtTime(100, now + 0.3);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+      osc.start(now); osc.stop(now + 0.35);
+    } else if (type === 'victory') {
+      osc.type = 'square';
+      [523,587,659,784].forEach((f,i) => {
+        osc.frequency.setValueAtTime(f, now + i * 0.12);
+      });
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+      osc.start(now); osc.stop(now + 0.6);
+    } else if (type === 'levelup') {
+      osc.type = 'square';
+      [392,440,494,523,587,659,784,880].forEach((f,i) => {
+        osc.frequency.setValueAtTime(f, now + i * 0.08);
+      });
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+      osc.start(now); osc.stop(now + 0.8);
+    } else if (type === 'select') {
+      osc.type = 'square';
+      osc.frequency.value = 600;
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.06);
+      osc.start(now); osc.stop(now + 0.08);
+    } else if (type === 'gameover') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(110, now + 0.8);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 1);
+      osc.start(now); osc.stop(now + 1);
+    }
+  }
+}
+
+const music = new ChiptunePlayer();
+let musicOn = false;
+
+function toggleMusic() {
+  const btn = document.getElementById('musicToggle');
+  if (!musicOn) {
+    music.start();
+    musicOn = true;
+    btn.textContent = '\u266B ON';
+    btn.classList.add('on');
+  } else {
+    music.stop();
+    musicOn = false;
+    btn.textContent = '\u266B OFF';
+    btn.classList.remove('on');
+  }
+}
+
+// ===================================================================
+// STARS BACKGROUND
+// ===================================================================
+function createStars() {
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 60; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2 + 1;
+    star.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%; top:${Math.random()*100}%;
+      animation-delay:${Math.random()*3}s;
+      animation-duration:${2 + Math.random()*3}s;
+    `;
+    container.appendChild(star);
+  }
+}
+createStars();
+
+// ===================================================================
+// QUESTIONS (小5レベル)
+// ===================================================================
 const questions = {
   math: [
-    { q: "3.2 + 1.8 = ?", choices: ["4.0","5.0","4.8","5.2"], answer: 1 },
-    { q: "120 x 0.5 = ?", choices: ["60","600","6","0.6"], answer: 0 },
-    { q: "1/4 + 1/4 = ?", choices: ["1/2","2/4","1/8","2/8"], answer: 0 },
-    { q: "360 ÷ 6 = ?", choices: ["60","50","70","36"], answer: 0 },
-    { q: "2/5 を小数にすると?", choices: ["0.2","0.4","0.5","0.25"], answer: 1 },
-    { q: "三角形の内角の和は?", choices: ["360度","90度","180度","270度"], answer: 2 },
-    { q: "1.5 x 4 = ?", choices: ["5","6","4.5","7"], answer: 1 },
-    { q: "100 の 30% は?", choices: ["3","30","300","0.3"], answer: 1 },
-    { q: "3/8 + 1/8 = ?", choices: ["4/16","1/2","4/8","3/16"], answer: 1 },
-    { q: "円の直径が10cmの時\n円周は? (円周率3.14)", choices: ["31.4cm","15.7cm","314cm","62.8cm"], answer: 0 },
-    { q: "0.25 x 8 = ?", choices: ["2","0.2","20","2.5"], answer: 0 },
-    { q: "偶数はどれ?", choices: ["13","27","48","35"], answer: 2 },
-    { q: "50の約数はいくつ?", choices: ["4つ","6つ","5つ","8つ"], answer: 1 },
-    { q: "1000mL = ?L", choices: ["10","1","100","0.1"], answer: 1 },
-    { q: "平行四辺形の面積は?\n底辺8cm 高さ5cm", choices: ["40cm2","13cm2","20cm2","80cm2"], answer: 0 },
-    { q: "2.4 ÷ 0.6 = ?", choices: ["0.4","4","40","0.04"], answer: 1 },
-    { q: "7/10 - 3/10 = ?", choices: ["4/10","4/20","10/10","1/10"], answer: 0 },
-    { q: "1km = ? m", choices: ["100","10000","1000","500"], answer: 2 },
-    { q: "正五角形の\n内角の和は?", choices: ["360度","540度","720度","450度"], answer: 1 },
-    { q: "3² (3の2乗) = ?", choices: ["6","9","12","27"], answer: 1 },
+    { q: "3.2 + 1.8 = ?", c: ["4.0","5.0","4.8","5.2"], a: 1 },
+    { q: "120 x 0.5 = ?", c: ["60","600","6","0.6"], a: 0 },
+    { q: "1/4 + 1/4 = ?", c: ["1/2","2/4","1/8","2/8"], a: 0 },
+    { q: "360 \u00f7 6 = ?", c: ["60","50","70","36"], a: 0 },
+    { q: "2/5 を小数にすると?", c: ["0.2","0.4","0.5","0.25"], a: 1 },
+    { q: "三角形の内角の和は?", c: ["360\u00b0","90\u00b0","180\u00b0","270\u00b0"], a: 2 },
+    { q: "1.5 x 4 = ?", c: ["5","6","4.5","7"], a: 1 },
+    { q: "100 の 30% は?", c: ["3","30","300","0.3"], a: 1 },
+    { q: "3/8 + 1/8 = ?", c: ["4/16","1/2","4/8","3/16"], a: 1 },
+    { q: "円の直径が10cm\n円周は? (\u03c03.14)", c: ["31.4cm","15.7cm","314cm","62.8cm"], a: 0 },
+    { q: "0.25 x 8 = ?", c: ["2","0.2","20","2.5"], a: 0 },
+    { q: "偶数はどれ?", c: ["13","27","48","35"], a: 2 },
+    { q: "50の約数はいくつ?", c: ["4つ","6つ","5つ","8つ"], a: 1 },
+    { q: "1000mL = ?L", c: ["10","1","100","0.1"], a: 1 },
+    { q: "平行四辺形の面積\n底辺8cm 高さ5cm", c: ["40cm\u00b2","13cm\u00b2","20cm\u00b2","80cm\u00b2"], a: 0 },
+    { q: "2.4 \u00f7 0.6 = ?", c: ["0.4","4","40","0.04"], a: 1 },
+    { q: "7/10 - 3/10 = ?", c: ["4/10","4/20","10/10","1/10"], a: 0 },
+    { q: "1km = ? m", c: ["100","10000","1000","500"], a: 2 },
+    { q: "正五角形の内角の和は?", c: ["360\u00b0","540\u00b0","720\u00b0","450\u00b0"], a: 1 },
+    { q: "3\u00b2 (3の2乗) = ?", c: ["6","9","12","27"], a: 1 },
   ],
   japanese: [
-    { q: "「走る」の丁寧語は?", choices: ["走ります","走られる","お走りする","走りなさる"], answer: 0 },
-    { q: "「山」の部首は?", choices: ["やまへん","やま","さんずい","つちへん"], answer: 1 },
-    { q: "主語はどれ?\n「犬が走る」", choices: ["走る","犬が","犬","走"], answer: 1 },
-    { q: "「大きい」の反対語は?", choices: ["少ない","短い","小さい","低い"], answer: 2 },
-    { q: "「花がきれいだ」\n「きれいだ」は?", choices: ["動詞","名詞","形容動詞","形容詞"], answer: 2 },
-    { q: "漢字の読み「快晴」", choices: ["かいせい","かいじょう","こうせい","きよはれ"], answer: 0 },
-    { q: "「急がば回れ」の意味は?", choices: ["速く走れ","近道しろ","安全な道を行け","あきらめろ"], answer: 2 },
-    { q: "送り仮名が正しいのは?", choices: ["行なう","行う","行ウ","行ない"], answer: 1 },
-    { q: "「食べる」の可能形は?", choices: ["食べれる","食べさせる","食べられる","食べたい"], answer: 2 },
-    { q: "漢字の読み「混雑」", choices: ["こんざつ","こんなん","こんらん","こんぱい"], answer: 0 },
-    { q: "俳句の季語で\n春のものは?", choices: ["紅葉","雪","桜","蝉"], answer: 2 },
-    { q: "「彼は〇〇走った」\n副詞はどれ?", choices: ["すぐに","彼は","走った","だから"], answer: 0 },
-    { q: "「口」を使った\n四字熟語は?", choices: ["異口同音","一石二鳥","四面楚歌","五里霧中"], answer: 0 },
-    { q: "敬語「先生が〇〇」\n正しいのは?", choices: ["言った","おっしゃった","申した","言いました"], answer: 1 },
-    { q: "「さんずい」の漢字は?", choices: ["松","海","林","空"], answer: 1 },
+    { q: "「走る」の丁寧語は?", c: ["走ります","走られる","お走りする","走りなさる"], a: 0 },
+    { q: "「山」の部首は?", c: ["やまへん","やま","さんずい","つちへん"], a: 1 },
+    { q: "主語はどれ?\n「犬が走る」", c: ["走る","犬が","犬","走"], a: 1 },
+    { q: "「大きい」の反対語は?", c: ["少ない","短い","小さい","低い"], a: 2 },
+    { q: "「花がきれいだ」\n「きれいだ」は?", c: ["動詞","名詞","形容動詞","形容詞"], a: 2 },
+    { q: "漢字の読み「快晴」", c: ["かいせい","かいじょう","こうせい","きよはれ"], a: 0 },
+    { q: "「急がば回れ」の意味は?", c: ["速く走れ","近道しろ","安全な道を行け","あきらめろ"], a: 2 },
+    { q: "送り仮名が正しいのは?", c: ["行なう","行う","行ウ","行ない"], a: 1 },
+    { q: "「食べる」の可能形は?", c: ["食べれる","食べさせる","食べられる","食べたい"], a: 2 },
+    { q: "漢字の読み「混雑」", c: ["こんざつ","こんなん","こんらん","こんぱい"], a: 0 },
+    { q: "俳句の季語で春は?", c: ["紅葉","雪","桜","蝉"], a: 2 },
+    { q: "「彼は〇〇走った」\n副詞はどれ?", c: ["すぐに","彼は","走った","だから"], a: 0 },
+    { q: "「口」を使った四字熟語は?", c: ["異口同音","一石二鳥","四面楚歌","五里霧中"], a: 0 },
+    { q: "敬語「先生が〇〇」\n正しいのは?", c: ["言った","おっしゃった","申した","言いました"], a: 1 },
+    { q: "「さんずい」の漢字は?", c: ["松","海","林","空"], a: 1 },
   ],
   science: [
-    { q: "植物が光合成で\n作るものは?", choices: ["二酸化炭素","でんぷん","水","酸素だけ"], answer: 1 },
-    { q: "水が氷になる温度は?", choices: ["100度","0度","-10度","50度"], answer: 1 },
-    { q: "月が満ち欠けする\n周期は約?", choices: ["7日","15日","30日","365日"], answer: 2 },
-    { q: "電流の単位は?", choices: ["V(ボルト)","A(アンペア)","W(ワット)","Ω(オーム)"], answer: 1 },
-    { q: "メダカのオスの特徴は?", choices: ["背びれに切込み","体が赤い","ひげがある","しっぽが長い"], answer: 0 },
-    { q: "地球から一番近い\n星は?", choices: ["火星","金星","木星","月(衛星)"], answer: 3 },
-    { q: "てこで力点を\n支点から遠くすると?", choices: ["重くなる","軽くなる","変わらない","壊れる"], answer: 1 },
-    { q: "水溶液で酸性を\n示すのは?", choices: ["石灰水","食塩水","レモン汁","水道水"], answer: 2 },
-    { q: "台風が発生しやすい\n場所は?", choices: ["北極","砂漠","熱帯の海上","山の上"], answer: 2 },
-    { q: "植物の花粉を\n運ぶのは?", choices: ["根","茎","虫や風","葉"], answer: 2 },
-    { q: "人間の骨は\n約何本?", choices: ["100本","206本","50本","500本"], answer: 1 },
-    { q: "虹は何色?", choices: ["5色","6色","7色","8色"], answer: 2 },
-    { q: "音が伝わるのに\n必要なものは?", choices: ["光","空気(物質)","電気","磁石"], answer: 1 },
-    { q: "光合成に必要な\nガスは?", choices: ["酸素","窒素","二酸化炭素","水素"], answer: 2 },
-    { q: "ふりこの周期は\n何で決まる?", choices: ["重さ","ひもの長さ","色","形"], answer: 1 },
+    { q: "植物が光合成で作るものは?", c: ["二酸化炭素","でんぷん","水","酸素だけ"], a: 1 },
+    { q: "水が氷になる温度は?", c: ["100\u00b0","0\u00b0","-10\u00b0","50\u00b0"], a: 1 },
+    { q: "月の満ち欠けの周期は?", c: ["約7日","約15日","約30日","約365日"], a: 2 },
+    { q: "電流の単位は?", c: ["V (ボルト)","A (アンペア)","W (ワット)","Ω (オーム)"], a: 1 },
+    { q: "メダカのオスの特徴は?", c: ["背びれに切込み","体が赤い","ひげがある","しっぽが長い"], a: 0 },
+    { q: "地球から一番近い星は?", c: ["火星","金星","木星","月 (衛星)"], a: 3 },
+    { q: "てこで力点を\n支点から遠くすると?", c: ["重くなる","軽くなる","変わらない","壊れる"], a: 1 },
+    { q: "酸性の水溶液は?", c: ["石灰水","食塩水","レモン汁","水道水"], a: 2 },
+    { q: "台風が発生する場所は?", c: ["北極","砂漠","熱帯の海上","山の上"], a: 2 },
+    { q: "花粉を運ぶのは?", c: ["根","茎","虫や風","葉"], a: 2 },
+    { q: "人間の骨は約何本?", c: ["約100本","約206本","約50本","約500本"], a: 1 },
+    { q: "虹は何色?", c: ["5色","6色","7色","8色"], a: 2 },
+    { q: "音が伝わるのに必要なのは?", c: ["光","空気(物質)","電気","磁石"], a: 1 },
+    { q: "光合成に必要なガスは?", c: ["酸素","窒素","二酸化炭素","水素"], a: 2 },
+    { q: "ふりこの周期は何で決まる?", c: ["重さ","ひもの長さ","色","形"], a: 1 },
   ],
   social: [
-    { q: "日本で一番長い川は?", choices: ["利根川","信濃川","石狩川","筑後川"], answer: 1 },
-    { q: "日本の国会は\n何院制?", choices: ["一院制","二院制","三院制","四院制"], answer: 1 },
-    { q: "米作りが盛んな\n地方は?", choices: ["関東","東北","四国","中国"], answer: 1 },
-    { q: "日本で一番広い\n都道府県は?", choices: ["東京都","岩手県","北海道","長野県"], answer: 2 },
-    { q: "日本の首都は?", choices: ["大阪","京都","東京","名古屋"], answer: 2 },
-    { q: "世界で一番大きい\n大陸は?", choices: ["アフリカ","北アメリカ","ユーラシア","南極"], answer: 2 },
-    { q: "都道府県の数は?", choices: ["43","47","50","45"], answer: 1 },
-    { q: "太平洋側の気候の\n特徴は?", choices: ["冬に雪が多い","夏に雨が多い","一年中寒い","雨が少ない"], answer: 1 },
-    { q: "日本の工業が\n盛んな地帯は?", choices: ["太平洋ベルト","日本海ベルト","北海道ベルト","九州ベルト"], answer: 0 },
-    { q: "沖縄の気候は?", choices: ["冷帯","温帯","亜熱帯","乾燥帯"], answer: 2 },
-    { q: "世界で一番人口が\n多い国は? (2024)", choices: ["中国","アメリカ","インド","日本"], answer: 2 },
-    { q: "日本の食料自給率は\n約何%?", choices: ["約80%","約60%","約38%","約15%"], answer: 2 },
-    { q: "日本の漁獲量が\n多い港は?", choices: ["横浜港","銚子港","神戸港","博多港"], answer: 1 },
-    { q: "新幹線が最初に\n開通した区間は?", choices: ["東京-大阪","東京-名古屋","東京-博多","東京-仙台"], answer: 0 },
-    { q: "日本の通貨の単位は?", choices: ["ドル","ウォン","元","円"], answer: 3 },
+    { q: "日本で一番長い川は?", c: ["利根川","信濃川","石狩川","筑後川"], a: 1 },
+    { q: "日本の国会は何院制?", c: ["一院制","二院制","三院制","四院制"], a: 1 },
+    { q: "米作りが盛んな地方は?", c: ["関東","東北","四国","中国"], a: 1 },
+    { q: "日本で一番広い都道府県?", c: ["東京都","岩手県","北海道","長野県"], a: 2 },
+    { q: "日本の首都は?", c: ["大阪","京都","東京","名古屋"], a: 2 },
+    { q: "世界で一番大きい大陸は?", c: ["アフリカ","北アメリカ","ユーラシア","南極"], a: 2 },
+    { q: "都道府県の数は?", c: ["43","47","50","45"], a: 1 },
+    { q: "太平洋側の気候の特徴は?", c: ["冬に雪が多い","夏に雨が多い","一年中寒い","雨が少ない"], a: 1 },
+    { q: "日本の工業が盛んな地帯は?", c: ["太平洋ベルト","日本海ベルト","北海道ベルト","九州ベルト"], a: 0 },
+    { q: "沖縄の気候は?", c: ["冷帯","温帯","亜熱帯","乾燥帯"], a: 2 },
+    { q: "世界で一番人口が多い国?", c: ["中国","アメリカ","インド","日本"], a: 2 },
+    { q: "日本の食料自給率は?", c: ["約80%","約60%","約38%","約15%"], a: 2 },
+    { q: "漁獲量が多い港は?", c: ["横浜港","銚子港","神戸港","博多港"], a: 1 },
+    { q: "新幹線が最初に開通した区間?", c: ["東京-大阪","東京-名古屋","東京-博多","東京-仙台"], a: 0 },
+    { q: "日本の通貨の単位は?", c: ["ドル","ウォン","元","円"], a: 3 },
   ]
 };
 
-// ===== 敵データ =====
+// ===================================================================
+// ENEMIES
+// ===================================================================
 const enemies = [
-  { name: "スライム", emoji: "&#128154;", hp: 30, atk: 8, exp: 15 },
-  { name: "ゴブリン", emoji: "&#128122;", hp: 45, atk: 12, exp: 22 },
-  { name: "コウモリ", emoji: "&#129415;", hp: 35, atk: 10, exp: 18 },
-  { name: "おおきなクモ", emoji: "&#128375;&#65039;", hp: 50, atk: 14, exp: 25 },
-  { name: "ガイコツへいし", emoji: "&#128128;", hp: 60, atk: 16, exp: 30 },
-  { name: "ゴーレム", emoji: "&#129516;", hp: 80, atk: 18, exp: 38 },
-  { name: "ドラゴン(小)", emoji: "&#128009;", hp: 70, atk: 20, exp: 35 },
-  { name: "ダークウィザード", emoji: "&#129497;", hp: 65, atk: 22, exp: 32 },
-  { name: "キングスライム", emoji: "&#128126;", hp: 100, atk: 15, exp: 45 },
-  { name: "フロストドラゴン", emoji: "&#129434;", hp: 90, atk: 24, exp: 42 },
-  { name: "デーモンロード", emoji: "&#128520;", hp: 120, atk: 28, exp: 55 },
-  { name: "あんこくりゅう", emoji: "&#128050;", hp: 150, atk: 32, exp: 70 },
+  { name: "Froggit", emoji: "\ud83d\udc38", hp: 30, atk: 8, exp: 15 },
+  { name: "Whimsun", emoji: "\ud83e\uddda", hp: 25, atk: 6, exp: 12 },
+  { name: "Moldsmal", emoji: "\ud83e\uddea", hp: 35, atk: 10, exp: 18 },
+  { name: "Loox", emoji: "\ud83d\udc41\ufe0f", hp: 40, atk: 12, exp: 20 },
+  { name: "Vegetoid", emoji: "\ud83e\udd55", hp: 45, atk: 14, exp: 22 },
+  { name: "Migosp", emoji: "\ud83e\udeb3", hp: 50, atk: 15, exp: 25 },
+  { name: "Doggo", emoji: "\ud83d\udc3a", hp: 55, atk: 16, exp: 28 },
+  { name: "Papyrus", emoji: "\ud83d\udc80", hp: 70, atk: 18, exp: 35 },
+  { name: "Undyne", emoji: "\ud83d\udc1f", hp: 90, atk: 22, exp: 42 },
+  { name: "Muffet", emoji: "\ud83d\udd77\ufe0f", hp: 80, atk: 20, exp: 38 },
+  { name: "Mettaton", emoji: "\ud83e\udd16", hp: 100, atk: 25, exp: 50 },
+  { name: "Asgore", emoji: "\ud83d\udc51", hp: 130, atk: 30, exp: 65 },
 ];
 
-// ===== ゲーム状態 =====
+// ===================================================================
+// GAME STATE
+// ===================================================================
 let state = {
   subject: 'math',
-  playerHp: 100,
-  playerMaxHp: 100,
-  playerAtk: 15,
-  playerLevel: 1,
-  playerExp: 0,
-  expToNext: 30,
-  combo: 0,
-  maxCombo: 0,
-  stage: 1,
-  totalDefeated: 0,
-  enemy: null,
-  enemyHp: 0,
-  enemyMaxHp: 0,
+  playerHp: 100, playerMaxHp: 100, playerAtk: 15,
+  playerLevel: 1, playerExp: 0, expToNext: 30,
+  combo: 0, maxCombo: 0,
+  stage: 1, totalDefeated: 0,
+  enemy: null, enemyHp: 0, enemyMaxHp: 0,
   usedQuestions: [],
   isAnimating: false,
 };
 
-// ===== セーブ/ロード =====
+// ===================================================================
+// SAVE / LOAD
+// ===================================================================
 function saveGame() {
-  const save = {
-    playerLevel: state.playerLevel,
-    playerExp: state.playerExp,
-    playerMaxHp: state.playerMaxHp,
-    playerAtk: state.playerAtk,
-    totalDefeated: state.totalDefeated,
-    maxCombo: state.maxCombo,
-  };
-  localStorage.setItem('studyquest_save', JSON.stringify(save));
+  localStorage.setItem('studyquest_save', JSON.stringify({
+    playerLevel: state.playerLevel, playerExp: state.playerExp,
+    playerMaxHp: state.playerMaxHp, playerAtk: state.playerAtk,
+    totalDefeated: state.totalDefeated, maxCombo: state.maxCombo,
+  }));
 }
 
 function loadGame() {
   const raw = localStorage.getItem('studyquest_save');
   if (raw) {
-    const save = JSON.parse(raw);
-    state.playerLevel = save.playerLevel || 1;
-    state.playerExp = save.playerExp || 0;
-    state.playerMaxHp = save.playerMaxHp || 100;
-    state.playerAtk = save.playerAtk || 15;
-    state.totalDefeated = save.totalDefeated || 0;
-    state.maxCombo = save.maxCombo || 0;
+    const s = JSON.parse(raw);
+    Object.assign(state, {
+      playerLevel: s.playerLevel||1, playerExp: s.playerExp||0,
+      playerMaxHp: s.playerMaxHp||100, playerAtk: s.playerAtk||15,
+      totalDefeated: s.totalDefeated||0, maxCombo: s.maxCombo||0,
+    });
     updateExpToNext();
   }
   updateSavedStatus();
 }
 
 function updateSavedStatus() {
-  const el = document.getElementById('savedStatus');
-  el.innerHTML = `
-    <div class="flex items-center justify-between">
-      <span class="font-game text-[8px] text-slate-400">Lv.${state.playerLevel} ゆうしゃ</span>
-      <span class="font-game text-[8px] text-yellow-500">${state.totalDefeated}体 たおした</span>
+  document.getElementById('savedStatus').innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <span class="font-jp">
+        <svg class="soul-heart" viewBox="0 0 24 24" style="width:12px;height:12px;vertical-align:middle;margin-right:4px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        LV ${state.playerLevel} のゆうしゃ
+      </span>
+      <span class="font-pixel" style="font-size:8px;color:var(--yellow);">${state.totalDefeated} DEFEATED</span>
     </div>
-    <div class="flex items-center justify-between mt-1">
-      <span class="font-game text-[8px] text-slate-500">さいだいコンボ: ${state.maxCombo}</span>
-      <span class="font-game text-[8px] text-slate-500">ATK: ${state.playerAtk}</span>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;">
+      <span class="font-pixel" style="font-size:7px;color:var(--gray);">MAX COMBO: ${state.maxCombo}</span>
+      <span class="font-pixel" style="font-size:7px;color:var(--gray);">ATK: ${state.playerAtk}</span>
     </div>
   `;
 }
 
-function updateExpToNext() {
-  state.expToNext = 30 + (state.playerLevel - 1) * 15;
-}
+function updateExpToNext() { state.expToNext = 30 + (state.playerLevel - 1) * 15; }
 
-// ===== 画面切り替え =====
+// ===================================================================
+// SCREEN MANAGEMENT
+// ===================================================================
 function showScreen(id) {
-  ['titleScreen','battleScreen','levelUpScreen','victoryScreen','gameOverScreen'].forEach(s => {
-    document.getElementById(s).classList.add('hidden');
-  });
-  document.getElementById(id).classList.remove('hidden');
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
 function goTitle() {
@@ -387,8 +894,11 @@ function goTitle() {
   updateSavedStatus();
 }
 
-// ===== ゲーム開始 =====
+// ===================================================================
+// GAME START
+// ===================================================================
 function startGame(subject) {
+  music.playSfx('select');
   state.subject = subject;
   state.playerHp = state.playerMaxHp;
   state.combo = 0;
@@ -400,9 +910,7 @@ function startGame(subject) {
   showNextQuestion();
 }
 
-// ===== 敵出現 =====
 function spawnEnemy() {
-  // レベルに応じて敵を選ぶ（ステージで強くなる）
   const idx = Math.min(state.stage - 1, enemies.length - 1);
   const base = enemies[idx];
   const scale = 1 + (state.stage - 1) * 0.1;
@@ -411,54 +919,55 @@ function spawnEnemy() {
   state.enemyMaxHp = state.enemyHp;
 }
 
-// ===== UIアップデート =====
+// ===================================================================
+// UI UPDATE
+// ===================================================================
 function updateBattleUI() {
   document.getElementById('playerLevel').textContent = state.playerLevel;
   document.getElementById('stageNum').textContent = state.stage;
   document.getElementById('comboCount').textContent = state.combo;
   document.getElementById('totalDefeated').textContent = state.totalDefeated;
+  document.getElementById('playerAtkText').textContent = state.playerAtk;
 
-  // HP bars
-  const pHpPct = Math.max(0, (state.playerHp / state.playerMaxHp) * 100);
-  document.getElementById('playerHpBar').style.width = pHpPct + '%';
-  document.getElementById('playerHpText').textContent = `${Math.max(0,state.playerHp)}/${state.playerMaxHp}`;
+  const pPct = Math.max(0, (state.playerHp / state.playerMaxHp) * 100);
+  document.getElementById('playerHpBar').style.width = pPct + '%';
+  document.getElementById('playerHpText').textContent = `${Math.max(0,state.playerHp)} / ${state.playerMaxHp}`;
 
-  const eHpPct = Math.max(0, (state.enemyHp / state.enemyMaxHp) * 100);
-  document.getElementById('enemyHpBar').style.width = eHpPct + '%';
-  document.getElementById('enemyHpText').textContent = `${Math.max(0,state.enemyHp)}/${state.enemyMaxHp}`;
+  const ePct = Math.max(0, (state.enemyHp / state.enemyMaxHp) * 100);
+  document.getElementById('enemyHpBar').style.width = ePct + '%';
+  document.getElementById('enemyHpText').textContent = `${Math.max(0,state.enemyHp)} / ${state.enemyMaxHp}`;
   document.getElementById('enemyName').textContent = state.enemy.name;
-  document.getElementById('enemySprite').innerHTML = state.enemy.emoji;
+  document.getElementById('enemySprite').textContent = state.enemy.emoji;
 
-  // EXP bar
   const expPct = (state.playerExp / state.expToNext) * 100;
   document.getElementById('expBar').style.width = Math.min(100, expPct) + '%';
+
+  // Combo color
+  const cd = document.getElementById('comboDisplay');
+  if (state.combo >= 5) cd.style.color = 'var(--yellow)';
+  else if (state.combo >= 3) cd.style.color = 'var(--orange)';
+  else cd.style.color = 'var(--gray)';
 }
 
-// ===== 問題表示 =====
+// ===================================================================
+// QUESTIONS
+// ===================================================================
 function showNextQuestion() {
   const pool = questions[state.subject];
-  // 未使用問題からランダム選択
-  let available = pool.filter((_, i) => !state.usedQuestions.includes(i));
-  if (available.length === 0) {
-    state.usedQuestions = [];
-    available = pool;
-  }
-  const poolIdx = pool.indexOf(available[Math.floor(Math.random() * available.length)]);
-  state.usedQuestions.push(poolIdx);
-  const q = pool[poolIdx];
+  let avail = pool.filter((_, i) => !state.usedQuestions.includes(i));
+  if (avail.length === 0) { state.usedQuestions = []; avail = pool; }
+  const qi = pool.indexOf(avail[Math.floor(Math.random() * avail.length)]);
+  state.usedQuestions.push(qi);
+  const q = pool[qi];
 
   document.getElementById('questionText').innerText = q.q;
 
-  const choicesArea = document.getElementById('choicesArea');
-  const colors = [
-    'from-red-500 to-red-600 border-red-400',
-    'from-blue-500 to-blue-600 border-blue-400',
-    'from-yellow-500 to-yellow-600 border-yellow-400',
-    'from-green-500 to-green-600 border-green-400'
-  ];
-  choicesArea.innerHTML = q.choices.map((c, i) => `
-    <button onclick="selectAnswer(${poolIdx}, ${i})"
-      class="btn-choice bg-gradient-to-br ${colors[i]} text-white rounded-xl p-3 font-game text-[10px] leading-relaxed cursor-pointer border-2 ${state.isAnimating ? 'pointer-events-none' : ''}">
+  const area = document.getElementById('choicesArea');
+  area.innerHTML = q.c.map((c, i) => `
+    <button class="choice-btn" onclick="selectAnswer(${qi}, ${i})" ${state.isAnimating ? 'disabled' : ''}>
+      <svg class="choice-soul" viewBox="0 0 24 24" width="14" height="14">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
       ${c}
     </button>
   `).join('');
@@ -470,112 +979,108 @@ function setMessage(text) {
   document.getElementById('messageText').textContent = text;
 }
 
-// ===== 回答処理 =====
+// ===================================================================
+// ANSWER HANDLING
+// ===================================================================
 function selectAnswer(qIdx, choiceIdx) {
   if (state.isAnimating) return;
   state.isAnimating = true;
+  music.playSfx('select');
 
   const q = questions[state.subject][qIdx];
-  const correct = choiceIdx === q.answer;
-
-  if (correct) {
-    handleCorrect();
-  } else {
-    handleWrong(q.choices[q.answer]);
-  }
+  if (choiceIdx === q.a) handleCorrect();
+  else handleWrong(q.c[q.a]);
 }
 
 function handleCorrect() {
   state.combo++;
   if (state.combo > state.maxCombo) state.maxCombo = state.combo;
 
-  // ダメージ計算（コンボボーナス付き）
-  const comboMult = 1 + (state.combo - 1) * 0.15;
-  const damage = Math.floor(state.playerAtk * comboMult);
+  const mult = 1 + (state.combo - 1) * 0.15;
+  const dmg = Math.floor(state.playerAtk * mult);
 
-  setMessage(`せいかい! ${damage}ダメージ!${state.combo >= 3 ? ' ' + state.combo + 'コンボ!' : ''}`);
+  music.playSfx('correct');
 
-  // 敵にダメージエフェクト
+  let msg = `* せいかい! ${dmg} ダメージ!`;
+  if (state.combo >= 5) msg += ` ${state.combo} COMBO!!`;
+  else if (state.combo >= 3) msg += ` ${state.combo} COMBO!`;
+  setMessage(msg);
+
+  // Hit animation
   const sprite = document.getElementById('enemySprite');
-  sprite.classList.remove('monster-idle');
+  sprite.classList.remove('float-bounce');
   sprite.classList.add('hit-flash');
+  showDamageNumber(dmg);
 
-  showDamageNumber(damage);
-
-  state.enemyHp -= damage;
+  state.enemyHp -= dmg;
   updateBattleUI();
 
   setTimeout(() => {
     sprite.classList.remove('hit-flash');
-    sprite.classList.add('monster-idle');
-
-    if (state.enemyHp <= 0) {
-      handleVictory();
-    } else {
-      state.isAnimating = false;
-      showNextQuestion();
-    }
-  }, 600);
+    sprite.classList.add('float-bounce');
+    if (state.enemyHp <= 0) handleVictory();
+    else { state.isAnimating = false; showNextQuestion(); }
+  }, 500);
 }
 
-function handleWrong(correctAnswer) {
+function handleWrong(correct) {
   state.combo = 0;
-  const damage = state.enemy.atk;
+  const dmg = state.enemy.atk;
 
-  setMessage(`はずれ... 正解: ${correctAnswer} ${damage}ダメージ!`);
+  music.playSfx('wrong');
+  setMessage(`* はずれ... 正解: ${correct}  -${dmg} HP`);
 
-  // プレイヤーへダメージ
-  const field = document.getElementById('battleField');
-  field.classList.add('shake');
-  state.playerHp -= damage;
+  document.getElementById('battleField').classList.add('shake');
+  state.playerHp -= dmg;
   updateBattleUI();
 
   setTimeout(() => {
-    field.classList.remove('shake');
-
-    if (state.playerHp <= 0) {
-      handleGameOver();
-    } else {
-      state.isAnimating = false;
-      showNextQuestion();
-    }
-  }, 600);
+    document.getElementById('battleField').classList.remove('shake');
+    if (state.playerHp <= 0) handleGameOver();
+    else { state.isAnimating = false; showNextQuestion(); }
+  }, 500);
 }
 
 function showDamageNumber(dmg) {
-  const el = document.getElementById('damageDisplay');
+  const area = document.querySelector('.monster-area');
+  const el = document.createElement('div');
+  el.className = 'damage-number damage-float';
   el.textContent = '-' + dmg;
-  el.classList.remove('hidden', 'damage-num');
-  void el.offsetWidth; // reflow
-  el.classList.add('damage-num');
-  setTimeout(() => el.classList.add('hidden'), 1000);
+  el.style.left = '50%';
+  el.style.top = '20%';
+  el.style.transform = 'translateX(-50%)';
+  area.appendChild(el);
+  setTimeout(() => el.remove(), 1000);
 }
 
-// ===== 勝利 =====
+// ===================================================================
+// VICTORY
+// ===================================================================
 function handleVictory() {
   state.totalDefeated++;
   const expGain = state.enemy.exp + Math.floor(state.combo * 2);
   state.playerExp += expGain;
 
-  document.getElementById('victoryMsg').textContent = state.enemy.name + " を たおした!";
-  document.getElementById('expGained').textContent = expGain;
+  music.playSfx('victory');
 
+  document.getElementById('victoryMsg').textContent = `* ${state.enemy.name} を たおした!`;
+  document.getElementById('expGained').textContent = expGain;
   saveGame();
 
-  // レベルアップチェック
   if (state.playerExp >= state.expToNext) {
     state.playerExp -= state.expToNext;
     state.playerLevel++;
     state.playerMaxHp += 10;
     state.playerAtk += 3;
-    state.playerHp = state.playerMaxHp; // 全回復
+    state.playerHp = state.playerMaxHp;
     updateExpToNext();
     saveGame();
 
     document.getElementById('newLevel').textContent = state.playerLevel;
     document.getElementById('levelUpBonus').innerHTML =
-      `HP +10 (${state.playerMaxHp}) / ATK +3 (${state.playerAtk})<br>HP ぜんかいふく!`;
+      `HP +10 (${state.playerMaxHp})<br>ATK +3 (${state.playerAtk})<br>HP ぜんかいふく!`;
 
+    setTimeout(() => music.playSfx('levelup'), 200);
     showScreen('levelUpScreen');
     state.isAnimating = false;
     return;
@@ -585,13 +1090,11 @@ function handleVictory() {
   state.isAnimating = false;
 }
 
-function closeLevelUp() {
-  showScreen('victoryScreen');
-}
+function closeLevelUp() { showScreen('victoryScreen'); }
 
 function nextBattle() {
+  music.playSfx('select');
   state.stage++;
-  // 少しHP回復
   state.playerHp = Math.min(state.playerMaxHp, state.playerHp + Math.floor(state.playerMaxHp * 0.2));
   spawnEnemy();
   showScreen('battleScreen');
@@ -599,14 +1102,18 @@ function nextBattle() {
   showNextQuestion();
 }
 
-// ===== ゲームオーバー =====
+// ===================================================================
+// GAME OVER
+// ===================================================================
 function handleGameOver() {
+  music.playSfx('gameover');
   saveGame();
   showScreen('gameOverScreen');
   state.isAnimating = false;
 }
 
 function retryBattle() {
+  music.playSfx('select');
   state.playerHp = state.playerMaxHp;
   state.combo = 0;
   spawnEnemy();
@@ -615,7 +1122,9 @@ function retryBattle() {
   showNextQuestion();
 }
 
-// ===== 初期化 =====
+// ===================================================================
+// INIT
+// ===================================================================
 loadGame();
 </script>
 
