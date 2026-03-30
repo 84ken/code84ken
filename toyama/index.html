@@ -460,9 +460,12 @@ body {
 .gallery-item { border-radius: 12px; overflow: hidden; aspect-ratio: 1; position: relative; cursor: pointer; touch-action: manipulation; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(.23,1,.32,1); }
 .gallery-item:hover img { transform: scale(1.06); }
-.gallery-item .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s; }
+.gallery-item .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%); display: flex; align-items: flex-end; justify-content: space-between; padding: 0.8rem; opacity: 0; transition: opacity 0.3s; }
 .gallery-item:hover .gallery-overlay { opacity: 1; }
-.gallery-overlay span { color: #fff; font-size: 0.72rem; font-weight: 400; }
+@media (hover: none) { .gallery-item .gallery-overlay { opacity: 1; } }
+.gallery-overlay span { color: #fff; font-size: 0.68rem; font-weight: 400; flex: 1; }
+.gallery-del { width: 28px; height: 28px; border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: #fff; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; touch-action: manipulation; backdrop-filter: blur(4px); }
+.gallery-del:hover { background: rgba(220,38,38,0.8); }
 
 /* ─── POSTS ─── */
 .post-composer { background: var(--c-card); border: 1px solid var(--c-border); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem; }
@@ -959,11 +962,20 @@ document.getElementById('photo-submit').addEventListener('click', async () => {
 async function loadPhotos() {
   try {
     const r = await fetch('/api/photos.php'); const d = await r.json();
+    const g = document.getElementById('gallery-grid');
+    const em = document.getElementById('gallery-empty');
     if(d.ok && d.photos.length) {
-      const g = document.getElementById('gallery-grid');
-      const em = document.getElementById('gallery-empty'); if(em) em.remove();
-      g.innerHTML = d.photos.map(p => `<div class="gallery-item" onclick="openModal('${esc(p.url)}')"><img src="${esc(p.url)}" alt="${esc(p.caption||'')}" loading="lazy"><div class="gallery-overlay"><span>${esc(p.name)} · ${fmtDate(p.ts)}</span></div></div>`).join('');
+      if(em) em.remove();
+      g.innerHTML = d.photos.map(p => `<div class="gallery-item" onclick="openModal('${esc(p.url)}')"><img src="${esc(p.url)}" alt="${esc(p.caption||'')}" loading="lazy"><div class="gallery-overlay"><span>${esc(p.name)} · ${fmtDate(p.ts)}</span><button class="gallery-del" onclick="event.stopPropagation();deletePhoto('${p.id}')" aria-label="削除">×</button></div></div>`).join('');
     }
+  } catch(e){}
+}
+
+async function deletePhoto(id) {
+  if(!confirm('この写真を削除しますか？')) return;
+  try {
+    await fetch('/api/photos.php',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+    loadPhotos();
   } catch(e){}
 }
 
