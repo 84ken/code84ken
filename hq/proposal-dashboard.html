@@ -66,24 +66,29 @@ tailwind.config = {
   </div>
 
   <!-- サマリーカード -->
-  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-10">
+  <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mb-8 sm:mb-10">
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">案件総数</p>
       <p class="text-2xl sm:text-3xl font-bold text-slate-900">14<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
     </div>
+    <div class="bg-emerald-50 rounded-xl border-2 border-emerald-300 p-4 sm:p-6 shadow-sm">
+      <p class="text-xs sm:text-sm text-emerald-700 font-medium mb-1">受注確定</p>
+      <p class="text-2xl sm:text-3xl font-bold text-emerald-700">4<span class="text-base sm:text-lg font-medium text-emerald-500 ml-1">件</span></p>
+      <p class="text-xs text-emerald-600 font-semibold mt-1">¥44,322,360</p>
+    </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">提案中</p>
-      <p class="text-2xl sm:text-3xl font-bold text-primary-600">9<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
+      <p class="text-2xl sm:text-3xl font-bold text-primary-600">4<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
       <p class="text-xs text-slate-400 mt-1">＋予定2件</p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">完了（失注）</p>
-      <p class="text-2xl sm:text-3xl font-bold text-slate-400">3<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
+      <p class="text-2xl sm:text-3xl font-bold text-slate-400">4<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">受注ヨミ（確度 高＋中）</p>
-      <p class="text-xl sm:text-2xl font-bold text-slate-900">¥52,322,360</p>
-      <p class="text-xs text-slate-400 mt-1">確度低5件（¥72,567,000）含まず</p>
+      <p class="text-xl sm:text-2xl font-bold text-slate-900">¥8,000,000</p>
+      <p class="text-xs text-slate-400 mt-1">いちご大學＋サーキュラー</p>
     </div>
   </div>
 
@@ -92,14 +97,14 @@ tailwind.config = {
     <button onclick="filterStatus('all')" data-filter="all" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-primary-500 text-white cursor-pointer">
       すべて <span class="bg-white/20 px-1.5 py-0.5 rounded text-xs">14</span>
     </button>
-    <button onclick="filterStatus('進行中')" data-filter="進行中" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
-      進行中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">0</span>
+    <button onclick="filterStatus('受注')" data-filter="受注" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-emerald-700 border border-emerald-200 hover:bg-emerald-50 cursor-pointer">
+      受注 <span class="bg-emerald-100 px-1.5 py-0.5 rounded text-xs">4</span>
     </button>
     <button onclick="filterStatus('提案中')" data-filter="提案中" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
-      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">9</span>
+      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">4</span>
     </button>
     <button onclick="filterStatus('完了')" data-filter="完了" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
-      完了 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">3</span>
+      完了 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">4</span>
     </button>
   </div>
 
@@ -107,21 +112,34 @@ tailwind.config = {
   <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm mb-8 sm:mb-10">
     <h2 class="text-lg font-bold text-slate-900 mb-4 sm:mb-6">確度別パイプライン（提案中）</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-      <!-- 高 -->
-      <div class="rounded-lg border-2 border-emerald-200 bg-emerald-50/50 p-4 sm:p-5">
+      <!-- 受注確定 -->
+      <div class="rounded-lg border-2 border-emerald-400 bg-emerald-50 p-4 sm:p-5 ring-2 ring-emerald-200">
         <div class="flex items-center gap-2 mb-4">
-          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-          <span class="text-sm font-bold text-emerald-800">確度 高</span>
-          <span class="ml-auto text-2xl font-bold text-emerald-700">5件</span>
+          <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+          <span class="text-sm font-bold text-emerald-900">受注確定</span>
+          <span class="ml-auto text-2xl font-bold text-emerald-700">4件</span>
         </div>
         <div class="space-y-2 text-sm">
           <div class="flex justify-between"><span class="text-emerald-800">ぶんたま（保守運用）</span><span class="font-medium">¥16,783,000</span></div>
           <div class="flex justify-between"><span class="text-emerald-800">すぽったま（運用保守）</span><span class="font-medium">¥15,259,000</span></div>
           <div class="flex justify-between"><span class="text-emerald-800">リバサポ</span><span class="font-medium">¥8,753,360</span></div>
-          <div class="flex justify-between"><span class="text-emerald-800">いちご大學（随契見込）</span><span class="font-medium">〜¥4,000,000</span></div>
           <div class="flex justify-between"><span class="text-emerald-800">すぽったま（コンテンツ）</span><span class="font-medium">¥3,527,000</span></div>
+          <div class="border-t border-emerald-300 pt-2 mt-3 flex justify-between font-bold text-emerald-900">
+            <span>受注確定額</span><span>¥44,322,360</span>
+          </div>
+        </div>
+      </div>
+      <!-- 高（残り） -->
+      <div class="rounded-lg border-2 border-emerald-200 bg-emerald-50/50 p-4 sm:p-5">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          <span class="text-sm font-bold text-emerald-800">確度 高</span>
+          <span class="ml-auto text-2xl font-bold text-emerald-700">1件</span>
+        </div>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between"><span class="text-emerald-800">いちご大學（随契見込）</span><span class="font-medium">〜¥4,000,000</span></div>
           <div class="border-t border-emerald-200 pt-2 mt-3 flex justify-between font-bold text-emerald-900">
-            <span>小計</span><span>〜¥48,322,360</span>
+            <span>小計</span><span>〜¥4,000,000</span>
           </div>
         </div>
       </div>
@@ -144,16 +162,15 @@ tailwind.config = {
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 rounded-full bg-red-400"></span>
           <span class="text-sm font-bold text-red-800">確度 低</span>
-          <span class="ml-auto text-2xl font-bold text-red-600">5件</span>
+          <span class="ml-auto text-2xl font-bold text-red-600">4件</span>
         </div>
         <div class="space-y-2 text-sm">
           <div class="flex justify-between"><span class="text-red-800">観光客誘致・戦略的情報発信</span><span class="font-medium">¥39,600,000</span></div>
-          <div class="flex justify-between"><span class="text-red-800">観光サポートサイト・SNS運営</span><span class="font-medium">¥17,617,000</span></div>
           <div class="flex justify-between"><span class="text-red-800">農産物ブランド化支援</span><span class="font-medium">¥9,900,000</span></div>
           <div class="flex justify-between"><span class="text-red-800">梨新品種ブランディング</span><span class="font-medium">¥3,470,000</span></div>
           <div class="flex justify-between"><span class="text-red-800">わっしょいInstagram運用</span><span class="font-medium">¥1,980,000</span></div>
           <div class="border-t border-red-200 pt-2 mt-3 flex justify-between font-bold text-red-900">
-            <span>小計</span><span>¥72,567,000</span>
+            <span>小計</span><span>¥54,950,000</span>
           </div>
         </div>
       </div>
@@ -251,8 +268,8 @@ tailwind.config = {
             <p>前年度担当案件の継続提案。12LP更新＋動画5本制作＋ターゲティング広告。DMO発注で、同DMOのちょこたびSNS・グルメPJが連続失注しており確度を下方修正。提出3/31、プレゼン4/10＠物産観光協会7F。</p>
           </div>
           <div>
-            <p class="font-medium text-slate-900">埼玉観光サポートサイト・SNS運営（¥17,617,000）</p>
-            <p>ちょこたび埼玉のサポートサイト・SNS運営業務。DMO発注。プレゼン3/27（金）10:30〜。DMO案件の失注傾向から確度低と判断。</p>
+            <p class="font-medium text-slate-500 line-through">埼玉観光サポートサイト・SNS運営（¥17,617,000）— 失注</p>
+            <p>ちょこたび埼玉のサポートサイト・SNS運営業務。DMO発注。3/27プレゼン実施→失注。DMO案件はちょこたびSNS・グルメPJに続き3件連続失注。</p>
           </div>
           <div>
             <p class="font-medium text-slate-900">農産物ブランド化支援（¥9,900,000）/ 梨新品種ブランディング（¥3,470,000）/ わっしょいInstagram（¥1,980,000）</p>
@@ -293,7 +310,7 @@ tailwind.config = {
     <div class="mb-8">
       <div class="flex flex-wrap items-center gap-2 mb-4">
         <span class="bg-emerald-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">完了</span>
-        <h3 class="font-bold text-slate-900">3月23日（月）— プレゼン集中日 タイムテーブル（結果待ち）</h3>
+        <h3 class="font-bold text-slate-900">3月23日（月）— プレゼン集中日 タイムテーブル（4件受注！）</h3>
       </div>
       <div class="relative border-l-2 border-slate-200 ml-4 sm:ml-6 space-y-0">
         <!-- 9:30 リバサポ -->
@@ -306,7 +323,7 @@ tailwind.config = {
             <div class="flex-1 bg-emerald-50 rounded-lg border border-emerald-200 p-3 sm:p-4">
               <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
                 <p class="font-bold text-emerald-900">リバサポ</p>
-                <span class="confidence-high border px-2 py-0.5 rounded-full text-xs font-medium">確度 高</span>
+                <span class="bg-emerald-100 text-emerald-700 ring-1 ring-emerald-300 px-2 py-0.5 rounded-full text-xs font-medium">✓ 受注</span>
               </div>
               <p class="text-sm text-emerald-800">SAITAMAリバーサポーターズPJ事業支援 — ¥8,753,360</p>
               <div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-2 text-xs text-emerald-700">
@@ -392,24 +409,23 @@ tailwind.config = {
     <!-- 3/27 観光サポートサイト -->
     <div class="mb-8">
       <div class="flex flex-wrap items-center gap-2 mb-4">
-        <span class="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">次回</span>
-        <h3 class="font-bold text-slate-900">3月27日（金）— 埼玉観光サポートサイト・SNS運営</h3>
+        <span class="bg-slate-400 text-white text-xs font-bold px-2.5 py-1 rounded-full">完了</span>
+        <h3 class="font-bold text-slate-900">3月27日（金）— 埼玉観光サポートサイト・SNS運営 → 失注</h3>
       </div>
       <div class="relative border-l-2 border-slate-200 ml-4 sm:ml-6 space-y-0">
         <div class="relative pl-6 sm:pl-8 pb-6">
-          <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-red-400 border-2 border-white"></div>
+          <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-slate-400 border-2 border-white"></div>
           <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
             <div class="w-16 flex-shrink-0">
-              <p class="text-lg font-bold text-slate-900">10:30</p>
+              <p class="text-lg font-bold text-slate-400">10:30</p>
             </div>
-            <div class="flex-1 bg-red-50 rounded-lg border border-red-200 p-3 sm:p-4">
+            <div class="flex-1 bg-slate-50 rounded-lg border border-slate-200 p-3 sm:p-4">
               <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
-                <p class="font-bold text-red-900">埼玉観光サポートサイト・SNS運営</p>
-                <span class="confidence-low border px-2 py-0.5 rounded-full text-xs font-medium">確度 低</span>
+                <p class="font-bold text-slate-500 line-through">埼玉観光サポートサイト・SNS運営</p>
+                <span class="bg-slate-100 text-slate-500 border border-slate-300 px-2 py-0.5 rounded-full text-xs font-medium">✗ 失注</span>
               </div>
-              <p class="text-sm text-red-800">埼玉観光サポートサイト・SNS運営業務委託 — ¥17,617,000</p>
-              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-2 text-xs text-red-700">
-                <span>📍 場所未定</span>
+              <p class="text-sm text-slate-500">埼玉観光サポートサイト・SNS運営業務委託 — ¥17,617,000</p>
+              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mt-2 text-xs text-slate-400">
                 <span>DMO（ちょこたび埼玉）発注</span>
               </div>
             </div>
@@ -800,13 +816,13 @@ tailwind.config = {
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
-            <span><strong>3/23（月）— 4案件プレゼン完了 → 結果待ち</strong><br>
-            リバサポ・すぽったま（運用保守+コンテンツ）・ぶんたま・グルメPJ</span>
+            <span><strong>3/23（月）— 4案件プレゼン完了 → すぽったま×2・ぶんたま・リバサポ 受注！</strong><br>
+            グルメPJは失注。受注確定額 ¥44,322,360</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
-            <span><strong>3/27（金）10:30〜 — 埼玉観光サポートサイト・SNS運営 プレゼン</strong><br>
-            ¥17,617,000（税込）/ DMO（ちょこたび埼玉）発注</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 flex-shrink-0"></span>
+            <span><strong>3/27（金）— 埼玉観光サポートサイト・SNS運営 → 失注</strong><br>
+            DMO案件の連続失注。ちょこたびSNS・グルメPJに続き3件目。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-2 flex-shrink-0"></span>
@@ -871,40 +887,40 @@ const projects = [
     sub: '保守運用及び利用促進プロモーション業務',
     client: '埼玉県', clientSub: '県民文化部',
     budget: '¥16,783,000', submitDate: '3/13', review: 'プレゼン 3/23',
-    reviewSub: '',
-    status: '提案中', confidence: '高', staff: []
+    reviewSub: '✓ 受注決定',
+    status: '受注', confidence: '—', staff: []
   },
   {
     id: 'spottama-ops', num: 3, name: 'すぽったま！運用保守',
     sub: 'スマホスタンプラリー等観戦促進業務',
     client: '埼玉県', clientSub: '県民生活部',
     budget: '¥15,259,000', submitDate: '3/16', review: 'プレゼン 3/23',
-    reviewSub: '',
-    status: '提案中', confidence: '高', staff: []
+    reviewSub: '✓ 受注決定',
+    status: '受注', confidence: '—', staff: []
   },
   {
     id: 'rivasapo', num: 4, name: 'SAITAMAリバーサポーターズPJ',
     sub: '事業支援＋リバサポ・クエスト業務',
     client: '埼玉県', clientSub: '県土整備部',
     budget: '¥8,753,360', submitDate: '3/6', review: 'プレゼン 3/23',
-    reviewSub: '',
-    status: '提案中', confidence: '高', staff: []
+    reviewSub: '✓ 受注決定',
+    status: '受注', confidence: '—', staff: []
   },
   {
     id: 'spottama-content', num: 5, name: 'すぽったま！コンテンツ制作',
     sub: '試合観戦促進コンテンツ制作等業務',
     client: '埼玉県', clientSub: '県民生活部',
     budget: '¥3,527,000', submitDate: '3/18', review: 'プレゼン 3/23',
-    reviewSub: '',
-    status: '提案中', confidence: '高', staff: []
+    reviewSub: '✓ 受注決定',
+    status: '受注', confidence: '—', staff: []
   },
   {
     id: 'kanko-support', num: 6, name: '埼玉観光サポートサイト・SNS運営',
     sub: '埼玉観光サポートサイト・SNS運営業務委託',
     client: 'ちょこたび埼玉', clientSub: 'DMO',
     budget: '¥17,617,000', submitDate: '提出済', review: 'プレゼン 3/27',
-    reviewSub: '10:30〜',
-    status: '提案中', confidence: '低', staff: []
+    reviewSub: '失注',
+    status: '完了', confidence: '—', staff: []
   },
   {
     id: 'agri', num: 7, name: '埼玉県産農産物ブランド化支援',
@@ -1001,6 +1017,7 @@ function saveStaffData() {
 function getStatusBadge(status, lost) {
   if (lost) return '<span class="bg-gray-100 text-slate-500 px-2.5 py-1 rounded-full text-xs font-medium">失注</span>';
   const map = {
+    '受注': 'bg-emerald-100 text-emerald-700 ring-1 ring-emerald-300',
     '進行中': 'bg-emerald-100 text-emerald-700',
     '提案中': 'bg-primary-50 text-primary-700',
     '完了':   'bg-gray-100 text-slate-500',
@@ -1086,12 +1103,12 @@ function renderChecklistMobile() {
   if (!container) return;
 
   const checklistData = [
-    { name: 'リバサポ', group: '高', intent: '✓ 済', submit: '✓ 3/6 済', pres: '✓ 3/23 済', result: '結果待ち' },
-    { name: 'すぽったま（運用保守）', group: '高', intent: '✓ 3/10 済', submit: '✓ 3/16 済', pres: '✓ 3/23 済', result: '結果待ち' },
-    { name: 'すぽったま（コンテンツ）', group: '高', intent: '✓ 3/12 済', submit: '✓ 3/18 済', pres: '✓ 3/23 済', result: '結果待ち' },
-    { name: 'ぶんたま', group: '高', intent: '✓ 済', submit: '✓ 3/13 済', pres: '✓ 3/23 済', result: '結果待ち' },
+    { name: 'リバサポ', group: '高', intent: '✓ 済', submit: '✓ 3/6 済', pres: '✓ 3/23 済', result: '✓ 受注' },
+    { name: 'すぽったま（運用保守）', group: '高', intent: '✓ 3/10 済', submit: '✓ 3/16 済', pres: '✓ 3/23 済', result: '✓ 受注' },
+    { name: 'すぽったま（コンテンツ）', group: '高', intent: '✓ 3/12 済', submit: '✓ 3/18 済', pres: '✓ 3/23 済', result: '✓ 受注' },
+    { name: 'ぶんたま', group: '高', intent: '✓ 済', submit: '✓ 3/13 済', pres: '✓ 3/23 済', result: '✓ 受注' },
     { name: '観光客誘致', group: '低', intent: '3/23 17時', submit: '3/31 12時', pres: '4/10 ＠物産観光協会7F', result: '4/13' },
-    { name: '観光サポートサイト・SNS', group: '低', intent: '✓ 済', submit: '✓ 済', pres: '3/27 10:30', result: '—' },
+    { name: '観光サポートサイト・SNS', group: '低', intent: '✓ 済', submit: '✓ 済', pres: '✓ 3/27 済', result: '✗ 失注' },
     { name: 'わっしょいIG', group: '低', intent: '4/6 17時', submit: '4/17 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
     { name: '農産物ブランド化', group: '低', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
     { name: '梨ブランディング', group: '低', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
