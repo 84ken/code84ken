@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>蒸気会議 — Healthian Wood Hive Tour 2026</title>
+<title>Hive Tour 2026 — Healthian Wood, Toyama</title>
 <meta name="description" content="異業種6名が富山・ヘルジアンウッドに集い、サウナでととのい、新しい事業のタネを見つける。2026.04.02–03">
-<meta property="og:title" content="蒸気会議 — Healthian Wood Hive Tour 2026">
+<meta property="og:title" content="Hive Tour 2026 — Healthian Wood, Toyama">
 <meta property="og:description" content="異業種が交わり、ととのい、新しい事業のタネが生まれる。富山・立山 2026.04.02–03">
 <meta property="og:image" content="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-a466297eddc9ab000d18b1de0756d71d-3840x2160.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://toyama.schema.tokyo/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♨️</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐝</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -48,7 +48,7 @@ body {
 }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.2rem; }
 
 /* ─── HERO ─── */
 .hero {
@@ -82,7 +82,7 @@ body {
 .hero-content {
   position: relative;
   z-index: 1;
-  padding: 0 2rem 6rem;
+  padding: 0 1.5rem 4rem;
   max-width: 1100px;
   margin: 0 auto;
   width: 100%;
@@ -98,7 +98,7 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(3.5rem, 12vw, 7rem);
+  font-size: clamp(3rem, 12vw, 7rem);
   font-weight: 900;
   color: #fff;
   letter-spacing: 0.08em;
@@ -107,7 +107,7 @@ body {
 }
 
 .hero-sub {
-  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+  font-size: clamp(0.85rem, 2.5vw, 1.15rem);
   color: rgba(255,255,255,0.65);
   font-weight: 300;
   letter-spacing: 0.08em;
@@ -130,6 +130,9 @@ body {
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   font-weight: 400;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .hero-location {
@@ -170,7 +173,7 @@ body {
 .nav-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.2rem;
   display: flex;
   align-items: center;
   height: 48px;
@@ -190,6 +193,10 @@ body {
   padding: 0.4rem 0.7rem;
   border-radius: 100px;
   transition: all 0.3s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  touch-action: manipulation;
 }
 
 .nav a:hover, .nav a.active {
@@ -209,7 +216,7 @@ body {
 /* ─── PHOTO BREAK ─── */
 .photo-break {
   position: relative;
-  height: 50vh;
+  height: 35vh;
   overflow: hidden;
 }
 
@@ -229,7 +236,7 @@ body {
 }
 
 /* ─── SECTION COMMON ─── */
-.sec { padding: 7rem 0; }
+.sec { padding: 4.5rem 0; }
 .sec-dark { background: var(--c-dark); color: #fff; }
 .sec-alt { background: #efebe4; }
 
@@ -263,7 +270,7 @@ body {
 
 /* ─── CONCEPT ─── */
 .concept-statement {
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
   font-weight: 500;
   line-height: 2.2;
   max-width: 700px;
@@ -297,7 +304,7 @@ body {
 /* ─── MEMBERS ─── */
 .members-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.2rem;
 }
 
@@ -307,6 +314,8 @@ body {
   border-radius: 16px;
   padding: 2rem 1.5rem;
   transition: transform 0.4s cubic-bezier(.23,1,.32,1), box-shadow 0.4s;
+  display: flex;
+  flex-direction: column;
 }
 
 .member-card:hover {
@@ -330,10 +339,16 @@ body {
 .m-org { font-size: 0.72rem; color: var(--c-accent); font-weight: 400; margin-bottom: 0.7rem; letter-spacing: 0.02em; line-height: 1.5; }
 .m-desc { font-size: 0.78rem; color: var(--c-text-light); line-height: 1.7; }
 
+/* ─── MEMBER LINKS ─── */
+.m-links { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: auto; padding-top: 0.8rem; border-top: 1px solid var(--c-border); }
+.m-link { font-size: 0.65rem; color: var(--c-accent); text-decoration: none; padding: 0.2rem 0.6rem; border: 1px solid var(--c-border); border-radius: 100px; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.3rem; min-height: 28px; touch-action: manipulation; }
+.m-link:hover { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
+.m-link svg { width: 10px; height: 10px; flex-shrink: 0; }
+
 /* ─── VENUE ─── */
 .venue-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1.2rem;
 }
 
@@ -344,7 +359,7 @@ body {
 
 .venue-features {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   margin-top: 3rem;
   padding-top: 3rem;
@@ -367,6 +382,8 @@ body {
   font-weight: 500;
   letter-spacing: 0.04em;
   transition: gap 0.3s;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 .venue-link:hover { gap: 0.8rem; }
 
@@ -383,20 +400,37 @@ body {
 .tl-note { font-size: 0.78rem; color: var(--c-text-light); line-height: 1.6; }
 .tl-tag { display: inline-block; padding: 0.15rem 0.5rem; background: var(--c-sage-light); color: var(--c-sage); border-radius: 4px; font-size: 0.65rem; font-weight: 500; margin-top: 0.4rem; margin-right: 0.2rem; }
 
+/* ─── INFO CARDS ─── */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+.info-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+}
+.info-card-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+.info-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+.info-card p { font-size: 0.8rem; color: var(--c-text-light); line-height: 1.7; }
+
 /* ─── INTERACTIVE: UPLOAD ZONE ─── */
 .upload-zone {
   border: 2px dashed var(--c-border);
   border-radius: 16px;
-  padding: 2.5rem 2rem;
+  padding: 2rem 1.2rem;
   text-align: center;
   cursor: pointer;
   transition: border-color 0.3s, background 0.3s;
   margin-bottom: 2rem;
+  touch-action: manipulation;
 }
 .upload-zone:hover, .upload-zone.dragover { border-color: var(--c-accent); background: rgba(196,113,59,0.04); }
 .upload-zone-icon { font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.4; }
-.upload-zone p { font-size: 0.82rem; color: var(--c-text-light); }
-.upload-zone small { font-size: 0.7rem; color: var(--c-text-light); opacity: 0.6; }
+.upload-zone p { font-size: 0.78rem; color: var(--c-text-light); }
+.upload-zone small { font-size: 0.65rem; color: var(--c-text-light); opacity: 0.6; }
 
 .upload-form-row {
   display: flex;
@@ -413,6 +447,7 @@ body {
   background: #fff;
   flex: 1;
   min-width: 120px;
+  min-height: 44px;
 }
 .upload-form-row input:focus, .upload-form-row select:focus {
   outline: none;
@@ -421,8 +456,8 @@ body {
 }
 
 /* ─── GALLERY ─── */
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.8rem; }
-.gallery-item { border-radius: 12px; overflow: hidden; aspect-ratio: 1; position: relative; cursor: pointer; }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+.gallery-item { border-radius: 12px; overflow: hidden; aspect-ratio: 1; position: relative; cursor: pointer; touch-action: manipulation; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(.23,1,.32,1); }
 .gallery-item:hover img { transform: scale(1.06); }
 .gallery-item .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s; }
@@ -436,7 +471,7 @@ body {
 .post-composer-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--c-border); flex-wrap: wrap; gap: 0.6rem; }
 .post-composer-footer .left { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
 
-.category-chip { padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.7rem; font-weight: 500; border: 1px solid var(--c-border); background: #fff; cursor: pointer; transition: all 0.2s; font-family: var(--font); }
+.category-chip { padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.7rem; font-weight: 500; border: 1px solid var(--c-border); background: #fff; cursor: pointer; transition: all 0.2s; font-family: var(--font); min-height: 44px; touch-action: manipulation; }
 .category-chip.active, .category-chip:hover { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
 
 .post-feed { display: flex; flex-direction: column; gap: 1rem; }
@@ -455,7 +490,7 @@ body {
 
 /* ─── DOCUMENTS ─── */
 .docs-list { display: flex; flex-direction: column; gap: 0.6rem; }
-.doc-item { display: flex; align-items: center; gap: 1rem; background: var(--c-card); border: 1px solid var(--c-border); border-radius: 12px; padding: 1rem 1.2rem; text-decoration: none; color: var(--c-text); transition: transform 0.2s, box-shadow 0.2s; }
+.doc-item { display: flex; align-items: center; gap: 1rem; background: var(--c-card); border: 1px solid var(--c-border); border-radius: 12px; padding: 1rem 1.2rem; text-decoration: none; color: var(--c-text); transition: transform 0.2s, box-shadow 0.2s; min-height: 44px; touch-action: manipulation; }
 .doc-item:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
 .doc-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
 .doc-icon.pdf { background: #fee2e2; } .doc-icon.doc { background: #dbeafe; } .doc-icon.xls { background: #d1fae5; } .doc-icon.ppt { background: #fef3c7; } .doc-icon.img { background: #f3e8ff; } .doc-icon.other { background: #f1f5f9; }
@@ -481,14 +516,14 @@ body {
 .reaction { padding: 0.15rem 0.45rem; background: rgba(255,255,255,0.08); border-radius: 100px; font-size: 0.7rem; color: rgba(255,255,255,0.5); }
 
 /* ─── PLANNING ─── */
-.planning-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+.planning-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
 .planning-card { background: var(--c-card); border: 1px solid var(--c-border); border-radius: 16px; padding: 2rem; }
 .planning-card-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
 .planning-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
 .planning-card p { font-size: 0.8rem; color: var(--c-text-light); line-height: 1.7; }
 
 /* ─── BUTTONS ─── */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.6rem 1.4rem; font-size: 0.82rem; font-weight: 500; font-family: var(--font); border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.6rem 1.4rem; font-size: 0.82rem; font-weight: 500; font-family: var(--font); border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; min-height: 44px; touch-action: manipulation; }
 .btn-primary { background: var(--c-accent); color: #fff; }
 .btn-primary:hover { background: #a5602f; }
 
@@ -503,28 +538,38 @@ body {
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 200; display: none; align-items: center; justify-content: center; padding: 2rem; }
 .modal-overlay.open { display: flex; }
 .modal-img { max-width: 90vw; max-height: 85vh; border-radius: 12px; object-fit: contain; }
-.modal-close { position: absolute; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(255,255,255,0.15); color: #fff; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.modal-close { position: absolute; top: 1.5rem; right: 1.5rem; width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,0.15); color: #fff; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; touch-action: manipulation; }
 
 /* ─── EMPTY STATE ─── */
 .empty-state { text-align: center; padding: 3rem 1rem; color: var(--c-text-light); font-size: 0.85rem; }
 .empty-state-icon { font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.3; }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
-  .sec { padding: 4.5rem 0; }
+/* ─── RESPONSIVE: TABLET ─── */
+@media (min-width: 600px) {
+  .container { padding: 0 2rem; }
+  .hero-content { padding: 0 2rem 6rem; }
+  .nav-inner { padding: 0 2rem; }
   .members-grid { grid-template-columns: 1fr 1fr; }
-  .venue-grid { grid-template-columns: 1fr; }
-  .venue-features { grid-template-columns: 1fr 1fr; }
-  .planning-grid { grid-template-columns: 1fr; }
-  .hero-content { padding: 0 1.5rem 4rem; }
+  .venue-grid { grid-template-columns: 1fr 1fr; }
+  .info-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .planning-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .photo-break { height: 50vh; }
+  .upload-zone { padding: 2.5rem 2rem; }
+  .upload-zone p { font-size: 0.82rem; }
+  .upload-zone small { font-size: 0.7rem; }
 }
 
+/* ─── RESPONSIVE: DESKTOP ─── */
+@media (min-width: 960px) {
+  .sec { padding: 7rem 0; }
+  .members-grid { grid-template-columns: repeat(3, 1fr); }
+  .venue-features { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ─── RESPONSIVE: SMALL MOBILE ─── */
 @media (max-width: 480px) {
-  .container { padding: 0 1.2rem; }
-  .members-grid { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   .nav-logo { display: none; }
-  .photo-break { height: 35vh; }
   .update-text, .update-reactions { padding-left: 0; margin-top: 0.4rem; }
 }
 </style>
@@ -535,8 +580,8 @@ body {
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Healthian Wood Hive Tour 2026</p>
-    <h1 class="hero-title">蒸気会議</h1>
+    <p class="hero-eyebrow">Healthian Wood × Business Creation</p>
+    <h1 class="hero-title">Hive Tour</h1>
     <p class="hero-sub">異業種が交わり、ととのい、<br>新しい事業のタネが生まれる。</p>
     <div class="hero-meta">
       <span class="hero-date">2026.04.02 — 04.03</span>
@@ -549,11 +594,12 @@ body {
 <!-- NAV -->
 <nav class="nav" aria-label="メインナビゲーション">
   <div class="nav-inner">
-    <span class="nav-logo">蒸気会議</span>
+    <span class="nav-logo">Hive Tour</span>
     <a href="#concept">Concept</a>
     <a href="#members">Members</a>
     <a href="#venue">Venue</a>
     <a href="#schedule">Schedule</a>
+    <a href="#info">Info</a>
     <a href="#photos">Photos</a>
     <a href="#board">Board</a>
     <a href="#docs">Docs</a>
@@ -566,7 +612,7 @@ body {
 <section id="concept" class="sec">
   <div class="container" style="text-align:center;">
     <p class="sec-eyebrow fade-up">Concept</p>
-    <h2 class="sec-title fade-up">サウナで、ととのえる。<br>事業で、つながる。</h2>
+    <h2 class="sec-title fade-up">旅が、事業になる。</h2>
     <div class="concept-statement fade-up">
       建築、ハーブ、クリエイティブ、<br>
       地域活性、マーケット、コンサルティング。<br><br>
@@ -574,9 +620,10 @@ body {
       蒸気の中で思考をリセットし、<br>
       焚き火を囲みながらアイデアを交わす。<br><br>
       異なる専門性が化学反応を起こし、<br>
-      <strong>新しい事業のタネ</strong>が生まれる場所。
+      <strong>旅そのものが事業のタネ</strong>になる場所。
     </div>
     <div class="concept-keywords fade-up">
+      <span>Trip × Business Creation</span>
       <span>Wellness × Business</span>
       <span>異業種コラボレーション</span>
       <span>地域再生</span>
@@ -604,36 +651,58 @@ body {
         <p class="m-name">宇那木さん</p>
         <p class="m-org">club Mai architects ── 一級建築士事務所</p>
         <p class="m-desc">空間設計のプロフェッショナル。隈研吾設計のヘルジアンウッドの建築を、建築家の目線で読み解く。</p>
+        <div class="m-links">
+          <a class="m-link" href="https://share.google/p9F2k5V7CeIvwl7fi" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.029 11H4.083a6.004 6.004 0 002.783 4.118z"/></svg>club Mai</a>
+        </div>
       </div>
       <div class="member-card fade-up">
         <div class="m-icon" style="background:#dce8d4;color:#7a8c6e;">茶</div>
         <p class="m-name">田部井さん</p>
         <p class="m-org">ALL MY TEA ── ハーブティー専門店</p>
         <p class="m-desc">ハーブの専門家。ヘルジアンウッドのアロマ園・ハーブガーデンとの親和性は抜群。</p>
+        <div class="m-links">
+          <a class="m-link" href="https://share.google/MqFYfrZsFvqlOZkj7" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.029 11H4.083a6.004 6.004 0 002.783 4.118z"/></svg>ALL MY TEA</a>
+        </div>
       </div>
       <div class="member-card fade-up">
         <div class="m-icon" style="background:#e0d8f0;color:#7a6b9a;">創</div>
         <p class="m-name">84ken</p>
         <p class="m-org">株式会社スキーマ / TATELab. ── 五感拡張型クリエイティブ</p>
         <p class="m-desc">企画とクリエイティブの起点。スキーマの事業構想力とTATELab.の表現力で、プロジェクトを形にする。</p>
+        <div class="m-links">
+          <a class="m-link" href="https://share.google/JOlh7AtHt9pCKZzyb" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.029 11H4.083a6.004 6.004 0 002.783 4.118z"/></svg>スキーマ</a>
+          <a class="m-link" href="https://share.google/VgFbGkE7yrseiXJTW" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.029 11H4.083a6.004 6.004 0 002.783 4.118z"/></svg>TATELab</a>
+          <a class="m-link" href="https://www.instagram.com/84ken/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.333c2.167 0 2.425.008 3.283.047.792.036 1.222.168 1.508.279.38.147.65.323.933.607.285.284.46.554.608.933.111.286.243.716.28 1.508.038.858.046 1.116.046 3.283s-.008 2.425-.047 3.283c-.036.792-.168 1.222-.279 1.508a2.51 2.51 0 01-.607.933 2.51 2.51 0 01-.933.608c-.286.111-.716.243-1.508.28-.858.038-1.116.046-3.283.046s-2.425-.008-3.283-.047c-.792-.036-1.222-.168-1.508-.279a2.51 2.51 0 01-.933-.607 2.51 2.51 0 01-.608-.933c-.111-.286-.243-.716-.28-1.508C3.342 12.425 3.334 12.167 3.334 10s.008-2.425.047-3.283c.036-.792.168-1.222.279-1.508.147-.38.323-.65.607-.933.284-.285.554-.46.933-.608.286-.111.716-.243 1.508-.28.858-.038 1.116-.046 3.283-.046zM10 1.667c-2.204 0-2.48.009-3.347.048-.865.04-1.455.177-1.972.378a3.98 3.98 0 00-1.437.935 3.98 3.98 0 00-.935 1.437c-.2.517-.339 1.107-.378 1.972C1.893 7.308 1.884 7.584 1.884 10c0 2.204.009 2.48.048 3.347.04.865.177 1.455.378 1.972.207.534.485.987.935 1.437.45.45.903.728 1.437.935.517.2 1.107.339 1.972.378.867.04 1.143.048 3.347.048s2.48-.009 3.347-.048c.865-.04 1.455-.177 1.972-.378a3.98 3.98 0 001.437-.935c.45-.45.728-.903.935-1.437.2-.517.339-1.107.378-1.972.04-.867.048-1.143.048-3.347s-.009-2.48-.048-3.347c-.04-.865-.177-1.455-.378-1.972a3.98 3.98 0 00-.935-1.437 3.98 3.98 0 00-1.437-.935c-.517-.2-1.107-.339-1.972-.378C12.48 1.676 12.204 1.667 10 1.667zm0 4.5a3.833 3.833 0 100 7.666 3.833 3.833 0 000-7.666zM10 12.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5zm4.883-6.617a.9.9 0 11-1.8 0 .9.9 0 011.8 0z"/></svg>Instagram</a>
+        </div>
       </div>
       <div class="member-card fade-up">
         <div class="m-icon" style="background:#dae5f0;color:#5a7a9a;">地</div>
         <p class="m-name">渡邊さん</p>
         <p class="m-org">ローカルボーイズ / TOYAMA MARKET</p>
         <p class="m-desc">富山のローカルを知り尽くす。地域と事業をつなぐキーパーソン。</p>
+        <div class="m-links">
+          <a class="m-link" href="https://share.google/EaLPIK41mr3ieze3q" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.029 11H4.083a6.004 6.004 0 002.783 4.118z"/></svg>ローカルボーイズ</a>
+          <a class="m-link" href="https://share.google/QUO3QRPxcJkzKWkri" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.029 11H4.083a6.004 6.004 0 002.783 4.118z"/></svg>TOYAMA MARKET</a>
+        </div>
       </div>
       <div class="member-card fade-up">
         <div class="m-icon" style="background:#f0dada;color:#9a5a5a;">策</div>
         <p class="m-name">菊池さん</p>
         <p class="m-org">NPO NLP / P&Dコンサルティング</p>
         <p class="m-desc">まちづくりとコンサルティングの二刀流。今回のツアーの発起人・コーディネーター。</p>
+        <div class="m-links">
+          <a class="m-link" href="https://share.google/Xa4mcIIJ2xjcKQg3o" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.029 11H4.083a6.004 6.004 0 002.783 4.118z"/></svg>NPO NLP</a>
+          <a class="m-link" href="https://share.google/K4nQeuZk4DAqbA5U7" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.029 11H4.083a6.004 6.004 0 002.783 4.118z"/></svg>P&D</a>
+        </div>
       </div>
       <div class="member-card fade-up">
         <div class="m-icon" style="background:#f0ead8;color:#8a7a5a;">繋</div>
         <p class="m-name">川相さん</p>
         <p class="m-org">P&Dコンサルティング</p>
         <p class="m-desc">事業戦略と組織デザインの専門家。異業種の知見を事業へ昇華させる推進力。</p>
+        <div class="m-links">
+          <a class="m-link" href="https://share.google/K4nQeuZk4DAqbA5U7" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.029 11H4.083a6.004 6.004 0 002.783 4.118z"/></svg>P&D</a>
+        </div>
       </div>
     </div>
   </div>
@@ -687,6 +756,32 @@ body {
   </div>
 </section>
 
+<!-- INFO -->
+<section id="info" class="sec sec-alt">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Info</p>
+    <h2 class="sec-title fade-up">旅のインフォ</h2>
+    <p class="sec-lead fade-up">移動手段・持ち物・連絡先など、実用的な情報をここに。</p>
+    <div class="info-grid fade-up">
+      <div class="info-card">
+        <div class="info-card-icon">🚗</div>
+        <h4>移動手段</h4>
+        <p>レンタカー情報は追って更新します</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🧳</div>
+        <h4>持ち物</h4>
+        <p>水着（レンタル500円/枚）、着替え。タオル・アメニティは施設に完備。</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📞</div>
+        <h4>緊急連絡先</h4>
+        <p>菊池 TEL: <a href="tel:09040964109" style="color:var(--c-accent);text-decoration:none;">090-4096-4109</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PHOTO BREAK 2 -->
 <div class="photo-break fade-up">
   <img src="https://prcdn.freetls.fastly.net/release_image/112131/4/112131-4-ffc97dcc7a1428f884fabec7292eaf7a-3900x2600.jpg" alt="Healthian Wood 風景" loading="lazy">
@@ -725,7 +820,7 @@ body {
       <textarea id="post-text" placeholder="ここに思いついたことを書く..."></textarea>
       <div class="post-composer-footer">
         <div class="left">
-          <input type="text" id="post-name" placeholder="名前" style="width:120px;padding:0.4rem 0.8rem;border:1px solid var(--c-border);border-radius:8px;font-size:0.8rem;font-family:var(--font);">
+          <input type="text" id="post-name" placeholder="名前" style="width:120px;padding:0.4rem 0.8rem;border:1px solid var(--c-border);border-radius:8px;font-size:0.8rem;font-family:var(--font);min-height:44px;">
           <button class="category-chip active" data-cat="idea">💡 アイデア</button>
           <button class="category-chip" data-cat="question">❓ 質問</button>
           <button class="category-chip" data-cat="plan">📋 プラン</button>
@@ -780,8 +875,8 @@ body {
 <section id="planning" class="sec sec-alt">
   <div class="container">
     <p class="sec-eyebrow fade-up">Planning</p>
-    <h2 class="sec-title fade-up">これからのこと</h2>
-    <p class="sec-lead fade-up">旅が終わってからが本番。<br>蒸気会議から生まれるアクションを形にしよう。</p>
+    <h2 class="sec-title fade-up">Next Actions</h2>
+    <p class="sec-lead fade-up">旅で得たインスピレーションをアクションへ。事業のタネを育てよう。</p>
     <div class="planning-grid fade-up">
       <div class="planning-card"><div class="planning-card-icon">🌱</div><h4>事業のタネ</h4><p>旅で見つけたアイデアや可能性をBoardに投稿して、メンバーとシェアしよう。</p></div>
       <div class="planning-card"><div class="planning-card-icon">🤝</div><h4>コラボレーション</h4><p>誰と誰の専門性を掛け合わせる？具体的なペアリングやチームをここで構想。</p></div>
@@ -798,8 +893,8 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <p class="footer-title">蒸気会議</p>
-  <p class="footer-sub">Healthian Wood Hive Tour 2026 — Toyama, Tateyama</p>
+  <p class="footer-title">Hive Tour 2026</p>
+  <p class="footer-sub">Healthian Wood — Toyama, Tateyama</p>
   <p class="footer-contact">緊急連絡先：菊池 TEL <a href="tel:09040964109">090-4096-4109</a></p>
 </footer>
 
