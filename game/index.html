@@ -95,6 +95,12 @@
     position: relative;
   }
 
+  /* ===== Boss Battle Box ===== */
+  .ut-box.boss-battle {
+    border-color: var(--orange);
+    box-shadow: 0 0 15px rgba(255,102,0,0.3), inset 0 0 15px rgba(255,0,0,0.1);
+  }
+
   /* ===== HP Bar (Undertale style) ===== */
   .hp-container {
     display: flex;
@@ -190,6 +196,10 @@
   @keyframes floatBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
   @keyframes starTwinkle { 0%,100%{opacity:0.3} 50%{opacity:1} }
   @keyframes comboFlash { 0%{color:#fff} 25%{color:#ff0} 50%{color:#f80} 75%{color:#ff0} 100%{color:#fff} }
+  @keyframes bossEntrance { 0%{transform:scale(0) rotate(-180deg);opacity:0} 50%{transform:scale(1.5) rotate(0deg);opacity:1} 100%{transform:scale(1) rotate(0deg);opacity:1} }
+  @keyframes bossFloat { 0%,100%{transform:translateY(0) scale(1)} 25%{transform:translateY(-12px) scale(1.02)} 50%{transform:translateY(0) scale(1)} 75%{transform:translateY(-6px) scale(1.01)} }
+  @keyframes screenFlash { 0%{opacity:0} 20%{opacity:0.8} 100%{opacity:0} }
+  @keyframes bossVictoryPulse { 0%{transform:scale(1);text-shadow:0 0 10px #ff0} 50%{transform:scale(1.1);text-shadow:0 0 30px #ff0,0 0 60px #f80} 100%{transform:scale(1);text-shadow:0 0 10px #ff0} }
 
   .shake { animation: shake 0.3s ease-in-out; }
   .hit-flash { animation: hitFlash 0.4s steps(1); }
@@ -198,6 +208,15 @@
   .fade-in { animation: fadeIn 0.5s ease-out; }
   .float-bounce { animation: floatBounce 2s ease-in-out infinite; }
   .combo-flash { animation: comboFlash 0.5s ease-in-out; }
+  .boss-entrance { animation: bossEntrance 0.8s ease-out forwards; }
+  .boss-float { animation: bossFloat 3s ease-in-out infinite; }
+  .boss-victory-pulse { animation: bossVictoryPulse 1s ease-in-out infinite; }
+
+  /* ===== Boss screen flash overlay ===== */
+  .boss-flash-overlay {
+    position: fixed; inset: 0; background: white; opacity: 0; pointer-events: none; z-index: 99;
+    animation: screenFlash 0.6s ease-out forwards;
+  }
 
   /* ===== Stars background ===== */
   .star {
@@ -266,6 +285,10 @@
     animation: floatBounce 3s ease-in-out infinite;
     filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
   }
+  .monster-sprite.boss-sprite {
+    font-size: 110px;
+    filter: drop-shadow(0 0 30px rgba(255,100,0,0.4));
+  }
   .monster-name-plate {
     font-family: 'Press Start 2P', monospace;
     font-size: 12px;
@@ -293,6 +316,9 @@
     line-height: 1.8;
     color: var(--white);
   }
+  .text-box.boss-battle {
+    border-color: var(--orange);
+  }
   .text-box .asterisk {
     color: var(--white);
     margin-right: 8px;
@@ -316,11 +342,58 @@
     padding: 32px;
   }
 
+  /* ===== Monster Book (Zukan) ===== */
+  .zukan-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 4px;
+  }
+  .zukan-card {
+    border: 2px solid var(--dark-gray);
+    background: var(--black);
+    padding: 10px 4px;
+    text-align: center;
+    min-height: 90px;
+  }
+  .zukan-card.defeated {
+    border-color: var(--gray);
+  }
+  .zukan-card.boss-card.defeated {
+    border-color: var(--orange);
+    box-shadow: 0 0 8px rgba(255,102,0,0.2);
+  }
+  .zukan-emoji {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .zukan-emoji.unknown {
+    filter: brightness(0) opacity(0.3);
+  }
+  .zukan-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px;
+    color: var(--gray);
+    word-break: break-all;
+  }
+  .zukan-count {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px;
+    color: var(--yellow);
+    margin-top: 2px;
+  }
+
   /* ===== Responsive ===== */
   @media (max-width: 480px) {
     .monster-sprite { font-size: 60px; }
+    .monster-sprite.boss-sprite { font-size: 80px; }
     .ut-btn { font-size: 9px; padding: 5px 10px; }
     .choice-btn { font-size: 14px; padding: 8px 12px; }
+    .zukan-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
 </head>
@@ -372,6 +445,11 @@
           </button>
         </div>
       </div>
+
+      <!-- Zukan Button -->
+      <button class="ut-btn" onclick="showZukan()" style="width:100%;justify-content:center;padding:12px;margin-bottom:16px;font-size:12px;">
+        &#128214; ZUKAN &#12316; ずかん &#12316;
+      </button>
 
       <!-- Save Info -->
       <div id="savedStatus" class="ut-box" style="text-align:left;font-size:13px;">
@@ -427,7 +505,7 @@
     </div>
 
     <!-- Player HP -->
-    <div class="ut-box" style="border-top:none; padding-top:12px; padding-bottom:12px; margin-bottom:0;">
+    <div id="playerHpBox" class="ut-box" style="border-top:none; padding-top:12px; padding-bottom:12px; margin-bottom:0;">
       <div class="hp-container">
         <svg class="soul-heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
         <span class="hp-label" style="color:var(--white);">きみ</span>
@@ -481,7 +559,7 @@
   <!-- ===== VICTORY OVERLAY ===== -->
   <div id="victoryScreen" class="screen overlay">
     <div class="overlay-content fade-in">
-      <p class="font-pixel" style="font-size:14px; color:var(--yellow); margin-bottom:8px;">* YOU WON!</p>
+      <p id="victoryTitle" class="font-pixel" style="font-size:14px; color:var(--yellow); margin-bottom:8px;">* YOU WON!</p>
       <p id="victoryMsg" class="font-jp" style="font-size:16px; color:var(--white); margin-bottom:8px; line-height:1.8;"></p>
       <p class="font-pixel" style="font-size:10px; color:var(--yellow); margin-bottom:24px;">
         +<span id="expGained">10</span> EXP
@@ -517,11 +595,26 @@
     </div>
   </div>
 
+  <!-- ===== MONSTER BOOK (ZUKAN) SCREEN ===== -->
+  <div id="monsterBookScreen" class="screen" style="position:relative;z-index:1;">
+    <div style="text-align:center; padding-top:20px;">
+      <h2 class="font-pixel" style="font-size:16px; color:var(--yellow); margin-bottom:4px;">&#128214; MONSTER ZUKAN</h2>
+      <p class="font-jp" style="font-size:13px; color:var(--gray); margin-bottom:12px;">&#12316; モンスターずかん &#12316;</p>
+      <div id="zukanCompletion" class="font-pixel" style="font-size:9px; color:var(--white); margin-bottom:12px;"></div>
+      <div class="ut-box" style="padding:12px;">
+        <div id="zukanGrid" class="zukan-grid"></div>
+      </div>
+      <button class="ut-btn" onclick="goTitle()" style="margin-top:16px;font-size:12px;padding:8px 24px;">
+        &#9664; BACK
+      </button>
+    </div>
+  </div>
+
 </div>
 
 <script>
 // ===================================================================
-// CHIPTUNE MUSIC ENGINE (Web Audio API)
+// CHIPTUNE MUSIC ENGINE (Web Audio API) - DQ-Style Epic BGM
 // ===================================================================
 class ChiptunePlayer {
   constructor() {
@@ -531,8 +624,9 @@ class ChiptunePlayer {
     this.nextNoteTime = 0;
     this.currentNote = 0;
     this.timerID = null;
-    this.tempo = 140;
+    this.tempo = 165;
     this.gainNode = null;
+    this.currentBGM = 'battle'; // 'battle' or 'boss'
   }
 
   init() {
@@ -543,48 +637,131 @@ class ChiptunePlayer {
     this.gainNode.connect(this.ctx.destination);
   }
 
-  // Undertale-inspired melody (heroic + mysterious)
+  // DQ-style heroic battle melody - Major key, triumphant ascending
   getMelody() {
-    // Notes as [frequency, duration_in_16ths, type]
     const C4=261.63,D4=293.66,E4=329.63,F4=349.23,G4=392,A4=440,B4=493.88;
-    const C5=523.25,D5=587.33,E5=659.25,F5=698.46,G5=784;
-    const R=0; // rest
-
+    const C5=523.25,D5=587.33,E5=659.25,F5=698.46,G5=784,A5=880;
+    const R=0;
     return [
-      // Main theme - hopeful & determined
-      [E4,2],[G4,2],[B4,2],[C5,4],[B4,2],[G4,2],
-      [A4,2],[B4,2],[A4,2],[G4,2],[E4,4],
-      [D4,2],[E4,2],[G4,2],[A4,4],[G4,2],[E4,2],
-      [F4,2],[E4,2],[D4,2],[E4,4],[R,2],
-      // Rising part
-      [E4,2],[G4,2],[B4,2],[D5,4],[C5,2],[B4,2],
-      [A4,2],[B4,2],[C5,2],[B4,2],[G4,4],
-      [A4,2],[G4,2],[E4,2],[G4,4],[E4,2],[D4,2],
-      [E4,8],[R,4],
-      // Emotional bridge
-      [C5,2],[B4,2],[G4,2],[A4,4],[G4,2],
-      [E4,2],[G4,2],[A4,2],[B4,4],[R,2],
-      [C5,2],[D5,2],[C5,2],[B4,2],[A4,2],[G4,2],
-      [E4,4],[G4,4],[E4,4],[R,4],
+      // Heroic opening - bold ascending phrase
+      [G4,2],[A4,1],[B4,1],[D5,2],[C5,1],[B4,1],[A4,2],[G4,2],
+      [E4,2],[G4,1],[A4,1],[B4,3],[A4,1],[G4,2],[R,2],
+      // Triumphant continuation
+      [C5,2],[B4,1],[C5,1],[D5,2],[E5,2],[D5,2],[C5,1],[B4,1],
+      [A4,2],[B4,1],[C5,1],[D5,3],[R,1],[D5,2],[R,2],
+      // Soaring bridge
+      [E5,2],[D5,1],[E5,1],[G5,2],[E5,2],[D5,2],[C5,1],[D5,1],
+      [E5,2],[C5,2],[B4,2],[A4,1],[G4,1],[A4,4],
+      // Resolution with fanfare feel
+      [B4,2],[C5,1],[D5,1],[E5,2],[D5,2],[C5,2],[B4,2],
+      [G4,2],[A4,2],[B4,2],[C5,2],[D5,4],[R,4],
     ];
   }
 
+  // Strong bass with octave jumps
   getBass() {
     const C3=130.81,D3=146.83,E3=164.81,F3=174.61,G3=196,A3=220,B3=246.94;
+    const C4=261.63,D4=293.66,E4=329.63,G4=392;
     const R=0;
     return [
-      [E3,4],[E3,4],[E3,4],[E3,4],
-      [A3,4],[A3,4],[G3,4],[G3,4],
-      [D3,4],[D3,4],[A3,4],[A3,4],
-      [D3,4],[D3,4],[E3,4],[E3,4],
-      [E3,4],[E3,4],[G3,4],[G3,4],
-      [A3,4],[A3,4],[G3,4],[G3,4],
-      [A3,4],[A3,4],[G3,4],[G3,4],
-      [E3,8],[E3,4],[R,4],
-      [C3,4],[C3,4],[A3,4],[A3,4],
-      [E3,4],[E3,4],[B3,4],[B3,4],
-      [C3,4],[D3,4],[C3,4],[B3,4],
-      [E3,4],[G3,4],[E3,4],[R,4],
+      [G3,2],[G4,2],[G3,2],[G4,2],[A3,2],[A3,2],[G3,2],[G3,2],
+      [E3,2],[E3,2],[G3,2],[G3,2],[B3,2],[B3,2],[R,2],[G3,2],
+      [C4,2],[C3,2],[C4,2],[C3,2],[E3,2],[E3,2],[D3,2],[D3,2],
+      [A3,2],[A3,2],[D3,2],[D3,2],[D4,2],[D3,2],[D4,2],[R,2],
+      [E3,2],[E4,2],[E3,2],[E4,2],[C3,2],[C4,2],[D3,2],[D4,2],
+      [E3,2],[C3,2],[B3,2],[A3,2],[G3,2],[A3,2],[A3,2],[A3,2],
+      [B3,2],[B3,2],[E3,2],[E4,2],[C3,2],[C4,2],[B3,2],[B3,2],
+      [G3,2],[A3,2],[B3,2],[C4,2],[G3,4],[R,4],
+    ];
+  }
+
+  // Harmony (3rd/5th above melody)
+  getHarmony() {
+    const C4=261.63,D4=293.66,E4=329.63,F4=349.23,G4=392,A4=440,B4=493.88;
+    const C5=523.25,D5=587.33,E5=659.25,G5=784;
+    const R=0;
+    return [
+      [B4,2],[C5,1],[D5,1],[G5,2],[E5,1],[D5,1],[C5,2],[B4,2],
+      [G4,2],[B4,1],[C5,1],[D5,3],[C5,1],[B4,2],[R,2],
+      [E5,2],[D5,1],[E5,1],[G5,2],[G5,2],[G5,2],[E5,1],[D5,1],
+      [C5,2],[D5,1],[E5,1],[G5,3],[R,1],[G5,2],[R,2],
+      [G5,2],[G5,1],[G5,1],[B4,2],[G5,2],[G5,2],[E5,1],[G5,1],
+      [G5,2],[E5,2],[D5,2],[C5,1],[B4,1],[C5,4],
+      [D5,2],[E5,1],[G5,1],[G5,2],[G5,2],[E5,2],[D5,2],
+      [B4,2],[C5,2],[D5,2],[E5,2],[G5,4],[R,4],
+    ];
+  }
+
+  // Drum pattern using noise
+  getDrumPattern() {
+    // [type, duration] type: 'kick', 'hihat', 'rest'
+    return [
+      ['kick',2],['hihat',2],['kick',2],['hihat',2],
+      ['kick',2],['hihat',2],['kick',2],['hihat',2],
+    ];
+  }
+
+  // Boss BGM - Minor key, intense, faster
+  getBossMelody() {
+    const C4=261.63,Db4=277.18,D4=293.66,Eb4=311.13,E4=329.63,F4=349.23,Gb4=369.99,G4=392,Ab4=415.30,A4=440,Bb4=466.16,B4=493.88;
+    const C5=523.25,Db5=554.37,D5=587.33,Eb5=622.25,E5=659.25,F5=698.46,G5=784;
+    const R=0;
+    return [
+      // Ominous, driving opening
+      [E4,1],[E4,1],[E4,1],[R,1],[E4,1],[R,1],[G4,1],[E4,1],
+      [C4,1],[E4,1],[G4,2],[Ab4,2],[G4,1],[E4,1],
+      [A4,2],[A4,1],[R,1],[A4,1],[G4,1],[F4,1],[E4,1],
+      [E4,2],[G4,2],[B4,2],[C5,1],[B4,1],
+      // Tension build
+      [C5,1],[C5,1],[C5,1],[R,1],[C5,1],[R,1],[D5,1],[C5,1],
+      [B4,1],[C5,1],[E5,2],[Eb5,2],[D5,1],[C5,1],
+      [D5,2],[C5,1],[B4,1],[A4,1],[B4,1],[C5,1],[D5,1],
+      [E5,2],[D5,2],[C5,2],[B4,1],[R,1],
+      // Dark resolution
+      [E5,1],[E5,1],[D5,1],[C5,1],[B4,1],[A4,1],[G4,1],[R,1],
+      [A4,2],[G4,1],[F4,1],[E4,2],[R,2],
+      [E4,1],[G4,1],[B4,1],[E5,1],[D5,1],[C5,1],[B4,1],[A4,1],
+      [E4,4],[R,4],
+    ];
+  }
+
+  getBossBass() {
+    const A2=110,B2=123.47,C3=130.81,D3=146.83,E3=164.81,F3=174.61,G3=196,Ab3=207.65,A3=220,B3=246.94;
+    const C4=261.63,E4=329.63;
+    const R=0;
+    return [
+      [E3,1],[E3,1],[E4,1],[E3,1],[E3,1],[E4,1],[E3,1],[E3,1],
+      [C3,1],[C3,1],[C3,2],[Ab3,2],[G3,1],[E3,1],
+      [A2,2],[A3,1],[A2,1],[A3,1],[G3,1],[F3,1],[E3,1],
+      [E3,2],[E3,2],[B2,2],[C3,1],[B2,1],
+      [C3,1],[C3,1],[C4,1],[C3,1],[C3,1],[C4,1],[D3,1],[C3,1],
+      [B2,1],[C3,1],[E3,2],[E3,2],[D3,1],[C3,1],
+      [D3,2],[C3,1],[B2,1],[A2,1],[B2,1],[C3,1],[D3,1],
+      [E3,2],[D3,2],[C3,2],[B2,1],[R,1],
+      [E3,1],[E3,1],[D3,1],[C3,1],[B2,1],[A2,1],[G3,1],[R,1],
+      [A2,2],[G3,1],[F3,1],[E3,2],[R,2],
+      [E3,1],[E3,1],[B2,1],[E3,1],[D3,1],[C3,1],[B2,1],[A2,1],
+      [E3,4],[R,4],
+    ];
+  }
+
+  getBossHarmony() {
+    const C4=261.63,D4=293.66,E4=329.63,F4=349.23,G4=392,Ab4=415.30,A4=440,B4=493.88;
+    const C5=523.25,D5=587.33,E5=659.25;
+    const R=0;
+    return [
+      [G4,1],[G4,1],[G4,1],[R,1],[G4,1],[R,1],[B4,1],[G4,1],
+      [E4,1],[G4,1],[B4,2],[C5,2],[B4,1],[G4,1],
+      [C5,2],[C5,1],[R,1],[C5,1],[B4,1],[A4,1],[G4,1],
+      [G4,2],[B4,2],[D5,2],[E5,1],[D5,1],
+      [E5,1],[E5,1],[E5,1],[R,1],[E5,1],[R,1],[G4,1],[E5,1],
+      [D5,1],[E5,1],[G4,2],[G4,2],[G4,1],[E4,1],
+      [G4,2],[E4,1],[D4,1],[C4,1],[D4,1],[E4,1],[G4,1],
+      [G4,2],[G4,2],[E4,2],[D4,1],[R,1],
+      [G4,1],[G4,1],[G4,1],[E4,1],[D4,1],[C4,1],[B4,1],[R,1],
+      [C5,2],[B4,1],[A4,1],[G4,2],[R,2],
+      [G4,1],[B4,1],[D5,1],[G4,1],[G4,1],[E4,1],[D4,1],[C4,1],
+      [G4,4],[R,4],
     ];
   }
 
@@ -602,6 +779,58 @@ class ChiptunePlayer {
     osc.stop(startTime + duration);
   }
 
+  playDrum(type, startTime, duration) {
+    if (!this.ctx) return;
+    if (type === 'kick') {
+      const osc = this.ctx.createOscillator();
+      const env = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(150, startTime);
+      osc.frequency.exponentialRampToValueAtTime(40, startTime + 0.08);
+      env.gain.setValueAtTime(0.4, startTime);
+      env.gain.exponentialRampToValueAtTime(0.01, startTime + 0.1);
+      osc.connect(env);
+      env.connect(this.gainNode);
+      osc.start(startTime);
+      osc.stop(startTime + 0.12);
+    } else if (type === 'hihat') {
+      const bufferSize = this.ctx.sampleRate * 0.05;
+      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = buffer;
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'highpass';
+      filter.frequency.value = 8000;
+      const env = this.ctx.createGain();
+      env.gain.setValueAtTime(0.1, startTime);
+      env.gain.exponentialRampToValueAtTime(0.001, startTime + 0.04);
+      noise.connect(filter);
+      filter.connect(env);
+      env.connect(this.gainNode);
+      noise.start(startTime);
+      noise.stop(startTime + 0.05);
+    }
+  }
+
+  playBattleBGM() {
+    this.currentBGM = 'battle';
+    this.tempo = 165;
+    this.restart();
+  }
+
+  playBossBGM() {
+    this.currentBGM = 'boss';
+    this.tempo = 180;
+    this.restart();
+  }
+
+  restart() {
+    this.stop();
+    this.start();
+  }
+
   start() {
     this.init();
     if (this.ctx.state === 'suspended') this.ctx.resume();
@@ -613,18 +842,45 @@ class ChiptunePlayer {
 
   schedule() {
     if (!this.playing) return;
-    const melody = this.getMelody();
-    const bass = this.getBass();
+    const isBoss = this.currentBGM === 'boss';
+    const melody = isBoss ? this.getBossMelody() : this.getMelody();
+    const bass = isBoss ? this.getBossBass() : this.getBass();
+    const harmony = isBoss ? this.getBossHarmony() : this.getHarmony();
+    const drums = this.getDrumPattern();
     const secPer16th = 60 / this.tempo / 4;
 
     while (this.nextNoteTime < this.ctx.currentTime + 0.2) {
       const mIdx = this.currentNote % melody.length;
       const bIdx = this.currentNote % bass.length;
+      const hIdx = this.currentNote % harmony.length;
+      const dIdx = this.currentNote % drums.length;
+
       const [mFreq, mDur] = melody[mIdx];
       const [bFreq, bDur] = bass[bIdx];
+      const [hFreq, hDur] = harmony[hIdx];
+      const [dType, dDur] = drums[dIdx];
 
+      // Melody - square wave
       this.playSquare(mFreq, this.nextNoteTime, mDur * secPer16th * 0.9, 'square');
+      // Bass - triangle wave
       this.playSquare(bFreq, this.nextNoteTime, bDur * secPer16th * 0.8, 'triangle');
+      // Harmony - triangle wave (quieter)
+      if (hFreq > 0) {
+        const osc = this.ctx.createOscillator();
+        const env = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.value = hFreq;
+        env.gain.setValueAtTime(0.12, this.nextNoteTime);
+        env.gain.exponentialRampToValueAtTime(0.01, this.nextNoteTime + hDur * secPer16th * 0.7);
+        osc.connect(env);
+        env.connect(this.gainNode);
+        osc.start(this.nextNoteTime);
+        osc.stop(this.nextNoteTime + hDur * secPer16th);
+      }
+      // Drums
+      if (dType !== 'rest') {
+        this.playDrum(dType, this.nextNoteTime, dDur * secPer16th);
+      }
 
       this.nextNoteTime += mDur * secPer16th;
       this.currentNote++;
@@ -668,6 +924,29 @@ class ChiptunePlayer {
       });
       gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
       osc.start(now); osc.stop(now + 0.6);
+    } else if (type === 'bossClear') {
+      // Epic boss clear fanfare
+      osc.type = 'square';
+      const fanfare = [523,587,659,784,880,784,880,1047];
+      fanfare.forEach((f,i) => {
+        osc.frequency.setValueAtTime(f, now + i * 0.15);
+      });
+      gain.gain.setValueAtTime(0.25, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 1.4);
+      osc.start(now); osc.stop(now + 1.4);
+      // Add a second harmony osc
+      const osc2 = this.ctx.createOscillator();
+      const gain2 = this.ctx.createGain();
+      osc2.type = 'triangle';
+      gain2.gain.value = 0.15;
+      osc2.connect(gain2);
+      gain2.connect(this.ctx.destination);
+      const harm = [392,440,494,523,659,523,659,784];
+      harm.forEach((f,i) => {
+        osc2.frequency.setValueAtTime(f, now + i * 0.15);
+      });
+      gain2.gain.exponentialRampToValueAtTime(0.01, now + 1.4);
+      osc2.start(now); osc2.stop(now + 1.4);
     } else if (type === 'levelup') {
       osc.type = 'square';
       [392,440,494,523,587,659,784,880].forEach((f,i) => {
@@ -686,6 +965,16 @@ class ChiptunePlayer {
       osc.frequency.exponentialRampToValueAtTime(110, now + 0.8);
       gain.gain.exponentialRampToValueAtTime(0.01, now + 1);
       osc.start(now); osc.stop(now + 1);
+    } else if (type === 'bossAppear') {
+      // Dramatic boss entrance sound
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(80, now);
+      osc.frequency.exponentialRampToValueAtTime(200, now + 0.3);
+      osc.frequency.setValueAtTime(80, now + 0.35);
+      osc.frequency.exponentialRampToValueAtTime(300, now + 0.7);
+      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.9);
+      osc.start(now); osc.stop(now + 0.9);
     }
   }
 }
@@ -729,30 +1018,51 @@ function createStars() {
 createStars();
 
 // ===================================================================
-// QUESTIONS (小5レベル)
+// QUESTIONS (小5レベル) - 30+ per subject
 // ===================================================================
 const questions = {
   math: [
     { q: "3.2 + 1.8 = ?", c: ["4.0","5.0","4.8","5.2"], a: 1 },
-    { q: "120 x 0.5 = ?", c: ["60","600","6","0.6"], a: 0 },
+    { q: "120 × 0.5 = ?", c: ["60","600","6","0.6"], a: 0 },
     { q: "1/4 + 1/4 = ?", c: ["1/2","2/4","1/8","2/8"], a: 0 },
-    { q: "360 \u00f7 6 = ?", c: ["60","50","70","36"], a: 0 },
+    { q: "360 ÷ 6 = ?", c: ["60","50","70","36"], a: 0 },
     { q: "2/5 を小数にすると?", c: ["0.2","0.4","0.5","0.25"], a: 1 },
-    { q: "三角形の内角の和は?", c: ["360\u00b0","90\u00b0","180\u00b0","270\u00b0"], a: 2 },
-    { q: "1.5 x 4 = ?", c: ["5","6","4.5","7"], a: 1 },
+    { q: "三角形の内角の和は?", c: ["360°","90°","180°","270°"], a: 2 },
+    { q: "1.5 × 4 = ?", c: ["5","6","4.5","7"], a: 1 },
     { q: "100 の 30% は?", c: ["3","30","300","0.3"], a: 1 },
     { q: "3/8 + 1/8 = ?", c: ["4/16","1/2","4/8","3/16"], a: 1 },
-    { q: "円の直径が10cm\n円周は? (\u03c03.14)", c: ["31.4cm","15.7cm","314cm","62.8cm"], a: 0 },
-    { q: "0.25 x 8 = ?", c: ["2","0.2","20","2.5"], a: 0 },
+    { q: "円の直径が10cm\n円周は? (π=3.14)", c: ["31.4cm","15.7cm","314cm","62.8cm"], a: 0 },
+    { q: "0.25 × 8 = ?", c: ["2","0.2","20","2.5"], a: 0 },
     { q: "偶数はどれ?", c: ["13","27","48","35"], a: 2 },
     { q: "50の約数はいくつ?", c: ["4つ","6つ","5つ","8つ"], a: 1 },
     { q: "1000mL = ?L", c: ["10","1","100","0.1"], a: 1 },
-    { q: "平行四辺形の面積\n底辺8cm 高さ5cm", c: ["40cm\u00b2","13cm\u00b2","20cm\u00b2","80cm\u00b2"], a: 0 },
-    { q: "2.4 \u00f7 0.6 = ?", c: ["0.4","4","40","0.04"], a: 1 },
+    { q: "平行四辺形の面積\n底辺8cm 高さ5cm", c: ["40cm²","13cm²","20cm²","80cm²"], a: 0 },
+    { q: "2.4 ÷ 0.6 = ?", c: ["0.4","4","40","0.04"], a: 1 },
     { q: "7/10 - 3/10 = ?", c: ["4/10","4/20","10/10","1/10"], a: 0 },
     { q: "1km = ? m", c: ["100","10000","1000","500"], a: 2 },
-    { q: "正五角形の内角の和は?", c: ["360\u00b0","540\u00b0","720\u00b0","450\u00b0"], a: 1 },
-    { q: "3\u00b2 (3の2乗) = ?", c: ["6","9","12","27"], a: 1 },
+    { q: "正五角形の内角の和は?", c: ["360°","540°","720°","450°"], a: 1 },
+    { q: "3² (3の2乗) = ?", c: ["6","9","12","27"], a: 1 },
+    // --- New questions ---
+    { q: "1/3 + 1/6 = ?", c: ["2/9","1/2","2/6","1/6"], a: 1 },
+    { q: "2/3 - 1/4 = ?\n(通分して)", c: ["5/12","1/7","3/7","1/12"], a: 0 },
+    { q: "帯分数 1と2/5 を\n仮分数にすると?", c: ["3/5","7/5","5/2","12/5"], a: 1 },
+    { q: "12と18の最大公約数は?", c: ["3","6","9","12"], a: 1 },
+    { q: "4と6の最小公倍数は?", c: ["12","24","6","10"], a: 0 },
+    { q: "台形の面積\n上底3cm 下底7cm 高さ4cm", c: ["20cm²","14cm²","28cm²","40cm²"], a: 0 },
+    { q: "直方体の体積\n縦3cm 横4cm 高さ5cm", c: ["12cm³","60cm³","35cm³","20cm³"], a: 1 },
+    { q: "時速60kmで走る車\n30分で何km進む?", c: ["30km","60km","120km","15km"], a: 0 },
+    { q: "5人のテストの平均が80点\n合計点は?", c: ["400点","80点","160点","500点"], a: 0 },
+    { q: "200の25%は?", c: ["25","50","75","100"], a: 1 },
+    { q: "0.8 × 0.3 = ?", c: ["2.4","0.24","0.024","24"], a: 1 },
+    { q: "三角形の面積\n底辺10cm 高さ6cm", c: ["60cm²","30cm²","16cm²","15cm²"], a: 1 },
+    { q: "円の半径5cmの面積は?\n(π=3.14)", c: ["78.5cm²","31.4cm²","15.7cm²","157cm²"], a: 0 },
+    { q: "1/2 ÷ 1/4 = ?", c: ["1/8","2","1/2","4"], a: 1 },
+    { q: "3/4 × 2/5 = ?", c: ["6/20","5/9","3/10","6/9"], a: 2 },
+    { q: "分速80mで歩く人\n15分で何m?", c: ["1200m","800m","950m","1500m"], a: 0 },
+    { q: "8.1 ÷ 0.9 = ?", c: ["0.9","9","90","0.09"], a: 1 },
+    { q: "5/6を約分すると?", c: ["5/6","1/2","2/3","10/12"], a: 0 },
+    { q: "角度の問題:\n一直線は何度?", c: ["90°","180°","360°","270°"], a: 1 },
+    { q: "正六角形の内角の和は?", c: ["540°","720°","360°","600°"], a: 1 },
   ],
   japanese: [
     { q: "「走る」の丁寧語は?", c: ["走ります","走られる","お走りする","走りなさる"], a: 0 },
@@ -770,10 +1080,31 @@ const questions = {
     { q: "「口」を使った四字熟語は?", c: ["異口同音","一石二鳥","四面楚歌","五里霧中"], a: 0 },
     { q: "敬語「先生が〇〇」\n正しいのは?", c: ["言った","おっしゃった","申した","言いました"], a: 1 },
     { q: "「さんずい」の漢字は?", c: ["松","海","林","空"], a: 1 },
+    // --- New questions ---
+    { q: "「にんべん」の漢字は?", c: ["体","花","明","石"], a: 0 },
+    { q: "「石の上にも三年」\nの意味は?", c: ["石は3年で割れる","辛抱すれば成功する","石を集めろ","3年で終わる"], a: 1 },
+    { q: "漢字の読み「複雑」", c: ["ふくざつ","ふくそう","ふくめん","ふくらむ"], a: 0 },
+    { q: "「以心伝心」の意味は?", c: ["手紙で伝える","心で通じ合う","大声で伝える","電話する"], a: 1 },
+    { q: "修飾語はどれ?\n「赤い花が咲く」", c: ["花が","咲く","赤い","が"], a: 2 },
+    { q: "述語はどれ?\n「鳥が空を飛ぶ」", c: ["鳥が","空を","飛ぶ","鳥"], a: 2 },
+    { q: "「目」を使った慣用句は?", c: ["目を丸くする","手を焼く","口を出す","足を引っ張る"], a: 0 },
+    { q: "「先生がいらっしゃる」\nこの敬語の種類は?", c: ["丁寧語","謙譲語","尊敬語","美化語"], a: 2 },
+    { q: "「私が申し上げる」\nこの敬語の種類は?", c: ["丁寧語","謙譲語","尊敬語","美化語"], a: 1 },
+    { q: "送り仮名が正しいのは?", c: ["短かい","短い","短い目","短めい"], a: 1 },
+    { q: "漢字の読み「賛成」", c: ["さんせい","さんぜい","ざんせい","さいせん"], a: 0 },
+    { q: "「馬の耳に念仏」の意味?", c: ["馬は賢い","意見を聞かない","お寺に行く","馬に乗る"], a: 1 },
+    { q: "「温故知新」の意味は?", c: ["新しいものが良い","古きを学び新しきを知る","古いものを捨てる","温度を知る"], a: 1 },
+    { q: "「きへん」の漢字は?", c: ["村","池","詩","鉄"], a: 0 },
+    { q: "「ごんべん」の漢字は?", c: ["結","語","銀","問"], a: 1 },
+    { q: "接続詞はどれ?", c: ["しかし","美しい","走る","犬"], a: 0 },
+    { q: "「七転び八起き」の意味?", c: ["7回転ぶ","何度失敗しても立ち上がる","8回起きる","運動する"], a: 1 },
+    { q: "「読む」の尊敬語は?", c: ["お読みになる","読まれる","読みます","拝読する"], a: 0 },
+    { q: "漢字の読み「経験」", c: ["けいけん","きょうけん","けいげん","きけん"], a: 0 },
+    { q: "「猿も木から落ちる」\nの意味は?", c: ["猿は危ない","得意な人も失敗する","木に登るな","猿を助けろ"], a: 1 },
   ],
   science: [
     { q: "植物が光合成で作るものは?", c: ["二酸化炭素","でんぷん","水","酸素だけ"], a: 1 },
-    { q: "水が氷になる温度は?", c: ["100\u00b0","0\u00b0","-10\u00b0","50\u00b0"], a: 1 },
+    { q: "水が氷になる温度は?", c: ["100°","0°","-10°","50°"], a: 1 },
     { q: "月の満ち欠けの周期は?", c: ["約7日","約15日","約30日","約365日"], a: 2 },
     { q: "電流の単位は?", c: ["V (ボルト)","A (アンペア)","W (ワット)","Ω (オーム)"], a: 1 },
     { q: "メダカのオスの特徴は?", c: ["背びれに切込み","体が赤い","ひげがある","しっぽが長い"], a: 0 },
@@ -787,6 +1118,26 @@ const questions = {
     { q: "音が伝わるのに必要なのは?", c: ["光","空気(物質)","電気","磁石"], a: 1 },
     { q: "光合成に必要なガスは?", c: ["酸素","窒素","二酸化炭素","水素"], a: 2 },
     { q: "ふりこの周期は何で決まる?", c: ["重さ","ひもの長さ","色","形"], a: 1 },
+    // --- New questions ---
+    { q: "水が水蒸気になることを?", c: ["凝固","蒸発","融解","昇華"], a: 1 },
+    { q: "水蒸気が冷えて水になる\nことを?", c: ["蒸発","凝結(液化)","融解","昇華"], a: 1 },
+    { q: "食物連鎖で一番下は?", c: ["肉食動物","草食動物","植物","菌類"], a: 2 },
+    { q: "太陽系で一番大きい\n惑星は?", c: ["土星","火星","木星","天王星"], a: 2 },
+    { q: "血液を全身に送る\n臓器は?", c: ["肺","肝臓","心臓","腎臓"], a: 2 },
+    { q: "食べ物を消化する\n臓器は?", c: ["心臓","胃","肺","腎臓"], a: 1 },
+    { q: "酸素を取り入れる\n臓器は?", c: ["胃","心臓","肺","肝臓"], a: 2 },
+    { q: "磁石のN極とN極は?", c: ["引き合う","しりぞけ合う","何も起きない","くっつく"], a: 1 },
+    { q: "電磁石を強くする方法は?", c: ["コイルを減らす","電流を強くする","磁石を外す","線を短くする"], a: 1 },
+    { q: "雲ができるのは\n水蒸気が何するから?", c: ["あたたまる","冷やされる","溶ける","燃える"], a: 1 },
+    { q: "天気は西から東、\nどちらに変わる?", c: ["西から東","東から西","北から南","南から北"], a: 0 },
+    { q: "光は何の中を\nまっすぐ進む?", c: ["水の中","同じ物質の中","ガラスの中","鏡の中"], a: 1 },
+    { q: "ものが燃えるのに\n必要なガスは?", c: ["二酸化炭素","窒素","酸素","水素"], a: 2 },
+    { q: "川の上流の石は\nどんな形?", c: ["角ばっている","丸い","平たい","細長い"], a: 0 },
+    { q: "アルカリ性の水溶液は?", c: ["酢","レモン汁","石灰水","炭酸水"], a: 2 },
+    { q: "リトマス紙が青→赤に\n変わるのは?", c: ["アルカリ性","中性","酸性","どれでもない"], a: 2 },
+    { q: "種子が発芽に\n必要な3つは?", c: ["水・空気・適温","光・水・土","土・肥料・光","水・土・適温"], a: 0 },
+    { q: "植物の根の役割は?", c: ["光合成","水や養分の吸収","種を作る","花粉を出す"], a: 1 },
+    { q: "人の体温は通常何度?", c: ["約34度","約36度","約38度","約40度"], a: 1 },
   ],
   social: [
     { q: "日本で一番長い川は?", c: ["利根川","信濃川","石狩川","筑後川"], a: 1 },
@@ -804,6 +1155,26 @@ const questions = {
     { q: "漁獲量が多い港は?", c: ["横浜港","銚子港","神戸港","博多港"], a: 1 },
     { q: "新幹線が最初に開通した区間?", c: ["東京-大阪","東京-名古屋","東京-博多","東京-仙台"], a: 0 },
     { q: "日本の通貨の単位は?", c: ["ドル","ウォン","元","円"], a: 3 },
+    // --- New questions ---
+    { q: "日本で一番高い山は?", c: ["北岳","槍ヶ岳","富士山","奥穂高岳"], a: 2 },
+    { q: "日本で一番大きい湖は?", c: ["洞爺湖","琵琶湖","霞ヶ浦","猪苗代湖"], a: 1 },
+    { q: "衆議院の任期は?", c: ["3年","4年","5年","6年"], a: 1 },
+    { q: "参議院の任期は?", c: ["3年","4年","5年","6年"], a: 3 },
+    { q: "日本国憲法の三原則\nでないのは?", c: ["国民主権","平和主義","基本的人権の尊重","富国強兵"], a: 3 },
+    { q: "りんごの生産量1位は?", c: ["山形県","長野県","青森県","岩手県"], a: 2 },
+    { q: "みかんの生産量1位は?", c: ["静岡県","和歌山県","愛媛県","熊本県"], a: 1 },
+    { q: "日本の自動車工業が\n盛んな県は?", c: ["東京都","愛知県","大阪府","福岡県"], a: 1 },
+    { q: "世界で一番大きい海は?", c: ["大西洋","インド洋","太平洋","北極海"], a: 2 },
+    { q: "日本の内閣のトップは?", c: ["天皇","内閣総理大臣","国会議長","最高裁判所長官"], a: 1 },
+    { q: "三権分立の三権は?\n立法・行政と?", c: ["警察","軍事","司法","外交"], a: 2 },
+    { q: "促成栽培(そくせい)とは?", c: ["ゆっくり育てる","時期を早めて出荷","有機栽培","水耕栽培"], a: 1 },
+    { q: "日本海側の冬の特徴は?", c: ["乾燥する","雪が多い","暑い","台風が多い"], a: 1 },
+    { q: "北海道の農業の特徴は?", c: ["小さい農地","大規模な畑作","棚田が多い","みかん栽培"], a: 1 },
+    { q: "世界遺産の富士山がある\n県は2つ。静岡県と?", c: ["長野県","神奈川県","山梨県","東京都"], a: 2 },
+    { q: "日本の貿易で\n輸出額が多い品目は?", c: ["食料品","自動車","衣類","石油"], a: 1 },
+    { q: "日本が石油を多く\n輸入している地域は?", c: ["ヨーロッパ","中東","アメリカ","アフリカ"], a: 1 },
+    { q: "世界で一番面積が\n大きい国は?", c: ["カナダ","中国","アメリカ","ロシア"], a: 3 },
+    { q: "瀬戸内海に面して\nない県は?", c: ["岡山県","香川県","鳥取県","広島県"], a: 2 },
   ]
 };
 
@@ -811,18 +1182,32 @@ const questions = {
 // ENEMIES
 // ===================================================================
 const enemies = [
-  { name: "Froggit", emoji: "\ud83d\udc38", hp: 30, atk: 8, exp: 15 },
-  { name: "Whimsun", emoji: "\ud83e\uddda", hp: 25, atk: 6, exp: 12 },
-  { name: "Moldsmal", emoji: "\ud83e\uddea", hp: 35, atk: 10, exp: 18 },
-  { name: "Loox", emoji: "\ud83d\udc41\ufe0f", hp: 40, atk: 12, exp: 20 },
-  { name: "Vegetoid", emoji: "\ud83e\udd55", hp: 45, atk: 14, exp: 22 },
-  { name: "Migosp", emoji: "\ud83e\udeb3", hp: 50, atk: 15, exp: 25 },
-  { name: "Doggo", emoji: "\ud83d\udc3a", hp: 55, atk: 16, exp: 28 },
-  { name: "Papyrus", emoji: "\ud83d\udc80", hp: 70, atk: 18, exp: 35 },
-  { name: "Undyne", emoji: "\ud83d\udc1f", hp: 90, atk: 22, exp: 42 },
-  { name: "Muffet", emoji: "\ud83d\udd77\ufe0f", hp: 80, atk: 20, exp: 38 },
-  { name: "Mettaton", emoji: "\ud83e\udd16", hp: 100, atk: 25, exp: 50 },
-  { name: "Asgore", emoji: "\ud83d\udc51", hp: 130, atk: 30, exp: 65 },
+  { name: "Froggit", emoji: "\uD83D\uDC38", hp: 30, atk: 8, exp: 15 },
+  { name: "Whimsun", emoji: "\uD83E\uDDDA", hp: 25, atk: 6, exp: 12 },
+  { name: "Moldsmal", emoji: "\uD83E\uDDEA", hp: 35, atk: 10, exp: 18 },
+  { name: "Loox", emoji: "\uD83D\uDC41\uFE0F", hp: 40, atk: 12, exp: 20 },
+  { name: "Vegetoid", emoji: "\uD83E\uDD55", hp: 45, atk: 14, exp: 22 },
+  { name: "Migosp", emoji: "\uD83E\uDEB3", hp: 50, atk: 15, exp: 25 },
+  { name: "Doggo", emoji: "\uD83D\uDC3A", hp: 55, atk: 16, exp: 28 },
+  { name: "Papyrus", emoji: "\uD83D\uDC80", hp: 70, atk: 18, exp: 35 },
+  { name: "Undyne", emoji: "\uD83D\uDC1F", hp: 90, atk: 22, exp: 42 },
+  { name: "Muffet", emoji: "\uD83D\uDD77\uFE0F", hp: 80, atk: 20, exp: 38 },
+  { name: "Mettaton", emoji: "\uD83E\uDD16", hp: 100, atk: 25, exp: 50 },
+  { name: "Asgore", emoji: "\uD83D\uDC51", hp: 130, atk: 30, exp: 65 },
+];
+
+// ===================================================================
+// BOSSES (every 5th stage)
+// ===================================================================
+const bosses = [
+  { name: "スライムキング", emoji: "\uD83D\uDC51\uD83E\uDDCA", hp: 100, atk: 20, exp: 60, stage: 5,
+    message: "* スライムキング が あらわれた!\n  すべてを のみこむ ぬるぬる!" },
+  { name: "ダークナイト", emoji: "\u2694\uFE0F\uD83D\uDDA4", hp: 180, atk: 30, exp: 100, stage: 10,
+    message: "* ダークナイト が あらわれた!\n  やみの けんが うなる!" },
+  { name: "ドラゴン", emoji: "\uD83D\uDC09\uD83D\uDD25", hp: 280, atk: 40, exp: 150, stage: 15,
+    message: "* ドラゴン が あらわれた!\n  ほのおの いきが せまる!" },
+  { name: "まおう", emoji: "\uD83D\uDE08\uD83D\uDD25\uD83D\uDC80", hp: 400, atk: 55, exp: 250, stage: 20,
+    message: "* まおう が あらわれた!\n  せかいが やみに つつまれる..." },
 ];
 
 // ===================================================================
@@ -837,7 +1222,35 @@ let state = {
   enemy: null, enemyHp: 0, enemyMaxHp: 0,
   usedQuestions: [],
   isAnimating: false,
+  isBossBattle: false,
+  monsterBook: {}, // { "name": { emoji, defeated: true/false, count: N, isBoss: bool } }
 };
+
+// ===================================================================
+// MONSTER BOOK HELPERS
+// ===================================================================
+function initMonsterBook() {
+  // Ensure all monsters and bosses exist in the book
+  enemies.forEach(e => {
+    if (!state.monsterBook[e.name]) {
+      state.monsterBook[e.name] = { emoji: e.emoji, defeated: false, count: 0, isBoss: false };
+    }
+  });
+  bosses.forEach(b => {
+    if (!state.monsterBook[b.name]) {
+      state.monsterBook[b.name] = { emoji: b.emoji, defeated: false, count: 0, isBoss: true };
+    }
+  });
+}
+
+function recordDefeatedMonster(name, emoji, isBoss) {
+  if (!state.monsterBook[name]) {
+    state.monsterBook[name] = { emoji, defeated: true, count: 1, isBoss: !!isBoss };
+  } else {
+    state.monsterBook[name].defeated = true;
+    state.monsterBook[name].count++;
+  }
+}
 
 // ===================================================================
 // SAVE / LOAD
@@ -847,6 +1260,7 @@ function saveGame() {
     playerLevel: state.playerLevel, playerExp: state.playerExp,
     playerMaxHp: state.playerMaxHp, playerAtk: state.playerAtk,
     totalDefeated: state.totalDefeated, maxCombo: state.maxCombo,
+    monsterBook: state.monsterBook,
   }));
 }
 
@@ -859,8 +1273,12 @@ function loadGame() {
       playerMaxHp: s.playerMaxHp||100, playerAtk: s.playerAtk||15,
       totalDefeated: s.totalDefeated||0, maxCombo: s.maxCombo||0,
     });
+    if (s.monsterBook) {
+      state.monsterBook = s.monsterBook;
+    }
     updateExpToNext();
   }
+  initMonsterBook();
   updateSavedStatus();
 }
 
@@ -892,8 +1310,55 @@ function showScreen(id) {
 
 function goTitle() {
   saveGame();
+  if (musicOn && music.currentBGM !== 'battle') {
+    music.playBattleBGM();
+  }
   showScreen('titleScreen');
   updateSavedStatus();
+}
+
+// ===================================================================
+// MONSTER BOOK (ZUKAN) SCREEN
+// ===================================================================
+function showZukan() {
+  music.playSfx('select');
+  initMonsterBook();
+
+  const allMonsters = Object.keys(state.monsterBook);
+  const defeated = allMonsters.filter(k => state.monsterBook[k].defeated);
+  const pct = allMonsters.length > 0 ? Math.floor((defeated.length / allMonsters.length) * 100) : 0;
+
+  document.getElementById('zukanCompletion').textContent =
+    `COMPLETION: ${defeated.length}/${allMonsters.length} (${pct}%)`;
+
+  const grid = document.getElementById('zukanGrid');
+  // Show regular enemies first, then bosses
+  const orderedNames = [];
+  enemies.forEach(e => { if (!orderedNames.includes(e.name)) orderedNames.push(e.name); });
+  bosses.forEach(b => { if (!orderedNames.includes(b.name)) orderedNames.push(b.name); });
+  // Add any others that might be in monsterBook but not in arrays
+  allMonsters.forEach(n => { if (!orderedNames.includes(n)) orderedNames.push(n); });
+
+  grid.innerHTML = orderedNames.map(name => {
+    const m = state.monsterBook[name];
+    const isDefeated = m && m.defeated;
+    const isBoss = m && m.isBoss;
+    const cardClass = isDefeated ? (isBoss ? 'zukan-card defeated boss-card' : 'zukan-card defeated') : 'zukan-card';
+    const emojiClass = isDefeated ? 'zukan-emoji' : 'zukan-emoji unknown';
+    const displayName = isDefeated ? name : '???';
+    const countText = isDefeated ? `x${m.count}` : '';
+
+    return `
+      <div class="${cardClass}">
+        <span class="${emojiClass}">${m ? m.emoji : '?'}</span>
+        <div class="zukan-name">${displayName}</div>
+        ${countText ? `<div class="zukan-count">${countText}</div>` : ''}
+        ${isBoss && isDefeated ? '<div class="font-pixel" style="font-size:5px;color:var(--orange);margin-top:1px;">BOSS</div>' : ''}
+      </div>
+    `;
+  }).join('');
+
+  showScreen('monsterBookScreen');
 }
 
 // ===================================================================
@@ -906,19 +1371,102 @@ function startGame(subject) {
   state.combo = 0;
   state.stage = 1;
   state.usedQuestions = [];
+  state.isBossBattle = false;
   spawnEnemy();
   showScreen('battleScreen');
   updateBattleUI();
   showNextQuestion();
+  // Ensure battle BGM
+  if (musicOn && music.currentBGM !== 'battle') {
+    music.playBattleBGM();
+  }
 }
 
 function spawnEnemy() {
+  // Check for boss stage (every 5th)
+  if (state.stage % 5 === 0) {
+    const bossIdx = bosses.findIndex(b => b.stage === state.stage);
+    if (bossIdx !== -1) {
+      spawnBoss(bosses[bossIdx]);
+      return;
+    }
+    // If no matching boss defined, use last boss scaled
+    const lastBoss = bosses[bosses.length - 1];
+    const scale = 1 + (state.stage - lastBoss.stage) * 0.15;
+    const scaledBoss = {
+      ...lastBoss,
+      hp: Math.floor(lastBoss.hp * scale),
+      atk: Math.floor(lastBoss.atk * scale),
+      exp: Math.floor(lastBoss.exp * scale),
+      message: `* ${lastBoss.name} が ふたたび あらわれた!\n  さらに つよくなっている!`
+    };
+    spawnBoss(scaledBoss);
+    return;
+  }
+
+  state.isBossBattle = false;
+  removeBossStyle();
   const idx = Math.min(state.stage - 1, enemies.length - 1);
-  const base = enemies[idx];
+  const base = enemies[idx % enemies.length];
   const scale = 1 + (state.stage - 1) * 0.1;
   state.enemy = { ...base };
   state.enemyHp = Math.floor(base.hp * scale);
   state.enemyMaxHp = state.enemyHp;
+}
+
+function spawnBoss(boss) {
+  state.isBossBattle = true;
+  state.enemy = { ...boss, isBoss: true };
+  const scale = 1 + Math.floor(state.stage / 20) * 0.3;
+  state.enemyHp = Math.floor(boss.hp * scale);
+  state.enemyMaxHp = state.enemyHp;
+
+  // Boss entrance animation
+  applyBossStyle();
+  showBossEntrance(boss);
+
+  // Switch to boss BGM
+  if (musicOn) {
+    music.playBossBGM();
+  }
+}
+
+function applyBossStyle() {
+  document.getElementById('battleField').classList.add('boss-battle');
+  document.getElementById('playerHpBox').classList.add('boss-battle');
+  document.getElementById('messageBox').classList.add('boss-battle');
+  document.getElementById('questionArea').classList.add('boss-battle');
+}
+
+function removeBossStyle() {
+  document.getElementById('battleField').classList.remove('boss-battle');
+  document.getElementById('playerHpBox').classList.remove('boss-battle');
+  document.getElementById('messageBox').classList.remove('boss-battle');
+  document.getElementById('questionArea').classList.remove('boss-battle');
+  // Restore normal BGM if needed
+  if (musicOn && music.currentBGM === 'boss') {
+    music.playBattleBGM();
+  }
+}
+
+function showBossEntrance(boss) {
+  // Screen flash
+  const flash = document.createElement('div');
+  flash.className = 'boss-flash-overlay';
+  document.body.appendChild(flash);
+  setTimeout(() => flash.remove(), 700);
+
+  // Play boss appear SFX
+  music.playSfx('bossAppear');
+
+  // Boss sprite entrance animation
+  const sprite = document.getElementById('enemySprite');
+  sprite.classList.remove('float-bounce');
+  sprite.classList.add('boss-sprite', 'boss-entrance');
+  setTimeout(() => {
+    sprite.classList.remove('boss-entrance');
+    sprite.classList.add('boss-float');
+  }, 800);
 }
 
 // ===================================================================
@@ -940,6 +1488,14 @@ function updateBattleUI() {
   document.getElementById('enemyHpText').textContent = `${Math.max(0,state.enemyHp)} / ${state.enemyMaxHp}`;
   document.getElementById('enemyName').textContent = state.enemy.name;
   document.getElementById('enemySprite').textContent = state.enemy.emoji;
+
+  // Boss sprite size
+  const sprite = document.getElementById('enemySprite');
+  if (state.isBossBattle) {
+    sprite.classList.add('boss-sprite');
+  } else {
+    sprite.classList.remove('boss-sprite', 'boss-float');
+  }
 
   const expPct = (state.playerExp / state.expToNext) * 100;
   document.getElementById('expBar').style.width = Math.min(100, expPct) + '%';
@@ -974,7 +1530,12 @@ function showNextQuestion() {
     </button>
   `).join('');
 
-  setMessage(state.enemy.name + " が あらわれた!");
+  // Show boss message or normal message
+  if (state.isBossBattle && state.enemy.message && state.enemyHp === state.enemyMaxHp) {
+    setMessage(state.enemy.message);
+  } else {
+    setMessage(state.enemy.name + " が あらわれた!");
+  }
 }
 
 function setMessage(text) {
@@ -1010,7 +1571,7 @@ function handleCorrect() {
 
   // Hit animation
   const sprite = document.getElementById('enemySprite');
-  sprite.classList.remove('float-bounce');
+  sprite.classList.remove('float-bounce', 'boss-float');
   sprite.classList.add('hit-flash');
   showDamageNumber(dmg);
 
@@ -1019,7 +1580,8 @@ function handleCorrect() {
 
   setTimeout(() => {
     sprite.classList.remove('hit-flash');
-    sprite.classList.add('float-bounce');
+    if (state.isBossBattle) sprite.classList.add('boss-float');
+    else sprite.classList.add('float-bounce');
     if (state.enemyHp <= 0) handleVictory();
     else { state.isAnimating = false; showNextQuestion(); }
   }, 500);
@@ -1060,10 +1622,31 @@ function showDamageNumber(dmg) {
 // ===================================================================
 function handleVictory() {
   state.totalDefeated++;
-  const expGain = state.enemy.exp + Math.floor(state.combo * 2);
+  const isBoss = state.isBossBattle;
+  const expMultiplier = isBoss ? 3 : 1;
+  const expGain = (state.enemy.exp + Math.floor(state.combo * 2)) * expMultiplier;
   state.playerExp += expGain;
 
-  music.playSfx('victory');
+  // Record to monster book
+  recordDefeatedMonster(state.enemy.name, state.enemy.emoji, isBoss);
+
+  if (isBoss) {
+    music.playSfx('bossClear');
+  } else {
+    music.playSfx('victory');
+  }
+
+  // Set victory screen content
+  const victoryTitle = document.getElementById('victoryTitle');
+  if (isBoss) {
+    victoryTitle.innerHTML = '<span class="boss-victory-pulse" style="display:inline-block;">&#x2B50; BOSS DEFEATED! &#x2B50;</span>';
+    victoryTitle.style.color = 'var(--orange)';
+    victoryTitle.style.fontSize = '16px';
+  } else {
+    victoryTitle.textContent = '* YOU WON!';
+    victoryTitle.style.color = 'var(--yellow)';
+    victoryTitle.style.fontSize = '14px';
+  }
 
   document.getElementById('victoryMsg').textContent = `* ${state.enemy.name} を たおした!`;
   document.getElementById('expGained').textContent = expGain;
