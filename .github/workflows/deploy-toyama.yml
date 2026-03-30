@@ -1,0 +1,25 @@
+name: Deploy Toyama (蒸気会議)
+
+on:
+  push:
+    paths:
+      - 'toyama/**'
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy to ConoHa WING
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avz --delete --exclude 'slack-config.php'
+          path: toyama/
+          remote_path: /home/c4244218/public_html/toyama.schema.tokyo/
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_port: ${{ secrets.SSH_PORT }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}

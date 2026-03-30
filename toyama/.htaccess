@@ -1,0 +1,7 @@
+# Protect Slack config from direct access
+<Files "slack-config.php">
+    Require all denied
+</Files>
+
+# PHP error display off
+php_flag display_errors off
