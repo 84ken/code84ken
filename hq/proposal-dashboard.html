@@ -69,7 +69,7 @@ tailwind.config = {
   <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mb-8 sm:mb-10">
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">案件総数</p>
-      <p class="text-2xl sm:text-3xl font-bold text-slate-900">14<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
+      <p class="text-2xl sm:text-3xl font-bold text-slate-900">15<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
     </div>
     <div class="bg-emerald-50 rounded-xl border-2 border-emerald-300 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-emerald-700 font-medium mb-1">受注確定</p>
@@ -78,11 +78,11 @@ tailwind.config = {
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">提案中</p>
-      <p class="text-2xl sm:text-3xl font-bold text-primary-600">4<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
+      <p class="text-2xl sm:text-3xl font-bold text-primary-600">5<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
       <p class="text-xs text-slate-400 mt-1">＋予定2件</p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
-      <p class="text-xs sm:text-sm text-slate-500 mb-1">完了（失注）</p>
+      <p class="text-xs sm:text-sm text-slate-500 mb-1">失注</p>
       <p class="text-2xl sm:text-3xl font-bold text-slate-400">4<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
@@ -95,16 +95,16 @@ tailwind.config = {
   <!-- ステータスフィルタータブ -->
   <div class="flex flex-wrap gap-2 mb-6 no-print">
     <button onclick="filterStatus('all')" data-filter="all" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-primary-500 text-white cursor-pointer">
-      すべて <span class="bg-white/20 px-1.5 py-0.5 rounded text-xs">14</span>
+      すべて <span class="bg-white/20 px-1.5 py-0.5 rounded text-xs">15</span>
     </button>
     <button onclick="filterStatus('受注')" data-filter="受注" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-emerald-700 border border-emerald-200 hover:bg-emerald-50 cursor-pointer">
       受注 <span class="bg-emerald-100 px-1.5 py-0.5 rounded text-xs">4</span>
     </button>
     <button onclick="filterStatus('提案中')" data-filter="提案中" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
-      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">4</span>
+      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">5</span>
     </button>
-    <button onclick="filterStatus('完了')" data-filter="完了" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
-      完了 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">4</span>
+    <button onclick="filterStatus('失注')" data-filter="失注" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-500 border border-slate-200 hover:bg-gray-50 cursor-pointer">
+      失注 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">4</span>
     </button>
   </div>
 
@@ -162,15 +162,16 @@ tailwind.config = {
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 rounded-full bg-red-400"></span>
           <span class="text-sm font-bold text-red-800">確度 低</span>
-          <span class="ml-auto text-2xl font-bold text-red-600">4件</span>
+          <span class="ml-auto text-2xl font-bold text-red-600">5件</span>
         </div>
         <div class="space-y-2 text-sm">
           <div class="flex justify-between"><span class="text-red-800">観光客誘致・戦略的情報発信</span><span class="font-medium">¥39,600,000</span></div>
           <div class="flex justify-between"><span class="text-red-800">農産物ブランド化支援</span><span class="font-medium">¥9,900,000</span></div>
           <div class="flex justify-between"><span class="text-red-800">梨新品種ブランディング</span><span class="font-medium">¥3,470,000</span></div>
           <div class="flex justify-between"><span class="text-red-800">わっしょいInstagram運用</span><span class="font-medium">¥1,980,000</span></div>
+          <div class="flex justify-between"><span class="text-red-800">ねんりんピック eスポーツ</span><span class="font-medium">非公開</span></div>
           <div class="border-t border-red-200 pt-2 mt-3 flex justify-between font-bold text-red-900">
-            <span>小計</span><span>¥54,950,000</span>
+            <span>小計</span><span>¥54,950,000+</span>
           </div>
         </div>
       </div>
@@ -282,7 +283,7 @@ tailwind.config = {
       <div>
         <div class="flex items-center gap-2 mb-3">
           <span class="w-3 h-3 rounded-full bg-slate-400"></span>
-          <h3 class="font-bold text-slate-900">失注分析（3件）— 振り返り</h3>
+          <h3 class="font-bold text-slate-900">失注分析（4件）— 振り返り</h3>
         </div>
         <div class="bg-gray-50 rounded-lg p-4 space-y-3 text-sm text-body">
           <div>
@@ -436,13 +437,13 @@ tailwind.config = {
 
     <!-- 4月以降スケジュール -->
     <div>
-      <h3 class="font-bold text-slate-900 mb-4">4月以降 — 残り4案件</h3>
+      <h3 class="font-bold text-slate-900 mb-4">4月以降 — 提案中5案件</h3>
       <div class="space-y-3 text-sm">
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
           <span class="w-full sm:w-40 sm:text-right text-body font-medium">観光客誘致</span>
           <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
             <div class="absolute left-0 h-6 bg-emerald-200 rounded-full bar-fill" style="width:40%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-emerald-800 px-2 whitespace-nowrap">提出 3/31 → プレゼン 4/10 → 結果 4/13</span>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-emerald-800 px-2 whitespace-nowrap">提出 3/31 → 通知 4/8 → プレゼン 4/10 → 結果 4/13</span>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
@@ -464,6 +465,13 @@ tailwind.config = {
           <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
             <div class="absolute left-0 h-6 bg-amber-200 rounded-full bar-fill" style="width:30%"></div>
             <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2 whitespace-nowrap">提出 4/21 → プレゼン 4月下旬〜5月上旬</span>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <span class="w-full sm:w-40 sm:text-right text-body font-medium">ねんりんeスポーツ</span>
+          <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
+            <div class="absolute left-0 h-6 bg-violet-200 rounded-full bar-fill" style="width:20%"></div>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-violet-800 px-2 whitespace-nowrap">提出 4/23 → 1次 5/7 → 2次 5/13 → 結果 5月中旬</span>
           </div>
         </div>
       </div>
@@ -511,7 +519,7 @@ tailwind.config = {
               <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/23 9:30 済</span></span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-amber-600 font-medium">結果待ち</span>
+              <span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-600">受注確定</span>
             </td>
           </tr>
 
@@ -527,7 +535,7 @@ tailwind.config = {
               <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/23 13:15 済</span></span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-amber-600 font-medium">結果待ち</span>
+              <span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-600">受注確定</span>
             </td>
           </tr>
 
@@ -543,7 +551,7 @@ tailwind.config = {
               <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/23 13:15 済</span></span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-amber-600 font-medium">結果待ち</span>
+              <span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-600">受注確定</span>
             </td>
           </tr>
 
@@ -559,7 +567,7 @@ tailwind.config = {
               <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/23 14:45 済</span></span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-amber-600 font-medium">結果待ち</span>
+              <span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-600">受注確定</span>
             </td>
           </tr>
 
@@ -576,13 +584,13 @@ tailwind.config = {
           <tr class="hover:bg-gray-50 transition-colors">
             <td class="py-2.5 px-4 text-sm font-medium text-slate-900">観光客誘致・戦略的情報発信</td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-red-700 font-medium bg-red-100 px-2 py-0.5 rounded">3/23 17時</span>
+              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">3/23 済</span></span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-red-700 font-medium bg-red-100 px-2 py-0.5 rounded">3/31 12時</span>
+              <span class="inline-flex items-center gap-1 text-xs text-amber-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/31 12時</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/10<br>＠物産観光協会7F</span>
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">通知4/8 → 4/10</span>
             </td>
             <td class="py-2.5 px-3 text-center">
               <span class="text-xs text-slate-400">4/13</span>
@@ -590,19 +598,11 @@ tailwind.config = {
           </tr>
 
           <tr class="hover:bg-gray-50 transition-colors">
-            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">観光サポートサイト・SNS運営</td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">済</span></span>
-            </td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs"><span class="text-emerald-500 font-bold">✓</span> <span class="text-slate-400 line-through">済</span></span>
-            </td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-amber-100 px-2 py-0.5 rounded">3/27 10:30</span>
-            </td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-slate-400">—</span>
-            </td>
+            <td class="py-2.5 px-4 text-sm text-slate-500">観光サポートサイト・SNS運営</td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 済</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 済</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 3/27 済</span></td>
+            <td class="py-2.5 px-3 text-center"><span class="text-xs text-red-400">失注</span></td>
           </tr>
 
           <tr class="hover:bg-gray-50 transition-colors">
@@ -653,6 +653,22 @@ tailwind.config = {
             </td>
           </tr>
 
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">ねんりんピック eスポーツ</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">—</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/23 17時</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">1次 5/7 → 2次 5/13</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">5月中旬</span>
+            </td>
+          </tr>
+
           <tr class="opacity-50">
             <td class="py-2.5 px-4 text-sm text-slate-500">埼玉グルメPJ</td>
             <td class="py-2.5 px-3 text-center"><span class="text-xs text-slate-400">✓ 2/25 済</span></td>
@@ -663,7 +679,7 @@ tailwind.config = {
 
           <!-- 失注グループ -->
           <tr class="bg-slate-50">
-            <td colspan="5" class="py-2 px-4 text-xs font-bold text-slate-400">完了（失注）</td>
+            <td colspan="5" class="py-2 px-4 text-xs font-bold text-slate-400">失注</td>
           </tr>
           <tr class="opacity-50">
             <td class="py-2.5 px-4 text-sm text-slate-500">ちょこたび埼玉 SNS</td>
@@ -878,7 +894,7 @@ const projects = [
     id: 'kanko', num: 1, name: '観光客誘致・戦略的情報発信',
     sub: '12LP更新＋動画5本制作＋ターゲティング広告',
     client: '埼玉県物産観光協会', clientSub: 'DMO事業本部',
-    budget: '¥39,600,000', submitDate: '3/31', review: 'プレゼン 4/10',
+    budget: '¥39,600,000', submitDate: '3/31', review: '通知 4/8 → プレゼン 4/10',
     reviewSub: '結果 4/13',
     status: '提案中', confidence: '低', staff: []
   },
@@ -920,7 +936,7 @@ const projects = [
     client: 'ちょこたび埼玉', clientSub: 'DMO',
     budget: '¥17,617,000', submitDate: '提出済', review: 'プレゼン 3/27',
     reviewSub: '失注',
-    status: '完了', confidence: '—', staff: []
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'agri', num: 7, name: '埼玉県産農産物ブランド化支援',
@@ -944,7 +960,7 @@ const projects = [
     client: '埼玉県物産観光協会', clientSub: 'DMO事業本部',
     budget: '¥47,730,000', submitDate: '3/11', review: 'プレゼン 3/23',
     reviewSub: '',
-    status: '完了', confidence: '—', staff: [], lost: true
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'ichigo', num: '—', name: 'いちご大學',
@@ -968,7 +984,7 @@ const projects = [
     client: '埼玉県DMO', clientSub: '（物産観光協会）',
     budget: '非公開', submitDate: '3/9', review: 'プレゼン 3/18',
     reviewSub: '',
-    status: '完了', confidence: '—', staff: [], lost: true
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'ig-official', num: 11, name: 'Instagram埼玉県公式アカウント運用',
@@ -976,7 +992,7 @@ const projects = [
     client: '埼玉県', clientSub: '広聴広報課',
     budget: '¥2,904,000', submitDate: '~3/5', review: '1次 3月上旬',
     reviewSub: '2次 3月中旬',
-    status: '完了', confidence: '—', staff: [], lost: true
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'wassyoi', num: 12, name: '埼玉県公式Instagram「埼玉わっしょい」',
@@ -984,6 +1000,14 @@ const projects = [
     client: '埼玉県', clientSub: '農林部',
     budget: '¥1,980,000', submitDate: '4/17', review: 'プレゼン 4月下旬〜5月上旬',
     reviewSub: '',
+    status: '提案中', confidence: '低', staff: []
+  },
+  {
+    id: 'nenrin-esports', num: 13, name: 'ねんりんピック eスポーツ企画運営',
+    sub: 'ねんりんピック彩の国さいたま2026 オリジナルイベント',
+    client: '埼玉県', clientSub: '福祉部 ねんりんピック推進課',
+    budget: '非公開', submitDate: '4/23', review: '1次結果 5/7 → 2次 5/13',
+    reviewSub: '結果 5月中旬',
     status: '提案中', confidence: '低', staff: []
   }
 ];
@@ -1015,12 +1039,10 @@ function saveStaffData() {
 // 描画
 // ============================================================
 function getStatusBadge(status, lost) {
-  if (lost) return '<span class="bg-gray-100 text-slate-500 px-2.5 py-1 rounded-full text-xs font-medium">失注</span>';
   const map = {
     '受注': 'bg-emerald-100 text-emerald-700 ring-1 ring-emerald-300',
-    '進行中': 'bg-emerald-100 text-emerald-700',
     '提案中': 'bg-primary-50 text-primary-700',
-    '完了':   'bg-gray-100 text-slate-500',
+    '失注':  'bg-gray-100 text-slate-500',
   };
   const cls = map[status] || 'bg-gray-100 text-slate-500';
   return `<span class="${cls} px-2.5 py-1 rounded-full text-xs font-medium">${status}</span>`;
@@ -1107,11 +1129,12 @@ function renderChecklistMobile() {
     { name: 'すぽったま（運用保守）', group: '高', intent: '✓ 3/10 済', submit: '✓ 3/16 済', pres: '✓ 3/23 済', result: '✓ 受注' },
     { name: 'すぽったま（コンテンツ）', group: '高', intent: '✓ 3/12 済', submit: '✓ 3/18 済', pres: '✓ 3/23 済', result: '✓ 受注' },
     { name: 'ぶんたま', group: '高', intent: '✓ 済', submit: '✓ 3/13 済', pres: '✓ 3/23 済', result: '✓ 受注' },
-    { name: '観光客誘致', group: '低', intent: '3/23 17時', submit: '3/31 12時', pres: '4/10 ＠物産観光協会7F', result: '4/13' },
-    { name: '観光サポートサイト・SNS', group: '低', intent: '✓ 済', submit: '✓ 済', pres: '✓ 3/27 済', result: '✗ 失注' },
+    { name: '観光客誘致', group: '低', intent: '✓ 3/23 済', submit: '3/31 12時', pres: '通知4/8 → 4/10', result: '4/13' },
     { name: 'わっしょいIG', group: '低', intent: '4/6 17時', submit: '4/17 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
     { name: '農産物ブランド化', group: '低', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
     { name: '梨ブランディング', group: '低', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
+    { name: 'ねんりんeスポーツ', group: '低', intent: '—', submit: '4/23 17時', pres: '1次5/7 → 2次5/13', result: '5月中旬' },
+    { name: '観光サポートサイト', group: '低', intent: '✓ 済', submit: '✓ 済', pres: '✓ 3/27 済', result: '✗ 失注' },
     { name: 'グルメPJ', group: '低', intent: '✓ 2/25 済', submit: '✓ 3/11 済', pres: '✓ 3/23 済', result: '失注' },
   ];
 
