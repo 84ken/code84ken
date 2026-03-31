@@ -101,7 +101,7 @@
           "amount": 500000,
           "amountTax": 550000,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mmz3asnxsc4p"
         },
@@ -270,7 +270,7 @@
           "amount": 500000,
           "amountTax": 550000,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mn01f7ie05vk"
         },
@@ -596,7 +596,7 @@
           "amount": 300000,
           "amountTax": 330000,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mmz10fvgx338"
         },
@@ -1566,7 +1566,7 @@
           "amount": 1000000,
           "amountTax": 1100000,
           "expectedMonth": "2026-05",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mmz3gthkvnnx"
         }
@@ -1738,7 +1738,7 @@
           "amount": 3845659,
           "amountTax": 4230225,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "3月末請求予定"
         }
       ],
@@ -1783,7 +1783,7 @@
           "amount": 500000,
           "amountTax": 550000,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mmz37w3l1aex"
         }
