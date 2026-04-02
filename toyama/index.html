@@ -400,6 +400,18 @@ body {
 .tl-note { font-size: 0.78rem; color: var(--c-text-light); line-height: 1.6; }
 .tl-tag { display: inline-block; padding: 0.15rem 0.5rem; background: var(--c-sage-light); color: var(--c-sage); border-radius: 4px; font-size: 0.65rem; font-weight: 500; margin-top: 0.4rem; margin-right: 0.2rem; }
 
+/* ─── RESEARCH LINKS ─── */
+.research-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.research-item { display: flex; align-items: center; gap: 1rem; background: var(--c-card); border: 1px solid var(--c-border); border-radius: 14px; padding: 1rem 1.2rem; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+.research-item:hover { border-color: var(--c-accent); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.research-emoji { font-size: 1.5rem; flex-shrink: 0; width: 2.5rem; text-align: center; }
+.research-body { flex: 1; min-width: 0; }
+.research-name { font-size: 0.9rem; font-weight: 700; color: var(--c-heading); }
+.research-desc { font-size: 0.75rem; color: var(--c-text-light); line-height: 1.5; margin-top: 0.15rem; }
+.research-arrow { color: var(--c-text-light); font-size: 0.8rem; flex-shrink: 0; }
+@media (min-width: 600px) { .research-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .research-grid { grid-template-columns: repeat(3, 1fr); } }
+
 /* ─── INFO CARDS ─── */
 .info-grid {
   display: grid;
@@ -608,6 +620,7 @@ body {
     <a href="#members">Members</a>
     <a href="#venue">Venue</a>
     <a href="#schedule">Schedule</a>
+    <a href="#research">Research</a>
     <a href="#info">Info</a>
     <a href="#photos">Photos</a>
     <a href="#board">Board</a>
@@ -762,6 +775,47 @@ body {
         <div class="tl-item fade-up"><span class="tl-time">12:30</span><p class="tl-title">ランチ — ピアット スズキ チンクエ</p><p class="tl-note">岩瀬エリアのイタリアン。岩瀬地区の散策もおすすめ。</p><span class="tl-tag">🍝 イタリアン</span><span class="tl-tag">🏘️ 岩瀬</span></div>
         <div class="tl-item fade-up"><span class="tl-time">16:00</span><p class="tl-title">富山駅 解散</p><p class="tl-note">ここからが本当のはじまり。</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" class="sec sec-alt">
+  <div class="container">
+    <p class="sec-eyebrow fade-up">Research</p>
+    <h2 class="sec-title fade-up">富山予習ノート</h2>
+    <p class="sec-lead fade-up">旅をもっと楽しむための予習リンク集。</p>
+    <div class="research-grid fade-up">
+      <a class="research-item" href="https://newpeace.jp/cases/toyama_branding/" target="_blank" rel="noopener">
+        <span class="research-emoji">🍣</span>
+        <div class="research-body"><p class="research-name">NEWPEACE — 富山県ブランディング</p><p class="research-desc">「寿司といえば、富山」一点突破型ブランディング戦略</p></div>
+        <span class="research-arrow">→</span>
+      </a>
+      <a class="research-item" href="https://www.masuizumi.co.jp/" target="_blank" rel="noopener">
+        <span class="research-emoji">🍶</span>
+        <div class="research-body"><p class="research-name">満寿泉（桝田酒造店）</p><p class="research-desc">岩瀬の老舗酒蔵。Day 2 岩瀬エリア散策の予習に</p></div>
+        <span class="research-arrow">→</span>
+      </a>
+      <a class="research-item" href="http://www.sauna-alps.com/" target="_blank" rel="noopener">
+        <span class="research-emoji">♨️</span>
+        <div class="research-body"><p class="research-name">スパ・アルプス</p><p class="research-desc">富山の聖地サウナ。カプセルホテル併設、1泊2,900円〜</p></div>
+        <span class="research-arrow">→</span>
+      </a>
+      <a class="research-item" href="https://www.hotori.jp/" target="_blank" rel="noopener">
+        <span class="research-emoji">🎬</span>
+        <div class="research-body"><p class="research-name">ほとり座</p><p class="research-desc">総曲輪の映画館＆ライブスペース。富山カルチャーの拠点</p></div>
+        <span class="research-arrow">→</span>
+      </a>
+      <a class="research-item" href="https://kurosakiya.co.jp/" target="_blank" rel="noopener">
+        <span class="research-emoji">🐟</span>
+        <div class="research-body"><p class="research-name">黒崎屋</p><p class="research-desc">富山湾の新鮮な魚介・精肉・惣菜。地元の食を知る</p></div>
+        <span class="research-arrow">→</span>
+      </a>
+      <a class="research-item" href="https://maps.app.goo.gl/XUj85zCbuUySUCWN8" target="_blank" rel="noopener">
+        <span class="research-emoji">🍞</span>
+        <div class="research-body"><p class="research-name">森製パン所</p><p class="research-desc">地元で愛されるパン屋さん</p></div>
+        <span class="research-arrow">→</span>
+      </a>
     </div>
   </div>
 </section>
