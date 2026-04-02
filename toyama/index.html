@@ -508,6 +508,22 @@ body {
 .post-like.liked { border-color: #e57373; color: #e57373; background: rgba(229,115,115,0.08); }
 .post-like svg { width: 14px; height: 14px; transition: transform 0.25s cubic-bezier(.4,2,.6,1); }
 .post-like.liked svg { transform: scale(1.2); }
+.post-actions { display: flex; align-items: center; gap: 0.8rem; }
+.post-reply-btn { background: none; border: none; font-size: 0.75rem; color: var(--c-text-light); cursor: pointer; font-family: var(--font); padding: 0.25rem 0; touch-action: manipulation; }
+.post-reply-btn:hover { color: var(--c-accent); }
+.post-replies { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--c-border); display: flex; flex-direction: column; gap: 0.6rem; }
+.reply-card { display: flex; gap: 0.6rem; padding: 0.6rem 0; }
+.reply-avatar { width: 24px; height: 24px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 700; color: #fff; flex-shrink: 0; margin-top: 0.1rem; }
+.reply-body { flex: 1; min-width: 0; }
+.reply-meta { font-size: 0.7rem; color: var(--c-text-light); margin-bottom: 0.15rem; }
+.reply-meta strong { color: var(--c-text); font-weight: 600; }
+.reply-text { font-size: 0.82rem; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+.reply-composer { display: flex; gap: 0.5rem; margin-top: 0.5rem; align-items: flex-end; }
+.reply-composer textarea { flex: 1; border: 1px solid var(--c-border); border-radius: 10px; padding: 0.5rem 0.7rem; font-family: var(--font); font-size: 0.82rem; line-height: 1.5; resize: none; min-height: 38px; max-height: 120px; outline: none; background: var(--c-bg); }
+.reply-composer textarea:focus { border-color: var(--c-accent); }
+.reply-composer button { height: 38px; padding: 0 0.8rem; border: none; background: var(--c-accent); color: #fff; border-radius: 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: var(--font); touch-action: manipulation; }
+.reply-count { font-size: 0.7rem; color: var(--c-text-light); }
+.name-select { padding: 0.4rem 0.8rem; border: 1px solid var(--c-border); border-radius: 8px; font-size: 0.8rem; font-family: var(--font); min-height: 44px; background: #fff; color: var(--c-text); appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.6rem center; padding-right: 2rem; }
 
 /* ─── DOCUMENTS ─── */
 .docs-list { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -889,7 +905,7 @@ body {
       <textarea id="post-text" placeholder="ここに思いついたことを書く..."></textarea>
       <div class="post-composer-footer">
         <div class="left">
-          <input type="text" id="post-name" placeholder="名前" style="width:120px;padding:0.4rem 0.8rem;border:1px solid var(--c-border);border-radius:8px;font-size:0.8rem;font-family:var(--font);min-height:44px;">
+          <select id="post-name" class="name-select"><option value="">名前を選択</option><option value="84ken">84ken</option><option value="菊池">菊池</option><option value="宇那木">宇那木</option><option value="田部井">田部井</option><option value="渡邉">渡邉</option><option value="川相">川相</option></select>
           <button class="category-chip active" data-cat="idea">💡 アイデア</button>
           <button class="category-chip" data-cat="question">❓ 質問</button>
           <button class="category-chip" data-cat="plan">📋 プラン</button>
@@ -1052,12 +1068,23 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); }
 
 // ─── Posts ───
 let selCat = 'idea';
+const postNameSel = document.getElementById('post-name');
+
+// Restore saved name from localStorage
+const savedName = localStorage.getItem('hive_user_name');
+if (savedName && postNameSel.querySelector(`option[value="${savedName}"]`)) {
+  postNameSel.value = savedName;
+}
+postNameSel.addEventListener('change', () => {
+  if (postNameSel.value) localStorage.setItem('hive_user_name', postNameSel.value);
+});
+
 document.querySelectorAll('.category-chip').forEach(c => {
   c.addEventListener('click', () => { document.querySelectorAll('.category-chip').forEach(x=>x.classList.remove('active')); c.classList.add('active'); selCat=c.dataset.cat; });
 });
 
 document.getElementById('post-submit').addEventListener('click', async () => {
-  const name=document.getElementById('post-name').value.trim();
+  const name=postNameSel.value;
   const text=document.getElementById('post-text').value.trim();
   if(!name||!text) return;
   const btn=document.getElementById('post-submit'); btn.disabled=true;
@@ -1066,15 +1093,33 @@ document.getElementById('post-submit').addEventListener('click', async () => {
 });
 
 const CL = {idea:'💡 アイデア',question:'❓ 質問',plan:'📋 プラン',memo:'📝 メモ'};
+const heartSvg = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+
+let allPosts = [];
 
 async function loadPosts() {
   try {
     const r=await fetch('/api/posts.php'); const d=await r.json();
-    if(d.ok && d.posts.length) {
-      renderPosts(d.posts.filter(p=>p.category!=='plan'),'post-feed','posts-empty');
-      renderPosts(d.posts.filter(p=>p.category==='plan'),'plan-feed',null);
+    if(d.ok) {
+      allPosts = d.posts;
+      // Top-level posts (no parent_id)
+      const roots = allPosts.filter(p => !p.parent_id);
+      renderPosts(roots.filter(p=>p.category!=='plan'),'post-feed','posts-empty');
+      renderPosts(roots.filter(p=>p.category==='plan'),'plan-feed',null);
     }
   } catch(e){}
+}
+
+function getReplies(parentId) {
+  return allPosts.filter(p => p.parent_id === parentId).sort((a,b) => (a.ts||0) - (b.ts||0));
+}
+
+function renderReplies(parentId) {
+  const replies = getReplies(parentId);
+  if (!replies.length) return '';
+  return `<div class="post-replies">${replies.map(r =>
+    `<div class="reply-card"><div class="reply-avatar" style="background:${getC(r.name)}">${esc(r.name.charAt(0))}</div><div class="reply-body"><div class="reply-meta"><strong>${esc(r.name)}</strong> · ${fmtDate(r.ts)}</div><p class="reply-text">${esc(r.text)}</p></div></div>`
+  ).join('')}</div>`;
 }
 
 function renderPosts(posts,cid,eid) {
@@ -1082,12 +1127,34 @@ function renderPosts(posts,cid,eid) {
   if(eid){const em=document.getElementById(eid); if(em) em.remove();}
   if(!posts.length && cid==='plan-feed'){c.innerHTML='<div class="empty-state"><div class="empty-state-icon">🗺</div><p>まだプランの投稿がありません。</p></div>'; return;}
   if(!posts.length) return;
-  const heartSvg = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
   c.innerHTML = posts.map(p=>{
     const likes = p.likes||0;
     const liked = (localStorage.getItem('liked_'+p.id)==='1');
-    return `<div class="post-card"><div class="post-header"><div class="post-avatar" style="background:${getC(p.name)}">${esc(p.name.charAt(0))}</div><div class="post-meta"><span class="post-author">${esc(p.name)}</span><span class="post-time">${fmtDate(p.ts)}</span></div><span class="post-category-badge cat-${p.category}">${CL[p.category]||p.category}</span></div><p class="post-text">${esc(p.text)}</p><div class="post-footer"><button class="post-like${liked?' liked':''}" onclick="likePost('${p.id}',this)" ${liked?'disabled':''}>${heartSvg}<span>${likes}</span></button></div></div>`;
+    const replyCount = getReplies(p.id).length;
+    const replyLabel = replyCount ? `返信 ${replyCount}件` : '返信する';
+    return `<div class="post-card" id="post-${p.id}"><div class="post-header"><div class="post-avatar" style="background:${getC(p.name)}">${esc(p.name.charAt(0))}</div><div class="post-meta"><span class="post-author">${esc(p.name)}</span><span class="post-time">${fmtDate(p.ts)}</span></div><span class="post-category-badge cat-${p.category}">${CL[p.category]||p.category}</span></div><p class="post-text">${esc(p.text)}</p><div class="post-footer"><div class="post-actions"><button class="post-like${liked?' liked':''}" onclick="likePost('${p.id}',this)" ${liked?'disabled':''}>${heartSvg}<span>${likes}</span></button><button class="post-reply-btn" onclick="toggleReply('${p.id}')">${replyLabel}</button></div></div>${renderReplies(p.id)}<div class="reply-composer" id="rc-${p.id}" style="display:none;"><textarea placeholder="返信を書く..." rows="1"></textarea><button onclick="submitReply('${p.id}')">送信</button></div></div>`;
   }).join('');
+}
+
+function toggleReply(id) {
+  const rc = document.getElementById('rc-'+id);
+  if (!rc) return;
+  const show = rc.style.display === 'none';
+  rc.style.display = show ? 'flex' : 'none';
+  if (show) rc.querySelector('textarea').focus();
+}
+
+async function submitReply(parentId) {
+  const rc = document.getElementById('rc-'+parentId);
+  const text = rc.querySelector('textarea').value.trim();
+  const name = postNameSel.value || localStorage.getItem('hive_user_name');
+  if (!name || !text) return;
+  const btn = rc.querySelector('button'); btn.disabled = true;
+  try {
+    await fetch('/api/posts.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,text,category:'memo',parent_id:parentId})});
+    loadPosts();
+  } catch(e){}
+  btn.disabled = false;
 }
 
 async function likePost(id,btn) {

@@ -49,6 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $validCategories = ['idea', 'question', 'plan', 'memo'];
     if (!in_array($category, $validCategories)) $category = 'idea';
 
+    $parentId = trim($input['parent_id'] ?? '');
+
     $post = [
         'id' => bin2hex(random_bytes(8)),
         'name' => $name,
@@ -57,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'likes' => 0,
         'ts' => time(),
     ];
+    if ($parentId) $post['parent_id'] = $parentId;
 
     $posts = loadData($dataFile);
     $posts[] = $post;
