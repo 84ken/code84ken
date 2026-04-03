@@ -106,6 +106,15 @@
           <span class="text-xs text-slate-500 mt-0.5">マニュアル・エリア</span>
         </a>
 
+        <!-- エリアマップ -->
+        <a href="map.html" class="card-hover bg-white rounded-xl border border-warm-border p-4 flex flex-col items-center text-center no-underline">
+          <div class="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center mb-3">
+            <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+          </div>
+          <span class="text-sm font-medium text-slate-900">エリアマップ</span>
+          <span class="text-xs text-slate-500 mt-0.5">4区・5区・6区の地図</span>
+        </a>
+
         <!-- 口コミ掲示板 -->
         <a href="board.php" class="card-hover bg-white rounded-xl border border-warm-border p-4 flex flex-col items-center text-center no-underline">
           <div class="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center mb-3">
@@ -244,21 +253,4 @@
       { month: 6, title: '第3回理事会', place: '4区公会堂', importance: '高' },
       { month: 8, title: '夏休み夜間パトロール', place: '小学校〜金昌寺周辺', importance: '低' },
       { month: 9, title: '少年団バレーボール大会', place: '文化体育センター', importance: '中' },
-      { month: 9, title: '第4回理事会', place: '4区公会堂', importance: '中' },
-      { month: 10, title: 'フットベース高篠大会', place: '高篠小学校', importance: '中' },
-      { month: 11, title: '後期廃品回収', place: '中山田町内', importance: '高' },
-      { month: 12, title: '連合クリスマス会', place: 'ホテル美やま', importance: '中' },
-      { month: 2, title: '最終理事会（役員選出）', place: '4区公会堂', importance: '高' },
-    ];
-
-    const now = new Date();
-    const currentMonth = now.getMonth() + 1;
-    let nextEvent = events.find(e => e.month >= currentMonth) || events[0];
-
-    document.getElementById('event-title').textContent = nextEvent.title;
-    document.getElementById('event-date').textContent = nextEvent.month + '月';
-    document.getElementById('event-place').textContent = nextEvent.place;
-  </script>
-
-</body>
-</html>
+      { month: 9, title: '第4回理事会', place: '4区公会堂'
