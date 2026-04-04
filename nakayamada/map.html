@@ -46,7 +46,7 @@
     <!-- 呼びかけバナー -->
     <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
       <p class="text-sm font-bold text-amber-800 mb-1">みんなで作るエリアマップ</p>
-      <p class="text-xs text-amber-700 leading-relaxed">現在、主要施設の位置を掲載しています。「自分の区の範囲はここからここ」「この道が境界」など、ご存じの方はぜひ<a href="board.php" class="underline font-semibold">掲示板</a>で教えてください。皆さんの情報をもとに、エリアの境界線を追加していきます。</p>
+      <p class="text-xs text-amber-700 leading-relaxed">「自分の区の範囲はここからここ」「この道が境界」など、ご存じの方はぜひ<a href="board.php" class="underline font-semibold">掲示板</a>で教えてください。皆さんの情報をもとに、エリアの境界線と施設情報を追加していきます。</p>
     </div>
 
     <!-- Map -->
@@ -66,7 +66,6 @@
         <div class="text-xs text-slate-600 space-y-1">
           <p><span class="font-medium text-slate-700">組割り:</span> ①1・2・3・10組　②4・5・6組　③7・8・9組</p>
           <p><span class="font-medium text-slate-700">廃品回収:</span> 4区公会堂（恒持会館）に集積</p>
-          <p><span class="font-medium text-slate-700">主な施設:</span> 恒持会館、恒持神社、ホテル美やま</p>
         </div>
       </div>
 
@@ -79,7 +78,6 @@
         <div class="text-xs text-slate-600 space-y-1">
           <p><span class="font-medium text-slate-700">組割り:</span> ①1・2組　②3・4組　③5・6・7組　④8・10組　⑤9・11組</p>
           <p><span class="font-medium text-slate-700">廃品回収:</span> 高篠小学校付近に集積</p>
-          <p><span class="font-medium text-slate-700">主な施設:</span> 高篠小学校、高篠福祉交流センター、金子花火店</p>
         </div>
       </div>
 
@@ -92,7 +90,6 @@
         <div class="text-xs text-slate-600 space-y-1">
           <p><span class="font-medium text-slate-700">組割り:</span> ①1・2・3組　②4・5・6組</p>
           <p><span class="font-medium text-slate-700">廃品回収:</span> 5区集積所</p>
-          <p><span class="font-medium text-slate-700">主な施設:</span> 金昌寺（札所4番）</p>
         </div>
       </div>
 
@@ -105,7 +102,6 @@
         <div class="text-xs text-slate-600 space-y-1">
           <p><span class="font-medium text-slate-700">組割り:</span> 上・中・下1・下2</p>
           <p><span class="font-medium text-slate-700">廃品回収:</span> 6区集積所</p>
-          <p><span class="font-medium text-slate-700">主な施設:</span> —</p>
         </div>
       </div>
 
@@ -123,19 +119,6 @@
       <a href="board.php" class="inline-block mt-3 px-4 py-2 bg-sky-500 text-white text-xs font-semibold rounded-lg hover:bg-sky-600 transition-colors">掲示板で情報を送る</a>
     </div>
 
-    <!-- 凡例 -->
-    <div class="bg-white rounded-xl border border-warm-border p-4">
-      <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">マップの見方</h3>
-      <div class="grid grid-cols-2 gap-2 text-xs">
-        <div class="flex items-center gap-2">🏫 学校</div>
-        <div class="flex items-center gap-2">⛩️ 神社</div>
-        <div class="flex items-center gap-2">🛕 寺院</div>
-        <div class="flex items-center gap-2">🏛️ 公共施設</div>
-        <div class="flex items-center gap-2">🏨 宿泊施設</div>
-        <div class="flex items-center gap-2">🏥 福祉施設</div>
-      </div>
-      <p class="text-xs text-slate-400 mt-3">※ 座標は一部推定です。マップ上のピンをタップすると施設名が表示されます。</p>
-    </div>
 
   </main>
 
@@ -161,29 +144,6 @@
       maxZoom: 19
     }).addTo(map);
 
-    // ======= LANDMARKS (no area polygons — collecting boundary info from residents) =======
-    const landmarks = [
-      { name: '高篠小学校',             lat: 36.02136, lng: 139.11424, icon: '🏫' },
-      { name: '高篠中学校',             lat: 36.01904, lng: 139.11213, icon: '🏫' },
-      { name: '恒持会館（4区公会堂）',   lat: 36.01250, lng: 139.11100, icon: '🏛️' },
-      { name: '恒持神社',               lat: 36.01220, lng: 139.11147, icon: '⛩️' },
-      { name: '金昌寺（札所4番）',       lat: 36.0075,  lng: 139.1085,  icon: '🛕' },
-      { name: '高篠福祉交流センター',    lat: 36.02722, lng: 139.11837, icon: '🏥' },
-      { name: 'ホテル美やま',            lat: 36.0175,  lng: 139.1095,  icon: '🏨' },
-      { name: '光明寺',                 lat: 36.01493, lng: 139.11602, icon: '🛕' },
-    ];
-
-    landmarks.forEach(lm => {
-      const marker = L.marker([lm.lat, lm.lng], {
-        icon: L.divIcon({
-          className: '',
-          html: '<div style="font-size:22px;text-shadow:1px 1px 3px rgba(0,0,0,0.3);line-height:1;text-align:center">' + lm.icon + '</div>',
-          iconSize: [28, 28],
-          iconAnchor: [14, 14]
-        })
-      }).addTo(map);
-      marker.bindPopup('<strong>' + lm.name + '</strong>');
-    });
 
     // Enable scroll zoom after first click
     map.once('click', () => map.scrollWheelZoom.enable());
