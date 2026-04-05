@@ -102,6 +102,20 @@ ol.spaced > li { margin-bottom: 0.8rem; }
   h2 { font-size: 1.3rem; }
 }
 
+/* Photo gallery */
+.photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin: 1.5rem 0; }
+.photo-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+.photo-gallery img:hover { transform: scale(1.02); }
+.photo-day-label { grid-column: 1 / -1; font-size: 0.8rem; font-weight: 700; color: var(--c-accent); margin-top: 0.8rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--c-border); }
+.photo-day-label:first-child { margin-top: 0; }
+@media (max-width: 600px) { .photo-gallery { grid-template-columns: repeat(2, 1fr); } }
+@media print { .photo-gallery { grid-template-columns: repeat(4, 1fr); gap: 0.3rem; } .photo-gallery img { break-inside: avoid; } }
+
+/* Lightbox */
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center; cursor: pointer; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+
 /* print button */
 .print-btn { position: fixed; bottom: 2rem; right: 2rem; background: var(--c-accent); color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 100px; font-family: var(--font); font-size: 0.85rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.15); z-index: 100; }
 .print-btn:hover { background: #a85e2f; }
@@ -387,9 +401,10 @@ ol.spaced > li { margin-bottom: 0.8rem; }
     <tr><td>84ken</td><td>プラン</td><td>HIVEの薬草サウナは6月オープン？</td><td>4/5 07:55</td></tr>
   </table>
 
-  <h3>共有写真</h3>
-  <p>合計26枚の写真がサイトにアップロード済み。Day 1（4/2）に20枚、Day 2（4/3）に6枚。焚き火ディナー、サウナ、施設外観、岩瀬エリアなどの記録。</p>
-  <p>閲覧: <a href="https://toyama.schema.tokyo/#photos">toyama.schema.tokyo/#photos</a></p>
+  <h3>旅の写真（全 <span id="photo-count">--</span> 枚）</h3>
+  <div class="photo-gallery" id="photo-gallery">
+    <p style="grid-column:1/-1;text-align:center;color:var(--c-text-light);font-size:0.82rem;">読み込み中...</p>
+  </div>
 
   <h3>共有リソース</h3>
   <p>旅後にBox経由で資料が共有（4/5）: <a href="https://p-d.box.com/s/4ay3qb5fv0mdheer80eqd2s3kdv3p9xt">Box共有フォルダ</a></p>
@@ -415,6 +430,60 @@ ol.spaced > li { margin-bottom: 0.8rem; }
   <p>作成: 株式会社スキーマ / 84ken | 2026年4月5日</p>
   <p><a href="https://toyama.schema.tokyo/" style="color:var(--c-accent);">toyama.schema.tokyo</a></p>
 </div>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+(async function() {
+  try {
+    const r = await fetch('/api/photos.php');
+    const d = await r.json();
+    if (!d.ok || !d.photos.length) return;
+
+    // Sort oldest first
+    const photos = d.photos.sort((a, b) => a.ts - b.ts);
+    document.getElementById('photo-count').textContent = photos.length;
+
+    // Group by date
+    const groups = {};
+    photos.forEach(p => {
+      const dt = new Date(p.ts * 1000);
+      const key = `${dt.getFullYear()}/${dt.getMonth()+1}/${dt.getDate()}`;
+      const label = dt.getMonth()+1 + '月' + dt.getDate() + '日（' + ['日','月','火','水','木','金','土'][dt.getDay()] + '）';
+      if (!groups[key]) groups[key] = { label, photos: [] };
+      groups[key].photos.push(p);
+    });
+
+    const gallery = document.getElementById('photo-gallery');
+    gallery.innerHTML = '';
+
+    Object.values(groups).forEach(g => {
+      const dayLabel = document.createElement('div');
+      dayLabel.className = 'photo-day-label';
+      dayLabel.textContent = g.label + ' — ' + g.photos.length + '枚';
+      gallery.appendChild(dayLabel);
+
+      g.photos.forEach(p => {
+        const img = document.createElement('img');
+        img.src = p.url;
+        img.alt = p.caption || p.name || '';
+        img.loading = 'lazy';
+        img.onclick = function() {
+          document.getElementById('lightbox-img').src = p.url;
+          document.getElementById('lightbox').classList.add('open');
+        };
+        gallery.appendChild(img);
+      });
+    });
+  } catch(e) {
+    document.getElementById('photo-gallery').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--c-text-light);font-size:0.82rem;">写真の読み込みに失敗しました。<a href="https://toyama.schema.tokyo/#photos">本サイトで閲覧</a></p>';
+  }
+})();
+
+document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('lightbox').classList.remove('open'); });
+</script>
 
 </body>
 </html>
