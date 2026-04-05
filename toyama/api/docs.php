@@ -100,5 +100,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    $input = json_decode(file_get_contents('php://input'), true);
+    $id = $input['id'] ?? '';
+    if (!$id) {
+        http_response_code(400);
+        echo json_encode(['error' => 'No id']);
+        exit;
+    }
+    $docs = loadData($dataFile);
+    $target = null;
+    foreach ($docs as $d) {
+        if ($d['id'] === $id) { $target = $d; break; }
+    }
+    if ($target && isset($target['filename'])) {
+        $filePath = $uploadDir . '/' . $target['filename'];
+        if (file_exists($filePath)) unlink($filePath);
+    }
+    $docs = array_values(array_filter($docs, fn($d) => $d['id'] !== $id));
+    saveData($dataFile, $docs);
+    echo json_encode(['ok' => true]);
+    exit;
+}
+
 http_response_code(405);
 echo json_encode(['error' => 'Method not allowed']);
