@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hive Tour 2026 — 視察報告書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-bg: #faf8f5;
+  --c-card: #ffffff;
+  --c-accent: #c4713b;
+  --c-sage: #7a8c6e;
+  --c-text: #2d2a26;
+  --c-text-light: #6b6560;
+  --c-border: #e8e2db;
+  --c-heading: #1a1816;
+  --font: 'Noto Sans JP', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); color: var(--c-text); background: var(--c-bg); line-height: 1.9; font-size: 15px; }
+
+/* Print */
+@media print {
+  body { background: #fff; font-size: 12px; line-height: 1.7; }
+  .page-break { page-break-before: always; }
+  .no-print { display: none !important; }
+  section { break-inside: avoid; }
+  .cover { min-height: auto; padding: 3rem 2rem; }
+}
+
+/* Cover */
+.cover {
+  min-height: 50vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; padding: 4rem 2rem;
+  background: linear-gradient(165deg, #2d2a26 0%, #3d3530 40%, #4a3f38 100%);
+  color: #fff;
+}
+.cover-eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+.cover h1 { font-size: 2.4rem; font-weight: 900; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.cover-sub { font-size: 1rem; color: rgba(255,255,255,0.7); font-weight: 300; margin-bottom: 2rem; }
+.cover-meta { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+.cover-meta span { margin: 0 0.5rem; }
+
+/* Layout */
+.container { max-width: 820px; margin: 0 auto; padding: 0 2rem; }
+section { padding: 3rem 0; }
+section + section { border-top: 1px solid var(--c-border); }
+
+h2 { font-size: 1.5rem; font-weight: 900; color: var(--c-heading); margin-bottom: 0.3rem; letter-spacing: 0.02em; }
+h3 { font-size: 1.1rem; font-weight: 700; color: var(--c-heading); margin: 2rem 0 0.8rem; }
+h4 { font-size: 0.95rem; font-weight: 700; color: var(--c-accent); margin: 1.5rem 0 0.5rem; }
+.sec-num { font-size: 0.7rem; color: var(--c-accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 0.3rem; }
+p { margin-bottom: 1rem; }
+
+/* Member cards */
+.member-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.member { background: var(--c-card); border: 1px solid var(--c-border); border-radius: 12px; padding: 1.2rem; }
+.member-icon { width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; }
+.member h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
+.member .org { font-size: 0.72rem; color: var(--c-text-light); margin-bottom: 0.5rem; }
+.member .desc { font-size: 0.78rem; line-height: 1.7; }
+.member .strength { font-size: 0.72rem; color: var(--c-accent); font-weight: 500; margin-top: 0.4rem; }
+
+/* Insight cards */
+.insight-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 1.5rem 0; }
+.insight { background: var(--c-card); border: 1px solid var(--c-border); border-radius: 12px; padding: 1.5rem; }
+.insight-tag { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 100px; font-size: 0.65rem; font-weight: 500; margin-bottom: 0.6rem; }
+.tag-idea { background: #fef3c7; color: #92400e; }
+.tag-plan { background: #d1fae5; color: #065f46; }
+.tag-question { background: #dbeafe; color: #1e40af; }
+.tag-local { background: #f3e8ff; color: #6b21a8; }
+.insight h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+.insight p { font-size: 0.82rem; margin-bottom: 0; }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.82rem; }
+th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--c-border); }
+th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-text-light); font-weight: 500; background: #f5f2ee; }
+
+/* Highlight box */
+.highlight { background: linear-gradient(135deg, rgba(196,113,59,0.06), rgba(122,140,110,0.06)); border: 1px solid var(--c-border); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.highlight h4 { margin-top: 0; }
+
+/* Numbered list */
+ol.spaced > li { margin-bottom: 0.8rem; }
+
+/* Stats */
+.stats { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+.stat { flex: 1; min-width: 120px; background: var(--c-card); border: 1px solid var(--c-border); border-radius: 12px; padding: 1rem; text-align: center; }
+.stat-num { font-size: 1.8rem; font-weight: 900; color: var(--c-accent); }
+.stat-label { font-size: 0.7rem; color: var(--c-text-light); margin-top: 0.2rem; }
+
+/* Footer */
+.report-footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--c-text-light); }
+
+@media (max-width: 600px) {
+  .member-grid { grid-template-columns: 1fr; }
+  .cover h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.3rem; }
+}
+
+/* print button */
+.print-btn { position: fixed; bottom: 2rem; right: 2rem; background: var(--c-accent); color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 100px; font-family: var(--font); font-size: 0.85rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.15); z-index: 100; }
+.print-btn:hover { background: #a85e2f; }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">PDF / 印刷</button>
+
+<!-- COVER -->
+<div class="cover">
+  <p class="cover-eyebrow">Trip Report</p>
+  <h1>Hive Tour 2026</h1>
+  <p class="cover-sub">異業種視察旅行 報告書<br>富山県・ヘルジアンウッド</p>
+  <p class="cover-meta">
+    <span>2026.04.02 – 04.03</span>
+    <span>|</span>
+    <span>参加者 6名</span>
+    <span>|</span>
+    <span>作成: 2026.04.05</span>
+  </p>
+</div>
+
+<div class="container">
+
+<!-- 1. EXECUTIVE SUMMARY -->
+<section>
+  <span class="sec-num">01 — Executive Summary</span>
+  <h2>概要</h2>
+  <p>2026年4月2日〜3日、異業種の専門家6名が富山県立山町・ヘルジアンウッド（前田薬品工業運営）を視察。建築・ハーブ・クリエイティブ・地域活性・マーケット・コンサルティングの6つの専門性が交わり、「旅が事業になる」をコンセプトに、食・建築・サウナ・対話を通じて新しい事業の種を探索した。</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">参加者</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">日間</div></div>
+    <div class="stat"><div class="stat-num">26</div><div class="stat-label">共有写真</div></div>
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">アイデア投稿</div></div>
+    <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Slackメッセージ</div></div>
+  </div>
+
+  <div class="highlight">
+    <h4>主要な発見</h4>
+    <ol class="spaced">
+      <li><strong>ヘルジアンウッドの全国展開計画</strong> — HIVE は鹿島・瀬戸内へ進出予定。全都道府県展開を目指しており、フランチャイズ的な展開余地がある。</li>
+      <li><strong>「サウナ × 事業創造」のフォーマット</strong> — 今回のツアーモデル自体がサービス化できる可能性。異業種をサウナ施設に集め、ととのった状態で対話する「Hive Tour」をパッケージ化。</li>
+      <li><strong>埼玉・八千代エリアへの応用可能性</strong> — 「HIVEを埼玉につくるにはどうすればよい？」という問いが旅中に発生。自然資源×ウェルネス施設の組み合わせは八千代・ウニクス周辺でも成立しうる。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 2. MEMBERS -->
+<section>
+  <span class="sec-num">02 — Members</span>
+  <h2>参加者プロフィールと旅での役割</h2>
+  <p>6名の参加者は、それぞれ異なる専門領域を持ち、多角的な視点で視察に臨んだ。</p>
+
+  <div class="member-grid">
+    <div class="member">
+      <div class="member-icon" style="background:#c4713b;">建</div>
+      <h5>宇那木さん</h5>
+      <p class="org">club Mai architects（一級建築士事務所）</p>
+      <p class="desc">空間設計のプロフェッショナル。隈研吾設計のヘルジアンウッドの建築を建築家の目線で読み解いた。アメニティ情報の最新確認、寿司ランチの予約、岩瀬エリアのイタリアンレストランの情報収集など、旅のロジスティクスでも中心的役割を果たした。</p>
+      <p class="strength">→ 建築・空間設計の知見で、施設の構造・素材・動線を専門的に分析。新施設開発時の設計パートナー候補。</p>
+    </div>
+    <div class="member">
+      <div class="member-icon" style="background:#7a8c6e;">茶</div>
+      <h5>田部井さん</h5>
+      <p class="org">ALL MY TEA（ハーブティー専門店）</p>
+      <p class="desc">ハーブの専門家。高崎から北陸新幹線はくたか555号で参加。ヘルジアンウッドのアロマ園・ハーブガーデンとの親和性が高く、ハーブ×ウェルネスの事業シナジーを探った。Slackチャンネルには旅の直前に参加し、準備段階から積極的にコミュニケーション。</p>
+      <p class="strength">→ ハーブ・お茶の専門知識。ウェルネス施設でのオリジナルブレンド開発・物販展開の可能性。</p>
+    </div>
+    <div class="member">
+      <div class="member-icon" style="background:#7a6b9a;">創</div>
+      <h5>84ken（橋本）</h5>
+      <p class="org">株式会社スキーマ / TATELab.</p>
+      <p class="desc">企画とクリエイティブの起点。前泊して富山入りし、旅行サイト（toyama.schema.tokyo）をAIで構築・運用。アイデアボードで最多の8投稿を記録。HIVE拡大計画、カレッジTシャツ文化、クラフトマッコリ、地元パン屋の「バナナクリーム理論」など、多角的な着想を発信。</p>
+      <p class="strength">→ 企画構想力・クリエイティブ実行力・AI活用。プロジェクト全体のブランディングと仕組みづくり。</p>
+    </div>
+    <div class="member">
+      <div class="member-icon" style="background:#5a7a9a;">地</div>
+      <h5>渡邊さん</h5>
+      <p class="org">ローカルボーイズ / TOYAMA MARKET</p>
+      <p class="desc">富山のローカルを知り尽くすキーパーソン。サウナ完全初心者として参加し、新鮮な視点で体験を捉えた。水着やビーチ用の準備について積極的に質問するなど、初心者目線のフィードバックが貴重。同じ新幹線で予約するなど、チームとの連携も円滑。</p>
+      <p class="strength">→ 富山の地域ネットワーク・マーケット運営知見。地産品の発掘・流通・イベント企画。</p>
+    </div>
+    <div class="member">
+      <div class="member-icon" style="background:#9a5a5a;">策</div>
+      <h5>菊池さん</h5>
+      <p class="org">NPO NLP / P&Dコンサルティング</p>
+      <p class="desc">今回のツアー発起人・コーディネーター。大宮からかがやき525号で参加。スケジュール調整、宿泊予約、レンタカー手配、レストラン予約、集合場所の案内まで全てを統括。旅後にはBox経由で資料を共有。アイデアボードでは地元パン屋の情報を投稿し、「Local＝美味しく、楽しく、心地いい！」というキーワードを提唱。</p>
+      <p class="strength">→ まちづくりコンサル・プロジェクトマネジメント。行政連携・事業スキーム構築の中核。</p>
+    </div>
+    <div class="member">
+      <div class="member-icon" style="background:#8a7a5a;">繋</div>
+      <h5>川相さん</h5>
+      <p class="org">P&Dコンサルティング</p>
+      <p class="desc">事業戦略と組織デザインの専門家。菊池さんと同行（大宮発）。Slackでは最初に水着の質問を投げかけるなど、実務的な準備を牽引。田部井さんのチャンネル参加時には即座に歓迎メッセージを送るなど、チームビルディングへの意識が高い。推しは中森明菜。</p>
+      <p class="strength">→ 事業戦略・組織設計。異業種連携のスキーム設計・事業計画策定。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ITINERARY -->
+<section>
+  <span class="sec-num">03 — Itinerary</span>
+  <h2>実施行程</h2>
+
+  <h3>Day 1 — 4月2日（木）</h3>
+  <table>
+    <tr><th style="width:100px;">時刻</th><th>内容</th><th>備考</th></tr>
+    <tr><td>11:00</td><td>富山駅集合・買い出し</td><td>アルビス エスタ店にて翌朝食・飲み物を調達。84kenは前泊、MTG後に合流</td></tr>
+    <tr><td>11:45</td><td>ランチ — 四六八ちゃ 個室別館</td><td>寿司ランチ。白エビ・ホタルイカが旬。宇那木さん予約。田部井さんは直行で合流</td></tr>
+    <tr><td>14:30</td><td>ヘルジアンウッド到着</td><td>前田社長から直接説明。施設全体を視察</td></tr>
+    <tr><td>夕方〜</td><td>サウナ → 焚き火ディナー</td><td>The Hiveサウナ（水着着用）。ディナーコース全13品＋焚き火セット</td></tr>
+    <tr><td>夜</td><td>Hive coHive 宿泊</td><td>アメニティ完備。写真20枚をサイトにアップロード</td></tr>
+  </table>
+
+  <h3>Day 2 — 4月3日（金）</h3>
+  <table>
+    <tr><th style="width:100px;">時刻</th><th>内容</th><th>備考</th></tr>
+    <tr><td>AM</td><td>朝の自由時間</td><td>朝サウナ・散歩など</td></tr>
+    <tr><td>12:30</td><td>ランチ — ピアット スズキ チンクエ</td><td>岩瀬エリアのイタリアン。岩瀬地区の散策も実施。写真6枚追加</td></tr>
+    <tr><td>16:00</td><td>富山駅 解散</td><td>レンタカー返却（18:00、富山駅前店）</td></tr>
+  </table>
+</section>
+
+<!-- 4. KEY INSIGHTS -->
+<section class="page-break">
+  <span class="sec-num">04 — Key Insights</span>
+  <h2>旅で生まれたアイデアと気づき</h2>
+  <p>アイデアボード・Slack・対話から抽出された主要な気づきを整理する。</p>
+
+  <div class="insight-grid">
+    <div class="insight">
+      <span class="insight-tag tag-plan">プラン</span>
+      <h5>HIVE の全国展開 — 鹿島・瀬戸内、そして全都道府県へ</h5>
+      <p>前田社長から直接伺った情報として、HIVEは鹿島・瀬戸内への進出を予定しており、最終的に全都道府県展開を目指している。この拡大戦略は、各地域のパートナーとの協業モデルが前提になると推察される。<strong>埼玉でのHIVE誘致・パートナーシップの可能性が開ける。</strong></p>
+    </div>
+
+    <div class="insight">
+      <span class="insight-tag tag-plan">プラン</span>
+      <h5>薬草サウナ — 6月オープン予定</h5>
+      <p>HIVEの新コンテンツとして薬草サウナが6月にオープン予定。前田薬品工業の製薬ルーツを活かした差別化要素。<strong>田部井さん（ALL MY TEA）のハーブ知見との接点が大きい。</strong></p>
+    </div>
+
+    <div class="insight">
+      <span class="insight-tag tag-question">問い</span>
+      <h5>「HIVEを埼玉につくるにはどうすればよい？」</h5>
+      <p>84kenが旅中に投稿した根源的な問い。ヘルジアンウッドの「限界集落を1000人の桃源郷にする」というビジョンは、埼玉の郊外・中山間地域にも応用可能。自然資源×ウェルネス×建築の組み合わせで、八千代エリアやウニクスエリアでの展開シナリオを描ける。</p>
+    </div>
+
+    <div class="insight">
+      <span class="insight-tag tag-idea">アイデア</span>
+      <h5>カレッジTシャツ文化 × 地方</h5>
+      <p>「カレッジTシャツ文化は日本にならない！地方と相性よし」という着想。地域ブランドのアパレル展開（ご当地ウェア）は、TOYAMA MARKETのような地域マーケットとの親和性が高い。ヘルジアンウッドのオリジナルグッズ展開にもヒント。</p>
+    </div>
+
+    <div class="insight">
+      <span class="insight-tag tag-idea">アイデア</span>
+      <h5>クラフトマッコリ・どぶろく</h5>
+      <p>「どぶろくとマッコリは一緒？クラフトマッコリ気になる」という発見。富山の酒文化（満寿泉・IWA）と発酵文化の接点。ウェルネス施設でのクラフト発酵ドリンク開発の可能性。</p>
+    </div>
+
+    <div class="insight">
+      <span class="insight-tag tag-idea">アイデア</span>
+      <h5>高級パンの「バナナクリーム理論」</h5>
+      <p>地元パン屋（森製パン所）の体験から生まれた着想。高品質な地元の食を「理論」として言語化し、事業に転用する視点。菊池さんの「Local＝美味しく、楽しく、心地いい！」というキーワードとも呼応。</p>
+    </div>
+
+    <div class="insight">
+      <span class="insight-tag tag-local">地域</span>
+      <h5>岩瀬エリアの文化的ポテンシャル</h5>
+      <p>Day 2で訪れた岩瀬エリア。老舗酒蔵・満寿泉のある歴史的街並みと、イタリアンレストランが共存する文化的な密度の高さ。NEWPEACEの「寿司といえば、富山」ブランディング戦略の実態を体感。</p>
+    </div>
+
+    <div class="insight">
+      <span class="insight-tag tag-local">地域</span>
+      <h5>ローカルフード・ネットワーク</h5>
+      <p>菊池さんが投稿した地元パン屋情報（パンドール、森製パン所）、黒崎屋（魚介・食料品店）など、富山のローカルフードネットワークの豊かさを実感。渡邊さん（TOYAMA MARKET）の地域知見が活きた場面。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. YACHIYO / UNICUS -->
+<section>
+  <span class="sec-num">05 — Application</span>
+  <h2>八千代エリア・ウニクスエリアへの展開可能性</h2>
+  <p>今回の視察で得た知見を、埼玉県の八千代エリアおよびウニクスエリアでの新規事業に応用するシナリオを検討する。</p>
+
+  <h3>5-1. ヘルジアンウッドモデルの本質</h3>
+  <p>ヘルジアンウッドの成功要因を分解すると、以下の4要素に集約される:</p>
+  <ol class="spaced">
+    <li><strong>製薬会社のアセット転用</strong> — 前田薬品工業の薬草・ハーブの知見を「体験」に変換</li>
+    <li><strong>建築によるブランド構築</strong> — 隈研吾の設計で「行く理由」を創出</li>
+    <li><strong>限界集落のストーリー</strong> — 「1000人の桃源郷」という社会的使命がブランドの芯</li>
+    <li><strong>複合体験の設計</strong> — サウナ・食・建築・自然を1日で体験できる動線</li>
+  </ol>
+
+  <h3>5-2. 八千代エリアでの展開仮説</h3>
+  <div class="highlight">
+    <h4>仮説A: 里山ウェルネス・ヴィレッジ</h4>
+    <p>八千代の里山資源（荒川水系・雑木林）を活用し、小規模ウェルネス施設を開発。ヘルジアンウッドの「薬草サウナ」モデルを参考に、田部井さん（ALL MY TEA）のハーブ知見を活かしたオリジナルサウナ体験を設計。宇那木さんの建築設計で地域の自然と調和する空間をつくる。</p>
+    <p><strong>関与メンバー</strong>: 宇那木（建築設計）、田部井（ハーブ・ウェルネスコンテンツ）、84ken（ブランディング・企画）、菊池（行政連携・まちづくりスキーム）</p>
+  </div>
+
+  <div class="highlight">
+    <h4>仮説B: 「事業創造トリップ」のサービス化</h4>
+    <p>今回のHive Tour自体をサービスとしてパッケージ化。異業種の経営者・事業責任者を集め、サウナ×対話×地域視察で新事業のアイデアを生むプログラム。八千代の自然環境を舞台に、定期開催する。NEWPEACEの富山ブランディング事例のように「異業種サウナ合宿といえば、八千代」を打ち出す一点突破型ブランディング。</p>
+    <p><strong>関与メンバー</strong>: 菊池・川相（P&D：事業設計・運営）、84ken（ブランディング・集客）、渡邊（地域コーディネート）</p>
+  </div>
+
+  <h3>5-3. ウニクスエリアでの展開仮説</h3>
+  <div class="highlight">
+    <h4>仮説C: ウニクス内「ローカルマーケット × ウェルネス」</h4>
+    <p>ウニクスの商業施設という既存インフラを活かし、渡邊さん（TOYAMA MARKET）のマーケット運営ノウハウで「ローカルフードマーケット」を定期開催。菊池さんの「Local＝美味しく、楽しく、心地いい！」をコンセプトに、地元生産者とウェルネス体験を組み合わせる。田部井さんのハーブティーは物販コンテンツとして即戦力。</p>
+    <p><strong>関与メンバー</strong>: 渡邊（マーケット運営）、田部井（ハーブティー物販）、川相（事業戦略）</p>
+  </div>
+
+  <div class="highlight">
+    <h4>仮説D: カレッジTシャツ × 地域ブランドアパレル</h4>
+    <p>「カレッジTシャツ文化は日本にならない！地方と相性よし」の着想を具体化。ウニクスエリアのショップまたはポップアップで、埼玉の地域名やローカルブランドをモチーフにしたアパレルを展開。TOYAMA MARKETの知見を埼玉版に転用。</p>
+    <p><strong>関与メンバー</strong>: 84ken（クリエイティブ・デザイン）、渡邊（マーケット展開）</p>
+  </div>
+</section>
+
+<!-- 6. NEXT ACTIONS -->
+<section>
+  <span class="sec-num">06 — Next Actions</span>
+  <h2>今後のアクション</h2>
+
+  <h3>短期（1ヶ月以内）</h3>
+  <ol class="spaced">
+    <li><strong>振り返りミーティングの設定</strong> — 6名全員で本報告書をベースに議論。各自が最も関心のあるシナリオを1つ選び、深掘りする。</li>
+    <li><strong>HIVE薬草サウナ（6月オープン）への再訪計画</strong> — 田部井さんを中心に、ハーブ×サウナの事業シナジーを現地で再検証。</li>
+    <li><strong>前田社長へのフォローアップ</strong> — 全国展開計画における埼玉エリアのポテンシャルについてヒアリング。</li>
+  </ol>
+
+  <h3>中期（3ヶ月以内）</h3>
+  <ol class="spaced">
+    <li><strong>八千代エリアのフィールドリサーチ</strong> — 宇那木さん・菊池さんを中心に、施設候補地の現地調査。</li>
+    <li><strong>「Hive Tour」パッケージの企画書作成</strong> — 84ken（スキーマ）主導で、サービスとしてのHive Tourの企画書を策定。</li>
+    <li><strong>ウニクスでのテストマーケット</strong> — 渡邊さん・田部井さんを中心に、ローカルマーケットの小規模テスト開催。</li>
+  </ol>
+
+  <h3>長期（6ヶ月〜1年）</h3>
+  <ol class="spaced">
+    <li><strong>HIVE埼玉パートナーシップの打診</strong> — 前田薬品工業との正式な協業検討。</li>
+    <li><strong>行政連携の探索</strong> — 菊池さんのまちづくりネットワークを活用し、八千代エリアでの官民連携スキームを模索。</li>
+  </ol>
+</section>
+
+<!-- 7. VENUE REVIEW -->
+<section>
+  <span class="sec-num">07 — Venue</span>
+  <h2>ヘルジアンウッド 施設レビュー</h2>
+
+  <table>
+    <tr><th>項目</th><th>内容</th><th>評価</th></tr>
+    <tr><td>建築・設計</td><td>隈研吾設計。自然素材を多用し、立山の風景と一体化。木造とガラスのバランスが秀逸。</td><td>◎</td></tr>
+    <tr><td>サウナ（The Hive）</td><td>水着着用の共用サウナ。フィンランド式。初心者（渡邊さん）も無理なく参加できる設計。</td><td>◎</td></tr>
+    <tr><td>焚き火ディナー</td><td>全13品コース＋焚き火セット。カレー5種、炊き込みご飯2種、焼き物3種、デザート2種、サラダ。</td><td>◎</td></tr>
+    <tr><td>ハーブガーデン</td><td>和ハーブ中心の広大なアロマガーデン。前田薬品工業の製薬ルーツを体現。</td><td>○</td></tr>
+    <tr><td>宿泊（coHive）</td><td>アメニティ完備（バスタオル、フェスタオル、ポンチョ、ハット、サウナマット、歯ブラシ等）。水着レンタル500円/枚。</td><td>◎</td></tr>
+    <tr><td>アクセス</td><td>富山駅からレンタカーで約30分。公共交通は不便。</td><td>△</td></tr>
+  </table>
+</section>
+
+<!-- 8. DATA -->
+<section>
+  <span class="sec-num">08 — Appendix</span>
+  <h2>データアーカイブ</h2>
+
+  <h3>アイデアボード 全投稿</h3>
+  <table>
+    <tr><th>投稿者</th><th>カテゴリ</th><th>内容</th><th>日時</th></tr>
+    <tr><td>84ken</td><td>質問</td><td>HIVEを埼玉につくるにはどうすればよい？</td><td>4/2 12:07</td></tr>
+    <tr><td>84ken</td><td>メモ</td><td>和倉温泉 加賀屋 安野光雅ミュージアム（リンク共有）</td><td>4/2 14:25</td></tr>
+    <tr><td>84ken</td><td>メモ</td><td>IWA 日本酒（リンク共有）</td><td>4/2 15:31</td></tr>
+    <tr><td>菊池</td><td>アイデア</td><td>Local 美味しく、楽しく、心地いい！地元のパン屋さん情報（パンドール、森製パン所）</td><td>4/3 18:25</td></tr>
+    <tr><td>84ken</td><td>アイデア</td><td>高級パン美味しかった。バナナクリーム理論！</td><td>4/5 07:42</td></tr>
+    <tr><td>84ken</td><td>メモ</td><td>どぶろくとマッコリは一緒？クラフトマッコリ気になる</td><td>4/5 07:49</td></tr>
+    <tr><td>84ken</td><td>メモ</td><td>カレッジTシャツ文化は日本にならない！地方と相性よし</td><td>4/5 07:50</td></tr>
+    <tr><td>84ken</td><td>プラン</td><td>HIVEは鹿島、瀬戸内へ進出予定！全都道府県へ</td><td>4/5 07:51</td></tr>
+    <tr><td>84ken</td><td>プラン</td><td>HIVEの薬草サウナは6月オープン？</td><td>4/5 07:55</td></tr>
+  </table>
+
+  <h3>共有写真</h3>
+  <p>合計26枚の写真がサイトにアップロード済み。Day 1（4/2）に20枚、Day 2（4/3）に6枚。焚き火ディナー、サウナ、施設外観、岩瀬エリアなどの記録。</p>
+  <p>閲覧: <a href="https://toyama.schema.tokyo/#photos">toyama.schema.tokyo/#photos</a></p>
+
+  <h3>共有リソース</h3>
+  <p>旅後にBox経由で資料が共有（4/5）: <a href="https://p-d.box.com/s/4ay3qb5fv0mdheer80eqd2s3kdv3p9xt">Box共有フォルダ</a></p>
+
+  <h3>参考リンク</h3>
+  <table>
+    <tr><th>名称</th><th>カテゴリ</th></tr>
+    <tr><td>ヘルジアンウッド公式</td><td>視察先</td></tr>
+    <tr><td>NEWPEACE 富山ブランディング事例</td><td>参考事例</td></tr>
+    <tr><td>満寿泉（桝田酒造店）</td><td>岩瀬エリア</td></tr>
+    <tr><td>スパ・アルプス</td><td>サウナ文化</td></tr>
+    <tr><td>ほとり座</td><td>富山カルチャー</td></tr>
+    <tr><td>黒崎屋</td><td>ローカルフード</td></tr>
+    <tr><td>森製パン所</td><td>ローカルフード</td></tr>
+    <tr><td>IWA 日本酒</td><td>発酵文化</td></tr>
+  </table>
+</section>
+
+</div>
+
+<div class="report-footer">
+  <p>Hive Tour 2026 — 視察報告書</p>
+  <p>作成: 株式会社スキーマ / 84ken | 2026年4月5日</p>
+  <p><a href="https://toyama.schema.tokyo/" style="color:var(--c-accent);">toyama.schema.tokyo</a></p>
+</div>
+
+</body>
+</html>
