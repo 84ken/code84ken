@@ -18,14 +18,34 @@
       "createdAt": "2026-03-21T07:47:38.675Z",
       "vendors": [
         {
-          "vendor": "みくゆう",
+          "vendor": "株式会社MIC FIELD（三國友哉）",
           "task": "写真活用",
           "amount": 30000,
-          "amountTax": 33000,
+          "amountTax": 30000,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "免税事業者・請求書実額",
           "id": "mn016r4kyrct"
+        },
+        {
+          "vendor": "中井章郎",
+          "task": "サイン追加補修シール",
+          "amount": 9500,
+          "amountTax": 10450,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "c0qkoajy05jq"
+        },
+        {
+          "vendor": "aoiem 加藤健太",
+          "task": "ペイント施工費・看板修正",
+          "amount": 100000,
+          "amountTax": 110000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "go153ljq0590"
         }
       ]
     },
@@ -52,7 +72,7 @@
           "amount": 50000,
           "amountTax": 55000,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mn00x2oqndmw"
         }
@@ -81,8 +101,8 @@
           "amount": 529400,
           "amountTax": 582340,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "meta/google広告として処理済",
           "id": "mmz3asnxy9q2"
         },
         {
@@ -91,8 +111,8 @@
           "amount": 275600,
           "amountTax": 303160,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "賞品系。内訳は別途確認",
           "id": "mmz3asnxwkrl"
         },
         {
@@ -111,8 +131,8 @@
           "amount": 500000,
           "amountTax": 550000,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "twooo城内匡として一括請求",
           "id": "mmz3asnxs0gl"
         },
         {
@@ -121,8 +141,8 @@
           "amount": 500000,
           "amountTax": 550000,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "請求書4件（リバサポ/スポツリ/情報発信/KOSE）",
           "id": "mmz3asnx66gl"
         }
       ],
@@ -280,9 +300,19 @@
           "amount": 500000,
           "amountTax": 550000,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mn01hqi1o9xa"
+        },
+        {
+          "vendor": "城内由香",
+          "task": "運用対応",
+          "amount": 100000,
+          "amountTax": 110000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "5q52c1g7xaxm"
         }
       ],
       "billings": [
@@ -334,11 +364,11 @@
           "id": "mmz04ikyhy0w",
           "vendor": "浅見制作所",
           "task": "年間業務（後半）",
-          "amount": 1500000,
-          "amountTax": 1650000,
+          "amount": 4172927,
+          "amountTax": 4590219,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "年間300万の残り半金"
+          "status": "invoiced",
+          "note": "請求書実額（合算）"
         },
         {
           "id": "mmz0pjncx4gx",
@@ -373,11 +403,11 @@
         {
           "vendor": "株式会社モスコソリューションズ",
           "task": "2026年3月利用分",
-          "amount": 44000,
-          "amountTax": 48400,
+          "amount": 47500,
+          "amountTax": 52250,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "請求書実額に更新",
           "id": "mn01k31e03yl"
         },
         {
@@ -386,7 +416,7 @@
           "amount": 15000,
           "amountTax": 16500,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mn01l28z5cby"
         }
@@ -440,11 +470,11 @@
           "id": "mmz04il74ndy",
           "vendor": "浅見制作所",
           "task": "年間業務（後半）",
-          "amount": 1500000,
-          "amountTax": 1650000,
+          "amount": 4172927,
+          "amountTax": 4590219,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "年間300万の残り半金"
+          "status": "invoiced",
+          "note": "請求書実額（合算）"
         },
         {
           "id": "mmz0pjn6uwup",
@@ -503,8 +533,48 @@
           "amount": 13636,
           "amountTax": 15000,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "12月〜3月"
+          "status": "invoiced",
+          "note": "Paid/LINEヤフー経由"
+        },
+        {
+          "vendor": "埼玉県立三郷高等学校 生徒会",
+          "task": "動画・記事撮影・編集",
+          "amount": 60000,
+          "amountTax": 60000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "2fogzydb5j68"
+        },
+        {
+          "vendor": "山村学園高等学校",
+          "task": "動画・記事撮影・編集",
+          "amount": 30000,
+          "amountTax": 30000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "dttreoe5urv4"
+        },
+        {
+          "vendor": "埼玉県立川越南高等学校",
+          "task": "動画・記事撮影・編集",
+          "amount": 30000,
+          "amountTax": 30000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "ug3du7x1vdan"
+        },
+        {
+          "vendor": "八板 将明（武蔵丘短期大学）",
+          "task": "動画・記事撮影・編集",
+          "amount": 180000,
+          "amountTax": 180000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "ksfextkfkqr9"
         }
       ],
       "billings": [
@@ -541,7 +611,37 @@
       "sales": 4496,
       "risks": "",
       "status": "active",
-      "vendors": [],
+      "vendors": [
+        {
+          "vendor": "レイクアンドピース株式会社",
+          "task": "イベント運営",
+          "amount": 800000,
+          "amountTax": 880000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "1u034drdhwvw"
+        },
+        {
+          "vendor": "株式会社オプンラボ",
+          "task": "イベント支援",
+          "amount": 1400000,
+          "amountTax": 1540000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "ynxpakpym9ep"
+        },
+        {
+          "vendor": "LINE広告",
+          "task": "広告費（2026年3月）",
+          "amount": 136364,
+          "amountInc": 150000,
+          "invoiceMonth": "2026-03",
+          "invoiceStatus": "memo",
+          "memo": "クレジット払い 請求書未着"
+        }
+      ],
       "billings": [
         {
           "id": "mmz0kgk8g4xs",
@@ -573,11 +673,11 @@
         {
           "vendor": "株式会社 ENgaWA",
           "task": "",
-          "amount": 300000,
-          "amountTax": 330000,
+          "amount": 466818,
+          "amountTax": 513500,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "請求書実額に更新（令和7年度運営費）",
           "id": "mmz10fvggz6b"
         },
         {
@@ -586,7 +686,7 @@
           "amount": 30000,
           "amountTax": 33000,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mmz10fvg2vmk"
         },
@@ -603,11 +703,11 @@
         {
           "vendor": "フリーズドライ",
           "task": "",
-          "amount": 60000,
-          "amountTax": 66000,
+          "amount": 50000,
+          "amountTax": 55000,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "タクマ電設として請求。実額に更新",
           "id": "mmz10fvgjc7j"
         },
         {
@@ -621,13 +721,13 @@
           "id": "mmz10fvgpcaa"
         },
         {
-          "vendor": "印刷関連",
+          "vendor": "Paid/グラフィックネットプリント",
           "task": "",
-          "amount": 0,
-          "amountTax": 0,
+          "amount": 97857,
+          "amountTax": 107843,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "金額未定",
+          "status": "invoiced",
+          "note": "Paid経由・印刷費",
           "id": "mmz10fvgy7lh"
         }
       ],
@@ -988,6 +1088,34 @@
           "expectedMonth": "",
           "status": "paid",
           "note": "実績（自動取込）"
+        },
+        {
+          "vendor": "株式会社tois",
+          "task": "企画・制作費",
+          "amount": 4300000,
+          "amountTax": 4730000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "fk3ud8zxz2hi"
+        },
+        {
+          "vendor": "meta広告",
+          "task": "広告費（2026年3月）",
+          "amount": 561526,
+          "amountInc": 617679,
+          "invoiceMonth": "2026-03",
+          "invoiceStatus": "received",
+          "memo": "6件合計 クレジット払い"
+        },
+        {
+          "vendor": "google広告",
+          "task": "広告費（2026年3月）",
+          "amount": 833579,
+          "amountInc": 916937,
+          "invoiceMonth": "2026-03",
+          "invoiceStatus": "received",
+          "memo": "クレジット払い"
         }
       ],
       "billings": [
@@ -1288,11 +1416,11 @@
           "id": "mmz14r7hppgk",
           "vendor": "株式会社モスコソリューションズ",
           "task": "運用",
-          "amount": 40000,
-          "amountTax": 44000,
+          "amount": 42000,
+          "amountTax": 46200,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "12月〜3月契約"
+          "status": "invoiced",
+          "note": "Poster月額（読売）"
         },
         {
           "id": "mmz160ylat6a",
@@ -1331,8 +1459,8 @@
           "amount": 13636,
           "amountTax": 15000,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "12月〜3月契約"
+          "status": "invoiced",
+          "note": "クレジット払い"
         }
       ],
       "billings": [
@@ -1455,6 +1583,26 @@
           "expectedMonth": "",
           "status": "paid",
           "note": "実績（自動取込）"
+        },
+        {
+          "vendor": "株式会社ポリリズム",
+          "task": "運用",
+          "amount": 90000,
+          "amountTax": 99000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "2hy1bgu52rvh"
+        },
+        {
+          "vendor": "株式会社ENgaWA",
+          "task": "2F賃料等（3月分）",
+          "amount": 50000,
+          "amountTax": 55000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "00aq2a8t0rcu"
         }
       ],
       "billings": [],
@@ -1526,8 +1674,8 @@
           "amount": 400000,
           "amountTax": 440000,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "twooo城内匡として一括請求",
           "id": "mmz3fw1vwy9c"
         }
       ],
@@ -1694,8 +1842,8 @@
           "amount": 400000,
           "amountTax": 440000,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "",
+          "status": "invoiced",
+          "note": "twooo城内匡として一括請求",
           "id": "mmz3jeqwu4ou"
         }
       ],
@@ -1786,6 +1934,16 @@
           "status": "invoiced",
           "note": "",
           "id": "mmz37w3l1aex"
+        },
+        {
+          "vendor": "大野 ひろみ",
+          "task": "動画ナレーション",
+          "amount": 30000,
+          "amountTax": 33000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "6kaqqf8i5gyh"
         }
       ],
       "billings": [
@@ -1822,9 +1980,18 @@
           "amount": 227073,
           "amountTax": 249780,
           "expectedMonth": "2026-03",
-          "status": "planned",
-          "note": "印刷原価",
+          "status": "invoiced",
+          "note": "Paid一部+アクセアが該当",
           "id": "mn1a0ston02"
+        },
+        {
+          "vendor": "株式会社アクセア",
+          "task": "ラミネート加工・出力印刷",
+          "amount": 146063,
+          "amountInc": 160669,
+          "invoiceMonth": "2026-03",
+          "invoiceStatus": "received",
+          "memo": ""
         }
       ],
       "billings": []
@@ -1853,12 +2020,41 @@
           "amount": 400000,
           "amountTax": 440000,
           "expectedMonth": "2026-03",
-          "status": "planned",
+          "status": "invoiced",
           "note": "",
           "id": "mn1a0awamori02"
         }
       ],
       "billings": []
+    },
+    {
+      "id": "y6tm0fpx5wnq",
+      "name": "コーセー SPORTS BEAUTY",
+      "client": "コーセー",
+      "description": "KOSÉ SPORTS BEAUTY 運用（2-3月）",
+      "manager": "",
+      "scheduleStart": "2026-02",
+      "scheduleEnd": "2026-03",
+      "stakeholders": "",
+      "deliverables": "",
+      "contractAmount": 1024100,
+      "estimate": 0,
+      "sales": 1024100,
+      "risks": "",
+      "status": "active",
+      "createdAt": "2026-04-03T00:00:00.000Z",
+      "vendors": [
+        {
+          "vendor": "株式会社ベクトル",
+          "task": "Clipkitクラウド利用料（3月分）",
+          "amount": 50000,
+          "amountTax": 55000,
+          "expectedMonth": "2026-03",
+          "status": "invoiced",
+          "note": "Excel外注費リストから追加",
+          "id": "a39uxk7cfdof"
+        }
+      ]
     }
   ]
 }
