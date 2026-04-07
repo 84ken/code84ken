@@ -418,13 +418,12 @@ async function load() {
   render();
 }
 async function save() {
-  // APIがあればPOST、なければlocalStorageに保存
+  // 常にlocalStorageに保存（静的ホスティングでも確実に保持）
+  localStorage.setItem(LS_KEY, JSON.stringify(D));
+  // APIがあればPOSTも試行
   try {
-    var resp = await fetch('/api/memos', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(D) });
-    if (!resp.ok) throw new Error();
-  } catch(e) {
-    localStorage.setItem(LS_KEY, JSON.stringify(D));
-  }
+    await fetch('/api/memos', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(D) });
+  } catch(e) { /* 静的ホスティングでは失敗するが問題なし */ }
 }
 
 // ===== RENDER =====
