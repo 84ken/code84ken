@@ -347,21 +347,84 @@ function autoExTax() {
 }
 
 // ===== LOAD / SAVE =====
+var LS_KEY = 'vendor-memos-data';
 async function load() {
+  // 1. JSONファイルをベースとして読み込み
+  var base;
   try {
     var resp = await fetch('/api/memos');
     if (!resp.ok) throw new Error();
-    var r = await resp.json();
+    base = await resp.json();
   } catch(e) {
-    var r = await (await fetch('vendor-memos.json')).json();
+    base = await (await fetch('vendor-memos.json')).json();
   }
-  D = r.projects ? r : { projects: [] };
+  base = base.projects ? base : { projects: [] };
+
+  // 2. localStorageの差分をマージ（ステータス等の変更を復元）
+  try {
+    var local = JSON.parse(localStorage.getItem(LS_KEY));
+    if (local && local.projects) {
+      var localMap = {};
+      local.projects.forEach(function(p) {
+        localMap[p.id] = p;
+        (p.vendors||[]).forEach(function(v) { localMap[p.id + '::' + v.id] = v; });
+        (p.billings||[]).forEach(function(b) { localMap[p.id + '::b::' + b.id] = b; });
+      });
+      base.projects.forEach(function(p) {
+        var lp = localMap[p.id];
+        if (!lp) return;
+        // プロジェクト直属フィールドのマージ（vendorsの中身など）
+        (p.vendors||[]).forEach(function(v) {
+          var lv = localMap[p.id + '::' + v.id];
+          if (lv && lv.status !== v.status) v.status = lv.status;
+          if (lv && lv.note !== v.note) v.note = lv.note;
+        });
+        (p.billings||[]).forEach(function(b) {
+          var lb = localMap[p.id + '::b::' + b.id];
+          if (lb && lb.status !== b.status) b.status = lb.status;
+          if (lb && lb.note !== b.note) b.note = lb.note;
+        });
+        // localStorageにだけある新規vendor/billingを追加
+        if (lp.vendors) {
+          var existIds = (p.vendors||[]).map(function(v){return v.id});
+          lp.vendors.forEach(function(lv) {
+            if (lv.id && existIds.indexOf(lv.id) === -1) {
+              p.vendors = p.vendors || [];
+              p.vendors.push(lv);
+            }
+          });
+        }
+        if (lp.billings) {
+          var existBIds = (p.billings||[]).map(function(b){return b.id});
+          lp.billings.forEach(function(lb) {
+            if (lb.id && existBIds.indexOf(lb.id) === -1) {
+              p.billings = p.billings || [];
+              p.billings.push(lb);
+            }
+          });
+        }
+        // monthlyData（運用案件の月別データ）
+        if (lp.monthlyData && lp.monthlyData.length) p.monthlyData = lp.monthlyData;
+      });
+      // localStorageにだけある新規プロジェクトを追加
+      var baseIds = base.projects.map(function(p){return p.id});
+      local.projects.forEach(function(lp) {
+        if (lp.id && baseIds.indexOf(lp.id) === -1) base.projects.push(lp);
+      });
+    }
+  } catch(e) { /* localStorageなし or パース失敗 → ベースのまま */ }
+
+  D = base;
   render();
 }
 async function save() {
+  // APIがあればPOST、なければlocalStorageに保存
   try {
-    await fetch('/api/memos', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(D) });
-  } catch(e) { /* HQ版ではAPIなし */ }
+    var resp = await fetch('/api/memos', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(D) });
+    if (!resp.ok) throw new Error();
+  } catch(e) {
+    localStorage.setItem(LS_KEY, JSON.stringify(D));
+  }
 }
 
 // ===== RENDER =====
