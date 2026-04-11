@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>山田の春祭り「山組1番！」</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            matsuri: {
+              red: '#b91c1c', 'red-light': '#dc2626', 'red-pale': '#fef2f2',
+              gold: '#b8860b', 'gold-light': '#d4a017',
+              indigo: '#1e1b4b', 'indigo-light': '#312e81',
+              cream: '#faf8f5', warm: '#f5f0e8',
+            }
+          },
+          fontFamily: {
+            sans: ['"Noto Sans JP"','Inter','Hiragino Sans','sans-serif'],
+            display: ['"Noto Serif JP"','serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    .text-body { color: #3d3832; }
+    html { scroll-behavior: smooth; }
+    .hero-slider { position: relative; overflow: hidden; }
+    .hero-slider .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease; }
+    .hero-slider .slide.active { opacity: 1; }
+    .hero-slider .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlay { background: linear-gradient(to top, rgba(30,27,75,0.95) 0%, rgba(30,27,75,0.4) 40%, rgba(0,0,0,0.05) 100%); }
+    .pattern-seigaiha {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='%23b91c1c' stroke-width='0.4' opacity='0.1'/%3E%3Ccircle cx='40' cy='40' r='20' fill='none' stroke='%23b91c1c' stroke-width='0.4' opacity='0.07'/%3E%3Ccircle cx='0' cy='40' r='30' fill='none' stroke='%23b91c1c' stroke-width='0.4' opacity='0.1'/%3E%3Ccircle cx='80' cy='40' r='30' fill='none' stroke='%23b91c1c' stroke-width='0.4' opacity='0.1'/%3E%3C/svg%3E");
+      background-size: 80px 40px;
+    }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .deco-line { display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
+    .deco-line::before, .deco-line::after { content: ''; flex: 1; height: 1px; background: #b91c1c; opacity: 0.2; }
+    .photo-card { border-radius: 16px; overflow: hidden; position: relative; }
+    .photo-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .photo-card:hover img { transform: scale(1.03); }
+    .photo-card .caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%); padding: 16px; }
+  </style>
+</head>
+<body class="bg-matsuri-cream min-h-screen">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 bg-matsuri-indigo/95 backdrop-blur-sm z-50 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 flex items-center justify-between h-14">
+      <a href="#" class="flex items-center gap-2 text-white font-black">
+        <span class="text-xl">&#9961;</span>
+        <span class="font-display text-base tracking-wide">山田の春祭り「山組1番！」</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#about" class="text-white/70 hover:text-matsuri-gold-light transition-colors">祭りとは</a>
+        <a href="#team" class="text-white/70 hover:text-matsuri-gold-light transition-colors">チーム</a>
+        <a href="#roles" class="text-white/70 hover:text-matsuri-gold-light transition-colors">係</a>
+        <a href="#wakagyou" class="text-white/70 hover:text-matsuri-gold-light transition-colors">若行ガイド</a>
+        <a href="#culture" class="text-white/70 hover:text-matsuri-gold-light transition-colors">しきたり</a>
+      </div>
+      <button id="mobileMenuBtn" class="md:hidden w-10 h-10 inline-flex items-center justify-center text-white" aria-label="メニュー">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden bg-matsuri-indigo border-t border-white/10 px-4 py-3">
+      <div class="flex flex-col gap-1 text-sm font-medium">
+        <a href="#about" class="py-2 text-white/70">祭りとは</a>
+        <a href="#team" class="py-2 text-white/70">チーム</a>
+        <a href="#roles" class="py-2 text-white/70">係</a>
+        <a href="#wakagyou" class="py-2 text-white/70">若行ガイド</a>
+        <a href="#culture" class="py-2 text-white/70">しきたり</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="relative h-screen max-h-[900px] min-h-[600px]">
+    <div class="hero-slider absolute inset-0">
+      <div class="slide active"><img src="photo/643906883_26336550342641866_4376274147382662881_n.jpg" alt="屋台の上の若行"></div>
+      <div class="slide"><img src="photo/DSC00655.JPG" alt="夜の屋台 ぼんぼり"></div>
+      <div class="slide"><img src="photo/84ken-saisai-58.jpg" alt="みんなで曳く山組屋台"></div>
+      <div class="slide"><img src="photo/643595239_1220902320160261_6198729032231831921_n.jpg" alt="若行の笑顔"></div>
+      <div class="slide"><img src="photo/625065897_1504139427741414_5694460167420429117_n.jpg" alt="山組屋台 正面"></div>
+    </div>
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="relative z-10 h-full flex flex-col items-center justify-end pb-20 px-4 text-center text-white">
+      <p class="text-matsuri-gold-light text-sm tracking-[0.3em] font-bold mb-5">YAMADA NO HARU MATSURI</p>
+      <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-black mb-2 leading-none drop-shadow-lg">山田の春祭り</h1>
+      <p class="font-display text-3xl sm:text-4xl font-black text-matsuri-gold-light mb-3">「山組1番！」</p>
+      <p class="text-white/60 text-base sm:text-lg font-medium mb-1">秩父路に春を告げる、最初の屋台祭り</p>
+      <p class="text-white/40 text-sm mb-10">恒持神社例大祭 &bull; 毎年3月第2日曜日 &bull; 秩父市山田</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="#about" class="inline-flex items-center justify-center gap-2 h-12 px-7 text-base font-bold bg-matsuri-red text-white rounded-full hover:bg-matsuri-red-light transition-colors shadow-lg shadow-red-900/30">祭りを知る</a>
+        <a href="#wakagyou" class="inline-flex items-center justify-center gap-2 h-12 px-7 text-base font-medium bg-white/10 text-white border border-white/25 rounded-full hover:bg-white/20 transition-colors backdrop-blur-sm">若行ガイド</a>
+      </div>
+    </div>
+    <div class="absolute bottom-6 left-0 right-0 z-10 flex justify-center gap-2">
+      <button class="slider-dot w-2.5 h-2.5 rounded-full bg-white transition-all" data-index="0"></button>
+      <button class="slider-dot w-2.5 h-2.5 rounded-full bg-white/30 transition-all" data-index="1"></button>
+      <button class="slider-dot w-2.5 h-2.5 rounded-full bg-white/30 transition-all" data-index="2"></button>
+      <button class="slider-dot w-2.5 h-2.5 rounded-full bg-white/30 transition-all" data-index="3"></button>
+      <button class="slider-dot w-2.5 h-2.5 rounded-full bg-white/30 transition-all" data-index="4"></button>
+    </div>
+  </header>
+
+  <!-- ===== PHOTO GRID ===== -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 -mt-12 relative z-20 mb-20">
+    <div class="grid grid-cols-3 gap-3">
+      <div class="photo-card aspect-[4/3]">
+        <img src="photo/643595239_1220902320160261_6198729032231831921_n.jpg" alt="全力で叫ぶ若行">
+        <div class="caption"><p class="text-white text-xs sm:text-sm font-bold">全力で叫ぶ。それが若行。</p></div>
+      </div>
+      <div class="photo-card aspect-[4/3]">
+        <img src="photo/642290843_1243811283988935_3212469990248504966_n.jpg" alt="屋台の中">
+        <div class="caption"><p class="text-white text-xs sm:text-sm font-bold">華やかな屋台の中</p></div>
+      </div>
+      <div class="photo-card aspect-[4/3]">
+        <img src="photo/84ken-saisai-3.jpg" alt="肩を組む仲間たち">
+        <div class="caption"><p class="text-white text-xs sm:text-sm font-bold">祭りのあとは、仲間。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-8">
+
+    <!-- ===== 祭りとは ===== -->
+    <section id="about" class="scroll-mt-20 fade-in">
+      <div class="deco-line"><span class="text-matsuri-red text-xs font-bold tracking-[0.2em]">ABOUT</span></div>
+      <h2 class="font-display text-4xl font-black text-matsuri-indigo mb-8">山田の春祭りとは</h2>
+
+      <div class="grid sm:grid-cols-2 gap-6 mb-8">
+        <div>
+          <p class="text-body leading-relaxed text-sm mb-4">
+            秩父市山田地区の<strong>恒持神社（つねもちじんじゃ）例大祭</strong>。
+            江戸時代から続く伝統行事で、<strong>秩父地方で一番最初に屋台が出る祭り</strong>。
+            毎年<strong>3月第2日曜日</strong>に開催。
+          </p>
+          <p class="text-body leading-relaxed text-sm">
+            秩父市指定有形民俗文化財の<strong>3基の山車</strong>が山田地区を曳き回され、
+            夜にはぼんぼりが灯ります。
+          </p>
+          <p class="text-xs text-stone-400 mt-3">※ スターマインはここ数年中止。復活を期待！</p>
+        </div>
+        <div class="photo-card aspect-[4/3] rounded-2xl shadow-md">
+          <img src="photo/642870659_1939735647418823_4916796966949346741_n.jpg" alt="武甲山と屋台曳行">
+          <div class="caption"><p class="text-white text-xs font-medium">武甲山を背に、山田の春を告げる</p></div>
+        </div>
+      </div>
+
+      <!-- 3 Floats -->
+      <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-8">
+        <div class="bg-matsuri-red rounded-2xl p-4 sm:p-5 text-white shadow-md text-center">
+          <p class="font-display text-3xl sm:text-4xl font-black mb-1">山</p>
+          <p class="text-white/90 text-sm font-bold">山組</p>
+          <p class="text-white/60 text-xs">やまぐみ / 中山田</p>
+          <p class="text-white/60 text-xs">屋台</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-stone-200 p-4 sm:p-5 text-center">
+          <p class="font-display text-3xl sm:text-4xl font-black text-matsuri-indigo mb-1">本</p>
+          <p class="text-matsuri-indigo text-sm font-bold">本組</p>
+          <p class="text-stone-400 text-xs">もとぐみ / 荒木</p>
+          <p class="text-stone-400 text-xs">屋台</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-stone-200 p-4 sm:p-5 text-center">
+          <p class="font-display text-3xl sm:text-4xl font-black text-matsuri-indigo mb-1">上</p>
+          <p class="text-matsuri-indigo text-sm font-bold">上組</p>
+          <p class="text-stone-400 text-xs">かみぐみ / 大棚</p>
+          <p class="text-stone-400 text-xs">笠鉾</p>
+        </div>
+      </div>
+
+      <!-- Day Flow -->
+      <div class="bg-matsuri-indigo rounded-2xl p-6 sm:p-8 shadow-md text-white mb-8">
+        <h3 class="font-display text-xl font-black mb-5">大祭当日の流れ</h3>
+        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+          <div class="flex items-center gap-3"><span class="bg-matsuri-red font-black rounded-lg px-2.5 py-1 text-xs shrink-0 w-14 text-center">5:30</span><span class="font-bold">集合・着付・化粧</span></div>
+          <div class="flex items-center gap-3"><span class="bg-white/10 font-bold rounded-lg px-2.5 py-1 text-xs shrink-0 w-14 text-center">8:00</span><span class="text-white/80">山車曳行開始</span></div>
+          <div class="flex items-center gap-3"><span class="bg-white/10 font-bold rounded-lg px-2.5 py-1 text-xs shrink-0 w-14 text-center">11:00</span><span class="text-white/80">恒持神社に3基集合・祭典</span></div>
+          <div class="flex items-center gap-3"><span class="bg-white/10 font-bold rounded-lg px-2.5 py-1 text-xs shrink-0 w-14 text-center">13:00</span><span class="text-white/80">御旅所（八坂神社）へ出発</span></div>
+          <div class="flex items-center gap-3"><span class="bg-white/10 font-bold rounded-lg px-2.5 py-1 text-xs shrink-0 w-14 text-center">15:00</span><span class="text-white/80">八坂神社にて祭典</span></div>
+          <div class="flex items-center gap-3"><span class="bg-white/10 font-bold rounded-lg px-2.5 py-1 text-xs shrink-0 w-14 text-center">19:00</span><span class="text-white/80">夜の曳行・ぼんぼり点灯</span></div>
+          <div class="flex items-center gap-3"><span class="bg-white/5 text-white/40 font-bold rounded-lg px-2.5 py-1 text-xs shrink-0 w-14 text-center">21:00</span><span class="text-white/40">祭り終了</span></div>
+          <div class="flex items-center gap-3"><span class="bg-matsuri-gold/20 text-matsuri-gold-light font-bold rounded-lg px-2.5 py-1 text-xs shrink-0 w-14 text-center">翌日</span><span class="text-matsuri-gold-light">解体 &rarr; 直会（打ち上げ・競り）</span></div>
+        </div>
+      </div>
+
+      <!-- Yomiuri -->
+      <a href="https://www.yomiuri.co.jp/local/saitama/news/20260309-GYTNT00337/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md hover:border-matsuri-red/30 transition-all group">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-stone-100 rounded-xl inline-flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+          </div>
+          <div>
+            <p class="text-xs text-stone-400">読売新聞 2026.3.9</p>
+            <p class="text-sm font-bold text-matsuri-indigo group-hover:text-matsuri-red transition-colors">山田の春祭りが読売新聞に掲載されました</p>
+          </div>
+          <svg class="w-5 h-5 text-stone-300 ml-auto shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+    </section>
+
+    <!-- ===== チーム ===== -->
+    <section id="team" class="scroll-mt-20 mt-24 fade-in">
+      <div class="deco-line"><span class="text-matsuri-red text-xs font-bold tracking-[0.2em]">TEAM</span></div>
+      <h2 class="font-display text-4xl font-black text-matsuri-indigo mb-8">祭りのチーム</h2>
+
+      <div class="grid sm:grid-cols-2 gap-4 mb-8">
+        <div class="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 bg-matsuri-indigo rounded-xl inline-flex items-center justify-center">
+              <span class="text-white font-display font-black">保</span>
+            </div>
+            <h3 class="text-lg font-black text-matsuri-indigo">保存会</h3>
+          </div>
+          <p class="text-sm text-body leading-relaxed">
+            山車・屋台の保存と祭りの伝統継承。
+            競りの収益の寄付先（令和6年〜）。
+            祭り全体の意思決定と管理。
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 bg-matsuri-red rounded-xl inline-flex items-center justify-center">
+              <span class="text-white font-display font-black">青</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-black text-matsuri-indigo">青年部</h3>
+              <p class="text-xs text-stone-400">45歳未満</p>
+            </div>
+          </div>
+          <p class="text-sm text-body leading-relaxed">
+            祭りの実動部隊。
+            若行・世話係・各係はここから。
+            祭りの熱気と活力の源。
+          </p>
+        </div>
+      </div>
+
+      <!-- Group photo with pull scene -->
+      <div class="photo-card aspect-[16/9] rounded-2xl shadow-lg">
+        <img src="photo/DSC00558.JPG" alt="みんなで曳く" class="object-center">
+        <div class="caption p-6">
+          <p class="text-white font-display text-2xl sm:text-3xl font-black">みんなで曳く。みんなの祭り。</p>
+          <p class="text-white/60 text-sm mt-1">保存会・青年部・地域のみんなで</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 係と役割 ===== -->
+    <section id="roles" class="scroll-mt-20 mt-24 fade-in">
+      <div class="deco-line"><span class="text-matsuri-red text-xs font-bold tracking-[0.2em]">ROLES</span></div>
+      <h2 class="font-display text-4xl font-black text-matsuri-indigo mb-3">14の係</h2>
+      <p class="text-body text-sm mb-8">屋台1基を動かすのに、これだけの人が関わっています。</p>
+
+      <div class="bg-matsuri-indigo rounded-2xl p-6 sm:p-8 shadow-md mb-8">
+        <div class="flex flex-col items-center gap-3">
+          <span class="bg-white text-matsuri-indigo px-5 py-2 rounded-full text-sm font-black">屋台責任者</span>
+          <div class="w-px h-3 bg-white/20"></div>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="bg-white/10 text-white/80 px-4 py-1.5 rounded-full text-xs font-bold border border-white/10">総括</span>
+            <span class="bg-white/10 text-white/80 px-4 py-1.5 rounded-full text-xs font-bold border border-white/10">副総括</span>
+          </div>
+          <div class="w-px h-3 bg-white/20"></div>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="bg-matsuri-gold/20 text-matsuri-gold-light px-4 py-1.5 rounded-full text-xs font-black border border-matsuri-gold/30">行事</span>
+            <span class="bg-matsuri-red text-white px-5 py-1.5 rounded-full text-sm font-black shadow-lg shadow-red-900/40">若行（神様）</span>
+            <span class="bg-emerald-500/20 text-emerald-300 px-4 py-1.5 rounded-full text-xs font-black border border-emerald-500/30">世話係</span>
+          </div>
+          <div class="w-px h-3 bg-white/20"></div>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="bg-white/10 text-white/60 px-3 py-1 rounded-full text-xs font-medium">棟梁</span>
+            <span class="bg-white/10 text-white/60 px-3 py-1 rounded-full text-xs font-medium">屋根係</span>
+            <span class="bg-white/10 text-white/60 px-3 py-1 rounded-full text-xs font-medium">キリン係</span>
+            <span class="bg-white/10 text-white/60 px-3 py-1 rounded-full text-xs font-medium">ブレーキ係</span>
+            <span class="bg-white/10 text-white/60 px-3 py-1 rounded-full text-xs font-medium">芯綱係</span>
+            <span class="bg-white/10 text-white/60 px-3 py-1 rounded-full text-xs font-medium">反り木係</span>
+            <span class="bg-white/10 text-white/60 px-3 py-1 rounded-full text-xs font-medium">太鼓係</span>
+            <span class="bg-white/10 text-white/60 px-3 py-1 rounded-full text-xs font-medium">神輿係</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
+          <p class="text-xs font-black text-stone-400 tracking-widest mb-3">MANAGEMENT</p>
+          <div class="space-y-2.5 text-sm">
+            <p><span class="font-bold text-matsuri-indigo">屋台責任者</span> <span class="text-body">&mdash; 最高責任者。安全と全体指揮。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">総括</span> <span class="text-body">&mdash; スケジュール・各係の調整。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">副総括</span> <span class="text-body">&mdash; 総括の補佐・代行。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">行事</span> <span class="text-body">&mdash; 神事管理。半纏・鉢巻配布。</span></p>
+          </div>
+        </div>
+        <div class="bg-matsuri-red-pale rounded-2xl border border-red-200 p-5">
+          <p class="text-xs font-black text-matsuri-red tracking-widest mb-3">STARS</p>
+          <div class="space-y-2.5 text-sm">
+            <p><span class="font-bold text-matsuri-red">若行</span> <span class="text-body">&mdash; 屋台に乗る「神様」。毎年4〜5名。</span></p>
+            <p><span class="font-bold text-matsuri-red">世話係</span> <span class="text-body">&mdash; <strong>前年の若行</strong>がサポート。</span></p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm sm:col-span-2">
+          <p class="text-xs font-black text-stone-400 tracking-widest mb-3">OPERATION</p>
+          <div class="grid sm:grid-cols-2 gap-2.5 text-sm">
+            <p><span class="font-bold text-matsuri-indigo">棟梁</span> <span class="text-body">&mdash; 山車の組立・解体の総責任者。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">屋根係</span> <span class="text-body">&mdash; 屋根上で進行指示・障害物確認。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">キリン係</span> <span class="text-body">&mdash; ギリ回し（方向転換）を担当。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">ブレーキ係</span> <span class="text-body">&mdash; テコ棒で制動・方向調整。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">芯綱係</span> <span class="text-body">&mdash; 中心の綱で速度・方向を制御。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">反り木係</span> <span class="text-body">&mdash; 土台前方で進行方向を微調整。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">太鼓係</span> <span class="text-body">&mdash; 屋台上で太鼓演奏。</span></p>
+            <p><span class="font-bold text-matsuri-indigo">神輿係</span> <span class="text-body">&mdash; 恒持神社〜八坂神社間の渡御。</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 若行ガイド ===== -->
+    <section id="wakagyou" class="scroll-mt-20 mt-24 fade-in">
+      <div class="deco-line"><span class="text-matsuri-red text-xs font-bold tracking-[0.2em]">WAKAGYOU GUIDE</span></div>
+      <h2 class="font-display text-4xl font-black text-matsuri-indigo mb-3">若行ガイド</h2>
+      <p class="text-body text-sm mb-8">若行に選ばれたあなたへ。1月〜翌日の直会まで、全部まとめました。</p>
+
+      <div class="photo-card aspect-[16/9] rounded-2xl shadow-lg mb-8">
+        <img src="photo/643906883_26336550342641866_4376274147382662881_n.jpg" alt="屋台の上の若行" class="object-top">
+        <div class="caption p-6 sm:p-8">
+          <p class="text-white font-display text-3xl sm:text-4xl font-black leading-tight">着物を纏い、<br>屋台に乗る。</p>
+          <p class="text-white/60 text-sm mt-2">毎年4〜5名が「神様」として選ばれます。</p>
+        </div>
+      </div>
+
+      <div class="bg-matsuri-red rounded-2xl p-6 sm:p-8 text-white shadow-md mb-8">
+        <h3 class="font-display text-xl font-black mb-3">若行 = 神様</h3>
+        <p class="text-sm leading-relaxed text-white/90 mb-3">
+          華やかな当日だけじゃない。<strong>1月の顔合わせから始まる準備・段取り・会計・直会の主催</strong>まで全部が若行の仕事。大変だけど、終わったあとの達成感は格別。
+        </p>
+        <p class="text-sm text-white/60">翌年は<strong>世話係</strong>として次の若行を支える側に。だから今年の経験をしっかり残そう。</p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden mb-8">
+        <div class="bg-matsuri-indigo px-6 py-3"><h3 class="text-sm font-black text-white tracking-wider">1月 &mdash; 顔合わせ・体制決定</h3></div>
+        <div class="px-6 py-4 space-y-4">
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red/10 text-matsuri-red font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">1/4</span><div><p class="text-sm font-bold text-matsuri-indigo">屋台備品確認・点検（顔合わせ）</p><p class="text-xs text-body">9:00-12:00 @ 5区公会堂</p></div></div>
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red/10 text-matsuri-red font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">1/8</span><div><p class="text-sm font-bold text-matsuri-indigo">全組打合せ（行事・世話係・若行）</p><p class="text-xs text-body">18:30-19:30 @ 恒持会館 &mdash; 若行長決定・着物・お宿の打診</p></div></div>
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red/10 text-matsuri-red font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">1/29</span><div><p class="text-sm font-bold text-matsuri-indigo">お宿依頼・やぐら太鼓</p><p class="text-xs text-body">18:00-19:00 / 全組若行長</p></div></div>
+        </div>
+        <div class="border-t border-stone-100 bg-matsuri-indigo px-6 py-3"><h3 class="text-sm font-black text-white tracking-wider">2月 &mdash; 準備・会議</h3></div>
+        <div class="px-6 py-4 space-y-4">
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red/10 text-matsuri-red font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">2/1</span><div><p class="text-sm font-bold text-matsuri-indigo">ぼんぼり紙の剥がし</p><p class="text-xs text-body">9:00-11:30 @ 薬師様</p></div></div>
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red/10 text-matsuri-red font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">2/20</span><div><p class="text-sm font-bold text-matsuri-indigo">警備推進会議</p><p class="text-xs text-body">18:30-19:30 @ 恒持会館</p></div></div>
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red/10 text-matsuri-red font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">2/21</span><div><p class="text-sm font-bold text-matsuri-indigo">若行激励会</p><p class="text-xs text-body">19:00-21:00 @ 4区公会堂</p></div></div>
+          <div class="flex gap-3 items-start"><span class="bg-amber-100 text-amber-700 font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">要調整</span><div><p class="text-sm font-bold text-matsuri-indigo">前年若行長からの引き継ぎ</p><p class="text-xs text-stone-400">直会の段取り・予算・手配物。早めに連絡を。</p></div></div>
+        </div>
+        <div class="border-t border-stone-100 bg-matsuri-indigo px-6 py-3"><h3 class="text-sm font-black text-white tracking-wider">3月上旬 &mdash; 太鼓慣らし・前日準備</h3></div>
+        <div class="px-6 py-4 space-y-4">
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red/10 text-matsuri-red font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">3/1-7</span><div><p class="text-sm font-bold text-matsuri-indigo">太鼓慣らし（毎晩）</p><p class="text-xs text-body">19:00-21:00 @ 4区公会堂 / 若行全員で交代</p></div></div>
+          <div class="flex gap-3 items-start"><span class="bg-emerald-100 text-emerald-700 font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">前日</span><div><p class="text-sm font-bold text-matsuri-indigo">前日組立・準備</p><p class="text-xs text-body">6:30〜 ぼんぼり紙貼り / 屋台運搬 / 婦人方へレクチャー / 前夜祭18時</p></div></div>
+        </div>
+        <div class="border-t border-stone-100 bg-matsuri-red px-6 py-3"><h3 class="text-sm font-black text-white tracking-wider">大祭当日</h3></div>
+        <div class="px-6 py-4 bg-matsuri-red-pale">
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red text-white font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">5:30</span><div><p class="text-sm font-bold text-matsuri-indigo">恒持神社集合 &rarr; 着付・化粧 &rarr; 屋台に乗る</p><p class="text-xs text-stone-400">朝8時〜夜9時まで。全力で。</p></div></div>
+        </div>
+        <div class="border-t border-stone-100 bg-matsuri-indigo px-6 py-3"><h3 class="text-sm font-black text-white tracking-wider">翌日 &mdash; 解体・直会</h3></div>
+        <div class="px-6 py-4 space-y-4">
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red/10 text-matsuri-red font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">7:30</span><div><p class="text-sm font-bold text-matsuri-indigo">解体</p><p class="text-xs text-stone-400">朝一お茶出し / 競り人との下話 / 帰宅防止の声かけ</p></div></div>
+          <div class="flex gap-3 items-start"><span class="bg-matsuri-red/10 text-matsuri-red font-bold rounded-lg px-2 py-1 text-xs shrink-0 w-14 text-center">11:00〜</span><div><p class="text-sm font-bold text-matsuri-indigo">直会を主催 &rarr; 競り実施</p><p class="text-xs text-stone-400">@ 公会堂 / 食事・物品は事前発注 / 競り収益は山組保存会へ寄付</p></div></div>
+        </div>
+      </div>
+
+      <!-- Checklist -->
+      <div class="bg-matsuri-warm rounded-2xl border border-stone-200 p-6 sm:p-8 pattern-seigaiha">
+        <h3 class="font-display text-xl font-black text-matsuri-indigo mb-4">手配チェックリスト</h3>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-start gap-3"><span class="w-5 h-5 rounded border-2 border-matsuri-red/30 shrink-0 mt-0.5"></span><div><span class="font-bold text-matsuri-indigo">ぼんぼり剥がし日程調整</span><span class="text-stone-400"> &mdash; 若行内で調整、行事にも声かけ</span></div></div>
+          <div class="flex items-start gap-3"><span class="w-5 h-5 rounded border-2 border-matsuri-red/30 shrink-0 mt-0.5"></span><div><span class="font-bold text-matsuri-indigo">提灯引取</span><span class="text-stone-400"> &mdash; 浅賀ちょうちん店 / 各自受取推奨</span></div></div>
+          <div class="flex items-start gap-3"><span class="w-5 h-5 rounded border-2 border-matsuri-red/30 shrink-0 mt-0.5"></span><div><span class="font-bold text-matsuri-indigo">半纏・鉢巻配布</span><span class="text-stone-400"> &mdash; 行事が各区へ</span></div></div>
+          <div class="flex items-start gap-3"><span class="w-5 h-5 rounded border-2 border-matsuri-red/30 shrink-0 mt-0.5"></span><div><span class="font-bold text-matsuri-indigo">御神酒購入</span><span class="text-stone-400"> &mdash; 若行長立替、5区集まり時に精算</span></div></div>
+          <div class="flex items-start gap-3"><span class="w-5 h-5 rounded border-2 border-matsuri-red/30 shrink-0 mt-0.5"></span><div><span class="font-bold text-matsuri-indigo">御旅所（昼・夜）確定連絡</span><span class="text-stone-400"> &mdash; 行事・世話係長へ</span></div></div>
+          <div class="flex items-start gap-3"><span class="w-5 h-5 rounded border-2 border-matsuri-red/30 shrink-0 mt-0.5"></span><div><span class="font-bold text-matsuri-indigo">直会の飲食・物品手配</span><span class="text-stone-400"> &mdash; オードブル（ゆたかや）、酒類、消耗品等</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== しきたり ===== -->
+    <section id="culture" class="scroll-mt-20 mt-24 fade-in">
+      <div class="deco-line"><span class="text-matsuri-red text-xs font-bold tracking-[0.2em]">CULTURE</span></div>
+      <h2 class="font-display text-4xl font-black text-matsuri-indigo mb-8">しきたりと用語</h2>
+
+      <!-- Hourai -->
+      <div class="bg-matsuri-red rounded-2xl p-6 sm:p-8 text-white shadow-md mb-6">
+        <p class="font-display text-4xl sm:text-5xl font-black mb-2 leading-none">ほうりゃい！<br>ほうりゃい！</p>
+        <p class="text-lg font-black text-white/90 mb-3">宝来 &mdash; 宝よ来い、宝よ来い</p>
+        <p class="text-sm text-white/80 leading-relaxed">
+          若行が屋台の上から叫ぶ掛け声。「宝が来い」と願いを込めて、何度も何度も声を張り上げます。
+          この声が響くと、祭りの空気が一変する。
+        </p>
+      </div>
+
+      <!-- Wassyoi -->
+      <div class="bg-matsuri-indigo rounded-2xl p-6 sm:p-8 text-white shadow-md mb-6">
+        <p class="font-display text-3xl sm:text-4xl font-black mb-3 leading-none">わっしょい！わっしょい！</p>
+        <p class="text-sm text-white/80 leading-relaxed mb-3">
+          掛け声とともに一気飲み。これが山田の春祭りの恒例。
+        </p>
+        <div class="bg-white/10 rounded-xl p-4">
+          <p class="text-base font-black text-white">「ごちそうさま」を言わないと、もう一杯来ます <span class="text-xl">&#x1F602;</span></p>
+          <p class="text-sm text-white/70 mt-1">飲み終わったら<strong>「ごちそうさまでした！」</strong>と叫ぶこと。言い忘れると無限ループに入ります笑</p>
+        </div>
+        <p class="text-xs text-white/40 mt-3">※ お酒飲めない方はソフトドリンクでOK！</p>
+      </div>
+
+      <!-- Photo -->
+      <div class="photo-card aspect-[16/9] rounded-2xl shadow-md mb-6">
+        <img src="photo/84ken-saisai-3.jpg" alt="肩を組む仲間">
+        <div class="caption p-6">
+          <p class="text-white font-display text-xl font-black">祭りが終われば、みんな仲間。</p>
+        </div>
+      </div>
+
+      <!-- Glossary -->
+      <div class="bg-white rounded-2xl border border-stone-200 p-6 sm:p-8 shadow-sm">
+        <h3 class="font-display text-xl font-black text-matsuri-indigo mb-5">用語集</h3>
+        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">若行（わかぎょう）</p><p class="text-body">屋台に乗る「神様」。毎年4〜5名。</p></div>
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">世話係（せわがかり）</p><p class="text-body">前年の若行が務め、現役をサポート。</p></div>
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">宝来（ほうりゃい）</p><p class="text-body">若行が叫ぶ掛け声。「宝よ来い」の意。</p></div>
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">ギリ回し</p><p class="text-body">山車の方向転換。ウマ+テコ棒+ギリ棒で回す。</p></div>
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">ぼんぼり</p><p class="text-body">屋台に飾る提灯。前日に紙を貼り、夜に灯す。</p></div>
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">御旅所（おたびしょ）</p><p class="text-body">八坂神社。午後に山車が向かう目的地。</p></div>
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">直会（なおらい）</p><p class="text-body">祭り翌日の打ち上げ。若行が主催。</p></div>
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">競り（せり）</p><p class="text-body">直会でのオークション。収益は保存会へ。</p></div>
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">お宿</p><p class="text-body">当日の昼食・夕食をいただく場所。</p></div>
+          <div class="border-b border-stone-100 pb-3"><p class="font-bold text-matsuri-red mb-0.5">キリン</p><p class="text-body">ギリ回しに使う道具。キリン係が操作。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Links ===== -->
+    <section class="mt-24 fade-in">
+      <div class="deco-line"><span class="text-matsuri-red text-xs font-bold tracking-[0.2em]">LINKS</span></div>
+      <h2 class="font-display text-4xl font-black text-matsuri-indigo mb-6">リンク</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <a href="https://www.yomiuri.co.jp/local/saitama/news/20260309-GYTNT00337/" target="_blank" rel="noopener" class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md hover:border-matsuri-red/30 transition-all group">
+          <p class="text-xs text-stone-400">読売新聞 2026.3.9</p><p class="text-sm font-bold text-matsuri-indigo group-hover:text-matsuri-red">山田の春祭り 新聞記事</p>
+        </a>
+        <a href="https://navi.city.chichibu.lg.jp/p_festival/1349/" target="_blank" rel="noopener" class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md hover:border-matsuri-red/30 transition-all group">
+          <p class="text-xs text-stone-400">秩父観光なび</p><p class="text-sm font-bold text-matsuri-indigo group-hover:text-matsuri-red">山田の春祭り 公式情報</p>
+        </a>
+        <a href="https://www.chichibuji.gr.jp/yamada2026/" target="_blank" rel="noopener" class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md hover:border-matsuri-red/30 transition-all group">
+          <p class="text-xs text-stone-400">秩父観光協会</p><p class="text-sm font-bold text-matsuri-indigo group-hover:text-matsuri-red">山田の春祭り 2026年</p>
+        </a>
+        <a href="https://note.com/84ken/n/n75f0168db9e6" target="_blank" rel="noopener" class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md hover:border-matsuri-red/30 transition-all group">
+          <p class="text-xs text-stone-400">note</p><p class="text-sm font-bold text-matsuri-indigo group-hover:text-matsuri-red">祭りはきらい。でも神様になるんだ！</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Night photo -->
+    <div class="photo-card aspect-[21/9] rounded-2xl shadow-lg mt-16 mb-8 fade-in">
+      <img src="photo/DSC00655.JPG" alt="夜の屋台2基 ぼんぼり">
+      <div class="caption p-6">
+        <p class="text-white font-display text-xl sm:text-2xl font-black">ぼんぼりが灯る、春の夜。</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Hayashi -->
+  <div class="bg-matsuri-warm border-t border-stone-200 py-10 px-4 sm:px-8 pattern-seigaiha">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="font-display text-lg font-black text-matsuri-indigo mb-2">秩父屋台囃子を聴く</p>
+      <p class="text-sm text-body mb-5">大太鼓の迫力、小太鼓のリズム、笛と鉦が混然一体。秩父の音を感じてください。</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="https://www.youtube.com/user/TheDensyoukai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-matsuri-red text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-matsuri-red-light transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="white"/></svg>
+          秩父屋台囃子傳承會 YouTube
+        </a>
+        <a href="https://www.chichibuyataibayashi.org/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white text-matsuri-indigo text-sm font-bold px-5 py-2.5 rounded-full border border-stone-200 hover:border-matsuri-red/30 transition-colors">
+          秩父屋台囃子保存会
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-matsuri-indigo py-12 px-4 sm:px-8 text-center">
+    <p class="font-display text-4xl font-black text-white mb-2">&#9961;</p>
+    <p class="font-display text-2xl font-black text-white mb-1">山田の春祭り「山組1番！」</p>
+    <p class="text-white/40 text-sm mb-1">令和7年度若行の記録をもとに作成</p>
+    <p class="text-white/25 text-xs">恒持神社例大祭 / 秩父市山田地区（中山田）</p>
+  </footer>
+
+  <script>
+    document.getElementById('mobileMenuBtn').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.toggle('hidden')});
+    document.querySelectorAll('#mobileMenu a').forEach(a=>{a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('hidden'))});
+    const slides=document.querySelectorAll('.hero-slider .slide'),dots=document.querySelectorAll('.slider-dot');let cur=0;
+    function show(i){slides.forEach((s,x)=>s.classList.toggle('active',x===i));dots.forEach((d,x)=>{d.classList.toggle('bg-white',x===i);d.classList.toggle('bg-white/30',x!==i)});cur=i}
+    dots.forEach(d=>d.addEventListener('click',()=>show(+d.dataset.index)));
+    setInterval(()=>show((cur+1)%slides.length),5000);
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.08});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>
