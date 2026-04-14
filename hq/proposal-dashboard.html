@@ -74,13 +74,13 @@ tailwind.config = {
     </div>
     <div class="bg-emerald-50 rounded-xl border-2 border-emerald-300 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-emerald-700 font-medium mb-1">受注確定</p>
-      <p class="text-2xl sm:text-3xl font-bold text-emerald-700">5<span class="text-base sm:text-lg font-medium text-emerald-500 ml-1">件</span></p>
-      <p class="text-xs text-emerald-600 font-semibold mt-1">¥83,922,360</p>
+      <p class="text-2xl sm:text-3xl font-bold text-emerald-700">6<span class="text-base sm:text-lg font-medium text-emerald-500 ml-1">件</span></p>
+      <p class="text-xs text-emerald-600 font-semibold mt-1">¥88,412,360</p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">提案中</p>
-      <p class="text-2xl sm:text-3xl font-bold text-primary-600">6<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
-      <p class="text-xs text-slate-400 mt-1">＋予定2件（花プロモ含む）</p>
+      <p class="text-2xl sm:text-3xl font-bold text-primary-600">5<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
+      <p class="text-xs text-slate-400 mt-1">＋予定1件（サーキュラー）</p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">失注</p>
@@ -88,8 +88,8 @@ tailwind.config = {
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">受注ヨミ（確度 高＋中）</p>
-      <p class="text-xl sm:text-2xl font-bold text-slate-900">¥8,000,000</p>
-      <p class="text-xs text-slate-400 mt-1">いちご大學＋サーキュラー（残）</p>
+      <p class="text-xl sm:text-2xl font-bold text-slate-900">¥4,000,000</p>
+      <p class="text-xs text-slate-400 mt-1">サーキュラーのみ</p>
     </div>
   </div>
 
@@ -99,10 +99,10 @@ tailwind.config = {
       すべて <span class="bg-white/20 px-1.5 py-0.5 rounded text-xs">17</span>
     </button>
     <button onclick="filterStatus('受注')" data-filter="受注" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-emerald-700 border border-emerald-200 hover:bg-emerald-50 cursor-pointer">
-      受注 <span class="bg-emerald-100 px-1.5 py-0.5 rounded text-xs">5</span>
+      受注 <span class="bg-emerald-100 px-1.5 py-0.5 rounded text-xs">6</span>
     </button>
     <button onclick="filterStatus('提案中')" data-filter="提案中" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
-      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">8</span>
+      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">7</span>
     </button>
     <button onclick="filterStatus('失注')" data-filter="失注" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-500 border border-slate-200 hover:bg-gray-50 cursor-pointer">
       失注 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">4</span>
@@ -118,16 +118,17 @@ tailwind.config = {
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
           <span class="text-sm font-bold text-emerald-900">受注確定</span>
-          <span class="ml-auto text-2xl font-bold text-emerald-700">5件</span>
+          <span class="ml-auto text-2xl font-bold text-emerald-700">6件</span>
         </div>
         <div class="space-y-2 text-sm">
           <div class="flex justify-between"><span class="text-emerald-800">観光客誘致・戦略的情報発信</span><span class="font-medium">¥39,600,000</span></div>
           <div class="flex justify-between"><span class="text-emerald-800">ぶんたま（保守運用）</span><span class="font-medium">¥16,783,000</span></div>
           <div class="flex justify-between"><span class="text-emerald-800">すぽったま（運用保守）</span><span class="font-medium">¥15,259,000</span></div>
           <div class="flex justify-between"><span class="text-emerald-800">リバサポ</span><span class="font-medium">¥8,753,360</span></div>
+          <div class="flex justify-between"><span class="text-emerald-800">いちご大學</span><span class="font-medium">¥4,490,000</span></div>
           <div class="flex justify-between"><span class="text-emerald-800">すぽったま（コンテンツ）</span><span class="font-medium">¥3,527,000</span></div>
           <div class="border-t border-emerald-300 pt-2 mt-3 flex justify-between font-bold text-emerald-900">
-            <span>受注確定額</span><span>¥83,922,360</span>
+            <span>受注確定額</span><span>¥88,412,360</span>
           </div>
         </div>
       </div>
@@ -136,12 +137,12 @@ tailwind.config = {
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
           <span class="text-sm font-bold text-emerald-800">確度 高</span>
-          <span class="ml-auto text-2xl font-bold text-emerald-700">1件</span>
+          <span class="ml-auto text-2xl font-bold text-emerald-700">0件</span>
         </div>
         <div class="space-y-2 text-sm">
-          <div class="flex justify-between"><span class="text-emerald-800">いちご大學（随契見込）</span><span class="font-medium">〜¥4,000,000</span></div>
+          <div class="flex justify-between"><span class="text-emerald-800 line-through">いちご大學 → 受注確定</span><span class="font-medium">¥4,490,000</span></div>
           <div class="border-t border-emerald-200 pt-2 mt-3 flex justify-between font-bold text-emerald-900">
-            <span>小計</span><span>〜¥4,000,000</span>
+            <span>小計</span><span>—</span>
           </div>
         </div>
       </div>
@@ -224,7 +225,7 @@ tailwind.config = {
       <div>
         <div class="flex items-center gap-2 mb-3">
           <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-          <h3 class="font-bold text-slate-900">確度 高（5件）— 継続案件 × 実績優位 → 全件受注確定</h3>
+          <h3 class="font-bold text-slate-900">確度 高（6件）— 継続案件 × 実績優位 → 全件受注確定</h3>
         </div>
         <div class="bg-emerald-50 rounded-lg p-4 space-y-3 text-sm text-body">
           <div>
@@ -250,7 +251,7 @@ tailwind.config = {
       <div>
         <div class="flex items-center gap-2 mb-3">
           <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-          <h3 class="font-bold text-slate-900">確度 中（1件）— 予定案件</h3>
+          <h3 class="font-bold text-slate-900">確度 中（1件）— 予定案件（公示待ち）</h3>
         </div>
         <div class="bg-amber-50 rounded-lg p-4 space-y-3 text-sm text-body">
           <div>
@@ -684,27 +685,27 @@ tailwind.config = {
           <tbody class="text-sm">
             <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
               <td class="py-3 px-4 font-medium text-emerald-700">ベスト（全勝）</td>
-              <td class="py-3 px-4 text-right font-bold text-emerald-700">¥129.3M</td>
-              <td class="py-3 px-4 text-right text-emerald-600 text-xs">計画の117%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定5件 + 確度高1件 + 確度中1件 + 確度低6件（花プロモ含む）</td>
+              <td class="py-3 px-4 text-right font-bold text-emerald-700">¥129.8M</td>
+              <td class="py-3 px-4 text-right text-emerald-600 text-xs">計画の118%</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定6件 + 確度中1件 + 確度低6件（花プロモ含む）</td>
             </tr>
             <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 bg-primary-50/30">
-              <td class="py-3 px-4 font-medium text-primary-700">想定（確定＋高＋中）</td>
-              <td class="py-3 px-4 text-right font-bold text-primary-700">¥91.9M</td>
+              <td class="py-3 px-4 font-medium text-primary-700">想定（確定＋中）</td>
+              <td class="py-3 px-4 text-right font-bold text-primary-700">¥92.4M</td>
               <td class="py-3 px-4 text-right text-primary-600 text-xs">計画の84%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定5件（¥83.9M）+ 確度高1件（¥4.0M）+ 確度中1件（¥4.0M）</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定6件（¥88.4M）+ 確度中1件（¥4.0M）</td>
             </tr>
             <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
-              <td class="py-3 px-4 font-medium text-amber-700">堅実（確定＋高）</td>
-              <td class="py-3 px-4 text-right font-bold text-amber-700">¥87.9M</td>
+              <td class="py-3 px-4 font-medium text-amber-700">堅実（確定のみ）</td>
+              <td class="py-3 px-4 text-right font-bold text-amber-700">¥88.4M</td>
               <td class="py-3 px-4 text-right text-amber-600 text-xs">計画の80%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定5件 + いちご大學</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定6件のみ</td>
             </tr>
             <tr class="hover:bg-gray-50 transition-colors">
               <td class="py-3 px-4 font-medium text-red-700">リスク</td>
-              <td class="py-3 px-4 text-right font-bold text-red-700">¥83.9M</td>
-              <td class="py-3 px-4 text-right text-red-600 text-xs">計画の76%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定5件のみ</td>
+              <td class="py-3 px-4 text-right font-bold text-red-700">¥88.4M</td>
+              <td class="py-3 px-4 text-right text-red-600 text-xs">計画の80%</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">堅実と同じ（確度高が0件のため）</td>
             </tr>
           </tbody>
         </table>
@@ -719,15 +720,15 @@ tailwind.config = {
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>必達ライン: ¥92M（想定シナリオ）</strong><br>受注確定5件 + 確度高1件 + 確度中1件。</span>
+            <span><strong>必達ライン: ¥92M（想定シナリオ）</strong><br>受注確定6件 + 確度中1件。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>挑戦ライン: ¥129M（ベストシナリオ）</strong><br>提案中全案件受注。</span>
+            <span><strong>挑戦ライン: ¥130M（ベストシナリオ）</strong><br>提案中全案件受注。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>受注件数: 現在5件確定</strong>（残り提案中6件＋予定2件）</span>
+            <span><strong>受注件数: 現在6件確定</strong>（残り提案中5件＋予定1件）</span>
           </li>
         </ul>
       </div>
@@ -736,7 +737,7 @@ tailwind.config = {
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>行政依存率</strong>: 全案件受注で¥129M / ¥200M = <strong>64.5%</strong>。堅実シナリオ（¥88M）だと<strong>44%</strong>。観光客誘致の受注で大幅改善。</span>
+            <span><strong>行政依存率</strong>: 全案件受注で¥130M / ¥200M = <strong>65%</strong>。堅実シナリオ（¥88M）だと<strong>44%</strong>。観光客誘致＋いちご大學の受注で大幅改善。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
@@ -761,7 +762,12 @@ tailwind.config = {
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
             <span><strong>4/10 — 観光客誘致・戦略的情報発信 → 受注確定！</strong><br>
-            DMO案件の連続失注を覆した。受注確定額が¥83.9Mに拡大。</span>
+            DMO案件の連続失注を覆した。</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
+            <span><strong>いちご大學 → 受注確定！（¥4,490,000 税込・随意契約）</strong><br>
+            受注確定額が¥88.4Mに拡大。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
@@ -899,11 +905,11 @@ const projects = [
   },
   {
     id: 'ichigo', num: '—', name: 'いちご大學',
-    sub: '継続案件・随意契約見込み',
-    client: '埼玉県', clientSub: '（推定）',
-    budget: '〜¥4,000,000', submitDate: '未定', review: '随契見込',
-    reviewSub: '',
-    status: '提案中', confidence: '高', staff: []
+    sub: '継続案件・随意契約',
+    client: '埼玉県', clientSub: '',
+    budget: '¥4,490,000', submitDate: '—', review: '随意契約',
+    reviewSub: '✓ 受注決定',
+    status: '受注', confidence: '—', staff: []
   },
   {
     id: 'circular', num: '—', name: 'サーキュラーエコノミー イベント',
