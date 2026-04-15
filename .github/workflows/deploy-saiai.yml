@@ -1,4 +1,4 @@
-name: Deploy SAIAI (saiai.llschema.com)
+name: Deploy SAIAI (saiai.schema.tokyo)
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
         with:
           switches: -avz --delete
           path: saiai/
-          remote_path: /home/c4244218/public_html/saiai.llschema.com/
+          remote_path: /home/c4244218/public_html/saiai.schema.tokyo/
           remote_host: ${{ secrets.SSH_HOST }}
           remote_user: ${{ secrets.SSH_USER }}
           remote_port: ${{ secrets.SSH_PORT }}
