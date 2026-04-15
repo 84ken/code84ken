@@ -387,6 +387,23 @@
       object-position: center top;
     }
 
+    /* Hero slideshow */
+    .hero-slideshow {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-slideshow .hero-photo {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .hero-slideshow .hero-photo.active {
+      opacity: 1;
+    }
+
     .hero-illustration-people {
       display: flex;
       gap: 20px;
@@ -1445,7 +1462,11 @@
       </div>
       <div class="hero-visual fade-in">
         <div class="hero-visual-main">
-          <img src="AdobeStock_87122259.jpeg" alt="手をつないで歩くカップル" class="hero-photo">
+          <div class="hero-slideshow">
+            <img src="AdobeStock_87122259.jpeg" alt="手をつないで歩くカップル" class="hero-photo active">
+            <img src="photo-couple-sky.jpeg" alt="空を見上げるカップル" class="hero-photo">
+            <img src="photo-phone.jpeg" alt="スマホを見るカップル" class="hero-photo">
+          </div>
         </div>
         <div class="hero-float-badge top-right">
           <div class="badge-icon coral">
@@ -1837,6 +1858,18 @@
         header.classList.remove('visible');
       }
     }, { passive: true });
+
+    // Hero slideshow
+    (() => {
+      const slides = document.querySelectorAll('.hero-slideshow .hero-photo');
+      if (slides.length <= 1) return;
+      let current = 0;
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 4000);
+    })();
 
     // Custom cursor
     const dot = document.getElementById('cursorDot');
