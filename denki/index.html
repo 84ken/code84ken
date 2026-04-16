@@ -446,10 +446,33 @@ function applyFilters(){
   if(currentView==='map'&&map)updateMapMarkers(filtered);
 }
 
+// === 84ken's visited log (seed data — only sets if not already in localStorage) ===
+function seedVisited(){
+  const existing = getVisited();
+  if(Object.keys(existing).length > 0) return; // already has data
+  const myVisits = {
+    71: Date.now()-86400000*30,  // COCOFURO かが浴場
+    72: Date.now()-86400000*60,  // 富美の湯
+    73: Date.now()-86400000*20,  // 報徳湯
+    74: Date.now()-86400000*45,  // 平田温泉
+    75: Date.now()-86400000*25,  // そてつ湯
+    76: Date.now()-86400000*50,  // 赤ビルの湯
+    77: Date.now()-86400000*15,  // 湯処あべの橋
+    78: Date.now()-86400000*10,  // 入船温泉
+    79: Date.now()-86400000*7,   // ニューウイング
+    80: Date.now()-86400000*35,  // 白菊湯
+    81: Date.now()-86400000*40,  // 高崎湯
+    82: Date.now()-86400000*55,  // 函館乃木温泉なごみ
+    83: Date.now()-86400000*5,   // Reset box
+  };
+  localStorage.setItem('denki-visited', JSON.stringify(myVisits));
+}
+
 // === Init ===
 async function init(){
   try{const res=await fetch('data/facilities.json');const json=await res.json();allData=json.facilities;}
   catch{document.getElementById('card-grid').innerHTML='<div class="col-span-3 text-center py-16 text-slate-500">\u30C7\u30FC\u30BF\u306E\u8AAD\u307F\u8FBC\u307F\u306B\u5931\u6557</div>';return;}
+  seedVisited();
   updateVisitedCount();applyFilters();
 }
 document.getElementById('search').addEventListener('input',applyFilters);
