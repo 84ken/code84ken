@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>電気風呂の歴史 - ビリビリ君</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {50:'#f0f5ff',500:'#2b70ef'},
+        denki: {50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e'},
+        bath: {dark:'#0c1222',navy:'#131b2e',blue:'#1a2744'}
+      },
+      fontFamily: { sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+.text-body{color:#3d4b5f}
+.header-bg{background:linear-gradient(135deg,#0c1222 0%,#131b2e 50%,#1a2744 100%)}
+.electric-glow{text-shadow:0 0 10px rgba(250,204,21,.4),0 0 30px rgba(250,204,21,.1)}
+@keyframes header-pulse{0%,100%{filter:drop-shadow(0 0 4px rgba(250,204,21,.4))}50%{filter:drop-shadow(0 0 12px rgba(250,204,21,.8))}}
+.header-bolt{animation:header-pulse 2s ease-in-out infinite}
+.hero-bg{background:radial-gradient(ellipse at top,rgba(250,204,21,.15),transparent 60%),linear-gradient(135deg,#0c1222 0%,#131b2e 100%)}
+
+/* Timeline */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:12px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,#facc15 0%,#f59e0b 50%,#d97706 100%)}
+.timeline-dot{position:absolute;left:4px;width:18px;height:18px;border-radius:50%;background:#facc15;border:3px solid white;box-shadow:0 0 0 2px #f59e0b,0 0 12px rgba(250,204,21,.5)}
+.timeline-era{position:absolute;left:-2px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:#0c1222;color:#facc15;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;border:2px solid #facc15}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- Header -->
+<header class="header-bg border-b border-bath-blue/50 sticky top-0 z-[1000]">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
+    <a href="./" class="flex items-center gap-3 no-underline">
+      <div class="w-10 h-10 bg-denki-400/20 border border-denki-400/40 rounded-xl inline-flex items-center justify-center text-2xl header-bolt">&#9889;</div>
+      <div>
+        <h1 class="text-xl font-bold text-white leading-tight electric-glow">ビリビリ君</h1>
+        <p class="text-xs text-slate-400">電気風呂を探す・知る・記録する</p>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1" aria-label="メインナビゲーション">
+      <a href="./" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">&#9889; 探す</a>
+      <a href="./about.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">電気風呂とは</a>
+      <a href="./history.html" class="px-3 py-2 text-sm font-medium text-denki-400 rounded-lg bg-white/5">歴史</a>
+    </nav>
+  </div>
+  <div class="md:hidden border-t border-bath-blue/30 px-4 py-2 flex gap-1">
+    <a href="./" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-slate-300 rounded hover:bg-white/10">&#9889; 探す</a>
+    <a href="./about.html" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-slate-300 rounded hover:bg-white/10">電気風呂とは</a>
+    <a href="./history.html" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-denki-400 rounded bg-white/5">歴史</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero-bg text-white py-16 px-4 md:px-8">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="text-sm text-denki-400 font-bold mb-2 tracking-wider">ELECTRIC BATH HISTORY</div>
+    <h2 class="text-3xl md:text-4xl font-bold mb-3 electric-glow">電気風呂の歴史</h2>
+    <p class="text-base text-slate-300 leading-relaxed">
+      1876年アメリカ発祥、1933年京都で公式認可。<br>
+      100年以上の時を超えて、令和の私たちをビリビリさせる。
+    </p>
+  </div>
+</section>
+
+<div class="max-w-3xl mx-auto px-4 md:px-8 py-12">
+
+  <!-- Timeline -->
+  <div class="timeline space-y-10">
+
+    <!-- 1876 -->
+    <div class="relative">
+      <div class="timeline-dot"></div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-bath-dark text-denki-400 px-3 py-0.5 rounded-full text-xs font-bold">1876年</span>
+          <span class="text-xs text-slate-500">明治9年 / 海外</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">&#127482;&#127480; アメリカで発祥</h3>
+        <p class="text-sm text-body leading-relaxed">
+          ジョン・ハーヴェイ・ケロッグ（後のコーンフレーク発明者）が、サナトリウム（療養施設）でのホリスティック療法の一環として電気風呂を考案。医療目的の始まり。
+        </p>
+      </div>
+    </div>
+
+    <!-- 明治 -->
+    <div class="relative">
+      <div class="timeline-dot"></div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-bath-dark text-denki-400 px-3 py-0.5 rounded-full text-xs font-bold">明治時代</span>
+          <span class="text-xs text-slate-500">1868-1912 / 日本</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">&#127471;&#127477; 日本に上陸（医療用）</h3>
+        <p class="text-sm text-body leading-relaxed">
+          医療用の電浴機器として日本に輸入される。まだ一般には普及しておらず、治療器具としての扱い。
+        </p>
+      </div>
+    </div>
+
+    <!-- 1922 -->
+    <div class="relative">
+      <div class="timeline-dot"></div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-bath-dark text-denki-400 px-3 py-0.5 rounded-full text-xs font-bold">1922年</span>
+          <span class="text-xs text-slate-500">大正11年 / 神戸</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">&#127900; 銭湯に登場（神戸）</h3>
+        <p class="text-sm text-body leading-relaxed">
+          兵庫県神戸市の風呂屋に「電気風呂」があったことが新聞記事で確認できる、日本の銭湯における電気風呂の最初期の記録。
+        </p>
+      </div>
+    </div>
+
+    <!-- 1928 -->
+    <div class="relative">
+      <div class="timeline-dot"></div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-bath-dark text-denki-400 px-3 py-0.5 rounded-full text-xs font-bold">1928年</span>
+          <span class="text-xs text-slate-500">昭和3年 / 文学</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">&#128214; 小説に登場</h3>
+        <p class="text-sm text-body leading-relaxed">
+          作家・海野十三が『電気風呂の怪死事件』を発表。当時すでに電気風呂が庶民の知るところとなっていた証拠。
+        </p>
+      </div>
+    </div>
+
+    <!-- 1933 -->
+    <div class="relative">
+      <div class="timeline-dot" style="background:#ef4444;box-shadow:0 0 0 2px #dc2626,0 0 16px rgba(239,68,68,.6)"></div>
+      <div class="bg-gradient-to-br from-denki-50 to-white rounded-2xl border-2 border-denki-300 p-6 shadow-md">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-denki-500 text-white px-3 py-0.5 rounded-full text-xs font-bold">1933年</span>
+          <span class="text-xs text-denki-800 font-medium">昭和8年 / 京都</span>
+          <span class="bg-red-500 text-white px-2 py-0.5 rounded-full text-[10px] font-bold">&#11088; 公認第1号</span>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 mb-2">&#9889; 船岡温泉が政府認可の第1号に</h3>
+        <p class="text-sm text-body leading-relaxed mb-3">
+          京都市の<strong>船岡温泉</strong>（元は料理旅館）の大野伍一郎が、病院の「低周波治療器」に着想を得て電気風呂を設置。通産省から「特殊舟岡温泉」への改称認可を受けた、<strong>公認電気風呂の第1号</strong>。
+        </p>
+        <p class="text-xs text-denki-800 bg-denki-100 rounded px-3 py-2">
+          &#128205; 現在も営業中。京都の登録有形文化財にも指定された歴史的銭湯。
+        </p>
+      </div>
+    </div>
+
+    <!-- 戦後 -->
+    <div class="relative">
+      <div class="timeline-dot"></div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-bath-dark text-denki-400 px-3 py-0.5 rounded-full text-xs font-bold">戦後</span>
+          <span class="text-xs text-slate-500">昭和20年〜 / 全国</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">&#128164; 本格普及の時代へ</h3>
+        <p class="text-sm text-body leading-relaxed">
+          第二次世界大戦後、銭湯の特色を出すため露天風呂やジェットバスと共に電気風呂が普及。関西発祥で、現在も関西の銭湯に設置率が高い理由はここに。
+        </p>
+      </div>
+    </div>
+
+    <!-- 高度成長 -->
+    <div class="relative">
+      <div class="timeline-dot"></div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-bath-dark text-denki-400 px-3 py-0.5 rounded-full text-xs font-bold">昭和30〜40年代</span>
+          <span class="text-xs text-slate-500">1955-1975 / 全国</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">&#127969; 内風呂普及の逆風</h3>
+        <p class="text-sm text-body leading-relaxed">
+          団地・公営住宅に内風呂が普及し銭湯は打撃を受ける。差別化のため各銭湯が電気風呂を積極導入。<strong>小西電機・坂田電気工業所・水野通信工業の御三家</strong>が製造で競り合う黄金期。
+        </p>
+      </div>
+    </div>
+
+    <!-- 平成 -->
+    <div class="relative">
+      <div class="timeline-dot"></div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-bath-dark text-denki-400 px-3 py-0.5 rounded-full text-xs font-bold">平成</span>
+          <span class="text-xs text-slate-500">1989-2019</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">&#128520; 坂田電気工業所の廃業</h3>
+        <p class="text-sm text-body leading-relaxed">
+          アナログ式でランダムな電流が特徴の<strong>坂田電気工業所が解散</strong>。修理不可となり小西電機へ置換される銭湯も増え、稼働中の坂田機は絶滅危惧種に。愛好家の間では「坂田詣で」が生まれる。
+        </p>
+      </div>
+    </div>
+
+    <!-- 現代 -->
+    <div class="relative">
+      <div class="timeline-dot"></div>
+      <div class="bg-gradient-to-br from-primary-50 to-white rounded-2xl border border-primary-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-primary-500 text-white px-3 py-0.5 rounded-full text-xs font-bold">2020年代</span>
+          <span class="text-xs text-slate-500">令和 / 全国</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">&#128293; サウナブームと共に再評価</h3>
+        <p class="text-sm text-body leading-relaxed mb-3">
+          サウナブームと並走して電気風呂の魅力が再発見。<strong>銭湯電気保養協会（けんちん氏ら）</strong>の活動や『電浴GO!』の発行、『マツコの知らない世界』での特集など、電気風呂カルチャーが花開く。
+        </p>
+        <p class="text-xs text-primary-700 bg-primary-100 rounded px-3 py-2">
+          &#127981; 入船温泉（大阪）では<strong>3メーカー切替式</strong>の革新的電気風呂が登場、Reset box（下北沢）では<strong>個室電気浴</strong>が話題に。
+        </p>
+      </div>
+    </div>
+
+    <!-- 未来 -->
+    <div class="relative">
+      <div class="timeline-dot" style="background:#10b981;box-shadow:0 0 0 2px #059669,0 0 16px rgba(16,185,129,.5)"></div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="bg-emerald-500 text-white px-3 py-0.5 rounded-full text-xs font-bold">未来</span>
+          <span class="text-xs text-slate-500">&#128640;</span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">&#9889; ビリビリ君の世界へ</h3>
+        <p class="text-sm text-body leading-relaxed">
+          電気風呂ファンが増え、施設データが集まり、全国の電気風呂マップが完成する日を夢見て。<br>
+          あなたの「行った」が、次のビリビリ体験を作ります。
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="mt-12 bg-gradient-to-br from-denki-50 to-white border border-denki-200 rounded-2xl p-6 text-center">
+    <p class="text-sm text-body mb-3">100年の歴史を、次はあなたのカラダで。</p>
+    <a href="./" class="inline-flex items-center justify-center gap-2 h-12 px-8 text-base font-bold bg-bath-dark text-denki-400 border-2 border-denki-400/50 rounded-lg hover:bg-bath-navy hover:border-denki-400 transition-all">
+      &#9889; 電気風呂を探しに行く
+    </a>
+  </div>
+
+  <footer class="mt-12 border-t border-slate-200 pt-6 pb-8 text-center">
+    <p class="text-xs text-slate-400">&#9889; ビリビリ君 &mdash; 参考: Wikipedia「電気風呂」、銭湯電気保養協会、電浴GO!</p>
+  </footer>
+</div>
+
+</body>
+</html>

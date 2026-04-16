@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>電気風呂イキタイ - ビリビリを、探しに行こう。</title>
+<title>ビリビリ君 - 電気風呂を探す・知る・記録する</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -106,17 +106,28 @@ tailwind.config = {
 <!-- Header -->
 <header class="header-bg border-b border-bath-blue/50 sticky top-0 z-[1000]">
   <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3">
+    <a href="./" class="flex items-center gap-3 no-underline">
       <div class="w-10 h-10 bg-denki-400/20 border border-denki-400/40 rounded-xl inline-flex items-center justify-center text-2xl header-bolt">&#9889;</div>
       <div>
-        <h1 class="text-xl font-bold text-white leading-tight electric-glow">電気風呂イキタイ</h1>
-        <p class="text-xs text-slate-400">ビリビリを、探しに行こう。</p>
+        <h1 class="text-xl font-bold text-white leading-tight electric-glow">ビリビリ君</h1>
+        <p class="text-xs text-slate-400">電気風呂を探す・知る・記録する</p>
       </div>
-    </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1" aria-label="メインナビゲーション">
+      <a href="./" class="px-3 py-2 text-sm font-medium text-denki-400 rounded-lg bg-white/5">&#9889; 探す</a>
+      <a href="./about.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">電気風呂とは</a>
+      <a href="./history.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">歴史</a>
+    </nav>
     <div class="flex items-center gap-2">
       <span id="visited-count" class="bg-denki-400/20 text-denki-300 border border-denki-400/30 px-3 py-1 rounded-full text-xs font-medium cursor-pointer" title="行った施設のみ表示">&#9889; 0</span>
       <span id="total-count" class="bg-white/10 text-slate-300 px-3 py-1 rounded-full text-xs font-medium">全0件</span>
     </div>
+  </div>
+  <!-- Mobile nav -->
+  <div class="md:hidden border-t border-bath-blue/30 px-4 py-2 flex gap-1">
+    <a href="./" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-denki-400 rounded bg-white/5">&#9889; 探す</a>
+    <a href="./about.html" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-slate-300 rounded hover:bg-white/10">電気風呂とは</a>
+    <a href="./history.html" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-slate-300 rounded hover:bg-white/10">歴史</a>
   </div>
 </header>
 
@@ -142,8 +153,16 @@ tailwind.config = {
   <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm mb-6">
     <div class="flex flex-wrap items-end gap-3">
       <div class="leading-normal flex-1 min-w-[180px]">
-        <input id="search" type="text" placeholder="&#9889; 施設名・駅名・エリアで検索..."
+        <input id="search" type="text" placeholder="&#128269; 施設名・駅名・路線・メモで検索..."
                class="w-full px-3 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-denki-400/50 focus:border-denki-400 caret-denki-500">
+      </div>
+      <div class="leading-normal">
+        <select id="filter-maker" class="appearance-none pl-3 pr-8 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-denki-400/50">
+          <option value="">メーカー</option>
+          <option value="小西">小西電機</option>
+          <option value="坂田">坂田電気工業所</option>
+          <option value="水野">水野通信工業</option>
+        </select>
       </div>
       <div class="leading-normal">
         <select id="filter-power" class="appearance-none pl-3 pr-8 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-denki-400/50">
@@ -418,12 +437,14 @@ function setAreaFilter(area){
 }
 function getFiltered(){
   const keyword=document.getElementById('search').value.toLowerCase();
+  const maker=document.getElementById('filter-maker').value;
   const power=document.getElementById('filter-power').value;
   const sort=document.getElementById('filter-sort').value;
   const onlyVisited=document.getElementById('filter-visited').checked;
   let filtered=allData.filter(f=>{
     if(activeArea){if(!f.area.includes(activeArea)&&!f.ward.includes(activeArea)&&!f.address.includes(activeArea))return false;}
-    if(keyword){const s=`${f.name} ${f.address} ${f.station} ${f.stationLine} ${f.ward} ${f.memo||''}`.toLowerCase();if(!s.includes(keyword))return false;}
+    if(keyword){const s=`${f.name} ${f.address} ${f.station} ${f.stationLine} ${f.ward} ${f.memo||''} ${f.maker||''}`.toLowerCase();if(!s.includes(keyword))return false;}
+    if(maker){if(!f.maker||!f.maker.includes(maker))return false;}
     if(power&&f.power<parseInt(power))return false;
     if(onlyVisited&&!isVisited(f.id))return false;
     return true;
@@ -487,6 +508,7 @@ async function init(){
   updateVisitedCount();applyFilters();
 }
 document.getElementById('search').addEventListener('input',applyFilters);
+document.getElementById('filter-maker').addEventListener('change',applyFilters);
 document.getElementById('filter-power').addEventListener('change',applyFilters);
 document.getElementById('filter-sort').addEventListener('change',applyFilters);
 document.getElementById('filter-visited').addEventListener('change',applyFilters);

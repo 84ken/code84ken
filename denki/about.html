@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>電気風呂とは・メーカー図鑑 - ビリビリ君</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {50:'#f0f5ff',500:'#2b70ef',700:'#1a40b5'},
+        denki: {50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e'},
+        bath: {dark:'#0c1222',navy:'#131b2e',blue:'#1a2744'}
+      },
+      fontFamily: { sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+.text-body{color:#3d4b5f}
+.header-bg{background:linear-gradient(135deg,#0c1222 0%,#131b2e 50%,#1a2744 100%)}
+.electric-glow{text-shadow:0 0 10px rgba(250,204,21,.4),0 0 30px rgba(250,204,21,.1)}
+@keyframes header-pulse{0%,100%{filter:drop-shadow(0 0 4px rgba(250,204,21,.4))}50%{filter:drop-shadow(0 0 12px rgba(250,204,21,.8))}}
+.header-bolt{animation:header-pulse 2s ease-in-out infinite}
+.maker-card{border-top:4px solid;transition:all .2s}
+.maker-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.electrode{display:inline-block;width:18px;height:18px;border-radius:50%;vertical-align:middle;margin-right:4px}
+.hero-bg{background:radial-gradient(ellipse at top,rgba(250,204,21,.15),transparent 60%),linear-gradient(135deg,#0c1222 0%,#131b2e 100%)}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- Header -->
+<header class="header-bg border-b border-bath-blue/50 sticky top-0 z-[1000]">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
+    <a href="./" class="flex items-center gap-3 no-underline">
+      <div class="w-10 h-10 bg-denki-400/20 border border-denki-400/40 rounded-xl inline-flex items-center justify-center text-2xl header-bolt">&#9889;</div>
+      <div>
+        <h1 class="text-xl font-bold text-white leading-tight electric-glow">ビリビリ君</h1>
+        <p class="text-xs text-slate-400">電気風呂を探す・知る・記録する</p>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1" aria-label="メインナビゲーション">
+      <a href="./" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">&#9889; 探す</a>
+      <a href="./about.html" class="px-3 py-2 text-sm font-medium text-denki-400 rounded-lg bg-white/5">電気風呂とは</a>
+      <a href="./history.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">歴史</a>
+    </nav>
+  </div>
+  <div class="md:hidden border-t border-bath-blue/30 px-4 py-2 flex gap-1">
+    <a href="./" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-slate-300 rounded hover:bg-white/10">&#9889; 探す</a>
+    <a href="./about.html" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-denki-400 rounded bg-white/5">電気風呂とは</a>
+    <a href="./history.html" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-slate-300 rounded hover:bg-white/10">歴史</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero-bg text-white py-16 px-4 md:px-8">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="text-4xl mb-3">&#9889;&#9889;&#9889;</div>
+    <h2 class="text-3xl md:text-4xl font-bold mb-3 electric-glow">電気風呂とは？</h2>
+    <p class="text-base md:text-lg text-slate-300 leading-relaxed">
+      浴槽の中に電極板を設置して微弱な電流を流す、日本独自のお風呂文化。<br>
+      肩こり・腰痛・神経痛・筋肉疲労にじわっと効く、<span class="text-denki-400 font-bold">「ビリビリ」</span>の世界へようこそ。
+    </p>
+  </div>
+</section>
+
+<div class="max-w-4xl mx-auto px-4 md:px-8 py-10">
+
+  <!-- 電気風呂とは -->
+  <section class="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-sm mb-10">
+    <h3 class="text-2xl font-bold text-slate-900 mb-6">&#128296; 基礎知識</h3>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-gray-50 rounded-xl p-5">
+        <div class="text-denki-500 text-sm font-bold mb-1">WHAT</div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">仕組み</h4>
+        <p class="text-sm text-body leading-relaxed">浴槽内の<strong>電極板</strong>から低周波（1〜1,200Hz）の微弱電流を流す装置。電圧5〜10V、電流1〜10mAと低いため、健常者であれば安全。</p>
+      </div>
+      <div class="bg-gray-50 rounded-xl p-5">
+        <div class="text-denki-500 text-sm font-bold mb-1">EFFECT</div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">効能</h4>
+        <p class="text-sm text-body leading-relaxed">肩こり・腰痛・神経痛・リウマチ・筋肉疲労・冷え性・慢性疲労の緩和。筋肉を収縮させることで血行促進・マッサージ効果。</p>
+      </div>
+      <div class="bg-gray-50 rounded-xl p-5">
+        <div class="text-denki-500 text-sm font-bold mb-1">HOW</div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">入り方</h4>
+        <p class="text-sm text-body leading-relaxed">電極板の位置を確認し、痛みがある部位を近づける。<strong>距離で強さを調整</strong>できる。最初は軽く、慣れたら腰や肩を当てるのがコツ。</p>
+      </div>
+      <div class="bg-red-50 border border-red-200 rounded-xl p-5">
+        <div class="text-red-600 text-sm font-bold mb-1">WARNING</div>
+        <h4 class="text-lg font-bold text-slate-900 mb-2">禁忌</h4>
+        <p class="text-sm text-body leading-relaxed"><strong>ペースメーカー使用者・妊娠中・心臓疾患・皮膚疾患のある方は入浴不可。</strong>各施設の注意看板を必ず確認してください。</p>
+      </div>
+    </div>
+
+    <div class="bg-denki-50 border border-denki-200 rounded-xl p-5">
+      <h4 class="text-base font-bold text-denki-800 mb-2">&#128161; タイプ分類</h4>
+      <div class="grid md:grid-cols-4 gap-3 text-sm">
+        <div><strong class="text-denki-800">ソフト</strong><br><span class="text-body text-xs">連続的な刺激</span></div>
+        <div><strong class="text-denki-800">マッサージ</strong><br><span class="text-body text-xs">ゆっくり揉まれる</span></div>
+        <div><strong class="text-denki-800">タタキ</strong><br><span class="text-body text-xs">断続的にたたかれる</span></div>
+        <div><strong class="text-denki-800">マルチ</strong><br><span class="text-body text-xs">上記の組合せ（主流）</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- メーカー図鑑 -->
+  <section class="mb-10">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-1 h-8 bg-denki-400 rounded"></div>
+      <h3 class="text-2xl font-bold text-slate-900">&#127981; 電気風呂御三家図鑑</h3>
+    </div>
+    <p class="text-sm text-body mb-6 leading-relaxed">
+      日本の電気風呂は、<strong>小西電機・坂田電気工業所・水野通信工業</strong>の3社の影響下にあります。<br>
+      電極板の形状・色・刺激の質で見分けられます。あなたが入っているのは誰の電気？
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <!-- 小西電機 -->
+      <div class="maker-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm" style="border-top-color:#2b70ef">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 bg-primary-50 rounded-full inline-flex items-center justify-center">
+            <span class="electrode" style="background:white;border:2px solid #2b70ef"></span>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold text-slate-900">小西電機</h4>
+            <p class="text-xs text-slate-500">大阪府東大阪市</p>
+          </div>
+        </div>
+        <dl class="space-y-2 text-sm mb-4">
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">電極板</dt><dd class="text-body">白い<strong>◇型</strong>（ひし形）</dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">方式</dt><dd class="text-body">デジタル（電子制御）</dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">刺激</dt><dd class="text-body"><strong class="text-primary-500">ジワジワ系</strong></dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">看板</dt><dd class="text-body">ラジエニア</dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">シェア</dt><dd class="text-body"><strong>関東の8割以上</strong></dd></div>
+        </dl>
+        <div class="bg-primary-50 text-primary-700 rounded-lg px-3 py-2 text-xs leading-relaxed">
+          現役の業界リーダー。◇8、◇6、◇12などの型番あり。関東の電気風呂のほとんどがこれ。
+        </div>
+      </div>
+
+      <!-- 坂田電気工業所 -->
+      <div class="maker-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm" style="border-top-color:#dc2626">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 bg-red-50 rounded-full inline-flex items-center justify-center">
+            <span class="electrode" style="background:white;border:2px solid #dc2626"></span>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold text-slate-900">坂田電気工業所</h4>
+            <p class="text-xs text-slate-500">大阪府大阪市（廃業）</p>
+          </div>
+        </div>
+        <dl class="space-y-2 text-sm mb-4">
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">電極板</dt><dd class="text-body">白い<strong>●型</strong>（丸型）</dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">方式</dt><dd class="text-body">アナログ（バネ半自動）</dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">刺激</dt><dd class="text-body"><strong class="text-red-600">ドンドン系</strong>（ランダム）</dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">代表作</dt><dd class="text-body">朝日温泉、タテバ</dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">希少性</dt><dd class="text-body"><strong class="text-red-600">レア</strong>（廃業済み）</dd></div>
+        </dl>
+        <div class="bg-red-50 text-red-700 rounded-lg px-3 py-2 text-xs leading-relaxed">
+          15年ほど前に解散。修理不可で小西に置換される銭湯も多く、稼働中の坂田は<strong>絶滅危惧種</strong>。関西に集中。
+        </div>
+      </div>
+
+      <!-- 水野通信工業 -->
+      <div class="maker-card bg-white rounded-2xl border border-slate-200 p-6 shadow-sm" style="border-top-color:#0c1222">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 bg-slate-100 rounded-full inline-flex items-center justify-center">
+            <span class="electrode" style="background:#0c1222"></span>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold text-slate-900">水野通信工業</h4>
+            <p class="text-xs text-slate-500">愛知県名古屋市</p>
+          </div>
+        </div>
+        <dl class="space-y-2 text-sm mb-4">
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">電極板</dt><dd class="text-body"><strong>黒色</strong></dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">方式</dt><dd class="text-body">デジタル</dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">刺激</dt><dd class="text-body"><strong class="text-slate-700">ガッツンガッツン系</strong></dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">看板</dt><dd class="text-body">揉兵衛</dd></div>
+          <div class="flex gap-2"><dt class="text-slate-500 w-16 flex-shrink-0">分布</dt><dd class="text-body">名古屋拠点、全国</dd></div>
+        </dl>
+        <div class="bg-slate-50 text-slate-700 rounded-lg px-3 py-2 text-xs leading-relaxed">
+          押す・揉む・叩くの3リズム電流でマッサージ感強め。ランニングコストが安く壊れにくい。
+        </div>
+      </div>
+    </div>
+
+    <!-- 見分け方早見表 -->
+    <div class="mt-8 bg-bath-dark text-white rounded-2xl p-6 md:p-8">
+      <h4 class="text-lg font-bold mb-4 electric-glow">&#128269; 現地で5秒見分けるコツ</h4>
+      <div class="space-y-3 text-sm">
+        <div class="flex items-center gap-3">
+          <span class="electrode" style="background:white;border:2px solid #2b70ef"></span>
+          <span><strong class="text-denki-400">白い◇型</strong>なら → 小西電機</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="electrode" style="background:white;border:2px solid #dc2626"></span>
+          <span><strong class="text-denki-400">白い●型（丸）</strong>なら → 坂田電気工業所（レア！）</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="electrode" style="background:#0c1222;border:2px solid #64748b"></span>
+          <span><strong class="text-denki-400">黒い電極板</strong>なら → 水野通信工業</span>
+        </div>
+        <div class="flex items-start gap-3 pt-2 border-t border-white/10 mt-3">
+          <span class="text-denki-400 text-lg">&#9888;</span>
+          <span class="text-slate-300 text-xs">電極板のメーカーと本体装置のメーカーが異なる「不一致系」銭湯も存在。看板も要チェック！</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="bg-gradient-to-br from-denki-50 to-white border border-denki-200 rounded-2xl p-6 text-center">
+    <p class="text-sm text-body mb-3">あなたの行った電気風呂、メーカー当てられる？</p>
+    <a href="./" class="inline-flex items-center justify-center gap-2 h-12 px-8 text-base font-bold bg-bath-dark text-denki-400 border-2 border-denki-400/50 rounded-lg hover:bg-bath-navy hover:border-denki-400 transition-all">
+      &#9889; 電気風呂を探しに行く
+    </a>
+  </div>
+
+  <footer class="mt-12 border-t border-slate-200 pt-6 pb-8 text-center">
+    <p class="text-xs text-slate-400">&#9889; ビリビリ君 &mdash; 参考: 電浴GO!（銭湯電気保養協会）</p>
+  </footer>
+</div>
+
+</body>
+</html>
