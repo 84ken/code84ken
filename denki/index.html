@@ -125,15 +125,17 @@ tailwind.config = {
   <!-- Quick area chips -->
   <div class="flex flex-wrap gap-2 mb-4">
     <button onclick="setAreaFilter('')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="">すべて</button>
-    <button onclick="setAreaFilter('埼玉')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-denki-300 bg-denki-50 cursor-pointer hover:bg-denki-100 transition-colors font-medium text-denki-800" data-area="埼玉">&#9889; 埼玉</button>
-    <button onclick="setAreaFilter('北区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="北区">北区</button>
-    <button onclick="setAreaFilter('荒川区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="荒川区">荒川区</button>
-    <button onclick="setAreaFilter('板橋区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="板橋区">板橋区</button>
-    <button onclick="setAreaFilter('足立区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="足立区">足立区</button>
-    <button onclick="setAreaFilter('練馬区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="練馬区">練馬区</button>
-    <button onclick="setAreaFilter('江戸川区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="江戸川区">江戸川区</button>
-    <button onclick="setAreaFilter('大阪')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="大阪">大阪</button>
+    <button onclick="setAreaFilter('東京都')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-denki-300 bg-denki-50 cursor-pointer hover:bg-denki-100 transition-colors font-medium text-denki-800" data-area="東京都">&#9889; 東京</button>
+    <button onclick="setAreaFilter('神奈川')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="神奈川">神奈川</button>
+    <button onclick="setAreaFilter('千葉')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="千葉">千葉</button>
+    <button onclick="setAreaFilter('大阪府')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="大阪府">大阪</button>
+    <button onclick="setAreaFilter('愛知')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="愛知">名古屋</button>
+    <button onclick="setAreaFilter('広島')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="広島">広島</button>
+    <button onclick="setAreaFilter('長崎')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="長崎">長崎</button>
     <button onclick="setAreaFilter('兵庫')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="兵庫">兵庫</button>
+    <button onclick="setAreaFilter('北海道')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="北海道">函館</button>
+    <button onclick="setAreaFilter('京都')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="京都">京都</button>
+    <button onclick="setAreaFilter('新潟')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="新潟">新潟</button>
   </div>
 
   <!-- Search + Filters -->
@@ -410,7 +412,7 @@ function setAreaFilter(area){
     const isActive=c.dataset.area===area;
     if(isActive){c.classList.add('border-denki-400','bg-denki-50','text-denki-800','font-medium');c.classList.remove('border-slate-200','bg-white');}
     else{c.classList.remove('border-denki-400','bg-denki-50','text-denki-800','font-medium');
-      if(!c.dataset.area||c.dataset.area!=='埼玉')c.classList.add('border-slate-200','bg-white');}
+      c.classList.add('border-slate-200','bg-white');}
   });
   applyFilters();
 }
@@ -451,6 +453,8 @@ function seedVisited(){
   const existing = getVisited();
   if(Object.keys(existing).length > 0) return; // already has data
   const myVisits = {
+    23: Date.now()-86400000*3,   // 天然温泉久松湯（ログ更新）
+    58: Date.now()-86400000*14,  // 龍美温泉（ログ更新）
     71: Date.now()-86400000*30,  // COCOFURO かが浴場
     72: Date.now()-86400000*60,  // 富美の湯
     73: Date.now()-86400000*20,  // 報徳湯
@@ -464,6 +468,13 @@ function seedVisited(){
     81: Date.now()-86400000*40,  // 高崎湯
     82: Date.now()-86400000*55,  // 函館乃木温泉なごみ
     83: Date.now()-86400000*5,   // Reset box
+    84: Date.now()-86400000*2,   // 松本湯
+    85: Date.now()-86400000*8,   // 第三玉乃湯
+    86: Date.now()-86400000*12,  // 小松湯
+    87: Date.now()-86400000*4,   // 妙法湯
+    88: Date.now()-86400000*6,   // 稲荷湯
+    89: Date.now()-86400000*9,   // かるまる池袋
+    90: Date.now()-86400000*11,  // 江戸川湯
   };
   localStorage.setItem('denki-visited', JSON.stringify(myVisits));
 }
