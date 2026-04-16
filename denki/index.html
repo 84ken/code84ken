@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>電気風呂イキタイ - 全国の電気風呂を探そう</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',800:'#13318d',900:'#0e266a',950:'#07194e'},
+        denki: {50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e',900:'#78350f'}
+      },
+      fontFamily: { sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+.text-body{color:#3d4b5f}
+#map{height:480px;border-radius:12px}
+.card-visited{border-color:#10b981!important;background:linear-gradient(135deg,#ecfdf5 0%,#fff 40%)}
+.power-bar{display:inline-flex;gap:2px}
+.power-dot{width:10px;height:10px;border-radius:50%}
+.power-dot.on{background:#f59e0b}
+.power-dot.off{background:#e2e8f0}
+.power-5 .power-dot.on{background:#dc2626}
+.tab-active{color:#2b70ef;border-bottom:2px solid #2b70ef;font-weight:600}
+.tab-inactive{color:#64748b;border-bottom:2px solid transparent}
+.visited-stamp{position:absolute;top:8px;right:8px;transform:rotate(12deg)}
+.leaflet-popup-content-wrapper{border-radius:12px;padding:0}
+.leaflet-popup-content{margin:0;min-width:200px}
+@keyframes zap{0%,100%{opacity:1}50%{opacity:.5}}
+.zap{animation:zap 1.5s infinite}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- Header -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-[1000]">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-denki-400 rounded-xl inline-flex items-center justify-center text-white text-lg">&#9889;</div>
+      <div>
+        <h1 class="text-xl font-bold text-slate-900 leading-tight">電気風呂イキタイ</h1>
+        <p class="text-xs text-body">ビリビリを、探しに行こう。</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <span id="visited-count" class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-medium cursor-pointer" title="行った施設のみ表示">&#10003; 0</span>
+      <span id="total-count" class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-medium">全0件</span>
+    </div>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-4 md:px-8 py-6">
+
+  <!-- Quick area chips (関東重視) -->
+  <div class="flex flex-wrap gap-2 mb-4">
+    <button onclick="setAreaFilter('')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="">すべて</button>
+    <button onclick="setAreaFilter('埼玉')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="埼玉">&#128205; 埼玉</button>
+    <button onclick="setAreaFilter('北区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-denki-300 bg-denki-50 cursor-pointer hover:bg-denki-100 transition-colors font-medium text-denki-800" data-area="北区">北区</button>
+    <button onclick="setAreaFilter('荒川区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="荒川区">荒川区</button>
+    <button onclick="setAreaFilter('板橋区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="板橋区">板橋区</button>
+    <button onclick="setAreaFilter('足立区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="足立区">足立区</button>
+    <button onclick="setAreaFilter('練馬区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="練馬区">練馬区</button>
+    <button onclick="setAreaFilter('江戸川区')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="江戸川区">江戸川区</button>
+    <button onclick="setAreaFilter('大阪')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="大阪">大阪</button>
+    <button onclick="setAreaFilter('兵庫')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="兵庫">兵庫</button>
+  </div>
+
+  <!-- Search + Filters -->
+  <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm mb-6">
+    <div class="flex flex-wrap items-end gap-3">
+      <div class="leading-normal flex-1 min-w-[180px]">
+        <input id="search" type="text" placeholder="&#128269; 施設名・駅名・エリアで検索..."
+               class="w-full px-3 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500">
+      </div>
+      <div class="leading-normal">
+        <select id="filter-power" class="appearance-none pl-3 pr-8 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50">
+          <option value="">パワー</option>
+          <option value="5">&#9889;&#9889;&#9889;&#9889;&#9889; 最強</option>
+          <option value="4">&#9889;&#9889;&#9889;&#9889; 強め</option>
+          <option value="3">&#9889;&#9889;&#9889; 普通以上</option>
+        </select>
+      </div>
+      <div class="leading-normal">
+        <select id="filter-sort" class="appearance-none pl-3 pr-8 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50">
+          <option value="power">パワー順</option>
+          <option value="station">駅名順</option>
+          <option value="area">エリア順</option>
+          <option value="visited">行った順</option>
+        </select>
+      </div>
+      <label class="inline-flex items-center gap-2 h-10 px-3 text-sm border border-slate-200 rounded-lg cursor-pointer hover:bg-gray-50">
+        <input type="checkbox" id="filter-visited" class="accent-emerald-500"> 行った
+      </label>
+    </div>
+  </div>
+
+  <!-- View tabs -->
+  <div class="flex gap-6 mb-4 border-b border-slate-200">
+    <button onclick="switchView('list')" id="tab-list" class="tab-active pb-2 text-sm cursor-pointer">リスト</button>
+    <button onclick="switchView('map')" id="tab-map" class="tab-inactive pb-2 text-sm cursor-pointer">マップ</button>
+  </div>
+
+  <!-- Map view -->
+  <div id="map-container" class="hidden mb-6">
+    <div id="map" class="border border-slate-200 shadow-sm"></div>
+  </div>
+
+  <!-- Card grid -->
+  <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+  </div>
+
+  <!-- Empty state -->
+  <div id="empty-state" class="hidden text-center py-16">
+    <div class="w-16 h-16 bg-slate-100 rounded-full inline-flex items-center justify-center text-2xl mb-4">&#9889;</div>
+    <h3 class="text-lg font-bold text-slate-900 mb-1">該当する電気風呂がありません</h3>
+    <p class="text-sm text-body">条件を変えて検索してみてください</p>
+  </div>
+
+  <!-- Detail modal -->
+  <div id="modal-overlay" class="hidden fixed inset-0 bg-black/40 z-[2000] flex items-center justify-center p-4" onclick="closeModal(event)">
+    <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-xl" onclick="event.stopPropagation()">
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-12 border-t border-slate-200 pt-6 pb-8 text-center">
+    <p class="text-xs text-slate-400">電気風呂イキタイ &mdash; データ出典: 電浴GO!（銭湯電気保養協会）</p>
+    <p class="text-xs text-slate-400 mt-1">&#9889; 行った記録はブラウザに保存されます（localStorage）</p>
+  </footer>
+</div>
+
+<script>
+let allData = [];
+let map = null;
+let markers = [];
+let currentView = 'list';
+let activeArea = '';
+
+// localStorage for visited
+function getVisited() {
+  try { return JSON.parse(localStorage.getItem('denki-visited') || '{}'); } catch { return {}; }
+}
+function setVisited(id, val) {
+  const v = getVisited();
+  if (val) v[id] = Date.now(); else delete v[id];
+  localStorage.setItem('denki-visited', JSON.stringify(v));
+  updateVisitedCount();
+}
+function isVisited(id) { return !!getVisited()[id]; }
+function updateVisitedCount() {
+  const count = Object.keys(getVisited()).length;
+  document.getElementById('visited-count').textContent = `\u2713 ${count}`;
+}
+
+function powerDots(p) {
+  const cls = p >= 5 ? 'power-5' : '';
+  return `<span class="power-bar ${cls}">${Array.from({length:5}, (_,i) =>
+    `<span class="power-dot ${i < p ? 'on' : 'off'}"></span>`).join('')}</span>`;
+}
+
+function powerLabel(p) {
+  if (p >= 5) return '<span class="text-red-600 font-bold text-xs">最強</span>';
+  if (p >= 4) return '<span class="text-amber-600 font-medium text-xs">強め</span>';
+  if (p >= 3) return '<span class="text-slate-500 text-xs">普通</span>';
+  return '<span class="text-slate-400 text-xs">弱め</span>';
+}
+
+function renderCard(f) {
+  const visited = isVisited(f.id);
+  return `
+  <div class="relative bg-white rounded-xl border border-slate-200 p-5 shadow-sm cursor-pointer hover:shadow-md transition-shadow ${visited ? 'card-visited' : ''}"
+       onclick="openModal(${f.id})">
+    ${visited ? '<div class="visited-stamp bg-emerald-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">行った!</div>' : ''}
+    <div class="flex items-start justify-between mb-3">
+      <div>
+        <h3 class="text-base font-bold text-slate-900 leading-tight">${f.name}</h3>
+        <p class="text-xs text-body mt-0.5">${f.ward}${f.area !== '東京都' ? '（' + f.area + '）' : ''}</p>
+      </div>
+      <div class="text-right ml-3">
+        ${powerDots(f.power)}
+        <div class="mt-0.5">${powerLabel(f.power)}</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-4 text-xs text-body">
+      <span class="inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        ${f.station}
+      </span>
+      <span class="text-slate-400">${f.stationLine}</span>
+      ${f.walkMin ? `<span class="text-slate-400">\u5F92\u6B69${f.walkMin}\u5206</span>` : ''}
+    </div>
+    ${f.memo && f.memo !== '?' ? `<p class="text-xs text-body mt-2 line-clamp-2 leading-relaxed">${f.memo}</p>` : ''}
+    ${f.type && f.type !== '?' ? `<div class="mt-2"><span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full text-[10px] font-medium">${f.type}</span></div>` : ''}
+  </div>`;
+}
+
+function openModal(id) {
+  const f = allData.find(x => x.id === id);
+  if (!f) return;
+  const visited = isVisited(f.id);
+  document.getElementById('modal-content').innerHTML = `
+    <div class="p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900">${f.name}</h2>
+          <p class="text-sm text-body mt-1">${f.address}</p>
+        </div>
+        <button onclick="closeModal()" class="w-8 h-8 inline-flex items-center justify-center text-slate-400 hover:text-slate-600 rounded-lg hover:bg-gray-50 cursor-pointer" aria-label="閉じる">&times;</button>
+      </div>
+
+      <div class="flex items-center gap-3 mb-4">
+        ${powerDots(f.power)} ${powerLabel(f.power)}
+        ${f.type && f.type !== '?' ? `<span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full text-xs font-medium">${f.type}</span>` : ''}
+        ${f.maker && f.maker !== '?' ? `<span class="bg-denki-50 text-denki-800 px-2 py-0.5 rounded-full text-xs font-medium">${f.maker}</span>` : ''}
+      </div>
+
+      ${f.memo && f.memo !== '?' ? `<p class="text-sm text-body leading-relaxed mb-4">${f.memo}</p>` : ''}
+
+      <div class="bg-gray-50 rounded-lg p-4 mb-4 space-y-2">
+        <div class="flex items-center gap-2 text-sm">
+          <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span class="text-body">${f.station}（${f.stationLine}）${f.walkMin ? ' 徒歩' + f.walkMin + '分' : ''}</span>
+        </div>
+        ${f.price ? `<div class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="text-body">${f.price}円</span></div>` : ''}
+      </div>
+
+      <!-- Mini map -->
+      <div id="modal-map" style="height:200px;border-radius:8px" class="border border-slate-200 mb-4"></div>
+
+      <div class="flex gap-3">
+        <button onclick="toggleVisited(${f.id})" id="btn-visited-${f.id}"
+                class="flex-1 inline-flex items-center justify-center gap-2 h-12 px-6 text-base font-medium rounded-lg cursor-pointer transition-colors ${visited ? 'bg-emerald-500 text-white hover:bg-emerald-600' : 'bg-white text-slate-700 border border-slate-200 hover:bg-gray-50'}">
+          ${visited ? '\u2713 行った!' : '\u{1F6C1} 行ったことある'}
+        </button>
+        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.name + ' ' + f.address)}" target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center gap-2 h-12 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+          Google Maps
+        </a>
+      </div>
+    </div>`;
+  document.getElementById('modal-overlay').classList.remove('hidden');
+  // Mini map
+  setTimeout(() => {
+    const mm = L.map('modal-map',{zoomControl:false}).setView([f.lat,f.lng],15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OSM'}).addTo(mm);
+    L.marker([f.lat,f.lng]).addTo(mm);
+  }, 100);
+}
+
+function closeModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('modal-overlay').classList.add('hidden');
+  document.getElementById('modal-content').innerHTML = '';
+}
+
+function toggleVisited(id) {
+  const now = !isVisited(id);
+  setVisited(id, now);
+  openModal(id);
+  applyFilters();
+}
+
+// Map
+function initMap() {
+  if (map) return;
+  map = L.map('map').setView([35.75, 139.72], 11);  // 北東京〜埼玉寄り
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+}
+
+function updateMapMarkers(data) {
+  markers.forEach(m => map.removeLayer(m));
+  markers = [];
+  data.forEach(f => {
+    const color = f.power >= 5 ? '#dc2626' : f.power >= 4 ? '#f59e0b' : '#6b7280';
+    const visited = isVisited(f.id);
+    const icon = L.divIcon({
+      className: 'custom-pin',
+      html: `<div style="width:28px;height:28px;border-radius:50%;background:${visited ? '#10b981' : color};border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:bold">${f.power}</div>`,
+      iconSize: [28, 28], iconAnchor: [14, 14]
+    });
+    const m = L.marker([f.lat, f.lng], { icon }).addTo(map);
+    m.bindPopup(`
+      <div style="padding:12px;font-family:Inter,sans-serif">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">${f.name}</div>
+        <div style="font-size:12px;color:#64748b;margin-bottom:6px">${f.station}（${f.stationLine}）</div>
+        <div style="font-size:12px;color:#64748b;margin-bottom:8px">${'&#9889;'.repeat(f.power)} ${f.power >= 5 ? '最強' : f.power >= 4 ? '強め' : '普通'}</div>
+        <button onclick="openModal(${f.id})" style="background:#2b70ef;color:white;border:none;padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer">詳細を見る</button>
+      </div>`, { closeButton: false });
+    markers.push(m);
+  });
+  if (data.length > 0) {
+    const bounds = L.latLngBounds(data.map(f => [f.lat, f.lng]));
+    map.fitBounds(bounds, { padding: [30, 30] });
+  }
+}
+
+function switchView(view) {
+  currentView = view;
+  document.getElementById('tab-list').className = view === 'list' ? 'tab-active pb-2 text-sm cursor-pointer' : 'tab-inactive pb-2 text-sm cursor-pointer';
+  document.getElementById('tab-map').className = view === 'map' ? 'tab-active pb-2 text-sm cursor-pointer' : 'tab-inactive pb-2 text-sm cursor-pointer';
+  document.getElementById('map-container').classList.toggle('hidden', view !== 'map');
+  document.getElementById('card-grid').classList.toggle('hidden', view === 'map');
+  if (view === 'map') {
+    initMap();
+    setTimeout(() => { map.invalidateSize(); updateMapMarkers(getFiltered()); }, 100);
+  }
+}
+
+// Filtering
+function setAreaFilter(area) {
+  activeArea = area;
+  document.querySelectorAll('.area-chip').forEach(c => {
+    const isActive = c.dataset.area === area;
+    if (isActive) {
+      c.classList.add('border-primary-500', 'bg-primary-50', 'text-primary-700', 'font-medium');
+      c.classList.remove('border-slate-200', 'bg-white');
+    } else {
+      c.classList.remove('border-primary-500', 'bg-primary-50', 'text-primary-700', 'font-medium');
+      if (!c.classList.contains('border-denki-300')) {
+        c.classList.add('border-slate-200', 'bg-white');
+      }
+    }
+  });
+  applyFilters();
+}
+
+function getFiltered() {
+  const keyword = document.getElementById('search').value.toLowerCase();
+  const power = document.getElementById('filter-power').value;
+  const sort = document.getElementById('filter-sort').value;
+  const onlyVisited = document.getElementById('filter-visited').checked;
+
+  let filtered = allData.filter(f => {
+    if (activeArea) {
+      const matchArea = f.area.includes(activeArea) || f.ward.includes(activeArea) || f.address.includes(activeArea);
+      if (!matchArea) return false;
+    }
+    if (keyword) {
+      const s = `${f.name} ${f.address} ${f.station} ${f.stationLine} ${f.ward} ${f.memo || ''}`.toLowerCase();
+      if (!s.includes(keyword)) return false;
+    }
+    if (power && f.power < parseInt(power)) return false;
+    if (onlyVisited && !isVisited(f.id)) return false;
+    return true;
+  });
+
+  // Sort
+  const visited = getVisited();
+  filtered.sort((a, b) => {
+    if (sort === 'power') return b.power - a.power;
+    if (sort === 'station') return a.station.localeCompare(b.station, 'ja');
+    if (sort === 'area') return a.address.localeCompare(b.address, 'ja');
+    if (sort === 'visited') return (visited[b.id] || 0) - (visited[a.id] || 0);
+    return 0;
+  });
+
+  return filtered;
+}
+
+function applyFilters() {
+  const filtered = getFiltered();
+  const grid = document.getElementById('card-grid');
+  const empty = document.getElementById('empty-state');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.classList.remove('hidden');
+  } else {
+    empty.classList.add('hidden');
+    grid.innerHTML = filtered.map(renderCard).join('');
+  }
+
+  document.getElementById('total-count').textContent = `全${filtered.length}件`;
+
+  if (currentView === 'map' && map) {
+    updateMapMarkers(filtered);
+  }
+}
+
+// Init
+async function init() {
+  try {
+    const res = await fetch('data/facilities.json');
+    const json = await res.json();
+    allData = json.facilities;
+  } catch {
+    document.getElementById('card-grid').innerHTML = '<div class="col-span-3 text-center py-16 text-slate-500">データの読み込みに失敗しました</div>';
+    return;
+  }
+  updateVisitedCount();
+  applyFilters();
+}
+
+// Event listeners
+document.getElementById('search').addEventListener('input', applyFilters);
+document.getElementById('filter-power').addEventListener('change', applyFilters);
+document.getElementById('filter-sort').addEventListener('change', applyFilters);
+document.getElementById('filter-visited').addEventListener('change', applyFilters);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+init();
+</script>
+</body>
+</html>
