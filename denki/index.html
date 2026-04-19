@@ -6,6 +6,9 @@
 <title>ビリビリ君 - 電気風呂を探す・知る・記録する</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -16,9 +19,15 @@ tailwind.config = {
       colors: {
         primary: {50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',800:'#13318d',900:'#0e266a',950:'#07194e'},
         denki: {50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e',900:'#78350f'},
-        bath: {dark:'#0c1222',navy:'#131b2e',blue:'#1a2744',glow:'#3b82f6',electric:'#facc15',spark:'#fde047'}
+        bath: {dark:'#0c1222',navy:'#131b2e',blue:'#1a2744',glow:'#3b82f6',electric:'#facc15',spark:'#fde047'},
+        soda: {50:'#e7f9ff',100:'#c3f0ff',200:'#8ae4ff',300:'#4ed3ff',400:'#1fc0f3',500:'#00b7e0',600:'#0092b5',700:'#006d89',800:'#004e63',900:'#002a37'},
+        stamp: {red:'#ff4040',ink:'#0c1222',paper:'#fff8e7'}
       },
-      fontFamily: { sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'] }
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'],
+        display: ['"Zen Kaku Gothic New"','"Noto Sans JP"','Inter','sans-serif'],
+        mono: ['"JetBrains Mono"','ui-monospace','"SFMono-Regular"','monospace']
+      }
     }
   }
 }
@@ -98,62 +107,262 @@ tailwind.config = {
 /* Power label glow for 最強 */
 @keyframes glow-pulse{0%,100%{text-shadow:0 0 4px rgba(239,68,68,.3)}50%{text-shadow:0 0 12px rgba(239,68,68,.6)}}
 .power-max-label{animation:glow-pulse 1.5s ease-in-out infinite}
+
+/* ===== BIRIBIRI-KUN ZINE STYLE ===== */
+/* Retro paper texture for hero */
+.paper-bg{
+  background-color:#fff8e7;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,64,64,0.04) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0,183,224,0.05) 0, transparent 40%),
+    repeating-linear-gradient(45deg, rgba(12,18,34,0.025) 0 1px, transparent 1px 8px);
+}
+/* Halftone dots */
+.halftone{
+  background-image:radial-gradient(circle,#0c1222 1px,transparent 1.2px);
+  background-size:6px 6px;
+}
+/* Big display katakana */
+.display-kana{
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:900;
+  letter-spacing:-0.02em;
+  line-height:0.9;
+}
+.display-eng{
+  font-family:'Bebas Neue','Zen Kaku Gothic New',sans-serif;
+  letter-spacing:0.08em;
+  line-height:0.9;
+}
+/* Stamp / badge styles */
+.stamp{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:4px 10px;
+  border:2px solid currentColor;
+  border-radius:3px;
+  font-family:'Bebas Neue','Zen Kaku Gothic New',sans-serif;
+  letter-spacing:0.12em;
+  font-size:12px;
+  font-weight:700;
+  transform:rotate(-2deg);
+}
+.stamp-circle{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:64px;height:64px;
+  border:3px double currentColor;
+  border-radius:50%;
+  font-family:'Bebas Neue',sans-serif;
+  letter-spacing:0.08em;
+  font-size:10px;
+  font-weight:700;
+  line-height:1.1;
+  text-align:center;
+  transform:rotate(-8deg);
+}
+/* Checker ribbon divider */
+.checker-ribbon{
+  height:12px;
+  background:
+    linear-gradient(135deg,transparent 25%,#0c1222 25% 50%,transparent 50% 75%,#0c1222 75%),
+    linear-gradient(135deg,#facc15 0 100%);
+  background-size:16px 16px,100% 100%;
+}
+/* Zine border */
+.zine-card{
+  border:2px solid #0c1222;
+  box-shadow:4px 4px 0 0 #0c1222;
+  transition:transform .15s ease, box-shadow .15s ease;
+  background:#fff;
+}
+.zine-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 0 #0c1222}
+.zine-card.visited{
+  background:linear-gradient(135deg,#fffbeb 0%,#fff 60%);
+  box-shadow:4px 4px 0 0 #facc15, 4px 4px 0 2px #0c1222;
+}
+/* Kana-Eng stack */
+.kana-eng{line-height:1}
+.kana-eng .kana{font-family:'Zen Kaku Gothic New';font-weight:900;display:block}
+.kana-eng .eng{font-family:'Bebas Neue';letter-spacing:0.1em;display:block;opacity:0.7}
+
+/* Retro chip */
+.chip-retro{
+  border:2px solid #0c1222;
+  background:#fff;
+  border-radius:999px;
+  padding:4px 14px;
+  font-weight:700;
+  font-size:13px;
+  font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;
+  cursor:pointer;
+  transition:all .15s ease;
+  box-shadow:2px 2px 0 0 #0c1222;
+}
+.chip-retro:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 0 #0c1222}
+.chip-retro.active{background:#facc15;box-shadow:2px 2px 0 0 #0c1222}
+.chip-retro.tokyo{background:#00b7e0;color:#fff}
+.chip-retro.tokyo.active{background:#facc15;color:#0c1222}
+
+/* Floating bolt decoration */
+.bolt-deco{position:absolute;pointer-events:none;color:#facc15;opacity:0.4}
+
+/* Number label (big edition-style numeral) */
+.big-number{
+  font-family:'Bebas Neue','Zen Kaku Gothic New',sans-serif;
+  font-size:64px;line-height:1;color:#facc15;
+  -webkit-text-stroke:2px #0c1222;
+  paint-order:stroke fill;
+  letter-spacing:0;
+}
+
+/* Mascot bubble */
+.mascot-bubble{
+  position:relative;
+  background:#fff;
+  border:2px solid #0c1222;
+  border-radius:16px;
+  padding:12px 16px;
+  box-shadow:3px 3px 0 0 #0c1222;
+}
+.mascot-bubble::after{
+  content:"";
+  position:absolute;
+  left:-10px;top:20px;
+  width:0;height:0;
+  border-top:8px solid transparent;
+  border-bottom:8px solid transparent;
+  border-right:12px solid #fff;
+  filter:drop-shadow(-2px 0 0 #0c1222);
+}
+
+/* Underline highlight */
+.ink-under{
+  background:linear-gradient(to top,#facc15 0 30%,transparent 30%);
+}
+
+/* Wave divider */
+.wave-top{
+  background:
+    radial-gradient(circle at 10px 0, transparent 10px, #0c1222 10px 12px, transparent 12px),
+    #fff8e7;
+  background-size:20px 20px;
+  background-repeat:repeat-x;
+  background-position:top;
+  height:20px;
+}
+
+/* Inline kana label with furigana feel */
+.label-kana{
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:900;
+  letter-spacing:0.02em;
+}
 </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-stamp-paper min-h-screen font-sans">
 
 <!-- Shock overlay (injected by JS) -->
 <div id="shock-overlay"></div>
 
 <!-- Header -->
-<header class="header-bg border-b border-bath-blue/50 sticky top-0 z-[1000]">
-  <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
-    <a href="./" class="flex items-center gap-3 no-underline">
-      <div class="w-10 h-10 bg-denki-400/20 border border-denki-400/40 rounded-xl inline-flex items-center justify-center text-2xl header-bolt">&#9889;</div>
-      <div>
-        <h1 class="text-xl font-bold text-white leading-tight electric-glow">ビリビリ君</h1>
-        <p class="text-xs text-slate-400">電気風呂を探す・知る・記録する</p>
+<header class="header-bg border-b-4 border-denki-400 sticky top-0 z-[1000]">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between gap-4">
+    <a href="./" class="flex items-center gap-3 no-underline group shrink-0">
+      <img src="mascot.svg" alt="ビリビリ君" class="w-12 h-14 header-bolt group-hover:animate-spin-slow" style="transform-origin:50% 50%">
+      <div class="leading-none">
+        <div class="flex items-baseline gap-2">
+          <h1 class="display-kana text-white text-2xl md:text-[28px] electric-glow">ビリビリ君</h1>
+          <span class="hidden sm:inline display-eng text-denki-400 text-sm">BIRIBIRI-KUN</span>
+        </div>
+        <p class="text-[11px] text-denki-200 tracking-wider mt-1 font-mono">&#9889; ELECTRIC BATH ATLAS &mdash; 電気風呂御案内</p>
       </div>
     </a>
     <nav class="hidden md:flex items-center gap-1" aria-label="メインナビゲーション">
-      <a href="./" class="px-3 py-2 text-sm font-medium text-denki-400 rounded-lg bg-white/5">&#9889; 探す</a>
-      <a href="./about.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">電気風呂とは</a>
-      <a href="./history.html" class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">歴史</a>
+      <a href="./" class="px-3 py-2 text-sm font-bold text-bath-dark bg-denki-400 rounded-lg border-2 border-denki-400">&#9889; 探す</a>
+      <a href="./about.html" class="px-3 py-2 text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 rounded-lg transition-colors border-2 border-transparent">電気風呂とは</a>
+      <a href="./history.html" class="px-3 py-2 text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 rounded-lg transition-colors border-2 border-transparent">歴史</a>
     </nav>
-    <div class="flex items-center gap-2">
-      <span id="visited-count" class="bg-denki-400/20 text-denki-300 border border-denki-400/30 px-3 py-1 rounded-full text-xs font-medium cursor-pointer" title="行った施設のみ表示">&#9889; 0</span>
-      <span id="total-count" class="bg-white/10 text-slate-300 px-3 py-1 rounded-full text-xs font-medium">全0件</span>
+    <div class="flex items-center gap-2 shrink-0">
+      <span id="visited-count" class="bg-denki-400 text-bath-dark border-2 border-bath-dark px-2 md:px-3 py-1 rounded-full text-xs font-bold cursor-pointer shadow-[2px_2px_0_0_#0c1222]" title="行った施設のみ表示">&#9889; 0</span>
+      <span id="total-count" class="hidden sm:inline bg-soda-500 text-white border-2 border-bath-dark px-3 py-1 rounded-full text-xs font-bold shadow-[2px_2px_0_0_#0c1222]">全0件</span>
     </div>
   </div>
   <!-- Mobile nav -->
   <div class="md:hidden border-t border-bath-blue/30 px-4 py-2 flex gap-1">
-    <a href="./" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-denki-400 rounded bg-white/5">&#9889; 探す</a>
+    <a href="./" class="flex-1 text-center px-2 py-1.5 text-xs font-bold text-bath-dark bg-denki-400 rounded">&#9889; 探す</a>
     <a href="./about.html" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-slate-300 rounded hover:bg-white/10">電気風呂とは</a>
     <a href="./history.html" class="flex-1 text-center px-2 py-1.5 text-xs font-medium text-slate-300 rounded hover:bg-white/10">歴史</a>
   </div>
 </header>
 
+<!-- Checker ribbon -->
+<div class="checker-ribbon"></div>
+
+<!-- Hero section -->
+<section class="paper-bg border-b-2 border-bath-dark relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12 relative">
+    <!-- Decorative floating bolts -->
+    <span class="bolt-deco text-6xl md:text-8xl" style="top:12px;right:5%;opacity:0.15;transform:rotate(15deg)">&#9889;</span>
+    <span class="bolt-deco text-4xl md:text-6xl" style="bottom:14px;left:3%;opacity:0.12;transform:rotate(-20deg)">&#9889;</span>
+
+    <div class="flex items-center gap-6 md:gap-10">
+      <div class="flex-1 relative z-10">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="stamp text-stamp-red bg-white">EST. 1919</span>
+          <span class="stamp text-soda-600 bg-white" style="transform:rotate(2deg)">ZAP &amp; SOAK</span>
+          <span class="hidden md:inline-flex stamp text-bath-dark bg-denki-300" style="transform:rotate(-4deg)">VOL.01</span>
+        </div>
+        <h2 class="display-kana text-[40px] md:text-[72px] text-bath-dark mb-2">
+          <span class="inline-block"><span class="ink-under">ビリビリ</span></span>を、<br class="md:hidden">
+          探しに<span class="text-stamp-red">行こう。</span>
+        </h2>
+        <p class="display-eng text-soda-600 text-lg md:text-2xl mb-4">
+          GO GET THE TINGLE &mdash; DENKI-BURO NAVIGATOR
+        </p>
+        <p class="text-sm md:text-base text-bath-dark/80 leading-relaxed max-w-2xl">
+          全国<span id="hero-total" class="font-bold text-stamp-red">0</span>件の電気風呂データベース。メーカー別、駅名、パワーで検索。<br>
+          &#9889; 小西・坂田・水野の見分け方は <a href="./about.html" class="underline decoration-denki-400 decoration-[3px] underline-offset-2 font-bold">電気風呂とは</a> ページへ。
+        </p>
+      </div>
+      <div class="hidden md:block relative z-10">
+        <img src="mascot.svg" alt="ビリビリ君" class="w-36 lg:w-44 drop-shadow-[4px_4px_0_#0c1222]" style="transform:rotate(-6deg)">
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="max-w-7xl mx-auto px-4 md:px-8 py-6">
 
+  <!-- Section heading -->
+  <div class="flex items-baseline gap-3 mt-2 mb-3">
+    <span class="display-kana text-xl text-bath-dark">エリアで絞る</span>
+    <span class="display-eng text-sm text-soda-600">/ FILTER BY AREA</span>
+    <span class="flex-1 border-t-2 border-dashed border-bath-dark/30"></span>
+  </div>
+
   <!-- Quick area chips -->
-  <div class="flex flex-wrap gap-2 mb-4">
-    <button onclick="setAreaFilter('')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="">すべて</button>
-    <button onclick="setAreaFilter('東京都')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-denki-300 bg-denki-50 cursor-pointer hover:bg-denki-100 transition-colors font-medium text-denki-800" data-area="東京都">&#9889; 東京</button>
-    <button onclick="setAreaFilter('神奈川')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="神奈川">神奈川</button>
-    <button onclick="setAreaFilter('千葉')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="千葉">千葉</button>
-    <button onclick="setAreaFilter('大阪府')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="大阪府">大阪</button>
-    <button onclick="setAreaFilter('愛知')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="愛知">名古屋</button>
-    <button onclick="setAreaFilter('広島')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="広島">広島</button>
-    <button onclick="setAreaFilter('長崎')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="長崎">長崎</button>
-    <button onclick="setAreaFilter('兵庫')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="兵庫">兵庫</button>
-    <button onclick="setAreaFilter('北海道')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="北海道">函館</button>
-    <button onclick="setAreaFilter('長野')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="長野">松本</button>
-    <button onclick="setAreaFilter('京都')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="京都">京都</button>
-    <button onclick="setAreaFilter('新潟')" class="area-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-slate-200 bg-white cursor-pointer hover:bg-gray-50 transition-colors" data-area="新潟">新潟</button>
+  <div class="flex flex-wrap gap-2 mb-5">
+    <button onclick="setAreaFilter('')" class="area-chip chip-retro" data-area="">すべて <span class="display-eng text-[10px] opacity-60 ml-1">ALL</span></button>
+    <button onclick="setAreaFilter('東京都')" class="area-chip chip-retro tokyo active" data-area="東京都">&#9889; 東京 <span class="display-eng text-[10px] opacity-70 ml-1">TOKYO</span></button>
+    <button onclick="setAreaFilter('神奈川')" class="area-chip chip-retro" data-area="神奈川">神奈川</button>
+    <button onclick="setAreaFilter('千葉')" class="area-chip chip-retro" data-area="千葉">千葉</button>
+    <button onclick="setAreaFilter('大阪府')" class="area-chip chip-retro" data-area="大阪府">大阪 <span class="display-eng text-[10px] opacity-60 ml-1">OSAKA</span></button>
+    <button onclick="setAreaFilter('愛知')" class="area-chip chip-retro" data-area="愛知">名古屋</button>
+    <button onclick="setAreaFilter('広島')" class="area-chip chip-retro" data-area="広島">広島</button>
+    <button onclick="setAreaFilter('長崎')" class="area-chip chip-retro" data-area="長崎">長崎</button>
+    <button onclick="setAreaFilter('兵庫')" class="area-chip chip-retro" data-area="兵庫">兵庫</button>
+    <button onclick="setAreaFilter('北海道')" class="area-chip chip-retro" data-area="北海道">函館</button>
+    <button onclick="setAreaFilter('長野')" class="area-chip chip-retro" data-area="長野">松本</button>
+    <button onclick="setAreaFilter('京都')" class="area-chip chip-retro" data-area="京都">京都</button>
+    <button onclick="setAreaFilter('新潟')" class="area-chip chip-retro" data-area="新潟">新潟</button>
   </div>
 
   <!-- Search + Filters -->
-  <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm mb-6">
+  <div class="bg-white zine-card p-4 mb-6 rounded-lg">
     <div class="flex flex-wrap items-end gap-3">
       <div class="leading-normal flex-1 min-w-[180px]">
         <input id="search" type="text" placeholder="&#128269; 施設名・駅名・路線・メモで検索..."
@@ -190,9 +399,17 @@ tailwind.config = {
   </div>
 
   <!-- View tabs -->
-  <div class="flex gap-6 mb-4 border-b border-slate-200">
-    <button onclick="switchView('list')" id="tab-list" class="tab-active pb-2 text-sm cursor-pointer">&#9889; リスト</button>
-    <button onclick="switchView('map')" id="tab-map" class="tab-inactive pb-2 text-sm cursor-pointer">&#128506; マップ</button>
+  <div class="flex items-baseline gap-6 mb-4 border-b-2 border-bath-dark">
+    <button onclick="switchView('list')" id="tab-list" class="pb-2 text-sm cursor-pointer font-bold label-kana text-bath-dark border-b-[3px] border-denki-400 -mb-[2px]">
+      <span class="display-kana text-base">&#9889; リスト</span>
+      <span class="display-eng text-xs opacity-60 ml-1">LIST</span>
+    </button>
+    <button onclick="switchView('map')" id="tab-map" class="pb-2 text-sm cursor-pointer font-medium text-slate-500 hover:text-bath-dark">
+      <span class="display-kana text-base">&#128506; マップ</span>
+      <span class="display-eng text-xs opacity-60 ml-1">MAP</span>
+    </button>
+    <div class="flex-1"></div>
+    <div id="result-counter" class="hidden md:block text-xs text-bath-dark/60 font-mono">&mdash;</div>
   </div>
 
   <!-- Map view -->
@@ -217,12 +434,35 @@ tailwind.config = {
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="mt-12 border-t border-slate-200 pt-6 pb-8 text-center">
-    <p class="text-xs text-slate-400">&#9889; 電気風呂イキタイ &mdash; データ出典: 電浴GO!（銭湯電気保養協会）</p>
-    <p class="text-xs text-slate-400 mt-1">行った記録はブラウザに保存されます（localStorage）</p>
-  </footer>
+
 </div>
+
+<!-- Checker ribbon -->
+<div class="checker-ribbon mt-8"></div>
+
+<!-- Footer -->
+<footer class="bg-bath-dark text-denki-200 py-8 px-4">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-6">
+    <div class="flex items-center gap-4">
+      <img src="mascot.svg" alt="" class="w-14 h-16" style="transform:rotate(-4deg)">
+      <div>
+        <div class="flex items-baseline gap-2">
+          <span class="display-kana text-xl text-white">ビリビリ君</span>
+          <span class="display-eng text-xs text-denki-400">BIRIBIRI-KUN</span>
+        </div>
+        <p class="text-[11px] text-denki-300/70 mt-1 font-mono">&copy; 2026 &mdash; ELECTRIC BATH ATLAS</p>
+      </div>
+    </div>
+    <div class="text-xs text-denki-200/70 text-center md:text-right leading-relaxed">
+      <p>&#9889; データ出典: 電浴GO!（銭湯電気保養協会）/ けんちん『電気風呂御案内200』</p>
+      <p class="mt-1 font-mono">STAY TINGLY &mdash; 行った記録はブラウザに保存されます</p>
+      <div class="flex gap-3 justify-center md:justify-end mt-2">
+        <a href="./about.html" class="text-denki-300 hover:text-denki-400 underline decoration-dotted">電気風呂とは</a>
+        <a href="./history.html" class="text-denki-300 hover:text-denki-400 underline decoration-dotted">歴史</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
 const BOLT_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h9l-1 10 10-12h-9l1-10z"/></svg>`;
@@ -293,32 +533,40 @@ function powerLabel(p) {
 // === Card ===
 function renderCard(f) {
   const visited = isVisited(f.id);
+  const makerShort = (f.maker && f.maker !== '?' && f.maker !== '不明')
+    ? (f.maker.includes('小西')?'KONISHI':f.maker.includes('坂田')?'SAKATA':f.maker.includes('水野')?'MIZUNO':'MIX')
+    : '';
   return `
-  <div class="relative bg-white rounded-xl card-electric p-5 cursor-pointer ${visited?'card-visited':''}"
+  <div class="relative zine-card rounded-lg p-5 cursor-pointer ${visited?'visited':''}"
        onclick="openModal(${f.id})">
     ${visited?`<div class="visited-stamp">
-      <span class="inline-flex items-center gap-1 bg-denki-400 text-bath-dark text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm shadow-denki-400/30">\u26A1 \u884C\u3063\u305F!</span>
+      <span class="stamp text-stamp-red bg-white" style="transform:rotate(8deg)">&#9889; 行った!</span>
     </div>`:''}
-    <div class="flex items-start justify-between mb-3">
+    <div class="flex items-start justify-between mb-3 gap-3">
       <div class="flex-1 min-w-0">
-        <h3 class="text-base font-bold text-slate-900 leading-tight truncate">${f.name}</h3>
-        <p class="text-xs text-body mt-0.5">${f.ward}${f.area!=='東京都'?'（'+f.area+'）':''}</p>
+        <div class="flex items-center gap-1.5 mb-1 text-[10px] font-mono text-soda-600">
+          <span>#${String(f.id).padStart(3,'0')}</span>
+          ${makerShort?`<span class="text-bath-dark">/</span><span class="font-bold">${makerShort}</span>`:''}
+        </div>
+        <h3 class="display-kana text-lg text-bath-dark leading-tight truncate">${f.name}</h3>
+        <p class="text-xs text-bath-dark/60 mt-0.5">${f.ward}${f.area!=='東京都'?'（'+f.area+'）':''}</p>
       </div>
-      <div class="text-right ml-3 flex-shrink-0">
+      <div class="text-right flex-shrink-0">
         ${powerBolts(f.power)}
         <div class="mt-0.5">${powerLabel(f.power)}</div>
       </div>
     </div>
-    <div class="flex items-center gap-3 text-xs text-body">
+    <div class="flex items-center gap-2 text-xs text-bath-dark/70 border-t border-dashed border-bath-dark/20 pt-2">
       <span class="inline-flex items-center gap-1">
-        <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        ${f.station}
+        <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <span class="font-medium">${f.station}</span>
       </span>
-      <span class="text-slate-400">${f.stationLine}</span>
-      ${f.walkMin?`<span class="text-slate-400">\u5F92\u6B69${f.walkMin}\u5206</span>`:''}
+      <span class="text-bath-dark/40">&middot;</span>
+      <span class="truncate">${f.stationLine}</span>
+      ${f.walkMin?`<span class="text-bath-dark/40 font-mono">\u5F92\u6B69${f.walkMin}min</span>`:''}
     </div>
-    ${f.memo&&f.memo!=='?'?`<p class="text-xs text-body mt-2 line-clamp-2 leading-relaxed">${f.memo}</p>`:''}
-    ${f.type&&f.type!=='?'?`<div class="mt-2"><span class="bg-denki-50 text-denki-800 border border-denki-200 px-2 py-0.5 rounded-full text-[10px] font-medium">${f.type}</span></div>`:''}
+    ${f.memo&&f.memo!=='?'?`<p class="text-xs text-bath-dark/80 mt-2 line-clamp-2 leading-relaxed">${f.memo}</p>`:''}
+    ${f.type&&f.type!=='?'?`<div class="mt-2 flex flex-wrap gap-1"><span class="bg-denki-100 text-bath-dark border border-bath-dark px-2 py-0.5 rounded-full text-[10px] font-bold label-kana">${f.type}</span></div>`:''}
   </div>`;
 }
 
@@ -420,8 +668,10 @@ function updateMapMarkers(data){
 
 function switchView(view){
   currentView=view;
-  document.getElementById('tab-list').className=view==='list'?'tab-active pb-2 text-sm cursor-pointer':'tab-inactive pb-2 text-sm cursor-pointer';
-  document.getElementById('tab-map').className=view==='map'?'tab-active pb-2 text-sm cursor-pointer':'tab-inactive pb-2 text-sm cursor-pointer';
+  const activeCls='pb-2 text-sm cursor-pointer font-bold text-bath-dark border-b-[3px] border-denki-400 -mb-[2px]';
+  const inactiveCls='pb-2 text-sm cursor-pointer font-medium text-slate-500 hover:text-bath-dark';
+  document.getElementById('tab-list').className=view==='list'?activeCls:inactiveCls;
+  document.getElementById('tab-map').className=view==='map'?activeCls:inactiveCls;
   document.getElementById('map-container').classList.toggle('hidden',view!=='map');
   document.getElementById('card-grid').classList.toggle('hidden',view==='map');
   if(view==='map'){initMap();setTimeout(()=>{map.invalidateSize();updateMapMarkers(getFiltered());},100);}
@@ -432,9 +682,7 @@ function setAreaFilter(area){
   activeArea=area;
   document.querySelectorAll('.area-chip').forEach(c=>{
     const isActive=c.dataset.area===area;
-    if(isActive){c.classList.add('border-denki-400','bg-denki-50','text-denki-800','font-medium');c.classList.remove('border-slate-200','bg-white');}
-    else{c.classList.remove('border-denki-400','bg-denki-50','text-denki-800','font-medium');
-      c.classList.add('border-slate-200','bg-white');}
+    c.classList.toggle('active',isActive);
   });
   applyFilters();
 }
@@ -469,6 +717,8 @@ function applyFilters(){
   if(filtered.length===0){grid.innerHTML='';empty.classList.remove('hidden');}
   else{empty.classList.add('hidden');grid.innerHTML=filtered.map(renderCard).join('');}
   document.getElementById('total-count').textContent=`\u5168${filtered.length}\u4EF6`;
+  const hero=document.getElementById('hero-total');if(hero)hero.textContent=allData.length;
+  const rc=document.getElementById('result-counter');if(rc)rc.textContent=`&#9889; ${filtered.length} / ${allData.length} RESULTS`.replace('&#9889;','⚡');
   if(currentView==='map'&&map)updateMapMarkers(filtered);
 }
 

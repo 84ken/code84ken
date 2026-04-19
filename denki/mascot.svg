@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" fill="none">
+  <!-- Background bolt (decorative) -->
+  <circle cx="60" cy="65" r="52" fill="#facc15" stroke="#0c1222" stroke-width="3"/>
+  <!-- Zap lines -->
+  <path d="M18 35 L10 30 M22 22 L15 15 M35 14 L31 6 M103 35 L111 30 M98 22 L105 15 M85 14 L89 6" stroke="#0c1222" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Face -->
+  <g>
+    <!-- Bolt hair -->
+    <path d="M60 15 L48 45 L58 45 L52 68 L72 38 L62 38 L68 15 Z" fill="#0c1222" stroke="#0c1222" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Eyes (wide, gari-gari-kun style) -->
+    <ellipse cx="45" cy="72" rx="7" ry="9" fill="#fff"/>
+    <ellipse cx="75" cy="72" rx="7" ry="9" fill="#fff"/>
+    <circle cx="46" cy="74" r="3.5" fill="#0c1222"/>
+    <circle cx="76" cy="74" r="3.5" fill="#0c1222"/>
+    <circle cx="47" cy="73" r="1.2" fill="#fff"/>
+    <circle cx="77" cy="73" r="1.2" fill="#fff"/>
+
+    <!-- Cheeks (electric blush) -->
+    <ellipse cx="35" cy="86" rx="5" ry="3" fill="#ff4040" opacity="0.75"/>
+    <ellipse cx="85" cy="86" rx="5" ry="3" fill="#ff4040" opacity="0.75"/>
+
+    <!-- Mouth (tingle! open) -->
+    <path d="M50 93 Q60 103 70 93" stroke="#0c1222" stroke-width="2.5" stroke-linecap="round" fill="#ff4040"/>
+    <path d="M53 95 Q60 99 67 95" stroke="none" fill="#ff4040"/>
+  </g>
+
+  <!-- Small bolt on cheek -->
+  <path d="M94 95 L88 105 L93 105 L90 113 L98 101 L93 101 L96 95 Z" fill="#ff4040" stroke="#0c1222" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>
