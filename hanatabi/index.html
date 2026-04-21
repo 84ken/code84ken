@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>写す花旅｜Utsusu Hanatabi 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Caveat:wght@400;600;700&family=Kaisei+Decol:wght@400;700&family=Courier+Prime&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF4E6;
+    --paper-deep:#F3E8D0;
+    --ink:#2A2420;
+    --ink-sub:#6E6257;
+    --momo:#FF8FA9;
+    --momo-deep:#E85A76;
+    --mint:#7ED9B8;
+    --mint-deep:#3FAD86;
+    --lemon:#F5E16E;
+    --line:#D9CDB4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Shippori Mincho","Noto Serif JP","Hiragino Mincho ProN",serif;
+    line-height:1.9;
+    letter-spacing:.02em;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* 紙のノイズ＋方眼 */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      linear-gradient(to right, rgba(42,36,32,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(42,36,32,.04) 1px, transparent 1px);
+    background-size:24px 24px; opacity:.5;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 .16  0 0 0 0 .14  0 0 0 0 .12  0 0 0 .08 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    opacity:.45; mix-blend-mode:multiply;
+  }
+  .wrap{
+    max-width:440px; margin:0 auto; position:relative; z-index:1;
+    background:var(--paper);
+    box-shadow:0 0 60px rgba(42,36,32,.08);
+    overflow:hidden;
+  }
+
+  /* ====== 共通パーツ ====== */
+  .tape{
+    position:absolute; width:110px; height:20px;
+    background:rgba(126,217,184,.55);
+    mask-image:linear-gradient(90deg, transparent 0, #000 4px, #000 calc(100% - 4px), transparent 100%);
+    box-shadow:inset 0 0 0 .5px rgba(255,255,255,.4);
+  }
+  .tape--pink{background:rgba(255,143,169,.55)}
+  .tape--lemon{background:rgba(245,225,110,.65)}
+
+  .hashtag{
+    font-family:"Caveat",cursive; font-weight:700; color:var(--momo-deep);
+    font-size:22px; letter-spacing:0;
+  }
+
+  .polaroid{
+    background:#fff; padding:8px 8px 40px; position:relative;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,.04),
+      0 6px 14px rgba(42,36,32,.1),
+      0 16px 32px -14px rgba(42,36,32,.15);
+  }
+  .polaroid img{width:100%; height:100%; object-fit:cover; display:block}
+  .polaroid .cap{
+    position:absolute; bottom:8px; left:14px; right:14px;
+    font-family:"Caveat",cursive; font-size:18px; color:var(--ink-sub);
+    line-height:1.1;
+  }
+
+  /* ====== HERO ====== */
+  .hero{
+    position:relative; padding:24px 22px 34px; overflow:hidden;
+    min-height:620px;
+    color:#fff;
+    background:var(--ink);
+  }
+  /* スライダー */
+  .hero-slides{
+    position:absolute; inset:0; overflow:hidden;
+  }
+  .hero-slide{
+    position:absolute; inset:0;
+    background-size:cover; background-position:center;
+    opacity:0; transition:opacity 1.2s ease;
+    /* 低解像度を目立たなくする微調整 */
+    filter:contrast(1.05) saturate(1.05);
+    transform:scale(1.08);
+    transition:opacity 1.2s ease, transform 6s ease-out;
+  }
+  .hero-slide.active{opacity:1; transform:scale(1)}
+  .hero-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(42,36,32,.4) 0%, rgba(42,36,32,.2) 35%, rgba(42,36,32,.65) 100%);
+  }
+  .hero-dots{
+    position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+    display:flex; gap:6px; z-index:2;
+  }
+  .hero-dots span{
+    width:6px; height:6px; border-radius:50%;
+    background:rgba(255,255,255,.4);
+    transition:background .3s, width .3s;
+  }
+  .hero-dots span.on{background:#fff; width:20px; border-radius:3px}
+  .hero > .inner{position:relative; z-index:1}
+  .hero-top{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:"Courier Prime",monospace; font-size:10px; letter-spacing:.3em;
+    text-shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+  .hero-logo{
+    margin:260px 0 20px; display:block; max-width:260px; width:86%;
+    filter:drop-shadow(0 2px 14px rgba(0,0,0,.35));
+  }
+  .hero-concept{
+    font-family:"Shippori Mincho",serif; font-size:15px;
+    letter-spacing:.15em; font-weight:500; margin:0 0 8px;
+    text-shadow:0 1px 3px rgba(0,0,0,.4);
+  }
+  .hero-sub{
+    font-size:13px; line-height:1.9; margin:0 0 24px;
+    text-shadow:0 1px 3px rgba(0,0,0,.35);
+  }
+  .hero-period{
+    display:inline-block; padding:5px 12px; background:rgba(255,255,255,.92);
+    font-family:"Courier Prime",monospace; font-size:11px; letter-spacing:.2em;
+    color:var(--ink); margin-bottom:16px;
+  }
+  .hero-cta{
+    display:inline-flex; align-items:center; gap:10px;
+    background:#fff; color:var(--ink); padding:14px 24px; border-radius:999px;
+    font-family:"Shippori Mincho",serif; font-weight:600; font-size:14px;
+    letter-spacing:.15em; text-decoration:none;
+    box-shadow:0 6px 18px rgba(0,0,0,.25);
+  }
+  .hero-cta::after{content:"→"; font-family:"Courier Prime",monospace; font-weight:700}
+  .hero .tape1{top:18px; left:-16px; transform:rotate(-6deg); width:130px}
+  .hero .tape2{top:44px; right:-14px; transform:rotate(7deg); width:94px}
+
+  /* ====== 写す花旅とは ====== */
+  .intro{padding:44px 22px 20px}
+  .intro .eyebrow{
+    font-family:"Courier Prime",monospace; font-size:10px; letter-spacing:.3em;
+    color:var(--momo-deep); margin-bottom:10px;
+  }
+  .intro h2{
+    margin:0 0 4px; font-size:26px; font-weight:700; letter-spacing:.05em;
+    font-family:"Kaisei Decol",serif; line-height:1.4;
+  }
+  .intro p{
+    margin:0 0 12px; font-size:14px; line-height:2.1; color:var(--ink);
+  }
+  .intro .lead{
+    font-family:"Kaisei Decol","Shippori Mincho",serif;
+    color:var(--momo-deep); font-weight:400;
+    font-size:15px; line-height:1.8; letter-spacing:.08em;
+    margin:6px 0 20px;
+  }
+  .intro .lead::before{
+    content:"—"; margin-right:8px; color:var(--momo); font-weight:400;
+  }
+
+  /* ====== SECTION 共通 ====== */
+  .section{padding:44px 22px}
+  .section-head{margin-bottom:22px}
+  .section-head .eyebrow{
+    font-family:"Courier Prime",monospace; font-size:10px; letter-spacing:.3em;
+    color:var(--ink-sub); margin-bottom:8px; display:block;
+  }
+  .section-head h2{
+    margin:0; font-size:26px; font-weight:700; letter-spacing:.05em;
+    font-family:"Kaisei Decol",serif;
+  }
+  .section-head .sub{
+    margin:6px 0 0;
+    font-family:"Shippori Mincho",serif;
+    font-size:12px; color:var(--ink-sub); letter-spacing:.12em;
+    line-height:1.6;
+  }
+  .section-head .sub::before{
+    content:"—"; margin-right:6px; color:var(--line);
+  }
+
+  /* ====== コース一覧 ====== */
+  .course-list{display:flex; flex-direction:column; gap:22px}
+  .course{
+    background:#FFFDF6; border:1px solid var(--line); padding:16px 16px 18px;
+    position:relative;
+    box-shadow:0 10px 24px -14px rgba(42,36,32,.16);
+  }
+  .course .tape{top:-10px; width:80px; height:18px}
+  .course-photo{
+    aspect-ratio:5/3; overflow:hidden; position:relative;
+    margin-bottom:14px;
+  }
+  .course-photo img{width:100%; height:100%; object-fit:cover; display:block}
+  .course-photo .num{
+    position:absolute; top:10px; left:10px;
+    font-family:"Kaisei Decol",serif; font-size:32px; font-weight:700;
+    color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.5);
+    line-height:1;
+  }
+  .course-photo .num::before{
+    content:"No."; display:block;
+    font-family:"Courier Prime",monospace; font-size:9px;
+    letter-spacing:.3em; font-weight:400; margin-bottom:2px;
+  }
+  .course-area{
+    font-family:"Courier Prime",monospace; font-size:10px; letter-spacing:.25em;
+    color:var(--ink-sub); margin-bottom:2px;
+  }
+  .course-title{
+    font-family:"Kaisei Decol",serif; font-size:20px; font-weight:700;
+    margin:0 0 4px; line-height:1.4;
+  }
+  .course-spot{font-size:12px; color:var(--ink-sub); margin:0 0 10px; letter-spacing:.05em}
+  .course-season{
+    display:inline-block; background:var(--lemon); padding:3px 10px;
+    font-family:"Courier Prime",monospace; font-size:11px; letter-spacing:.1em;
+  }
+  .course-tip{
+    margin-top:12px; padding:10px 12px; background:var(--paper);
+    border-left:2px solid var(--momo); font-size:12px; line-height:1.7;
+  }
+  .course-tip em{
+    font-style:normal; font-family:"Caveat",cursive; color:var(--momo-deep);
+    font-size:16px; margin-right:6px;
+  }
+
+  /* ====== 撮り方コラム ====== */
+  .column{
+    margin:44px 22px; padding:22px 22px 24px;
+    background:#FFFDF6; border:1px solid var(--line); position:relative;
+  }
+  .column .tape{top:-10px; left:30px; transform:rotate(-4deg)}
+  .column .eyebrow{
+    font-family:"Courier Prime",monospace; font-size:10px; letter-spacing:.3em;
+    color:var(--mint-deep); margin-bottom:6px;
+  }
+  .column h3{
+    margin:0 0 14px; font-size:20px; font-weight:700;
+    font-family:"Kaisei Decol",serif;
+  }
+  .tips-list{list-style:none; padding:0; margin:0}
+  .tips-list li{
+    display:flex; gap:12px; padding:12px 0;
+    border-top:1px dashed var(--line);
+    font-size:13px; line-height:1.7;
+  }
+  .tips-list li:first-child{border-top:none; padding-top:4px}
+  .tips-list .n{
+    flex-shrink:0; font-family:"Caveat",cursive; color:var(--momo-deep);
+    font-size:22px; line-height:1; width:24px;
+  }
+  .tips-list b{font-weight:700; display:block; margin-bottom:2px}
+  .tips-list span{color:var(--ink-sub); font-size:12px}
+  .column .more{
+    margin-top:14px; display:inline-flex; align-items:center; gap:6px;
+    font-size:12px; color:var(--ink); text-decoration:none;
+    font-family:"Shippori Mincho",serif;
+    border-bottom:1px solid var(--ink); padding-bottom:2px;
+  }
+  .column .more::after{content:"→"; font-family:"Courier Prime",monospace}
+
+  /* ====== UGC ====== */
+  .ugc{background:var(--paper-deep); padding:44px 22px}
+  .ugc-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px 12px;
+    margin-top:18px;
+  }
+  .ugc-item .polaroid{transform:rotate(-2deg)}
+  .ugc-item:nth-child(2n) .polaroid{transform:rotate(2deg)}
+  .ugc-item:nth-child(3n) .polaroid{transform:rotate(-1deg)}
+  .ugc-foot{
+    margin-top:18px; text-align:center;
+    font-family:"Shippori Mincho",serif;
+    font-size:12px; color:var(--ink-sub); letter-spacing:.1em;
+  }
+  .ugc-foot p{margin:0 0 6px}
+
+  /* ====== キャンペーン応募 ====== */
+  .campaign{padding:48px 22px 40px}
+  .campaign-box{
+    background:var(--ink); color:#fff; padding:28px 24px 30px;
+    position:relative;
+  }
+  .campaign-box .tape{top:-10px; left:20px; transform:rotate(-3deg)}
+  .campaign-box .eyebrow{
+    font-family:"Courier Prime",monospace; font-size:10px; letter-spacing:.3em;
+    opacity:.7; margin-bottom:10px;
+  }
+  .campaign-box h2{
+    margin:0 0 14px; font-size:24px; font-weight:700;
+    font-family:"Kaisei Decol",serif; line-height:1.4;
+  }
+  .campaign-box p{margin:0 0 14px; font-size:13px; line-height:1.9; opacity:.9}
+  .tags{margin:12px 0 20px}
+  .tags span{
+    display:inline-block; margin:4px 6px 0 0; padding:4px 10px;
+    border:1px solid rgba(255,255,255,.4); border-radius:999px;
+    font-family:"Courier Prime",monospace; font-size:11px; letter-spacing:.1em;
+  }
+  .prize-row{
+    display:flex; gap:10px; margin-top:16px; padding-top:18px;
+    border-top:1px dashed rgba(255,255,255,.3);
+  }
+  .prize-row div{flex:1; font-size:11px; line-height:1.5}
+  .prize-row b{display:block; font-size:13px; color:var(--momo); margin-bottom:2px; font-weight:600}
+  .campaign-cta{
+    display:block; margin-top:20px; text-align:center;
+    background:var(--momo); color:var(--ink); padding:14px; border-radius:999px;
+    font-family:"Shippori Mincho",serif; font-weight:700; font-size:14px;
+    letter-spacing:.15em; text-decoration:none;
+  }
+
+  /* ====== 監修・クレジット ====== */
+  .credit{
+    padding:30px 22px; text-align:center;
+    border-top:1px dashed var(--line); border-bottom:1px dashed var(--line);
+    margin:0 22px;
+  }
+  .credit .label{
+    font-family:"Courier Prime",monospace; font-size:10px; letter-spacing:.3em;
+    color:var(--ink-sub); margin-bottom:12px;
+  }
+  .credit .avatar{
+    width:72px; height:72px; border-radius:50%; object-fit:cover;
+    margin:0 auto 10px; display:block;
+    box-shadow:0 4px 14px rgba(42,36,32,.18);
+    border:3px solid #fff;
+  }
+  .credit .name{
+    font-family:"Kaisei Decol",serif; font-size:18px; font-weight:700;
+    letter-spacing:.08em;
+  }
+  .credit .role{font-size:11px; color:var(--ink-sub); margin-top:2px; letter-spacing:.1em}
+  .credit .bio{
+    font-size:12px; color:var(--ink-sub); line-height:1.8;
+    max-width:320px; margin:10px auto 0;
+  }
+
+  /* ====== FOOTER ====== */
+  footer{
+    padding:28px 22px 44px; text-align:center; background:var(--paper);
+  }
+  footer .mark{
+    font-family:"Kaisei Decol",serif; font-size:15px; letter-spacing:.2em;
+    color:var(--ink); margin-bottom:10px;
+  }
+  footer .sns{
+    display:flex; justify-content:center; gap:10px; margin:14px 0;
+  }
+  footer .sns a{
+    width:34px; height:34px; border-radius:50%;
+    border:1px solid var(--ink); display:grid; place-items:center;
+    color:var(--ink); text-decoration:none; font-size:11px;
+    font-family:"Courier Prime",monospace;
+  }
+  footer .copy{
+    font-family:"Courier Prime",monospace; font-size:10px;
+    letter-spacing:.2em; color:var(--ink-sub); margin-top:10px;
+  }
+
+  /* =======================================================================
+     TABLET (>=760px) 〜 DESKTOP (>=1100px)
+     ======================================================================= */
+  @media (min-width: 760px){
+    .wrap{
+      max-width:none; box-shadow:none; background:var(--paper);
+    }
+
+    /* --- HERO --- */
+    .hero{
+      min-height:640px; padding:200px 60px 80px;
+      display:flex; align-items:flex-start; justify-content:center;
+    }
+    .hero .inner{
+      max-width:780px; width:100%; margin:0 auto; text-align:center;
+    }
+    .hero-top{
+      position:absolute; top:28px; left:60px; right:60px;
+      display:flex; justify-content:space-between;
+      font-size:11px;
+    }
+    .hero-logo{
+      margin:0 auto 26px; max-width:420px; width:70%;
+    }
+    .hero-concept{font-size:17px; letter-spacing:.22em; margin:0 0 12px}
+    .hero-sub{font-size:14px; line-height:2.1; margin:0 auto 28px; max-width:520px}
+    .hero-period{margin-bottom:14px}
+    .hero-cta{padding:16px 28px; font-size:14px}
+    .hero .tape1{top:20px; left:-30px; width:180px; height:24px}
+    .hero .tape2{top:60px; right:-30px; width:140px; height:24px}
+    .hero-dots{bottom:24px}
+
+    /* --- INTRO --- */
+    .intro{
+      padding:80px 60px 40px; max-width:720px; margin:0 auto;
+    }
+    .intro h2{font-size:36px}
+    .intro .lead{font-size:17px; margin:8px 0 28px}
+    .intro p{font-size:15px; line-height:2.2}
+
+    /* --- SECTION --- */
+    .section{padding:80px 60px; max-width:1200px; margin:0 auto}
+    .section-head{
+      margin-bottom:40px; text-align:center;
+    }
+    .section-head h2{font-size:36px}
+    .section-head .sub{font-size:13px}
+
+    /* --- COURSES 2col --- */
+    .course-list{
+      display:grid; grid-template-columns:1fr 1fr; gap:36px 28px;
+    }
+    .course{padding:20px 20px 24px}
+    .course-photo{aspect-ratio:5/3}
+    .course-photo .num{font-size:40px}
+    .course-title{font-size:22px}
+    .course-tip{font-size:13px; line-height:1.8}
+
+    /* --- COLUMN (TIPS) --- */
+    .column{
+      max-width:920px; margin:80px auto; padding:36px 44px 40px;
+    }
+    .column h3{font-size:24px; margin-bottom:22px}
+    .tips-list{
+      display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 24px;
+    }
+    .tips-list li{
+      flex-direction:column; padding:16px 0 6px;
+      border-top:1px dashed var(--line) !important;
+    }
+    .tips-list .n{
+      width:auto; font-size:36px; margin-bottom:4px;
+    }
+    .tips-list b{font-size:14px; margin-bottom:6px}
+    .tips-list span{font-size:12.5px; line-height:1.8}
+
+    /* --- UGC 4col --- */
+    .ugc{padding:80px 60px}
+    .ugc .section-head, .campaign{max-width:1200px; margin-left:auto; margin-right:auto}
+    .ugc-grid{
+      grid-template-columns:repeat(4, 1fr); gap:28px 20px;
+      margin-top:32px;
+    }
+    .ugc-foot{margin-top:32px; font-size:13px}
+    .ugc-foot .hashtag{font-size:28px}
+
+    /* --- CAMPAIGN --- */
+    .campaign{padding:80px 60px}
+    .campaign-box{
+      max-width:820px; margin:0 auto; padding:44px 48px 48px;
+    }
+    .campaign-box h2{font-size:30px; margin-bottom:18px}
+    .campaign-box p{font-size:14px; line-height:2.1}
+    .prize-row{gap:20px; padding-top:24px; margin-top:24px}
+    .prize-row div{font-size:12px; line-height:1.7}
+    .prize-row b{font-size:14px}
+    .campaign-cta{
+      display:inline-block; margin-top:28px; padding:16px 40px;
+      width:auto; font-size:14px;
+    }
+    .campaign-box .cta-wrap{text-align:center}
+
+    /* --- CREDIT 横並び --- */
+    .credit{
+      max-width:720px; margin:0 auto; padding:48px 40px;
+      display:grid; grid-template-columns:auto 1fr; gap:28px;
+      align-items:center; text-align:left;
+    }
+    .credit .label{
+      grid-column:1 / 3; text-align:center; margin-bottom:8px;
+    }
+    .credit .avatar{
+      margin:0; width:96px; height:96px;
+    }
+    .credit .name{font-size:22px; margin-bottom:4px}
+    .credit .role{margin-bottom:10px}
+    .credit .bio{
+      max-width:none; margin:0; font-size:13px; line-height:1.9;
+    }
+
+    /* --- FOOTER --- */
+    footer{padding:48px 60px 80px}
+    footer .mark{font-size:17px}
+  }
+
+  /* --- Desktop large (>=1100px) 余白拡大 --- */
+  @media (min-width: 1100px){
+    .hero{padding:240px 80px 100px; min-height:760px}
+    .hero-top{top:32px; left:80px; right:80px}
+    .hero-logo{max-width:460px}
+    .course-list{grid-template-columns:repeat(3, 1fr); gap:40px 28px}
+    .section-head h2{font-size:40px}
+    .intro h2{font-size:40px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-slides" id="heroSlides">
+      <div class="hero-slide active" style="background-image:url('ph/69be10a212abcbfcc2afcbc637b2c835.webp')"></div>
+      <div class="hero-slide" style="background-image:url('ph/b6ef5d3e12e9dfaaa265cc6ef7bc6914.webp')"></div>
+      <div class="hero-slide" style="background-image:url('ph/7b879ade29104a5fba1d6a7b6a32120d.webp')"></div>
+      <div class="hero-slide" style="background-image:url('ph/ad04fe351f852505c4d3a27e2c2f542b.webp')"></div>
+      <div class="hero-slide" style="background-image:url('ph/a833783befd73356e8d6a4ac6171c492.webp')"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <span class="tape tape1 tape--pink" style="z-index:2"></span>
+    <span class="tape tape2 tape--lemon" style="z-index:2"></span>
+
+    <div class="inner">
+      <div class="hero-top">
+        <span>UTSUSU HANATABI</span>
+        <span>2026</span>
+      </div>
+
+      <img src="ph/Logo.png" alt="写す花旅" class="hero-logo">
+
+      <p class="hero-concept">写真家と巡る、写す花旅。</p>
+      <p class="hero-sub">
+        花を"見る"だけでなく、"残す"楽しさまで。<br>
+        埼玉の花の名所を、写真家の視点で巡る。
+      </p>
+
+      <div class="hero-period">第1回 · 2026.06.24 — 09.30</div><br>
+      <a href="#campaign" class="hero-cta">キャンペーンに応募</a>
+    </div>
+
+    <div class="hero-dots" id="heroDots">
+      <span class="on"></span><span></span><span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var slides = document.querySelectorAll('#heroSlides .hero-slide');
+    var dots = document.querySelectorAll('#heroDots span');
+    var i = 0;
+    setInterval(function(){
+      slides[i].classList.remove('active');
+      dots[i].classList.remove('on');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+      dots[i].classList.add('on');
+    }, 4500);
+  })();
+  </script>
+
+  <!-- ========== 写す花旅とは ========== -->
+  <section class="intro">
+    <span class="eyebrow">ABOUT</span>
+    <h2>写す花旅とは</h2>
+    <p class="lead">— 花の名所を、写真家の目で切り取る旅</p>
+    <p>
+      埼玉には、四季を彩る花の名所がたくさんあります。
+      このキャンペーンは、そんな花の名所をただ「見に行く」のではなく、
+      写真家と同じ視点で「どう撮るか」を楽しみながら巡るもの。
+    </p>
+    <p>
+      スマートフォンでも、カメラでも。<br>
+      あなたが切り取った一枚が、誰かの次の花旅になります。
+    </p>
+  </section>
+
+  <!-- ========== 6コース ========== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">COURSES</span>
+      <h2>写す花旅コース</h2>
+      <p class="sub">埼玉県内・6つの季節コース</p>
+    </div>
+
+    <div class="course-list">
+
+      <article class="course">
+        <span class="tape tape--pink" style="left:20px;transform:rotate(-3deg)"></span>
+        <div class="course-photo">
+          <img src="ph/b6ef5d3e12e9dfaaa265cc6ef7bc6914.webp" alt="紫陽花">
+          <div class="num">01</div>
+        </div>
+        <div class="course-area">KAWAGOE · 6—7月</div>
+        <h3 class="course-title">紫陽花と蔵の街散歩</h3>
+        <p class="course-spot">川越｜蓮馨寺・氷川神社</p>
+        <span class="course-season">PEAK · 6/10 — 7/5</span>
+        <div class="course-tip"><em>撮影TIP</em>蔵の黒壁×紫陽花の色を画面半分ずつに。和の構図。</div>
+      </article>
+
+      <article class="course">
+        <span class="tape tape--lemon" style="left:20px;transform:rotate(4deg)"></span>
+        <div class="course-photo">
+          <img src="ph/fig01.webp" alt="ひまわり">
+          <div class="num">02</div>
+        </div>
+        <div class="course-area">KUMAGAYA · GYODA · 7—8月</div>
+        <h3 class="course-title">ひまわり畑と夏の風</h3>
+        <p class="course-spot">熊谷・行田｜大谷ひまわり畑</p>
+        <span class="course-season">PEAK · 7/20 — 8/15</span>
+        <div class="course-tip"><em>撮影TIP</em>青空と一面の黄色の対比。低めから空に抜けて。</div>
+      </article>
+
+      <article class="course">
+        <span class="tape tape--pink" style="left:20px;transform:rotate(-4deg)"></span>
+        <div class="course-photo">
+          <img src="ph/69be10a212abcbfcc2afcbc637b2c835.webp" alt="古代蓮">
+          <div class="num">03</div>
+        </div>
+        <div class="course-area">GYODA · 6—8月</div>
+        <h3 class="course-title">古代蓮と田んぼアート</h3>
+        <p class="course-spot">行田｜古代蓮の里</p>
+        <span class="course-season">PEAK · 6/25 — 8/5</span>
+        <div class="course-tip"><em>撮影TIP</em>早朝の蓮×水面の映り込み。六時までに現地へ。</div>
+      </article>
+
+      <article class="course">
+        <span class="tape" style="left:20px;transform:rotate(3deg);background:rgba(255,143,169,.55)"></span>
+        <div class="course-photo">
+          <img src="ph/ad04fe351f852505c4d3a27e2c2f542b.webp" alt="彼岸花">
+          <div class="num">04</div>
+        </div>
+        <div class="course-area">HIDAKA · SATTE · 9—10月</div>
+        <h3 class="course-title">秋桜と彼岸花の里</h3>
+        <p class="course-spot">日高・幸手｜巾着田・権現堂堤</p>
+        <span class="course-season">PEAK · 9/20 — 10/10</span>
+        <div class="course-tip"><em>撮影TIP</em>赤の絨毯と木漏れ日。光の筋を画面に一本入れる。</div>
+      </article>
+
+      <article class="course">
+        <span class="tape tape--lemon" style="left:20px;transform:rotate(-3deg)"></span>
+        <div class="course-photo">
+          <img src="ph/a833783befd73356e8d6a4ac6171c492.webp" alt="紅葉">
+          <div class="num">05</div>
+        </div>
+        <div class="course-area">CHICHIBU · NAGATORO · 11月</div>
+        <h3 class="course-title">紅葉めぐり秩父路</h3>
+        <p class="course-spot">秩父・長瀞｜月の石もみじ公園</p>
+        <span class="course-season">PEAK · 11/10 — 11/30</span>
+        <div class="course-tip"><em>撮影TIP</em>夜のライトアップ×水面のリフレクション。</div>
+      </article>
+
+      <article class="course">
+        <span class="tape tape--pink" style="left:20px;transform:rotate(3deg)"></span>
+        <div class="course-photo">
+          <img src="ph/flower1.webp" alt="冬桜">
+          <div class="num">06</div>
+        </div>
+        <div class="course-area">KAMIKAWA · HIGASHIMATSUYAMA · 11—1月</div>
+        <h3 class="course-title">冬桜と冬の光</h3>
+        <p class="course-spot">神川・東松山｜城峯公園・森林公園</p>
+        <span class="course-season">PEAK · 11/20 — 1/15</span>
+        <div class="course-tip"><em>撮影TIP</em>冬の澄んだ空気と逆光。花びらの透け感が出る時間帯を狙う。</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== 撮り方コラム ========== -->
+  <div class="column">
+    <span class="tape tape--lemon"></span>
+    <div class="eyebrow">COLUMN / HOW TO SHOOT</div>
+    <h3>スマホで花を、きれいに撮る3つ</h3>
+    <ul class="tips-list">
+      <li><span class="n">1</span><div><b>朝か夕方の光で撮る</b><span>正午のつよい光より、斜めから差す光が花を立体的に見せてくれる。</span></div></li>
+      <li><span class="n">2</span><div><b>一輪に寄る</b><span>広く撮るより、主役を決めて寄る。背景はぼかさず、群生感を残す。</span></div></li>
+      <li><span class="n">3</span><div><b>目線を下げる</b><span>花と同じ高さで撮ると、空や周囲の景色が画面に入ってくる。</span></div></li>
+    </ul>
+    <a href="#" class="more">もっと読む</a>
+  </div>
+
+  <!-- ========== UGC ========== -->
+  <section class="ugc">
+    <div class="section-head">
+      <span class="eyebrow">GALLERY</span>
+      <h2>みんなの一枚</h2>
+      <p class="sub">投稿写真から、週に一度の更新</p>
+    </div>
+
+    <div class="ugc-grid">
+      <div class="ugc-item"><div class="polaroid"><img src="ph/2b10635bc4d0a605afe70b62fd7c7757.webp" alt="" style="aspect-ratio:1/1"><div class="cap">@hana_no_hibi</div></div></div>
+      <div class="ugc-item"><div class="polaroid"><img src="ph/8a761125c1183ea19294b9066878bd62.webp" alt="" style="aspect-ratio:1/1"><div class="cap">朝六時、行田</div></div></div>
+      <div class="ugc-item"><div class="polaroid"><img src="ph/b3f5c0a1ece85196d9ec39b5cd3b7d76.webp" alt="" style="aspect-ratio:1/1"><div class="cap">川越にて</div></div></div>
+      <div class="ugc-item"><div class="polaroid"><img src="ph/7b879ade29104a5fba1d6a7b6a32120d.webp" alt="" style="aspect-ratio:1/1"><div class="cap">@u.photo</div></div></div>
+      <div class="ugc-item"><div class="polaroid"><img src="ph/fig02.webp" alt="" style="aspect-ratio:1/1"><div class="cap">秩父の秋</div></div></div>
+      <div class="ugc-item"><div class="polaroid"><img src="ph/54bea3d6544db07545036cca675f15ed.webp" alt="" style="aspect-ratio:1/1"><div class="cap">権現堂</div></div></div>
+    </div>
+
+    <div class="ugc-foot">
+      <p>投稿するときは、ハッシュタグを添えて</p>
+      <p class="hashtag">#写す花旅</p>
+    </div>
+  </section>
+
+  <!-- ========== キャンペーン応募 ========== -->
+  <section class="campaign" id="campaign">
+    <div class="campaign-box">
+      <span class="tape tape--pink"></span>
+      <div class="eyebrow">CAMPAIGN</div>
+      <h2>あなたの一枚を、<br>募集しています</h2>
+      <p>
+        埼玉県内で撮影した花の写真に、ハッシュタグを添えてInstagramへ。
+        優秀作品には、撮影地周辺の宿泊券や県産品ギフトをお届けします。
+      </p>
+      <div class="tags">
+        <span>#写す花旅</span>
+        <span>#埼玉花さんぽ</span>
+        <span>#saitamahana</span>
+      </div>
+
+      <div class="prize-row">
+        <div><b>最優秀賞</b>ペア宿泊券＋<br>オリジナルプリント</div>
+        <div><b>優秀賞</b>埼玉県産品<br>ギフトセット</div>
+        <div><b>花さんぽ賞</b>ちょこたび埼玉<br>オリジナルグッズ</div>
+      </div>
+
+      <a href="#" class="campaign-cta">Instagramで応募する</a>
+    </div>
+  </section>
+
+  <!-- ========== 監修クレジット ========== -->
+  <div class="credit">
+    <div class="label">NAVIGATOR / PHOTOGRAPHER</div>
+    <img class="avatar" src="ph/sakurako.jpg" alt="櫻子">
+    <div class="name">櫻子</div>
+    <div class="role">撮影ポイント監修・優秀作品選定</div>
+    <p class="bio">埼玉県本庄市出身のフォトグラファー。透明感と儚さをまとう写真表現で、地元・埼玉や旅先の魅力を発信。</p>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="mark">写 す 花 旅</div>
+    <div class="sns">
+      <a href="#" aria-label="Instagram">IG</a>
+      <a href="#" aria-label="X">X</a>
+    </div>
+    <div class="copy">© 2026 UTSUSU HANATABI</div>
+  </footer>
+
+</div>
+</body>
+</html>
