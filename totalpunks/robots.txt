@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /index_old.html
+Disallow: /index2_old.html
+Disallow: /fmenu.htm
+Disallow: /ftop.html
+Disallow: /right.html
+Disallow: /review/frameset.html
+Disallow: /review/menu.htm
+Disallow: /review/top.htm
+
+Sitemap: https://totalpunks.schema.tokyo/sitemap.xml
