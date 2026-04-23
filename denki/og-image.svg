@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background: dark with gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c1222"/>
+      <stop offset="1" stop-color="#1a2744"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#facc15" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#facc15" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#facc15" stroke-width="0.5" opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Checker ribbon top -->
+  <g>
+    <rect x="0" y="0" width="1200" height="20" fill="#facc15"/>
+    <g fill="#0c1222">
+      <polygon points="0,0 20,0 20,20 0,20" transform="translate(0,0)" opacity="0"/>
+    </g>
+    <g>
+      <!-- Zig-zag pattern overlay -->
+      <path d="M0 0 L30 0 L30 20 L0 20 Z M60 0 L90 0 L90 20 L60 20 Z M120 0 L150 0 L150 20 L120 20 Z M180 0 L210 0 L210 20 L180 20 Z M240 0 L270 0 L270 20 L240 20 Z M300 0 L330 0 L330 20 L300 20 Z M360 0 L390 0 L390 20 L360 20 Z M420 0 L450 0 L450 20 L420 20 Z M480 0 L510 0 L510 20 L480 20 Z M540 0 L570 0 L570 20 L540 20 Z M600 0 L630 0 L630 20 L600 20 Z M660 0 L690 0 L690 20 L660 20 Z M720 0 L750 0 L750 20 L720 20 Z M780 0 L810 0 L810 20 L780 20 Z M840 0 L870 0 L870 20 L840 20 Z M900 0 L930 0 L930 20 L900 20 Z M960 0 L990 0 L990 20 L960 20 Z M1020 0 L1050 0 L1050 20 L1020 20 Z M1080 0 L1110 0 L1110 20 L1080 20 Z M1140 0 L1170 0 L1170 20 L1140 20 Z" fill="#0c1222"/>
+    </g>
+  </g>
+  <!-- Checker ribbon bottom -->
+  <g transform="translate(0, 610)">
+    <rect x="0" y="0" width="1200" height="20" fill="#facc15"/>
+    <path d="M0 0 L30 0 L30 20 L0 20 Z M60 0 L90 0 L90 20 L60 20 Z M120 0 L150 0 L150 20 L120 20 Z M180 0 L210 0 L210 20 L180 20 Z M240 0 L270 0 L270 20 L240 20 Z M300 0 L330 0 L330 20 L300 20 Z M360 0 L390 0 L390 20 L360 20 Z M420 0 L450 0 L450 20 L420 20 Z M480 0 L510 0 L510 20 L480 20 Z M540 0 L570 0 L570 20 L540 20 Z M600 0 L630 0 L630 20 L600 20 Z M660 0 L690 0 L690 20 L660 20 Z M720 0 L750 0 L750 20 L720 20 Z M780 0 L810 0 L810 20 L780 20 Z M840 0 L870 0 L870 20 L840 20 Z M900 0 L930 0 L930 20 L900 20 Z M960 0 L990 0 L990 20 L960 20 Z M1020 0 L1050 0 L1050 20 L1020 20 Z M1080 0 L1110 0 L1110 20 L1080 20 Z M1140 0 L1170 0 L1170 20 L1140 20 Z" fill="#0c1222"/>
+  </g>
+
+  <!-- Floating bolts decoration -->
+  <g opacity="0.2" fill="#facc15">
+    <path d="M1050 100 L1020 160 L1045 160 L1030 200 L1070 140 L1045 140 L1060 100 Z" transform="rotate(15 1055 150)"/>
+    <path d="M130 490 L110 530 L125 530 L115 555 L140 520 L125 520 L135 490 Z" transform="rotate(-20 125 520)"/>
+  </g>
+
+  <!-- Mascot (larger version) -->
+  <g transform="translate(840, 160) scale(2.6)">
+    <circle cx="60" cy="65" r="52" fill="#facc15" stroke="#0c1222" stroke-width="3"/>
+    <path d="M18 35 L10 30 M22 22 L15 15 M35 14 L31 6 M103 35 L111 30 M98 22 L105 15 M85 14 L89 6" stroke="#0c1222" stroke-width="3" stroke-linecap="round"/>
+    <path d="M60 15 L48 45 L58 45 L52 68 L72 38 L62 38 L68 15 Z" fill="#0c1222" stroke="#0c1222" stroke-width="2" stroke-linejoin="round"/>
+    <ellipse cx="45" cy="72" rx="7" ry="9" fill="#fff"/>
+    <ellipse cx="75" cy="72" rx="7" ry="9" fill="#fff"/>
+    <circle cx="46" cy="74" r="3.5" fill="#0c1222"/>
+    <circle cx="76" cy="74" r="3.5" fill="#0c1222"/>
+    <circle cx="47" cy="73" r="1.2" fill="#fff"/>
+    <circle cx="77" cy="73" r="1.2" fill="#fff"/>
+    <ellipse cx="35" cy="86" rx="5" ry="3" fill="#ff4040" opacity="0.75"/>
+    <ellipse cx="85" cy="86" rx="5" ry="3" fill="#ff4040" opacity="0.75"/>
+    <path d="M50 93 Q60 103 70 93" stroke="#0c1222" stroke-width="2.5" stroke-linecap="round" fill="#ff4040"/>
+    <path d="M94 95 L88 105 L93 105 L90 113 L98 101 L93 101 L96 95 Z" fill="#ff4040" stroke="#0c1222" stroke-width="1.5" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Stamps top left -->
+  <g transform="translate(80, 80)">
+    <g transform="rotate(-3)">
+      <rect x="0" y="0" width="140" height="42" fill="none" stroke="#ff4040" stroke-width="3"/>
+      <text x="70" y="28" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#ff4040" text-anchor="middle" letter-spacing="2">EST.1919</text>
+    </g>
+    <g transform="translate(160, 5) rotate(2)">
+      <rect x="0" y="0" width="170" height="42" fill="none" stroke="#00b7e0" stroke-width="3"/>
+      <text x="85" y="28" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#00b7e0" text-anchor="middle" letter-spacing="2">ZAP &amp; SOAK</text>
+    </g>
+  </g>
+
+  <!-- Main title -->
+  <g transform="translate(80, 200)">
+    <!-- Kanji + kana title -->
+    <text x="0" y="0" font-family="'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', sans-serif" font-size="130" font-weight="900" fill="#ffffff" letter-spacing="-3">ビリビリ君</text>
+
+    <!-- English subtitle -->
+    <text x="5" y="80" font-family="'Bebas Neue', Arial Black, sans-serif" font-size="58" font-weight="900" fill="#facc15" letter-spacing="4">BIRIBIRI-KUN</text>
+
+    <!-- Tagline -->
+    <text x="5" y="150" font-family="'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', sans-serif" font-size="34" font-weight="700" fill="#ffffff">電気風呂を、探しに行こう。</text>
+    <text x="5" y="195" font-family="'Bebas Neue', Arial Black, sans-serif" font-size="26" fill="#00b7e0" letter-spacing="2">GO GET THE TINGLE — DENKI-BURO NAVIGATOR</text>
+  </g>
+
+  <!-- Bottom info strip -->
+  <g transform="translate(80, 520)">
+    <!-- divider -->
+    <line x1="0" y1="0" x2="1040" y2="0" stroke="#facc15" stroke-width="2" stroke-dasharray="4 6"/>
+    <g transform="translate(0, 25)">
+      <circle cx="15" cy="20" r="15" fill="#facc15"/>
+      <text x="13" y="27" font-family="Arial, sans-serif" font-size="22" fill="#0c1222" text-anchor="middle" font-weight="900">⚡</text>
+      <text x="42" y="28" font-family="'Zen Kaku Gothic New', sans-serif" font-size="26" font-weight="700" fill="#ffffff">全国91施設</text>
+      <text x="232" y="28" font-family="'Bebas Neue', Arial, sans-serif" font-size="22" fill="#facc15" letter-spacing="2">NATIONWIDE DATABASE</text>
+      <text x="600" y="28" font-family="'Zen Kaku Gothic New', sans-serif" font-size="22" font-weight="700" fill="#00b7e0">小西・坂田・水野</text>
+      <text x="820" y="28" font-family="'Bebas Neue', Arial, sans-serif" font-size="22" fill="#facc15" letter-spacing="2">3 MAKERS</text>
+    </g>
+  </g>
+
+  <!-- URL badge -->
+  <g transform="translate(950, 85) rotate(4)">
+    <rect x="0" y="0" width="180" height="40" fill="#facc15"/>
+    <text x="90" y="27" font-family="'Bebas Neue', Arial Black, sans-serif" font-size="20" fill="#0c1222" text-anchor="middle" font-weight="900" letter-spacing="1">denki.schema.tokyo</text>
+  </g>
+</svg>

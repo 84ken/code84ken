@@ -3,9 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ビリビリ君 - 電気風呂を探す・知る・記録する</title>
+<title>ビリビリ君 - 電気風呂が探せるマップ｜全国91施設・メーカー別検索</title>
+<meta name="description" content="全国91件の電気風呂データベース「ビリビリ君」。東京・大阪・名古屋の銭湯から、小西電機・坂田電気・水野通信工業のメーカー別検索、最寄り駅、パワー別まで。マツコの知らない世界で話題の電気風呂を見つけよう。">
+<meta name="keywords" content="電気風呂,銭湯,サウナ,電浴,小西電機,坂田電気,水野通信工業,けんちん,マツコの知らない世界,東京,大阪,銭湯マップ">
+<meta name="author" content="84ken / schema.tokyo">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://denki.schema.tokyo/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ビリビリ君 - 電気風呂が探せるマップ｜全国91施設">
+<meta property="og:description" content="全国91件の電気風呂データベース。メーカー別（小西/坂田/水野）・駅名・パワーで検索。「ビリビリ」を探しに行こう。">
+<meta property="og:url" content="https://denki.schema.tokyo/">
+<meta property="og:image" content="https://denki.schema.tokyo/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="ビリビリ君">
+<meta property="og:locale" content="ja_JP">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ビリビリ君 - 電気風呂が探せるマップ">
+<meta name="twitter:description" content="全国91件の電気風呂を、メーカー別・駅名・パワーで検索。⚡ビリビリを探しに行こう。">
+<meta name="twitter:image" content="https://denki.schema.tokyo/og-image.png">
+<!-- Theme -->
+<meta name="theme-color" content="#0c1222">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<!-- JSON-LD: WebSite -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"ビリビリ君","alternateName":"BIRIBIRI-KUN","url":"https://denki.schema.tokyo/","description":"全国91件の電気風呂データベース。メーカー別・駅名・パワーで検索できる銭湯マップ。","inLanguage":"ja","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://denki.schema.tokyo/?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+</script>
+<!-- JSON-LD: Organization -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"ビリビリ君","url":"https://denki.schema.tokyo/","logo":"https://denki.schema.tokyo/favicon.svg"}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -754,11 +784,29 @@ function seedVisited(){
 }
 
 // === Init ===
+function injectItemListLD(){
+  // JSON-LD ItemList for SEO (rich results in Google)
+  const items=allData.map((f,i)=>{
+    const item={'@type':'HealthAndBeautyBusiness',name:f.name,address:f.address};
+    if(f.lat&&f.lng)item.geo={'@type':'GeoCoordinates',latitude:f.lat,longitude:f.lng};
+    return {'@type':'ListItem',position:i+1,item};
+  });
+  const ld={'@context':'https://schema.org','@type':'ItemList',name:'全国電気風呂一覧',numberOfItems:allData.length,itemListElement:items};
+  const s=document.createElement('script');
+  s.type='application/ld+json';
+  s.textContent=JSON.stringify(ld);
+  document.head.appendChild(s);
+}
 async function init(){
   try{const res=await fetch('data/facilities.json');const json=await res.json();allData=json.facilities;}
   catch{document.getElementById('card-grid').innerHTML='<div class="col-span-3 text-center py-16 text-slate-500">\u30C7\u30FC\u30BF\u306E\u8AAD\u307F\u8FBC\u307F\u306B\u5931\u6557</div>';return;}
   seedVisited();
   updateVisitedCount();applyFilters();
+  injectItemListLD();
+  // Support ?q= search param from Google SearchAction
+  const params=new URLSearchParams(location.search);
+  const q=params.get('q');
+  if(q){document.getElementById('search').value=q;applyFilters();}
 }
 document.getElementById('search').addEventListener('input',applyFilters);
 document.getElementById('filter-maker').addEventListener('change',applyFilters);
