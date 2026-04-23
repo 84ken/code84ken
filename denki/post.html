@@ -93,9 +93,54 @@ textarea.input{min-height:100px;resize:vertical;line-height:1.6}
 @keyframes spin{to{transform:rotate(360deg)}}
 /* Success */
 .success-panel{background:linear-gradient(135deg,#fffbeb,#fff);border:3px solid #facc15;box-shadow:6px 6px 0 0 #0c1222}
+
+/* ===== ELECTRIC SHOCK EFFECT ===== */
+@keyframes shock-shake{
+  0%{transform:translate(0,0)}
+  10%{transform:translate(-8px,4px)}
+  20%{transform:translate(6px,-6px)}
+  30%{transform:translate(-4px,8px)}
+  40%{transform:translate(8px,-2px)}
+  50%{transform:translate(-6px,-4px)}
+  60%{transform:translate(4px,6px)}
+  70%{transform:translate(-2px,-8px)}
+  80%{transform:translate(6px,2px)}
+  90%{transform:translate(-4px,4px)}
+  100%{transform:translate(0,0)}
+}
+@keyframes flash-in{
+  0%{opacity:0}15%{opacity:.7}30%{opacity:0}45%{opacity:.5}60%{opacity:0}75%{opacity:.3}100%{opacity:0}
+}
+@keyframes bolt-fly{
+  0%{opacity:0;transform:scale(.3) rotate(0deg)}
+  30%{opacity:1;transform:scale(1.2) rotate(15deg)}
+  100%{opacity:0;transform:scale(.5) rotate(-10deg) translateY(-40px)}
+}
+@keyframes ring-expand{
+  0%{transform:scale(.3);opacity:.8;border-width:4px}
+  100%{transform:scale(2.5);opacity:0;border-width:1px}
+}
+.shock-active{animation:shock-shake .4s ease-in-out}
+#shock-overlay{pointer-events:none;position:fixed;inset:0;z-index:9999}
+#shock-overlay .flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(250,204,21,.6),rgba(59,130,246,.2),transparent 70%);animation:flash-in .5s ease-out forwards}
+#shock-overlay .bolt-particle{position:absolute;font-size:32px;animation:bolt-fly .6s ease-out forwards;filter:drop-shadow(0 0 8px rgba(250,204,21,.8))}
+#shock-overlay .ring{position:absolute;border:3px solid #facc15;border-radius:50%;width:80px;height:80px;animation:ring-expand .6s ease-out forwards}
+
+/* Mascot wiggle on success */
+@keyframes mascot-zap{
+  0%,100%{transform:rotate(0) scale(1)}
+  20%{transform:rotate(-15deg) scale(1.15)}
+  40%{transform:rotate(12deg) scale(1.1)}
+  60%{transform:rotate(-8deg) scale(1.2)}
+  80%{transform:rotate(5deg) scale(1.05)}
+}
+.mascot-zap{animation:mascot-zap .8s ease-in-out}
 </style>
 </head>
 <body class="bg-stamp-paper min-h-screen font-sans">
+
+<!-- Shock overlay (injected by JS) -->
+<div id="shock-overlay"></div>
 
 <!-- Header -->
 <header class="header-bg border-b-4 border-denki-400 sticky top-0 z-[1000]">
@@ -143,7 +188,7 @@ textarea.input{min-height:100px;resize:vertical;line-height:1.6}
     </p>
     <p class="text-sm text-bath-dark/80 leading-relaxed">
       メーカー・パワー・水風呂・サウナ情報を投稿して、全国の電気風呂マップを育てよう ⚡<br>
-      <span class="text-xs text-bath-dark/60">投稿は管理者の確認後にサイトへ反映されます（数日〜1週間程度）</span>
+      <span class="text-xs text-bath-dark/60">投稿はビリビリ君の確認後にサイトへ反映されます（数日〜1週間程度）</span>
     </p>
   </div>
 </section>
@@ -153,12 +198,12 @@ textarea.input{min-height:100px;resize:vertical;line-height:1.6}
 
   <!-- Success panel (hidden initially) -->
   <div id="success-panel" class="hidden success-panel rounded-xl p-8 text-center">
-    <div class="text-6xl mb-4">&#9889;</div>
-    <h3 class="display-kana text-3xl text-bath-dark mb-2">ありがとう！</h3>
-    <p class="display-eng text-denki-600 text-lg mb-4">TINGLE RECEIVED</p>
+    <img id="success-mascot" src="mascot.svg" alt="ビリビリ君" class="w-24 h-28 mx-auto mb-4 drop-shadow-[4px_4px_0_#0c1222]">
+    <h3 class="display-kana text-3xl text-bath-dark mb-1">&#9889; ビリビリ、受け取った！</h3>
+    <p class="display-eng text-denki-600 text-lg mb-4">TINGLE RECEIVED &mdash; THANK YOU</p>
     <p class="text-sm text-bath-dark/80 leading-relaxed mb-6">
       投稿を受け付けました。<br>
-      管理者が内容を確認して、サイトに反映します。<br>
+      ビリビリ君が内容を確認して、サイトに反映します。<br>
       数日〜1週間ほどお待ちください ⚡
     </p>
     <div class="flex flex-wrap gap-3 justify-center">
@@ -413,7 +458,7 @@ textarea.input{min-height:100px;resize:vertical;line-height:1.6}
         <span id="submit-loading" class="hidden spinner"></span>
       </button>
       <p class="text-xs text-bath-dark/60 text-center max-w-md">
-        投稿いただいた内容は管理者が確認後、サイトに反映されます。<br>
+        投稿いただいた内容はビリビリ君が確認後、サイトに反映されます。<br>
         明らかに誤った情報・スパム・誹謗中傷は反映されません。
       </p>
     </div>
@@ -577,10 +622,64 @@ async function handleSubmit(e) {
   return false;
 }
 
+// ===== ELECTRIC SHOCK EFFECT =====
+function triggerShock() {
+  // Haptic feedback (mobile)
+  if (navigator.vibrate) navigator.vibrate([50,30,80,30,50,30,100]);
+
+  // Screen shake
+  document.body.classList.add('shock-active');
+  setTimeout(() => document.body.classList.remove('shock-active'), 400);
+
+  // Overlay effects
+  const overlay = document.getElementById('shock-overlay');
+  overlay.innerHTML = '';
+
+  // Flash
+  const flash = document.createElement('div');
+  flash.className = 'flash';
+  overlay.appendChild(flash);
+
+  // Flying bolts
+  for (let i = 0; i < 12; i++) {
+    const b = document.createElement('div');
+    b.className = 'bolt-particle';
+    b.textContent = '\u26A1';
+    b.style.left = (10 + Math.random() * 80) + '%';
+    b.style.top = (15 + Math.random() * 70) + '%';
+    b.style.animationDelay = (Math.random() * 0.3) + 's';
+    b.style.fontSize = (28 + Math.random() * 28) + 'px';
+    overlay.appendChild(b);
+  }
+
+  // Expanding rings
+  for (let i = 0; i < 4; i++) {
+    const r = document.createElement('div');
+    r.className = 'ring';
+    r.style.left = 'calc(50% - 40px)';
+    r.style.top = 'calc(50% - 40px)';
+    r.style.animationDelay = (i * 0.12) + 's';
+    overlay.appendChild(r);
+  }
+
+  setTimeout(() => { overlay.innerHTML = ''; }, 900);
+}
+
 function showSuccess() {
   document.getElementById('post-form').classList.add('hidden');
   document.getElementById('success-panel').classList.remove('hidden');
   window.scrollTo({top:0, behavior:'smooth'});
+
+  // BIRIBIRI!!!
+  triggerShock();
+
+  // Mascot wiggle on success panel
+  const mascot = document.getElementById('success-mascot');
+  if (mascot) {
+    mascot.classList.remove('mascot-zap');
+    void mascot.offsetWidth; // restart animation
+    mascot.classList.add('mascot-zap');
+  }
 }
 
 function resetForm() {
