@@ -1,7 +1,7 @@
-# members.html のみBasic認証
-<Files "members.html">
+# members.html / docs.html のみBasic認証
+<FilesMatch "^(members|docs)\.html$">
   AuthType Basic
   AuthName "中山田青少年育成会 会員専用"
   AuthUserFile /home/c4244218/public_html/nakayamada.schema.tokyo/.htpasswd
   require valid-user
-</Files>
+</FilesMatch>
