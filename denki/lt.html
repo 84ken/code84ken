@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ビリビリ君ができるまで｜Sauna AI Bootcamp LT / 84ken</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0c1222;--paper:#fff8e7;--denki:#facc15;--soda:#00b7e0;--red:#ff4040;
+}
+html,body{height:100%;overflow:hidden;font-family:'Zen Kaku Gothic New',sans-serif;background:var(--ink);color:var(--paper)}
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:6vh 8vw;opacity:0;pointer-events:none;transition:opacity .4s ease;overflow:hidden}
+.slide.active{opacity:1;pointer-events:auto}
+
+/* Backgrounds */
+.bg-dark{background:linear-gradient(135deg,#0c1222 0%,#131b2e 50%,#1a2744 100%);color:var(--paper)}
+.bg-paper{background:var(--paper);color:var(--ink);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,64,64,0.04) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0,183,224,0.05) 0, transparent 40%),
+    repeating-linear-gradient(45deg, rgba(12,18,34,0.025) 0 1px, transparent 1px 8px);
+}
+.bg-yellow{background:var(--denki);color:var(--ink)}
+.bg-soda{background:var(--soda);color:#fff}
+
+/* Typography */
+.kana{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;letter-spacing:-0.02em;line-height:0.95}
+.eng{font-family:'Bebas Neue',sans-serif;letter-spacing:0.08em;line-height:0.9}
+.mono{font-family:'JetBrains Mono',monospace}
+h1{font-size:clamp(48px,9vw,132px)}
+h2{font-size:clamp(36px,6.5vw,88px);line-height:1}
+h3{font-size:clamp(24px,3.5vw,52px);line-height:1.1}
+h4{font-size:clamp(18px,2.2vw,32px)}
+.lead{font-size:clamp(18px,2vw,26px);line-height:1.7}
+.small{font-size:clamp(14px,1.3vw,18px)}
+.xs{font-size:clamp(11px,1vw,14px)}
+
+/* Stamps */
+.stamp{display:inline-flex;align-items:center;padding:4px 12px;border:2px solid currentColor;border-radius:3px;font-family:'Bebas Neue',sans-serif;letter-spacing:0.12em;font-size:clamp(11px,1.1vw,14px);font-weight:700;transform:rotate(-2deg);margin-right:8px}
+.stamp-paper{background:#fff}
+.ink-under{background:linear-gradient(to top,var(--denki) 0 30%,transparent 30%);padding:0 6px}
+.soda-under{background:linear-gradient(to top,var(--soda) 0 30%,transparent 30%);padding:0 6px}
+.red-text{color:var(--red)}
+.denki-text{color:var(--denki)}
+.soda-text{color:var(--soda)}
+
+/* Checker strip */
+.checker{height:10px;background:linear-gradient(135deg,transparent 25%,currentColor 25% 50%,transparent 50% 75%,currentColor 75%);background-size:14px 14px}
+
+/* Progress / slide number */
+.slide-num{position:fixed;bottom:18px;right:22px;font-family:'Bebas Neue';font-size:14px;letter-spacing:2px;color:rgba(255,255,255,0.5);z-index:100;mix-blend-mode:difference}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--denki);z-index:100;transition:width .3s}
+
+/* Floating deco */
+.deco{position:absolute;pointer-events:none;opacity:0.15;font-size:clamp(60px,10vw,140px)}
+.deco-1{top:4%;right:3%}
+.deco-2{bottom:6%;left:2%}
+
+/* Maker card */
+.maker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(16px,3vh,36px)}
+.maker-card{border:3px solid var(--ink);background:#fff;color:var(--ink);padding:clamp(14px,2vw,26px);box-shadow:6px 6px 0 0 var(--ink);position:relative}
+.maker-card h4{font-family:'Zen Kaku Gothic New';font-weight:900;margin-bottom:6px}
+.maker-card .sub{font-family:'Bebas Neue';font-size:clamp(12px,1.2vw,16px);color:var(--soda);letter-spacing:2px}
+.dot{display:inline-block;width:clamp(16px,2vw,24px);height:clamp(16px,2vw,24px);border:2px solid var(--ink);vertical-align:middle;margin-right:6px}
+.dot.konishi{background:#fff;transform:rotate(45deg)}
+.dot.sakata{background:#fff;border-radius:50%}
+.dot.mizuno{background:var(--ink)}
+
+/* Phase step */
+.phase-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(12px,1.5vw,20px) clamp(16px,2.5vw,32px);align-items:center;margin-top:clamp(16px,3vh,36px)}
+.phase-num{font-family:'Bebas Neue';font-size:clamp(48px,6vw,96px);color:var(--denki);-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;line-height:1}
+
+/* Mascot positioning */
+.mascot{max-width:clamp(80px,12vw,180px);filter:drop-shadow(5px 5px 0 var(--ink))}
+.mascot-big{max-width:clamp(140px,20vw,300px);filter:drop-shadow(6px 6px 0 var(--ink))}
+
+/* Nav hint */
+.nav-hint{position:fixed;bottom:18px;left:22px;font-family:'JetBrains Mono';font-size:12px;color:rgba(255,255,255,0.3);z-index:100;mix-blend-mode:difference;letter-spacing:1px}
+
+/* Animations */
+@keyframes zap-pulse{0%,100%{filter:drop-shadow(0 0 4px rgba(250,204,21,.4))}50%{filter:drop-shadow(0 0 24px rgba(250,204,21,.9))}}
+.slide.active .pulse{animation:zap-pulse 1.5s ease-in-out infinite}
+@keyframes slide-in{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.slide.active .reveal{animation:slide-in .6s ease-out both}
+.slide.active .reveal-d1{animation:slide-in .6s ease-out .15s both}
+.slide.active .reveal-d2{animation:slide-in .6s ease-out .3s both}
+.slide.active .reveal-d3{animation:slide-in .6s ease-out .45s both}
+.slide.active .reveal-d4{animation:slide-in .6s ease-out .6s both}
+
+/* KPI */
+.kpi-row{display:flex;flex-wrap:wrap;gap:clamp(16px,2.5vw,36px);margin-top:clamp(16px,3vh,32px)}
+.kpi{background:var(--ink);color:var(--denki);padding:clamp(12px,1.5vw,20px) clamp(18px,2vw,28px);border:3px solid var(--ink);box-shadow:4px 4px 0 0 var(--denki)}
+.kpi .num{font-family:'Bebas Neue';font-size:clamp(32px,4.5vw,64px);line-height:1}
+.kpi .lbl{font-family:'JetBrains Mono';font-size:clamp(10px,1vw,13px);letter-spacing:2px;color:var(--denki);opacity:0.8}
+
+/* Code snippet style */
+.code{background:#1a2744;color:var(--denki);padding:clamp(10px,1.5vw,20px) clamp(14px,2vw,24px);border-radius:8px;font-family:'JetBrains Mono';font-size:clamp(12px,1.3vw,18px);line-height:1.6;border:2px solid var(--denki);margin-top:clamp(12px,2vh,20px)}
+.code .comment{color:#94a3b8}
+
+/* Tips list */
+.tips{display:flex;flex-direction:column;gap:clamp(10px,1.5vh,20px);margin-top:clamp(16px,3vh,32px)}
+.tip{display:flex;align-items:flex-start;gap:clamp(12px,1.5vw,20px);padding:clamp(14px,2vw,24px);background:#fff;color:var(--ink);border:3px solid var(--ink);box-shadow:4px 4px 0 0 var(--ink)}
+.tip .n{font-family:'Bebas Neue';font-size:clamp(28px,3.5vw,48px);color:var(--red);line-height:1;flex-shrink:0}
+
+/* Centered title slide */
+.title-wrap{display:flex;flex-direction:column;justify-content:center;height:100%;position:relative}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+<div class="deck" id="deck">
+
+<!-- ===== SLIDE 1: Title ===== -->
+<section class="slide bg-dark active">
+  <span class="deco deco-1 denki-text pulse">⚡</span>
+  <span class="deco deco-2 denki-text">⚡</span>
+  <div class="title-wrap">
+    <div class="reveal" style="margin-bottom:clamp(20px,4vh,48px)">
+      <span class="stamp denki-text stamp-paper" style="background:var(--denki);color:var(--ink)">LT @ SAUNA AI BOOTCAMP</span>
+      <span class="stamp soda-text stamp-paper" style="transform:rotate(3deg)">2026.04.23 / 15min</span>
+    </div>
+    <h1 class="kana reveal-d1" style="color:#fff">
+      <span class="ink-under">ビリビリ君</span><br>
+      が<span class="red-text">できる</span>まで
+    </h1>
+    <h2 class="eng reveal-d2 denki-text" style="margin-top:clamp(12px,2vh,24px);font-size:clamp(22px,3vw,42px)">
+      HOW WE BUILT BIRIBIRI-KUN
+    </h2>
+    <p class="lead reveal-d3" style="margin-top:clamp(20px,4vh,40px);color:#c3f0ff">
+      Claude Code で週末2日、電気風呂マップをつくった話。
+    </p>
+    <div class="reveal-d4" style="margin-top:clamp(24px,5vh,52px);display:flex;align-items:center;gap:clamp(16px,2vw,28px)">
+      <img src="mascot.svg" alt="" class="mascot-big pulse">
+      <div>
+        <div class="kana" style="font-size:clamp(22px,2.5vw,36px);color:#fff">橋本 健太郎 <span class="soda-text mono" style="font-size:0.6em">/ 84ken</span></div>
+        <div class="mono small" style="color:#c3f0ff;margin-top:4px">株式会社スキーマ 代表 &mdash; 電気風呂愛好家 ⚡</div>
+        <div class="mono small" style="color:var(--denki);margin-top:8px">denki.schema.tokyo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 2: Hello ===== -->
+<section class="slide bg-paper">
+  <div class="reveal">
+    <span class="stamp red-text stamp-paper">WHO AM I</span>
+    <span class="stamp soda-text stamp-paper" style="transform:rotate(1deg)">HELLO</span>
+  </div>
+  <h2 class="kana reveal-d1" style="margin-top:clamp(16px,3vh,32px)">
+    84ken, <span class="soda-under">電浴</span>好きのAI愛好家。
+  </h2>
+  <div class="kpi-row reveal-d2">
+    <div class="kpi"><div class="num">200+</div><div class="lbl">電気風呂訪問数</div></div>
+    <div class="kpi"><div class="num">91</div><div class="lbl">DB登録施設（現在）</div></div>
+    <div class="kpi"><div class="num">2日</div><div class="lbl">開発期間</div></div>
+    <div class="kpi"><div class="num">100%</div><div class="lbl">Claude Code生成率</div></div>
+  </div>
+  <div class="tips reveal-d3" style="margin-top:clamp(20px,4vh,36px)">
+    <div class="tip"><span class="n">01</span><div><strong class="kana">電気風呂</strong>：銭湯の片隅で誰かがガマンしてる、あれ。</div></div>
+    <div class="tip"><span class="n">02</span><div><strong class="kana">サウナ × 電浴</strong>：「半身電浴ととのい」は人生が変わる。</div></div>
+    <div class="tip"><span class="n">03</span><div><strong class="kana">Claude Code</strong>：「書く」より「つくる」が主役になる時代。</div></div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 3: Denki-buro world ===== -->
+<section class="slide bg-dark">
+  <span class="deco deco-1 denki-text">⚡</span>
+  <div class="reveal">
+    <span class="stamp denki-text" style="border-color:var(--denki)">SINCE 1876</span>
+    <span class="stamp soda-text" style="border-color:var(--soda);transform:rotate(2deg)">JAPAN ORIGINAL</span>
+  </div>
+  <h2 class="kana reveal-d1" style="margin-top:clamp(16px,3vh,32px);color:#fff">
+    <span class="ink-under">電気風呂</span>の世界へ、<br>ようこそ。
+  </h2>
+  <p class="lead reveal-d2" style="color:#c3f0ff;margin-top:clamp(12px,2vh,24px);max-width:900px">
+    1876年アメリカ発祥、<strong class="denki-text">1933年京都</strong>で公式認可。<br>
+    浴槽に電極板→微弱電流→肩こり・腰痛・神経痛に<strong class="denki-text">じわっと効く。</strong>
+  </p>
+  <p class="lead reveal-d3" style="color:#c3f0ff;margin-top:clamp(16px,3vh,28px);max-width:900px">
+    なのに<strong class="red-text">日本固有文化</strong>で海外にはほぼ存在しない。<br>
+    <strong class="denki-text">マツコの知らない世界</strong>でも特集、ブーム再燃中 ⚡
+  </p>
+  <div class="reveal-d4" style="position:absolute;bottom:8vh;right:8vw;text-align:right">
+    <div class="mono xs" style="color:var(--denki);letter-spacing:3px">GUESS WHAT?</div>
+    <div class="kana" style="font-size:clamp(22px,2.8vw,40px);color:#fff;line-height:1.1">関東の電気風呂の<br><span class="denki-text">80%以上が小西製。</span></div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 4: 3 Makers ===== -->
+<section class="slide bg-paper">
+  <div class="reveal">
+    <span class="stamp red-text stamp-paper">MEET THE MAKERS</span>
+  </div>
+  <h2 class="kana reveal-d1" style="margin-top:clamp(12px,2vh,20px)">
+    電気風呂<span class="ink-under">三大メーカー</span>。
+  </h2>
+  <p class="lead reveal-d2" style="margin-top:clamp(8px,1.5vh,16px);color:#334155">ビリビリの個性は、メーカーでまるで違う。</p>
+
+  <div class="maker-grid">
+    <div class="maker-card reveal-d2">
+      <div class="sub">#01</div>
+      <h4 class="kana">小西電機</h4>
+      <p class="mono xs denki-text" style="color:var(--soda);letter-spacing:2px">KONISHI ELECTRIC</p>
+      <div style="margin-top:10px"><span class="dot konishi"></span><strong>白い◇</strong></div>
+      <p class="small" style="margin-top:8px;color:#334155">大阪・東大阪。<strong>ラジエニア</strong>看板。ジワジワ型パルス。関東の8割。</p>
+    </div>
+    <div class="maker-card reveal-d3">
+      <div class="sub">#02</div>
+      <h4 class="kana">坂田電気工業所</h4>
+      <p class="mono xs" style="color:var(--soda);letter-spacing:2px">SAKATA ELECTRIC</p>
+      <div style="margin-top:10px"><span class="dot sakata"></span><strong>白い●</strong></div>
+      <p class="small" style="margin-top:8px;color:#334155"><strong class="red-text">廃業済み。</strong>アナログ半自動でランダム発振。ドンドン型。絶滅危惧種。</p>
+    </div>
+    <div class="maker-card reveal-d4">
+      <div class="sub">#03</div>
+      <h4 class="kana">水野通信工業</h4>
+      <p class="mono xs" style="color:var(--soda);letter-spacing:2px">MIZUNO TSUSHIN</p>
+      <div style="margin-top:10px"><span class="dot mizuno"></span><strong>黒</strong></div>
+      <p class="small" style="margin-top:8px;color:#334155">名古屋。<strong>揉兵衛（じゅうべえ）</strong>ブランド。押す・揉む・叩くの3種刺激。ガッツン系。</p>
+    </div>
+  </div>
+  <p class="small reveal-d4" style="margin-top:clamp(16px,3vh,28px);color:#64748b;text-align:center">入船温泉（大阪・西成）だけは <strong class="ink" style="color:var(--ink)">3社を1つのスイッチで切替可能</strong>。最高。</p>
+</section>
+
+<!-- ===== SLIDE 5: The spark ===== -->
+<section class="slide bg-yellow">
+  <div class="reveal">
+    <span class="stamp" style="border-color:var(--ink);color:var(--ink);background:#fff">THE SPARK</span>
+    <span class="stamp" style="border-color:var(--red);color:var(--red);background:#fff;transform:rotate(3deg)">2026 SPRING</span>
+  </div>
+  <h2 class="kana reveal-d1" style="margin-top:clamp(16px,3vh,32px)">
+    <span style="background:var(--ink);color:var(--denki);padding:4px 12px">きっかけ</span>は、一冊の本。
+  </h2>
+  <div class="reveal-d2" style="margin-top:clamp(20px,4vh,40px);display:flex;align-items:center;gap:clamp(24px,4vw,60px);flex-wrap:wrap">
+    <div>
+      <div class="kana" style="font-size:clamp(28px,3.5vw,52px);line-height:1.1">
+        けんちん著<br>
+        『<span class="soda-under">電気風呂御案内200</span>』
+      </div>
+      <p class="mono small" style="margin-top:10px;letter-spacing:2px">ELECTRIC BATH HANDBOOK / 八画文化会館 2019</p>
+      <p class="lead" style="margin-top:clamp(14px,2vh,24px);max-width:600px">
+        <strong>全200施設、手書きメモ付きINDEX。</strong><br>
+        これ、構造化してマップにしたら<strong>絶対面白い。</strong>
+      </p>
+    </div>
+    <img src="mascot.svg" alt="" class="mascot pulse" style="transform:rotate(-8deg)">
+  </div>
+  <p class="reveal-d3 small" style="margin-top:clamp(24px,4vh,40px);font-style:italic">
+    &mdash; 「けんちんさん、この本のデータ化、Claude Codeでいきます。」
+  </p>
+</section>
+
+<!-- ===== SLIDE 6: Phase 1 ===== -->
+<section class="slide bg-dark">
+  <div class="reveal">
+    <span class="stamp denki-text">PHASE 01</span>
+    <span class="stamp soda-text" style="transform:rotate(2deg)">DATA FIRST</span>
+  </div>
+  <h2 class="kana reveal-d1" style="margin-top:clamp(16px,3vh,32px);color:#fff">
+    PDF <span class="denki-text">→</span> 構造化データ。
+  </h2>
+  <div class="phase-grid reveal-d2">
+    <span class="phase-num">1</span>
+    <div><h3 class="kana denki-text">スキャンPDF</h3><p class="lead" style="color:#c3f0ff">200ページの紙INDEX。</p></div>
+    <span class="phase-num">2</span>
+    <div><h3 class="kana denki-text">Claude Vision で読解</h3><p class="lead" style="color:#c3f0ff">Claude に画像投げる → 施設名・住所・電極板の形・色まで抽出。</p></div>
+    <span class="phase-num">3</span>
+    <div><h3 class="kana denki-text">JSON化 + 位置情報補完</h3><p class="lead" style="color:#c3f0ff">Web検索と組み合わせて緯度経度・最寄り駅まで補完。</p></div>
+  </div>
+  <div class="code reveal-d3" style="margin-top:clamp(20px,4vh,36px);max-width:700px">
+    <span class="comment">// facilities.json（91施設）</span><br>
+    {"id":78,"name":"入船温泉","maker":"小西/坂田/水野切替",<br>
+    &nbsp;"power":5,"station":"新今宮駅","memo":"3社切替の奇跡..."}
+  </div>
+</section>
+
+<!-- ===== SLIDE 7: Phase 2 ===== -->
+<section class="slide bg-paper">
+  <div class="reveal">
+    <span class="stamp red-text stamp-paper">PHASE 02</span>
+    <span class="stamp soda-text stamp-paper" style="transform:rotate(1deg)">UI x DESIGN</span>
+  </div>
+  <h2 class="kana reveal-d1" style="margin-top:clamp(16px,3vh,32px)">
+    <span class="ink-under">Claude Code</span>で、爆速UI化。
+  </h2>
+  <p class="lead reveal-d2" style="margin-top:clamp(12px,2vh,20px);max-width:900px">
+    カードリスト・Leafletマップ・モーダル詳細・「行った」localStorage記録・<strong>送信時ビリビリ画面シェイク。</strong>
+  </p>
+
+  <div class="tips" style="margin-top:clamp(16px,3vh,32px)">
+    <div class="tip reveal-d2"><span class="n">A</span><div>
+      <strong class="kana">デザイン指示は「〇〇オマージュ」</strong><br>
+      <span class="small">「ガリガリ君 × 電気グルーブ × けんちん本 の3要素ミックス」</span>
+    </div></div>
+    <div class="tip reveal-d3"><span class="n">B</span><div>
+      <strong class="kana">カラーパレット・フォントも発注</strong><br>
+      <span class="small">電気イエロー #facc15 / ソーダブルー #00b7e0 / スタンプ赤 #ff4040 / Zen Kaku Gothic + Bebas Neue</span>
+    </div></div>
+    <div class="tip reveal-d4"><span class="n">C</span><div>
+      <strong class="kana">マスコット・ファビコン・OGP画像まで</strong><br>
+      <span class="small">SVGで発注 → Sharpでサーバー側PNG化 → OGP対応。1時間でブランディング完成。</span>
+    </div></div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 8: Phase 3 UGC ===== -->
+<section class="slide bg-soda">
+  <div class="reveal">
+    <span class="stamp" style="color:#fff;border-color:#fff">PHASE 03</span>
+    <span class="stamp" style="color:var(--ink);border-color:var(--ink);background:var(--denki);transform:rotate(2deg)">UGC</span>
+  </div>
+  <h2 class="kana reveal-d1" style="margin-top:clamp(16px,3vh,32px);color:#fff">
+    みんなで<span style="background:var(--denki);color:var(--ink);padding:0 8px">育てる</span>電気風呂DB。
+  </h2>
+  <p class="lead reveal-d2" style="margin-top:clamp(12px,2vh,20px);max-width:900px;color:#fff">
+    投稿フォーム <strong class="denki-text">/post.html</strong> から施設情報・メーカー・水風呂・サウナ情報を投稿 →<br>
+    <strong>Google Apps Script が受付 → Google Sheets に蓄積 → 承認後サイト反映</strong>。
+  </p>
+
+  <div class="kpi-row reveal-d3">
+    <div class="kpi" style="background:#fff;color:var(--ink);box-shadow:4px 4px 0 0 var(--ink)"><div class="num" style="color:var(--red)">0円</div><div class="lbl" style="color:var(--ink);opacity:1">インフラ費用</div></div>
+    <div class="kpi" style="background:#fff;color:var(--ink);box-shadow:4px 4px 0 0 var(--ink)"><div class="num" style="color:var(--ink)">0台</div><div class="lbl" style="color:var(--ink);opacity:1">サーバー管理</div></div>
+    <div class="kpi" style="background:#fff;color:var(--ink);box-shadow:4px 4px 0 0 var(--ink)"><div class="num" style="color:var(--soda)">⚡</div><div class="lbl" style="color:var(--ink);opacity:1">投稿即メール通知</div></div>
+  </div>
+  <p class="reveal-d4" style="margin-top:clamp(20px,4vh,36px);font-size:clamp(18px,1.8vw,26px);color:#fff;font-weight:700">
+    Sheets が DB。承認フローも<span class="kana">Sheetsの列ON/OFF</span>でOK。
+  </p>
+</section>
+
+<!-- ===== SLIDE 9: Phase 4 SEO ===== -->
+<section class="slide bg-paper">
+  <div class="reveal">
+    <span class="stamp red-text stamp-paper">PHASE 04</span>
+    <span class="stamp soda-text stamp-paper" style="transform:rotate(-1deg)">SEO / SHARE</span>
+  </div>
+  <h2 class="kana reveal-d1" style="margin-top:clamp(16px,3vh,32px)">
+    <span class="soda-under">発見してもらう</span>ための仕込み。
+  </h2>
+  <div class="tips" style="margin-top:clamp(16px,3vh,32px)">
+    <div class="tip reveal-d2"><span class="n">🔍</span><div><strong class="kana">Meta / OGP / Twitter Card</strong><br><span class="small">3ページ全てにキーワード最適化した description、og:image、summary_large_image。</span></div></div>
+    <div class="tip reveal-d3"><span class="n">🗺</span><div><strong class="kana">sitemap.xml / robots.txt / JSON-LD</strong><br><span class="small">構造化データ（WebSite + 91施設のItemList）で Google に全データ渡す。</span></div></div>
+    <div class="tip reveal-d4"><span class="n">✅</span><div><strong class="kana">Google Search Console 登録</strong><br><span class="small">今朝、サイトマップ送信完了 → インデックス中。site:denki.schema.tokyo で間もなく表示。</span></div></div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 10: Demo ===== -->
+<section class="slide bg-dark">
+  <span class="deco deco-1 denki-text pulse" style="opacity:0.25">⚡</span>
+  <span class="deco deco-2 denki-text pulse" style="opacity:0.25;animation-delay:.5s">⚡</span>
+  <div class="reveal" style="text-align:center;width:100%">
+    <span class="stamp denki-text" style="border-color:var(--denki)">LIVE DEMO</span>
+  </div>
+  <h1 class="kana reveal-d1" style="text-align:center;margin-top:clamp(20px,4vh,48px);color:#fff;font-size:clamp(40px,7vw,108px)">
+    <span class="denki-text">⚡</span> <span class="ink-under">ビリビリ君</span> <span class="denki-text">⚡</span>
+  </h1>
+  <div class="reveal-d2" style="text-align:center;margin-top:clamp(24px,5vh,56px)">
+    <div class="mono" style="font-size:clamp(22px,3vw,42px);color:var(--denki);letter-spacing:6px;border:3px dashed var(--denki);display:inline-block;padding:clamp(12px,2vh,24px) clamp(24px,4vw,56px)">
+      denki.schema.tokyo
+    </div>
+  </div>
+  <p class="reveal-d3 lead" style="text-align:center;margin-top:clamp(24px,4vh,44px);color:#c3f0ff">
+    「行った!」を押すと <strong class="denki-text">画面がビリビリ揺れる</strong> ので体感してください ⚡
+  </p>
+  <p class="reveal-d4 xs" style="text-align:center;margin-top:clamp(20px,4vh,36px);color:rgba(255,255,255,0.4)">
+    ※ PCではマウスクリックで、スマホはタッチで発動
+  </p>
+</section>
+
+<!-- ===== SLIDE 11: Learnings ===== -->
+<section class="slide bg-yellow">
+  <div class="reveal">
+    <span class="stamp" style="background:var(--ink);color:var(--denki);border-color:var(--ink)">LEARNINGS</span>
+    <span class="stamp" style="border-color:var(--red);color:var(--red);background:#fff;transform:rotate(2deg)">3 THINGS</span>
+  </div>
+  <h2 class="kana reveal-d1" style="margin-top:clamp(16px,3vh,32px)">
+    Claude Code で、<br>ビリビリきた<span class="red-text">3つの気づき</span>。
+  </h2>
+  <div class="tips" style="margin-top:clamp(16px,3vh,32px)">
+    <div class="tip reveal-d2"><span class="n">01</span><div>
+      <strong class="kana" style="font-size:clamp(20px,2.2vw,32px)">「つくる」ハードルがゼロに。</strong><br>
+      <span class="small">仕様書やデザインカンプを書く時間 &lt; 動くものを見る時間。アイデアが即検証できる。</span>
+    </div></div>
+    <div class="tip reveal-d3"><span class="n">02</span><div>
+      <strong class="kana" style="font-size:clamp(20px,2.2vw,32px)">"偏愛" がそのまま<strong class="red-text">資産</strong>になる。</strong><br>
+      <span class="small">電気風呂みたいなニッチ領域こそ、誰も作らないから価値が出る。一次情報×個人の偏愛×AIの組み合わせ最強。</span>
+    </div></div>
+    <div class="tip reveal-d4"><span class="n">03</span><div>
+      <strong class="kana" style="font-size:clamp(20px,2.2vw,32px)">デザインも、運用も、任せられる。</strong><br>
+      <span class="small">GAS + Sheets の UGC 設計もClaudeが提案。「自分が詳しくない領域」もAIパートナーと一緒に踏める。</span>
+    </div></div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 12: CTA / Thanks ===== -->
+<section class="slide bg-dark">
+  <span class="deco deco-1 denki-text pulse">⚡</span>
+  <span class="deco deco-2 denki-text pulse" style="animation-delay:.3s">⚡</span>
+  <div class="title-wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="stamp denki-text" style="border-color:var(--denki)">CALL TO ACTION</span>
+    </div>
+    <h1 class="kana reveal-d1" style="text-align:center;color:#fff;margin-top:clamp(16px,3vh,36px);font-size:clamp(36px,6vw,96px)">
+      さあ、<span class="ink-under">ビリビリ</span><br>しに<span class="red-text">行こう。</span>
+    </h1>
+    <div class="reveal-d2" style="text-align:center;margin-top:clamp(20px,4vh,40px);display:flex;justify-content:center;gap:clamp(16px,3vw,40px);flex-wrap:wrap">
+      <div>
+        <div class="mono xs denki-text" style="letter-spacing:2px">01</div>
+        <div class="kana" style="font-size:clamp(18px,2vw,28px);color:#fff">サイトに行く</div>
+        <div class="mono small soda-text">denki.schema.tokyo</div>
+      </div>
+      <div>
+        <div class="mono xs denki-text" style="letter-spacing:2px">02</div>
+        <div class="kana" style="font-size:clamp(18px,2vw,28px);color:#fff">最寄りの電気風呂へ</div>
+        <div class="mono small soda-text">SAUNA + 電浴 ROUTE</div>
+      </div>
+      <div>
+        <div class="mono xs denki-text" style="letter-spacing:2px">03</div>
+        <div class="kana" style="font-size:clamp(18px,2vw,28px);color:#fff">投稿してね</div>
+        <div class="mono small soda-text">/post.html</div>
+      </div>
+    </div>
+    <div class="reveal-d3" style="text-align:center;margin-top:clamp(32px,6vh,72px)">
+      <img src="mascot.svg" alt="" class="mascot-big pulse">
+    </div>
+    <h2 class="kana reveal-d4" style="text-align:center;margin-top:clamp(20px,3vh,36px);color:var(--denki);font-size:clamp(28px,4vw,56px)">
+      Thank you! &mdash; 84ken
+    </h2>
+    <p class="reveal-d4 mono small" style="text-align:center;margin-top:clamp(8px,1.5vh,16px);color:#c3f0ff;letter-spacing:2px">
+      #SAUNAAIBOOTCAMP &nbsp;/ &nbsp; denki.schema.tokyo
+    </p>
+  </div>
+</section>
+
+</div>
+
+<div class="nav-hint">← → : MOVE &nbsp;|&nbsp; F : FULLSCREEN</div>
+<div class="slide-num" id="slide-num">01 / 12</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let idx = 0;
+const num = document.getElementById('slide-num');
+const progress = document.getElementById('progress');
+
+function show(i) {
+  idx = Math.max(0, Math.min(total - 1, i));
+  slides.forEach((s, j) => s.classList.toggle('active', j === idx));
+  num.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+  progress.style.width = ((idx + 1) / total * 100) + '%';
+  try { location.hash = String(idx + 1); } catch(_) {}
+}
+
+// Hash routing on load
+const h = parseInt(location.hash.replace('#','') || '1', 10);
+if (!isNaN(h)) show(h - 1); else show(0);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(idx + 1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(idx - 1); }
+  else if (e.key === 'Home') show(0);
+  else if (e.key === 'End') show(total - 1);
+  else if (e.key === 'f' || e.key === 'F') {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  }
+});
+
+// Click/tap: left half back, right half forward
+document.addEventListener('click', e => {
+  if (e.target.closest('a,button,input,textarea,select')) return;
+  if (e.clientX < window.innerWidth / 3) show(idx - 1);
+  else show(idx + 1);
+});
+
+// Swipe for mobile
+let startX = 0;
+document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - startX;
+  if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+});
+</script>
+</body>
+</html>
