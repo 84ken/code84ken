@@ -97,18 +97,14 @@
   </div>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <p class="hero-sub">Punk Culture Guide &amp; Disc Review</p>
-      <h1 class="hero-title">
-        <span class="strike">RULES</span><br>
-        <span class="accent">NO FUTURE</span><br>
-        DESTROY &amp;<br>
-        CREATE.
-      </h1>
-      <p class="hero-credit" data-ja="「パンクとはアティテュードである」 &mdash; Joe Strummer" data-en="&quot;Punk is an attitude, not a style&quot; &mdash; Joe Strummer">"Punk is an attitude, not a style"</p>
-    </div>
-    <div class="hero-stamp">Destroy<br>Design</div>
+  <section class="hero" aria-labelledby="hero-heading">
+    <h1 id="hero-heading" class="sr-only">TOTAL PUNKS — パンクディスクレビュー</h1>
+    <picture class="hero-bg">
+      <source type="image/webp" srcset="images/hero-collage-sm.webp 900w, images/hero-collage.webp 1920w" sizes="100vw">
+      <source type="image/jpeg" srcset="images/hero-collage-sm.jpg 900w, images/hero-collage.jpg 1920w" sizes="100vw">
+      <img src="images/hero-collage.jpg" alt="TOTAL PUNKS — モヒカンパンクスと東京スカイラインのパンクコラージュ。DESTROY / RIOT / ANARCHY の切り貼りタイポグラフィ" fetchpriority="high" decoding="async">
+    </picture>
+    <p class="hero-credit scrawl" data-ja="「パンクとはアティテュードである」 &mdash; Joe Strummer" data-en="&quot;Punk is an attitude, not a style&quot; &mdash; Joe Strummer">「パンクとはアティテュードである」 &mdash; Joe Strummer</p>
   </section>
 
   <!-- Marquee -->
@@ -120,11 +116,12 @@
   </div>
 
   <!-- About -->
-  <section id="about" class="section">
+  <section id="about" class="section section--halftone">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" style="position: relative;">
         <span class="section-label">// About</span>
         <h2 class="section-title" data-ja="パンクとはなにか？" data-en="What Is Punk?">パンクとはなにか？</h2>
+        <span class="sticker sticker--pink" style="top: -10px; right: 20px;">RIOT</span>
       </div>
       <div class="about-grid">
         <div class="about-text">
@@ -142,9 +139,10 @@
   <!-- Genre Guide -->
   <section id="genres" class="section section--dark tartan-bg">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" style="position: relative;">
         <span class="section-label">// Genre Guide</span>
         <h2 class="section-title" data-ja="パンクのジャンル" data-en="Punk Genres">パンクのジャンル</h2>
+        <span class="sticker sticker--yellow" style="top: -14px; right: 20px;">DESTROY</span>
       </div>
       <div class="genre-grid">
         <a href="#" class="genre-card" data-filter="77punk">
