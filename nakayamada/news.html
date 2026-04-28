@@ -42,15 +42,68 @@
       <button data-cat="school" class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium bg-white text-slate-600 border border-warm-border cursor-pointer hover:bg-slate-50 transition-colors">学校関連</button>
       <button data-cat="subsidy" class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium bg-white text-slate-600 border border-warm-border cursor-pointer hover:bg-slate-50 transition-colors">助成金・制度</button>
       <button data-cat="seasonal" class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium bg-white text-slate-600 border border-warm-border cursor-pointer hover:bg-slate-50 transition-colors">季節の情報</button>
+      <button data-cat="tips" class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium bg-white text-slate-600 border border-warm-border cursor-pointer hover:bg-slate-50 transition-colors">育成会TIPS</button>
     </div>
 
     <!-- ニュース一覧 -->
     <div class="space-y-4" id="news-list">
 
+      <!-- 育成会のお金の仕組み -->
+      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="subsidy">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">NEW</span>
+          <span class="inline-block bg-amber-100 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">助成金・制度</span>
+          <span class="text-xs text-slate-400">2026.04.28</span>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">育成会のお金の流れを整理しました</h3>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">
+          育成会の運営費がどこから来て、何に使われているのか。区費・町会費・育成会費の違いや、連合・青育協との関係をまとめました。
+        </p>
+        <div class="bg-slate-50 rounded-lg p-3 space-y-2">
+          <p class="text-xs font-bold text-slate-700">お金の3階層</p>
+          <div class="text-xs text-slate-600 space-y-1.5">
+            <div class="flex items-start gap-2">
+              <span class="bg-sky-100 text-sky-700 font-bold px-1.5 py-0.5 rounded flex-shrink-0">市</span>
+              <span>青育協（秩父市） ← 育成会から会費 2,000円/年を納入</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="bg-forest-100 text-forest-700 font-bold px-1.5 py-0.5 rounded flex-shrink-0">連合</span>
+              <span>高篠地区連合 ← 運営負担金＋クラブ負担金（計 約10万円）</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="bg-amber-100 text-amber-700 font-bold px-1.5 py-0.5 rounded flex-shrink-0">育成会</span>
+              <span>中山田育成会 ← 会費＋町会助成金＋廃品回収で自主運営</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-amber-50 rounded-lg p-3 mt-2">
+          <p class="text-xs font-bold text-amber-700 mb-1">区費・町会費と育成会費の違い</p>
+          <p class="text-xs text-slate-600">区費や町会費は区・町会の運営費で、育成会費とは別です。育成会への町会助成金（90,000円）は町会費の中から交付されています。集金の仕組みは区ごとに異なります。</p>
+        </div>
+        <p class="text-xs text-slate-400 mt-3">詳しくは<a href="finance.html" class="text-sky-500 underline">収支報告ページ</a>をご覧ください</p>
+      </article>
+
+      <!-- 育成会TIPS: スポーツの話 -->
+      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="tips">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">NEW</span>
+          <span class="inline-block bg-purple-100 text-purple-700 text-xs font-medium px-2 py-0.5 rounded-full">育成会TIPS</span>
+          <span class="text-xs text-slate-400">2026.04.28</span>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">なぜフットベース・バレー・ソフトだけ？育成会スポーツの歴史</h3>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">
+          「サッカーや野球は少年団なのに、なぜこの3つだけ育成会？」と思ったことはありませんか？実はフットベースボールは1957年に子ども会のために作られた、子ども会専用スポーツなんです。
+        </p>
+        <div class="bg-purple-50 rounded-lg p-3 space-y-1.5">
+          <p class="text-xs text-slate-600"><span class="font-bold text-purple-700">フットベース</span> — 1957年、広島県福山市で子ども会の大会用に考案。子ども会の外にはほぼ存在しない競技</p>
+          <p class="text-xs text-slate-600"><span class="font-bold text-purple-700">ソフトボール・バレー</span> — 学校体育から子ども会に自然に定着。道具が安価で誰でも参加しやすい</p>
+          <p class="text-xs text-slate-600"><span class="font-bold text-purple-700">サッカー・野球</span> — 1962年にスポーツ少年団が別組織として誕生。競技志向が強く、育成会とは別系譜に</p>
+        </div>
+      </article>
+
       <!-- 連合総会ダイジェスト -->
       <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
-          <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">NEW</span>
           <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
           <span class="text-xs text-slate-400">2026.04.22</span>
         </div>
@@ -73,7 +126,6 @@
       <!-- 第2回理事会のお知らせ -->
       <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
-          <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">NEW</span>
           <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
           <span class="text-xs text-slate-400">2026.04.22</span>
         </div>
