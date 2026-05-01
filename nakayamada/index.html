@@ -48,15 +48,15 @@
     <section class="mb-8" id="next-event">
       <div class="bg-gradient-to-r from-sky-500 to-sky-600 rounded-xl p-5 text-white shadow-md">
         <p class="text-xs font-medium opacity-80 mb-1">次のイベント</p>
-        <h2 class="text-lg font-bold mb-1" id="event-title">第2回地区理事会</h2>
+        <h2 class="text-lg font-bold mb-1" id="event-title">前期廃品回収＋クリーン美化</h2>
         <div class="flex items-center gap-4 text-sm opacity-90">
           <span class="flex items-center gap-1">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-            <span id="event-date">4/30（木）19:00〜</span>
+            <span id="event-date">6月中旬（日程調整中）</span>
           </span>
           <span class="flex items-center gap-1">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <span id="event-place">4区公会堂</span>
+            <span id="event-place">中山田町内</span>
           </span>
         </div>
         <a href="schedule.html" class="inline-block mt-3 text-xs font-medium bg-white/20 hover:bg-white/30 rounded-lg px-3 py-1.5 transition-colors">
@@ -194,11 +194,15 @@
         <ul class="space-y-2 text-sm">
           <li class="flex items-start gap-2">
             <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 mt-0.5">NEW</span>
-            <span class="text-slate-700">令和8年度のサイトを開設しました！</span>
+            <span class="text-slate-700">第2回理事会（4/30）の決定事項を反映しました</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 mt-0.5">予定</span>
-            <span class="text-slate-700">第2回地区理事会を4月30日（木）19:00〜 4区公会堂で開催します</span>
+            <span class="text-slate-700">前期廃品回収＋クリーン美化を6月中旬に実施予定（日程調整中）</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="inline-block bg-slate-100 text-slate-700 text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 mt-0.5">決定</span>
+            <span class="text-slate-700">今年度の育成会費は世帯分のみ集金（子供分は集めません）</span>
           </li>
         </ul>
       </div>
@@ -253,16 +257,29 @@
   </footer>
 
   <script>
-    // 直近イベント自動表示
+    // 直近イベント自動表示（理事会4/30決定事項反映済み）
     const events = [
-      { month: 3, title: '定期総会・第1回理事会', place: '4区公会堂', importance: '高' },
-      { month: 3, title: '役員名簿・連絡網の作成', place: '—', importance: '高' },
-      { month: 4, title: '第2回地区理事会', place: '4区公会堂', importance: '中', date: '4/30（木）19:00〜' },
-      { month: 4, title: '育成会費の集金準備', place: '各区', importance: '中' },
-      { month: 5, title: '青育協クリーン美化', place: '中山田町内', importance: '中' },
-      { month: 5, title: '育成会費の集金・取りまとめ', place: '各区', importance: '低' },
-      { month: 6, title: '前期廃品回収・クリーン美化', place: '中山田町内', importance: '高' },
-      { month: 6, title: '第3回理事会', place: '4区公会堂', importance: '高' },
-      { month: 8, title: '夏休み夜間パトロール', place: '小学校〜金昌寺周辺', importance: '低' },
-      { month: 9, title: '少年団バレーボール大会', place: '文化体育センター', importance: '中' },
-      { month: 9, title: '第4回理事会', place: '4区公会堂'
+      { month: 3, title: '定期総会・第1回理事会', place: '4区公会堂' },
+      { month: 4, title: '第2回理事会', place: '4区公会堂', date: '4/30（木）19:00〜' },
+      { month: 5, title: '青育協総会', place: '歴史文化伝承館2F', date: '5/8（木）19:00〜' },
+      { month: 5, title: '連合理事会', place: '常持会館1F', date: '5/14（水）19:00〜' },
+      { month: 5, title: 'クリーン秩父美化清掃の日', place: '中山田町内', date: '5/17（土）' },
+      { month: 6, title: '前期廃品回収＋クリーン美化', place: '中山田町内', date: '6月中旬（日程調整中）' },
+      { month: 8, title: '夏休み夜間パトロール', place: '小学校〜金昌寺周辺' },
+      { month: 9, title: '少年団バレーボール大会', place: '文化体育センター', date: '9/5（土）' },
+      { month: 10, title: '高篠地区子供会親善球技大会', place: '別所運動公園', date: '10/31（金）' },
+      { month: 11, title: '後期廃品回収', place: '中山田町内' },
+      { month: 12, title: '連合クリスマス会', place: '未定' },
+      { month: 2, title: '最終理事会（役員選出）', place: '4区公会堂' }
+    ];
+
+    // 現在月以降の最初のイベントをヒーローに表示
+    const now = new Date();
+    const currentMonth = now.getMonth() + 1;
+    const upcoming = events.find(e => e.month >= currentMonth) || events[0];
+    document.getElementById('event-title').textContent = upcoming.title;
+    document.getElementById('event-date').textContent = upcoming.date || (upcoming.month + '月');
+    document.getElementById('event-place').textContent = upcoming.place;
+  </script>
+</body>
+</html>

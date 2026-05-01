@@ -134,32 +134,32 @@
       ]},
       4:  { importance: '中', tasks: [
         { name: '第2回地区理事会（4/30 木 19:00〜 4区公会堂）', cat: '総会・理事会' },
-        { name: '歓送迎会 ※今年度は記念品贈呈に代替', cat: '社会文化活動', note: '見合わせ' },
+        { name: '歓送迎会', cat: '社会文化活動', note: '今年度は見合わせ' },
         { name: '育成会費の集金準備・回覧', cat: '事務・管理' }
       ]},
-      5:  { importance: '中', tasks: [
-        { name: '育成会費の集金・取りまとめ', cat: '事務・管理' },
-        { name: '青育協クリーン美化（5/18）', cat: '青育協' }
+      5:  { importance: '高', tasks: [
+        { name: '青育協総会（5/8 木 19:00〜 歴史文化伝承館2F）', cat: '青育協' },
+        { name: '連合理事会（5/14 水 19:00〜 常持会館1F）', cat: '総会・理事会', note: '負担金10万円持参' },
+        { name: 'クリーン美化 実施計画書提出（5/15 締切）', cat: '事務・管理' },
+        { name: 'クリーン秩父美化清掃の日（5/17）', cat: '青育協' },
+        { name: '育成会費の集金・取りまとめ', cat: '事務・管理', note: '今年度は世帯分のみ' }
       ]},
       6:  { importance: '高', tasks: [
-        { name: '前期廃品回収・クリーン美化', cat: '奉仕活動' },
-        { name: '第3回理事会', cat: '総会・理事会' },
-        { name: '廃品回収収支報告・回覧', cat: '事務・管理' },
-        { name: '青育協指導者研修会（6/7）', cat: '青育協' }
+        { name: '前期廃品回収＋クリーン美化（6/14以降で調整中）', cat: '奉仕活動', note: '6/7は5区地区清掃と重複のため除外' },
+        { name: '廃品回収収支報告・回覧', cat: '事務・管理' }
       ]},
       7:  { importance: '低', tasks: [
-        { name: '納涼祭（要検討）', cat: '社会文化活動' }
+        { name: '納涼祭', cat: '社会文化活動', note: '今年度は見合わせ' }
       ]},
       8:  { importance: '低', tasks: [
-        { name: 'ラジオ体操（要検討）', cat: '社会文化活動' },
+        { name: 'ラジオ体操', cat: '社会文化活動', note: '今年度は見合わせ' },
         { name: '夏休み夜間パトロール', cat: '奉仕活動' }
       ]},
       9:  { importance: '中', tasks: [
-        { name: '少年団バレーボール大会', cat: 'スポーツ活動' },
-        { name: '第4回理事会', cat: '総会・理事会' }
+        { name: '少年団バレーボール大会（9/5 土 文化体育センター）', cat: 'スポーツ活動', note: '中学生対象' }
       ]},
       10: { importance: '中', tasks: [
-        { name: 'フットベース高篠大会', cat: 'スポーツ活動' }
+        { name: '高篠地区子供会親善球技大会（10/31 金 別所運動公園）', cat: 'スポーツ活動', note: 'フットベース・ソフトボール' }
       ]},
       11: { importance: '高', tasks: [
         { name: '後期廃品回収', cat: '奉仕活動' },
@@ -280,15 +280,29 @@
         content.className = 'flex-1 min-w-0';
 
         const taskName = document.createElement('p');
-        taskName.className = 'text-sm text-slate-900';
+        taskName.className = 'text-sm ' + (task.note === '今年度は見合わせ' ? 'text-slate-400 line-through' : 'text-slate-900');
         taskName.textContent = task.name;
 
-        const catBadge = document.createElement('span');
-        catBadge.className = 'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium mt-1 ' + cat.bg + ' ' + cat.text;
-        catBadge.textContent = task.cat;
-
         content.appendChild(taskName);
-        content.appendChild(catBadge);
+
+        const badges = document.createElement('div');
+        badges.className = 'flex flex-wrap items-center gap-1.5 mt-1';
+
+        const catBadge = document.createElement('span');
+        catBadge.className = 'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium ' + cat.bg + ' ' + cat.text;
+        catBadge.textContent = task.cat;
+        badges.appendChild(catBadge);
+
+        if (task.note) {
+          const noteBadge = document.createElement('span');
+          noteBadge.className = task.note === '今年度は見合わせ'
+            ? 'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-red-50 text-red-600'
+            : 'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-600';
+          noteBadge.textContent = task.note;
+          badges.appendChild(noteBadge);
+        }
+
+        content.appendChild(badges);
 
         row.appendChild(dot);
         row.appendChild(content);
