@@ -41,37 +41,93 @@ tailwind.config = {
 }
 </script>
 <style>
-  :root { --body: #3d4b5f; }
+  :root { --body: #3d4b5f; --ink: #0a0a0a; }
   body { font-family: 'Inter','Noto Sans JP','Hiragino Sans',sans-serif; -webkit-font-smoothing: antialiased; }
   .text-body { color: var(--body); }
+  .text-ink { color: var(--ink); }
   .leading-relaxed-jp { line-height: 2.0; }
-  /* Hero overlay */
-  .hero-image {
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%), url('assets/img/photos/_dsc1232.jpg');
+
+  /* === Pamphlet aesthetic === */
+  /* Wood texture backgrounds (using actual plywood photo) */
+  .bg-plywood {
+    background-image: url('assets/img/photos/img_8137.jpg');
     background-size: cover;
     background-position: center;
   }
-  /* Vertical Japanese writing for desktop hero */
+  .bg-plywood-dark {
+    background-image: linear-gradient(rgba(20,14,8,0.78), rgba(10,6,3,0.92)), url('assets/img/photos/img_8137.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .bg-plywood-warm {
+    background-image: linear-gradient(rgba(255,251,243,0.82), rgba(255,251,243,0.92)), url('assets/img/photos/img_8137.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  /* Pill label — black with white text, like pamphlet section titles */
+  .pill-label {
+    display: inline-flex;
+    align-items: center;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 9999px;
+    padding: 0.55rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+  }
+  .pill-label-light {
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    color: var(--ink);
+    border-radius: 9999px;
+    padding: 0.55rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+  }
+  /* Pamphlet-style framed card */
+  .pamphlet-frame {
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 1.75rem;
+    box-shadow: 0 0 0 6px #fff, 0 0 0 7px rgba(10,10,10,0.06);
+  }
+  .pamphlet-frame-dark {
+    background: var(--ink);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 1.75rem;
+    box-shadow: 0 0 0 6px var(--ink), 0 0 0 7px rgba(255,255,255,0.15);
+  }
+  /* Hero overlay */
+  .hero-image {
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.65) 100%), url('assets/img/photos/_dsc1232.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  /* Vertical Japanese writing for desktop */
   @media (min-width: 1024px) {
-    .vertical-jp {
+    .vert-jp-lg {
       writing-mode: vertical-rl;
       text-orientation: mixed;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
     }
   }
+  .vert-jp-sm {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.15em;
+  }
   .marker-line {
-    background: linear-gradient(transparent 60%, rgba(43,112,239,0.25) 60%);
+    background: linear-gradient(transparent 60%, rgba(10,10,10,0.12) 60%);
   }
   .step-num {
     font-feature-settings: "tnum";
     letter-spacing: -0.02em;
   }
-  .smooth-scroll { scroll-behavior: smooth; }
   html { scroll-behavior: smooth; }
-  /* Logo invert for dark header */
-  .logo-invert {
-    filter: invert(1) brightness(2);
-  }
   details > summary { list-style: none; cursor: pointer; }
   details > summary::-webkit-details-marker { display: none; }
 </style>
@@ -99,13 +155,16 @@ tailwind.config = {
 
 <!-- ============= HERO ============= -->
 <section id="top" class="relative">
-  <div class="hero-image relative min-h-[680px] lg:min-h-[760px] flex items-center">
+  <div class="hero-image relative min-h-[720px] lg:min-h-[820px] flex items-center">
+    <!-- ITaLOG logo (large, top-right pamphlet style) -->
+    <img src="assets/img/logo/italog_logo.png" alt="" aria-hidden="true" class="absolute top-6 right-6 lg:top-10 lg:right-10 w-20 lg:w-32 opacity-95 invert brightness-0 drop-shadow-lg" />
+
     <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full text-white">
-      <div class="lg:flex lg:items-center lg:justify-between lg:gap-12">
+      <div class="lg:flex lg:items-end lg:justify-between lg:gap-12">
         <div class="max-w-2xl">
-          <p class="text-sm font-medium tracking-[0.3em] text-white/80 mb-6">ITaLOG SAUNA</p>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            常軌を逸した蒸気の<br/>サウナ小屋
+          <span class="pill-label-light mb-8">SAUNA HUT / 製品情報</span>
+          <h1 class="mt-4 text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] mb-8 tracking-tight">
+            常軌を逸した<br/>蒸気の<br/>サウナ小屋
           </h1>
           <p class="text-base lg:text-lg leading-relaxed-jp max-w-xl text-white/90">
             元エンジン開発エンジニアが流体力学から設計した、<br class="hidden sm:block" />
@@ -114,26 +173,31 @@ tailwind.config = {
             足元まで均一に温まる。
           </p>
           <div class="mt-10 flex flex-wrap gap-3">
-            <a href="#contact" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-white text-slate-900 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors">
+            <a href="#contact" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-white text-slate-900 rounded-full hover:bg-gray-100 cursor-pointer transition-colors">
               導入のご相談
               <svg class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a href="#science" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-white/10 text-white border border-white/40 rounded-lg hover:bg-white/20 cursor-pointer transition-colors">
+            <a href="#science" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-transparent text-white border border-white/60 rounded-full hover:bg-white/10 cursor-pointer transition-colors">
               技術を見る
             </a>
           </div>
-          <div class="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/80">
-            <span class="inline-flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-white/70"></span>
-              ウッドデザイン賞 2023 受賞
-            </span>
-            <span class="inline-flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-white/70"></span>
-              『大人の科学マガジン Special』掲載
-            </span>
-          </div>
+        </div>
+        <!-- Right-side awards in vertical writing on desktop -->
+        <div class="mt-12 lg:mt-0 flex flex-wrap lg:flex-col gap-x-8 gap-y-4 text-sm text-white/85 lg:items-end">
+          <span class="inline-flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-white/70"></span>
+            ウッドデザイン賞 2023 受賞
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-white/70"></span>
+            『大人の科学マガジン Special』掲載
+          </span>
         </div>
       </div>
+    </div>
+    <!-- Bottom subtitle bar like pamphlet -->
+    <div class="absolute left-0 right-0 bottom-0 hidden lg:flex items-center justify-center pb-6 text-xs tracking-[0.5em] text-white/50">
+      ITaLOG · TATE Lab. · Yokoze, Saitama
     </div>
   </div>
 </section>
@@ -141,8 +205,8 @@ tailwind.config = {
 <!-- ============= CONCEPT ============= -->
 <section id="concept" class="py-20 lg:py-28">
   <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-sm font-medium tracking-[0.3em] text-primary-500 mb-4">CONCEPT</p>
-    <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-8 leading-tight">
+    <span class="pill-label mb-6">CONCEPT</span>
+    <h2 class="text-3xl lg:text-5xl font-bold text-ink mb-8 leading-tight tracking-tight">
       蒸気を、<span class="marker-line">身体に当てる。</span>
     </h2>
     <div class="space-y-6 text-base lg:text-lg leading-relaxed-jp">
@@ -181,9 +245,9 @@ tailwind.config = {
 <section id="science" class="py-20 lg:py-28 bg-gray-50 border-t border-b border-slate-200">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="max-w-3xl mb-16">
-      <p class="text-sm font-medium tracking-[0.3em] text-primary-500 mb-4">SCIENCE</p>
-      <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 leading-tight">
-        流体力学が設計した、蒸気の道筋。
+      <span class="pill-label mb-6">SCIENCE</span>
+      <h2 class="text-3xl lg:text-5xl font-bold text-ink mb-6 leading-tight tracking-tight">
+        流体力学が設計した、<br class="hidden sm:block" />蒸気の道筋。
       </h2>
       <p class="text-base lg:text-lg leading-relaxed-jp text-body">
         ITaLOG SAUNA を設計したのは、本田技研工業でエンジンの吸排気を研究してきた伊藤淳。
@@ -235,7 +299,7 @@ tailwind.config = {
 
     <!-- Solution intro -->
     <div class="text-center max-w-3xl mx-auto mb-14">
-      <p class="text-sm font-semibold text-primary-500 mb-3">解決策</p>
+      <p class="text-sm font-semibold text-ink mb-3">解決策</p>
       <h3 class="text-2xl lg:text-3xl font-bold text-slate-900 leading-tight">
         蒸気を、横方向に <span class="marker-line">攪拌する。</span>
       </h3>
@@ -245,7 +309,7 @@ tailwind.config = {
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
         <div class="flex items-baseline gap-3 mb-4">
-          <span class="step-num text-2xl font-bold text-primary-500">01</span>
+          <span class="step-num text-2xl font-bold text-ink">01</span>
           <span class="text-xs tracking-wider font-semibold text-slate-500">VENTURI EFFECT</span>
         </div>
         <h4 class="text-lg font-bold text-slate-900 mb-3">蒸気を、絞って加速する</h4>
@@ -271,7 +335,7 @@ tailwind.config = {
 
       <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
         <div class="flex items-baseline gap-3 mb-4">
-          <span class="step-num text-2xl font-bold text-primary-500">02</span>
+          <span class="step-num text-2xl font-bold text-ink">02</span>
           <span class="text-xs tracking-wider font-semibold text-slate-500">DOWNFLOW</span>
         </div>
         <h4 class="text-lg font-bold text-slate-900 mb-3">天井から、吹き下ろす</h4>
@@ -295,7 +359,7 @@ tailwind.config = {
 
       <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
         <div class="flex items-baseline gap-3 mb-4">
-          <span class="step-num text-2xl font-bold text-primary-500">03</span>
+          <span class="step-num text-2xl font-bold text-ink">03</span>
           <span class="text-xs tracking-wider font-semibold text-slate-500">KARMAN VORTEX</span>
         </div>
         <h4 class="text-lg font-bold text-slate-900 mb-3">渦で、横に攪拌する</h4>
@@ -341,15 +405,16 @@ tailwind.config = {
 </section>
 
 <!-- ============= SPEC ============= -->
-<section id="spec" class="py-20 lg:py-28">
+<section id="spec" class="py-20 lg:py-28 bg-plywood-warm">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="max-w-3xl mb-12">
-      <p class="text-sm font-medium tracking-[0.3em] text-primary-500 mb-4">SPECIFICATION</p>
-      <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 leading-tight">仕様と価格</h2>
+      <span class="pill-label mb-6">SPEC / PRICE</span>
+      <h2 class="text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight">仕様と価格</h2>
     </div>
 
     <div class="grid lg:grid-cols-5 gap-10">
-      <div class="lg:col-span-3 bg-white rounded-xl border border-slate-200 overflow-hidden">
+      <div class="lg:col-span-3 pamphlet-frame overflow-hidden">
+        <div class="px-5 pt-5 pb-2"><span class="pill-label text-xs">FEATURES</span></div>
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b border-slate-200 bg-gray-50">
@@ -368,18 +433,18 @@ tailwind.config = {
         </table>
       </div>
 
-      <div class="lg:col-span-2 space-y-4">
-        <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
-          <p class="text-xs font-semibold tracking-wider text-slate-500 uppercase mb-2">PRICE</p>
-          <p class="text-sm text-body mb-4">仕様はオーダーに合わせて変更可能です。</p>
+      <div class="lg:col-span-2 space-y-6">
+        <div class="pamphlet-frame p-7 lg:p-8">
+          <span class="pill-label text-xs mb-5">PRICE</span>
+          <p class="mt-4 text-sm text-body mb-5">仕様はオーダーに合わせて変更可能です。</p>
           <div class="space-y-3">
-            <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
+            <div class="flex items-baseline justify-between border-b border-slate-300 pb-3">
               <span class="text-sm text-slate-700">ストーブなし</span>
-              <span class="text-2xl font-bold text-slate-900 step-num">¥2,000,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
+              <span class="text-2xl font-bold text-ink step-num">¥2,000,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
             </div>
             <div class="flex items-baseline justify-between">
               <span class="text-sm text-slate-700">ストーブあり</span>
-              <span class="text-2xl font-bold text-slate-900 step-num">¥2,500,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
+              <span class="text-2xl font-bold text-ink step-num">¥2,500,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
             </div>
           </div>
           <p class="mt-5 text-xs text-slate-500 leading-relaxed">
@@ -387,7 +452,7 @@ tailwind.config = {
             ※ ご使用環境（屋内／屋外、寒冷地等）に応じて最適な仕様をご提案します。
           </p>
         </div>
-        <a href="#contact" class="block bg-slate-900 text-white rounded-xl p-6 hover:bg-slate-800 transition-colors cursor-pointer">
+        <a href="#contact" class="block bg-ink text-white rounded-2xl p-6 hover:opacity-90 transition-opacity cursor-pointer">
           <p class="text-sm text-white/70 mb-1">詳細仕様書をご希望の方は</p>
           <p class="text-base font-medium inline-flex items-center gap-2">お問い合わせください<svg class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </a>
@@ -400,8 +465,8 @@ tailwind.config = {
 <section id="cases" class="py-20 lg:py-28 bg-gray-50 border-t border-b border-slate-200">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="max-w-3xl mb-14">
-      <p class="text-sm font-medium tracking-[0.3em] text-primary-500 mb-4">CASES</p>
-      <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 leading-tight">導入事例</h2>
+      <span class="pill-label mb-6">CASES</span>
+      <h2 class="text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight">導入事例</h2>
       <p class="mt-5 text-base lg:text-lg leading-relaxed-jp text-body">
         宿泊施設、個人邸宅、ウェルネス事業者など、さまざまな場所で ITaLOG SAUNA が稼働しています。
       </p>
@@ -499,8 +564,8 @@ tailwind.config = {
 <section id="process" class="py-20 lg:py-28">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="max-w-3xl mb-14">
-      <p class="text-sm font-medium tracking-[0.3em] text-primary-500 mb-4">PROCESS</p>
-      <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 leading-tight">導入の流れ</h2>
+      <span class="pill-label mb-6">PROCESS</span>
+      <h2 class="text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight">導入の流れ</h2>
       <p class="mt-5 text-base lg:text-lg leading-relaxed-jp text-body">
         ご相談から設置まで、お客様の用途・設置環境に合わせて柔軟にご提案します。
       </p>
@@ -509,35 +574,35 @@ tailwind.config = {
     <ol class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
       <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-primary-500">STEP 01</span>
+          <span class="step-num text-sm font-bold text-ink">STEP 01</span>
         </div>
         <h3 class="text-base font-bold text-slate-900 mb-2">お問い合わせ</h3>
         <p class="text-sm leading-relaxed text-body">用途・設置場所の概要をお知らせください。個人・法人どちらでもご相談いただけます。</p>
       </li>
       <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-primary-500">STEP 02</span>
+          <span class="step-num text-sm font-bold text-ink">STEP 02</span>
         </div>
         <h3 class="text-base font-bold text-slate-900 mb-2">ヒアリング・現地確認</h3>
         <p class="text-sm leading-relaxed text-body">設置場所・搬入経路・電源環境などを確認し、最適な仕様をご提案します。</p>
       </li>
       <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-primary-500">STEP 03</span>
+          <span class="step-num text-sm font-bold text-ink">STEP 03</span>
         </div>
         <h3 class="text-base font-bold text-slate-900 mb-2">お見積り・ご契約</h3>
         <p class="text-sm leading-relaxed text-body">本体・設置・電気工事を含む詳細見積りを提示。仕様確定後にご契約・着手金のお支払い。</p>
       </li>
       <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-primary-500">STEP 04</span>
+          <span class="step-num text-sm font-bold text-ink">STEP 04</span>
         </div>
         <h3 class="text-base font-bold text-slate-900 mb-2">製作・搬入・組立</h3>
         <p class="text-sm leading-relaxed text-body">埼玉県横瀬町の工房 <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="underline decoration-slate-300 underline-offset-2 hover:text-slate-900 hover:decoration-slate-500 transition-colors">TATE&nbsp;Lab.</a> で製作し、現地で組み立て。部材は乗用車に積めるサイズに分割されます。</p>
       </li>
       <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-primary-500">STEP 05</span>
+          <span class="step-num text-sm font-bold text-ink">STEP 05</span>
         </div>
         <h3 class="text-base font-bold text-slate-900 mb-2">引渡し・運用開始</h3>
         <p class="text-sm leading-relaxed text-body">使用方法・メンテナンスのご説明後、運用開始。導入後のフォローも行います。</p>
@@ -547,7 +612,7 @@ tailwind.config = {
     <div class="mt-12 grid md:grid-cols-2 gap-6">
       <div class="bg-gray-50 rounded-xl border border-slate-200 p-7">
         <div class="flex items-center gap-3 mb-3">
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary-50 text-primary-500">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-ink">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
           </span>
           <h3 class="text-lg font-bold text-slate-900">個人のお客様</h3>
@@ -559,7 +624,7 @@ tailwind.config = {
       </div>
       <div class="bg-gray-50 rounded-xl border border-slate-200 p-7">
         <div class="flex items-center gap-3 mb-3">
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary-50 text-primary-500">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-ink">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
           </span>
           <h3 class="text-lg font-bold text-slate-900">法人のお客様</h3>
@@ -574,22 +639,22 @@ tailwind.config = {
 </section>
 
 <!-- ============= AWARDS / PRESS ============= -->
-<section id="awards" class="py-16 lg:py-20 bg-slate-900 text-white">
+<section id="awards" class="py-20 lg:py-24 bg-plywood-dark text-white">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid lg:grid-cols-12 gap-10 items-center">
       <div class="lg:col-span-4">
-        <p class="text-sm font-medium tracking-[0.3em] text-white/60 mb-4">AWARDS &amp; PRESS</p>
-        <h2 class="text-3xl lg:text-4xl font-bold leading-tight">受賞・掲載</h2>
+        <span class="pill-label-light mb-6">AWARDS &amp; PRESS</span>
+        <h2 class="mt-4 text-3xl lg:text-5xl font-bold leading-tight tracking-tight">受賞・掲載</h2>
       </div>
       <div class="lg:col-span-8 grid sm:grid-cols-2 gap-5">
-        <div class="bg-white/5 border border-white/10 rounded-xl p-6">
-          <p class="text-xs font-semibold tracking-wider text-white/60 mb-2">AWARD</p>
-          <p class="text-lg font-bold mb-1">ウッドデザイン賞 2023</p>
+        <div class="bg-white/[0.06] backdrop-blur-sm border border-white/15 rounded-2xl p-7">
+          <p class="text-xs font-semibold tracking-[0.2em] text-white/60 mb-3">AWARD</p>
+          <p class="text-lg lg:text-xl font-bold mb-2">ウッドデザイン賞 2023</p>
           <p class="text-sm text-white/75 leading-relaxed">合板を使ったログ材によるサウナ小屋製作が評価。</p>
         </div>
-        <div class="bg-white/5 border border-white/10 rounded-xl p-6">
-          <p class="text-xs font-semibold tracking-wider text-white/60 mb-2">PRESS</p>
-          <p class="text-lg font-bold mb-1">大人の科学マガジン Special</p>
+        <div class="bg-white/[0.06] backdrop-blur-sm border border-white/15 rounded-2xl p-7">
+          <p class="text-xs font-semibold tracking-[0.2em] text-white/60 mb-3">PRESS</p>
+          <p class="text-lg lg:text-xl font-bold mb-2">大人の科学マガジン Special</p>
           <p class="text-sm text-white/75 leading-relaxed">「流体力学から考えた ocomori sauna」として特集掲載。</p>
         </div>
       </div>
@@ -600,8 +665,8 @@ tailwind.config = {
 <!-- ============= CONTACT ============= -->
 <section id="contact" class="py-20 lg:py-28">
   <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-    <p class="text-sm font-medium tracking-[0.3em] text-primary-500 mb-4">CONTACT</p>
-    <h2 class="text-3xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+    <span class="pill-label mb-6">CONTACT / お問い合せ</span>
+    <h2 class="text-3xl lg:text-6xl font-bold text-ink mb-6 leading-tight tracking-tight">
       あなたの場所にも、<br />常軌を逸した蒸気を。
     </h2>
     <p class="text-base lg:text-lg leading-relaxed-jp text-body max-w-2xl mx-auto mb-10">
