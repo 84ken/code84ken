@@ -533,7 +533,7 @@ tailwind.config = {
           <span class="step-num text-sm font-bold text-primary-500">STEP 04</span>
         </div>
         <h3 class="text-base font-bold text-slate-900 mb-2">製作・搬入・組立</h3>
-        <p class="text-sm leading-relaxed text-body">埼玉県横瀬町の工房で製作し、現地で組み立て。部材は乗用車に積めるサイズに分割されます。</p>
+        <p class="text-sm leading-relaxed text-body">埼玉県横瀬町の工房 <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="underline decoration-slate-300 underline-offset-2 hover:text-slate-900 hover:decoration-slate-500 transition-colors">TATE&nbsp;Lab.</a> で製作し、現地で組み立て。部材は乗用車に積めるサイズに分割されます。</p>
       </li>
       <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <div class="flex items-baseline gap-3 mb-3">
@@ -618,7 +618,10 @@ tailwind.config = {
         @wood_dream_deck
       </a>
       <span class="hidden sm:inline-block w-px h-5 bg-slate-300"></span>
-      <span class="inline-flex items-center gap-2">製作: TATE Lab.（埼玉県横瀬町）</span>
+      <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-slate-900 transition-colors">
+        製作: TATE Lab.（埼玉県横瀬町）
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5h5v5M19 5l-9 9M5 7v12h12"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -630,7 +633,11 @@ tailwind.config = {
       <img src="assets/img/logo/italog_logo.png" alt="ITaLOG" class="h-6 w-auto opacity-70" />
       <span>ITaLOG SAUNA</span>
     </div>
-    <p>&copy; 2026 TATE Lab. All Rights Reserved.</p>
+    <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+      <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="hover:text-slate-900 transition-colors">tate-lab.com</a>
+      <span class="hidden sm:inline-block w-px h-4 bg-slate-300"></span>
+      <p>&copy; 2026 TATE Lab. All Rights Reserved.</p>
+    </div>
   </div>
 </footer>
 
