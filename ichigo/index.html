@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>埼玉いちご大學 | SAITAMA ICHIGO UNIV</title>
+  <meta name="description" content="「いちごが好き。それだけで、何かが始まる。」埼玉のいちごをプロデュース。誰でも参加できる体験型研究開発のコミュニティです。">
+  <meta property="og:title" content="埼玉いちご大學">
+  <meta property="og:description" content="「いちごが好き。それだけで、何かが始まる。」埼玉のいちごをプロデュース。誰でも参加できる体験型研究開発のコミュニティです。">
+  <meta property="og:image" content="https://ichigo.schema.tokyo/images/hero/ichigo_main.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ichigo.schema.tokyo/">
+  <link rel="icon" href="images/logo/logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ichigo: {
+              50:'#FFF5F5',100:'#FFE3E3',200:'#FFC9C9',300:'#FFA8A8',400:'#FF6B6B',
+              500:'#FA5252',600:'#E03131',700:'#CC0000',800:'#A30000',900:'#7A0000'
+            },
+            cream: '#FAF6F1'
+          },
+          fontFamily: {
+            sans: ['"Noto Sans JP"','Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','sans-serif'],
+            display: ['"Klee One"','"Shippori Mincho B1"','"Hiragino Mincho ProN"','serif'],
+            serif: ['"Shippori Mincho B1"','"Hiragino Mincho ProN"','serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho+B1:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { color: #333333; }
+    .text-sub { color: #666666; }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: #CC0000; transition: width 0.2s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(204,0,0,0.08); }
+    /* 手描き感の見出し */
+    .display-jp { font-family: "Klee One", "Shippori Mincho B1", serif; letter-spacing: 0.04em; font-weight: 600; }
+    /* 赤帯ロゴ */
+    .ichigo-logo-band {
+      background: #CC0000;
+      color: #fff;
+      padding: 0.5rem 1.5rem;
+      display: inline-block;
+      box-shadow: 0 4px 20px rgba(204,0,0,0.25);
+    }
+    /* 動画ラッパー */
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1.5rem; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    /* 紙のような背景 */
+    .paper-bg {
+      background-color: #FAF6F1;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(204,0,0,0.025) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(204,0,0,0.025) 0%, transparent 50%);
+    }
+  </style>
+</head>
+<body class="bg-cream">
+
+  <!-- ヘッダー -->
+  <header class="absolute top-0 left-0 right-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 bg-white/90 backdrop-blur rounded-full pl-2 pr-4 py-1.5 shadow-sm">
+        <img src="images/logo/logo.png" alt="埼玉いちご大學ロゴ" class="h-9 w-auto">
+        <span class="text-sm font-bold text-slate-900 hidden sm:inline display-jp">埼玉いちご大學</span>
+      </a>
+      <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-8 bg-white/90 backdrop-blur rounded-full px-6 py-2.5 shadow-sm">
+        <a href="about.html" class="nav-link text-sm font-medium text-slate-700 hover:text-ichigo-700">いちご大學とは</a>
+        <a href="events.html" class="nav-link text-sm font-medium text-slate-700 hover:text-ichigo-700">イベント</a>
+        <a href="lab.html" class="nav-link text-sm font-medium text-slate-700 hover:text-ichigo-700">いちごの研究室</a>
+      </nav>
+      <button id="menu-btn" class="md:hidden w-11 h-11 inline-flex items-center justify-center bg-white/90 backdrop-blur rounded-full shadow-sm" aria-label="メニューを開く" aria-expanded="false">
+        <svg class="w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-slate-100 shadow-md">
+      <div class="px-6 py-4 space-y-3">
+        <a href="about.html" class="block text-base font-medium text-slate-900 py-2 display-jp">いちご大學とは</a>
+        <a href="events.html" class="block text-base font-medium text-slate-900 py-2 display-jp">イベント</a>
+        <a href="lab.html" class="block text-base font-medium text-slate-900 py-2 display-jp">いちごの研究室</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ① ファーストビュー -->
+  <section class="relative w-full bg-cream overflow-hidden">
+    <!-- メインビジュアル -->
+    <div class="relative w-full">
+      <img src="images/hero/ichigo_main.webp" alt="埼玉いちご大學 メインビジュアル（イラスト：我喜屋位瑳務）" class="w-full h-auto block max-h-[80vh] object-contain mx-auto">
+    </div>
+
+    <!-- ロゴ帯（既存サイト風） -->
+    <div class="relative -mt-16 sm:-mt-20 md:-mt-24 z-10 text-center px-4">
+      <div class="inline-block">
+        <div class="bg-ichigo-700 text-white px-6 sm:px-10 py-3 sm:py-5 shadow-lg" style="border-radius: 4px;">
+          <p class="display-jp text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-none tracking-wider">埼玉いちご大學</p>
+        </div>
+      </div>
+      <p class="mt-6 sm:mt-8 text-sm sm:text-base text-slate-700 leading-relaxed display-jp">
+        いちごをもっと推せる！<br class="sm:hidden">
+        誰でも参加できる体験型研究開発
+      </p>
+    </div>
+
+    <!-- 建学の精神 -->
+    <div class="relative max-w-4xl mx-auto px-4 py-16 sm:py-20 text-center">
+      <p class="text-xs font-medium text-ichigo-700 tracking-[0.3em] mb-4">建学の精神</p>
+      <h1 class="display-jp text-3xl sm:text-5xl md:text-6xl text-slate-900 leading-tight">
+        埼玉のいちごは、<br class="sm:hidden">これからだ。
+      </h1>
+    </div>
+  </section>
+
+  <!-- ② 動画でみる埼玉いちご大學 -->
+  <section class="py-20 sm:py-28 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10 sm:mb-14">
+        <p class="text-xs sm:text-sm font-medium text-ichigo-700 tracking-[0.3em] mb-3">MOVIE</p>
+        <h2 class="display-jp text-2xl sm:text-3xl md:text-4xl text-slate-900 mb-4">動画でみる埼玉いちご大學</h2>
+        <p class="text-sm sm:text-base text-sub">活動の様子を、ぜひ目で・耳で感じてください。</p>
+      </div>
+      <div class="video-wrap shadow-xl">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/u3oM78lWknY?rel=0"
+          title="埼玉いちご大學 紹介動画"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+      <p class="mt-6 text-center text-xs text-sub">出典: 埼玉県公式 / 埼玉いちご大學</p>
+    </div>
+  </section>
+
+  <!-- ③ 合言葉＋概要 -->
+  <section class="py-20 sm:py-28 paper-bg">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-xs sm:text-sm font-medium text-ichigo-700 tracking-[0.3em] mb-5">OUR MOTTO</p>
+      <h2 class="display-jp text-2xl sm:text-3xl md:text-4xl text-slate-900 leading-relaxed">
+        いちごが好き。<br>
+        それだけで、何かが始まる。
+      </h2>
+      <div class="mt-10 w-12 h-0.5 bg-ichigo-700 mx-auto"></div>
+      <p class="mt-10 text-base sm:text-lg leading-loose text-slate-700">
+        埼玉いちご大學は、「いちごが好き」という気持ちを持ち寄る場所です。<br>
+        農家さんの畑を歩き、品種の違いを味わい、<br>
+        「これ、何かに使えないかな？」を一緒に考える。<br>
+        秩父・横瀬を中心に、いちごを起点にした<br>
+        人・知恵・地域のネットワークを育てています。
+      </p>
+    </div>
+  </section>
+
+  <!-- ④ NEWS -->
+  <section class="py-20 sm:py-28 bg-ichigo-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <p class="text-xs sm:text-sm font-medium text-ichigo-700 tracking-[0.3em] mb-2">NEWS</p>
+          <h2 class="display-jp text-2xl sm:text-3xl text-slate-900">お知らせ</h2>
+        </div>
+        <a href="events.html" class="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-ichigo-700 hover:text-ichigo-800">
+          もっと見る
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a href="events.html" class="block bg-white rounded-2xl overflow-hidden shadow-sm card-hover">
+          <div class="aspect-[16/9] bg-ichigo-100 overflow-hidden">
+            <img src="images/events/DSCF9499.webp" alt="埼玉いちご祭り出店の様子" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-ichigo-700 text-white">REPORT</span>
+              <time class="text-xs text-sub">2026.02</time>
+            </div>
+            <h3 class="display-jp text-lg text-slate-900 leading-snug mb-2">埼玉いちご祭り2026 出店レポート</h3>
+            <p class="text-sm text-sub leading-relaxed">埼玉スタジアムにて、2日間で4万人来場。いちご塩をはじめとした商品を販売し、たくさんの「おいしい」をいただきました。</p>
+          </div>
+        </a>
+        <a href="events.html" class="block bg-white rounded-2xl overflow-hidden shadow-sm card-hover">
+          <div class="aspect-[16/9] bg-ichigo-100 overflow-hidden">
+            <img src="images/events/DSCF9410.webp" alt="ワークショップの様子" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-slate-700 text-white">INFO</span>
+              <time class="text-xs text-sub">2026年度</time>
+            </div>
+            <h3 class="display-jp text-lg text-slate-900 leading-snug mb-2">R8（2026年度）の活動が始まります</h3>
+            <p class="text-sm text-sub leading-relaxed">個包装の量産化、EC販売開始、新商品開発を推進中。「いちごの町・秩父」の浸透を目指して活動を継続していきます。</p>
+          </div>
+        </a>
+      </div>
+      <div class="mt-8 text-center sm:hidden">
+        <a href="events.html" class="inline-flex items-center gap-1 text-sm font-medium text-ichigo-700">
+          もっと見る
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ いちごの研究室 -->
+  <section class="py-20 sm:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="order-2 lg:order-1">
+          <p class="text-xs sm:text-sm font-medium text-ichigo-700 tracking-[0.3em] mb-3">ICHIGO LAB</p>
+          <h2 class="display-jp text-2xl sm:text-3xl md:text-4xl text-slate-900 leading-snug mb-6">
+            いちごの研究室
+          </h2>
+          <p class="text-base sm:text-lg leading-relaxed text-slate-700 mb-4">
+            フリーズドライいちごの可能性を探っています。
+          </p>
+          <p class="text-sm sm:text-base leading-relaxed text-sub mb-8">
+            食品だけでなく、美容・香り・体験まで。<br>
+            ワークショップで生まれたアイデアが、少しずつ形になっています。
+          </p>
+          <a href="lab.html" class="inline-flex items-center gap-2 h-12 px-6 text-base font-medium bg-ichigo-700 text-white rounded-full hover:bg-ichigo-800 transition-colors">
+            詳しく見る
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <div class="order-1 lg:order-2">
+          <div class="aspect-square rounded-3xl overflow-hidden bg-ichigo-50">
+            <img src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ CTA -->
+  <section class="py-20 sm:py-28 bg-ichigo-700 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" aria-hidden="true">
+      <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-white"></div>
+      <div class="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-white"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-xs sm:text-sm font-medium text-white/80 tracking-[0.3em] mb-4">JOIN US</p>
+      <h2 class="display-jp text-2xl sm:text-3xl md:text-4xl leading-snug mb-8">
+        いちごが好きなら、<br class="sm:hidden">
+        誰でも入学できます。
+      </h2>
+      <p class="text-base sm:text-lg leading-relaxed mb-10 text-white/90">
+        入学金・授業料は一切なし。<br>
+        まずはLINEオープンチャットを覗いてみてください。
+      </p>
+      <a href="https://line.me/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 h-14 px-8 text-base font-bold bg-white text-ichigo-700 rounded-full hover:bg-ichigo-50 transition-colors shadow-lg">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        LINEオープンチャットに参加する
+      </a>
+      <div class="mt-10 flex items-center justify-center gap-6">
+        <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" class="text-white/90 hover:text-white text-sm font-medium inline-flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @ichigosaitama
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="bg-slate-900 text-white py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <img src="images/logo/logo.png" alt="" class="h-10 w-auto bg-white rounded p-1">
+            <span class="text-base font-bold display-jp">埼玉いちご大學</span>
+          </div>
+          <p class="text-sm text-white/70 leading-relaxed">
+            「いちごが好き」という気持ちを<br>持ち寄る場所。
+          </p>
+        </div>
+        <div>
+          <p class="text-xs font-medium text-white/50 tracking-wider mb-4">SITE MAP</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="about.html" class="text-white/80 hover:text-white">いちご大學とは</a></li>
+            <li><a href="events.html" class="text-white/80 hover:text-white">イベント</a></li>
+            <li><a href="lab.html" class="text-white/80 hover:text-white">いちごの研究室</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-medium text-white/50 tracking-wider mb-4">ABOUT</p>
+          <p class="text-sm text-white/80 leading-relaxed mb-2">
+            主催：埼玉県 農林部 農業ビジネス支援課<br>
+            運営：株式会社スキーマ
+          </p>
+          <div class="flex items-center gap-3 mt-4">
+            <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 inline-flex items-center justify-center rounded-full border border-white/20 hover:bg-white/10">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 text-xs text-white/50 text-center">
+        © 2024-2026 埼玉いちご大學
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      const open = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+  </script>
+
+</body>
+</html>
