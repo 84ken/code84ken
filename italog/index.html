@@ -172,8 +172,26 @@ tailwind.config = {
   .vortex-d3 { animation-delay: 0.9s; }
   .vortex-d4 { animation-delay: 1.2s; }
 
+  /* === Hero ambient steam wisps === */
+  @keyframes hero-wisp {
+    to { stroke-dashoffset: -80; }
+  }
+  .hero-wisp {
+    stroke-dasharray: 14 10;
+    animation: hero-wisp 6s linear infinite;
+  }
+  .hero-wisp-slow {
+    stroke-dasharray: 14 10;
+    animation: hero-wisp 10s linear infinite;
+  }
+  .hero-wisp-faster {
+    stroke-dasharray: 14 10;
+    animation: hero-wisp 4.5s linear infinite;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .flow-line, .flow-line-slow, .flow-line-short, .vortex { animation: none; }
+    .flow-line, .flow-line-slow, .flow-line-short, .vortex,
+    .hero-wisp, .hero-wisp-slow, .hero-wisp-faster { animation: none; }
   }
 </style>
 </head>
@@ -200,11 +218,33 @@ tailwind.config = {
 
 <!-- ============= HERO ============= -->
 <section id="top" class="relative">
-  <div class="hero-image relative min-h-[720px] lg:min-h-[820px] flex items-center">
-    <!-- ITaLOG logo (large, top-right pamphlet style) — transparent PNG inverted to white -->
-    <img src="assets/img/logo/italog_logo_t_512.png" alt="" aria-hidden="true" class="absolute top-6 right-6 lg:top-10 lg:right-10 w-20 lg:w-32 opacity-95 drop-shadow-lg" style="filter: invert(1);" />
+  <div class="hero-image relative min-h-[720px] lg:min-h-[820px] flex items-center overflow-hidden">
+    <!-- Ambient steam wisps (subtle background animation) -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <svg viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+        <!-- Top wisp (amber, more visible) -->
+        <path class="hero-wisp" d="M-50,160 Q300,60 700,180 T1500,230"
+              stroke="#fbbf24" stroke-width="1.5" fill="none" opacity="0.40" stroke-linecap="round"/>
+        <!-- Middle wisp (white subtle) -->
+        <path class="hero-wisp-slow" d="M-50,400 Q420,360 820,440 T1500,400"
+              stroke="#fff" stroke-width="1" fill="none" opacity="0.18" stroke-linecap="round"/>
+        <!-- Lower wisp (amber, slow) -->
+        <path class="hero-wisp-slow" d="M-50,640 Q480,560 1000,660 T1500,610"
+              stroke="#fbbf24" stroke-width="1" fill="none" opacity="0.25" stroke-linecap="round"/>
+        <!-- Faint upper-left swirl arc -->
+        <path class="hero-wisp-faster" d="M-30,90 Q150,40 320,90"
+              stroke="#fbbf24" stroke-width="1.2" fill="none" opacity="0.35" stroke-linecap="round"/>
+        <!-- Pulsing vortex hint (lower-right) -->
+        <circle class="vortex" cx="1180" cy="540" r="5" fill="#fbbf24" opacity="0.5"/>
+        <circle class="vortex vortex-d2" cx="1230" cy="580" r="3.5" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity="0.4"/>
+        <circle class="vortex vortex-d4" cx="1260" cy="540" r="3" fill="none" stroke="#fbbf24" stroke-width="1.2" opacity="0.3"/>
+      </svg>
+    </div>
 
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full text-white">
+    <!-- ITaLOG logo (large, top-right pamphlet style) — transparent PNG inverted to white -->
+    <img src="assets/img/logo/italog_logo_t_512.png" alt="" aria-hidden="true" class="absolute top-6 right-6 lg:top-10 lg:right-10 w-20 lg:w-32 opacity-95 drop-shadow-lg z-10" style="filter: invert(1);" />
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white">
       <div class="lg:flex lg:items-end lg:justify-between lg:gap-12">
         <div class="max-w-2xl">
           <span class="pill-label-light mb-8">SAUNA HUT / 製品情報</span>
