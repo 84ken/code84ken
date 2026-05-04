@@ -803,6 +803,101 @@ img {
 }
 
 /* ============================================
+   ALL BANDS A-Z — Static SEO index
+   ============================================ */
+.all-bands {
+  background: var(--black);
+  color: var(--cream);
+  position: relative;
+}
+
+.all-bands::before {
+  content: '';
+  position: absolute;
+  top: -28px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30'%3E%3Cpath d='M0 15 L20 5 L40 18 L60 3 L80 20 L100 8 L120 22 L140 2 L160 16 L180 7 L200 19 L220 4 L240 17 L260 9 L280 21 L300 6 L320 18 L340 3 L360 15 L380 8 L400 22 L420 5 L440 19 L460 2 L480 16 L500 10 L520 20 L540 4 L560 17 L580 7 L600 21 L620 3 L640 18 L660 9 L680 15 L700 5 L720 22 L740 8 L760 19 L780 2 L800 16 L820 6 L840 20 L860 4 L880 17 L900 10 L920 21 L940 3 L960 15 L980 7 L1000 22 L1020 5 L1040 18 L1060 2 L1080 16 L1100 9 L1120 20 L1140 4 L1160 17 L1180 8 L1200 14 L1200 30 L0 30Z' fill='%230a0a0a'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+  transform: rotate(180deg);
+}
+
+.all-bands .section-title {
+  color: var(--white);
+}
+
+.all-bands .section-label {
+  color: var(--hot-pink);
+}
+
+.all-bands-lead {
+  font-family: var(--font-jp);
+  font-size: 14px;
+  color: rgba(245,239,226,0.7);
+  margin: -16px 0 32px;
+  line-height: 1.7;
+}
+
+.all-bands-group {
+  margin-bottom: 32px;
+  border-top: 1px dashed rgba(255,255,255,0.18);
+  padding-top: 20px;
+}
+
+.all-bands-genre {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  color: var(--hot-pink);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.all-bands-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  padding: 0;
+  margin: 0;
+}
+
+.all-bands-list li {
+  display: inline-block;
+  position: relative;
+}
+
+.all-bands-list li:not(:last-child)::after {
+  content: '/';
+  color: rgba(255,255,255,0.2);
+  margin-left: 14px;
+  pointer-events: none;
+}
+
+.all-bands-list a {
+  font-family: var(--font-punk);
+  font-size: 13px;
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: all 0.15s;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+
+.all-bands-list a:hover {
+  color: var(--hot-pink);
+  border-bottom-color: var(--hot-pink);
+}
+
+@media (max-width: 768px) {
+  .all-bands-list { gap: 4px 10px; }
+  .all-bands-list li:not(:last-child)::after { margin-left: 10px; }
+  .all-bands-list a { font-size: 12px; }
+}
+
+/* ============================================
    MARQUEE — Scrolling text strip
    ============================================ */
 .marquee {
