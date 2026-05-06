@@ -14,68 +14,62 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ichigo: { 50:'#FFF5F5',100:'#FFE3E3',200:'#FFC9C9',300:'#FFA8A8',400:'#FF6B6B',500:'#FA5252',600:'#E03131',700:'#CC0000',800:'#A30000',900:'#7A0000' }
-          },
-          fontFamily: {
-            sans: ['"Noto Sans JP"','Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','sans-serif'],
-            display: ['"Klee One"','"Shippori Mincho B1"','"Hiragino Mincho ProN"','serif'],
-            serif: ['"Shippori Mincho B1"','"Hiragino Mincho ProN"','serif']
-          }
-        }
-      }
+      theme: { extend: {
+        colors: { ichigo:'#CC0000', base:'#F5F5F5', ink:'#0A0A0A', mute:'#666666' },
+        fontFamily: { sans:['"Noto Sans JP"','sans-serif'], serif:['"Noto Serif JP"','serif'] }
+      }}
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho+B1:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
   <style>
-    body { color: #333333; }
-    .text-sub { color: #666666; }
-    .nav-link { position: relative; }
-    .nav-link::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: #CC0000; transition: width 0.2s ease; }
-    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-    .nav-link.active { color: #CC0000; }
-    .display-jp { font-family: "Klee One", "Shippori Mincho B1", serif; letter-spacing: 0.04em; font-weight: 600; }
+    body { font-family:"Noto Sans JP",sans-serif; color:#0A0A0A; background:#F5F5F5; font-feature-settings:"palt" 1; -webkit-font-smoothing:antialiased; }
+    .h-display { font-weight:200; letter-spacing:0.02em; line-height:1.3; }
+    .h-display-thin { font-weight:100; letter-spacing:0.04em; line-height:1.25; }
+    .label-en { font-weight:500; letter-spacing:0.3em; font-size:11px; }
+    .body-jp { line-height:2.0; letter-spacing:0.04em; }
+    .pill-nav { background:#fff; border:1.5px solid #0A0A0A; border-radius:999px; padding:8px 18px; font-weight:500; font-size:14px; color:#0A0A0A; transition:all 0.2s ease; text-decoration:none; }
+    .pill-nav:hover { background:#0A0A0A; color:#fff; }
+    .pill-nav.active { background:#CC0000; color:#fff; border-color:#CC0000; }
+    .btn-ichigo { background:#CC0000; color:#fff; border:1.5px solid #CC0000; border-radius:999px; padding:14px 32px; font-weight:600; letter-spacing:0.04em; transition:all 0.2s ease; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+    .btn-ichigo:hover { background:#fff; color:#CC0000; }
   </style>
 </head>
-<body class="bg-white">
+<body>
 
   <!-- ヘッダー -->
-  <header class="bg-white/95 backdrop-blur sticky top-0 z-30 border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2">
-        <img src="images/logo/logo.png" alt="埼玉いちご大學ロゴ" class="h-9 w-auto">
-        <span class="text-sm font-bold text-slate-900 hidden sm:inline display-jp">埼玉いちご大學</span>
+  <header class="absolute top-0 left-0 right-0 z-30">
+    <div class="max-w-[1400px] mx-auto px-5 sm:px-8 py-5 flex items-center justify-between">
+      <a href="index.html" class="inline-flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white border border-ink/10 shadow-sm">
+          <img src="images/logo/logo.png" alt="埼玉いちご大學シンボル" class="h-8 w-auto">
+        </span>
       </a>
-      <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-8">
-        <a href="about.html" class="nav-link text-sm font-medium text-slate-700 hover:text-ichigo-700">いちご大學とは</a>
-        <a href="events.html" class="nav-link text-sm font-medium text-slate-700 hover:text-ichigo-700">イベント</a>
-        <a href="lab.html" class="nav-link active text-sm font-medium text-slate-700" aria-current="page">いちごの研究室</a>
+      <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-2">
+        <a href="about.html" class="pill-nav">いちご大學とは</a>
+        <a href="events.html" class="pill-nav">イベント</a>
+        <a href="lab.html" class="pill-nav active" aria-current="page">いちごの研究室</a>
       </nav>
-      <button id="menu-btn" class="md:hidden w-10 h-10 inline-flex items-center justify-center" aria-label="メニューを開く" aria-expanded="false">
-        <svg class="w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <button id="menu-btn" class="md:hidden w-12 h-12 inline-flex items-center justify-center bg-white border border-ink rounded-full" aria-label="メニューを開く" aria-expanded="false">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden border-t border-slate-100">
-      <div class="px-6 py-4 space-y-3">
-        <a href="about.html" class="block text-base font-medium text-slate-900 py-2">いちご大學とは</a>
-        <a href="events.html" class="block text-base font-medium text-slate-900 py-2">イベント</a>
-        <a href="lab.html" class="block text-base font-medium text-ichigo-700 py-2">いちごの研究室</a>
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-ink/10">
+      <div class="px-6 py-4 space-y-2">
+        <a href="about.html" class="block py-3 text-base font-medium border-b border-ink/5">いちご大學とは</a>
+        <a href="events.html" class="block py-3 text-base font-medium border-b border-ink/5">イベント</a>
+        <a href="lab.html" class="block py-3 text-base font-medium text-ichigo">いちごの研究室</a>
       </div>
     </div>
   </header>
 
   <!-- ヒーロー -->
-  <section class="py-20 sm:py-28 bg-ichigo-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-xs sm:text-sm font-medium text-ichigo-700 tracking-[0.2em] mb-3">ICHIGO LAB</p>
-      <h1 class="display-jp text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-8">
-        いちごの研究室
-      </h1>
-      <p class="text-base sm:text-lg leading-relaxed text-slate-700">
+  <section class="pt-32 sm:pt-40 pb-20 sm:pb-28 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="label-en text-ichigo mb-6">ICHIGO LAB</p>
+      <h1 class="h-display-thin text-4xl sm:text-6xl md:text-7xl text-ink mb-12">いちごの研究室</h1>
+      <p class="body-jp text-base sm:text-lg text-ink/80 max-w-2xl mx-auto">
         いちごの可能性を、ずっと探りたい。<br>
         フリーズドライにしたいちごを起点に、<br>
         食品だけでなく美容・香り・体験まで。<br>
@@ -84,40 +78,39 @@
     </div>
   </section>
 
-  <!-- いちご塩（メイン商品） -->
-  <section class="py-20 sm:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+  <!-- いちご塩 -->
+  <section class="py-24 sm:py-32 bg-base">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div>
-          <div class="aspect-square rounded-3xl overflow-hidden bg-ichigo-50">
+          <div class="aspect-square overflow-hidden bg-white">
             <img src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
           </div>
         </div>
         <div>
-          <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-ichigo-700 text-white mb-4">第一号商品</span>
-          <p class="text-xs font-medium text-ichigo-700 tracking-[0.2em] mb-2">CHICHIBU ICHIGO SALT</p>
-          <h2 class="display-jp text-3xl sm:text-4xl font-bold text-slate-900 mb-6">いちご塩</h2>
-          <p class="text-base sm:text-lg leading-relaxed text-slate-700 mb-8">
+          <span class="inline-flex items-center px-3 py-1 text-xs font-bold bg-ichigo text-white rounded-full mb-6">第一号商品</span>
+          <p class="label-en text-ichigo mb-3">CHICHIBU ICHIGO SALT</p>
+          <h2 class="h-display-thin text-4xl sm:text-5xl md:text-6xl text-ink mb-8">いちご塩</h2>
+          <p class="body-jp text-base sm:text-lg text-ink/80 mb-10">
             青ヶ島のひんぎゃの塩と、<br>
             秩父のフリーズドライいちごから生まれた<br>
             新感覚の調味料。
           </p>
 
-          <!-- バリエーション -->
-          <div class="grid grid-cols-2 gap-3 mb-8">
-            <div class="border border-slate-200 rounded-xl p-4">
-              <p class="text-xs text-sub mb-1">小分け</p>
-              <p class="text-lg font-bold text-slate-900">10g</p>
-              <p class="text-sm text-ichigo-700 font-bold">¥400</p>
+          <div class="grid grid-cols-2 gap-px bg-ink/10 border border-ink/10 mb-10">
+            <div class="bg-white p-5">
+              <p class="label-en text-mute mb-2">SMALL</p>
+              <p class="text-2xl font-light text-ink mb-1">10g</p>
+              <p class="text-sm text-ichigo font-bold">¥400</p>
             </div>
-            <div class="border border-slate-200 rounded-xl p-4">
-              <p class="text-xs text-sub mb-1">瓶</p>
-              <p class="text-lg font-bold text-slate-900">50g</p>
-              <p class="text-sm text-ichigo-700 font-bold">¥1,800</p>
+            <div class="bg-white p-5">
+              <p class="label-en text-mute mb-2">JAR</p>
+              <p class="text-2xl font-light text-ink mb-1">50g</p>
+              <p class="text-sm text-ichigo font-bold">¥1,800</p>
             </div>
           </div>
 
-          <a href="#" onclick="alert('準備中です。EC開設までしばらくお待ちください。'); return false;" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-base font-bold bg-ichigo-700 text-white rounded-full hover:bg-ichigo-800 transition-colors w-full sm:w-auto">
+          <a href="#" onclick="alert('準備中です。EC開設までしばらくお待ちください。'); return false;" class="btn-ichigo text-sm w-full sm:w-auto">
             購入する（準備中）
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
@@ -125,189 +118,166 @@
       </div>
 
       <!-- 使い方 -->
-      <div class="mt-20">
-        <h3 class="display-jp text-xl sm:text-2xl font-bold text-slate-900 text-center mb-10">こんなふうに、使えます。</h3>
+      <div class="mt-24">
+        <p class="label-en text-ichigo text-center mb-3">HOW TO USE</p>
+        <h3 class="h-display text-2xl sm:text-3xl text-ink text-center mb-14">こんなふうに、使えます。</h3>
         <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
-          <li class="text-center">
-            <div class="w-16 h-16 mx-auto rounded-full bg-ichigo-50 flex items-center justify-center mb-3">
-              <svg class="w-7 h-7 text-ichigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12a9 9 0 1118 0 9 9 0 01-18 0z M9 12h6"/></svg>
+          <li class="bg-white aspect-square flex flex-col items-center justify-center text-center p-4">
+            <div class="w-10 h-10 rounded-full bg-ichigo/10 flex items-center justify-center mb-3">
+              <span class="text-ichigo text-lg">🥩</span>
             </div>
-            <p class="text-sm font-medium text-slate-900">肉料理に</p>
+            <p class="text-sm font-medium text-ink">肉料理に</p>
           </li>
-          <li class="text-center">
-            <div class="w-16 h-16 mx-auto rounded-full bg-ichigo-50 flex items-center justify-center mb-3">
-              <svg class="w-7 h-7 text-ichigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+          <li class="bg-white aspect-square flex flex-col items-center justify-center text-center p-4">
+            <div class="w-10 h-10 rounded-full bg-ichigo/10 flex items-center justify-center mb-3">
+              <span class="text-ichigo text-lg">🥗</span>
             </div>
-            <p class="text-sm font-medium text-slate-900">サラダに</p>
+            <p class="text-sm font-medium text-ink">サラダに</p>
           </li>
-          <li class="text-center">
-            <div class="w-16 h-16 mx-auto rounded-full bg-ichigo-50 flex items-center justify-center mb-3">
-              <svg class="w-7 h-7 text-ichigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7l9-4 9 4M5 7v10l7 3 7-3V7"/></svg>
+          <li class="bg-white aspect-square flex flex-col items-center justify-center text-center p-4">
+            <div class="w-10 h-10 rounded-full bg-ichigo/10 flex items-center justify-center mb-3">
+              <span class="text-ichigo text-lg">🍙</span>
             </div>
-            <p class="text-sm font-medium text-slate-900">おにぎりに</p>
+            <p class="text-sm font-medium text-ink">おにぎりに</p>
           </li>
-          <li class="text-center">
-            <div class="w-16 h-16 mx-auto rounded-full bg-ichigo-50 flex items-center justify-center mb-3">
-              <svg class="w-7 h-7 text-ichigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v18M5 12h14"/></svg>
+          <li class="bg-white aspect-square flex flex-col items-center justify-center text-center p-4">
+            <div class="w-10 h-10 rounded-full bg-ichigo/10 flex items-center justify-center mb-3">
+              <span class="text-ichigo text-lg">🍤</span>
             </div>
-            <p class="text-sm font-medium text-slate-900">天ぷら塩に</p>
+            <p class="text-sm font-medium text-ink">天ぷら塩に</p>
           </li>
-          <li class="text-center">
-            <div class="w-16 h-16 mx-auto rounded-full bg-ichigo-50 flex items-center justify-center mb-3">
-              <svg class="w-7 h-7 text-ichigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 21l4-7 5 4 4-6 5 9"/></svg>
+          <li class="bg-white aspect-square flex flex-col items-center justify-center text-center p-4">
+            <div class="w-10 h-10 rounded-full bg-ichigo/10 flex items-center justify-center mb-3">
+              <span class="text-ichigo text-lg">⛰</span>
             </div>
-            <p class="text-sm font-medium text-slate-900">山のお供に</p>
+            <p class="text-sm font-medium text-ink">山のお供に</p>
           </li>
-          <li class="text-center">
-            <div class="w-16 h-16 mx-auto rounded-full bg-ichigo-50 flex items-center justify-center mb-3">
-              <svg class="w-7 h-7 text-ichigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v6a3 3 0 006 0V3M9 21h6M12 15v6"/></svg>
+          <li class="bg-white aspect-square flex flex-col items-center justify-center text-center p-4">
+            <div class="w-10 h-10 rounded-full bg-ichigo/10 flex items-center justify-center mb-3">
+              <span class="text-ichigo text-lg">🍶</span>
             </div>
-            <p class="text-sm font-medium text-slate-900">おつまみに</p>
+            <p class="text-sm font-medium text-ink">おつまみに</p>
           </li>
         </ul>
       </div>
 
       <!-- 取扱店舗 -->
-      <div class="mt-20 bg-slate-50 rounded-2xl p-8 sm:p-10">
-        <h3 class="text-base font-bold text-slate-900 mb-6 text-center">取扱店舗</h3>
-        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-slate-700">
-          <li class="text-center">横瀬駅前食堂</li>
-          <li class="text-center">道の駅あしがくぼ</li>
-          <li class="text-center">秩父地場産センター</li>
+      <div class="mt-20 bg-white p-10">
+        <p class="label-en text-ichigo text-center mb-3">SHOPS</p>
+        <h3 class="h-display text-xl text-ink text-center mb-8">取扱店舗</h3>
+        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-ink/80 text-center">
+          <li>横瀬駅前食堂</li>
+          <li>道の駅あしがくぼ</li>
+          <li>秩父地場産センター</li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- 連携商品 -->
-  <section class="py-20 sm:py-28 bg-ichigo-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <p class="text-xs font-medium text-ichigo-700 tracking-[0.2em] mb-3">PARTNERS</p>
-        <h2 class="display-jp text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900">連携商品</h2>
-        <p class="mt-4 text-sm sm:text-base text-sub">いちご大學の仲間たちが手がける、いちごを使った商品たち</p>
+  <section class="py-24 sm:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="label-en text-ichigo mb-3">PARTNERS</p>
+        <h2 class="h-display text-3xl sm:text-4xl md:text-5xl text-ink mb-5">連携商品</h2>
+        <p class="body-jp text-sm sm:text-base text-mute">いちご大學の仲間たちが手がける、いちごを使った商品たち</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="bg-white rounded-2xl overflow-hidden shadow-sm">
-          <div class="aspect-[4/3] bg-ichigo-100 flex items-center justify-center">
-            <span class="text-ichigo-300 text-sm font-medium">写真準備中</span>
+        <article class="bg-base">
+          <div class="aspect-[4/3] flex items-center justify-center bg-base">
+            <span class="text-mute text-sm font-medium">写真準備中</span>
           </div>
           <div class="p-6">
-            <p class="text-xs text-sub mb-2">小さな洋菓子店Spoon（秩父）</p>
-            <h3 class="text-lg font-bold text-slate-900 mb-3">メレンゲクッキー</h3>
-            <p class="text-sm text-slate-700 leading-relaxed">フリーズドライいちごを使ったサクサクのメレンゲクッキー。</p>
+            <p class="label-en text-mute mb-3">SPOON / 秩父</p>
+            <h3 class="text-lg font-medium text-ink mb-3">メレンゲクッキー</h3>
+            <p class="text-sm text-ink/70 leading-loose">フリーズドライいちごを使ったサクサクのメレンゲクッキー。</p>
           </div>
         </article>
 
-        <article class="bg-white rounded-2xl overflow-hidden shadow-sm">
-          <div class="aspect-[4/3] bg-ichigo-100 flex items-center justify-center">
-            <span class="text-ichigo-300 text-sm font-medium">写真準備中</span>
+        <article class="bg-base">
+          <div class="aspect-[4/3] flex items-center justify-center bg-base">
+            <span class="text-mute text-sm font-medium">写真準備中</span>
           </div>
           <div class="p-6">
-            <p class="text-xs text-sub mb-2">福の縁</p>
-            <h3 class="text-lg font-bold text-slate-900 mb-3">オーガニック綿あめ</h3>
-            <p class="text-sm text-slate-700 leading-relaxed">いちごパウダーを使ったオーガニック綿あめ。</p>
+            <p class="label-en text-mute mb-3">福の縁</p>
+            <h3 class="text-lg font-medium text-ink mb-3">オーガニック綿あめ</h3>
+            <p class="text-sm text-ink/70 leading-loose">いちごパウダーを使ったオーガニック綿あめ。</p>
           </div>
         </article>
 
-        <article class="bg-white rounded-2xl overflow-hidden shadow-sm border-2 border-dashed border-ichigo-300">
-          <div class="aspect-[4/3] bg-ichigo-50 flex items-center justify-center">
-            <span class="text-ichigo-400 text-sm font-bold">COMING SOON</span>
+        <article class="bg-base border border-dashed border-ichigo/40">
+          <div class="aspect-[4/3] flex items-center justify-center">
+            <span class="label-en text-ichigo">COMING SOON</span>
           </div>
           <div class="p-6">
-            <p class="text-xs text-sub mb-2">KaleidoPath</p>
-            <h3 class="text-lg font-bold text-slate-900 mb-3">いちご香水（開発中）</h3>
-            <p class="text-sm text-slate-700 leading-relaxed">いちごの香りを纏う、新しい体験を。</p>
+            <p class="label-en text-mute mb-3">KALEIDOPATH</p>
+            <h3 class="text-lg font-medium text-ink mb-3">いちご香水（開発中）</h3>
+            <p class="text-sm text-ink/70 leading-loose">いちごの香りを纏う、新しい体験を。</p>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- 開発中・研究中 -->
-  <section class="py-20 sm:py-28">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <p class="text-xs font-medium text-ichigo-700 tracking-[0.2em] mb-3">RESEARCH</p>
-        <h2 class="display-jp text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900">いま、こんなことも考えています。</h2>
+  <!-- 開発中 -->
+  <section class="py-24 sm:py-32 bg-base">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="label-en text-ichigo mb-3">RESEARCH</p>
+        <h2 class="h-display text-3xl sm:text-4xl md:text-5xl text-ink">いま、こんなことも考えています。</h2>
       </div>
-      <div class="space-y-4">
-        <div class="bg-white border border-slate-200 rounded-xl p-6 flex items-start gap-4">
-          <div class="w-10 h-10 rounded-full bg-ichigo-50 flex items-center justify-center flex-shrink-0">
-            <svg class="w-5 h-5 text-ichigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-          </div>
-          <div>
-            <h3 class="text-base font-bold text-slate-900 mb-1">資生堂 BEAUTY YAKUZEN</h3>
-            <p class="text-sm text-sub leading-relaxed">美容・健康分野での連携を模索中。</p>
-          </div>
+      <div class="space-y-px bg-ink/10 border border-ink/10">
+        <div class="bg-white p-8">
+          <p class="label-en text-mute mb-3">BEAUTY</p>
+          <h3 class="text-lg font-medium text-ink mb-2">資生堂 BEAUTY YAKUZEN</h3>
+          <p class="text-sm text-ink/70 leading-loose">美容・健康分野での連携を模索中。</p>
         </div>
-        <div class="bg-white border border-slate-200 rounded-xl p-6 flex items-start gap-4">
-          <div class="w-10 h-10 rounded-full bg-ichigo-50 flex items-center justify-center flex-shrink-0">
-            <svg class="w-5 h-5 text-ichigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
-          </div>
-          <div>
-            <h3 class="text-base font-bold text-slate-900 mb-1">アクアポニックス × いちご栽培</h3>
-            <p class="text-sm text-sub leading-relaxed">魚と植物の循環型栽培で、新しいいちごの可能性を探っています。</p>
-          </div>
+        <div class="bg-white p-8">
+          <p class="label-en text-mute mb-3">AGRI-TECH</p>
+          <h3 class="text-lg font-medium text-ink mb-2">アクアポニックス × いちご栽培</h3>
+          <p class="text-sm text-ink/70 leading-loose">魚と植物の循環型栽培で、新しいいちごの可能性を探っています。</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-16 sm:py-20 bg-ichigo-700 text-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="display-jp text-2xl sm:text-3xl font-bold leading-snug mb-6">
-        新商品アイデア、一緒に考えませんか？
-      </h2>
-      <p class="text-base text-white/90 mb-8">
-        WSへの参加、商品開発の相談、取扱店舗の追加など、<br>
-        まずはLINEオープンチャットでお気軽にどうぞ。
-      </p>
-      <a href="https://line.me/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-base font-bold bg-white text-ichigo-700 rounded-full hover:bg-ichigo-50 transition-colors">
+  <section class="py-20 sm:py-28 bg-ichigo text-white">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="h-display-thin text-2xl sm:text-4xl mb-6">新商品アイデア、一緒に考えませんか？</h2>
+      <p class="body-jp text-base text-white/90 mb-10">WSへの参加、商品開発の相談、取扱店舗の追加など、<br>まずはLINEオープンチャットでお気軽にどうぞ。</p>
+      <a href="https://line.me/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold bg-white text-ichigo rounded-full hover:bg-ink hover:text-white transition-colors">
         LINEオープンチャットに参加する
       </a>
     </div>
   </section>
 
   <!-- フッター -->
-  <footer class="bg-slate-900 text-white py-14">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+  <footer class="bg-ink text-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
         <div>
-          <div class="flex items-center gap-2 mb-4">
-            <img src="images/logo/logo.png" alt="" class="h-10 w-auto bg-white rounded p-1">
-            <span class="text-base font-bold display-jp">埼玉いちご大學</span>
-          </div>
-          <p class="text-sm text-white/70 leading-relaxed">
-            「いちごが好き」という気持ちを<br>持ち寄る場所。
-          </p>
+          <img src="images/logo/logo-text.webp" alt="埼玉いちご大學" class="w-48 h-auto mb-4">
+          <p class="text-sm text-white/60 leading-loose">「いちごが好き」という気持ちを<br>持ち寄る場所。</p>
         </div>
         <div>
-          <p class="text-xs font-medium text-white/50 tracking-wider mb-4">SITE MAP</p>
-          <ul class="space-y-2 text-sm">
+          <p class="label-en text-white/40 mb-5">SITE MAP</p>
+          <ul class="space-y-3 text-sm">
             <li><a href="about.html" class="text-white/80 hover:text-white">いちご大學とは</a></li>
             <li><a href="events.html" class="text-white/80 hover:text-white">イベント</a></li>
             <li><a href="lab.html" class="text-white/80 hover:text-white">いちごの研究室</a></li>
           </ul>
         </div>
         <div>
-          <p class="text-xs font-medium text-white/50 tracking-wider mb-4">ABOUT</p>
-          <p class="text-sm text-white/80 leading-relaxed mb-2">
-            主催：埼玉県 農林部 農業ビジネス支援課<br>
-            運営：株式会社スキーマ
-          </p>
-          <div class="flex items-center gap-3 mt-4">
-            <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 inline-flex items-center justify-center rounded-full border border-white/20 hover:bg-white/10">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-          </div>
+          <p class="label-en text-white/40 mb-5">ABOUT</p>
+          <p class="text-sm text-white/80 leading-loose mb-4">主催：埼玉県 農林部 農業ビジネス支援課<br>運営：株式会社スキーマ</p>
+          <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" aria-label="Instagram" class="inline-flex w-10 h-10 items-center justify-center rounded-full border border-white/20 hover:bg-white hover:text-ink transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
         </div>
       </div>
-      <div class="border-t border-white/10 pt-6 text-xs text-white/50 text-center">
-        © 2024-2026 埼玉いちご大學
-      </div>
+      <div class="border-t border-white/10 pt-6 text-xs text-white/40 text-center">© 2024-2026 埼玉いちご大學</div>
     </div>
   </footer>
 
