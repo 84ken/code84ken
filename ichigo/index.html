@@ -14,85 +14,39 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ichigo: '#CC0000',
-            base: '#F5F5F5',
-            ink: '#0A0A0A',
-            mute: '#666666'
-          },
-          fontFamily: {
-            sans: ['"Noto Sans JP"','sans-serif'],
-            serif: ['"Noto Serif JP"','serif']
-          }
-        }
-      }
+      theme: { extend: {
+        colors: { ichigo:'#CC0000', base:'#F5F5F5', ink:'#0A0A0A', mute:'#3D3D3D' },
+        fontFamily: { sans:['"Noto Sans JP"','sans-serif'], serif:['"Noto Serif JP"','serif'] }
+      }}
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: "Noto Sans JP", sans-serif;
-      color: #0A0A0A;
-      background: #F5F5F5;
-      font-feature-settings: "palt" 1;
-      -webkit-font-smoothing: antialiased;
+    body { font-family:"Noto Sans JP",sans-serif; color:#0A0A0A; background:#F5F5F5; font-feature-settings:"palt" 1; -webkit-font-smoothing:antialiased; }
+    .h-display { font-weight:200; letter-spacing:0.02em; line-height:1.3; }
+    .h-display-thin { font-weight:100; letter-spacing:0.04em; line-height:1.25; }
+    .label-en { font-weight:500; letter-spacing:0.3em; font-size:11px; }
+    .body-jp { line-height:2.0; letter-spacing:0.04em; font-weight:400; }
+    .pill-nav { background:#fff; border:1.5px solid #0A0A0A; border-radius:999px; padding:8px 18px; font-weight:500; font-size:14px; color:#0A0A0A; transition:all 0.2s ease; text-decoration:none; }
+    .pill-nav:hover { background:#0A0A0A; color:#fff; }
+    .btn-primary { background:#0A0A0A; color:#fff; border:1.5px solid #0A0A0A; border-radius:999px; padding:14px 32px; font-weight:600; letter-spacing:0.04em; transition:all 0.2s ease; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+    .btn-primary:hover { background:#fff; color:#0A0A0A; }
+    .video-wrap { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
+    .video-wrap iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+    .news-card { background:#fff; transition:transform 0.3s ease; }
+    .news-card:hover { transform:translateY(-3px); }
+    /* ヒーロー右下のフローティング動画ボックス */
+    .hero-video-box {
+      position: absolute;
+      bottom: 12px; right: 12px;
+      width: 180px;
+      z-index: 20;
+      box-shadow: 0 20px 60px -10px rgba(0,0,0,0.35);
     }
-    /* 極細・大見出し（参考: oto.shueisha） */
-    .h-display { font-weight: 200; letter-spacing: 0.02em; line-height: 1.3; }
-    .h-display-thin { font-weight: 100; letter-spacing: 0.04em; line-height: 1.25; }
-    .h-section { font-weight: 500; letter-spacing: 0.06em; line-height: 1.4; }
-    .label-en { font-weight: 500; letter-spacing: 0.3em; font-size: 11px; }
-    .body-jp { line-height: 2.0; letter-spacing: 0.04em; }
-    /* ナビ：黒枠ピル型（参考サイト調） */
-    .pill-nav {
-      background: #fff;
-      border: 1.5px solid #0A0A0A;
-      border-radius: 999px;
-      padding: 8px 18px;
-      font-weight: 500;
-      font-size: 14px;
-      color: #0A0A0A;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-    .pill-nav:hover { background: #0A0A0A; color: #fff; }
-    /* CTAボタン */
-    .btn-primary {
-      background: #0A0A0A;
-      color: #fff;
-      border: 1.5px solid #0A0A0A;
-      border-radius: 999px;
-      padding: 14px 32px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      transition: all 0.2s ease;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    }
-    .btn-primary:hover { background: #fff; color: #0A0A0A; }
-    .btn-ichigo {
-      background: #CC0000;
-      color: #fff;
-      border: 1.5px solid #CC0000;
-      border-radius: 999px;
-      padding: 14px 32px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      transition: all 0.2s ease;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    }
-    .btn-ichigo:hover { background: #fff; color: #CC0000; }
-    /* 動画 */
-    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
-    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    /* カード */
-    .news-card { background: #fff; transition: transform 0.3s ease; }
-    .news-card:hover { transform: translateY(-3px); }
-    /* マーキー風縦書き装飾 */
-    .vertical-jp { writing-mode: vertical-rl; text-orientation: mixed; }
+    @media (min-width: 640px) { .hero-video-box { bottom: 24px; right: 24px; width: 280px; } }
+    @media (min-width: 1024px) { .hero-video-box { bottom: 40px; right: 40px; width: 400px; } }
   </style>
 </head>
 <body>
@@ -101,23 +55,23 @@
   <header class="absolute top-0 left-0 right-0 z-30">
     <div class="max-w-[1400px] mx-auto px-5 sm:px-8 py-5 flex items-center justify-between">
       <a href="/" class="inline-flex items-center gap-3">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white border border-ink/10 shadow-sm">
+        <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white border border-black/10 shadow-sm">
           <img src="images/logo/logo.png" alt="埼玉いちご大學シンボル" class="h-8 w-auto">
         </span>
       </a>
       <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-2">
         <a href="about.html" class="pill-nav">いちご大學とは</a>
-        <a href="events.html" class="pill-nav">イベント</a>
+        <a href="events.html" class="pill-nav">お知らせ</a>
         <a href="lab.html" class="pill-nav">いちごの研究室</a>
       </nav>
       <button id="menu-btn" class="md:hidden w-12 h-12 inline-flex items-center justify-center bg-white border border-ink rounded-full" aria-label="メニューを開く" aria-expanded="false">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-ink/10">
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-black/10">
       <div class="px-6 py-4 space-y-2">
-        <a href="about.html" class="block py-3 text-base font-medium border-b border-ink/5">いちご大學とは</a>
-        <a href="events.html" class="block py-3 text-base font-medium border-b border-ink/5">イベント</a>
+        <a href="about.html" class="block py-3 text-base font-medium border-b border-black/5">いちご大學とは</a>
+        <a href="events.html" class="block py-3 text-base font-medium border-b border-black/5">お知らせ</a>
         <a href="lab.html" class="block py-3 text-base font-medium">いちごの研究室</a>
       </div>
     </div>
@@ -125,12 +79,31 @@
 
   <!-- ① ファーストビュー -->
   <section class="relative bg-base">
-    <!-- メインビジュアル（最大幅で配置） -->
+    <!-- メインビジュアル + 動画フローティングボックス -->
     <div class="relative w-full bg-white">
       <img src="images/hero/ichigo_main.webp" alt="埼玉いちご大學 メインビジュアル（イラスト：我喜屋位瑳務）" class="w-full h-auto block max-h-[85vh] object-contain mx-auto">
+
+      <!-- フローティング動画 -->
+      <div class="hero-video-box">
+        <div class="bg-ink text-white px-3 py-2 flex items-center gap-2 text-xs">
+          <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-ichigo">
+            <svg class="w-2.5 h-2.5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span class="label-en">MOVIE</span>
+          <span class="ml-auto text-white/70 text-[10px] tracking-wider">2:30</span>
+        </div>
+        <div class="video-wrap bg-black">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/u3oM78lWknY?rel=0"
+            title="埼玉いちご大學 紹介動画"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
 
-    <!-- 赤帯（テキストロゴ） -->
+    <!-- 赤帯 -->
     <div class="bg-ichigo py-6 sm:py-8">
       <div class="max-w-3xl mx-auto px-6 text-center">
         <img src="images/logo/logo-text.webp" alt="埼玉いちご大學" class="w-full max-w-md sm:max-w-lg mx-auto h-auto block">
@@ -149,35 +122,15 @@
     </div>
   </section>
 
-  <!-- ② 動画 -->
-  <section class="bg-ink text-white py-24 sm:py-32">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex items-end justify-between mb-12">
-        <div>
-          <p class="label-en text-white/60 mb-3">MOVIE</p>
-          <h2 class="h-display text-2xl sm:text-4xl md:text-5xl">動画でみる、いちご大學。</h2>
-        </div>
-      </div>
-      <div class="video-wrap">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/u3oM78lWknY?rel=0"
-          title="埼玉いちご大學 紹介動画"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- ③ 合言葉 -->
-  <section class="bg-base py-28 sm:py-36">
+  <!-- ② 合言葉 -->
+  <section class="bg-white py-28 sm:py-36">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <p class="label-en text-ichigo mb-8">MOTTO</p>
       <h2 class="h-display-thin text-3xl sm:text-5xl md:text-6xl text-ink mb-16">
         いちごが好き。<br>それだけで、何かが始まる。
       </h2>
       <div class="w-12 h-px bg-ink/20 mx-auto mb-16"></div>
-      <p class="body-jp text-base sm:text-lg text-ink/80 max-w-2xl mx-auto">
+      <p class="body-jp text-base sm:text-lg text-ink max-w-2xl mx-auto">
         埼玉いちご大學は、「いちごが好き」という気持ちを持ち寄る場所です。<br>
         農家さんの畑を歩き、品種の違いを味わい、<br>
         「これ、何かに使えないかな？」を一緒に考える。<br>
@@ -187,13 +140,13 @@
     </div>
   </section>
 
-  <!-- ④ NEWS -->
-  <section class="bg-white py-24 sm:py-32">
+  <!-- ③ NEWS -->
+  <section class="bg-base py-24 sm:py-32">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-end justify-between mb-14">
         <div>
           <p class="label-en text-ichigo mb-3">NEWS</p>
-          <h2 class="h-display text-3xl sm:text-4xl">お知らせ</h2>
+          <h2 class="h-display text-3xl sm:text-4xl text-ink">お知らせ</h2>
         </div>
         <a href="events.html" class="hidden sm:inline-flex items-center gap-2 text-sm font-medium border-b border-ink pb-1 hover:text-ichigo hover:border-ichigo transition-colors">
           すべて見る
@@ -203,7 +156,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <a href="events.html" class="news-card block group">
-          <div class="aspect-[16/10] overflow-hidden bg-base mb-5">
+          <div class="aspect-[16/10] overflow-hidden bg-white mb-5">
             <img src="images/events/DSCF9499.webp" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
           <div class="flex items-center gap-3 mb-3">
@@ -215,7 +168,7 @@
         </a>
 
         <a href="events.html" class="news-card block group">
-          <div class="aspect-[16/10] overflow-hidden bg-base mb-5">
+          <div class="aspect-[16/10] overflow-hidden bg-white mb-5">
             <img src="images/events/DSCF9410.webp" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
           <div class="flex items-center gap-3 mb-3">
@@ -236,16 +189,16 @@
     </div>
   </section>
 
-  <!-- ⑤ いちごの研究室 -->
-  <section class="bg-base py-24 sm:py-32">
+  <!-- ④ いちごの研究室 -->
+  <section class="bg-white py-24 sm:py-32">
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <div class="lg:col-span-7 order-2 lg:order-1">
+        <div class="lg:col-span-5 order-2 lg:order-1">
           <p class="label-en text-ichigo mb-4">ICHIGO LAB</p>
           <h2 class="h-display text-3xl sm:text-4xl md:text-5xl text-ink mb-8">
             いちごの研究室
           </h2>
-          <p class="body-jp text-base sm:text-lg text-ink/80 mb-4">
+          <p class="body-jp text-base sm:text-lg text-ink mb-4">
             フリーズドライいちごの可能性を探っています。
           </p>
           <p class="body-jp text-sm sm:text-base text-mute mb-10">
@@ -257,27 +210,39 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
-        <div class="lg:col-span-5 order-1 lg:order-2">
-          <div class="aspect-[4/5] overflow-hidden bg-white">
-            <img src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
+        <!-- 4枚グリッド -->
+        <div class="lg:col-span-7 order-1 lg:order-2">
+          <div class="grid grid-cols-2 gap-2 sm:gap-3">
+            <div class="aspect-square overflow-hidden bg-base">
+              <img src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
+            </div>
+            <div class="aspect-square overflow-hidden bg-base">
+              <img src="images/events/DSCF9499.webp" alt="ワークショップで生まれたアイデア" class="w-full h-full object-cover">
+            </div>
+            <div class="aspect-square overflow-hidden bg-base">
+              <img src="images/events/DSCF9410.webp" alt="アイデア出しの様子" class="w-full h-full object-cover">
+            </div>
+            <div class="aspect-square overflow-hidden bg-base">
+              <img src="images/events/DSCF9374.webp" alt="連携先との取り組み" class="w-full h-full object-cover">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ⑥ CTA -->
+  <!-- ⑤ CTA -->
   <section class="bg-ichigo text-white py-28 sm:py-40 relative overflow-hidden">
     <div class="absolute inset-0 opacity-[0.04]" aria-hidden="true">
       <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-white blur-3xl"></div>
       <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-white blur-3xl"></div>
     </div>
     <div class="relative max-w-3xl mx-auto px-6 text-center">
-      <p class="label-en text-white/70 mb-6">JOIN US</p>
+      <p class="label-en text-white mb-6" style="opacity: 0.85;">JOIN US</p>
       <h2 class="h-display-thin text-3xl sm:text-5xl md:text-6xl mb-10">
         いちごが好きなら、<br>誰でも入学できます。
       </h2>
-      <p class="body-jp text-base sm:text-lg mb-12 text-white/90">
+      <p class="body-jp text-base sm:text-lg mb-12 text-white">
         入学金・授業料は一切なし。<br>
         まずはLINEオープンチャットを覗いてみてください。
       </p>
@@ -286,7 +251,7 @@
         LINEオープンチャットに参加する
       </a>
       <div class="mt-10">
-        <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white">
+        <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-white/80">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           @ichigosaitama
         </a>
@@ -299,31 +264,29 @@
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
         <div>
-          <img src="images/logo/logo-text.webp" alt="埼玉いちご大學" class="w-48 h-auto mb-4 invert-0">
-          <p class="text-sm text-white/60 leading-loose">
-            「いちごが好き」という気持ちを<br>持ち寄る場所。
-          </p>
+          <img src="images/logo/logo-text.webp" alt="埼玉いちご大學" class="w-48 h-auto mb-4">
+          <p class="text-sm text-white leading-loose">「いちごが好き」という気持ちを<br>持ち寄る場所。</p>
         </div>
         <div>
-          <p class="label-en text-white/40 mb-5">SITE MAP</p>
+          <p class="label-en text-white mb-5" style="opacity: 0.55;">SITE MAP</p>
           <ul class="space-y-3 text-sm">
-            <li><a href="about.html" class="text-white/80 hover:text-white">いちご大學とは</a></li>
-            <li><a href="events.html" class="text-white/80 hover:text-white">イベント</a></li>
-            <li><a href="lab.html" class="text-white/80 hover:text-white">いちごの研究室</a></li>
+            <li><a href="about.html" class="text-white hover:text-ichigo">いちご大學とは</a></li>
+            <li><a href="events.html" class="text-white hover:text-ichigo">お知らせ</a></li>
+            <li><a href="lab.html" class="text-white hover:text-ichigo">いちごの研究室</a></li>
           </ul>
         </div>
         <div>
-          <p class="label-en text-white/40 mb-5">ABOUT</p>
-          <p class="text-sm text-white/80 leading-loose mb-4">
+          <p class="label-en text-white mb-5" style="opacity: 0.55;">ABOUT</p>
+          <p class="text-sm text-white leading-loose mb-4">
             主催：埼玉県 農林部 農業ビジネス支援課<br>
-            運営：株式会社スキーマ
+            運営：<a href="https://llschema.com/" target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-ichigo">株式会社スキーマ</a>
           </p>
-          <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" aria-label="Instagram" class="inline-flex w-10 h-10 items-center justify-center rounded-full border border-white/20 hover:bg-white hover:text-ink transition-colors">
+          <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" aria-label="Instagram" class="inline-flex w-10 h-10 items-center justify-center rounded-full border border-white/30 hover:bg-white hover:text-ink transition-colors">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
         </div>
       </div>
-      <div class="border-t border-white/10 pt-6 text-xs text-white/40 text-center">
+      <div class="border-t border-white/15 pt-6 text-xs text-white/60 text-center">
         © 2024-2026 埼玉いちご大學
       </div>
     </div>
