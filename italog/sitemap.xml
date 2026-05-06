@@ -5,5 +5,13 @@
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/0.9">
+      <image:loc>https://italog.schema.tokyo/assets/img/og-image.jpg</image:loc>
+      <image:title>ITaLOG SAUNA — 常軌を逸した蒸気のサウナ小屋</image:title>
+    </image:image>
+    <image:image xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/0.9">
+      <image:loc>https://italog.schema.tokyo/assets/img/photos/_dsc1232.jpg</image:loc>
+      <image:title>ocomori sauna 内観</image:title>
+    </image:image>
   </url>
 </urlset>

@@ -14,6 +14,14 @@
 <meta name="theme-color" content="#0a0a0a" />
 <meta name="format-detection" content="telephone=no" />
 
+<!-- Geographic targeting -->
+<meta name="geo.region" content="JP-11" />
+<meta name="geo.placename" content="埼玉県秩父郡横瀬町" />
+<meta name="geo.position" content="35.998;139.121" />
+<meta name="ICBM" content="35.998, 139.121" />
+<link rel="alternate" hreflang="ja" href="https://italog.schema.tokyo/" />
+<link rel="alternate" hreflang="x-default" href="https://italog.schema.tokyo/" />
+
 <!-- ============= Open Graph ============= -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ITaLOG SAUNA" />
@@ -113,6 +121,96 @@
       "publisher": {
         "@id": "https://italog.schema.tokyo/#org"
       }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://italog.schema.tokyo/#localbusiness",
+      "name": "TATE Lab.",
+      "description": "埼玉県横瀬町の工房。地域の木材を活用したサウナ小屋ITaLOG SAUNAを製作。CNCルーターによる独自工法で、合板から組み立てるログハウス構造のフィンランド式サウナを提供。",
+      "url": "https://tate-lab.com/",
+      "image": "https://italog.schema.tokyo/assets/img/photos/lr-0216.jpg",
+      "telephone": "",
+      "email": "info@tate-lab.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "",
+        "addressLocality": "横瀬町",
+        "addressRegion": "埼玉県",
+        "postalCode": "368-0072",
+        "addressCountry": "JP"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 35.998,
+        "longitude": 139.121
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "日本"
+      },
+      "priceRange": "¥¥¥"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://italog.schema.tokyo/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ITaLOG SAUNAの価格はいくらですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ストーブなしモデルが¥2,000,000〜、ストーブありモデルが¥2,500,000〜（本体価格）。仕様はオーダーに合わせて変更可能です。設置場所への運搬・組立・基礎工事・電気工事は別途お見積りいたします。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "何人で利用できますか？サイズはどのくらいですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "標準仕様で4〜6人での利用を想定したフィンランド式サウナ小屋です。サウナ室サイズは W1,820 × D1,820 × H1,900 mm。サイズはオーダーに合わせて変更可能です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "個人宅にもサウナ小屋を設置できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、個人邸宅・別荘の屋外スペース等への設置に対応しています。部材は乗用車に積めるサイズに分割可能なため、搬入経路の制約も柔軟に解決できます。プライベートサウナとして自宅・別荘でお楽しみいただけます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "商用利用（宿泊施設・サウナ事業）にも対応していますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "宿泊施設・サウナ事業・ウェルネス施設・福利厚生施設など、商用利用にも対応しています。実例である「ocomori sauna」は埼玉県横瀬町の宿泊施設に導入されています。保健所への届出が必要な業態の場合、設計段階からサポートいたします。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "「常軌を逸した蒸気」とはどういう意味ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "元エンジン開発エンジニアが流体力学を駆使して設計した、独自の蒸気循環構造のことです。ベンチュリー効果で蒸気を加速し、カルマン渦で攪拌、スワール流（旋回流）として室内を満たします。これにより、少量のロウリュ（30cc・大さじ2杯程度）でも蒸気が身体を包み込み、足元まで均一に温まります。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "どこで製作されていますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "埼玉県秩父郡横瀬町の工房「TATE Lab.」で製作しています。地域材の埼玉県産針葉樹合板（スギ・ヒノキ）を使った独自工法で、職人による手作業で組み立てます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "どのような実績や受賞がありますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ウッドデザイン賞 2023 を受賞しました。また、学研『大人の科学マガジン Special』に「流体力学から考えた ocomori sauna」として特集掲載されています。"
+          }
+        }
+      ]
     }
   ]
 }
@@ -317,6 +415,7 @@ tailwind.config = {
       <a href="#spec" class="hover:text-slate-900 transition-colors">仕様</a>
       <a href="#cases" class="hover:text-slate-900 transition-colors">導入事例</a>
       <a href="#process" class="hover:text-slate-900 transition-colors">導入の流れ</a>
+      <a href="#faq" class="hover:text-slate-900 transition-colors">よくあるご質問</a>
       <a href="#contact" class="ml-2 inline-flex items-center justify-center h-9 px-4 text-sm font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">お問い合わせ</a>
     </nav>
     <a href="#contact" class="md:hidden inline-flex items-center justify-center h-9 px-3 text-sm font-medium bg-slate-900 text-white rounded-lg cursor-pointer">お問い合わせ</a>
@@ -645,7 +744,7 @@ tailwind.config = {
         </p>
       </div>
       <div class="rounded-xl overflow-hidden border border-white/10">
-        <img src="assets/img/photos/_dsc1245.jpg" alt="ITaLOG SAUNA の内観 — 流体力学から設計された波形ベンチ" class="w-full h-auto" loading="lazy" />
+        <img src="assets/img/photos/_dsc1245.jpg" alt="ITaLOG SAUNA 内観 — 流体力学で設計された波形ベンチとフィンランド製サウナストーブ。埼玉県産針葉樹合板を使用した国産フィンランド式サウナ小屋。" class="w-full h-auto" loading="lazy" />
       </div>
     </div>
   </div>
@@ -723,7 +822,7 @@ tailwind.config = {
     <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm mb-10">
       <div class="grid lg:grid-cols-2">
         <div class="aspect-[4/3] lg:aspect-auto">
-          <img src="assets/img/photos/_dsc1232.jpg" alt="ocomori sauna の内観 — 波形ベンチとフィンランド製ストーブ" class="w-full h-full object-cover" loading="lazy" />
+          <img src="assets/img/photos/_dsc1232.jpg" alt="ocomori sauna（埼玉県横瀬町の宿泊施設）の内観 — ITaLOG SAUNAによる流体力学設計の波形ベンチとフィンランド製9kWストーブ" class="w-full h-full object-cover" loading="lazy" />
         </div>
         <div class="p-8 lg:p-12 flex flex-col justify-center">
           <p class="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase mb-3">Case 01 — 宿泊施設</p>
@@ -759,9 +858,9 @@ tailwind.config = {
       </div>
       <!-- Sub gallery -->
       <div class="grid grid-cols-3 gap-1 bg-white p-1 border-t border-slate-200">
-        <img src="assets/img/photos/_dsc1245.jpg" alt="ocomori sauna 内観 別アングル" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <img src="assets/img/photos/_dsc1274.jpg" alt="ocomori sauna 入口" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <img src="assets/img/photos/_dsc0600.jpg" alt="ocomori 全景" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <img src="assets/img/photos/_dsc1245.jpg" alt="ocomori sauna 内観の別アングル — 流体力学で設計されたサウナ小屋" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <img src="assets/img/photos/_dsc1274.jpg" alt="ocomori sauna 入口外観 — 横瀬町の宿泊施設" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <img src="assets/img/photos/_dsc0600.jpg" alt="ocomori 宿泊施設全景 — テラス下にITaLOG SAUNAを設置" class="w-full aspect-[4/3] object-cover" loading="lazy" />
       </div>
     </article>
 
@@ -791,13 +890,13 @@ tailwind.config = {
           </dl>
         </div>
         <div class="aspect-[4/3] lg:aspect-auto order-1 lg:order-2">
-          <img src="assets/img/photos/img_4381.jpg" alt="個人邸宅向け ITaLOG SAUNA 内観" class="w-full h-full object-cover" loading="lazy" />
+          <img src="assets/img/photos/img_4381.jpg" alt="個人邸宅向けプライベートサウナ — ITaLOG SAUNA の内観。国産木材を使ったフィンランド式サウナ小屋。" class="w-full h-full object-cover" loading="lazy" />
         </div>
       </div>
       <div class="grid grid-cols-3 gap-1 bg-white p-1 border-t border-slate-200">
-        <img src="assets/img/photos/img_4380.jpg" alt="ITaLOG SAUNA ドア" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <img src="assets/img/photos/img_4382.jpg" alt="ITaLOG SAUNA ストーブ周り" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <img src="assets/img/photos/img_8094.jpg" alt="ITaLOG SAUNA 内装" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <img src="assets/img/photos/img_4380.jpg" alt="ITaLOG SAUNA のドア — 国産ヒノキ無垢材のサウナ室入口" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <img src="assets/img/photos/img_4382.jpg" alt="ITaLOG SAUNA のサウナストーブとロウリュ用桶" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <img src="assets/img/photos/img_8094.jpg" alt="ITaLOG SAUNA の内装 — 国産スギ・ヒノキの無塗装仕上げ、有機サウナ" class="w-full aspect-[4/3] object-cover" loading="lazy" />
       </div>
     </article>
 
@@ -905,6 +1004,90 @@ tailwind.config = {
           <p class="text-sm text-white/75 leading-relaxed">「流体力学から考えた ocomori sauna」として特集掲載。</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FAQ ============= -->
+<section id="faq" class="py-20 lg:py-28 bg-gray-50 border-t border-b border-slate-200">
+  <div class="max-w-4xl mx-auto px-6 lg:px-8">
+    <div class="mb-12">
+      <span class="pill-label mb-6">FAQ</span>
+      <h2 class="text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight">よくあるご質問</h2>
+      <p class="mt-5 text-base lg:text-lg leading-relaxed-jp text-body">
+        ITaLOG SAUNAの価格・仕様・導入に関するよくあるご質問にお答えします。
+      </p>
+    </div>
+    <div class="space-y-3">
+      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+          <span>ITaLOG SAUNAの価格はいくらですか？</span>
+          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+          ストーブなしモデルが¥2,000,000〜、ストーブありモデルが¥2,500,000〜（本体価格）。仕様はオーダーに合わせて変更可能です。設置場所への運搬・組立・基礎工事・電気工事は別途お見積りいたします。
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+          <span>何人で利用できますか？サイズはどのくらいですか？</span>
+          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+          標準仕様で4〜6人での利用を想定したフィンランド式サウナ小屋です。サウナ室サイズは W1,820 × D1,820 × H1,900 mm。サイズはオーダーに合わせて変更可能です。
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+          <span>個人宅にもサウナ小屋を設置できますか？</span>
+          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+          はい、個人邸宅・別荘の屋外スペース等への設置に対応しています。部材は乗用車に積めるサイズに分割可能なため、搬入経路の制約も柔軟に解決できます。プライベートサウナとして自宅・別荘でお楽しみいただけます。
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+          <span>商用利用（宿泊施設・サウナ事業）にも対応していますか？</span>
+          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+          宿泊施設・サウナ事業・ウェルネス施設・福利厚生施設など、商用利用にも対応しています。実例である「ocomori sauna」は埼玉県横瀬町の宿泊施設に導入されています。保健所への届出が必要な業態の場合、設計段階からサポートいたします。
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+          <span>「常軌を逸した蒸気」とはどういう意味ですか？</span>
+          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+          元エンジン開発エンジニアが流体力学を駆使して設計した、独自の蒸気循環構造のことです。ベンチュリー効果で蒸気を加速し、カルマン渦で攪拌、スワール流（旋回流）として室内を満たします。これにより、少量のロウリュ（30cc・大さじ2杯程度）でも蒸気が身体を包み込み、足元まで均一に温まります。
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+          <span>どこで製作されていますか？</span>
+          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+          埼玉県秩父郡横瀬町の工房「<a href="https://tate-lab.com/" target="_blank" rel="noopener" class="underline decoration-slate-400 hover:text-slate-900">TATE Lab.</a>」で製作しています。地域材の埼玉県産針葉樹合板（スギ・ヒノキ）を使った独自工法で、職人による手作業で組み立てます。
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+          <span>どのような実績や受賞がありますか？</span>
+          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+          <strong>ウッドデザイン賞 2023</strong> を受賞しました。また、学研『大人の科学マガジン Special』に「流体力学から考えた ocomori sauna」として特集掲載されています。
+        </div>
+      </details>
     </div>
   </div>
 </section>
