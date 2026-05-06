@@ -393,12 +393,28 @@ tailwind.config = {
     <button onclick="setAreaFilter('新潟')" class="area-chip chip-retro" data-area="新潟">新潟</button>
   </div>
 
+  <!-- Proximity action buttons -->
+  <div class="mb-3 flex flex-wrap items-center gap-2">
+    <button onclick="searchByGPS()" id="btn-gps" class="inline-flex items-center gap-1.5 h-10 px-4 text-sm font-bold bg-bath-dark text-denki-400 border-2 border-bath-dark rounded-full cursor-pointer hover:bg-bath-navy transition-colors" style="box-shadow:3px 3px 0 0 #facc15">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+      現在地から探す
+    </button>
+    <button onclick="searchByQuery()" id="btn-near" class="inline-flex items-center gap-1.5 h-10 px-4 text-sm font-bold bg-soda-500 text-white border-2 border-bath-dark rounded-full cursor-pointer hover:bg-soda-600 transition-colors" style="box-shadow:3px 3px 0 0 #0c1222">
+      🔎 検索ワードの近くを探す
+    </button>
+    <span id="origin-chip" class="hidden inline-flex items-center gap-2 h-10 px-4 text-sm font-bold bg-denki-400 text-bath-dark border-2 border-bath-dark rounded-full" style="box-shadow:3px 3px 0 0 #ff4040">
+      <span id="origin-label">📍</span>
+      <button onclick="clearOrigin()" aria-label="クリア" class="hover:bg-bath-dark hover:text-denki-400 w-5 h-5 inline-flex items-center justify-center rounded-full cursor-pointer">×</button>
+    </span>
+  </div>
+
   <!-- Search + Filters -->
   <div class="bg-white zine-card p-4 mb-6 rounded-lg">
     <div class="flex flex-wrap items-end gap-3">
       <div class="leading-normal flex-1 min-w-[180px]">
-        <input id="search" type="text" placeholder="&#128269; 施設名・駅名・路線・メモで検索..."
-               class="w-full px-3 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-denki-400/50 focus:border-denki-400 caret-denki-500">
+        <input id="search" type="text" placeholder="&#128269; 施設名・駅名・路線で検索...（Enterで近場検索）"
+               class="w-full px-3 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-denki-400/50 focus:border-denki-400 caret-denki-500"
+               onkeydown="if(event.key==='Enter'){event.preventDefault();searchByQuery();}">
       </div>
       <div class="leading-normal">
         <select id="filter-maker" class="appearance-none pl-3 pr-8 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-denki-400/50">
@@ -419,6 +435,7 @@ tailwind.config = {
       <div class="leading-normal">
         <select id="filter-sort" class="appearance-none pl-3 pr-8 h-10 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-denki-400/50">
           <option value="power">パワー順</option>
+          <option value="distance">📍 近い順</option>
           <option value="station">駅名順</option>
           <option value="area">エリア順</option>
           <option value="visited">行った順</option>
@@ -498,7 +515,7 @@ tailwind.config = {
 
 <script>
 const BOLT_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h9l-1 10 10-12h-9l1-10z"/></svg>`;
-let allData = [], map = null, markers = [], currentView = 'list', activeArea = '';
+let allData = [], map = null, markers = [], currentView = 'list', activeArea = '', originMarker = null;
 
 // === Visited (localStorage) ===
 function getVisited() { try{return JSON.parse(localStorage.getItem('denki-visited')||'{}')}catch{return{}} }
@@ -549,6 +566,87 @@ function triggerShock() {
   setTimeout(()=>{overlay.innerHTML='';},800);
 }
 
+// === Proximity search ===
+let originPoint = null; // {lat, lng, label}
+
+function haversineKm(a, b) {
+  const R = 6371;
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const x = Math.sin(dLat/2)**2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(x));
+}
+
+function setOrigin(point) {
+  originPoint = point;
+  const chip = document.getElementById('origin-chip');
+  const label = document.getElementById('origin-label');
+  if (point) {
+    chip.classList.remove('hidden');
+    label.textContent = '📍 ' + point.label + ' から';
+    document.getElementById('filter-sort').value = 'distance';
+    activeArea = '';
+    document.querySelectorAll('.area-chip').forEach(c => c.classList.toggle('active', !c.dataset.area));
+  } else {
+    chip.classList.add('hidden');
+  }
+  applyFilters();
+  // Move map to origin if map view active
+  if (currentView === 'map' && map && point) {
+    map.setView([point.lat, point.lng], 12);
+  }
+}
+
+function clearOrigin() {
+  setOrigin(null);
+  if (originMarker && map) { map.removeLayer(originMarker); originMarker = null; }
+  if (document.getElementById('filter-sort').value === 'distance') {
+    document.getElementById('filter-sort').value = 'power';
+  }
+  applyFilters();
+}
+
+function searchByGPS() {
+  if (!navigator.geolocation) { alert('お使いのブラウザは位置情報に対応していません'); return; }
+  const btn = document.getElementById('btn-gps');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '⏳ 位置情報を取得中...';
+  btn.disabled = true;
+  navigator.geolocation.getCurrentPosition(pos => {
+    btn.innerHTML = orig; btn.disabled = false;
+    setOrigin({ lat: pos.coords.latitude, lng: pos.coords.longitude, label: '現在地' });
+  }, err => {
+    btn.innerHTML = orig; btn.disabled = false;
+    alert('位置情報の取得に失敗しました：' + err.message + '\n\nブラウザの設定で位置情報を許可してください。');
+  }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+}
+
+async function searchByQuery() {
+  const q = document.getElementById('search').value.trim();
+  if (!q) { alert('検索ワードを入力してください（例：船橋駅、池袋、神楽坂）'); return; }
+  const btn = document.getElementById('btn-near');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '⏳ 検索中...';
+  btn.disabled = true;
+  try {
+    // Nominatim (OpenStreetMap) free geocoding
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q + ' Japan')}&format=json&limit=1&countrycodes=jp&accept-language=ja`;
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' }});
+    if (!res.ok) throw new Error('検索サーバーエラー (' + res.status + ')');
+    const data = await res.json();
+    if (data.length === 0) { alert(`「${q}」が見つかりませんでした。\n駅名や地名（例：船橋駅、神楽坂、池袋）を試してみてください。`); return; }
+    const hit = data[0];
+    // Clear search input so keyword filter doesn't exclude all results
+    document.getElementById('search').value = '';
+    setOrigin({ lat: parseFloat(hit.lat), lng: parseFloat(hit.lon), label: q });
+  } catch(e) {
+    alert('検索エラー：' + e.message);
+  } finally {
+    btn.innerHTML = orig; btn.disabled = false;
+  }
+}
+
 // === Power display ===
 function powerBolts(p) {
   const cls = p>=5?'max':'on';
@@ -596,6 +694,7 @@ function renderCard(f) {
       <span class="text-bath-dark/40">&middot;</span>
       <span class="truncate">${f.stationLine}</span>
       ${f.walkMin?`<span class="text-bath-dark/40 font-mono">\u5F92\u6B69${f.walkMin}min</span>`:''}
+      ${f._dist != null ? `<span class="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-denki-100 text-bath-dark border border-bath-dark font-mono text-[11px] font-bold">\uD83D\uDCCD ${f._dist < 10 ? f._dist.toFixed(1) : Math.round(f._dist)}km</span>`:''}
     </div>
     ${f.memo&&f.memo!=='?'?`<p class="text-xs text-bath-dark/80 mt-2 line-clamp-2 leading-relaxed">${f.memo}</p>`:''}
     ${f.type&&f.type!=='?'?`<div class="mt-2 flex flex-wrap gap-1"><span class="bg-denki-100 text-bath-dark border border-bath-dark px-2 py-0.5 rounded-full text-[10px] font-bold label-kana">${f.type}</span></div>`:''}
@@ -680,6 +779,15 @@ function initMap(){
 }
 function updateMapMarkers(data){
   markers.forEach(m=>map.removeLayer(m));markers=[];
+  // Origin marker
+  if (originMarker) { map.removeLayer(originMarker); originMarker = null; }
+  if (originPoint) {
+    const oIcon = L.divIcon({className:'origin-pin',
+      html:`<div style="width:36px;height:36px;border-radius:50%;background:#ff4040;border:4px solid #fff;box-shadow:0 2px 12px rgba(255,64,64,.6),0 0 0 3px #0c1222;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px">\uD83D\uDCCD</div>`,
+      iconSize:[36,36],iconAnchor:[18,18]});
+    originMarker = L.marker([originPoint.lat, originPoint.lng], {icon: oIcon}).addTo(map);
+    originMarker.bindPopup(`<div style="padding:10px 14px;font-weight:700">\uD83D\uDCCD ${originPoint.label}</div>`,{closeButton:false});
+  }
   data.forEach(f=>{
     const color=f.power>=5?'#ef4444':f.power>=4?'#f59e0b':'#6b7280';
     const visited=isVisited(f.id);
@@ -687,15 +795,29 @@ function updateMapMarkers(data){
       html:`<div style="width:30px;height:30px;border-radius:50%;background:${visited?'#facc15':color};border:3px solid ${visited?'#92400e':'white'};box-shadow:0 2px 8px rgba(0,0,0,.3)${visited?',0 0 8px rgba(250,204,21,.5)':''};display:flex;align-items:center;justify-content:center;color:${visited?'#0c1222':'white'};font-size:12px;font-weight:bold">${f.power}</div>`,
       iconSize:[30,30],iconAnchor:[15,15]});
     const m=L.marker([f.lat,f.lng],{icon}).addTo(map);
+    const distLabel = f._dist != null ? `<div style="font-size:11px;color:#0c1222;background:#fef3c7;border:1px solid #0c1222;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px;font-weight:700">\uD83D\uDCCD ${f._dist < 10 ? f._dist.toFixed(1) : Math.round(f._dist)}km</div>` : '';
     m.bindPopup(`<div style="padding:12px;font-family:Inter,sans-serif">
       <div style="font-weight:700;font-size:14px;margin-bottom:4px">${f.name}</div>
       <div style="font-size:12px;color:#64748b;margin-bottom:4px">${f.station}\uFF08${f.stationLine}\uFF09</div>
+      ${distLabel}
       <div style="margin-bottom:8px">${'\u26A1'.repeat(f.power)} <span style="font-size:11px;color:${f.power>=5?'#ef4444':'#64748b'}">${f.power>=5?'\u6700\u5F37':f.power>=4?'\u5F37\u3081':'\u666E\u901A'}</span></div>
       <button onclick="openModal(${f.id})" style="background:#0c1222;color:#facc15;border:none;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">\u26A1 \u8A73\u7D30</button>
     </div>`,{closeButton:false});
     markers.push(m);
   });
-  if(data.length>0){map.fitBounds(L.latLngBounds(data.map(f=>[f.lat,f.lng])),{padding:[30,30]});}
+  // Fit bounds: include origin if set, otherwise just facilities
+  const points = data.map(f => [f.lat, f.lng]);
+  if (originPoint) points.push([originPoint.lat, originPoint.lng]);
+  if (points.length > 0) {
+    if (originPoint && data.length >= 1) {
+      // Fit to top 5 nearest + origin to keep zoom usable
+      const nearest = data.slice(0, 5).map(f => [f.lat, f.lng]);
+      nearest.push([originPoint.lat, originPoint.lng]);
+      map.fitBounds(L.latLngBounds(nearest), { padding: [40, 40] });
+    } else {
+      map.fitBounds(L.latLngBounds(points), { padding: [30, 30] });
+    }
+  }
 }
 
 function switchView(view){
@@ -733,7 +855,16 @@ function getFiltered(){
     return true;
   });
   const visited=getVisited();
+
+  // Compute distance if origin set
+  if (originPoint) {
+    filtered.forEach(f => { f._dist = haversineKm(originPoint, {lat: f.lat, lng: f.lng}); });
+  } else {
+    filtered.forEach(f => { delete f._dist; });
+  }
+
   filtered.sort((a,b)=>{
+    if(sort==='distance' && originPoint) return (a._dist||999) - (b._dist||999);
     if(sort==='power')return b.power-a.power;
     if(sort==='station')return a.station.localeCompare(b.station,'ja');
     if(sort==='area')return a.address.localeCompare(b.address,'ja');
