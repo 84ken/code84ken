@@ -752,15 +752,19 @@ function openModal(id) {
 
       <div id="modal-map" style="height:180px;border-radius:8px" class="border border-slate-200 mb-4"></div>
 
-      <div class="flex gap-3">
+      <div class="flex gap-3 flex-wrap">
         <button onclick="toggleVisited(${f.id})" id="btn-visited-${f.id}"
-                class="flex-1 inline-flex items-center justify-center gap-2 h-12 px-6 text-base font-bold rounded-lg cursor-pointer transition-all ${visited
+                class="flex-1 min-w-[180px] inline-flex items-center justify-center gap-2 h-12 px-6 text-base font-bold rounded-lg cursor-pointer transition-all ${visited
                   ?'bg-denki-400 text-bath-dark hover:bg-denki-500 shadow-md shadow-denki-400/30'
                   :'bg-bath-dark text-denki-400 border-2 border-denki-400/50 hover:bg-bath-navy hover:border-denki-400'}">
           ${visited?'\u26A1 \u30D3\u30EA\u30D3\u30EA\u6E08\u307F!':'\u26A1 \u884C\u3063\u305F\u3053\u3068\u3042\u308B\uFF01'}
         </button>
+        <a href="./facility/${f.id}.html"
+           class="inline-flex items-center justify-center gap-2 h-12 px-4 text-sm font-bold bg-soda-500 text-white rounded-lg hover:bg-soda-600 cursor-pointer border-2 border-bath-dark">
+          \uD83D\uDCC4 \u8A73\u7D30\u30DA\u30FC\u30B8
+        </a>
         <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.name+' '+f.address)}" target="_blank" rel="noopener"
-           class="inline-flex items-center justify-center gap-2 h-12 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">Maps</a>
+           class="inline-flex items-center justify-center gap-2 h-12 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">\uD83D\uDDFA Maps</a>
       </div>
     </div>`;
   document.getElementById('modal-overlay').classList.remove('hidden');
