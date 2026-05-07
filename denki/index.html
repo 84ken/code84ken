@@ -444,6 +444,9 @@ tailwind.config = {
       <label class="inline-flex items-center gap-2 h-10 px-3 text-sm border border-slate-200 rounded-lg cursor-pointer hover:bg-denki-50 hover:border-denki-300 transition-colors">
         <input type="checkbox" id="filter-visited" class="accent-denki-500"> 行った
       </label>
+      <label class="inline-flex items-center gap-2 h-10 px-3 text-sm border border-slate-200 rounded-lg cursor-pointer hover:bg-stamp-red/10 hover:border-stamp-red transition-colors" title="デフォルトでは閉店・休業も表示。OFFで営業中のみ">
+        <input type="checkbox" id="filter-active-only" class="accent-stamp-red"> 営業中のみ
+      </label>
     </div>
   </div>
 
@@ -666,12 +669,23 @@ function renderCard(f) {
   const makerShort = (f.maker && f.maker !== '?' && f.maker !== '不明')
     ? (f.maker.includes('小西')?'KONISHI':f.maker.includes('坂田')?'SAKATA':f.maker.includes('水野')?'MIZUNO':'MIX')
     : '';
+  const isClosed = f.status === '閉店';
+  const isHiatus = f.status === '休業中';
+  const isMaybeClosed = f.status === '閉店の可能性';
+  const stateBadge = isClosed
+    ? `<span class="stamp text-white" style="background:#0c1222;border-color:#0c1222;transform:rotate(-3deg)">CLOSED ✕</span>`
+    : isHiatus
+    ? `<span class="stamp text-bath-dark" style="background:#fef3c7;border-color:#0c1222;transform:rotate(-3deg)">休業中</span>`
+    : isMaybeClosed
+    ? `<span class="stamp text-stamp-red" style="background:#fff;border-color:#ff4040;transform:rotate(-3deg)">閉店の可能性？</span>`
+    : '';
+  const dimmed = isClosed ? 'opacity-60 grayscale' : '';
   return `
-  <div class="relative zine-card rounded-lg p-5 cursor-pointer ${visited?'visited':''}"
+  <div class="relative zine-card rounded-lg p-5 cursor-pointer ${visited?'visited':''} ${dimmed}"
        onclick="openModal(${f.id})">
     ${visited?`<div class="visited-stamp">
       <span class="stamp text-stamp-red bg-white" style="transform:rotate(8deg)">&#9889; 行った!</span>
-    </div>`:''}
+    </div>`:stateBadge?`<div class="visited-stamp">${stateBadge}</div>`:''}
     <div class="flex items-start justify-between mb-3 gap-3">
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-1.5 mb-1 text-[10px] font-mono text-soda-600">
@@ -846,12 +860,14 @@ function getFiltered(){
   const power=document.getElementById('filter-power').value;
   const sort=document.getElementById('filter-sort').value;
   const onlyVisited=document.getElementById('filter-visited').checked;
+  const activeOnly=document.getElementById('filter-active-only').checked;
   let filtered=allData.filter(f=>{
     if(activeArea){if(!f.area.includes(activeArea)&&!f.ward.includes(activeArea)&&!f.address.includes(activeArea))return false;}
     if(keyword){const s=`${f.name} ${f.address} ${f.station} ${f.stationLine} ${f.ward} ${f.memo||''} ${f.maker||''}`.toLowerCase();if(!s.includes(keyword))return false;}
     if(maker){if(!f.maker||!f.maker.includes(maker))return false;}
     if(power&&f.power<parseInt(power))return false;
     if(onlyVisited&&!isVisited(f.id))return false;
+    if(activeOnly&&f.status!=='営業中')return false;
     return true;
   });
   const visited=getVisited();
@@ -946,6 +962,7 @@ document.getElementById('filter-maker').addEventListener('change',applyFilters);
 document.getElementById('filter-power').addEventListener('change',applyFilters);
 document.getElementById('filter-sort').addEventListener('change',applyFilters);
 document.getElementById('filter-visited').addEventListener('change',applyFilters);
+document.getElementById('filter-active-only').addEventListener('change',applyFilters);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 init();
 </script>
