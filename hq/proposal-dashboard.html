@@ -61,7 +61,7 @@ tailwind.config = {
       <p class="text-body mt-1 text-sm">株式会社スキーマ — 令和8年度 案件一覧・確度分析</p>
     </div>
     <div class="sm:text-right">
-      <p class="text-sm text-slate-500">最終更新: 2026年4月14日</p>
+      <p class="text-sm text-slate-500">最終更新: 2026年4月30日</p>
       <p class="text-sm text-slate-500">CONFIDENTIAL</p>
     </div>
   </div>
@@ -78,13 +78,14 @@ tailwind.config = {
       <p class="text-xs text-emerald-600 font-semibold mt-1">¥88,412,360</p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
-      <p class="text-xs sm:text-sm text-slate-500 mb-1">提案中</p>
-      <p class="text-2xl sm:text-3xl font-bold text-primary-600">5<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
-      <p class="text-xs text-slate-400 mt-1">＋予定1件（サーキュラー）</p>
+      <p class="text-xs sm:text-sm text-slate-500 mb-1">提案中（公示待ち）</p>
+      <p class="text-2xl sm:text-3xl font-bold text-primary-600">1<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
+      <p class="text-xs text-slate-400 mt-1">サーキュラーのみ</p>
     </div>
-    <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
-      <p class="text-xs sm:text-sm text-slate-500 mb-1">失注</p>
-      <p class="text-2xl sm:text-3xl font-bold text-slate-400">4<span class="text-base sm:text-lg font-medium text-slate-400 ml-1">件</span></p>
+    <div class="bg-red-50 rounded-xl border-2 border-red-200 p-4 sm:p-6 shadow-sm">
+      <p class="text-xs sm:text-sm text-red-700 font-medium mb-1">失注</p>
+      <p class="text-2xl sm:text-3xl font-bold text-red-600">10<span class="text-base sm:text-lg font-medium text-red-400 ml-1">件</span></p>
+      <p class="text-xs text-red-500 mt-1">+6件（4月末）</p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">受注ヨミ（確度 高＋中）</p>
@@ -102,10 +103,10 @@ tailwind.config = {
       受注 <span class="bg-emerald-100 px-1.5 py-0.5 rounded text-xs">6</span>
     </button>
     <button onclick="filterStatus('提案中')" data-filter="提案中" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-700 border border-slate-200 hover:bg-gray-50 cursor-pointer">
-      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">7</span>
+      提案中 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">1</span>
     </button>
     <button onclick="filterStatus('失注')" data-filter="失注" class="filter-tab inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-white text-slate-500 border border-slate-200 hover:bg-gray-50 cursor-pointer">
-      失注 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">4</span>
+      失注 <span class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">10</span>
     </button>
   </div>
 
@@ -160,22 +161,22 @@ tailwind.config = {
           </div>
         </div>
       </div>
-      <!-- 低 -->
-      <div class="rounded-lg border-2 border-red-200 bg-red-50/50 p-4 sm:p-5">
+      <!-- 低（全失注） -->
+      <div class="rounded-lg border-2 border-slate-200 bg-slate-50 p-4 sm:p-5 opacity-70">
         <div class="flex items-center gap-2 mb-4">
-          <span class="w-3 h-3 rounded-full bg-red-400"></span>
-          <span class="text-sm font-bold text-red-800">確度 低</span>
-          <span class="ml-auto text-2xl font-bold text-red-600">6件</span>
+          <span class="w-3 h-3 rounded-full bg-slate-400"></span>
+          <span class="text-sm font-bold text-slate-700">確度 低 → 全件失注</span>
+          <span class="ml-auto text-2xl font-bold text-slate-500">0件</span>
         </div>
         <div class="space-y-2 text-sm">
-          <div class="flex justify-between"><span class="text-red-800">農産物ブランド化支援</span><span class="font-medium">¥9,900,000</span></div>
-          <div class="flex justify-between"><span class="text-red-800">ねんりんピック eスポーツ（JV）</span><span class="font-medium">¥9,900,000</span></div>
-          <div class="flex justify-between"><span class="text-red-800">花プロモーション</span><span class="font-medium">¥7,139,000</span></div>
-          <div class="flex justify-between"><span class="text-red-800">若者の出会い・結婚支援 情報発信</span><span class="font-medium">¥4,950,000</span></div>
-          <div class="flex justify-between"><span class="text-red-800">梨新品種ブランディング</span><span class="font-medium">¥3,470,000</span></div>
-          <div class="flex justify-between"><span class="text-red-800">わっしょいInstagram運用</span><span class="font-medium">¥1,980,000</span></div>
-          <div class="border-t border-red-200 pt-2 mt-3 flex justify-between font-bold text-red-900">
-            <span>小計</span><span>¥37,339,000</span>
+          <div class="flex justify-between text-slate-500 line-through"><span>農産物ブランド化支援</span><span>¥9,900,000</span></div>
+          <div class="flex justify-between text-slate-500 line-through"><span>ねんりんピック eスポーツ（JV）</span><span>¥9,900,000</span></div>
+          <div class="flex justify-between text-slate-500 line-through"><span>花プロモーション</span><span>¥7,139,000</span></div>
+          <div class="flex justify-between text-slate-500 line-through"><span>若者の出会い・結婚支援</span><span>¥4,950,000</span></div>
+          <div class="flex justify-between text-slate-500 line-through"><span>梨新品種ブランディング</span><span>¥3,470,000</span></div>
+          <div class="flex justify-between text-slate-500 line-through"><span>わっしょいInstagram運用</span><span>¥1,980,000</span></div>
+          <div class="border-t border-slate-200 pt-2 mt-3 flex justify-between font-bold text-slate-600">
+            <span>失注額合計</span><span>¥37,339,000</span>
           </div>
         </div>
       </div>
@@ -261,54 +262,70 @@ tailwind.config = {
         </div>
       </div>
 
-      <!-- 低確度グループ -->
+      <!-- 失注分析（4月末追加6件） -->
       <div>
         <div class="flex items-center gap-2 mb-3">
-          <span class="w-3 h-3 rounded-full bg-red-400"></span>
-          <h3 class="font-bold text-slate-900">確度 低（6件）— 農林部・観光課・福祉部・新規</h3>
+          <span class="w-3 h-3 rounded-full bg-red-500"></span>
+          <h3 class="font-bold text-slate-900">4月末新規失注（6件 / ¥37.3M）— 提案中案件は全件失注</h3>
         </div>
         <div class="bg-red-50 rounded-lg p-4 space-y-3 text-sm text-body">
-          <div>
-            <p class="font-medium text-emerald-700">観光客誘致・戦略的情報発信（¥39,600,000）→ <strong>受注確定</strong></p>
-            <p>前年度担当案件の継続提案。12LP更新＋動画5本制作＋ターゲティング広告。DMO発注。4/10プレゼン実施→受注決定。DMO案件の連続失注を覆した。受注確定額が¥83.9Mに拡大。</p>
+          <div class="rounded-lg bg-white border border-red-200 p-3">
+            <p class="font-medium text-red-800 mb-1">所見：AI活用資料制作の前面化が連敗の共通要因</p>
+            <p>農林部3件＋福祉部こども政策課＋ねんりんピック＋花プロモのいずれも、<strong>AIを活用した資料制作・運用効率化</strong>を提案訴求の柱に置いた。書類段階・プレゼン段階で連続して落ちた事実から、現場との関係性が問われる行政分野では「ツールに頼っている」と見られるリスクがある可能性が高い。</p>
           </div>
           <div>
-            <p class="font-medium text-slate-500 line-through">埼玉観光サポートサイト・SNS運営（¥17,617,000）— 失注</p>
-            <p>ちょこたび埼玉のサポートサイト・SNS運営業務。DMO発注。3/27プレゼン実施→失注。DMO案件はちょこたびSNS・グルメPJに続き3件連続失注。</p>
+            <p class="font-medium text-slate-500 line-through">農産物ブランド化支援（¥9,900,000）— 農林部</p>
+            <p>4/28書類落ち。重点品目（梨・ぶどう・小玉すいか）のブランディング。実績の薄い分野でAI訴求を前面に出した提案構成が効かなかった。</p>
           </div>
           <div>
-            <p class="font-medium text-slate-900">農産物ブランド化支援（¥9,900,000）/ 梨新品種ブランディング（¥3,470,000）/ わっしょいInstagram（¥1,980,000）</p>
-            <p>農林部発注の新規案件。提出4/21（農産物・梨）/ 4/17（わっしょい）、プレゼン4月下旬〜5月上旬。</p>
+            <p class="font-medium text-slate-500 line-through">ねんりんピック eスポーツ企画運営（¥9,900,000）— 福祉部</p>
+            <p>イナズマ社とのJV。1次5/7→2次5/13の予定だったが失注確定。eスポーツ実績の薄さと大手企画会社との競合が主因と推察。</p>
           </div>
           <div>
-            <p class="font-medium text-slate-900">埼玉の「花」観光誘客プロモーション（¥7,139,000）</p>
-            <p>観光課（DMO支援・観光振興担当）発注の新規案件。フォトキャンペーン・特設サイト・WEB/SNS広告・イベント企画。参加希望書4/20、提出4/22、プレゼン4/30 Teams。結果5月中旬。</p>
+            <p class="font-medium text-slate-500 line-through">埼玉の「花」観光誘客プロモーション（¥7,139,000）— 産業労働部観光課</p>
+            <p>4/30 Teamsプレゼン後失注。観光客誘致を勝ち取った観光部門での連勝を狙ったが、フォトキャンペーン＋特設サイト＋SNS広告の総合提案で勝ちきれず。</p>
           </div>
           <div>
-            <p class="font-medium text-slate-900">若者の出会い・結婚支援 情報発信（¥4,950,000）</p>
-            <p>福祉部こども政策課発注の新規案件。インターネット広告＋LP制作で出会い・結婚への関心を引き出す情報発信。提出4/15、プレゼン4/28 Teams。委託期間 R8.5.11〜R9.3.31。</p>
+            <p class="font-medium text-slate-500 line-through">若者の出会い・結婚支援 情報発信（¥4,950,000）— 福祉部こども政策課</p>
+            <p>4/28書類落ち。インターネット広告＋LP制作の組み合わせ提案。新規部門での実績不足が露呈。</p>
+          </div>
+          <div>
+            <p class="font-medium text-slate-500 line-through">梨新品種ブランディング（¥3,470,000）— 農林部</p>
+            <p>4/28書類落ち。彩姫・彩彦・彩玉のブランド戦略提案。農林部チャネル開拓は3件中3件失注。</p>
+          </div>
+          <div>
+            <p class="font-medium text-slate-500 line-through">埼玉わっしょいInstagram運用（¥1,980,000）— 農林部</p>
+            <p>書類は通過したがプレゼン後失注。農林部での実績作りには至らず。</p>
           </div>
         </div>
       </div>
 
-      <!-- 失注分析 -->
+      <!-- 失注分析（既存） -->
       <div>
         <div class="flex items-center gap-2 mb-3">
           <span class="w-3 h-3 rounded-full bg-slate-400"></span>
-          <h3 class="font-bold text-slate-900">失注分析（4件）— 振り返り</h3>
+          <h3 class="font-bold text-slate-900">既存失注分析（4件）— DMO案件3敗 + 公式アカウント</h3>
         </div>
         <div class="bg-gray-50 rounded-lg p-4 space-y-3 text-sm text-body">
           <div>
+            <p class="font-medium text-emerald-700">観光客誘致・戦略的情報発信（¥39,600,000）→ <strong>受注確定</strong></p>
+            <p>前年度担当案件の継続提案。12LP更新＋動画5本制作＋ターゲティング広告。DMO発注。4/10プレゼン実施→受注決定。DMO案件の連続失注を覆した唯一の例外。</p>
+          </div>
+          <div>
+            <p class="font-medium text-slate-500">埼玉観光サポートサイト・SNS運営（¥17,617,000）— DMO発注</p>
+            <p>ちょこたび埼玉のサポートサイト・SNS運営業務。3/27プレゼン実施→失注。</p>
+          </div>
+          <div>
             <p class="font-medium text-slate-500">埼玉グルメプロジェクト（¥47,730,000）— DMO事業本部発注</p>
-            <p>予算¥4,773万の大型案件。3/23プレゼン実施→3/24失注確定。DMO発注案件2戦2敗（ちょこたびSNS・グルメPJ）。大手広告代理店との競合が主因か。</p>
+            <p>予算¥4,773万の大型案件。3/23プレゼン実施→3/24失注確定。大手広告代理店との競合が主因か。</p>
           </div>
           <div>
             <p class="font-medium text-slate-500">ちょこたび埼玉 SNS情報発信（DMO発注）</p>
-            <p>EmpaC社との共同提案で、前年度実績は7KPI中5項目を大幅達成（Instagram +208%、Facebook +2488%）と好成績。にもかかわらず失注 → <strong>価格競争 or 発注元の方針転換</strong>の可能性。DMO案件の不確実性を示唆。</p>
+            <p>EmpaC社との共同提案で、前年度実績は7KPI中5項目を大幅達成（Instagram +208%、Facebook +2488%）と好成績。にもかかわらず失注 → <strong>価格競争 or 発注元の方針転換</strong>の可能性。</p>
           </div>
           <div>
             <p class="font-medium text-slate-500">Instagram埼玉県公式アカウント運用（広聴広報課発注）</p>
-            <p>EmpaC社が主提案者（スキーマ向け）。予算¥290万と小規模。参加資格に「過去3年間に国・地方公共団体との公式アカウント運用実績」が必須 → 資格要件は満たしているはずだが、<strong>小規模案件ゆえの価格優先選定</strong>の可能性。</p>
+            <p>EmpaC社が主提案者（スキーマ向け）。予算¥290万と小規模ゆえの価格優先選定の可能性。</p>
           </div>
         </div>
       </div>
@@ -317,10 +334,10 @@ tailwind.config = {
 
   <!-- タイムライン -->
   <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm mb-8 sm:mb-10">
-    <h2 class="text-lg font-bold text-slate-900 mb-4 sm:mb-6">審査スケジュール（4月以降）</h2>
+    <h2 class="text-lg font-bold text-slate-900 mb-4 sm:mb-6">審査結果（4月末確定）</h2>
 
     <div>
-      <h3 class="font-bold text-slate-900 mb-4">提案中 6案件</h3>
+      <h3 class="font-bold text-slate-900 mb-4">提案7案件の最終結果</h3>
       <div class="space-y-3 text-sm">
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
           <span class="w-full sm:w-40 sm:text-right text-body font-medium">観光客誘致</span>
@@ -330,47 +347,50 @@ tailwind.config = {
           </div>
         </div>
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-          <span class="w-full sm:w-40 sm:text-right text-body font-medium">わっしょいIG</span>
+          <span class="w-full sm:w-40 sm:text-right text-slate-400 font-medium line-through">わっしょいIG</span>
           <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
-            <div class="absolute left-0 h-6 bg-amber-200 rounded-full bar-fill" style="width:28%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2 whitespace-nowrap">提出 4/17 → プレゼン 4月下旬〜5月上旬</span>
+            <div class="absolute left-0 h-6 bg-slate-300 rounded-full bar-fill" style="width:100%"></div>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-slate-600 px-2 whitespace-nowrap">✗ 失注（書類通過後プレゼンで敗退）</span>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-          <span class="w-full sm:w-40 sm:text-right text-body font-medium">農産物ブランド化</span>
+          <span class="w-full sm:w-40 sm:text-right text-slate-400 font-medium line-through">農産物ブランド化</span>
           <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
-            <div class="absolute left-0 h-6 bg-amber-200 rounded-full bar-fill" style="width:30%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2 whitespace-nowrap">提出 4/21 → プレゼン 4月下旬〜5月上旬</span>
+            <div class="absolute left-0 h-6 bg-slate-300 rounded-full bar-fill" style="width:100%"></div>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-slate-600 px-2 whitespace-nowrap">✗ 失注（4/28 書類落ち）</span>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-          <span class="w-full sm:w-40 sm:text-right text-body font-medium">梨ブランディング</span>
+          <span class="w-full sm:w-40 sm:text-right text-slate-400 font-medium line-through">梨ブランディング</span>
           <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
-            <div class="absolute left-0 h-6 bg-amber-200 rounded-full bar-fill" style="width:30%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-amber-800 px-2 whitespace-nowrap">提出 4/21 → プレゼン 4月下旬〜5月上旬</span>
+            <div class="absolute left-0 h-6 bg-slate-300 rounded-full bar-fill" style="width:100%"></div>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-slate-600 px-2 whitespace-nowrap">✗ 失注（4/28 書類落ち）</span>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-          <span class="w-full sm:w-40 sm:text-right text-body font-medium">ねんりんeスポーツ</span>
+          <span class="w-full sm:w-40 sm:text-right text-slate-400 font-medium line-through">ねんりんeスポーツ</span>
           <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
-            <div class="absolute left-0 h-6 bg-violet-200 rounded-full bar-fill" style="width:20%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-violet-800 px-2 whitespace-nowrap">提出 4/23 → 1次 5/7 → 2次 5/13 → 結果 5月中旬</span>
+            <div class="absolute left-0 h-6 bg-slate-300 rounded-full bar-fill" style="width:100%"></div>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-slate-600 px-2 whitespace-nowrap">✗ 失注（JV：イナズマ社）</span>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-          <span class="w-full sm:w-40 sm:text-right text-body font-medium">若者出会い支援</span>
+          <span class="w-full sm:w-40 sm:text-right text-slate-400 font-medium line-through">若者出会い支援</span>
           <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
-            <div class="absolute left-0 h-6 bg-rose-200 rounded-full bar-fill" style="width:22%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-rose-800 px-2 whitespace-nowrap">提出 4/15 → プレゼン 4/28 Teams（委託 5/11〜）</span>
+            <div class="absolute left-0 h-6 bg-slate-300 rounded-full bar-fill" style="width:100%"></div>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-slate-600 px-2 whitespace-nowrap">✗ 失注（4/28 書類落ち）</span>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-          <span class="w-full sm:w-40 sm:text-right text-body font-medium">花プロモーション</span>
+          <span class="w-full sm:w-40 sm:text-right text-slate-400 font-medium line-through">花プロモーション</span>
           <div class="flex-1 bg-slate-100 rounded-full h-6 relative overflow-hidden">
-            <div class="absolute left-0 h-6 bg-pink-200 rounded-full bar-fill" style="width:15%"></div>
-            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-pink-800 px-2 whitespace-nowrap">希望書 4/20 → 提出 4/22 → プレゼン 4/30 Teams → 結果 5月中旬</span>
+            <div class="absolute left-0 h-6 bg-slate-300 rounded-full bar-fill" style="width:100%"></div>
+            <span class="absolute right-[2%] top-0 h-6 flex items-center text-xs font-medium text-slate-600 px-2 whitespace-nowrap">✗ 失注（4/30 Teamsプレゼン後）</span>
           </div>
         </div>
+      </div>
+      <div class="mt-4 rounded-lg bg-slate-50 border border-slate-200 p-3 text-xs text-body">
+        <p><strong>結果サマリー:</strong> 提案7案件中、観光客誘致¥39.6Mの1件のみ受注。残り6件は全件失注。受注率 1/7（14%）。</p>
       </div>
     </div>
   </div>
@@ -502,99 +522,99 @@ tailwind.config = {
             <td class="py-2.5 px-3 text-center"><span class="text-xs text-red-400">失注</span></td>
           </tr>
 
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">わっしょいInstagram</td>
+          <tr class="hover:bg-gray-50 transition-colors opacity-60">
+            <td class="py-2.5 px-4 text-sm text-slate-500 line-through">わっしょいInstagram</td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/6 17時</span>
+              <span class="text-xs text-slate-400">✓ 4/6 済</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/17 17時</span>
+              <span class="text-xs text-slate-400">✓ 4/17 済</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4月下旬〜5月上旬</span>
+              <span class="text-xs text-slate-400">✓ 書類通過</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-slate-400">5月上・中旬</span>
-            </td>
-          </tr>
-
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">農産物ブランド化支援</td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/7 17時</span>
-            </td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/21 17時</span>
-            </td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4月下旬〜5月上旬</span>
-            </td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-slate-400">5月上・中旬</span>
+              <span class="text-xs text-red-400">失注</span>
             </td>
           </tr>
 
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">梨新品種ブランディング</td>
+          <tr class="hover:bg-gray-50 transition-colors opacity-60">
+            <td class="py-2.5 px-4 text-sm text-slate-500 line-through">農産物ブランド化支援</td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/7 17時</span>
+              <span class="text-xs text-slate-400">✓ 4/7 済</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/21 17時</span>
+              <span class="text-xs text-slate-400">✓ 4/21 済</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4月下旬〜5月上旬</span>
+              <span class="text-xs text-red-400">書類落ち</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-slate-400">5月上・中旬</span>
-            </td>
-          </tr>
-
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">ねんりんピック eスポーツ</td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">—</span>
-            </td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/23 17時</span>
-            </td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">1次 5/7 → 2次 5/13</span>
-            </td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-slate-400">5月中旬</span>
+              <span class="text-xs text-red-400">失注（4/28）</span>
             </td>
           </tr>
 
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">若者出会い・結婚支援</td>
+          <tr class="hover:bg-gray-50 transition-colors opacity-60">
+            <td class="py-2.5 px-4 text-sm text-slate-500 line-through">梨新品種ブランディング</td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">—</span>
+              <span class="text-xs text-slate-400">✓ 4/7 済</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-amber-700 font-medium bg-amber-100 px-2 py-0.5 rounded">4/15</span>
+              <span class="text-xs text-slate-400">✓ 4/21 済</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/28 Teams</span>
+              <span class="text-xs text-red-400">書類落ち</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-slate-400">委託 5/11〜</span>
+              <span class="text-xs text-red-400">失注（4/28）</span>
             </td>
           </tr>
 
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="py-2.5 px-4 text-sm font-medium text-slate-900">花プロモーション</td>
+          <tr class="hover:bg-gray-50 transition-colors opacity-60">
+            <td class="py-2.5 px-4 text-sm text-slate-500 line-through">ねんりんピック eスポーツ</td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/20 15時</span>
+              <span class="text-xs text-slate-400">—</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/22 15時</span>
+              <span class="text-xs text-slate-400">✓ 4/23 済</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="inline-flex items-center gap-1 text-xs text-slate-700 font-medium bg-slate-100 px-2 py-0.5 rounded">4/30 Teams</span>
+              <span class="text-xs text-slate-400">1次5/7→2次5/13</span>
             </td>
             <td class="py-2.5 px-3 text-center">
-              <span class="text-xs text-slate-400">5月中旬</span>
+              <span class="text-xs text-red-400">失注</span>
+            </td>
+          </tr>
+
+          <tr class="hover:bg-gray-50 transition-colors opacity-60">
+            <td class="py-2.5 px-4 text-sm text-slate-500 line-through">若者出会い・結婚支援</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">—</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">✓ 4/15 済</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-red-400">書類落ち</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-red-400">失注（4/28）</span>
+            </td>
+          </tr>
+
+          <tr class="hover:bg-gray-50 transition-colors opacity-60">
+            <td class="py-2.5 px-4 text-sm text-slate-500 line-through">花プロモーション</td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">✓ 4/20 済</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">✓ 4/22 済</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-slate-400">✓ 4/30 済</span>
+            </td>
+            <td class="py-2.5 px-3 text-center">
+              <span class="text-xs text-red-400">失注</span>
             </td>
           </tr>
 
@@ -683,29 +703,23 @@ tailwind.config = {
             </tr>
           </thead>
           <tbody class="text-sm">
-            <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
-              <td class="py-3 px-4 font-medium text-emerald-700">ベスト（全勝）</td>
-              <td class="py-3 px-4 text-right font-bold text-emerald-700">¥129.8M</td>
-              <td class="py-3 px-4 text-right text-emerald-600 text-xs">計画の118%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定6件 + 確度中1件 + 確度低6件（花プロモ含む）</td>
-            </tr>
-            <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 bg-primary-50/30">
-              <td class="py-3 px-4 font-medium text-primary-700">想定（確定＋中）</td>
-              <td class="py-3 px-4 text-right font-bold text-primary-700">¥92.4M</td>
-              <td class="py-3 px-4 text-right text-primary-600 text-xs">計画の84%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定6件（¥88.4M）+ 確度中1件（¥4.0M）</td>
-            </tr>
-            <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
-              <td class="py-3 px-4 font-medium text-amber-700">堅実（確定のみ）</td>
+            <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 bg-amber-50/30">
+              <td class="py-3 px-4 font-medium text-amber-700">確定（4月末）</td>
               <td class="py-3 px-4 text-right font-bold text-amber-700">¥88.4M</td>
               <td class="py-3 px-4 text-right text-amber-600 text-xs">計画の80%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定6件のみ</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定6件（観光客誘致¥39.6M含む）</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 bg-primary-50/30">
+              <td class="py-3 px-4 font-medium text-primary-700">想定（確定＋サーキュラー）</td>
+              <td class="py-3 px-4 text-right font-bold text-primary-700">¥92.4M</td>
+              <td class="py-3 px-4 text-right text-primary-600 text-xs">計画の84%</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定6件（¥88.4M）+ サーキュラー予定（〜¥4.0M）</td>
             </tr>
             <tr class="hover:bg-gray-50 transition-colors">
-              <td class="py-3 px-4 font-medium text-red-700">リスク</td>
-              <td class="py-3 px-4 text-right font-bold text-red-700">¥88.4M</td>
-              <td class="py-3 px-4 text-right text-red-600 text-xs">計画の80%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">堅実と同じ（確度高が0件のため）</td>
+              <td class="py-3 px-4 font-medium text-slate-500 line-through">ベストシナリオ（旧）</td>
+              <td class="py-3 px-4 text-right font-bold text-slate-400 line-through">¥129.8M</td>
+              <td class="py-3 px-4 text-right text-slate-400 text-xs">— 提案中6件全件失注</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell text-slate-400">¥37.3M分（農林部・ねんりん・花・出会い）が消失</td>
             </tr>
           </tbody>
         </table>
@@ -716,36 +730,36 @@ tailwind.config = {
     <h3 class="text-sm font-bold text-slate-900 mb-4">令和8年度 行政案件 目標設定</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
       <div class="rounded-lg border border-primary-200 bg-primary-50/30 p-4 sm:p-5">
-        <p class="text-sm font-bold text-primary-900 mb-3">受注目標</p>
+        <p class="text-sm font-bold text-primary-900 mb-3">受注実績（確定）</p>
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>必達ライン: ¥92M（想定シナリオ）</strong><br>受注確定6件 + 確度中1件。</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0"></span>
+            <span><strong>確定: ¥88.4M</strong>（受注6件 / 計画の80%）</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>挑戦ライン: ¥130M（ベストシナリオ）</strong><br>提案中全案件受注。</span>
+            <span><strong>サーキュラー上乗せで最大 ¥92.4M</strong>（計画の84%）</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>受注件数: 現在6件確定</strong>（残り提案中5件＋予定1件）</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
+            <span><strong>失注10件 / ¥97.0M超</strong> — 提案7案件中1勝6敗（観光客誘致のみ受注）</span>
           </li>
         </ul>
       </div>
       <div class="rounded-lg border border-slate-200 bg-white p-4 sm:p-5">
-        <p class="text-sm font-bold text-slate-900 mb-3">事業計画上の注意点</p>
+        <p class="text-sm font-bold text-slate-900 mb-3">敗因の構造（4月末時点）</p>
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>行政依存率</strong>: 全案件受注で¥130M / ¥200M = <strong>65%</strong>。堅実シナリオ（¥88M）だと<strong>44%</strong>。観光客誘致＋いちご大學の受注で大幅改善。</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
+            <span><strong>AI訴求の前面化</strong>: 6件の失注に共通。資料制作AI活用を主訴求にした提案は書類段階で落ちやすい。下期は補助線扱いに変更。</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>予算＝売上ではない</strong>: 実契約は上限の80-90%が目安。</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
+            <span><strong>新規部門の実績不足</strong>: 農林部・福祉部こども政策課はいずれも公開実績が薄い。下期は小規模・随契から実績を積む戦略へ。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
-            <span><strong>DMO失注パターン</strong>: 大型・新規のDMO案件は大手代理店に流れやすい。埼玉県直発注の継続案件が堅実な柱。</span>
+            <span><strong>県直継続案件は強い</strong>: 文化部・生活部・県土整備部の4本柱+観光客誘致は全勝。継続性とスイッチングコストが効いている。</span>
           </li>
         </ul>
       </div>
@@ -754,49 +768,55 @@ tailwind.config = {
 
   <!-- 所感・ネクストアクション -->
   <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
-    <h2 class="text-lg font-bold text-slate-900 mb-4">所感・ネクストアクション</h2>
+    <h2 class="text-lg font-bold text-slate-900 mb-4">4月末総括・5月以降のネクストアクション</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
       <div>
-        <h3 class="text-sm font-bold text-slate-900 mb-3">直近の重要イベント</h3>
+        <h3 class="text-sm font-bold text-slate-900 mb-3">4月の確定事項</h3>
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
-            <span><strong>4/10 — 観光客誘致・戦略的情報発信 → 受注確定！</strong><br>
-            DMO案件の連続失注を覆した。</span>
+            <span><strong>4/10 — 観光客誘致¥39.6M受注確定！</strong><br>DMO案件の連続失注を唯一覆した勝ち。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
-            <span><strong>いちご大學 → 受注確定！（¥4,490,000 税込・随意契約）</strong><br>
-            受注確定額が¥88.4Mに拡大。</span>
+            <span><strong>いちご大學¥4.49M 随契確定</strong> — 受注確定額¥88.4M到達。</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>4/15 — 若者出会い支援 提出</strong>。プレゼン4/28 Teams。</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
+            <span><strong>4/28 — 農林部2件＋出会い結婚支援が書類落ち</strong>。</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-2 flex-shrink-0"></span>
-            <span><strong>4/20-22 — 花プロモーション</strong> 参加希望書4/20、提案書4/22。プレゼン4/30。</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
+            <span><strong>4/30 — 花プロモーション失注</strong>（Teamsプレゼン後）。</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-2 flex-shrink-0"></span>
-            <span><strong>4/21 — 農産物ブランド化・梨ブランディング 提出</strong>。プレゼン4月下旬〜5月上旬。</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
+            <span><strong>わっしょいIG・ねんりんピックも失注確定</strong>。提案7件中6敗。</span>
           </li>
         </ul>
       </div>
       <div>
-        <h3 class="text-sm font-bold text-slate-900 mb-3">戦略メモ</h3>
+        <h3 class="text-sm font-bold text-slate-900 mb-3">戦略メモ（5月以降）</h3>
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
-            <span><strong>観光客誘致の受注でDMO失注パターンを打破。</strong>継続案件の強みが効いた形。花プロモも同じ観光課発注なので勢いを活かしたい。</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-2 flex-shrink-0"></span>
-            <span><strong>農産物ブランド化（4/21提出）</strong>は失注の知見を反映できる新規案件。「埼玉わっしょい」活用要件を強調する戦略を推奨。</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
+            <span><strong>提案訴求の再設計が急務。</strong>AI活用資料制作を主訴求にした提案は連続失注。実績・体制・地域ネットワークを主軸に切り替える。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>花プロモ（¥713万）</strong>は観光課の新規案件。フォトキャンペーン＋特設サイト＋SNS広告＋イベント。公示4/10、質問締切は今日（4/14）。</span>
+            <span><strong>新規部門は小規模・随契から</strong>。農林部・福祉部のような実績薄分野はいきなり大型案件を狙わない方針へ。</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
+            <span><strong>受注6件のキックオフ最速化</strong>。5月中に初回請求を切り、6月以降のキャッシュフローを確保。</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-2 flex-shrink-0"></span>
+            <span><strong>サーキュラーエコノミー公示ウォッチ</strong>。CE型製品登録ロゴ＋CEラボ事例で即応体制を維持。</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 flex-shrink-0"></span>
+            <span><strong>下期（7月〜）の仕込み</strong> — 民間案件のパイプライン強化（GREE追加、アットパーキング拡大、新規開拓）で4-5月の谷を構造的に埋める。</span>
           </li>
         </ul>
       </div>
@@ -883,17 +903,17 @@ const projects = [
     id: 'agri', num: 7, name: '埼玉県産農産物ブランド化支援',
     sub: '重点品目（梨・ぶどう・小玉すいか）',
     client: '埼玉県', clientSub: '農林部',
-    budget: '¥9,900,000', submitDate: '4/21', review: 'プレゼン 4月下旬〜5月上旬',
-    reviewSub: '',
-    status: '提案中', confidence: '低', staff: []
+    budget: '¥9,900,000', submitDate: '4/21', review: '書類落ち 4/28',
+    reviewSub: '失注',
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'nashi', num: 8, name: '埼玉県梨新品種ブランディング',
     sub: '彩姫・彩彦・彩玉のブランド戦略',
     client: '埼玉県', clientSub: '農林部',
-    budget: '¥3,470,000', submitDate: '4/21', review: 'プレゼン 4月下旬〜5月上旬',
-    reviewSub: '',
-    status: '提案中', confidence: '低', staff: []
+    budget: '¥3,470,000', submitDate: '4/21', review: '書類落ち 4/28',
+    reviewSub: '失注',
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'gourmet', num: 9, name: '埼玉グルメプロジェクト',
@@ -939,33 +959,33 @@ const projects = [
     id: 'wassyoi', num: 12, name: '埼玉県公式Instagram「埼玉わっしょい」',
     sub: '運用支援業務（農産物連動）',
     client: '埼玉県', clientSub: '農林部',
-    budget: '¥1,980,000', submitDate: '4/17', review: 'プレゼン 4月下旬〜5月上旬',
-    reviewSub: '',
-    status: '提案中', confidence: '低', staff: []
+    budget: '¥1,980,000', submitDate: '4/17', review: '書類通過後 失注',
+    reviewSub: '失注',
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'nenrin-esports', num: 13, name: 'ねんりんピック eスポーツ企画運営',
     sub: 'ねんりんピック彩の国さいたま2026 オリジナルイベント（JV：イナズマ社）',
     client: '埼玉県', clientSub: '福祉部 ねんりんピック推進課',
-    budget: '¥9,900,000', submitDate: '4/23', review: '1次結果 5/7 → 2次 5/13',
-    reviewSub: '結果 5月中旬',
-    status: '提案中', confidence: '低', staff: []
+    budget: '¥9,900,000', submitDate: '4/23', review: '失注',
+    reviewSub: '失注',
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'wakamono-deai', num: 14, name: '若者の出会い・結婚支援 情報発信',
     sub: 'インターネット広告＋LP制作による出会い・結婚への関心喚起',
     client: '埼玉県', clientSub: '福祉部 こども政策課',
-    budget: '¥4,950,000', submitDate: '4/15', review: 'プレゼン 4/28 Teams',
-    reviewSub: '委託期間 5/11〜',
-    status: '提案中', confidence: '低', staff: []
+    budget: '¥4,950,000', submitDate: '4/15', review: '書類落ち 4/28',
+    reviewSub: '失注',
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'hana-promo', num: 15, name: '埼玉の「花」を生かした観光誘客プロモーション',
     sub: 'フォトキャンペーン・特設サイト・WEB/SNS広告・イベント企画',
     client: '埼玉県', clientSub: '産業労働部 観光課',
-    budget: '¥7,139,000', submitDate: '4/22', review: 'プレゼン 4/30 Teams',
-    reviewSub: '結果 5月中旬',
-    status: '提案中', confidence: '低', staff: []
+    budget: '¥7,139,000', submitDate: '4/22', review: '4/30 Teamsプレゼン後失注',
+    reviewSub: '失注',
+    status: '失注', confidence: '—', staff: [], lost: true
   }
 ];
 
@@ -1087,12 +1107,12 @@ function renderChecklistMobile() {
     { name: 'すぽったま（コンテンツ）', group: '高', intent: '✓ 3/12 済', submit: '✓ 3/18 済', pres: '✓ 3/23 済', result: '✓ 受注' },
     { name: 'ぶんたま', group: '高', intent: '✓ 済', submit: '✓ 3/13 済', pres: '✓ 3/23 済', result: '✓ 受注' },
     { name: '観光客誘致', group: '高', intent: '✓ 3/23 済', submit: '✓ 3/31 済', pres: '✓ 4/10 済', result: '✓ 受注' },
-    { name: 'わっしょいIG', group: '低', intent: '4/6 17時', submit: '4/17 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
-    { name: '農産物ブランド化', group: '低', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
-    { name: '梨ブランディング', group: '低', intent: '4/7 17時', submit: '4/21 17時', pres: '4月下旬〜5月上旬', result: '5月上・中旬' },
-    { name: 'ねんりんeスポーツ', group: '低', intent: '—', submit: '4/23 17時', pres: '1次5/7 → 2次5/13', result: '5月中旬' },
-    { name: '若者出会い支援', group: '低', intent: '—', submit: '4/15', pres: '4/28 Teams', result: '委託 5/11〜' },
-    { name: '花プロモーション', group: '低', intent: '4/20 15時', submit: '4/22 15時', pres: '4/30 Teams', result: '5月中旬' },
+    { name: 'わっしょいIG', group: '低', intent: '✓ 4/6 済', submit: '✓ 4/17 済', pres: '✓ 書類通過', result: '✗ 失注' },
+    { name: '農産物ブランド化', group: '低', intent: '✓ 4/7 済', submit: '✓ 4/21 済', pres: '書類落ち', result: '✗ 失注（4/28）' },
+    { name: '梨ブランディング', group: '低', intent: '✓ 4/7 済', submit: '✓ 4/21 済', pres: '書類落ち', result: '✗ 失注（4/28）' },
+    { name: 'ねんりんeスポーツ', group: '低', intent: '—', submit: '✓ 4/23 済', pres: '1次5/7 → 2次5/13', result: '✗ 失注' },
+    { name: '若者出会い支援', group: '低', intent: '—', submit: '✓ 4/15 済', pres: '書類落ち', result: '✗ 失注（4/28）' },
+    { name: '花プロモーション', group: '低', intent: '✓ 4/20 済', submit: '✓ 4/22 済', pres: '✓ 4/30 Teams', result: '✗ 失注' },
     { name: '観光サポートサイト', group: '低', intent: '✓ 済', submit: '✓ 済', pres: '✓ 3/27 済', result: '✗ 失注' },
     { name: 'グルメPJ', group: '低', intent: '✓ 2/25 済', submit: '✓ 3/11 済', pres: '✓ 3/23 済', result: '失注' },
   ];
