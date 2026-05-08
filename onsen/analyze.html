@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>温泉カルテ — 成分表をアップロード</title>
+<meta name="description" content="温泉分析書を撮影するだけで効能カルテを自動生成。湯巡りログにも保存できる。">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
+          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
+          800:'#13318d',900:'#0e266a',950:'#07194e'
+        }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'],
+        serif: ['"Noto Serif JP"','"Hiragino Mincho ProN"','serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  body { color: #3d4b5f; }
+  .text-body { color: #3d4b5f; }
+  /* drag-drop area */
+  .dropzone { border:2px dashed #cbd5e1; transition: all .2s; }
+  .dropzone:hover, .dropzone.dragover { border-color:#2b70ef; background:#f0f5ff; }
+  .dropzone.has-file { border-color:#10b981; background:#ecfdf5; border-style:solid; }
+  /* loading dots */
+  @keyframes pulse-dot { 0%,80%,100% { opacity:.3; } 40% { opacity:1; } }
+  .dot { display:inline-block; width:.4em; height:.4em; border-radius:50%; background:currentColor; margin-right:.2em; animation: pulse-dot 1.4s infinite ease-in-out both; }
+  .dot:nth-child(1) { animation-delay:-.32s; }
+  .dot:nth-child(2) { animation-delay:-.16s; }
+  /* loading step */
+  .loading-step { display:flex; align-items:center; gap:.75rem; padding:.75rem 0; color:#94a3b8; transition: color .2s; }
+  .loading-step .check { width:1.5rem; height:1.5rem; border-radius:50%; border:2px solid currentColor; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .loading-step.active { color:#2b70ef; }
+  .loading-step.active .check::after { content:''; width:.5rem; height:.5rem; border-radius:50%; background:#2b70ef; animation: pulse-dot 1s infinite; }
+  .loading-step.done { color:#10b981; }
+  .loading-step.done .check::after { content:'✓'; font-size:.85rem; line-height:1; }
+  /* callout tags (matches index.html) */
+  .callout-tag { display:inline-flex; align-items:center; justify-content:center; width:1.4em; height:1.4em; border-radius:9999px; background:#2b70ef; color:#fff; font-size:.75rem; font-weight:700; vertical-align:middle; margin: 0 .15em; line-height:1; }
+  /* spring type chip colors */
+  .type-chip { display:inline-flex; align-items:center; padding:.25rem .75rem; border-radius:9999px; font-size:.875rem; font-weight:500; }
+  .type-単純温泉 { background:#f1f5f9; color:#334155; }
+  .type-塩化物泉 { background:#dbeafe; color:#1e40af; }
+  .type-炭酸水素塩泉 { background:#cffafe; color:#155e75; }
+  .type-硫酸塩泉 { background:#d1fae5; color:#065f46; }
+  .type-二酸化炭素泉 { background:#ccfbf1; color:#115e59; }
+  .type-含鉄泉 { background:#fed7aa; color:#9a3412; }
+  .type-硫黄泉 { background:#fef9c3; color:#854d0e; }
+  .type-酸性泉 { background:#fee2e2; color:#991b1b; }
+  .type-放射能泉 { background:#e9d5ff; color:#6b21a8; }
+  .type-含よう素泉 { background:#fde68a; color:#92400e; }
+  /* axis tag */
+  .axis-tag { display:inline-flex; align-items:center; padding:.125rem .625rem; border-radius:9999px; font-size:.75rem; background:#f1f5f9; color:#475569; }
+  /* image preview */
+  .preview-img { max-height:300px; max-width:100%; object-fit:contain; border-radius:.5rem; border:1px solid #e2e8f0; }
+  /* modal */
+  .modal-backdrop { background: rgba(15,23,42,.5); }
+  /* hide step */
+  .step.hidden, .hidden { display:none !important; }
+  /* prose body */
+  details summary { cursor:pointer; }
+  details summary::-webkit-details-marker { display:none; }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+<!-- Header -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-10">
+  <div class="max-w-4xl mx-auto px-4 lg:px-6 h-14 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2 text-sm text-slate-700 hover:text-primary-600">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span class="hidden sm:inline">温泉ソムリエ ノート</span>
+    </a>
+    <p class="text-sm font-bold text-slate-900">温泉カルテ</p>
+    <button id="settingsBtn" aria-label="設定" class="w-9 h-9 inline-flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-gray-50 rounded-lg cursor-pointer">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="max-w-4xl mx-auto px-4 lg:px-6 py-8 lg:py-12">
+
+  <!-- ========== Step 1: Upload ========== -->
+  <section id="stepUpload" class="step">
+    <p class="text-xs font-medium text-primary-500 tracking-wider">STEP 1</p>
+    <h1 class="font-serif text-3xl lg:text-4xl font-bold text-slate-900 mt-2">成分表を撮るだけで、<br>カルテになる。</h1>
+    <p class="mt-4 text-base text-body leading-relaxed">
+      温泉施設の脱衣所にある「温泉分析書」を撮影してアップロードしてください。<br>
+      AIが泉質・効能・体感のポイントを読み取って、あなただけの温泉カルテを作ります。
+    </p>
+
+    <div class="mt-8">
+      <label for="fileInput" id="dropzone" class="dropzone block rounded-xl bg-white p-10 lg:p-12 text-center cursor-pointer">
+        <div id="dzInitial">
+          <svg class="w-12 h-12 text-slate-400 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          <p class="mt-3 text-base font-medium text-slate-900">タップして撮影 or 画像を選択</p>
+          <p class="mt-1 text-xs text-slate-500">JPEG / PNG / HEIC、最大10MB</p>
+        </div>
+        <div id="dzPreview" class="hidden">
+          <img id="previewImg" alt="プレビュー" class="preview-img mx-auto">
+          <p id="previewName" class="mt-3 text-sm text-slate-700"></p>
+          <p class="mt-1 text-xs text-slate-500">タップで別の画像を選び直せます</p>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" capture="environment" class="hidden">
+      </label>
+
+      <button id="analyzeBtn" disabled class="mt-6 w-full inline-flex items-center justify-center gap-2 h-12 px-6 text-base font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 disabled:bg-slate-300 disabled:cursor-not-allowed cursor-pointer transition-colors">
+        <span id="analyzeLabel">画像を選んでください</span>
+      </button>
+    </div>
+
+    <!-- API key warning (hidden when key is set) -->
+    <div id="apiKeyWarning" class="hidden mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-3">
+      <svg class="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <div class="text-sm text-amber-800 leading-relaxed flex-1">
+        <strong class="text-amber-900">Anthropic APIキーが必要です</strong><br>
+        右上の <span class="inline-block align-middle">⚙</span> から自分のAPIキーを設定してください（ブラウザに保存され、サーバには送信されません）。
+        <a href="https://console.anthropic.com/settings/keys" target="_blank" class="underline">APIキーを取得 →</a>
+      </div>
+    </div>
+
+    <!-- Recent visits -->
+    <section id="recentVisits" class="hidden mt-12">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold text-slate-900">最近の湯巡りログ</h2>
+        <button id="clearLogsBtn" class="text-xs text-slate-500 hover:text-red-600 cursor-pointer">すべて削除</button>
+      </div>
+      <div id="recentList" class="mt-4 grid sm:grid-cols-2 gap-3"></div>
+    </section>
+
+    <!-- About -->
+    <details class="mt-12 bg-white rounded-xl border border-slate-200 p-5">
+      <summary class="text-sm font-medium text-slate-900 flex items-center justify-between">
+        <span>このツールについて / プライバシー</span>
+        <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="mt-4 text-sm text-body leading-relaxed space-y-3">
+        <p>このツールは、温泉ソムリエ認定講座テキストの知識をベースに、Claude APIを使って成分表から効能を読み取ります。</p>
+        <p><strong>プライバシー</strong>：APIキーと湯巡りログはあなたのブラウザにのみ保存されます。サーバを経由しません。画像は分析のためにAnthropic APIへ送信されますが、保存はされません。</p>
+        <p><strong>免責</strong>：効能・禁忌の判定はAIによる目安です。医療判断には必ず医師にご相談ください。</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ========== Step 2: Loading ========== -->
+  <section id="stepLoading" class="step hidden">
+    <p class="text-xs font-medium text-primary-500 tracking-wider">STEP 2</p>
+    <h1 class="font-serif text-3xl font-bold text-slate-900 mt-2">カルテを作成中</h1>
+    <p class="mt-3 text-sm text-body">10〜30秒ほどお待ちください</p>
+
+    <div class="mt-8 bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+      <ol class="space-y-1">
+        <li id="loadStep1" class="loading-step active">
+          <span class="check"></span>
+          <span class="font-medium">成分表を読み取り中</span>
+        </li>
+        <li id="loadStep2" class="loading-step">
+          <span class="check"></span>
+          <span class="font-medium">泉質を分類中</span>
+        </li>
+        <li id="loadStep3" class="loading-step">
+          <span class="check"></span>
+          <span class="font-medium">適応症と禁忌を整理中</span>
+        </li>
+        <li id="loadStep4" class="loading-step">
+          <span class="check"></span>
+          <span class="font-medium">カルテを生成中</span>
+        </li>
+      </ol>
+    </div>
+
+    <button id="cancelBtn" class="mt-6 text-sm text-slate-500 hover:text-slate-700 cursor-pointer">キャンセル</button>
+  </section>
+
+  <!-- ========== Step 3: Result ========== -->
+  <section id="stepResult" class="step hidden">
+
+    <!-- header -->
+    <div class="flex flex-wrap items-start justify-between gap-3">
+      <div>
+        <p class="text-xs font-medium text-primary-500 tracking-wider">温泉カルテ</p>
+        <h1 id="resultSpringName" class="font-serif text-2xl lg:text-3xl font-bold text-slate-900 mt-1"></h1>
+        <p id="resultLocation" class="text-sm text-slate-500 mt-1"></p>
+      </div>
+      <div class="flex gap-2">
+        <button id="redoBtn" class="inline-flex items-center justify-center gap-1.5 h-8 px-3 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+          もう一枚
+        </button>
+      </div>
+    </div>
+
+    <!-- spring type + tags -->
+    <div class="mt-5 flex flex-wrap items-center gap-2">
+      <span id="resultMainType" class="type-chip type-単純温泉"></span>
+      <span id="resultTempTag" class="axis-tag"></span>
+      <span id="resultPhTag" class="axis-tag"></span>
+      <span id="resultOsmoticTag" class="axis-tag"></span>
+      <span id="resultBeautyTag" class="hidden axis-tag !bg-pink-50 !text-pink-700">美人の湯</span>
+    </div>
+
+    <!-- 3-line summary -->
+    <div class="mt-6 bg-gradient-to-br from-primary-50 to-white rounded-xl border border-primary-200 p-5 lg:p-6 shadow-sm">
+      <p class="text-xs font-medium text-primary-700 tracking-wider">3行まとめ</p>
+      <ul id="resultSummary" class="mt-3 space-y-2 text-sm text-slate-900 leading-relaxed"></ul>
+    </div>
+
+    <!-- checkpoints -->
+    <h2 class="mt-10 text-lg font-semibold text-slate-900">読み解きポイント</h2>
+    <div id="resultCheckpoints" class="mt-3 grid sm:grid-cols-2 gap-3"></div>
+
+    <!-- indications & contraindications -->
+    <div class="mt-10 grid md:grid-cols-3 gap-4">
+      <div class="bg-white rounded-xl border border-emerald-200 p-5 shadow-sm">
+        <p class="text-xs text-emerald-700 font-medium">◯ 浴用適応症</p>
+        <ul id="resultBathInd" class="mt-3 space-y-1.5 text-sm text-slate-900"></ul>
+      </div>
+      <div class="bg-white rounded-xl border border-emerald-200 p-5 shadow-sm">
+        <p class="text-xs text-emerald-700 font-medium">◯ 飲用適応症</p>
+        <ul id="resultDrinkInd" class="mt-3 space-y-1.5 text-sm text-slate-900"></ul>
+        <p class="mt-3 text-xs text-slate-500">※ 飲用は施設の許可を確認</p>
+      </div>
+      <div class="bg-white rounded-xl border border-red-200 p-5 shadow-sm">
+        <p class="text-xs text-red-700 font-medium">⚠ 注意</p>
+        <ul id="resultContra" class="mt-3 space-y-1.5 text-sm text-slate-900"></ul>
+      </div>
+    </div>
+
+    <!-- raw analysis (collapsed) -->
+    <details class="mt-8 bg-white rounded-xl border border-slate-200 p-5">
+      <summary class="text-sm font-medium text-slate-900 flex items-center justify-between">
+        <span>抽出した生データ（成分・泉温・pH等）</span>
+        <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div id="resultRaw" class="mt-4 text-sm"></div>
+    </details>
+
+    <!-- visit memo -->
+    <section class="mt-8 bg-white rounded-xl border border-slate-200 p-5">
+      <h2 class="text-base font-semibold text-slate-900">体感メモ</h2>
+      <textarea id="visitMemo" rows="3" placeholder="温度感、肌触り、香り、湯上がりの感覚など…" class="mt-3 w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500"></textarea>
+      <button id="saveVisitBtn" class="mt-3 inline-flex items-center justify-center gap-1.5 h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">
+        湯巡りログに保存
+      </button>
+      <p id="saveStatus" class="mt-2 text-xs text-emerald-700 hidden">保存しました ✓</p>
+    </section>
+  </section>
+
+  <!-- ========== Step Error ========== -->
+  <section id="stepError" class="step hidden">
+    <div class="bg-white rounded-xl border border-red-200 p-6 lg:p-8 shadow-sm">
+      <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-red-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <div class="flex-1">
+          <h2 class="text-lg font-semibold text-slate-900">分析に失敗しました</h2>
+          <p id="errorMsg" class="mt-2 text-sm text-body"></p>
+          <pre id="errorDetail" class="hidden mt-3 p-3 bg-gray-50 rounded text-xs text-slate-600 overflow-x-auto"></pre>
+          <div class="mt-4 flex gap-2">
+            <button id="errorRetryBtn" class="inline-flex items-center justify-center gap-1.5 h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">もう一度試す</button>
+            <button id="errorBackBtn" class="inline-flex items-center justify-center gap-1.5 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">最初に戻る</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== Settings Modal ========== -->
+<div id="settingsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+  <div class="bg-white rounded-xl shadow-xl max-w-md w-full">
+    <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+      <h2 class="text-base font-semibold text-slate-900">設定</h2>
+      <button id="settingsCloseBtn" aria-label="閉じる" class="w-8 h-8 inline-flex items-center justify-center text-slate-500 hover:bg-gray-50 rounded-lg cursor-pointer">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="px-6 py-5 space-y-5">
+      <div>
+        <label for="apiKeyInput" class="block text-sm font-medium text-slate-900">Anthropic API キー</label>
+        <p class="text-xs text-slate-500 mt-1">ブラウザにのみ保存されます</p>
+        <div class="mt-2 flex gap-2">
+          <input id="apiKeyInput" type="password" placeholder="sk-ant-api03-..." class="flex-1 px-3 py-2 text-sm font-mono border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500">
+          <button id="apiKeyShowBtn" aria-label="表示切り替え" class="w-10 h-10 inline-flex items-center justify-center text-slate-500 hover:bg-gray-50 rounded-lg border border-slate-200 cursor-pointer">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <p class="text-xs text-slate-500 mt-2">
+          <a href="https://console.anthropic.com/settings/keys" target="_blank" class="text-primary-500 hover:underline">console.anthropic.com</a> から取得できます
+        </p>
+      </div>
+      <div>
+        <label for="modelSelect" class="block text-sm font-medium text-slate-900">モデル</label>
+        <select id="modelSelect" class="mt-2 w-full px-3 py-2 text-sm border border-slate-300 rounded-lg appearance-none focus:ring-2 focus:ring-primary-500/50">
+          <option value="claude-opus-4-7">Opus 4.7（最高精度・推奨）</option>
+          <option value="claude-sonnet-4-6">Sonnet 4.6（バランス）</option>
+          <option value="claude-haiku-4-5">Haiku 4.5（高速・低コスト）</option>
+        </select>
+      </div>
+    </div>
+    <div class="px-6 py-4 bg-gray-50 rounded-b-xl flex justify-end gap-2">
+      <button id="settingsResetBtn" class="inline-flex items-center justify-center h-10 px-4 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg cursor-pointer">クリア</button>
+      <button id="settingsSaveBtn" class="inline-flex items-center justify-center h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+// ============ State ============
+const state = {
+  file: null,
+  imageBase64: null,
+  imageMediaType: 'image/jpeg',
+  result: null,
+  abortController: null
+};
+
+// ============ DOM helpers ============
+const $ = id => document.getElementById(id);
+function showStep(name) {
+  ['stepUpload','stepLoading','stepResult','stepError'].forEach(s => $(s).classList.toggle('hidden', s !== 'step' + name));
+  window.scrollTo(0, 0);
+}
+
+// ============ Settings ============
+function loadSettings() {
+  const key = localStorage.getItem('anthropic_api_key') || '';
+  const model = localStorage.getItem('claude_model') || 'claude-opus-4-7';
+  $('apiKeyInput').value = key;
+  $('modelSelect').value = model;
+  $('apiKeyWarning').classList.toggle('hidden', !!key);
+  return { key, model };
+}
+function saveSettings() {
+  localStorage.setItem('anthropic_api_key', $('apiKeyInput').value.trim());
+  localStorage.setItem('claude_model', $('modelSelect').value);
+  $('apiKeyWarning').classList.toggle('hidden', !!$('apiKeyInput').value.trim());
+  closeSettings();
+}
+function openSettings() { loadSettings(); $('settingsModal').classList.remove('hidden'); }
+function closeSettings() { $('settingsModal').classList.add('hidden'); }
+function resetSettings() {
+  if (!confirm('APIキーとモデル設定をクリアしますか？')) return;
+  localStorage.removeItem('anthropic_api_key');
+  localStorage.removeItem('claude_model');
+  loadSettings();
+}
+$('settingsBtn').addEventListener('click', openSettings);
+$('settingsCloseBtn').addEventListener('click', closeSettings);
+$('settingsSaveBtn').addEventListener('click', saveSettings);
+$('settingsResetBtn').addEventListener('click', resetSettings);
+$('settingsModal').addEventListener('click', e => { if (e.target === $('settingsModal')) closeSettings(); });
+$('apiKeyShowBtn').addEventListener('click', () => {
+  const i = $('apiKeyInput');
+  i.type = i.type === 'password' ? 'text' : 'password';
+});
+
+// ============ File handling ============
+const dropzone = $('dropzone');
+const fileInput = $('fileInput');
+
+['dragenter','dragover'].forEach(e => dropzone.addEventListener(e, ev => { ev.preventDefault(); dropzone.classList.add('dragover'); }));
+['dragleave','drop'].forEach(e => dropzone.addEventListener(e, ev => { ev.preventDefault(); dropzone.classList.remove('dragover'); }));
+dropzone.addEventListener('drop', e => { if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+async function handleFile(file) {
+  if (!file.type.startsWith('image/')) { alert('画像ファイルを選択してください'); return; }
+  if (file.size > 10 * 1024 * 1024) { alert('10MBまでの画像をアップロードしてください'); return; }
+  state.file = file;
+
+  // resize/compress to keep within reasonable token usage
+  const blob = await resizeImage(file, 1600, 0.85);
+  state.imageBase64 = await blobToBase64(blob);
+  state.imageMediaType = 'image/jpeg';
+
+  // preview
+  $('previewImg').src = URL.createObjectURL(blob);
+  $('previewName').textContent = `${file.name} (${(blob.size/1024).toFixed(0)} KB)`;
+  $('dzInitial').classList.add('hidden');
+  $('dzPreview').classList.remove('hidden');
+  dropzone.classList.add('has-file');
+
+  // enable analyze button
+  $('analyzeBtn').disabled = false;
+  $('analyzeLabel').textContent = '分析する';
+}
+
+function resizeImage(file, maxWidth, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, maxWidth / img.width);
+        const w = Math.round(img.width * scale);
+        const h = Math.round(img.height * scale);
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+        canvas.toBlob(b => b ? resolve(b) : reject(new Error('blob失敗')), 'image/jpeg', quality);
+      };
+      img.onerror = reject;
+      img.src = reader.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+// ============ Analyze ============
+$('analyzeBtn').addEventListener('click', () => {
+  const { key } = loadSettings();
+  if (!key) { openSettings(); return; }
+  if (!state.imageBase64) return;
+  analyze();
+});
+
+async function analyze() {
+  showStep('Loading');
+  setLoadStep(1, 'active');
+
+  const ctrl = new AbortController();
+  state.abortController = ctrl;
+
+  try {
+    const { key, model } = loadSettings();
+
+    // simulate progress - actual API is single shot
+    const tickers = [
+      setTimeout(() => { setLoadStep(1, 'done'); setLoadStep(2, 'active'); }, 2500),
+      setTimeout(() => { setLoadStep(2, 'done'); setLoadStep(3, 'active'); }, 5500),
+      setTimeout(() => { setLoadStep(3, 'done'); setLoadStep(4, 'active'); }, 8500)
+    ];
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      signal: ctrl.signal,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: model,
+        max_tokens: 4000,
+        system: SYSTEM_PROMPT,
+        messages: [{
+          role: 'user',
+          content: [
+            { type: 'image', source: { type: 'base64', media_type: state.imageMediaType, data: state.imageBase64 } },
+            { type: 'text', text: '上の温泉分析書の画像を読み取り、指定のJSON形式で結果を返してください。JSON以外の文字は出力しないでください。' }
+          ]
+        }]
+      })
+    });
+
+    tickers.forEach(clearTimeout);
+
+    if (!response.ok) {
+      const errBody = await response.text();
+      let msg = `Claude API エラー (${response.status})`;
+      let detail = errBody;
+      try {
+        const j = JSON.parse(errBody);
+        if (j.error?.message) msg = j.error.message;
+      } catch(_) {}
+      throw new ApiError(msg, detail, response.status);
+    }
+
+    const data = await response.json();
+    const text = data.content?.[0]?.text || '';
+    let parsed;
+    try {
+      // strip code fence if any
+      const cleaned = text.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/i, '').trim();
+      parsed = JSON.parse(cleaned);
+    } catch(e) {
+      throw new ApiError('AIの返答を解析できませんでした。もう一度お試しください。', text);
+    }
+
+    setLoadStep(4, 'done');
+    state.result = parsed;
+    renderResult(parsed);
+    showStep('Result');
+  } catch (e) {
+    if (e.name === 'AbortError') { showStep('Upload'); return; }
+    console.error(e);
+    showError(e instanceof ApiError ? e.message : (e.message || '不明なエラー'), e.detail || '');
+  } finally {
+    state.abortController = null;
+  }
+}
+
+class ApiError extends Error { constructor(msg, detail, status) { super(msg); this.detail = detail; this.status = status; } }
+
+function setLoadStep(n, status) {
+  const el = $(`loadStep${n}`);
+  el.classList.remove('active','done');
+  if (status) el.classList.add(status);
+}
+
+$('cancelBtn').addEventListener('click', () => state.abortController?.abort());
+
+// ============ Error ============
+function showError(msg, detail) {
+  $('errorMsg').textContent = msg;
+  if (detail) {
+    $('errorDetail').textContent = typeof detail === 'string' ? detail.slice(0, 1000) : JSON.stringify(detail, null, 2).slice(0, 1000);
+    $('errorDetail').classList.remove('hidden');
+  } else $('errorDetail').classList.add('hidden');
+  showStep('Error');
+}
+$('errorRetryBtn').addEventListener('click', analyze);
+$('errorBackBtn').addEventListener('click', () => showStep('Upload'));
+
+// ============ Result render ============
+function renderResult(r) {
+  const ext = r.extracted || {};
+  const cls = r.classification || {};
+
+  $('resultSpringName').textContent = ext.spring_type_full || ext.spring_type_main || '温泉';
+  $('resultLocation').textContent = [ext.spring_name, ext.location].filter(Boolean).join(' / ');
+
+  // main type chip with color class
+  const mainEl = $('resultMainType');
+  mainEl.className = 'type-chip type-' + (ext.spring_type_main || '単純温泉');
+  mainEl.textContent = ext.spring_type_main || '—';
+
+  $('resultTempTag').textContent = (cls.temperature_class || '?') + (ext.temperature_c != null ? ` ${ext.temperature_c}℃` : '');
+  $('resultPhTag').textContent = (cls.ph_class || '?') + (ext.ph != null ? ` pH${ext.ph}` : '');
+  $('resultOsmoticTag').textContent = cls.osmotic_class || '?';
+
+  if (r.beauty_type) {
+    const b = $('resultBeautyTag');
+    b.textContent = `美人の湯 / ${r.beauty_type}`;
+    b.classList.remove('hidden');
+  } else $('resultBeautyTag').classList.add('hidden');
+
+  // 3-line summary
+  const sum = r.summary_3lines || [];
+  $('resultSummary').innerHTML = sum.map((s,i) => `<li>${(i===0?'①':i===1?'②':'③')} ${escape(s)}</li>`).join('') || '<li class="text-slate-500">サマリーが生成されませんでした</li>';
+
+  // checkpoints
+  const cps = r.checkpoints || [];
+  $('resultCheckpoints').innerHTML = cps.map(c => `
+    <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+      <div class="flex items-center gap-2"><span class="callout-tag">${escape(c.tag)}</span>
+        <h4 class="text-sm font-semibold text-slate-900">${escape(c.label)}${c.value ? ' '+escape(c.value) : ''}</h4></div>
+      <p class="text-xs text-body mt-2 leading-relaxed">${escape(c.interpretation || '')}</p>
+    </article>`).join('') || '<p class="text-sm text-slate-500 col-span-2">読み解きポイントが生成されませんでした</p>';
+
+  // indications
+  $('resultBathInd').innerHTML = bullets(r.indications_bath, '一般的適応症（疲労回復・健康増進など）');
+  $('resultDrinkInd').innerHTML = bullets(r.indications_drink, 'なし');
+  $('resultContra').innerHTML = bullets(r.contraindications, '一般的禁忌症のみ');
+
+  // raw
+  $('resultRaw').innerHTML = renderRaw(ext);
+
+  // memo cleared
+  $('visitMemo').value = '';
+  $('saveStatus').classList.add('hidden');
+}
+
+function bullets(arr, fallback) {
+  if (!arr || !arr.length) return `<li class="text-slate-500">${escape(fallback)}</li>`;
+  return arr.map(x => `<li>・${escape(x)}</li>`).join('');
+}
+
+function renderRaw(ext) {
+  const cations = (ext.cations||[]).map(c => `<tr><td class="py-0.5">${escape(c.name)}</td><td class="text-right">${c.mg_per_kg ?? '—'}</td><td class="text-right">${c.mval_pct ?? '—'}</td></tr>`).join('');
+  const anions = (ext.anions||[]).map(c => `<tr><td class="py-0.5">${escape(c.name)}</td><td class="text-right">${c.mg_per_kg ?? '—'}</td><td class="text-right">${c.mval_pct ?? '—'}</td></tr>`).join('');
+  return `
+    <div class="grid sm:grid-cols-2 gap-4 text-xs">
+      <div>
+        <p class="text-slate-500 font-medium mb-1">陽イオン</p>
+        <table class="w-full">
+          <thead class="text-slate-400"><tr><th class="text-left">成分</th><th class="text-right">mg/kg</th><th class="text-right">mval%</th></tr></thead>
+          <tbody class="divide-y divide-slate-100">${cations || '<tr><td class="text-slate-400" colspan="3">—</td></tr>'}</tbody>
+        </table>
+      </div>
+      <div>
+        <p class="text-slate-500 font-medium mb-1">陰イオン</p>
+        <table class="w-full">
+          <thead class="text-slate-400"><tr><th class="text-left">成分</th><th class="text-right">mg/kg</th><th class="text-right">mval%</th></tr></thead>
+          <tbody class="divide-y divide-slate-100">${anions || '<tr><td class="text-slate-400" colspan="3">—</td></tr>'}</tbody>
+        </table>
+      </div>
+    </div>
+    <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-slate-700">
+      ${kv('溶存物質', ext.total_dissolved_mg_per_kg, 'mg/kg')}
+      ${kv('湧出量', ext.yield_l_per_min, 'L/分')}
+      ${kv('泉温', ext.temperature_c, '℃')}
+      ${kv('pH', ext.ph, '')}
+      ${kv('メタケイ酸', ext.metasilicic_acid_mg, 'mg')}
+      ${kv('遊離CO₂', ext.free_co2_mg, 'mg')}
+      ${kv('遊離H₂S', ext.free_h2s_mg, 'mg')}
+    </dl>`;
+}
+function kv(label, val, unit) {
+  if (val == null) return '';
+  return `<dt class="text-slate-500">${escape(label)}</dt><dd>${escape(String(val))} ${escape(unit)}</dd>`;
+}
+function escape(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// ============ Recent visits (湯巡りログ) ============
+const LOG_KEY = 'onsen_visits';
+function getLogs() { try { return JSON.parse(localStorage.getItem(LOG_KEY) || '[]'); } catch { return []; } }
+function setLogs(arr) { localStorage.setItem(LOG_KEY, JSON.stringify(arr)); renderLogs(); }
+function saveCurrentVisit() {
+  if (!state.result) return;
+  const logs = getLogs();
+  logs.unshift({
+    id: Date.now(),
+    date: new Date().toISOString(),
+    spring_name: state.result.extracted?.spring_name || null,
+    spring_type_full: state.result.extracted?.spring_type_full,
+    spring_type_main: state.result.extracted?.spring_type_main,
+    summary: state.result.summary_3lines || [],
+    memo: $('visitMemo').value
+  });
+  setLogs(logs.slice(0, 50));
+  $('saveStatus').classList.remove('hidden');
+}
+$('saveVisitBtn').addEventListener('click', saveCurrentVisit);
+
+function renderLogs() {
+  const logs = getLogs();
+  if (!logs.length) { $('recentVisits').classList.add('hidden'); return; }
+  $('recentVisits').classList.remove('hidden');
+  $('recentList').innerHTML = logs.slice(0, 6).map(l => `
+    <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+      <div class="flex items-start justify-between gap-2">
+        <div class="flex-1 min-w-0">
+          <p class="text-xs text-slate-500">${new Date(l.date).toLocaleDateString('ja-JP', { year:'numeric', month:'short', day:'numeric' })}</p>
+          <p class="text-sm font-semibold text-slate-900 mt-0.5 truncate">${escape(l.spring_name || '名称未設定')}</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">${escape(l.spring_type_full || l.spring_type_main || '')}</p>
+        </div>
+        <button data-id="${l.id}" class="del-log w-7 h-7 inline-flex items-center justify-center text-slate-400 hover:text-red-600 cursor-pointer">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        </button>
+      </div>
+    </article>`).join('');
+  document.querySelectorAll('.del-log').forEach(b => b.addEventListener('click', e => {
+    e.stopPropagation();
+    const id = Number(b.dataset.id);
+    setLogs(getLogs().filter(l => l.id !== id));
+  }));
+}
+$('clearLogsBtn').addEventListener('click', () => {
+  if (!confirm('湯巡りログをすべて削除しますか？')) return;
+  setLogs([]);
+});
+
+// ============ Other UI ============
+$('redoBtn').addEventListener('click', () => {
+  state.file = null;
+  state.imageBase64 = null;
+  state.result = null;
+  $('dzInitial').classList.remove('hidden');
+  $('dzPreview').classList.add('hidden');
+  dropzone.classList.remove('has-file');
+  $('analyzeBtn').disabled = true;
+  $('analyzeLabel').textContent = '画像を選んでください';
+  fileInput.value = '';
+  showStep('Upload');
+});
+
+// ============ System prompt for Claude ============
+const SYSTEM_PROMPT = `あなたは温泉ソムリエAIです。日本の温泉分析書（成分表）の画像を読み取り、指定のJSON形式で構造化して返します。
+
+# 知識ベース（平成26年改正後）
+
+## 温泉法の規定
+- 温泉：泉温25℃以上 または 19特定成分のうち1つが規定値以上
+- 療養泉：効能掲示できるレベル。25℃以上 または 7成分（溶存物質1000mg/CO₂ 1000mg/H⁺ 1mg/総鉄 20mg/I⁻ 10mg/総硫黄 2mg/Rn 30×10⁻¹⁰Ci）の1つ以上
+
+## 10種類の泉質
+単純温泉、塩化物泉、炭酸水素塩泉、硫酸塩泉、二酸化炭素泉、含鉄泉、硫黄泉、酸性泉、放射能泉、含よう素泉
+
+## 4軸分類
+- 泉温：高温泉≥42℃ / 温泉34-42 / 低温泉25-34 / 冷鉱泉<25
+- 液性：強酸性pH<2 / 酸性<3 / 弱酸性<6 / 中性<7.5 / 弱アルカリ性<8.5 / アルカリ性≥8.5
+- 浸透圧：低張性<8g/kg / 等張性 8-10 / 高張性≥10g/kg
+
+## 泉質別適応症（浴用）
+- 単純温泉：自律神経不安定症、不眠症、うつ状態
+- 塩化物泉：きりきず、末梢循環障害、冷え性、皮膚乾燥症、うつ状態
+- 炭酸水素塩泉：きりきず、末梢循環障害、冷え性、皮膚乾燥症
+- 硫酸塩泉：きりきず、末梢循環障害、冷え性、うつ状態、皮膚乾燥症
+- 二酸化炭素泉：きりきず、末梢循環障害、冷え性、自律神経不安定症
+- 含鉄泉：（一般的適応症のみ）
+- 硫黄泉：アトピー性皮膚炎、尋常性乾癬、慢性湿疹（糖尿病）、表皮化膿症
+- 酸性泉：アトピー性皮膚炎、尋常性乾癬、糖尿病性湿疹、表皮化膿症
+- 放射能泉：高尿酸血症（痛風）、関節リウマチ、強直性脊椎炎
+- 含よう素泉：（浴用適応症なし）
+
+## 泉質別適応症（飲用）
+- 塩化物泉：慢性消化器病、便秘、萎縮性胃炎
+- 炭酸水素塩泉：胃十二指腸潰瘍、逆流性食道炎、糖尿病、高尿酸血症（痛風）
+- 硫酸塩泉：胆道系機能障害、高コレステロール血症、便秘
+- 二酸化炭素泉：胃腸機能低下
+- 含鉄泉：鉄欠乏性貧血
+- 硫黄泉：糖尿病、高コレステロール血症
+- 酸性泉：慢性消化器病、便秘
+- 含よう素泉：高コレステロール血症
+
+## 一般的禁忌症（浴用）
+病気の活動期（特に発熱）、活動性結核、進行した悪性腫瘍、高度の貧血、重い心臓・肺・腎臓病、消化管出血、急性疾患、出血性疾患、高度脱水
+
+## 美人の湯3条件
+- クレンジング系：炭酸水素塩泉 / pH≥7.5のアルカリ性単純温泉
+- 保湿系：塩化物泉
+- 仕上げ系：硫酸塩泉
+
+## 泉質名の決め方（簡易）
+1. 溶存物質<1000mg/kg → 単純温泉（pH≥8.5なら「アルカリ性単純温泉」）
+2. 溶存物質≥1000mg/kg → 塩類泉。陽イオン20mval%以上を多い順に「・」で連結（例：ナトリウム・カルシウム）、ハイフン、陰イオン20mval%以上を多い順（例：塩化物・炭酸水素塩）、最後に「泉」
+3. 特殊成分（鉄、硫黄、CO₂、ラドン、ヨウ素）が規定値以上なら「含○○-××泉」
+
+# 出力フォーマット（JSONオブジェクトのみ。前後に説明・コードフェンスを付けない）
+
+{
+  "extracted": {
+    "spring_name": "源泉名",
+    "location": "湧出地",
+    "spring_type_full": "完全な泉質名（4軸タグ含む。例：ナトリウム-塩化物泉（弱アルカリ性・低張性・高温泉））",
+    "spring_type_main": "10種から1つ（最も主要な分類）",
+    "temperature_c": 42.7,
+    "ph": 8.2,
+    "yield_l_per_min": 84,
+    "total_dissolved_mg_per_kg": 1250,
+    "cations": [
+      { "name": "ナトリウムイオン (Na+)", "mg_per_kg": 95.5, "mval_pct": 22.88 }
+    ],
+    "anions": [
+      { "name": "硫酸イオン (SO4 2-)", "mg_per_kg": 699, "mval_pct": 80.74 }
+    ],
+    "metasilicic_acid_mg": 40.1,
+    "free_co2_mg": 0,
+    "free_h2s_mg": 0
+  },
+  "classification": {
+    "temperature_class": "高温泉",
+    "ph_class": "弱アルカリ性",
+    "osmotic_class": "低張性",
+    "is_ryoyo": true
+  },
+  "checkpoints": [
+    { "tag": "1", "label": "泉温", "value": "42.7℃", "interpretation": "42℃以上で高温泉。加水・加温なしで入れるレベル。" },
+    { "tag": "2", "label": "湧出量", "value": "84L/分", "interpretation": "..." },
+    { "tag": "3", "label": "pH", "value": "8.2", "interpretation": "..." },
+    { "tag": "4", "label": "陽イオン主役", "value": "Ca 76.55%・Na 22.88%", "interpretation": "..." },
+    { "tag": "5", "label": "陰イオン主役", "value": "SO4 80.74%", "interpretation": "..." },
+    { "tag": "6", "label": "溶存物質", "value": "1.25g/kg", "interpretation": "..." },
+    { "tag": "7", "label": "泉質名の組立", "value": "Ca・Na-硫酸塩泉", "interpretation": "..." }
+  ],
+  "indications_bath": ["きりきず", "末梢循環障害", "冷え性", "うつ状態", "皮膚乾燥症"],
+  "indications_drink": ["胆道系機能障害", "高コレステロール血症", "便秘"],
+  "contraindications": ["一般的禁忌症のみ"],
+  "beauty_type": "仕上げ系",
+  "summary_3lines": [
+    "硫酸塩泉なので「美人の湯・仕上げ系」（肌のハリ・弾力／アンチエイジング）",
+    "pH 8.2 + 弱アルカリ性 でクレンジング効果も微弱に併発 → 湯上がりは保湿推奨",
+    "低張性×高温泉なので短時間で温まる万能型。うつ状態・冷え性・きりきずに最適"
+  ]
+}
+
+# 注意事項
+- 値が読み取れない場合は null
+- 数値は小数点を含めて正確に転記
+- 画像が温泉分析書でない場合は { "error": "温泉分析書が認識できませんでした" } を返す
+- summary_3lines は読み手の興味を引く具体的な文章で各40〜80文字
+- checkpoints は必ず7項目（タグ1〜7）。データ不足の場合も推測してinterpretationを書く`;
+
+// ============ Init ============
+loadSettings();
+renderLogs();
+showStep('Upload');
+</script>
+
+</body>
+</html>
