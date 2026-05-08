@@ -1,0 +1,1314 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>温泉ソムリエ ノート — 成分表で読む、自分に効く温泉</title>
+<meta name="description" content="温泉ソムリエ認定講座テキストを、読みやすく再構成した学習ノート。泉質10種、適応症マトリクス、成分表の読み方、美人の湯まで。">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
+          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
+          800:'#13318d',900:'#0e266a',950:'#07194e'
+        }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'],
+        serif: ['"Noto Serif JP"','"Hiragino Mincho ProN"','serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  body { color: #3d4b5f; }
+  .text-body { color: #3d4b5f; }
+  .prose-body { font-size: 1rem; line-height: 1.9; }
+  .anchor { scroll-margin-top: 24px; }
+  /* sidebar nav active highlight */
+  .nav-link.active { background:#dde8ff; color:#2b70ef; }
+  /* table niceties */
+  table.matrix th, table.matrix td { font-size: 0.8125rem; }
+  table.matrix th { background:#f8fafc; color:#475569; font-weight:500; }
+  table.matrix td.yes { background:#dcfce7; color:#166534; text-align:center; font-weight:600; }
+  table.matrix td.no  { color:#cbd5e1; text-align:center; }
+  /* category color chips */
+  .chip { display:inline-flex; align-items:center; gap:.25rem; padding:.125rem .5rem; border-radius:9999px; font-size:.75rem; font-weight:500; }
+  /* print */
+  @media print {
+    aside, .no-print { display:none !important; }
+    main { margin-left:0 !important; max-width:100% !important; }
+  }
+  /* callout tags for sample analysis sheet */
+  .callout-tag { display:inline-flex; align-items:center; justify-content:center; width:1.4em; height:1.4em; border-radius:9999px; background:#2b70ef; color:#fff; font-size:.75rem; font-weight:700; vertical-align:middle; margin: 0 .15em; line-height:1; }
+  .callout-mark { background:#fef9c3; padding:0 .25em; border-radius:.25rem; font-weight:600; color:#854d0e; }
+  .sheet-frame { font-feature-settings: "palt"; }
+  .sheet-frame ol { counter-reset: item; }
+  /* sidebar transform: hidden on mobile, visible on desktop. Plain CSS to avoid Tailwind CDN var quirks */
+  #sidebar { transform: translateX(-100%); transition: transform .2s ease; }
+  #sidebar.open { transform: translateX(0); }
+  @media (min-width: 1024px) {
+    #sidebar { transform: translateX(0) !important; }
+  }
+  details summary { cursor: pointer; }
+  details summary::-webkit-details-marker { display:none; }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+<!-- Mobile hamburger -->
+<button id="navToggle" aria-label="メニューを開く" class="fixed top-4 left-4 z-30 lg:hidden w-10 h-10 inline-flex items-center justify-center bg-white border border-slate-200 rounded-lg shadow-sm cursor-pointer">
+  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+
+<div class="flex">
+
+  <!-- ============= Sidebar ============= -->
+  <aside id="sidebar" class="w-64 fixed inset-y-0 left-0 bg-white border-r border-slate-200 flex flex-col h-screen z-20">
+    <div class="px-5 py-6 border-b border-slate-200">
+      <p class="text-xs font-medium text-slate-500 tracking-wider">ONSEN SOMMELIER NOTE</p>
+      <p class="text-lg font-bold text-slate-900 mt-1">温泉ソムリエ ノート</p>
+      <p class="text-xs text-slate-500 mt-1">成分表で読む、自分に効く温泉</p>
+    </div>
+    <nav aria-label="メインナビゲーション" class="flex-1 overflow-y-auto px-3 py-4 space-y-0.5 text-sm">
+      <a href="#intro"     class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">はじめに</a>
+      <a href="#whatis"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">1. 温泉とは</a>
+      <a href="#axes"      class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">2. 4つの分類軸</a>
+      <a href="#types"     class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">3. 10種の泉質図鑑</a>
+      <a href="#matrix"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">4. 効能マトリクス</a>
+      <a href="#beauty"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">5. 美人の湯3条件</a>
+      <a href="#read"      class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">6. 成分表の読み方</a>
+      <a href="#example"   class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">7. 実例で読んでみる</a>
+      <a href="#bath"      class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">8. 正しい入浴法</a>
+      <a href="#contra"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">9. 禁忌症と注意</a>
+      <a href="#glossary"  class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">10. 用語ミニ辞典</a>
+    </nav>
+    <div class="px-5 py-4 border-t border-slate-200 text-xs text-slate-500">
+      <p>出典: 温泉ソムリエ認定講座テキスト</p>
+      <p class="mt-1">学習用個人ノート / 84ken</p>
+    </div>
+  </aside>
+
+  <!-- ============= Main ============= -->
+  <main class="lg:ml-64 flex-1 max-w-5xl mx-auto px-6 lg:px-10 py-12 lg:py-16">
+
+    <!-- Hero -->
+    <section id="intro" class="anchor">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">ONSEN SOMMELIER NOTE</p>
+      <h1 class="font-serif text-4xl lg:text-5xl font-bold text-slate-900 mt-2 leading-tight">
+        成分表で読む、<br class="hidden sm:inline">自分に効く温泉。
+      </h1>
+      <p class="mt-6 text-base text-body leading-relaxed max-w-2xl">
+        温泉巡りをもっと楽しくするための、知識の整理ノートです。<br>
+        温泉ソムリエ認定講座テキストの内容を、<strong class="text-slate-900">「成分表を見て、自分の体に合うかを判断できる」</strong>ことをゴールに再構成しました。
+      </p>
+
+      <div class="mt-8 grid sm:grid-cols-3 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">温泉の種類</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">10<span class="text-base font-normal text-slate-500 ml-1">+2</span></p>
+          <p class="text-sm text-body mt-1">主要泉質</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">分類の軸</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">4<span class="text-base font-normal text-slate-500 ml-1">軸</span></p>
+          <p class="text-sm text-body mt-1">泉質・温度・pH・浸透圧</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">分析書チェック項目</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">28</p>
+          <p class="text-sm text-body mt-1">読み解きポイント</p>
+        </div>
+      </div>
+
+      <div class="mt-8 p-5 bg-primary-50 border border-primary-200 rounded-lg flex items-start gap-3">
+        <svg class="w-5 h-5 text-primary-700 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div class="text-sm text-primary-800 leading-relaxed">
+          <strong class="text-primary-900">読み方のコツ</strong>：1〜2章で「言葉」を覚え、3〜4章で「自分の好みの泉質」を見つけて、6〜7章で「分析書を読む実戦」に進むのがオススメです。
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== 1. 温泉とは ====================== -->
+    <section id="whatis" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 1</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">温泉とは</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        日本では「温泉」と「療養泉」は別の概念です。<strong>温泉法（昭和23年）</strong>で「温泉」が、その下位概念として<strong>「療養泉」</strong>が定義されています。療養泉の条件を満たして初めて<strong>「適応症」</strong>（＝効能）を名乗ることができます。
+      </p>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <div class="flex items-center gap-2">
+            <span class="chip bg-slate-100 text-slate-700">広義</span>
+            <h3 class="text-lg font-semibold text-slate-900">温泉（温泉法）</h3>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            次のどちらかを満たせば「温泉」を名乗れる。
+          </p>
+          <ul class="mt-3 space-y-2 text-sm text-body">
+            <li class="flex gap-2"><span class="text-primary-500 font-bold">①</span><span><strong>泉温が25℃以上</strong>であること</span></li>
+            <li class="flex gap-2"><span class="text-primary-500 font-bold">②</span><span>または、19の特定成分のうち<strong>1つ以上が規定値を満たす</strong>こと</span></li>
+          </ul>
+          <p class="mt-3 text-xs text-slate-500">
+            つまり「冷たくても温泉」「ほぼ真水でも温泉」がありえる。法律上の最低ラインが緩い。
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl border border-primary-200 p-6 shadow-sm">
+          <div class="flex items-center gap-2">
+            <span class="chip bg-primary-100 text-primary-700">狭義</span>
+            <h3 class="text-lg font-semibold text-slate-900">療養泉</h3>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            効能（適応症）を掲示できるレベルの温泉。条件は厳しい。
+          </p>
+          <ul class="mt-3 space-y-2 text-sm text-body">
+            <li class="flex gap-2"><span class="text-primary-500 font-bold">①</span><span><strong>泉温が25℃以上</strong></span></li>
+            <li class="flex gap-2"><span class="text-primary-500 font-bold">②</span><span>または、療養泉用の<strong>7つの特定成分のうち1つが規定値以上</strong></span></li>
+          </ul>
+          <p class="mt-3 text-xs text-slate-500">
+            分析書に「○○泉」と泉質名がついていたら、療養泉＝効能を名乗れる温泉。
+          </p>
+        </div>
+      </div>
+
+      <h3 class="mt-10 text-xl font-semibold text-slate-900">成分の基準値（早見表）</h3>
+      <p class="mt-2 text-sm text-body">
+        試料1kg中（mg/kg）の含有量がこれを超えると「温泉」または「療養泉」の条件を満たします。
+      </p>
+
+      <div class="mt-4 bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm matrix">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">成分</th>
+                <th scope="col" class="text-right py-2 px-3 uppercase tracking-wider">温泉</th>
+                <th scope="col" class="text-right py-2 px-3 uppercase tracking-wider">療養泉</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><td class="py-2 px-3 font-medium text-slate-900">溶存物質（ガス性のものを除く）</td><td class="text-right py-2 px-3">総量 1,000 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">1,000 mg/kg 以上</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">遊離二酸化炭素 (CO₂)</td><td class="text-right py-2 px-3">250 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">1,000 mg/kg 以上</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">水素イオン (H⁺)</td><td class="text-right py-2 px-3">1 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">1 mg/kg 以上</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">総鉄イオン (Fe²⁺＋Fe³⁺)</td><td class="text-right py-2 px-3">10 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">20 mg/kg 以上</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">よう化物イオン (I⁻)</td><td class="text-right py-2 px-3">10 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">10 mg/kg 以上</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">総硫黄 (HS⁻＋S₂O₃²⁻＋H₂S)</td><td class="text-right py-2 px-3">1 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">2 mg/kg 以上</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">ラドン (Rn)</td><td class="text-right py-2 px-3">20 × 10⁻¹⁰ Ci/kg 以上<br><span class="text-xs text-slate-500">（=74 Bq/kg）</span></td><td class="text-right py-2 px-3 font-semibold text-primary-700">30 × 10⁻¹⁰ Ci/kg 以上<br><span class="text-xs text-slate-500">（=111 Bq, 8.25マッヘ）</span></td></tr>
+              <tr><td class="py-2 px-3 text-slate-500">リチウム/鉄/マンガン/フッ素/メタケイ酸 ほか</td><td class="text-right py-2 px-3 text-slate-500">各規定値あり（19成分）</td><td class="text-right py-2 px-3 text-slate-400">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="mt-3 text-xs text-slate-500">※ 平成26年改正以降、「含アルミニウム泉」「含銅泉」は廃止され、療養泉は10種類に整理された。</p>
+    </section>
+
+    <!-- ====================== 2. 4軸 ====================== -->
+    <section id="axes" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 2</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">4つの分類軸</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        どんな温泉にも、必ず4つのタグがつきます。<strong>泉質・泉温・液性（pH）・浸透圧</strong>。これを覚えれば、分析書の冒頭1行で温泉の正体が9割わかります。
+      </p>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-5">
+
+        <!-- 泉質 -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <p class="text-xs font-medium text-primary-500">AXIS 1 — 化学組成</p>
+          <h3 class="text-xl font-semibold text-slate-900 mt-1">泉質</h3>
+          <p class="mt-2 text-sm text-body">何が溶けているかで決まる。10種類の正式名称。</p>
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            <span class="chip bg-slate-100 text-slate-700">単純温泉</span>
+            <span class="chip bg-blue-50 text-blue-700">塩化物泉</span>
+            <span class="chip bg-cyan-50 text-cyan-700">炭酸水素塩泉</span>
+            <span class="chip bg-emerald-50 text-emerald-700">硫酸塩泉</span>
+            <span class="chip bg-teal-50 text-teal-700">二酸化炭素泉</span>
+            <span class="chip bg-orange-50 text-orange-700">含鉄泉</span>
+            <span class="chip bg-yellow-50 text-yellow-700">硫黄泉</span>
+            <span class="chip bg-red-50 text-red-700">酸性泉</span>
+            <span class="chip bg-purple-50 text-purple-700">放射能泉</span>
+            <span class="chip bg-amber-50 text-amber-700">含よう素泉</span>
+          </div>
+        </div>
+
+        <!-- 泉温 -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <p class="text-xs font-medium text-primary-500">AXIS 2 — 温度</p>
+          <h3 class="text-xl font-semibold text-slate-900 mt-1">泉温</h3>
+          <p class="mt-2 text-sm text-body">源泉そのものの温度（湯船の温度ではない）。</p>
+          <ul class="mt-3 space-y-1.5 text-sm">
+            <li class="flex justify-between"><span class="text-slate-700">高温泉</span><span class="font-medium text-slate-900">42℃ 以上</span></li>
+            <li class="flex justify-between"><span class="text-slate-700">温泉</span><span class="font-medium text-slate-900">34〜42℃</span></li>
+            <li class="flex justify-between"><span class="text-slate-700">低温泉</span><span class="font-medium text-slate-900">25〜34℃</span></li>
+            <li class="flex justify-between"><span class="text-slate-700">冷鉱泉</span><span class="font-medium text-slate-900">25℃ 未満</span></li>
+          </ul>
+        </div>
+
+        <!-- 液性 -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <p class="text-xs font-medium text-primary-500">AXIS 3 — pH</p>
+          <h3 class="text-xl font-semibold text-slate-900 mt-1">液性（水素イオン濃度）</h3>
+          <p class="mt-2 text-sm text-body">肌触りを決める軸。<strong>pH 7.5 以上</strong>でツルツル＝美肌効果。</p>
+          <ul class="mt-3 space-y-1.5 text-sm">
+            <li class="flex justify-between"><span class="text-slate-700">アルカリ性</span><span class="font-medium text-slate-900">pH 8.5 以上</span></li>
+            <li class="flex justify-between"><span class="text-slate-700">弱アルカリ性</span><span class="font-medium text-slate-900">pH 7.5〜8.5</span></li>
+            <li class="flex justify-between"><span class="text-slate-700">中性</span><span class="font-medium text-slate-900">pH 6〜7.5</span></li>
+            <li class="flex justify-between"><span class="text-slate-700">弱酸性</span><span class="font-medium text-slate-900">pH 3〜6</span></li>
+            <li class="flex justify-between"><span class="text-slate-700">酸性</span><span class="font-medium text-slate-900">pH 3 未満</span></li>
+          </ul>
+          <p class="mt-3 text-xs text-slate-500">参考：胃液 pH 1〜2 / 中性洗剤 pH 7 / セメント pH 13</p>
+        </div>
+
+        <!-- 浸透圧 -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <p class="text-xs font-medium text-primary-500">AXIS 4 — 濃さ</p>
+          <h3 class="text-xl font-semibold text-slate-900 mt-1">浸透圧</h3>
+          <p class="mt-2 text-sm text-body">どれだけ濃いか。濃い湯ほど成分が肌に染み込みやすいが、湯あたりもしやすい。</p>
+          <ul class="mt-3 space-y-1.5 text-sm">
+            <li class="flex justify-between"><span class="text-slate-700">高張性（濃い）</span><span class="font-medium text-slate-900">10 g/kg 以上</span></li>
+            <li class="flex justify-between"><span class="text-slate-700">等張性</span><span class="font-medium text-slate-900">8〜10 g/kg</span></li>
+            <li class="flex justify-between"><span class="text-slate-700">低張性（薄い）</span><span class="font-medium text-slate-900">8 g/kg 未満</span></li>
+          </ul>
+          <p class="mt-3 text-xs text-slate-500">高張性は短時間で十分。長湯禁物。</p>
+        </div>
+
+      </div>
+
+      <details class="mt-6 bg-white rounded-xl border border-slate-200 p-5">
+        <summary class="font-medium text-slate-900 flex items-center justify-between">
+          <span>分析書の冒頭1行を読む例</span>
+          <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="mt-4 p-4 bg-gray-50 rounded-lg font-mono text-sm text-slate-800">
+          泉質：<span class="text-blue-700">ナトリウム-塩化物泉</span>（<span class="text-emerald-700">低張性</span>・<span class="text-purple-700">中性</span>・<span class="text-orange-700">高温泉</span>）
+        </div>
+        <p class="mt-3 text-sm text-body leading-relaxed">
+          → ① <strong>泉質：</strong> ナトリウム塩がメインの「塩化物泉」 → 保温力◎、「熱の湯」<br>
+          → ② <strong>浸透圧：</strong> 低張性 → 体液より薄め、長湯OK<br>
+          → ③ <strong>液性：</strong> 中性 → 肌に優しい<br>
+          → ④ <strong>泉温：</strong> 高温泉 → 加水加温なしでそのまま入れる<br>
+          → 一行で <em>「優しめだけど保温力ある、メインで温まる湯」</em> と読める。
+        </p>
+      </details>
+    </section>
+
+    <!-- ====================== 3. 10種の泉質 ====================== -->
+    <section id="types" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 3</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">10種の泉質図鑑</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        平成26年改正後の正式な泉質は10種類。それぞれに「キャラクター」があります。「自分はこの泉質が好き」が見つかると温泉巡りが一気に深くなります。
+      </p>
+
+      <div class="mt-8 space-y-5">
+
+        <!-- 単純温泉 -->
+        <article class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">単純温泉</h3>
+            <span class="chip bg-slate-100 text-slate-700">タイプ1</span>
+            <span class="text-xs text-slate-500">＝刺激が少ない・優しい湯／別名「神経の湯」「脳卒中の湯」</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            溶存物質が <strong>1,000 mg/kg 未満</strong> で泉温25℃以上。成分が薄いから刺激が弱く、家族・高齢者・病後の人にも安心。pH 8.5以上だと「<strong>アルカリ性単純温泉</strong>」となり、肌がつるつるになる「美人の湯」。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">自律神経不安定症、不眠症、うつ状態</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">なし（一般禁忌のみ）</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">下呂・道後・鬼怒川・修善寺・湯田中・由布院・水上 ほか</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 塩化物泉 -->
+        <article class="bg-white rounded-xl border border-blue-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">塩化物泉</h3>
+            <span class="chip bg-blue-50 text-blue-700">タイプ2</span>
+            <span class="text-xs text-slate-500">＝海の塩の湯／別名「熱の湯」「子宝の湯」「傷の湯」</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            塩化物イオンが主成分。<strong>塩のコーティング効果で保温力が抜群</strong>、湯冷めしにくい。塩分が傷に染みるが殺菌・保湿効果あり。<strong>三大美人泉質の1つ</strong>（保湿系）。飲用は胃を温め慢性消化器病に。<strong>高血圧・腎臓病の人は飲用NG</strong>。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">きりきず、末梢循環障害、冷え性、皮膚乾燥症、うつ状態</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">慢性消化器病、便秘、萎縮性胃炎</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">熱海・城崎・指宿・有馬・片山津・皆生・三朝・登別 ほか</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 炭酸水素塩泉 -->
+        <article class="bg-white rounded-xl border border-cyan-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">炭酸水素塩泉</h3>
+            <span class="chip bg-cyan-50 text-cyan-700">タイプ3</span>
+            <span class="text-xs text-slate-500">＝ヌルヌル系／別名「美肌の湯」「清涼の湯」「冷の湯」</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            重曹分が皮膚の油分を分解 →<strong>クレンジング効果でツルツル</strong>に。<strong>三大美人泉質の1つ</strong>（クレンジング系）。湯上がりは肌の水分が蒸発しやすいので保湿剤を併用。<strong>飲用で胃酸を中和</strong>、糖尿病・痛風にも。マグネシウム型は便秘にも有効。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">きりきず、末梢循環障害、冷え性、皮膚乾燥症</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">胃十二指腸潰瘍、逆流性食道炎、糖尿病、痛風（飲用）</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">嬉野・小谷・川根・東鳴子・湯の川 ほか</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 硫酸塩泉 -->
+        <article class="bg-white rounded-xl border border-emerald-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">硫酸塩泉</h3>
+            <span class="chip bg-emerald-50 text-emerald-700">タイプ4</span>
+            <span class="text-xs text-slate-500">＝塩のもう1つの顔／別名「傷の湯」「中風の湯」「脳卒中の湯」</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            硫酸イオンが血管を拡張、血圧降下作用。<strong>三大美人泉質の1つ</strong>（仕上げ系：肌のハリ・弾力）。カルシウム型は鎮静、ナトリウム型（芒硝泉）は脳卒中、マグネシウム型（正苦味泉）は動脈硬化に。<strong>飲用で胆汁分泌促進・便秘解消</strong>。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">きりきず、末梢循環障害、冷え性、うつ状態、皮膚乾燥症</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">胆道系機能障害、高コレステロール血症、便秘</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">山中・伊香保・四万・玉造・天童・金田一・法師 ほか</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 二酸化炭素泉 -->
+        <article class="bg-white rounded-xl border border-teal-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">二酸化炭素泉</h3>
+            <span class="chip bg-teal-50 text-teal-700">タイプ5</span>
+            <span class="text-xs text-slate-500">＝ぬる湯のシャンパン／別名「ラムネ湯」「心臓の湯」</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            湯に入ると体に<strong>細かい泡がびっしりつく</strong>。気泡が皮膚から吸収され血管を拡張、<strong>低い湯温でも血流を良くし血圧を下げる</strong>。日本では稀少。<strong>34〜37℃のぬる湯で長湯</strong>が基本。湯に溶けにくいガスのため、加温・湧出元から距離があると効果が落ちる。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">きりきず、末梢循環障害、冷え性、自律神経不安定症</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">胃腸機能低下</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">長湯・湯屋・泡の湯・大塩・大丸・吉川 ほか</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 含鉄泉 -->
+        <article class="bg-white rounded-xl border border-orange-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">含鉄泉</h3>
+            <span class="chip bg-orange-50 text-orange-700">タイプ6</span>
+            <span class="text-xs text-slate-500">＝赤錆色／別名「婦人の湯」「子宝の湯」「濁り湯」</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            空気に触れると鉄が酸化して<strong>赤褐色（鉄錆色）</strong>に。湧出直後は無色透明。月経障害・更年期障害・冷え性に。<strong>飲用で鉄分補給 → 鉄欠乏性貧血</strong>に。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">なし（一般適応症のみ。月経障害は旧基準で記載）</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">鉄欠乏性貧血</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">有馬・伊香保・長湯・小坂・滝の湯・有明 ほか</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 硫黄泉 -->
+        <article class="bg-white rounded-xl border border-yellow-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">硫黄泉</h3>
+            <span class="chip bg-yellow-50 text-yellow-700">タイプ7</span>
+            <span class="text-xs text-slate-500">＝玉子臭／別名「心臓の湯」「美肌の湯」「痰の湯」</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            温泉らしい<strong>独特の硫化水素臭</strong>。色は乳白色〜エメラルドグリーン。皮膚病・慢性婦人病・糖尿病に効くが<strong>刺激が強く、湯あたりしやすい</strong>。心臓・血管に作用するため高血圧にも。<strong>金属を腐食</strong>させるので時計や指輪は外す。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">アトピー性皮膚炎、尋常性乾癬、慢性湿疹（糖尿病）、表皮化膿症</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">糖尿病、高コレステロール血症</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">登別・万座・月岡・草津・野沢・蔵王・酸ヶ湯 ほか</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 酸性泉 -->
+        <article class="bg-white rounded-xl border border-red-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">酸性泉</h3>
+            <span class="chip bg-red-50 text-red-700">タイプ8</span>
+            <span class="text-xs text-slate-500">＝肌ピリピリ／別名「皮膚病の湯」</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            pH が低い（酸性度が高い）。<strong>強い殺菌力で水虫・皮膚病に効く</strong>。肌がピリピリし、敏感肌・高齢者・乾燥肌の人には不向き。<strong>湯上がりは真水でかけ湯</strong>を。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">アトピー性皮膚炎、尋常性乾癬、糖尿病性湿疹、表皮化膿症</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">慢性消化器病、便秘</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">草津・玉川・蔵王・須川・嶽・酸ヶ湯・川湯・万座 ほか</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 放射能泉 -->
+        <article class="bg-white rounded-xl border border-purple-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">放射能泉</h3>
+            <span class="chip bg-purple-50 text-purple-700">タイプ9</span>
+            <span class="text-xs text-slate-500">＝ラドン泉／「痛風の湯」</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            ラドン（気体）を含む。<strong>「ホルミシス効果」</strong>と呼ばれる微量放射線による免疫活性が言われる。ラドンは半減期3.82日と非常に短いため、<strong>湧き出した温泉でしか効果を得られない</strong>稀少な泉質。痛風・関節リウマチ・強直性脊椎炎に。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">高尿酸血症（痛風）、関節リウマチ、強直性脊椎炎など</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">なし</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">三朝・有馬・増富・村杉・池田・恵那ラジウム ほか</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 含よう素泉 -->
+        <article class="bg-white rounded-xl border border-amber-200 p-6 shadow-sm">
+          <div class="flex flex-wrap items-baseline gap-3">
+            <h3 class="text-2xl font-bold text-slate-900">含よう素泉</h3>
+            <span class="chip bg-amber-50 text-amber-700">タイプ10</span>
+            <span class="text-xs text-slate-500">＝平成26年改正で新設／うがい薬の主成分</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            よう素は甲状腺ホルモンの主原料で、<strong>新陳代謝を促進</strong>。コレステロールを下げる作用も。<strong>甲状腺機能亢進症の人は禁忌</strong>。色は黄色〜茶色、長期保存で褐色化（「経年変化」する珍しい泉質）。
+          </p>
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">浴用適応症</p>
+              <p class="text-slate-900 mt-1">なし</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">飲用適応症</p>
+              <p class="text-slate-900 mt-1">高コレステロール血症</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">代表温泉地</p>
+              <p class="text-slate-900 mt-1">新津・大沢・白子・有明天空・両神 ほか</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ====================== 4. 効能マトリクス ====================== -->
+    <section id="matrix" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 4</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">効能マトリクス</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        平成26年（2014年）7月1日改定の<strong>泉質別適応症 早見表</strong>。「自分の症状はどの泉質に効くか」を逆引きできます。<br>
+        全泉質に共通する <strong>「一般的適応症」</strong> もあります（疲労回復、健康増進、自律神経不安定症、不眠症、うつ状態など）。
+      </p>
+
+      <h3 class="mt-8 text-lg font-semibold text-slate-900">浴用の泉質別適応症</h3>
+      <div class="mt-3 bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full matrix">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th scope="col" class="text-left py-3 px-3 uppercase tracking-wider w-48">適応症</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">単純</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">塩化物</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">炭酸水素</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">硫酸塩</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">CO₂</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">含鉄</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">硫黄</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">酸性</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">放射能</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><td class="py-2 px-3 font-medium text-slate-900">きりきず</td>            <td class="no">—</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">末梢循環障害</td>        <td class="no">—</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">冷え性</td>              <td class="no">—</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">皮膚乾燥症</td>          <td class="no">—</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">うつ状態</td>            <td class="yes">○</td><td class="yes">○</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">自律神経不安定症</td>    <td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">不眠症</td>              <td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">アトピー性皮膚炎</td>    <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="yes">○</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">尋常性乾癬</td>          <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="yes">○</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">表皮化膿症</td>          <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="yes">○</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">慢性湿疹（糖尿病）</td>  <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">高尿酸血症（痛風）</td>  <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">関節リウマチ</td>        <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">強直性脊椎炎</td>        <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 class="mt-10 text-lg font-semibold text-slate-900">飲用の泉質別適応症</h3>
+      <div class="mt-3 bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full matrix">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th scope="col" class="text-left py-3 px-3 uppercase tracking-wider w-48">適応症</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">単純</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">塩化物</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">炭酸水素</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">硫酸塩</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">CO₂</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">含鉄</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">硫黄</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">酸性</th>
+                <th scope="col" class="py-3 px-2 uppercase tracking-wider">よう素</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><td class="py-2 px-3 font-medium text-slate-900">慢性消化器病</td>          <td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">便秘</td>                  <td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">胃十二指腸潰瘍</td>        <td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">逆流性食道炎</td>          <td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">糖尿病</td>                <td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">高コレステロール血症</td>  <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="yes">○</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">胆道系機能障害</td>        <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">胃腸機能低下</td>          <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">鉄欠乏性貧血</td>          <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">○</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="mt-4 text-xs text-slate-500">
+        ※ 飲用は<strong>保健所からの飲用許可</strong>がある温泉でのみ可能。許可がない場合は飲まないこと。
+      </p>
+    </section>
+
+    <!-- ====================== 5. 美人の湯 ====================== -->
+    <section id="beauty" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 5</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">美人の湯 3条件</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        「美人の湯」は俗称で、明確な基準はないが、教本では <strong>3つの効果系統</strong> として整理されています。役割の違う3つを <strong>湯巡りで組み合わせる</strong> のが理想。
+      </p>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-5">
+        <div class="bg-white rounded-xl border border-cyan-200 p-6 shadow-sm">
+          <p class="chip bg-cyan-50 text-cyan-700">クレンジング系</p>
+          <h3 class="text-lg font-semibold text-slate-900 mt-2">古い角質を落とす</h3>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            <strong>炭酸水素塩泉</strong> または <strong>pH 7.5以上の弱アルカリ性〜アルカリ性単純温泉</strong>。重曹分・アルカリが角質を分解 → ツルツル。
+          </p>
+          <p class="mt-3 text-xs text-slate-500">※ 落とし穴：保湿剤や塩化物泉を後で「仕上げ」に入らないと乾燥する</p>
+        </div>
+        <div class="bg-white rounded-xl border border-blue-200 p-6 shadow-sm">
+          <p class="chip bg-blue-50 text-blue-700">保湿系</p>
+          <h3 class="text-lg font-semibold text-slate-900 mt-2">水分を肌に閉じ込める</h3>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            <strong>塩化物泉</strong>。塩のコーティング効果で水分蒸発を防ぐ。湯上がりタオルで強く拭かない。
+          </p>
+          <p class="mt-3 text-xs text-slate-500">クレンジング後の「仕上げ湯」として最強</p>
+        </div>
+        <div class="bg-white rounded-xl border border-emerald-200 p-6 shadow-sm">
+          <p class="chip bg-emerald-50 text-emerald-700">仕上げ系</p>
+          <h3 class="text-lg font-semibold text-slate-900 mt-2">肌のハリ・弾力</h3>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            <strong>硫酸塩泉</strong>。肌を引き締めるアンチエイジング効果。
+          </p>
+          <p class="mt-3 text-xs text-slate-500">「ハリ」「弾力」を感じたいときに</p>
+        </div>
+      </div>
+
+      <div class="mt-6 p-5 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-3">
+        <svg class="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+        <div class="text-sm text-amber-800 leading-relaxed">
+          <strong class="text-amber-900">湯巡りの順番</strong>：強い湯（酸性・硫黄など刺激強い）→ 単純温泉や塩化物泉で<strong>仕上げ</strong>、が基本。最後に強い湯に入ると肌に残った成分で荒れることがある。
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== 6. 成分表の読み方 ====================== -->
+    <section id="read" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 6</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">温泉分析書の読み方</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        各温泉施設の脱衣所に必ず掲示されている「温泉分析書」。次の<strong>10ポイント</strong>を順に確認すれば、その温泉の正体がほぼわかります。
+      </p>
+
+      <ol class="mt-6 space-y-3">
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">01</span>
+            <h3 class="text-base font-semibold text-slate-900">泉質名 と 4軸タグ</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            「ナトリウム-塩化物泉（低張性・中性・高温泉）」のように、最初の1行に <strong>泉質＋浸透圧＋液性＋泉温</strong> が並ぶ。ここで温泉の人格が決まる。
+          </p>
+        </li>
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">02</span>
+            <h3 class="text-base font-semibold text-slate-900">泉温（25℃以上か）</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            源泉温度。25℃未満なら冷鉱泉で<strong>加温前提</strong>＝循環濾過の可能性が高い。42℃を超えていれば「加水・加温なしで入れる」プレミアム源泉。
+          </p>
+        </li>
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">03</span>
+            <h3 class="text-base font-semibold text-slate-900">湧出量（鮮度の指標）</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            「100リットル/分」が <strong>1日100名分</strong> の入浴を新鮮に提供できる目安。少ないと循環、多いと「源泉かけ流し」が可能。
+          </p>
+        </li>
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">04</span>
+            <h3 class="text-base font-semibold text-slate-900">pH（美肌指標）</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            <strong>pH 7.5 以上 → 美肌効果あり</strong>。10を超えるとキュッキュッ感。pH 3未満は強酸性で殺菌力◎だが肌刺激も強い。
+          </p>
+        </li>
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">05</span>
+            <h3 class="text-base font-semibold text-slate-900">浸透圧（高張性なら）</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            高張性は短時間でも <strong>湯あたりしやすい</strong>。長湯禁物。低張性は逆に長く入れる。
+          </p>
+        </li>
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">06</span>
+            <h3 class="text-base font-semibold text-slate-900">溶存物質（ガス性除く）</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            <strong>1,000 mg/kg 未満 → 単純温泉</strong>、以上 → 塩類泉。10g/kg以上なら高張性で濃い。125〜250mg/kg程度なら塩素泉として薄めの「優しい」湯。
+          </p>
+        </li>
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">07</span>
+            <h3 class="text-base font-semibold text-slate-900">陽イオン・陰イオンの主役</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            <strong>20 mval% 以上の成分が泉質名に入る</strong>。Na⁺多めなら「保湿・しっとり」、Ca²⁺多めなら「鎮静」、Mg²⁺多めなら「動脈硬化予防」、HCO₃⁻多めなら「ヌルヌル」。
+          </p>
+        </li>
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">08</span>
+            <h3 class="text-base font-semibold text-slate-900">特殊成分（鉄・硫黄・ラドン・ヨウ素・CO₂）</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            これらが規定値を超えると <strong>「含○○-××泉」</strong> と泉質名に追加される。鉄(II)が10mg/kg以上で含鉄、総硫黄2mg以上で硫黄泉、CO₂が1,000mg以上で二酸化炭素泉。
+          </p>
+        </li>
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">09</span>
+            <h3 class="text-base font-semibold text-slate-900">適応症と禁忌症の掲示</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            浴用・飲用 それぞれの <strong>「一般的適応症」「泉質別適応症」</strong> と、<strong>「一般的禁忌症」「泉質別禁忌症」</strong> が並ぶ。妊娠中（特に初期と末期）は2014年改正で禁忌から除外。
+          </p>
+        </li>
+        <li class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-baseline gap-3">
+            <span class="text-2xl font-bold text-primary-500 leading-none">10</span>
+            <h3 class="text-base font-semibold text-slate-900">「加水・加温・循環・入浴剤・消毒」掲示の有無</h3>
+          </div>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            この5項目は<strong>掲示義務</strong>。「加水あり」+「加温あり」を同時に行っているなら、温泉の供給量が不足している＝かなりの加水で「<strong>水増し」</strong>の可能性。
+          </p>
+        </li>
+      </ol>
+
+      <details class="mt-8 bg-white rounded-xl border border-slate-200 p-5">
+        <summary class="font-medium text-slate-900 flex items-center justify-between">
+          <span>もっと深く読みたい人向け：応用チェックリスト18項目</span>
+          <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <ul class="mt-4 grid sm:grid-cols-2 gap-2 text-sm text-body">
+          <li>11. ナトリウム/カルシウム/マグネシウムのバランス</li>
+          <li>12. ナトリウム/HCO₃ 80%以上 → 美肌の目安</li>
+          <li>13. 炭酸水素イオン絶対量（美肌系の強さ）</li>
+          <li>14. 陽陰イオンの「mvalの合計」</li>
+          <li>15. 遊離二酸化炭素 400mg/kg 以上の濃さ</li>
+          <li>16. ラドン含有量 → 50マッヘ以上は強放射能</li>
+          <li>17. CO₂・放射能・酸性が泉温で変質しないか</li>
+          <li>18. 鉄(II)・鉄(III) のどちらが多いか</li>
+          <li>19. 含鉄泉の色（鉄の量と色の関係）</li>
+          <li>20. 水素イオン 1mg/kg 以上で酸性扱い</li>
+          <li>21. 遊離硫化水素（H₂S）の濃さ</li>
+          <li>22. 硫化水素イオン（HS⁻）の濃さ</li>
+          <li>23. 臭素・よう化物イオン（よう素泉判定）</li>
+          <li>24. 泉質名に反映されない CO₂ 量</li>
+          <li>25. 水酸（OH⁻）量（強アルカリ判定）</li>
+          <li>26. 総硫黄量</li>
+          <li>27. メタケイ酸 50mg/kg 以上で美肌系</li>
+          <li>28. 「ミリバル」表記が無い場合は計算で出す</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- ====================== 7. 実例で読んでみる ====================== -->
+    <section id="example" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 7</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">実例で読んでみる</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        実際の温泉分析書を一緒に読み解きます。下の見本に <span class="callout-tag">1</span> 〜 <span class="callout-tag">7</span> の番号タグを打ったので、第6章の10ポイントと照合しながら追ってください。<br>
+        最後に「この温泉は何者か？」を3行でまとめます。
+      </p>
+
+      <div class="mt-8 grid lg:grid-cols-5 gap-6">
+
+        <!-- ===== Sample analysis sheet (left, 3/5) ===== -->
+        <div class="lg:col-span-3">
+          <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden sheet-frame">
+            <div class="px-5 py-2 border-b border-slate-200 bg-gray-50 text-xs text-slate-500 flex items-center justify-between">
+              <span>温泉分析書（見本）</span>
+              <span>厚生労働省様式</span>
+            </div>
+            <div class="p-5 lg:p-7 font-serif text-[13px] leading-relaxed text-slate-800">
+              <h4 class="text-center text-base tracking-[0.4em] font-bold mb-5">温　泉　分　析　書　（見本）</h4>
+
+              <ol class="space-y-3 list-none">
+                <li>
+                  <p class="font-medium">1. 分析申請者</p>
+                  <div class="pl-5 text-slate-600 mt-0.5">住所　○○県○○市○○町○○番地<br>氏名　○山○男</div>
+                </li>
+                <li>
+                  <p class="font-medium">2. 源泉名及び湧出地</p>
+                  <div class="pl-5 text-slate-600 mt-0.5">源泉名　○○温泉○号泉<br>湧出地　○○県○○市○○町○○番地</div>
+                </li>
+                <li>
+                  <p class="font-medium">3. 湧出地における調査及び試験成績</p>
+                  <div class="pl-5 mt-0.5 text-slate-700">
+                    （イ）調査及び試験者　○○○○研究所試験センター　○川○郎<br>
+                    （ロ）調査及び試験年月日　○○年○○月○○日<br>
+                    （ハ）泉温　<mark class="callout-mark">42.7℃</mark><span class="callout-tag">1</span>（気温13℃）<br>
+                    （ニ）湧出量　<mark class="callout-mark">84&nbsp;L/分</mark><span class="callout-tag">2</span>（自然湧出・掘削・自噴・動力揚湯）<br>
+                    （ホ）知覚的試験　無色澄明無味無臭<br>
+                    （ヘ）pH値　<mark class="callout-mark">8.2</mark><span class="callout-tag">3</span>（ガラス電極法）<br>
+                    （ト）ラドン（Rn）　<span class="text-slate-400">—</span>
+                  </div>
+                </li>
+                <li>
+                  <p class="font-medium">4. 試験室における試験成績</p>
+                  <div class="pl-5 mt-0.5 text-slate-700">
+                    （イ）試験者　○○○○研究所試験センター　○川○郎<br>
+                    （ロ）分析終了年月日　○○年○○月○○日<br>
+                    （ハ）知覚的試験　無色澄明無味無臭<br>
+                    （ニ）密度　0.9994&nbsp;g/cm³（20℃/4℃）<br>
+                    （ホ）pH値　8.51（ガラス電極法）<br>
+                    （ヘ）蒸発残留物　1.32&nbsp;g/kg（110℃）
+                  </div>
+                </li>
+                <li>
+                  <p class="font-medium">5. 試料1kg中の成分・分量及び組成</p>
+
+                  <div class="pl-5 mt-2">
+                    <p class="text-xs text-slate-600">（イ）陽イオン<span class="callout-tag">4</span></p>
+                    <div class="overflow-x-auto mt-1">
+                      <table class="w-full text-[12px]">
+                        <thead class="text-slate-500">
+                          <tr class="border-b border-slate-200"><th class="text-left py-1">成分</th><th class="text-right py-1">mg</th><th class="text-right py-1">mval</th><th class="text-right py-1">mval%</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                          <tr><td class="py-0.5">ナトリウムイオン (Na⁺)</td><td class="text-right">95.5</td><td class="text-right">4.15</td><td class="text-right text-emerald-700 font-semibold">22.88</td></tr>
+                          <tr><td class="py-0.5">カリウムイオン (K⁺)</td><td class="text-right">3.42</td><td class="text-right">0.09</td><td class="text-right">0.48</td></tr>
+                          <tr><td class="py-0.5">マグネシウムイオン (Mg²⁺)</td><td class="text-right">0.20</td><td class="text-right">0.02</td><td class="text-right">0.09</td></tr>
+                          <tr><td class="py-0.5"><strong>カルシウムイオン (Ca²⁺)</strong></td><td class="text-right font-semibold">278</td><td class="text-right font-semibold">13.90</td><td class="text-right text-emerald-700 font-semibold">76.55</td></tr>
+                          <tr class="text-slate-500"><td class="py-0.5">鉄(II)イオン (Fe²⁺)</td><td class="text-right">&lt;0.01</td><td class="text-right">0.00</td><td class="text-right">0.00</td></tr>
+                          <tr class="text-slate-500"><td class="py-0.5">マンガンイオン (Mn²⁺)</td><td class="text-right">0.10</td><td class="text-right">0.00</td><td class="text-right">0.00</td></tr>
+                          <tr class="text-slate-500"><td class="py-0.5">アルミニウムイオン (Al³⁺)</td><td class="text-right">&lt;0.05</td><td class="text-right">0.00</td><td class="text-right">0.00</td></tr>
+                          <tr class="border-t border-slate-300 font-medium"><td class="py-1">陽イオン計</td><td class="text-right">377</td><td class="text-right">18.2</td><td class="text-right">100</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <p class="text-xs text-slate-600 mt-3">（ロ）陰イオン<span class="callout-tag">5</span></p>
+                    <div class="overflow-x-auto mt-1">
+                      <table class="w-full text-[12px]">
+                        <thead class="text-slate-500">
+                          <tr class="border-b border-slate-200"><th class="text-left py-1">成分</th><th class="text-right py-1">mg</th><th class="text-right py-1">mval</th><th class="text-right py-1">mval%</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                          <tr><td class="py-0.5">ふっ化物イオン (F⁻)</td><td class="text-right">0.7</td><td class="text-right">0.04</td><td class="text-right">0.21</td></tr>
+                          <tr><td class="py-0.5">塩化物イオン (Cl⁻)</td><td class="text-right">113</td><td class="text-right">3.19</td><td class="text-right">17.67</td></tr>
+                          <tr><td class="py-0.5"><strong>硫酸イオン (SO₄²⁻)</strong></td><td class="text-right font-semibold">699</td><td class="text-right font-semibold">14.6</td><td class="text-right text-emerald-700 font-semibold">80.74</td></tr>
+                          <tr><td class="py-0.5">炭酸水素イオン (HCO₃⁻)</td><td class="text-right">15.3</td><td class="text-right">0.25</td><td class="text-right">1.38</td></tr>
+                          <tr class="border-t border-slate-300 font-medium"><td class="py-1">陰イオン計</td><td class="text-right">828</td><td class="text-right">18.1</td><td class="text-right">100</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <p class="text-xs text-slate-600 mt-3">（ハ）遊離成分</p>
+                    <div class="grid sm:grid-cols-2 gap-3 mt-1 text-[12px]">
+                      <div>
+                        <p class="text-slate-500 text-xs">非解離成分</p>
+                        <table class="w-full mt-1">
+                          <tbody class="divide-y divide-slate-100">
+                            <tr><td class="py-0.5">メタケイ酸 (H₂SiO₃)</td><td class="text-right">40.1 mg</td></tr>
+                            <tr><td class="py-0.5">メタホウ酸 (HBO₂)</td><td class="text-right">5.1 mg</td></tr>
+                            <tr class="border-t border-slate-300 font-medium"><td class="py-1">非解離成分計</td><td class="text-right">45.2 mg</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <p class="text-slate-500 text-xs">溶存ガス成分</p>
+                        <table class="w-full mt-1">
+                          <tbody class="divide-y divide-slate-100">
+                            <tr><td class="py-0.5">遊離二酸化炭素 (CO₂)</td><td class="text-right">0.0 mg</td></tr>
+                            <tr><td class="py-0.5">遊離硫化水素 (H₂S)</td><td class="text-right">0.0 mg</td></tr>
+                            <tr class="border-t border-slate-300 font-medium"><td class="py-1">溶存ガス成分計</td><td class="text-right">0.0 mg</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="mt-3 pt-3 border-t border-slate-200">
+                      <p class="text-[13px]"><strong>溶存物質計（ガス性のものを除く）</strong>　<mark class="callout-mark">1.25 g/kg</mark><span class="callout-tag">6</span></p>
+                      <p class="text-[13px] mt-1">成分総計　1.25&nbsp;g/kg</p>
+                    </div>
+
+                    <p class="text-xs text-slate-600 mt-3">（ニ）その他の微量成分（mg）</p>
+                    <div class="pl-3 mt-1 text-[12px] text-slate-600">
+                      総ひ素 0.13 ／ 銅イオン 検出せず（0.002未満）／ 鉛イオン 検出せず（0.005未満）／ 総水銀 検出せず（0.0005未満）
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <p class="font-medium">6. 泉質</p>
+                  <div class="pl-5 mt-1">
+                    <mark class="callout-mark text-[14px]">カルシウム・ナトリウム−硫酸塩温泉</mark><span class="callout-tag">7</span><br>
+                    <span class="text-slate-600">（弱アルカリ性・低張性・高温泉）</span>
+                  </div>
+                </li>
+
+                <li>
+                  <p class="font-medium">7. 禁忌症、適応症等は別表による。</p>
+                </li>
+              </ol>
+
+              <div class="mt-6 pt-4 border-t border-slate-200 text-[12px] text-slate-500 flex justify-between">
+                <span>○○年○○月○○日</span>
+                <span>登録番号　○○○第○号<br>○○○○研究所試験センター　所長　○川○康</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Walkthrough cards (right, 2/5) ===== -->
+        <div class="lg:col-span-2 space-y-3">
+          <h3 class="font-semibold text-slate-900">読み解きガイド</h3>
+
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <div class="flex items-center gap-2"><span class="callout-tag">1</span><h4 class="text-sm font-semibold text-slate-900">泉温 42.7℃</h4></div>
+            <p class="text-xs text-body mt-2 leading-relaxed">42℃以上 → <strong>高温泉</strong>。加水・加温なしで入れる「源泉そのまま」レベル。</p>
+          </article>
+
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <div class="flex items-center gap-2"><span class="callout-tag">2</span><h4 class="text-sm font-semibold text-slate-900">湧出量 84 L/分</h4></div>
+            <p class="text-xs text-body mt-2 leading-relaxed">100 L/分の鮮度目安にやや届かず。1日約84名分の入浴を新鮮提供。<strong>自然湧出</strong>のため動力揚湯ではなく、酸化等の劣化が少ない。</p>
+          </article>
+
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <div class="flex items-center gap-2"><span class="callout-tag">3</span><h4 class="text-sm font-semibold text-slate-900">pH 8.2</h4></div>
+            <p class="text-xs text-body mt-2 leading-relaxed">pH 7.5以上8.5未満 → <strong>弱アルカリ性</strong>。<strong>美肌効果あり</strong>のレンジ。試験室再測定で8.51と微妙にアルカリ性寄り（湧出から少し中和進行）。</p>
+          </article>
+
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <div class="flex items-center gap-2"><span class="callout-tag">4</span><h4 class="text-sm font-semibold text-slate-900">陽イオンの主役</h4></div>
+            <p class="text-xs text-body mt-2 leading-relaxed">
+              <strong>Ca²⁺ が 76.55%</strong>、<strong>Na⁺ が 22.88%</strong>。<br>
+              いずれも <strong>20 mval% を超える</strong> ため、両方とも泉質名に入る。多い順に「<strong>カルシウム・ナトリウム</strong>」と並べる。
+            </p>
+          </article>
+
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <div class="flex items-center gap-2"><span class="callout-tag">5</span><h4 class="text-sm font-semibold text-slate-900">陰イオンの主役</h4></div>
+            <p class="text-xs text-body mt-2 leading-relaxed">
+              <strong>SO₄²⁻ が 80.74%</strong> で圧倒的。20 mval% を超えるのは硫酸イオンのみ。<br>
+              → 陰イオンは <strong>「硫酸塩」</strong> 1つで決まり。
+            </p>
+          </article>
+
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <div class="flex items-center gap-2"><span class="callout-tag">6</span><h4 class="text-sm font-semibold text-slate-900">溶存物質 1.25 g/kg</h4></div>
+            <p class="text-xs text-body mt-2 leading-relaxed">
+              1,250 mg/kg → 1,000 を超えるので <strong>塩類泉カテゴリー</strong>（単純温泉ではない）。<br>
+              ただし 8 g/kg 未満なので浸透圧は <strong>低張性</strong>。長湯OK、湯あたりしにくい。
+            </p>
+          </article>
+
+          <article class="bg-white rounded-xl border border-primary-200 p-4 shadow-sm">
+            <div class="flex items-center gap-2"><span class="callout-tag">7</span><h4 class="text-sm font-semibold text-slate-900">泉質名の組み立て</h4></div>
+            <p class="text-xs text-body mt-2 leading-relaxed">
+              <span class="text-primary-700 font-medium">陽イオン（Ca・Na）</span> ＋ ハイフン ＋ <span class="text-primary-700 font-medium">陰イオン（硫酸塩）</span> ＋「温泉」<br>
+              → <strong class="text-slate-900">カルシウム・ナトリウム−硫酸塩温泉</strong><br>
+              4軸タグで括弧書き → <strong>（弱アルカリ性・低張性・高温泉）</strong>
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- ===== 結論 ===== -->
+      <div class="mt-10 bg-gradient-to-br from-primary-50 to-white rounded-xl border border-primary-200 p-6 lg:p-8 shadow-sm">
+        <p class="text-xs font-medium text-primary-700 tracking-wider">CONCLUSION</p>
+        <h3 class="text-xl font-bold text-slate-900 mt-2">この温泉は何者か？</h3>
+
+        <p class="mt-4 text-base text-slate-900 leading-relaxed">
+          <strong>カルシウム・ナトリウム−硫酸塩温泉</strong>（弱アルカリ性・低張性・高温泉）<br>
+          <span class="text-sm text-body">＝<em>「肌を仕上げる、優しめの高温湯」</em></span>
+        </p>
+
+        <div class="mt-6 grid md:grid-cols-3 gap-4">
+          <div class="bg-white rounded-lg border border-slate-200 p-4">
+            <p class="text-xs text-emerald-700 font-medium">◯ 浴用適応症</p>
+            <p class="text-sm text-slate-900 mt-2 leading-relaxed">きりきず、末梢循環障害、冷え性、<strong>うつ状態</strong>、皮膚乾燥症</p>
+            <p class="text-xs text-slate-500 mt-2">＋ 一般的適応症（疲労回復・健康増進・睡眠改善 など）</p>
+          </div>
+          <div class="bg-white rounded-lg border border-slate-200 p-4">
+            <p class="text-xs text-emerald-700 font-medium">◯ 飲用適応症</p>
+            <p class="text-sm text-slate-900 mt-2 leading-relaxed">胆道系機能障害、高コレステロール血症、<strong>便秘</strong></p>
+            <p class="text-xs text-slate-500 mt-2">※ 飲用は施設の許可を確認</p>
+          </div>
+          <div class="bg-white rounded-lg border border-slate-200 p-4">
+            <p class="text-xs text-red-700 font-medium">⚠ 注意</p>
+            <p class="text-sm text-slate-900 mt-2 leading-relaxed">一般的禁忌のみ（特異な禁忌は少ない）。下痢時は飲用を避ける。</p>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-white border border-slate-200 rounded-lg">
+          <p class="text-sm font-semibold text-slate-900">3行まとめ</p>
+          <ul class="mt-2 space-y-1 text-sm text-body leading-relaxed">
+            <li>① <strong>硫酸塩泉なので「美人の湯・仕上げ系」</strong>（肌のハリ・弾力 / アンチエイジング）</li>
+            <li>② <strong>pH 8.2 + 弱アルカリ性</strong> でクレンジング効果も微弱に併発 → 湯上がりは保湿推奨</li>
+            <li>③ <strong>低張性 × 高温泉</strong> なので「短時間で温まり、長湯にも耐える」万能型。<strong>うつ状態・冷え性・きりきず</strong>に最適</li>
+          </ul>
+        </div>
+
+        <details class="mt-5 text-sm">
+          <summary class="font-medium text-slate-900 cursor-pointer">この導出を10ポイントで再確認する</summary>
+          <ol class="mt-3 ml-4 list-decimal space-y-1 text-body">
+            <li><strong>泉温</strong>：42.7℃ → 高温泉 ✓</li>
+            <li><strong>湧出量</strong>：84 L/分（自然湧出）→ 鮮度◯</li>
+            <li><strong>pH</strong>：8.2 → 弱アルカリ性、美肌効果のレンジ</li>
+            <li><strong>溶存物質</strong>：1,250 mg/kg → 塩類泉、低張性</li>
+            <li><strong>陽イオン主役</strong>：Ca 76.55% + Na 22.88%（共に20%超）</li>
+            <li><strong>陰イオン主役</strong>：SO₄ 80.74%（単独）</li>
+            <li><strong>特殊成分</strong>：鉄・硫黄・CO₂・ラドン・ヨウ素いずれも基準未満 → 「含○○」なし</li>
+            <li><strong>泉質名組立</strong>：カルシウム・ナトリウム−硫酸塩温泉</li>
+            <li><strong>4軸タグ</strong>：弱アルカリ性・低張性・高温泉</li>
+            <li><strong>美人の湯適性</strong>：硫酸塩（仕上げ系）＋ pH 8.2（クレンジング軽め）</li>
+          </ol>
+        </details>
+      </div>
+    </section>
+
+    <!-- ====================== 8. 入浴法 ====================== -->
+    <section id="bath" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 8</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">正しい入浴法</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        効能を引き出すには入り方も大事。「どう入るか」が「どこに入るか」と同じくらい結果を変えます。
+      </p>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <span class="w-7 h-7 inline-flex items-center justify-center rounded-full bg-primary-50 text-primary-700 text-sm font-bold">1</span>
+            かけ湯（足元から段階的に）
+          </h3>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            <strong>必ず心臓から遠い足元から</strong>かけ湯。3〜5回かけて体を慣らしてから入る。心臓発作・脳卒中の予防。
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <span class="w-7 h-7 inline-flex items-center justify-center rounded-full bg-primary-50 text-primary-700 text-sm font-bold">2</span>
+            水分補給
+          </h3>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            入浴前後に <strong>コップ1〜2杯の水・お湯</strong>を。脱水と血液濃縮を防ぐ。アルコールは厳禁。
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <span class="w-7 h-7 inline-flex items-center justify-center rounded-full bg-primary-50 text-primary-700 text-sm font-bold">3</span>
+            温度と時間
+          </h3>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            <strong>42℃以上の全身浴は10分以内</strong>。リラックス目的なら37〜40℃の<strong>ぬる湯で長湯</strong>（副交感神経優位）。CO₂泉は34〜37℃。
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <span class="w-7 h-7 inline-flex items-center justify-center rounded-full bg-primary-50 text-primary-700 text-sm font-bold">4</span>
+            分割浴
+          </h3>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            10分1回より、<strong>3分浴 → 休憩 → 3分浴 → 休憩 → 3分浴</strong> で同じ消費カロリーで体への負担を半減できる。
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <span class="w-7 h-7 inline-flex items-center justify-center rounded-full bg-primary-50 text-primary-700 text-sm font-bold">5</span>
+            湯上がりの「すすぎ」
+          </h3>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            刺激の強い湯（酸性・硫黄）の後は <strong>真水でかけ湯</strong>。逆に保湿系（塩化物・硫酸塩）は <strong>すすがず</strong>、タオルで軽く押さえるだけ。
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <span class="w-7 h-7 inline-flex items-center justify-center rounded-full bg-primary-50 text-primary-700 text-sm font-bold">6</span>
+            温泉療養（連泊）
+          </h3>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            短期で効果を出すなら<strong>2〜3週間の連湯</strong>を1日2〜3回。1〜2日では発汗の程度。湯あたりが出たら1日休む。
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 p-5 bg-emerald-50 border border-emerald-200 rounded-lg flex items-start gap-3">
+        <svg class="w-5 h-5 text-emerald-700 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        <div class="text-sm text-emerald-800 leading-relaxed">
+          <strong class="text-emerald-900">10分1回入浴の消費カロリー目安</strong>：40℃ 約40 kcal / 「ややきつい」ウォーキング 約109 kcal / ジョギング 約80 kcal / ご飯1杯 約160 kcal。湯と運動は組み合わせよう。
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== 9. 禁忌症 ====================== -->
+    <section id="contra" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 9</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">禁忌症と注意</h2>
+
+      <div class="mt-6 p-5 bg-red-50 border border-red-200 rounded-lg">
+        <h3 class="text-base font-semibold text-red-900">浴用の一般的禁忌症（全泉質共通）</h3>
+        <ul class="mt-3 grid sm:grid-cols-2 gap-2 text-sm text-red-800">
+          <li>・病気の活動期（特に発熱）</li>
+          <li>・活動性の結核</li>
+          <li>・進行した悪性腫瘍／高度の貧血</li>
+          <li>・重い心臓・肺・腎臓病</li>
+          <li>・消化管出血、目に見えない急性内臓疾患</li>
+          <li>・呼吸不全・腎不全</li>
+          <li>・出血性疾患</li>
+          <li>・高度の脱水</li>
+          <li>・その他、急性疾患（特に発熱を伴うもの）</li>
+        </ul>
+        <p class="mt-3 text-xs text-red-700">※ 妊娠中（特に初期と末期）は <strong>2014年改正で禁忌から除外</strong>。</p>
+      </div>
+
+      <div class="mt-5 p-5 bg-amber-50 border border-amber-200 rounded-lg">
+        <h3 class="text-base font-semibold text-amber-900">飲用の一般的禁忌症</h3>
+        <ul class="mt-3 grid sm:grid-cols-2 gap-2 text-sm text-amber-800">
+          <li>・腎臓病、高血圧、その他むくみのある病気</li>
+          <li>・甲状腺機能亢進症（よう素泉）</li>
+          <li>・下痢のとき</li>
+          <li>・1日の飲泉量は <strong>200〜1,000 mL</strong> 以内</li>
+        </ul>
+      </div>
+
+      <div class="mt-5 grid md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <h3 class="text-base font-semibold text-slate-900">泉質別 主な禁忌</h3>
+          <ul class="mt-3 space-y-2 text-sm text-body">
+            <li><strong>塩化物泉（飲用）</strong>：腎不全、心不全、高血圧、虚血性心疾患</li>
+            <li><strong>炭酸水素塩泉（飲用）</strong>：カリウム制限が必要な腎不全、副甲状腺機能低下症</li>
+            <li><strong>硫酸塩泉（飲用）</strong>：下痢のとき</li>
+            <li><strong>含鉄泉（飲用）</strong>：甲状腺機能亢進症</li>
+            <li><strong>酸性泉・硫黄泉</strong>：皮膚・粘膜が敏感な人、高齢者の乾燥肌</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <h3 class="text-base font-semibold text-slate-900">体感トラブルと対処</h3>
+          <ul class="mt-3 space-y-2 text-sm text-body">
+            <li><strong>湯あたり</strong>：3〜10日目に出る発熱・頭痛。1日入浴を休む</li>
+            <li><strong>湯ただれ</strong>：刺激の強い湯で皮膚炎。真水ですすぐ</li>
+            <li><strong>湯疲れ</strong>：長湯・高温で疲労感。分割浴に切替</li>
+            <li><strong>のぼせ・めまい</strong>：すぐに横になる。水分補給</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== 10. 用語辞典 ====================== -->
+    <section id="glossary" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 10</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">用語ミニ辞典</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        分析書や温泉紹介でよく出てくる用語をまとめて。覚えておくと旅館の説明文がスラスラ読めます。
+      </p>
+
+      <dl class="mt-6 grid md:grid-cols-2 gap-x-8 gap-y-5">
+        <div>
+          <dt class="font-semibold text-slate-900">適応症</dt>
+          <dd class="mt-1 text-sm text-body">温泉が効くとされる症状の科学的（医学的）な見立て。療養泉のみが掲示できる。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">禁忌症</dt>
+          <dd class="mt-1 text-sm text-body">入ってはいけない・飲んではいけない病態。命に関わる。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">かけ流し</dt>
+          <dd class="mt-1 text-sm text-body">湧出した源泉をそのまま浴槽に入れて、溢れた湯を捨てる方式。鮮度が高い。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">循環濾過</dt>
+          <dd class="mt-1 text-sm text-body">浴槽の湯を濾過して再利用。湧出量が少ない・温度が低い場合に必要。塩素消毒を伴うことが多い。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">源泉かけ流し</dt>
+          <dd class="mt-1 text-sm text-body">湧出温度のまま、加水・加温・循環・入浴剤なしで提供。条件が揃わないと不可能。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">湧出量</dt>
+          <dd class="mt-1 text-sm text-body">1分あたり何リットル湧くか。100L/分で1日100名分の入浴を新鮮に提供できる目安。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">mval（ミリバル）</dt>
+          <dd class="mt-1 text-sm text-body">「電荷の濃さ」の単位。陽陰イオンを比較するときに使う。20 mval% 以上の成分が泉質名に入る。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">マッヘ（ME）</dt>
+          <dd class="mt-1 text-sm text-body">放射能泉の含有量単位。ラドン1マッヘ = 13.4 ベクレル。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">湯花（湯華）</dt>
+          <dd class="mt-1 text-sm text-body">温泉成分が結晶化したもの。硫黄泉・炭酸水素塩泉でよく見られる。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">温泉法</dt>
+          <dd class="mt-1 text-sm text-body">昭和23年制定の法律。温泉の定義・採掘・利用許可を規定。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">ホルミシス効果</dt>
+          <dd class="mt-1 text-sm text-body">微量放射線が免疫を活性化するとされる説。放射能泉の効能の根拠。</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-slate-900">交感神経 / 副交感神経</dt>
+          <dd class="mt-1 text-sm text-body">42℃以上の熱い湯は交感神経（覚醒）、37〜40℃のぬる湯は副交感神経（リラックス）を優位にする。</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- footer -->
+    <footer class="mt-20 pt-8 border-t border-slate-200">
+      <p class="text-sm text-slate-600">
+        <strong class="text-slate-900">出典</strong>：温泉ソムリエ認定講座テキスト（温泉ソムリエ協会）<br>
+        <span class="text-xs text-slate-500">本ページは個人学習用に再構成したノートです。詳細・正確な情報は公式テキストをご参照ください。</span>
+      </p>
+      <p class="mt-4 text-xs text-slate-400">
+        Made with <a href="https://melta.tsubotax.com" class="text-primary-500 hover:underline">melta UI</a> · 84ken / schema.tokyo
+      </p>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+// nav active highlight on scroll
+const links = document.querySelectorAll('.nav-link');
+const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+function highlight() {
+  const y = window.scrollY + 100;
+  let active = sections[0];
+  for (const s of sections) { if (s.offsetTop <= y) active = s; }
+  links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + active.id));
+}
+document.addEventListener('scroll', highlight, { passive: true });
+highlight();
+
+// mobile nav
+const sb = document.getElementById('sidebar');
+document.getElementById('navToggle').addEventListener('click', () => {
+  sb.classList.toggle('open');
+});
+sb.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  if (window.innerWidth < 1024) sb.classList.remove('open');
+}));
+</script>
+
+</body>
+</html>
