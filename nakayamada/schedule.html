@@ -138,14 +138,16 @@
         { name: '育成会費の集金準備・回覧', cat: '事務・管理' }
       ]},
       5:  { importance: '高', tasks: [
-        { name: '青育協総会（5/8 木 19:00〜 歴史文化伝承館2F）', cat: '青育協', note: '会長出席' },
+        { name: '青育協総会（5/8 木 19:00〜 歴史文化伝承館2F）', cat: '青育協', note: '会長出席済み' },
         { name: '連合理事会（5/14 水 19:00〜 常持会館1F）', cat: '総会・理事会', note: '会長出席。スポーツクラブ運営費等を納入' },
-        { name: 'クリーン美化 実施計画書提出（5/15 締切）', cat: '事務・管理' },
-        { name: 'クリーン秩父美化清掃の日（5/17）', cat: '青育協' },
+        { name: 'クリーン美化 実施計画書提出（5/15 締切）', cat: '事務・管理', note: '提出済み' },
+        { name: 'クリーン秩父美化清掃の日（5/17）', cat: '青育協', note: '中山田は6/21の廃品回収と同日実施' },
+        { name: '指導者研修会 参加者報告書（5/22 締切）', cat: '青育協', note: '各育成会2名以上参加必須' },
         { name: '育成会費の集金・取りまとめ', cat: '事務・管理', note: '今年度は世帯分のみ' }
       ]},
       6:  { importance: '高', tasks: [
-        { name: '前期廃品回収＋クリーン美化（6/14以降で調整中）', cat: '奉仕活動', note: '6/7は5区地区清掃と重複のため除外' },
+        { name: '指導者研修会（6/6 土 歴史文化伝承館2F）', cat: '青育協', note: '受付9:30 開講10:00。テーマ「家庭教育について」' },
+        { name: '前期廃品回収＋クリーン美化（6/21 日）', cat: '奉仕活動', note: '8:00役員集合、8:30全体集合（今泉薬局駐車場）' },
         { name: '廃品回収収支報告・回覧', cat: '事務・管理' }
       ]},
       7:  { importance: '低', tasks: [
@@ -159,7 +161,7 @@
         { name: '少年団バレーボール大会（9/5 土 文化体育センター）', cat: 'スポーツ活動', note: '中学生対象' }
       ]},
       10: { importance: '中', tasks: [
-        { name: '高篠地区子供会親善球技大会（10/31 金 別所運動公園）', cat: 'スポーツ活動', note: 'フットベース・ソフトボール' }
+        { name: '高篠地区子供会親善球技大会（10/31-11/1 別所運動公園）', cat: 'スポーツ活動', note: '予備日11/7。暑さ対策で秋に移動（R8変更）' }
       ]},
       11: { importance: '高', tasks: [
         { name: '後期廃品回収', cat: '奉仕活動' },
@@ -280,7 +282,9 @@
         content.className = 'flex-1 min-w-0';
 
         const taskName = document.createElement('p');
-        taskName.className = 'text-sm ' + (task.note === '今年度は見合わせ' ? 'text-slate-400 line-through' : 'text-slate-900');
+        const isDone = task.note && task.note.includes('済');
+        const isCancelled = task.note === '今年度は見合わせ';
+        taskName.className = 'text-sm ' + (isCancelled ? 'text-slate-400 line-through' : isDone ? 'text-slate-400' : 'text-slate-900');
         taskName.textContent = task.name;
 
         content.appendChild(taskName);
@@ -297,6 +301,8 @@
           const noteBadge = document.createElement('span');
           noteBadge.className = task.note === '今年度は見合わせ'
             ? 'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-red-50 text-red-600'
+            : isDone
+            ? 'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-green-50 text-green-600'
             : 'inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-600';
           noteBadge.textContent = task.note;
           badges.appendChild(noteBadge);
