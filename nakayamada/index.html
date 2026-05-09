@@ -195,15 +195,15 @@
         <ul class="space-y-2 text-sm">
           <li class="flex items-start gap-2">
             <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 mt-0.5">NEW</span>
-            <span class="text-slate-700">第2回理事会（4/30）の決定事項を反映しました</span>
+            <span class="text-slate-700">青育協総会（5/8）の報告を掲載しました</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 mt-0.5">予定</span>
-            <span class="text-slate-700">前期廃品回収＋クリーン美化を6月中旬に実施予定（日程調整中）</span>
+            <span class="text-slate-700">前期廃品回収＋クリーン美化は6/21（日）に決定しました</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="inline-block bg-slate-100 text-slate-700 text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 mt-0.5">決定</span>
-            <span class="text-slate-700">今年度の育成会費は世帯分のみ集金（子供分は集めません）</span>
+            <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 mt-0.5">変更</span>
+            <span class="text-slate-700">子ども会球技大会が暑さ対策で秋（10/31〜11/1）に移動</span>
           </li>
         </ul>
       </div>
@@ -258,28 +258,27 @@
   </footer>
 
   <script>
-    // 直近イベント自動表示（理事会4/30決定事項反映済み）
+    // 直近イベント自動表示（青育協総会5/8反映済み）
     const events = [
-      { month: 3, title: '定期総会・第1回理事会', place: '4区公会堂' },
-      { month: 4, title: '第2回理事会', place: '4区公会堂', date: '4/30（木）19:00〜' },
-      { month: 5, title: '青育協総会', place: '歴史文化伝承館2F', date: '5/8（木）19:00〜' },
-      { month: 5, title: '連合理事会', place: '常持会館1F', date: '5/14（水）19:00〜' },
-      { month: 5, title: 'クリーン秩父美化清掃の日', place: '中山田町内', date: '5/17（土）' },
-      { month: 6, title: '前期廃品回収＋クリーン美化', place: '中山田町内', date: '6月中旬（日程調整中）' },
-      { month: 8, title: '夏休み夜間パトロール', place: '小学校〜金昌寺周辺' },
-      { month: 9, title: '少年団バレーボール大会', place: '文化体育センター', date: '9/5（土）' },
-      { month: 10, title: '高篠地区子供会親善球技大会', place: '別所運動公園', date: '10/31（金）' },
-      { month: 11, title: '後期廃品回収', place: '中山田町内' },
-      { month: 12, title: '連合クリスマス会', place: '未定' },
-      { month: 2, title: '最終理事会（役員選出）', place: '4区公会堂' }
+      { ymd: '2026-03-15', title: '定期総会・第1回理事会', place: '4区公会堂', date: '3月' },
+      { ymd: '2026-04-30', title: '第2回理事会', place: '4区公会堂', date: '4/30（木）19:00〜' },
+      { ymd: '2026-05-08', title: '青育協総会', place: '歴史文化伝承館2F', date: '5/8（木）19:00〜' },
+      { ymd: '2026-05-14', title: '連合理事会', place: '常持会館1F', date: '5/14（水）19:00〜' },
+      { ymd: '2026-06-06', title: '指導者研修会', place: '歴史文化伝承館2F', date: '6/6（土）9:30〜' },
+      { ymd: '2026-06-21', title: '前期廃品回収＋クリーン美化', place: '今泉薬局駐車場 集合', date: '6/21（日）8:30〜' },
+      { ymd: '2026-08-01', title: '夏休み夜間パトロール', place: '小学校〜金昌寺周辺', date: '8月' },
+      { ymd: '2026-09-05', title: '少年団バレーボール大会', place: '文化体育センター', date: '9/5（土）' },
+      { ymd: '2026-10-31', title: '高篠地区子供会親善球技大会', place: '別所運動公園', date: '10/31〜11/1' },
+      { ymd: '2026-11-01', title: '後期廃品回収', place: '中山田町内', date: '11月' },
+      { ymd: '2026-12-01', title: '連合クリスマス会', place: '未定', date: '12月' },
+      { ymd: '2027-02-01', title: '最終理事会（役員選出）', place: '4区公会堂', date: '2月' }
     ];
 
-    // 現在月以降の最初のイベントをヒーローに表示
-    const now = new Date();
-    const currentMonth = now.getMonth() + 1;
-    const upcoming = events.find(e => e.month >= currentMonth) || events[0];
+    // 今日以降の最初のイベントをヒーローに表示
+    const today = new Date().toISOString().slice(0, 10);
+    const upcoming = events.find(e => e.ymd >= today) || events[0];
     document.getElementById('event-title').textContent = upcoming.title;
-    document.getElementById('event-date').textContent = upcoming.date || (upcoming.month + '月');
+    document.getElementById('event-date').textContent = upcoming.date;
     document.getElementById('event-place').textContent = upcoming.place;
   </script>
 </body>
