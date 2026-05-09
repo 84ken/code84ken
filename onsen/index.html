@@ -194,9 +194,25 @@ tailwind.config = {
         </div>
       </div>
 
-      <h3 class="mt-10 text-xl font-semibold text-slate-900">成分の基準値（早見表）</h3>
+      <!-- 包含関係ひとこと -->
+      <div class="mt-8 p-5 bg-white rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-sm text-body leading-relaxed">
+          ポイントは、<strong class="text-slate-900">療養泉は「温泉」の上位互換</strong>だということ。<br>
+          すべての療養泉は温泉ですが、すべての温泉が療養泉になるわけではありません。
+        </p>
+        <div class="mt-4 flex items-center justify-center gap-1 text-sm">
+          <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 font-medium">温泉（広義）</span>
+          <span class="text-slate-400">⊃</span>
+          <span class="px-3 py-1.5 rounded-lg bg-primary-100 text-primary-700 font-semibold">療養泉</span>
+          <span class="text-slate-400">⊃</span>
+          <span class="px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-700 font-medium">○○泉と名乗れる</span>
+        </div>
+      </div>
+
+      <h3 class="mt-10 text-xl font-semibold text-slate-900">成分の基準値と倍率</h3>
       <p class="mt-2 text-sm text-body">
-        試料1kg中（mg/kg）の含有量がこれを超えると「温泉」または「療養泉」の条件を満たします。
+        試料1kg中（mg/kg）の含有量がこれを超えると条件を満たします。<br>
+        <strong class="text-slate-900">右端の「倍率」</strong>を見ると、療養泉だけ厳しくなる成分がパッと分かります。
       </p>
 
       <div class="mt-4 bg-white rounded-xl border border-slate-200 overflow-hidden">
@@ -207,22 +223,72 @@ tailwind.config = {
                 <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">成分</th>
                 <th scope="col" class="text-right py-2 px-3 uppercase tracking-wider">温泉</th>
                 <th scope="col" class="text-right py-2 px-3 uppercase tracking-wider">療養泉</th>
+                <th scope="col" class="text-center py-2 px-3 uppercase tracking-wider w-20">倍率</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
-              <tr><td class="py-2 px-3 font-medium text-slate-900">溶存物質（ガス性のものを除く）</td><td class="text-right py-2 px-3">総量 1,000 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">1,000 mg/kg 以上</td></tr>
-              <tr><td class="py-2 px-3 font-medium text-slate-900">遊離二酸化炭素 (CO₂)</td><td class="text-right py-2 px-3">250 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">1,000 mg/kg 以上</td></tr>
-              <tr><td class="py-2 px-3 font-medium text-slate-900">水素イオン (H⁺)</td><td class="text-right py-2 px-3">1 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">1 mg/kg 以上</td></tr>
-              <tr><td class="py-2 px-3 font-medium text-slate-900">総鉄イオン (Fe²⁺＋Fe³⁺)</td><td class="text-right py-2 px-3">10 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">20 mg/kg 以上</td></tr>
-              <tr><td class="py-2 px-3 font-medium text-slate-900">よう化物イオン (I⁻)</td><td class="text-right py-2 px-3">10 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">10 mg/kg 以上</td></tr>
-              <tr><td class="py-2 px-3 font-medium text-slate-900">総硫黄 (HS⁻＋S₂O₃²⁻＋H₂S)</td><td class="text-right py-2 px-3">1 mg/kg 以上</td><td class="text-right py-2 px-3 font-semibold text-primary-700">2 mg/kg 以上</td></tr>
-              <tr><td class="py-2 px-3 font-medium text-slate-900">ラドン (Rn)</td><td class="text-right py-2 px-3">20 × 10⁻¹⁰ Ci/kg 以上<br><span class="text-xs text-slate-500">（=74 Bq/kg）</span></td><td class="text-right py-2 px-3 font-semibold text-primary-700">30 × 10⁻¹⁰ Ci/kg 以上<br><span class="text-xs text-slate-500">（=111 Bq, 8.25マッヘ）</span></td></tr>
-              <tr><td class="py-2 px-3 text-slate-500">リチウム/鉄/マンガン/フッ素/メタケイ酸 ほか</td><td class="text-right py-2 px-3 text-slate-500">各規定値あり（19成分）</td><td class="text-right py-2 px-3 text-slate-400">—</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">溶存物質（ガス性のものを除く）</td><td class="text-right py-2 px-3">1,000 mg/kg</td><td class="text-right py-2 px-3 font-semibold text-primary-700">1,000 mg/kg</td><td class="text-center py-2 px-3 text-slate-400">1×</td></tr>
+              <tr class="bg-amber-50/40"><td class="py-2 px-3 font-medium text-slate-900">遊離二酸化炭素 (CO₂)</td><td class="text-right py-2 px-3">250 mg/kg</td><td class="text-right py-2 px-3 font-semibold text-primary-700">1,000 mg/kg</td><td class="text-center py-2 px-3"><span class="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-200 text-amber-900 text-xs font-bold">4×</span></td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">水素イオン (H⁺)</td><td class="text-right py-2 px-3">1 mg/kg</td><td class="text-right py-2 px-3 font-semibold text-primary-700">1 mg/kg</td><td class="text-center py-2 px-3 text-slate-400">1×</td></tr>
+              <tr class="bg-amber-50/40"><td class="py-2 px-3 font-medium text-slate-900">総鉄イオン (Fe²⁺＋Fe³⁺)</td><td class="text-right py-2 px-3">10 mg/kg</td><td class="text-right py-2 px-3 font-semibold text-primary-700">20 mg/kg</td><td class="text-center py-2 px-3"><span class="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">2×</span></td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">よう化物イオン (I⁻)</td><td class="text-right py-2 px-3">10 mg/kg</td><td class="text-right py-2 px-3 font-semibold text-primary-700">10 mg/kg</td><td class="text-center py-2 px-3 text-slate-400">1×</td></tr>
+              <tr class="bg-amber-50/40"><td class="py-2 px-3 font-medium text-slate-900">総硫黄 (HS⁻＋S₂O₃²⁻＋H₂S)</td><td class="text-right py-2 px-3">1 mg/kg</td><td class="text-right py-2 px-3 font-semibold text-primary-700">2 mg/kg</td><td class="text-center py-2 px-3"><span class="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">2×</span></td></tr>
+              <tr class="bg-amber-50/40"><td class="py-2 px-3 font-medium text-slate-900">ラドン (Rn)</td><td class="text-right py-2 px-3">20 × 10⁻¹⁰ Ci/kg<br><span class="text-xs text-slate-500">（74 Bq/kg）</span></td><td class="text-right py-2 px-3 font-semibold text-primary-700">30 × 10⁻¹⁰ Ci/kg<br><span class="text-xs text-slate-500">（111 Bq, 8.25マッヘ）</span></td><td class="text-center py-2 px-3"><span class="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">1.5×</span></td></tr>
+              <tr><td class="py-2 px-3 text-slate-500">リチウム / マンガン / フッ素 / メタケイ酸 ほか</td><td class="text-right py-2 px-3 text-slate-500">各規定値あり（全19成分）</td><td class="text-right py-2 px-3 text-slate-400">—</td><td class="text-center py-2 px-3 text-slate-400">—</td></tr>
             </tbody>
           </table>
         </div>
       </div>
+
+      <div class="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <p class="text-sm text-amber-900 leading-relaxed">
+          <strong>注目</strong>：療養泉だけ規定値が厳しくなるのは <strong>CO₂・鉄・硫黄・ラドン</strong> の4つ。<br>
+          いずれも <strong>「体への効きが強い成分」</strong>（二酸化炭素泉・含鉄泉・硫黄泉・放射能泉）です。<br>
+          <span class="text-xs text-amber-700">→「ちょっと含まれていれば温泉として名乗れるが、効能を謳うならもっと濃く入っていてね」というロジック。</span>
+        </p>
+      </div>
+
       <p class="mt-3 text-xs text-slate-500">※ 平成26年改正以降、「含アルミニウム泉」「含銅泉」は廃止され、療養泉は10種類に整理された。</p>
+
+      <h3 class="mt-10 text-xl font-semibold text-slate-900">日本の温泉、ぜんぶでどれくらい？</h3>
+      <p class="mt-2 text-sm text-body">
+        環境省「温泉利用状況」（令和6年3月末現在）の最新統計から。
+      </p>
+
+      <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">温泉地</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">2,879</p>
+          <p class="text-sm text-body mt-1">地区</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">源泉</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">27,932</p>
+          <p class="text-sm text-body mt-1">本</p>
+        </div>
+        <div class="bg-white rounded-xl border border-primary-200 p-5 shadow-sm">
+          <p class="text-xs text-primary-700">うち 25℃以上</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">17,000+</p>
+          <p class="text-sm text-body mt-1">≒ 療養泉候補</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">25℃未満（冷鉱泉）</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">3,717</p>
+          <p class="text-sm text-body mt-1">本</p>
+        </div>
+      </div>
+
+      <div class="mt-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+        <p class="text-sm text-primary-900 leading-relaxed">
+          <strong>「療養泉そのものの数」は環境省統計では明示されていません</strong>が、25℃以上の源泉（約1.7万本）の<strong>大半は療養泉に該当</strong>します。<br>
+          25℃未満（冷鉱泉）でも7成分の規定値を満たせば療養泉になります。<br>
+          → ざっくり <strong>全源泉の6〜7割（推定 1.8〜2.0万本）が療養泉</strong>と考えてよさそう。日本は世界有数の療養泉大国。
+        </p>
+      </div>
+
+      <p class="mt-3 text-xs text-slate-500">
+        出典：<a href="https://www.env.go.jp/nature/onsen/data/" target="_blank" class="underline hover:text-primary-500">環境省「温泉利用状況等について」令和5年度実績</a>
+      </p>
     </section>
 
     <!-- ====================== 2. 4軸 ====================== -->
