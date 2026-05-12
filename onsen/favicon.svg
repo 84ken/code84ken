@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#2b70ef"/>
+  <!-- bowl (semicircle, filled white) -->
+  <path d="M8 38 Q8 52 32 52 Q56 52 56 38 Z" fill="#ffffff"/>
+  <!-- water rim line above bowl -->
+  <rect x="6" y="34" width="52" height="4" rx="2" fill="#ffffff"/>
+  <!-- three wavy steam lines -->
+  <g fill="none" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round">
+    <path d="M19 30 C14 25 24 21 19 16 C16 13 16 11 19 9"/>
+    <path d="M32 30 C27 25 37 21 32 16 C29 13 29 11 32 9"/>
+    <path d="M45 30 C40 25 50 21 45 16 C42 13 42 11 45 9"/>
+  </g>
+</svg>
