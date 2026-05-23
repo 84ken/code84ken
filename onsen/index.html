@@ -90,6 +90,8 @@ tailwind.config = {
       <a href="#bath"      class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">8. 正しい入浴法</a>
       <a href="#contra"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">9. 禁忌症と注意</a>
       <a href="#glossary"  class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">10. 用語ミニ辞典</a>
+      <div class="my-2 border-t border-slate-100"></div>
+      <a href="#chichibu"  class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">11. 秩父温泉図鑑</a>
     </nav>
     <div class="px-5 py-4 border-t border-slate-200 text-xs text-slate-500">
       <p>出典: 温泉ソムリエ認定講座テキスト</p>
@@ -1361,6 +1363,333 @@ tailwind.config = {
           <dd class="mt-1 text-sm text-body">42℃以上の熱い湯は交感神経（覚醒）、37〜40℃のぬる湯は副交感神経（リラックス）を優位にする。</dd>
         </div>
       </dl>
+    </section>
+
+    <!-- ====================== 11. 秩父温泉図鑑 ====================== -->
+    <section id="chichibu" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 11 — LOCAL FOCUS</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">秩父温泉図鑑</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        埼玉県秩父エリアの19温泉を、貴重なローカル資料から再構成。<br>
+        火山がない秩父は <strong>「鉱泉が主役の湯治場文化」</strong>。江戸時代から続く<strong>秩父七湯</strong>と、現代の主要温泉施設をまとめます。
+      </p>
+
+      <!-- stats -->
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">秩父エリアの温泉</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">19</p>
+          <p class="text-sm text-body mt-1">湯（旅館・日帰り含む）</p>
+        </div>
+        <div class="bg-white rounded-xl border border-amber-200 p-5 shadow-sm">
+          <p class="text-xs text-amber-700">秩父七湯（江戸時代〜）</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">7<span class="text-base font-normal text-slate-500 ml-1">湯</span></p>
+          <p class="text-sm text-body mt-1">現存3 / 閉館・廃湯4</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">主流の泉質</p>
+          <p class="text-base font-semibold text-slate-900 mt-2">単純硫黄冷鉱泉</p>
+          <p class="text-sm text-body mt-1">（火山がない地質特性）</p>
+        </div>
+        <div class="bg-white rounded-xl border border-pink-200 p-5 shadow-sm">
+          <p class="text-xs text-pink-700">美肌ゾーン</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">pH 9+</p>
+          <p class="text-sm text-body mt-1">アルカリ性湯が多数</p>
+        </div>
+      </div>
+
+      <!-- 秩父七湯 -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900 flex items-center gap-2">
+        <span class="inline-flex w-7 h-7 items-center justify-center rounded-full bg-amber-100 text-amber-700 text-sm font-bold">七</span>
+        秩父七湯（江戸時代から続く湯治場）
+      </h3>
+      <p class="mt-2 text-sm text-body">
+        いずれも源泉温度の低い鉱泉。札所巡礼者の湯治場として古くから親しまれてきました。現存するのは <strong>新木・柴原・白久（鹿の湯）の3つ</strong>。
+      </p>
+
+      <div class="mt-5 grid md:grid-cols-2 gap-4">
+        <article class="bg-white rounded-xl border border-emerald-200 p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs text-slate-500">No.1 / 七湯①</p>
+              <h4 class="text-base font-bold text-slate-900 mt-0.5">御代の湯 新木鉱泉</h4>
+              <p class="text-xs text-slate-500 mt-1">秩父市山田1782 / 文政10年(1827)開湯</p>
+            </div>
+            <span class="chip bg-emerald-100 text-emerald-800 flex-shrink-0">現存</span>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">単純硫黄冷鉱泉</span>
+            <span class="axis-tag">pH 9.6</span>
+            <span class="axis-tag !bg-pink-50 !text-pink-700">美肌</span>
+          </div>
+          <p class="mt-3 text-sm text-body"><strong>効能:</strong> 神経痛・リウマチ・五十肩・皮膚病</p>
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">秩父札所十郎義雄が札所巡礼の途中で湯浴みしたと伝わる。札所参拝の湯治場。</p>
+          <div class="mt-3 flex items-center gap-3 text-xs">
+            <span class="text-slate-500">立ち寄り ¥900</span>
+            <a href="http://www.onsen-yado.net/onsen/" target="_blank" class="text-primary-500 hover:underline">公式 →</a>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm opacity-75">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs text-slate-500">No.2 / 七湯②</p>
+              <h4 class="text-base font-bold text-slate-900 mt-0.5">鳩の湯</h4>
+              <p class="text-xs text-slate-500 mt-1">秩父市浦山 / 文明15年(1473)開湯</p>
+            </div>
+            <span class="chip bg-slate-200 text-slate-700 flex-shrink-0">2011年閉館</span>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">含硫黄Na-塩化物・炭酸水素塩泉</span>
+          </div>
+          <p class="mt-3 text-sm text-body"><strong>効能:</strong> 神経痛・リウマチ・皮膚病・慢性消化器病・慢性婦人病</p>
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed"><strong>秩父七湯最古</strong>。第三紀層 中津川層群上部から湧出。札所巡礼の湯治場。</p>
+        </article>
+
+        <article class="bg-white rounded-xl border border-emerald-200 p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs text-slate-500">No.3 / 七湯③</p>
+              <h4 class="text-base font-bold text-slate-900 mt-0.5">柴原温泉 かやの家 / 須やま</h4>
+              <p class="text-xs text-slate-500 mt-1">秩父市荒川 / 江戸時代〜</p>
+            </div>
+            <span class="chip bg-emerald-100 text-emerald-800 flex-shrink-0">現存</span>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">単純硫黄冷鉱泉</span>
+            <span class="axis-tag">第三紀層</span>
+          </div>
+          <p class="mt-3 text-sm text-body"><strong>効能:</strong> 神経痛・リウマチ・皮膚病・婦人病</p>
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">江戸時代に三神社湯岩の湯場として発見。秩父札所巡礼の宿。2旅館で現存。</p>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm opacity-75">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs text-slate-500">No.4 / 七湯④</p>
+              <h4 class="text-base font-bold text-slate-900 mt-0.5">千鹿谷鉱泉</h4>
+              <p class="text-xs text-slate-500 mt-1">第三紀層</p>
+            </div>
+            <span class="chip bg-slate-200 text-slate-700 flex-shrink-0">2020年閉館</span>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">単純硫黄冷鉱泉</span>
+          </div>
+          <p class="mt-3 text-sm text-body"><strong>効能:</strong> 神経痛・リウマチ・婦人病</p>
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">2020年に閉館・解体。歴史的価値の高い秩父七湯のひとつだった。</p>
+        </article>
+
+        <article class="bg-white rounded-xl border border-emerald-200 p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs text-slate-500">No.13 / 七湯⑤</p>
+              <h4 class="text-base font-bold text-slate-900 mt-0.5">白久温泉 谷津川館 <span class="text-xs font-normal text-slate-500">（鹿の湯）</span></h4>
+              <p class="text-xs text-slate-500 mt-1">秩父市荒川白久455 / 昭和2年開湯</p>
+            </div>
+            <span class="chip bg-emerald-100 text-emerald-800 flex-shrink-0">現存</span>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">アルカリ性単純硫黄泉</span>
+            <span class="axis-tag">15℃</span>
+            <span class="axis-tag !bg-pink-50 !text-pink-700">美肌</span>
+          </div>
+          <p class="mt-3 text-sm text-body"><strong>効能:</strong> リウマチ・神経痛・胃腸病・婦人病・痔疾</p>
+          <p class="mt-2 text-xs text-slate-500 leading-relaxed">第三紀層の砕岩・砂岩の割れ目から湧出。フッ素イオン・メタホウ酸・メタケイ酸含む「たまご湯」。自家源泉「白久鉱泉」＋小鹿野町の大龍寺源泉を補完利用。</p>
+          <div class="mt-3 flex items-center gap-3 text-xs">
+            <span class="text-slate-500">日帰り ¥1,000（500） 11:30-14:30</span>
+            <a href="http://www.yatsugawa-kan.co.jp/" target="_blank" class="text-primary-500 hover:underline">公式 →</a>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm opacity-60">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs text-slate-500">七湯⑥</p>
+              <h4 class="text-base font-bold text-slate-900 mt-0.5">梁場の湯</h4>
+              <p class="text-xs text-slate-500 mt-1">— / 昭和41年(1966)</p>
+            </div>
+            <span class="chip bg-slate-200 text-slate-700 flex-shrink-0">水没</span>
+          </div>
+          <p class="mt-3 text-xs text-slate-500 leading-relaxed">埼玉県で最も古く温泉利用許可がなされたが、<strong>下久保ダム建設で水没</strong>し現存せず。</p>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm opacity-60 md:col-span-2">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs text-slate-500">七湯⑦</p>
+              <h4 class="text-base font-bold text-slate-900 mt-0.5">大指の湯</h4>
+            </div>
+            <span class="chip bg-slate-200 text-slate-700 flex-shrink-0">現存せず</span>
+          </div>
+          <p class="mt-3 text-xs text-slate-500 leading-relaxed">秩父七湯の1つだったが現存せず。記録のみ残る。</p>
+        </article>
+      </div>
+
+      <!-- 現代の主要温泉 -->
+      <h3 class="mt-14 text-xl font-semibold text-slate-900">現代の主要温泉（七湯以外）</h3>
+      <p class="mt-2 text-sm text-body">秩父市・小鹿野町・皆野町・両神に点在。火山がないため<strong>多くが鉱泉（25℃未満）</strong>で加温して提供。</p>
+
+      <div class="mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.8</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">薬師の湯 松ノ沢</h4>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">単純硫黄冷鉱泉</span>
+          </div>
+          <p class="mt-3 text-sm text-body">神経痛・婦人病など</p>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.9</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">不動の湯 黒沢温泉</h4>
+          <p class="text-xs text-slate-500 mt-0.5">秩父市</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">硫黄冷鉱泉</span>
+            <span class="axis-tag">アルカリ性</span>
+          </div>
+          <p class="mt-3 text-sm text-body">神経痛・リウマチ・婦人病</p>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.10</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">美やま温泉</h4>
+          <p class="text-xs text-slate-500 mt-0.5">秩父郡 / ホテル美やま</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-単純温泉">単純温泉</span>
+            <span class="axis-tag">第三紀層</span>
+          </div>
+          <p class="mt-3 text-sm text-body">神経痛・冷え性・慢性消化器病・慢性婦人病</p>
+          <a href="http://www.myama-onsen.com/" target="_blank" class="mt-3 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.11</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">丸山鉱泉 花悦の湯</h4>
+          <p class="text-xs text-slate-500 mt-0.5">秩父郡長瀞町 / 旧 花むら</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">弱アルカリ性硫黄冷鉱泉</span>
+          </div>
+          <p class="mt-3 text-sm text-body">神経痛・関節痛・冷え性・慢性婦人病</p>
+        </article>
+
+        <article class="bg-white rounded-xl border border-cyan-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.12</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">秩父湯元 武甲温泉</h4>
+          <p class="text-xs text-slate-500 mt-0.5">横瀬町横瀬4628-3</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-炭酸水素塩泉">単純硫黄炭酸水素塩泉</span>
+            <span class="axis-tag">低張アルカリ性</span>
+            <span class="axis-tag !bg-pink-50 !text-pink-700">美肌</span>
+          </div>
+          <p class="mt-3 text-sm text-body">神経痛・筋肉痛・運動麻痺・慢性消化器病・慢性皮膚病・慢性婦人病</p>
+          <div class="mt-3 flex items-center gap-3 text-xs">
+            <span class="text-slate-500">平日 ¥700 / 土日 ¥800 (10-22)</span>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.14</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">将門のかくし湯 みやこ旅館</h4>
+          <p class="text-xs text-slate-500 mt-0.5">秩父市荒川白久 / 奥秩父白久鉱泉</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-単純温泉">単純硫黄冷鉱泉</span>
+            <span class="axis-tag">アルカリ性</span>
+            <span class="axis-tag !bg-pink-50 !text-pink-700">美肌</span>
+          </div>
+          <p class="mt-3 text-sm text-body">リウマチ・神経痛・胃腸病・婦人病・痔疾</p>
+          <p class="mt-2 text-xs text-slate-500"><strong>平将門・長尾景春</strong>の伝説あり。白久温泉郷から東500m。</p>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.15</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">両神温泉薬師の湯 <span class="text-xs font-normal text-slate-500">（両神荘）</span></h4>
+          <p class="text-xs text-slate-500 mt-0.5">小鹿野町両神小森707</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-単純温泉">単純硫黄冷鉱泉</span>
+            <span class="axis-tag">pH 9.2</span>
+            <span class="axis-tag !bg-pink-50 !text-pink-700">美肌</span>
+          </div>
+          <p class="mt-3 text-sm text-body">神経痛・五十肩・慢性消化器病・冷え性・慢性婦人病・疲労回復</p>
+          <p class="mt-2 text-xs text-slate-500">源泉名「両神温泉すずきの湯」フッ素・メタホウ酸含。小鹿野町営国民宿舎。</p>
+          <a href="http://www.chichibu.ne.jp/~ryokamis/" target="_blank" class="mt-3 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.16</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">道の駅 両神温泉薬師の湯</h4>
+          <p class="text-xs text-slate-500 mt-0.5">小鹿野町両神薄2380</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-単純温泉">単純硫黄冷鉱泉</span>
+            <span class="axis-tag">pH 9.2</span>
+          </div>
+          <p class="mt-3 text-sm text-body">No.15と同じ源泉。両神村ふれあいセンター内の温泉浴場。</p>
+          <div class="mt-3 flex items-center gap-3 text-xs">
+            <span class="text-slate-500">¥600 / 10-19:30（火曜休、足湯 ¥0）</span>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.17</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">赤谷温泉 小鹿荘</h4>
+          <p class="text-xs text-slate-500 mt-0.5">小鹿野町三山243</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-単純温泉">アルカリ性冷鉱泉</span>
+            <span class="axis-tag">F・メタホウ酸・メタケイ酸</span>
+          </div>
+          <p class="mt-3 text-sm text-body">神経痛・関節痛・筋肉痛・運動麻痺・胃腸病・婦人病</p>
+          <p class="mt-2 text-xs text-slate-500">山中地清断層北線部の中世層の層理から湧水。大龍寺源泉を引湯。</p>
+          <a href="http://www.ojikasou.co.jp/" target="_blank" class="mt-3 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
+        </article>
+
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.18</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">かおる鉱泉 <span class="text-xs font-normal text-slate-500">（上吉田民宿）</span></h4>
+          <p class="text-xs text-slate-500 mt-0.5">秩父市上吉田3662 / 明治初期開湯</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">弱アルカリ性弱張性冷鉱泉</span>
+            <span class="axis-tag">硫化水素臭</span>
+          </div>
+          <p class="mt-3 text-sm text-body">神経痛・皮膚疾患</p>
+          <p class="mt-2 text-xs text-slate-500">「たまご水」と呼ばれる古生層中から湧出（13L/分）。</p>
+          <div class="mt-3 flex items-center gap-3 text-xs">
+            <span class="text-slate-500">¥600（¥300）</span>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl border border-primary-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">No.19</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">秩父温泉 満願の湯</h4>
+          <p class="text-xs text-slate-500 mt-0.5">皆野町日野沢4000</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-硫黄泉">単純硫黄冷鉱泉</span>
+            <span class="axis-tag">pH 9.5</span>
+            <span class="axis-tag">弱アルカリ性弱張性</span>
+            <span class="axis-tag !bg-pink-50 !text-pink-700">美肌</span>
+          </div>
+          <p class="mt-3 text-sm text-body">神経痛・筋肉痛・運動麻痺・慢性消化器病・慢性皮膚病・慢性婦人病・糖尿病など。<strong>飲用適応症</strong>：糖尿病・痛風・便秘など</p>
+          <p class="mt-2 text-xs text-slate-500"><strong>日本百観音結願寺</strong> 秩父札所34番水潜寺のふところに開湯。「天長元年の法泉」。</p>
+          <div class="mt-3 flex items-center gap-3 text-xs">
+            <span class="text-slate-500">平日3h ¥650 / 1日 ¥800 / 土日祝3h ¥800 (10-21)</span>
+            <a href="http://www.chichibuonsen.co.jp/" target="_blank" class="text-primary-500 hover:underline">公式 →</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- 秩父温泉の特徴まとめ -->
+      <div class="mt-10 p-5 bg-gradient-to-br from-amber-50 to-white border border-amber-200 rounded-xl shadow-sm">
+        <h3 class="text-base font-semibold text-slate-900">秩父温泉のキャラクター（19湯を眺めて分かること）</h3>
+        <ul class="mt-3 space-y-2 text-sm text-body leading-relaxed">
+          <li>① <strong>圧倒的に「硫黄系の冷鉱泉」</strong>が多い。19湯のうち単純硫黄冷鉱泉系が約2/3。火山なし＋第三紀層の地質特性。</li>
+          <li>② <strong>pH 9前後のアルカリ性が多数派</strong>。ほぼ全湯で「美肌効果あり」（pH 7.5以上）。ヌルヌル・つるすべ系の肌触り。</li>
+          <li>③ <strong>湯治場としての伝統が深い</strong>。秩父札所巡礼の宿として続いた歴史。武将・武家の伝説も多数（平将門・長尾景春・札所十郎義雄）。</li>
+          <li>④ <strong>「鉱泉」=25℃未満</strong>のため加温前提。源泉そのままの「源泉かけ流し」は構造上ほぼ存在しない。</li>
+          <li>⑤ <strong>料金は良心的</strong>。日帰り入浴 ¥600〜¥1,000のレンジが中心で、首都圏からの日帰り湯巡りに最適。</li>
+        </ul>
+      </div>
+
+      <p class="mt-5 text-xs text-slate-500">
+        出典：NPO法人秩父の環境を考える会／山室由貴穂氏編「秩父地方の温泉概況」資料集（2026年5月収集）
+      </p>
     </section>
 
     <!-- footer -->
