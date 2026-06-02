@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ichigo-saitama.net/sitemap.xml
