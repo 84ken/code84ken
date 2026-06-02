@@ -39,23 +39,23 @@
     .video-wrap iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
     .news-card { background:#fff; transition:transform 0.3s ease; }
     .news-card:hover { transform:translateY(-3px); }
-    /* ヒーロー右下のフローティング動画ボックス */
+    /* ヒーロー動画ボックス - mobile は左下（いちごマスコットを避ける）、tablet+ は右下 */
     .hero-video-box {
       position: absolute;
-      bottom: 12px; right: 12px;
-      width: 180px;
+      bottom: 12px; left: 12px; right: auto;
+      width: 120px;
       z-index: 20;
       box-shadow: 0 20px 60px -10px rgba(0,0,0,0.35);
     }
-    @media (min-width: 640px) { .hero-video-box { bottom: 24px; right: 24px; width: 280px; } }
-    @media (min-width: 1024px) { .hero-video-box { bottom: 40px; right: 40px; width: 400px; } }
+    @media (min-width: 640px) { .hero-video-box { left: auto; right: 24px; bottom: 24px; width: 260px; } }
+    @media (min-width: 1024px) { .hero-video-box { right: 40px; bottom: 40px; width: 400px; } }
   </style>
 </head>
 <body>
 
   <!-- ヘッダー -->
   <header class="absolute top-0 left-0 right-0 z-30">
-    <div class="max-w-[1400px] mx-auto px-5 sm:px-8 py-5 flex items-center justify-between">
+    <div class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-7 pb-5 sm:pt-5 flex items-center justify-between" style="padding-top: max(env(safe-area-inset-top), 1.75rem);">
       <a href="/" class="inline-flex items-center" aria-label="埼玉いちご大學 トップへ">
         <img src="images/logo/logo-crest.png" alt="埼玉いちご大學 校章" class="h-14 sm:h-16 w-auto">
       </a>
@@ -80,7 +80,7 @@
   <!-- ① ファーストビュー -->
   <section class="relative bg-base">
     <!-- メインビジュアル + 動画フローティングボックス -->
-    <div class="relative w-full bg-white pt-24 sm:pt-28">
+    <div class="relative w-full bg-white pt-28 sm:pt-28">
       <img src="images/hero/ichigo_main.webp" alt="埼玉いちご大學 メインビジュアル（イラスト：我喜屋位瑳務）" class="w-full h-auto block max-h-[85vh] object-contain mx-auto">
 
       <!-- フローティング動画 -->
