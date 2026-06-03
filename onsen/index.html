@@ -8,6 +8,8 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
 <meta name="theme-color" content="#2b70ef">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -47,6 +49,19 @@ tailwind.config = {
     aside, .no-print { display:none !important; }
     main { margin-left:0 !important; max-width:100% !important; }
   }
+  /* leaflet map */
+  #chichibu-map { height: 480px; border-radius: 12px; border: 1px solid #e2e8f0; overflow:hidden; }
+  .leaflet-popup-content-wrapper { border-radius: 12px; }
+  .leaflet-popup-content { margin: 14px; font-family: 'Inter', 'Hiragino Sans', sans-serif; }
+  .map-popup h4 { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+  .map-popup p { font-size: 12px; color: #475569; line-height: 1.5; }
+  .map-popup .badges { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .map-popup .badge { display: inline-flex; padding: 2px 8px; border-radius: 9999px; font-size: 11px; }
+  /* custom marker color circles */
+  .marker-pin { width: 28px; height: 28px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 6px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 700; }
+  .marker-active { background: #2b70ef; }
+  .marker-closed { background: #94a3b8; }
+  .marker-seven { background: #f59e0b; }
   /* callout tags for sample analysis sheet */
   .callout-tag { display:inline-flex; align-items:center; justify-content:center; width:1.4em; height:1.4em; border-radius:9999px; background:#2b70ef; color:#fff; font-size:.75rem; font-weight:700; vertical-align:middle; margin: 0 .15em; line-height:1; }
   .callout-mark { background:#fef9c3; padding:0 .25em; border-radius:.25rem; font-weight:600; color:#854d0e; }
@@ -1414,6 +1429,17 @@ tailwind.config = {
         </div>
       </div>
 
+      <!-- map -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900 flex items-center gap-2">
+        <svg class="w-5 h-5 text-primary-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.553 2.776A1 1 0 0021 18.882V8.118a1 1 0 00-.553-.894L15 4m0 13V4m-6 3l6-3"/></svg>
+        マップで見る秩父19湯
+      </h3>
+      <p class="mt-2 text-sm text-body">
+        マーカーをタップ・クリックで詳細表示。<span class="inline-flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-full bg-amber-500"></span> 秩父七湯</span>　<span class="inline-flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-full bg-primary-500"></span> 現代の温泉</span>　<span class="inline-flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-full bg-slate-400"></span> 閉館・廃湯</span>
+      </p>
+      <div id="chichibu-map" class="mt-4"></div>
+      <p class="mt-2 text-xs text-slate-500">© <a href="https://www.openstreetmap.org/copyright" target="_blank" class="underline">OpenStreetMap</a> contributors / 座標は近似値を含みます</p>
+
       <!-- 秩父七湯 -->
       <h3 class="mt-12 text-xl font-semibold text-slate-900 flex items-center gap-2">
         <span class="inline-flex w-7 h-7 items-center justify-center rounded-full bg-amber-100 text-amber-700 text-sm font-bold">七</span>
@@ -2023,6 +2049,60 @@ document.getElementById('navToggle').addEventListener('click', () => {
 sb.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   if (window.innerWidth < 1024) sb.classList.remove('open');
 }));
+
+// ============ Chichibu Onsen Map (Leaflet) ============
+const CHICHIBU_ONSEN = [
+  // 秩父七湯
+  { id:1,  name:"御代の湯 新木鉱泉",     lat:36.0099, lon:139.1101, status:"active",  seven:true,  type:"単純硫黄冷鉱泉",       ph:9.6,  area:"秩父市山田",       note:"七湯①｜文政10(1827)開湯／札所巡礼の湯治場" },
+  { id:2,  name:"鳩の湯",                lat:35.9301, lon:139.0719, status:"closed",  seven:true,  type:"含硫黄Na-塩化物・炭酸水素塩泉", area:"秩父市浦山",       note:"七湯②｜文明15(1473)開湯・最古／2011年閉館" },
+  { id:3,  name:"柴原温泉 かやの家／須やま", lat:35.9854, lon:138.9912, status:"active",  seven:true,  type:"単純硫黄冷鉱泉",   area:"秩父市荒川",       note:"七湯③｜江戸時代〜／札所巡礼の宿" },
+  { id:4,  name:"千鹿谷鉱泉",            lat:36.0563, lon:139.1213, status:"closed",  seven:true,  type:"単純硫黄冷鉱泉",       area:"皆野町三沢",       note:"七湯④｜2020年閉館・解体" },
+  { id:5,  name:"白久温泉 谷津川館（鹿の湯）", lat:35.9601, lon:138.9870, status:"active", seven:true, type:"アルカリ性単純硫黄泉", ph:null,  area:"秩父市荒川白久",   note:"七湯⑤｜昭和2年開湯／たまご湯" },
+  { id:6,  name:"梁場の湯",              lat:36.1100, lon:138.9600, status:"sunken",  seven:true,  type:"—",                    area:"—",               note:"七湯⑥｜下久保ダムで水没" },
+  // 現代の温泉
+  { id:8,  name:"薬師の湯 松ノ沢",       lat:36.0142, lon:138.9054, status:"active",  seven:false, type:"単純硫黄冷鉱泉",       area:"小鹿野町松ノ沢",   note:"" },
+  { id:9,  name:"霊泉旅館 不動の湯",     lat:36.0150, lon:139.1182, status:"active",  seven:false, type:"アルカリ性冷鉱泉",     area:"秩父市山田",       note:"宿泊のみ（日帰り不可）" },
+  { id:10, name:"美やま温泉",            lat:36.0857, lon:139.1046, status:"active",  seven:false, type:"単純温泉",             area:"皆野町",           note:"ホテル美やま" },
+  { id:11, name:"丸山鉱泉 花悦の湯",     lat:36.1147, lon:139.1096, status:"active",  seven:false, type:"弱アルカリ性硫黄冷鉱泉", area:"長瀞町",          note:"" },
+  { id:12, name:"秩父湯元 武甲温泉",     lat:35.9905, lon:139.1023, status:"active",  seven:false, type:"単純硫黄炭酸水素塩泉", ph:null,  area:"横瀬町横瀬",       note:"低張アルカリ性／美肌系" },
+  { id:14, name:"将門のかくし湯 みやこ旅館", lat:35.9605, lon:138.9823, status:"active", seven:false, type:"単純硫黄冷鉱泉",   area:"秩父市荒川白久",   note:"平将門の伝説" },
+  { id:15, name:"両神温泉薬師の湯 両神荘", lat:36.0078, lon:138.9750, status:"active",  seven:false, type:"単純硫黄冷鉱泉",     ph:9.2,   area:"小鹿野町両神",     note:"小鹿野町営国民宿舎" },
+  { id:16, name:"道の駅 両神温泉薬師の湯", lat:36.0051, lon:138.9713, status:"active",  seven:false, type:"単純硫黄冷鉱泉",     ph:9.2,   area:"小鹿野町両神薄",   note:"両神荘と同源泉／日帰り◯" },
+  { id:17, name:"赤谷温泉 小鹿荘",       lat:36.0192, lon:138.8716, status:"active",  seven:false, type:"アルカリ性冷鉱泉",     area:"小鹿野町三山",     note:"大龍寺源泉を引湯" },
+  { id:18, name:"かおる鉱泉",            lat:36.0731, lon:138.9384, status:"active",  seven:false, type:"弱アルカリ性弱張性冷鉱泉", area:"秩父市上吉田", note:"たまご水／硫化水素臭" },
+  { id:19, name:"秩父温泉 満願の湯",     lat:36.0825, lon:139.0723, status:"active",  seven:false, type:"単純硫黄冷鉱泉",       ph:9.5,   area:"皆野町日野沢",     note:"札所34番水潜寺のふところ" }
+];
+
+if (document.getElementById('chichibu-map') && typeof L !== 'undefined') {
+  const map = L.map('chichibu-map', { scrollWheelZoom: false }).setView([36.000, 139.020], 11);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap',
+    maxZoom: 18
+  }).addTo(map);
+
+  for (const o of CHICHIBU_ONSEN) {
+    const klass = o.status === 'closed' || o.status === 'sunken' ? 'marker-closed'
+                : o.seven ? 'marker-seven' : 'marker-active';
+    const icon = L.divIcon({
+      className: '',
+      html: `<div class="marker-pin ${klass}">${o.id}</div>`,
+      iconSize: [28, 28],
+      iconAnchor: [14, 14]
+    });
+    const statusLabel = o.status === 'active' ? '<span class="badge" style="background:#dcfce7;color:#166534">現存</span>'
+                      : o.status === 'closed' ? '<span class="badge" style="background:#e2e8f0;color:#475569">閉館</span>'
+                      : '<span class="badge" style="background:#e2e8f0;color:#475569">水没</span>';
+    const sevenLabel = o.seven ? '<span class="badge" style="background:#fef3c7;color:#92400e">秩父七湯</span>' : '';
+    const phLabel = o.ph ? `<span class="badge" style="background:#fce7f3;color:#9d174d">pH ${o.ph}</span>` : '';
+    const popup = `<div class="map-popup">
+      <h4>${o.name}</h4>
+      <p>${o.area} ／ ${o.type}</p>
+      ${o.note ? `<p style="margin-top:6px">${o.note}</p>` : ''}
+      <div class="badges">${statusLabel}${sevenLabel}${phLabel}</div>
+    </div>`;
+    L.marker([o.lat, o.lon], { icon }).addTo(map).bindPopup(popup);
+  }
+}
 </script>
 
 </body>
