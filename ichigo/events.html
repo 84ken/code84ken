@@ -62,6 +62,8 @@
     .pill-nav { background:#fff; border:1.5px solid #0A0A0A; border-radius:999px; padding:8px 18px; font-weight:500; font-size:14px; color:#0A0A0A; transition:all 0.2s ease; text-decoration:none; }
     .pill-nav:hover { background:#0A0A0A; color:#fff; }
     .pill-nav.active { background:#CC0000; color:#fff; border-color:#CC0000; }
+    .pill-nav-shop { background:#CC0000; border:1.5px solid #CC0000; border-radius:999px; padding:8px 18px; font-weight:600; font-size:14px; color:#fff; transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+    .pill-nav-shop:hover { background:#A30000; border-color:#A30000; }
     .news-card { background:#fff; transition:transform 0.3s ease; }
     .news-card:hover { transform:translateY(-3px); }
   </style>
@@ -78,6 +80,10 @@
         <a href="about.html" class="pill-nav">いちご大學とは</a>
         <a href="events.html" class="pill-nav active" aria-current="page">お知らせ</a>
         <a href="lab.html" class="pill-nav">いちごの研究室</a>
+        <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="pill-nav-shop">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          ONLINE SHOP
+        </a>
       </nav>
       <button id="menu-btn" class="md:hidden w-12 h-12 inline-flex items-center justify-center bg-white border border-ink rounded-full" aria-label="メニューを開く" aria-expanded="false">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -87,7 +93,8 @@
       <div class="px-6 py-4 space-y-2">
         <a href="about.html" class="block py-3 text-base font-medium border-b border-black/5">いちご大學とは</a>
         <a href="events.html" class="block py-3 text-base font-medium border-b border-black/5 text-ichigo">お知らせ</a>
-        <a href="lab.html" class="block py-3 text-base font-medium">いちごの研究室</a>
+        <a href="lab.html" class="block py-3 text-base font-medium border-b border-black/5">いちごの研究室</a>
+        <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="block py-3 text-base font-bold text-ichigo">🛒 ONLINE SHOP →</a>
       </div>
     </div>
   </header>
@@ -230,6 +237,7 @@
             <li><a href="about.html" class="text-white hover:text-ichigo">いちご大學とは</a></li>
             <li><a href="events.html" class="text-white hover:text-ichigo">お知らせ</a></li>
             <li><a href="lab.html" class="text-white hover:text-ichigo">いちごの研究室</a></li>
+            <li><a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="text-white hover:text-ichigo font-bold">🛒 ONLINE SHOP →</a></li>
           </ul>
         </div>
         <div>
