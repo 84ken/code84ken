@@ -50,7 +50,8 @@ tailwind.config = {
     main { margin-left:0 !important; max-width:100% !important; }
   }
   /* leaflet map */
-  #chichibu-map { height: 480px; border-radius: 12px; border: 1px solid #e2e8f0; overflow:hidden; }
+  #chichibu-map, #saitama-map { height: 480px; border-radius: 12px; border: 1px solid #e2e8f0; overflow:hidden; }
+  #saitama-map { height: 560px; }
   .leaflet-popup-content-wrapper { border-radius: 12px; }
   .leaflet-popup-content { margin: 14px; font-family: 'Inter', 'Hiragino Sans', sans-serif; }
   .map-popup h4 { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
@@ -108,6 +109,7 @@ tailwind.config = {
       <div class="my-2 border-t border-slate-100"></div>
       <a href="#chichibu"  class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">11. 秩父温泉図鑑</a>
       <a href="#beitou"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">12. 秩父×北投 国際比較</a>
+      <a href="#saitama"   class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">13. 埼玉県の温泉マップ</a>
     </nav>
     <div class="px-5 py-4 border-t border-slate-200 text-xs text-slate-500">
       <p>出典: 温泉ソムリエ認定講座テキスト</p>
@@ -2014,6 +2016,224 @@ tailwind.config = {
       </p>
     </section>
 
+    <!-- ====================== 13. 埼玉県の温泉マップ ====================== -->
+    <section id="saitama" class="anchor mt-16">
+      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 13 — STATEWIDE</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">埼玉県の温泉マップ</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        秩父エリアを飛び出して、<strong>埼玉県全域の温泉地・温泉施設</strong>を地図と一覧で。<br>
+        伝統的な「鉱泉旅館」、近年掘削の「天然温泉スーパー銭湯」、両方を含めて視覚化しています。
+      </p>
+
+      <!-- stats -->
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">県内 温泉地</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">31<span class="text-base font-normal text-slate-500 ml-1">地区</span></p>
+          <p class="text-sm text-body mt-1">環境省 令和5年度</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">県内 源泉数</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">117<span class="text-base font-normal text-slate-500 ml-1">本</span></p>
+          <p class="text-sm text-body mt-1">全国 27,932本の0.4%</p>
+        </div>
+        <div class="bg-white rounded-xl border border-amber-200 p-5 shadow-sm">
+          <p class="text-xs text-amber-700">特徴</p>
+          <p class="text-base font-semibold text-slate-900 mt-2">山間部に集中</p>
+          <p class="text-sm text-body mt-1">秩父・飯能の西部山岳</p>
+        </div>
+        <div class="bg-white rounded-xl border border-pink-200 p-5 shadow-sm">
+          <p class="text-xs text-pink-700">都市近郊温泉</p>
+          <p class="text-base font-semibold text-slate-900 mt-2">黒湯・スーパー銭湯</p>
+          <p class="text-sm text-body mt-1">川越・越谷・春日部など</p>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <h3 class="mt-10 text-xl font-semibold text-slate-900 flex items-center gap-2">
+        <svg class="w-5 h-5 text-primary-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
+        埼玉県 温泉マップ
+      </h3>
+      <p class="mt-2 text-sm text-body">
+        <span class="inline-flex items-center gap-1 mr-3"><span class="inline-block w-3 h-3 rounded-full bg-amber-500"></span>秩父エリア（19湯）</span>
+        <span class="inline-flex items-center gap-1 mr-3"><span class="inline-block w-3 h-3 rounded-full bg-emerald-500"></span>飯能・名栗</span>
+        <span class="inline-flex items-center gap-1 mr-3"><span class="inline-block w-3 h-3 rounded-full bg-blue-500"></span>比企・中部</span>
+        <span class="inline-flex items-center gap-1 mr-3"><span class="inline-block w-3 h-3 rounded-full bg-cyan-500"></span>北部</span>
+        <span class="inline-flex items-center gap-1 mr-3"><span class="inline-block w-3 h-3 rounded-full bg-purple-500"></span>東部都市</span>
+        <span class="inline-flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-full bg-pink-500"></span>南部</span>
+      </p>
+      <div id="saitama-map" class="mt-4"></div>
+      <p class="mt-2 text-xs text-slate-500">© <a href="https://www.openstreetmap.org/copyright" target="_blank" class="underline">OpenStreetMap</a> contributors / 一部座標は近似値</p>
+
+      <!-- Regional cards -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">エリア別 主要温泉</h3>
+
+      <!-- 飯能・名栗 -->
+      <div class="mt-6">
+        <h4 class="text-base font-semibold text-emerald-700 flex items-center gap-2">
+          <span class="inline-block w-3 h-3 rounded-full bg-emerald-500"></span>
+          飯能・名栗エリア（西部山間）
+        </h4>
+        <div class="mt-3 grid md:grid-cols-3 gap-3">
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">名栗温泉 大松閣</p>
+            <p class="text-xs text-slate-500 mt-0.5">飯能市下名栗</p>
+            <p class="text-xs text-body mt-2">創業100年超の老舗旅館。やわらかい鉱泉。</p>
+            <a href="https://www.taishoukaku.com/" target="_blank" class="mt-2 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">宮沢湖温泉 喜楽里 別邸</p>
+            <p class="text-xs text-slate-500 mt-0.5">飯能市</p>
+            <p class="text-xs text-body mt-2">大人専用エリア有。天然温泉日帰り施設。</p>
+            <a href="https://www.yurakirari.com/miyazawako/" target="_blank" class="mt-2 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">さわらびの湯</p>
+            <p class="text-xs text-slate-500 mt-0.5">飯能市下名栗</p>
+            <p class="text-xs text-body mt-2">名栗渓谷沿いの日帰り温泉。やさしい湯。</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- 比企・中部 -->
+      <div class="mt-6">
+        <h4 class="text-base font-semibold text-blue-700 flex items-center gap-2">
+          <span class="inline-block w-3 h-3 rounded-full bg-blue-500"></span>
+          比企・中部エリア（小川町・ときがわ・嵐山）
+        </h4>
+        <div class="mt-3 grid md:grid-cols-3 gap-3">
+          <article class="bg-white rounded-xl border border-cyan-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">おがわ温泉 花和楽の湯</p>
+            <p class="text-xs text-slate-500 mt-0.5">比企郡小川町</p>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="chip type-硫黄泉">強アルカリ硫黄泉</span>
+              <span class="axis-tag !bg-pink-50 !text-pink-700">美人湯</span>
+            </div>
+            <p class="text-xs text-body mt-2">露天「美人湯」が名物。現在休業中の情報あり。</p>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">玉川温泉（昭和レトロ）</p>
+            <p class="text-xs text-slate-500 mt-0.5">比企郡ときがわ町玉川</p>
+            <p class="text-xs text-body mt-2">昭和レトロな雰囲気の温泉銭湯。地元密着型。</p>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">嵐山渓谷温泉 平成楼</p>
+            <p class="text-xs text-slate-500 mt-0.5">比企郡嵐山町</p>
+            <p class="text-xs text-body mt-2">武蔵の小京都・嵐山渓谷沿いの温泉。</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- 北部 -->
+      <div class="mt-6">
+        <h4 class="text-base font-semibold text-cyan-700 flex items-center gap-2">
+          <span class="inline-block w-3 h-3 rounded-full bg-cyan-500"></span>
+          北部エリア（行田・熊谷・本庄・神川・羽生）
+        </h4>
+        <div class="mt-3 grid md:grid-cols-3 gap-3">
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">行田天然温泉 古代蓮物語</p>
+            <p class="text-xs text-slate-500 mt-0.5">行田市</p>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="chip type-塩化物泉">Na-塩化物・炭酸水素塩泉</span>
+            </div>
+            <p class="text-xs text-body mt-2">三浦層群（1,000〜2,000万年前）から湧出。13種類の湯。</p>
+            <a href="https://kodaihasu-wakwak.com/" target="_blank" class="mt-2 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">熊谷天然温泉 花湯スパリゾート</p>
+            <p class="text-xs text-slate-500 mt-0.5">熊谷市</p>
+            <p class="text-xs text-body mt-2">大型スパリゾート。天然温泉＋岩盤浴。</p>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">おふろcafé 白寿の湯</p>
+            <p class="text-xs text-slate-500 mt-0.5">児玉郡神川町</p>
+            <p class="text-xs text-body mt-2">温泉×カフェのリブランディング施設。</p>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">おふろcafé ハレニワの湯</p>
+            <p class="text-xs text-slate-500 mt-0.5">羽生市</p>
+            <p class="text-xs text-body mt-2">温泉道場ブランド。広い天然温泉＋外気浴。</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- 東部 -->
+      <div class="mt-6">
+        <h4 class="text-base font-semibold text-purple-700 flex items-center gap-2">
+          <span class="inline-block w-3 h-3 rounded-full bg-purple-500"></span>
+          東部都市エリア（春日部・越谷・川越・久喜）
+        </h4>
+        <div class="mt-3 grid md:grid-cols-3 gap-3">
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">春日部温泉 湯楽の里</p>
+            <p class="text-xs text-slate-500 mt-0.5">春日部市粕壁</p>
+            <p class="text-xs text-body mt-2">関東特有の黒湯。露天風呂が広い。</p>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">ゆの華 越谷天然温泉 美人の湯</p>
+            <p class="text-xs text-slate-500 mt-0.5">越谷市（国道4号沿い）</p>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="chip type-塩化物泉">関東黒湯</span>
+              <span class="axis-tag !bg-pink-50 !text-pink-700">美人湯</span>
+            </div>
+            <p class="text-xs text-body mt-2">メタケイ酸豊富で美肌効果。源泉かけ流し。</p>
+            <a href="https://www.yunohana.co.jp/" target="_blank" class="mt-2 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">百観音温泉</p>
+            <p class="text-xs text-slate-500 mt-0.5">久喜市西大輪</p>
+            <p class="text-xs text-body mt-2">JR東鷲宮駅から徒歩。塩化物泉の源泉かけ流し。</p>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">小江戸はつかり温泉 川越</p>
+            <p class="text-xs text-slate-500 mt-0.5">川越市渋井</p>
+            <p class="text-xs text-body mt-2">小江戸川越観光の帰路に。塩化物泉。</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- 南部 -->
+      <div class="mt-6">
+        <h4 class="text-base font-semibold text-pink-700 flex items-center gap-2">
+          <span class="inline-block w-3 h-3 rounded-full bg-pink-500"></span>
+          南部エリア（戸田・川口・草加）
+        </h4>
+        <div class="mt-3 grid md:grid-cols-3 gap-3">
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">七福の湯 戸田店</p>
+            <p class="text-xs text-slate-500 mt-0.5">戸田市喜沢南</p>
+            <p class="text-xs text-body mt-2">サウナ充実の都市型温浴施設。</p>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">極楽湯 川口店</p>
+            <p class="text-xs text-slate-500 mt-0.5">川口市</p>
+            <p class="text-xs text-body mt-2">大型チェーン温泉。露天＋黒湯。</p>
+          </article>
+          <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-sm font-semibold text-slate-900">湯乃泉 草加健康センター</p>
+            <p class="text-xs text-slate-500 mt-0.5">草加市</p>
+            <p class="text-xs text-body mt-2">サウナーの聖地。塩サウナ＋黒湯。</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="mt-10 p-5 bg-gradient-to-br from-blue-50 to-white border border-blue-200 rounded-xl shadow-sm">
+        <h3 class="text-base font-semibold text-slate-900">埼玉県の温泉、3つの大きな特徴</h3>
+        <ul class="mt-3 space-y-2 text-sm text-body leading-relaxed">
+          <li>① <strong>地理が温泉を決める</strong> — 西部山間（秩父・飯能）は<strong>湯治場系の伝統鉱泉</strong>、東部都市部は<strong>近年掘削の天然黒湯</strong>。</li>
+          <li>② <strong>「関東黒湯」が東部の主役</strong> — 古代蓮物語（行田）、ゆの華（越谷）、春日部温泉などは <strong>Na-塩化物泉系の黒湯</strong>。海水起源の太古の地層から湧出。</li>
+          <li>③ <strong>「おふろcaféブランド」が拡張中</strong> — 神川（白寿の湯）、羽生（ハレニワ）、本庄（おふろcafé bivouac等）。<strong>温泉道場ホールディングス</strong>が県北部から温泉×カフェ業態を展開。</li>
+        </ul>
+      </div>
+
+      <p class="mt-5 text-xs text-slate-500">
+        ※ このリストは主要施設の抜粋です。県内には他にも多数の温泉・スパ施設があります。<br>
+        出典：環境省「温泉利用状況」令和5年度／<a href="https://chocotabi-saitama.jp/" target="_blank" class="underline hover:text-primary-500">ちょこたび埼玉</a>／各施設公式サイト
+      </p>
+    </section>
+
     <!-- footer -->
     <footer class="mt-20 pt-8 border-t border-slate-200">
       <p class="text-sm text-slate-600">
@@ -2101,6 +2321,70 @@ if (document.getElementById('chichibu-map') && typeof L !== 'undefined') {
       <div class="badges">${statusLabel}${sevenLabel}${phLabel}</div>
     </div>`;
     L.marker([o.lat, o.lon], { icon }).addTo(map).bindPopup(popup);
+  }
+}
+
+// ============ Saitama Statewide Onsen Map ============
+const REGION_COLOR = {
+  chichibu: '#f59e0b',  // amber - 秩父
+  hanno:    '#10b981',  // emerald - 飯能・名栗
+  hiki:     '#3b82f6',  // blue - 比企
+  north:    '#06b6d4',  // cyan - 北部
+  east:     '#a855f7',  // purple - 東部
+  south:    '#ec4899'   // pink - 南部
+};
+const SAITAMA_ONSEN = [
+  // 秩父代表（19湯はChapter11参照）
+  { name:"祭の湯（西武秩父駅前）", lat:35.9904, lon:139.0837, region:'chichibu', note:"駅前温泉。台湾北投展会場" },
+  { name:"秩父湯元 武甲温泉", lat:35.9905, lon:139.1023, region:'chichibu', note:"美肌系" },
+  { name:"満願の湯", lat:36.0825, lon:139.0723, region:'chichibu', note:"pH 9.5 アルカリ" },
+  { name:"両神温泉薬師の湯", lat:36.0051, lon:139.0287, region:'chichibu', note:"国民宿舎" },
+  // 飯能・名栗
+  { name:"名栗温泉 大松閣", lat:35.8595, lon:139.1846, region:'hanno', note:"創業100年超の鉱泉旅館" },
+  { name:"宮沢湖温泉 喜楽里 別邸", lat:35.8442, lon:139.3245, region:'hanno', note:"日帰り天然温泉・大人専用" },
+  { name:"さわらびの湯", lat:35.8713, lon:139.1809, region:'hanno', note:"名栗渓谷沿いの日帰り湯" },
+  // 比企・中部
+  { name:"おがわ温泉 花和楽の湯", lat:36.0596, lon:139.2689, region:'hiki', note:"強アルカリ硫黄泉（休業中情報あり）" },
+  { name:"玉川温泉（ときがわ）", lat:36.0192, lon:139.2840, region:'hiki', note:"昭和レトロな温泉銭湯" },
+  { name:"嵐山渓谷温泉 平成楼", lat:36.0566, lon:139.3199, region:'hiki', note:"武蔵の小京都・嵐山" },
+  // 北部
+  { name:"行田天然温泉 古代蓮物語", lat:36.1500, lon:139.4585, region:'north', note:"三浦層群の塩化物・炭酸水素塩泉" },
+  { name:"熊谷天然温泉 花湯スパリゾート", lat:36.1556, lon:139.4044, region:'north', note:"大型スパリゾート" },
+  { name:"おふろcafé 白寿の湯", lat:36.1774, lon:139.0607, region:'north', note:"神川町・温泉×カフェ" },
+  { name:"おふろcafé ハレニワの湯", lat:36.1722, lon:139.5570, region:'north', note:"羽生・温泉道場ブランド" },
+  // 東部
+  { name:"春日部温泉 湯楽の里", lat:35.9892, lon:139.7575, region:'east', note:"関東黒湯" },
+  { name:"ゆの華 越谷美人の湯", lat:35.8898, lon:139.7700, region:'east', note:"メタケイ酸豊富・源泉かけ流し" },
+  { name:"百観音温泉", lat:36.0914, lon:139.6770, region:'east', note:"久喜・JR東鷲宮駅から徒歩" },
+  { name:"小江戸はつかり温泉 川越店", lat:35.8850, lon:139.5328, region:'east', note:"川越観光の帰路に" },
+  // 南部
+  { name:"七福の湯 戸田店", lat:35.8058, lon:139.6959, region:'south', note:"サウナ充実の都市型施設" },
+  { name:"極楽湯 川口店", lat:35.8067, lon:139.7144, region:'south', note:"大型チェーン温泉" },
+  { name:"湯乃泉 草加健康センター", lat:35.8254, lon:139.7956, region:'south', note:"サウナーの聖地・塩サウナ" }
+];
+
+if (document.getElementById('saitama-map') && typeof L !== 'undefined') {
+  const smap = L.map('saitama-map', { scrollWheelZoom: false }).setView([35.99, 139.45], 9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap',
+    maxZoom: 18
+  }).addTo(smap);
+
+  for (const o of SAITAMA_ONSEN) {
+    const color = REGION_COLOR[o.region] || '#94a3b8';
+    const icon = L.divIcon({
+      className: '',
+      html: `<div style="width:18px;height:18px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 2px 5px rgba(0,0,0,.3)"></div>`,
+      iconSize: [18, 18],
+      iconAnchor: [9, 9]
+    });
+    const regionLabel = ({chichibu:'秩父',hanno:'飯能・名栗',hiki:'比企・中部',north:'北部',east:'東部',south:'南部'})[o.region];
+    const popup = `<div class="map-popup">
+      <h4>${o.name}</h4>
+      <p style="color:${color}">📍 ${regionLabel}エリア</p>
+      <p style="margin-top:4px">${o.note}</p>
+    </div>`;
+    L.marker([o.lat, o.lon], { icon }).addTo(smap).bindPopup(popup);
   }
 }
 </script>
