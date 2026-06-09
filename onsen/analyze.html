@@ -105,20 +105,29 @@ tailwind.config = {
       <label for="fileInput" id="dropzone" class="dropzone block rounded-xl bg-white p-10 lg:p-12 text-center cursor-pointer">
         <div id="dzInitial">
           <svg class="w-12 h-12 text-slate-400 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-          <p class="mt-3 text-base font-medium text-slate-900">タップして撮影 or 画像を選択</p>
-          <p class="mt-1 text-xs text-slate-500">JPEG / PNG / HEIC、最大10MB</p>
+          <p class="mt-3 text-base font-medium text-slate-900">タップして画像をアップロード</p>
+          <p class="mt-1 text-xs text-slate-500">写真ライブラリから選択 ／ JPEG・PNG・HEIC ／ 最大10MB</p>
         </div>
         <div id="dzPreview" class="hidden">
           <img id="previewImg" alt="プレビュー" class="preview-img mx-auto">
           <p id="previewName" class="mt-3 text-sm text-slate-700"></p>
           <p class="mt-1 text-xs text-slate-500">タップで別の画像を選び直せます</p>
         </div>
-        <input type="file" id="fileInput" accept="image/*" capture="environment" class="hidden">
+        <input type="file" id="fileInput" accept="image/*" class="hidden">
       </label>
 
       <button id="analyzeBtn" disabled class="mt-6 w-full inline-flex items-center justify-center gap-2 h-12 px-6 text-base font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 disabled:bg-slate-300 disabled:cursor-not-allowed cursor-pointer transition-colors">
         <span id="analyzeLabel">画像を選んでください</span>
       </button>
+
+      <!-- Optional camera trigger (secondary) -->
+      <div class="mt-3 text-center">
+        <label for="cameraInput" class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-primary-600 cursor-pointer">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span>カメラで撮影する</span>
+        </label>
+        <input type="file" id="cameraInput" accept="image/*" capture="environment" class="hidden">
+      </div>
     </div>
 
     <!-- API key warning (hidden when key is set) -->
@@ -376,6 +385,9 @@ const fileInput = $('fileInput');
 ['dragleave','drop'].forEach(e => dropzone.addEventListener(e, ev => { ev.preventDefault(); dropzone.classList.remove('dragover'); }));
 dropzone.addEventListener('drop', e => { if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
 fileInput.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+// Optional camera trigger
+const cameraInput = document.getElementById('cameraInput');
+if (cameraInput) cameraInput.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
 
 async function handleFile(file) {
   if (!file.type.startsWith('image/')) { alert('画像ファイルを選択してください'); return; }
@@ -690,6 +702,7 @@ $('redoBtn').addEventListener('click', () => {
   $('analyzeBtn').disabled = true;
   $('analyzeLabel').textContent = '画像を選んでください';
   fileInput.value = '';
+  if (cameraInput) cameraInput.value = '';
   showStep('Upload');
 });
 
