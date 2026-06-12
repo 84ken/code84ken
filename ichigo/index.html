@@ -113,7 +113,34 @@
     }
     @media (min-width: 640px) { .hero-video-box { left: auto; right: 24px; bottom: 24px; width: 260px; } }
     @media (min-width: 1024px) { .hero-video-box { right: 40px; bottom: 40px; width: 400px; } }
+
+    /* ── いちごの種パターン（CHICHIBU ICHIGO SALT パッケージへのオマージュ） ── */
+    .seed-pattern-white {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M14 8c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23ffffff' opacity='0.13'/%3E%3Cpath d='M42 34c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23ffffff' opacity='0.13'/%3E%3C/svg%3E");
+    }
+    .seed-pattern-red {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M14 8c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23CC0000' opacity='0.07'/%3E%3Cpath d='M42 34c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23CC0000' opacity='0.07'/%3E%3C/svg%3E");
+    }
+
+    /* ── マーキー（流れるテキスト帯） ── */
+    .marquee { overflow:hidden; white-space:nowrap; }
+    .marquee-track { display:inline-flex; animation: marquee-scroll 36s linear infinite; }
+    .marquee-track > span { display:inline-block; padding-right:3.5rem; }
+    @keyframes marquee-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .marquee-track { animation:none; } }
+
+    /* ── スクロールリビール ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.is-visible { opacity:1; transform:none; }
+    .reveal-d1 { transition-delay:0.1s; } .reveal-d2 { transition-delay:0.2s; } .reveal-d3 { transition-delay:0.3s; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+
+    /* 画像ホバーの統一ズーム */
+    .img-zoom { overflow:hidden; }
+    .img-zoom img { transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .img-zoom:hover img { transform:scale(1.05); }
   </style>
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
@@ -173,7 +200,7 @@
     </div>
 
     <!-- 赤帯 -->
-    <div class="bg-ichigo py-6 sm:py-8">
+    <div class="bg-ichigo seed-pattern-white py-6 sm:py-8">
       <div class="max-w-3xl mx-auto px-6 text-center">
         <img src="images/logo/logo-text.webp" alt="埼玉いちご大學" class="w-full max-w-md sm:max-w-lg mx-auto h-auto block">
       </div>
@@ -225,8 +252,8 @@
   </section>
 
   <!-- ② 合言葉 -->
-  <section class="bg-white py-28 sm:py-36">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+  <section class="bg-white seed-pattern-red py-28 sm:py-36">
+    <div class="max-w-4xl mx-auto px-6 text-center reveal">
       <p class="label-en text-ichigo mb-8">MOTTO</p>
       <h2 class="h-display-thin text-3xl sm:text-5xl md:text-6xl text-ink mb-16">
         いちごが好き。<br>それだけで、何かが始まる。
@@ -242,36 +269,50 @@
     </div>
   </section>
 
+  <!-- マーキー帯 -->
+  <div class="marquee bg-ichigo py-3 sm:py-4" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="text-white text-sm sm:text-base font-semibold tracking-wider">いちごが好き。それだけで、何かが始まる。</span>
+      <span class="text-white/60 text-sm sm:text-base font-medium tracking-[0.25em]">SAITAMA ICHIGO UNIV</span>
+      <span class="text-white text-sm sm:text-base font-semibold tracking-wider">埼玉のいちごは、これからだ。</span>
+      <span class="text-white/60 text-sm sm:text-base font-medium tracking-[0.25em]">CHICHIBU ICHIGO SALT</span>
+      <span class="text-white text-sm sm:text-base font-semibold tracking-wider">いちごが好き。それだけで、何かが始まる。</span>
+      <span class="text-white/60 text-sm sm:text-base font-medium tracking-[0.25em]">SAITAMA ICHIGO UNIV</span>
+      <span class="text-white text-sm sm:text-base font-semibold tracking-wider">埼玉のいちごは、これからだ。</span>
+      <span class="text-white/60 text-sm sm:text-base font-medium tracking-[0.25em]">CHICHIBU ICHIGO SALT</span>
+    </div>
+  </div>
+
   <!-- ③ STORY ティーザー（about.html への導線） -->
   <section class="bg-white py-24 sm:py-32 border-t border-black/5">
     <div class="max-w-6xl mx-auto px-6">
 
       <!-- 数字パネル（社会的証明） -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-black/10 border border-black/10 mb-16 sm:mb-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-black/10 border border-black/10 mb-16 sm:mb-20 reveal">
         <div class="bg-base p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">PARTICIPANTS</p>
-          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1">220<span class="text-sm font-medium ml-1">名</span></p>
+          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1"><span data-count="220">220</span><span class="text-sm font-medium ml-1">名</span></p>
           <p class="text-xs text-mute leading-relaxed">これまでに集まった人</p>
         </div>
         <div class="bg-base p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">IDEAS</p>
-          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1">135<span class="text-sm font-medium ml-1">件</span></p>
+          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1"><span data-count="135">135</span><span class="text-sm font-medium ml-1">件</span></p>
           <p class="text-xs text-mute leading-relaxed">生まれたアイデア</p>
         </div>
         <div class="bg-base p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">FARMERS</p>
-          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1">9<span class="text-sm font-medium ml-1">軒</span></p>
+          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1"><span data-count="9">9</span><span class="text-sm font-medium ml-1">軒</span></p>
           <p class="text-xs text-mute leading-relaxed">連携いちご農家</p>
         </div>
         <div class="bg-base p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">PARTNERS</p>
-          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1">14<span class="text-sm font-medium ml-1">社</span></p>
+          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1"><span data-count="14">14</span><span class="text-sm font-medium ml-1">社</span></p>
           <p class="text-xs text-mute leading-relaxed">連携・コラボした企業</p>
         </div>
       </div>
 
       <!-- ストーリー見出し -->
-      <div class="text-center mb-12 sm:mb-16">
+      <div class="text-center mb-12 sm:mb-16 reveal">
         <p class="label-en text-ichigo mb-3">STORY</p>
         <h2 class="h-display text-3xl sm:text-4xl md:text-5xl text-ink mb-6 leading-snug">
           6つのアイデアから、<br class="sm:hidden">いちご塩へ。
@@ -284,24 +325,24 @@
 
       <!-- 3ステップ画像ストリップ -->
       <div class="grid grid-cols-3 gap-3 sm:gap-5 mb-12 sm:mb-16">
-        <div>
-          <div class="aspect-square overflow-hidden bg-base mb-3 sm:mb-4">
+        <div class="reveal">
+          <div class="aspect-square img-zoom bg-base mb-3 sm:mb-4">
             <img src="images/events/event-2024-12-area898.jpg" alt="集まる" class="w-full h-full object-cover">
           </div>
           <p class="label-en text-ichigo mb-1" style="font-size:10px;">01 / GATHER</p>
           <p class="text-sm sm:text-base font-medium text-ink">集まる</p>
           <p class="hidden sm:block text-xs text-mute mt-1 leading-relaxed">45名がArea898に集合</p>
         </div>
-        <div>
-          <div class="aspect-square overflow-hidden bg-base mb-3 sm:mb-4">
+        <div class="reveal reveal-d1">
+          <div class="aspect-square img-zoom bg-base mb-3 sm:mb-4">
             <img src="images/events/event-2025-03-taiwan.jpg" alt="発想する" class="w-full h-full object-cover">
           </div>
           <p class="label-en text-ichigo mb-1" style="font-size:10px;">02 / IDEATE</p>
           <p class="text-sm sm:text-base font-medium text-ink">発想する</p>
           <p class="hidden sm:block text-xs text-mute mt-1 leading-relaxed">6チーム×6アイデア</p>
         </div>
-        <div>
-          <div class="aspect-square overflow-hidden bg-base mb-3 sm:mb-4">
+        <div class="reveal reveal-d2">
+          <div class="aspect-square img-zoom bg-base mb-3 sm:mb-4">
             <img src="images/products/ichigobin.jpg" alt="形にする" class="w-full h-full object-cover">
           </div>
           <p class="label-en text-ichigo mb-1" style="font-size:10px;">03 / DELIVER</p>
@@ -311,7 +352,7 @@
       </div>
 
       <!-- aboutへの導線 CTA -->
-      <div class="text-center">
+      <div class="text-center reveal">
         <a href="about.html" class="btn-primary text-sm">
           ストーリーをくわしく見る
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -336,7 +377,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-        <a href="events.html" class="news-card block group bg-white">
+        <a href="events.html" class="news-card block group bg-white reveal">
           <div class="aspect-[16/10] overflow-hidden">
             <img src="images/events/event-2026-02-ichigo-matsuri.jpg" alt="埼玉いちご祭り2026 出店ブース" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
@@ -350,7 +391,7 @@
           </div>
         </a>
 
-        <a href="events.html" class="news-card block group bg-white">
+        <a href="events.html" class="news-card block group bg-white reveal reveal-d1">
           <div class="aspect-[16/10] overflow-hidden">
             <img src="images/events/event-2025-03-taiwan.jpg" alt="台湾祭々 お披露目会" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
@@ -378,7 +419,7 @@
   <section class="bg-white py-24 sm:py-32">
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <div class="lg:col-span-5 order-2 lg:order-1">
+        <div class="lg:col-span-5 order-2 lg:order-1 reveal">
           <p class="label-en text-ichigo mb-4">ICHIGO LAB</p>
           <h2 class="h-display text-3xl sm:text-4xl md:text-5xl text-ink mb-8">
             いちごの研究室
@@ -403,16 +444,16 @@
         <!-- 4枚グリッド -->
         <div class="lg:col-span-7 order-1 lg:order-2">
           <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-5">
-            <div class="aspect-square overflow-hidden bg-base">
+            <div class="aspect-square img-zoom bg-base reveal">
               <img src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
             </div>
-            <div class="aspect-square overflow-hidden bg-base">
+            <div class="aspect-square img-zoom bg-base reveal reveal-d1">
               <img src="images/events/event-2024-12-area898.jpg" alt="Area898でのワークショップ" class="w-full h-full object-cover">
             </div>
-            <div class="aspect-square overflow-hidden bg-base">
+            <div class="aspect-square img-zoom bg-base reveal reveal-d2">
               <img src="images/events/event-2025-01-chichibu-hs.jpg" alt="秩父高校でのアイデア出し" class="w-full h-full object-cover">
             </div>
-            <div class="aspect-square overflow-hidden bg-base">
+            <div class="aspect-square img-zoom bg-base reveal reveal-d3">
               <img src="images/events/event-2025-03-taiwan.jpg" alt="台湾祭々お披露目会" class="w-full h-full object-cover">
             </div>
           </div>
@@ -422,7 +463,7 @@
   </section>
 
   <!-- ⑤ CTA -->
-  <section class="bg-ichigo text-white py-28 sm:py-40 relative overflow-hidden">
+  <section class="bg-ichigo seed-pattern-white text-white py-28 sm:py-40 relative overflow-hidden">
     <div class="absolute inset-0 opacity-[0.04]" aria-hidden="true">
       <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-white blur-3xl"></div>
       <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-white blur-3xl"></div>
@@ -491,6 +532,43 @@
       menu.classList.toggle('hidden');
       btn.setAttribute('aria-expanded', String(!open));
     });
+
+    // スクロールリビール（IO非対応環境では即時表示）
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    }
+
+    // 数字カウントアップ（reduced-motion 時はスキップ）
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const countIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = parseInt(el.dataset.count, 10);
+          const dur = 1200;
+          const start = performance.now();
+          const tick = (now) => {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(target * eased);
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          countIO.unobserve(el);
+        });
+      }, { threshold: 0.6 });
+      document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
+    }
   </script>
 
 </body>

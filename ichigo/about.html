@@ -80,7 +80,31 @@
     .pill-nav-shop:hover { background:#A30000; border-color:#A30000; }
     .btn-ichigo { background:#CC0000; color:#fff; border:1.5px solid #CC0000; border-radius:999px; padding:14px 32px; font-weight:600; letter-spacing:0.04em; transition:all 0.2s ease; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
     .btn-ichigo:hover { background:#fff; color:#CC0000; }
+
+    /* ── いちごの種パターン（CHICHIBU ICHIGO SALT パッケージへのオマージュ） ── */
+    .seed-pattern-white {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M14 8c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23ffffff' opacity='0.13'/%3E%3Cpath d='M42 34c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23ffffff' opacity='0.13'/%3E%3C/svg%3E");
+    }
+    .seed-pattern-red {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M14 8c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23CC0000' opacity='0.07'/%3E%3Cpath d='M42 34c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23CC0000' opacity='0.07'/%3E%3C/svg%3E");
+    }
+
+    /* ── スクロールリビール ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.is-visible { opacity:1; transform:none; }
+    .reveal-d1 { transition-delay:0.1s; } .reveal-d2 { transition-delay:0.2s; } .reveal-d3 { transition-delay:0.3s; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+
+    /* ── 品種カード ── */
+    .variety-card { transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
+    .variety-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px -12px rgba(204,0,0,.18); }
+
+    /* 画像ホバーの統一ズーム */
+    .img-zoom { overflow:hidden; }
+    .img-zoom img { transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .img-zoom:hover img { transform:scale(1.05); }
   </style>
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
@@ -153,31 +177,73 @@
           </p>
         </div>
 
-        <!-- 3カード -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-black/10 border border-black/10 mb-8">
-          <div class="bg-white p-6 sm:p-7 text-center">
-            <p class="label-en text-ichigo mb-2">01</p>
-            <h4 class="text-xl font-semibold text-ink mb-1">あまりん</h4>
-            <p class="text-xs text-mute mb-4">品種名：埼園3号</p>
-            <span class="inline-block px-3 py-1 text-xs font-bold bg-ichigo text-white rounded-full mb-4">甘さ推し</span>
-            <p class="text-xs sm:text-sm text-mute leading-loose">際立つ甘さと深みのある味わい。鮮やかな赤色に美しい色ツヤ。</p>
-            <p class="text-[10px] text-mute mt-3" style="font-size:10px;">種子親「やよいひめ」×花粉親「ふくはる香」</p>
+        <!-- 3カード（品種ごとのカラー） -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-8">
+
+          <!-- あまりん -->
+          <div class="variety-card bg-white text-center overflow-hidden reveal">
+            <div class="h-1.5 w-full" style="background:linear-gradient(90deg,#A3122E,#C81E3C,#E04760);"></div>
+            <div class="p-6 sm:p-7">
+              <div class="w-14 h-14 mx-auto rounded-full flex items-center justify-center mb-4" style="background:#FBE9ED; color:#C81E3C;">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 5.5c-1.2-.9-2.8-1.2-4.2-.8.9 1 2.1 1.6 3.4 1.7" stroke="#3E9B4F" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M12 5.5c1.2-.9 2.8-1.2 4.2-.8-.9 1-2.1 1.6-3.4 1.7" stroke="#3E9B4F" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M12 2.8v2.7" stroke="#3E9B4F" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M12 21.5c-4.6-2.3-7-5.6-7-9 0-2.9 2.1-4.8 4.4-4.8 1 0 2 .4 2.6 1.1.6-.7 1.6-1.1 2.6-1.1 2.3 0 4.4 1.9 4.4 4.8 0 3.4-2.4 6.7-7 9z" fill="currentColor"/>
+                  <circle cx="9.4" cy="12.4" r="0.7" fill="#fff" opacity="0.85"/><circle cx="14.6" cy="12.4" r="0.7" fill="#fff" opacity="0.85"/><circle cx="12" cy="15.4" r="0.7" fill="#fff" opacity="0.85"/><circle cx="10.2" cy="17.6" r="0.6" fill="#fff" opacity="0.85"/><circle cx="13.8" cy="17.6" r="0.6" fill="#fff" opacity="0.85"/>
+                </svg>
+              </div>
+              <p class="label-en mb-2" style="color:#C81E3C;">01 / AMARIN</p>
+              <h4 class="text-2xl font-semibold text-ink mb-1">あまりん</h4>
+              <p class="text-xs text-mute mb-4">品種名：埼園3号</p>
+              <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full mb-4" style="background:#C81E3C;">甘さ推し</span>
+              <p class="text-xs sm:text-sm text-mute leading-loose">際立つ甘さと深みのある味わい。鮮やかな赤色に美しい色ツヤ。</p>
+              <p class="text-mute mt-3" style="font-size:10px;">種子親「やよいひめ」×花粉親「ふくはる香」</p>
+            </div>
           </div>
-          <div class="bg-white p-6 sm:p-7 text-center">
-            <p class="label-en text-ichigo mb-2">02</p>
-            <h4 class="text-xl font-semibold text-ink mb-1">かおりん</h4>
-            <p class="text-xs text-mute mb-4">品種名：埼園1号</p>
-            <span class="inline-block px-3 py-1 text-xs font-bold bg-ichigo text-white rounded-full mb-4">香り推し</span>
-            <p class="text-xs sm:text-sm text-mute leading-loose">酸味と甘味が高く豊かな香り。張りのある食感に濃厚な味わい。</p>
-            <p class="text-[10px] text-mute mt-3" style="font-size:10px;">種子親「ふくあや香」×花粉親「ゆめのか」</p>
+
+          <!-- かおりん -->
+          <div class="variety-card bg-white text-center overflow-hidden reveal reveal-d1">
+            <div class="h-1.5 w-full" style="background:linear-gradient(90deg,#C73B66,#E2547A,#F08CA8);"></div>
+            <div class="p-6 sm:p-7">
+              <div class="w-14 h-14 mx-auto rounded-full flex items-center justify-center mb-4" style="background:#FCEEF2; color:#E2547A;">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 5.5c-1.2-.9-2.8-1.2-4.2-.8.9 1 2.1 1.6 3.4 1.7" stroke="#3E9B4F" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M12 5.5c1.2-.9 2.8-1.2 4.2-.8-.9 1-2.1 1.6-3.4 1.7" stroke="#3E9B4F" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M12 2.8v2.7" stroke="#3E9B4F" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M12 21.5c-4.6-2.3-7-5.6-7-9 0-2.9 2.1-4.8 4.4-4.8 1 0 2 .4 2.6 1.1.6-.7 1.6-1.1 2.6-1.1 2.3 0 4.4 1.9 4.4 4.8 0 3.4-2.4 6.7-7 9z" fill="currentColor"/>
+                  <circle cx="9.4" cy="12.4" r="0.7" fill="#fff" opacity="0.85"/><circle cx="14.6" cy="12.4" r="0.7" fill="#fff" opacity="0.85"/><circle cx="12" cy="15.4" r="0.7" fill="#fff" opacity="0.85"/><circle cx="10.2" cy="17.6" r="0.6" fill="#fff" opacity="0.85"/><circle cx="13.8" cy="17.6" r="0.6" fill="#fff" opacity="0.85"/>
+                </svg>
+              </div>
+              <p class="label-en mb-2" style="color:#E2547A;">02 / KAORIN</p>
+              <h4 class="text-2xl font-semibold text-ink mb-1">かおりん</h4>
+              <p class="text-xs text-mute mb-4">品種名：埼園1号</p>
+              <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full mb-4" style="background:#E2547A;">香り推し</span>
+              <p class="text-xs sm:text-sm text-mute leading-loose">酸味と甘味が高く豊かな香り。張りのある食感に濃厚な味わい。</p>
+              <p class="text-mute mt-3" style="font-size:10px;">種子親「ふくあや香」×花粉親「ゆめのか」</p>
+            </div>
           </div>
-          <div class="bg-white p-6 sm:p-7 text-center">
-            <p class="label-en text-ichigo mb-2">03</p>
-            <h4 class="text-xl font-semibold text-ink mb-1">べにたま</h4>
-            <p class="text-xs text-mute mb-4">品種名：彩6号</p>
-            <span class="inline-block px-3 py-1 text-xs font-bold bg-ichigo text-white rounded-full mb-4">バランス推し</span>
-            <p class="text-xs sm:text-sm text-mute leading-loose">高い糖度と爽やかな酸味。果実の赤と真っ白な果肉のコントラストも綺麗。</p>
-            <p class="text-[10px] text-mute mt-3" style="font-size:10px;">種子親「かおりん」×花粉親「かおり野」</p>
+
+          <!-- べにたま -->
+          <div class="variety-card bg-white text-center overflow-hidden reveal reveal-d2">
+            <div class="h-1.5 w-full" style="background:linear-gradient(90deg,#C42833,#E63946,#F2707A);"></div>
+            <div class="p-6 sm:p-7">
+              <div class="w-14 h-14 mx-auto rounded-full flex items-center justify-center mb-4" style="background:#FDEBEC; color:#E63946;">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 5.5c-1.2-.9-2.8-1.2-4.2-.8.9 1 2.1 1.6 3.4 1.7" stroke="#3E9B4F" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M12 5.5c1.2-.9 2.8-1.2 4.2-.8-.9 1-2.1 1.6-3.4 1.7" stroke="#3E9B4F" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M12 2.8v2.7" stroke="#3E9B4F" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M12 21.5c-4.6-2.3-7-5.6-7-9 0-2.9 2.1-4.8 4.4-4.8 1 0 2 .4 2.6 1.1.6-.7 1.6-1.1 2.6-1.1 2.3 0 4.4 1.9 4.4 4.8 0 3.4-2.4 6.7-7 9z" fill="currentColor"/>
+                  <circle cx="9.4" cy="12.4" r="0.7" fill="#fff" opacity="0.85"/><circle cx="14.6" cy="12.4" r="0.7" fill="#fff" opacity="0.85"/><circle cx="12" cy="15.4" r="0.7" fill="#fff" opacity="0.85"/><circle cx="10.2" cy="17.6" r="0.6" fill="#fff" opacity="0.85"/><circle cx="13.8" cy="17.6" r="0.6" fill="#fff" opacity="0.85"/>
+                </svg>
+              </div>
+              <p class="label-en mb-2" style="color:#E63946;">03 / BENITAMA</p>
+              <h4 class="text-2xl font-semibold text-ink mb-1">べにたま</h4>
+              <p class="text-xs text-mute mb-4">品種名：彩6号</p>
+              <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full mb-4" style="background:#E63946;">バランス推し</span>
+              <p class="text-xs sm:text-sm text-mute leading-loose">高い糖度と爽やかな酸味。果実の赤と真っ白な果肉のコントラストも綺麗。</p>
+              <p class="text-mute mt-3" style="font-size:10px;">種子親「かおりん」×花粉親「かおり野」</p>
+            </div>
           </div>
         </div>
 
@@ -540,7 +606,7 @@
   </section>
 
   <!-- CTA -->
-  <section class="py-20 sm:py-28 bg-ichigo text-white">
+  <section class="py-20 sm:py-28 bg-ichigo seed-pattern-white text-white">
     <div class="max-w-3xl mx-auto px-6 text-center">
       <h2 class="h-display-thin text-2xl sm:text-4xl mb-8">いちごが好きなら、誰でも入学できます。</h2>
       <a href="https://line.me/ti/g2/hjGV3KSFBkkdt-RT16RJS7MCXm9znbkNzcAgkw?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold bg-white text-ichigo rounded-full hover:bg-ink hover:text-white transition-colors">
@@ -587,6 +653,21 @@
       menu.classList.toggle('hidden');
       btn.setAttribute('aria-expanded', String(!open));
     });
+
+    // スクロールリビール（IO非対応環境では即時表示）
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    }
   </script>
 
 </body>
