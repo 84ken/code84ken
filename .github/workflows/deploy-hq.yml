@@ -16,7 +16,7 @@ jobs:
       - name: Deploy to ConoHa WING
         uses: burnett01/rsync-deployments@6.0.0
         with:
-          switches: -avz --delete
+          switches: -avz --delete --exclude 'sales/vendor-memos-live.json' --exclude 'sales/vendor-memos-live.json.bak'
           path: hq/
           remote_path: /home/c4244218/public_html/hq.schema.tokyo/
           remote_host: ${{ secrets.SSH_HOST }}
