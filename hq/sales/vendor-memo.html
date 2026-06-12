@@ -686,6 +686,7 @@ function renderProjectCard(p) {
       '</div>' +
       '<div class="flex gap-1">' +
         '<button onclick="showProjectForm(\'' + p.id + '\')" class="px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded cursor-pointer hover:bg-slate-200">編集</button>' +
+        '<button onclick="copyProj(\'' + p.id + '\')" class="px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded cursor-pointer hover:bg-slate-200" title="このプロジェクトを複製">複製</button>' +
         '<button onclick="delProj(\'' + p.id + '\')" class="px-2 py-1 text-xs text-red-400 rounded cursor-pointer hover:bg-red-50">削除</button>' +
       '</div></div>';
 
@@ -848,6 +849,30 @@ async function delProj(id) {
   if (!confirm('このプロジェクトを削除しますか？')) return;
   D.projects = D.projects.filter(function(p){return p.id!==id});
   await save(); toast('削除'); render();
+}
+
+async function copyProj(id) {
+  var src = D.projects.find(function(p){return p.id===id});
+  if (!src) return;
+  var copy = JSON.parse(JSON.stringify(src));
+  copy.id = gid();
+  copy.name = src.name + '（コピー）';
+  copy.createdAt = new Date().toISOString();
+  copy.status = 'active';
+  delete copy.closedAt;
+  delete copy.billings; // 請求スケジュールは実績なのでコピーしない
+  if ((src.vendors||[]).length > 0 && confirm('外注リスト（' + src.vendors.length + '件）もコピーしますか？\n（ステータスは「予定」にリセットされます）')) {
+    copy.vendors = src.vendors.map(function(v){
+      var nv = JSON.parse(JSON.stringify(v));
+      nv.id = gid(); nv.status = 'planned'; nv.expectedMonth = ''; nv.note = '複製元: ' + src.name;
+      return nv;
+    });
+  } else {
+    copy.vendors = [];
+  }
+  D.projects.unshift(copy);
+  await save(); toast('複製しました'); render();
+  showProjectForm(copy.id); // 名前をすぐ変更できるよう編集フォームを開く
 }
 
 // ===== VENDOR FORM =====
