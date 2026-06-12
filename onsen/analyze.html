@@ -8,6 +8,8 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
 <meta name="theme-color" content="#2b70ef">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -67,6 +69,22 @@ tailwind.config = {
   .preview-img { max-height:300px; max-width:100%; object-fit:contain; border-radius:.5rem; border:1px solid #e2e8f0; }
   /* modal */
   .modal-backdrop { background: rgba(15,23,42,.5); }
+  /* maps */
+  #visitMap { height: 220px; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; }
+  #logMap { height: 300px; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; }
+  .leaflet-popup-content-wrapper { border-radius: 12px; }
+  .leaflet-popup-content { margin: 12px; font-family: 'Inter', 'Hiragino Sans', sans-serif; font-size: 12px; }
+  /* rating stars */
+  .star-btn { width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: #cbd5e1; transition: color .1s, transform .1s; }
+  .star-btn:hover { transform: scale(1.15); }
+  .star-btn.filled { color: #f59e0b; }
+  .star-display { color: #f59e0b; font-size: .8rem; letter-spacing: .1em; }
+  /* log thumbnail */
+  .log-thumb { width: 56px; height: 56px; object-fit: cover; border-radius: .5rem; border: 1px solid #e2e8f0; flex-shrink: 0; }
+  /* spring type collection chips */
+  .col-chip { display: inline-flex; align-items: center; padding: .125rem .625rem; border-radius: 9999px; font-size: .7rem; font-weight: 500; }
+  .col-chip.got { background: #dcfce7; color: #166534; }
+  .col-chip.not { background: #f1f5f9; color: #94a3b8; }
   /* hide step */
   .step.hidden, .hidden { display:none !important; }
   /* prose body */
@@ -143,9 +161,29 @@ tailwind.config = {
     <!-- Recent visits -->
     <section id="recentVisits" class="hidden mt-12">
       <div class="flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-slate-900">最近の湯巡りログ</h2>
+        <h2 class="text-lg font-semibold text-slate-900">湯巡りログ</h2>
         <button id="clearLogsBtn" class="text-xs text-slate-500 hover:text-red-600 cursor-pointer">すべて削除</button>
       </div>
+
+      <!-- stats -->
+      <div class="mt-4 grid grid-cols-2 gap-3">
+        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+          <p class="text-xs text-slate-500">訪問数</p>
+          <p class="text-2xl font-bold text-slate-900 mt-0.5"><span id="statVisits">0</span><span class="text-sm font-normal text-slate-500 ml-1">湯</span></p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+          <p class="text-xs text-slate-500">泉質コレクション</p>
+          <p class="text-2xl font-bold text-slate-900 mt-0.5"><span id="statTypes">0</span><span class="text-sm font-normal text-slate-500 ml-1">/ 10種</span></p>
+        </div>
+      </div>
+      <div id="typeCollection" class="mt-3 flex flex-wrap gap-1.5"></div>
+
+      <!-- visited map -->
+      <div id="logMapWrap" class="hidden mt-4">
+        <div id="logMap"></div>
+        <p class="mt-1.5 text-xs text-slate-500">位置情報つきで保存した温泉がマップに残ります。</p>
+      </div>
+
       <div id="recentList" class="mt-4 grid sm:grid-cols-2 gap-3"></div>
     </section>
 
@@ -255,14 +293,56 @@ tailwind.config = {
       <div id="resultRaw" class="mt-4 text-sm"></div>
     </details>
 
-    <!-- visit memo -->
+    <!-- visit log form -->
     <section class="mt-8 bg-white rounded-xl border border-slate-200 p-5">
-      <h2 class="text-base font-semibold text-slate-900">体感メモ</h2>
-      <textarea id="visitMemo" rows="3" placeholder="温度感、肌触り、香り、湯上がりの感覚など…" class="mt-3 w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500"></textarea>
-      <button id="saveVisitBtn" class="mt-3 inline-flex items-center justify-center gap-1.5 h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">
-        湯巡りログに保存
-      </button>
-      <p id="saveStatus" class="mt-2 text-xs text-emerald-700 hidden">保存しました ✓</p>
+      <h2 class="text-base font-semibold text-slate-900">湯巡りログに保存</h2>
+      <p class="text-xs text-slate-500 mt-1">後から「いつ・どこに行ったか」を見返せるように。</p>
+
+      <div class="mt-4 grid sm:grid-cols-2 gap-3">
+        <div class="leading-normal">
+          <label for="visitName" class="block text-sm font-medium text-slate-900">温泉施設名<span class="text-red-500 ml-1">*</span></label>
+          <input id="visitName" type="text" list="onsenPresets" placeholder="例：秩父湯元 武甲温泉" class="mt-1.5 w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500">
+          <datalist id="onsenPresets"></datalist>
+          <p class="text-xs text-slate-500 mt-1">入力すると県内の温泉候補が出ます。選ぶと位置も自動設定。</p>
+        </div>
+        <div class="leading-normal">
+          <label for="visitDate" class="block text-sm font-medium text-slate-900">訪問日</label>
+          <input id="visitDate" type="date" class="mt-1.5 w-full px-3 py-2 text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500">
+          <p class="text-xs text-slate-500 mt-1">デフォルトは今日。</p>
+        </div>
+      </div>
+
+      <div class="mt-4 leading-normal">
+        <label class="block text-sm font-medium text-slate-900">評価</label>
+        <div id="ratingStars" class="mt-1.5 flex items-center gap-0.5" role="radiogroup" aria-label="評価（5段階）"></div>
+      </div>
+
+      <div class="mt-4 leading-normal">
+        <label class="block text-sm font-medium text-slate-900">位置情報</label>
+        <div class="mt-1.5 flex flex-wrap items-center gap-2">
+          <button id="geoBtn" type="button" class="inline-flex items-center justify-center gap-1.5 h-8 px-3 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
+            現在地を取得
+          </button>
+          <p id="geoStatus" class="text-xs text-slate-500">未設定（任意）</p>
+        </div>
+        <div id="visitMap" class="mt-2"></div>
+        <p class="text-xs text-slate-500 mt-1">地図をタップしてピンを置けます。ピンはドラッグで微調整可。</p>
+      </div>
+
+      <div class="mt-4 leading-normal">
+        <label for="visitMemo" class="block text-sm font-medium text-slate-900">体感メモ</label>
+        <textarea id="visitMemo" rows="3" placeholder="温度感、肌触り、香り、湯上がりの感覚など…" class="mt-1.5 w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500/50 caret-primary-500"></textarea>
+      </div>
+
+      <div class="mt-4 flex items-center gap-3">
+        <button id="saveVisitBtn" class="inline-flex items-center justify-center gap-1.5 h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          湯巡りログに保存
+        </button>
+        <p id="saveStatus" class="text-xs text-emerald-700 hidden">保存しました ✓</p>
+        <p id="saveError" class="text-xs text-red-600 hidden">温泉施設名を入力してください</p>
+      </div>
     </section>
   </section>
 
@@ -333,8 +413,11 @@ const state = {
   file: null,
   imageBase64: null,
   imageMediaType: 'image/jpeg',
+  thumbDataUrl: null,
   result: null,
-  abortController: null
+  abortController: null,
+  rating: 0,
+  visitCoords: null
 };
 
 // ============ DOM helpers ============
@@ -398,6 +481,10 @@ async function handleFile(file) {
   const blob = await resizeImage(file, 1600, 0.85);
   state.imageBase64 = await blobToBase64(blob);
   state.imageMediaType = 'image/jpeg';
+
+  // small thumbnail for the visit log (~10-15KB)
+  const thumbBlob = await resizeImage(file, 240, 0.6);
+  state.thumbDataUrl = 'data:image/jpeg;base64,' + await blobToBase64(thumbBlob);
 
   // preview
   $('previewImg').src = URL.createObjectURL(blob);
@@ -521,6 +608,7 @@ async function analyze() {
     state.result = parsed;
     renderResult(parsed);
     showStep('Result');
+    setupVisitLocation();
   } catch (e) {
     if (e.name === 'AbortError') { showStep('Upload'); return; }
     console.error(e);
@@ -596,9 +684,16 @@ function renderResult(r) {
   // raw
   $('resultRaw').innerHTML = renderRaw(ext);
 
-  // memo cleared
+  // pre-fill visit form
+  $('visitName').value = ext.spring_name || ext.spring_type_main || '';
+  $('visitDate').value = new Date().toISOString().slice(0, 10);
   $('visitMemo').value = '';
+  state.rating = 0;
+  renderStars();
+  state.visitCoords = null;
+  $('geoStatus').textContent = '未設定（任意）';
   $('saveStatus').classList.add('hidden');
+  $('saveError').classList.add('hidden');
 }
 
 function bullets(arr, fallback) {
@@ -648,43 +743,120 @@ function getLogs() { try { return JSON.parse(localStorage.getItem(LOG_KEY) || '[
 function setLogs(arr) { localStorage.setItem(LOG_KEY, JSON.stringify(arr)); renderLogs(); }
 function saveCurrentVisit() {
   if (!state.result) return;
+  const visitName = $('visitName').value.trim();
+  if (!visitName) {
+    $('saveError').classList.remove('hidden');
+    $('saveStatus').classList.add('hidden');
+    $('visitName').focus();
+    return;
+  }
+  $('saveError').classList.add('hidden');
+  const visitDateRaw = $('visitDate').value;
+  const visitDate = visitDateRaw ? new Date(visitDateRaw).toISOString() : new Date().toISOString();
   const logs = getLogs();
   logs.unshift({
     id: Date.now(),
-    date: new Date().toISOString(),
+    date: visitDate,
+    visit_name: visitName,
+    rating: state.rating || 0,
+    lat: state.visitCoords?.lat ?? null,
+    lon: state.visitCoords?.lon ?? null,
+    thumb: state.thumbDataUrl || null,
     spring_name: state.result.extracted?.spring_name || null,
+    location: state.result.extracted?.location || null,
     spring_type_full: state.result.extracted?.spring_type_full,
     spring_type_main: state.result.extracted?.spring_type_main,
     summary: state.result.summary_3lines || [],
     memo: $('visitMemo').value
   });
-  setLogs(logs.slice(0, 50));
+  try {
+    setLogs(logs.slice(0, 50));
+  } catch (e) {
+    // localStorage quota: retry without thumbnails on oldest entries
+    const slim = logs.slice(0, 50).map((l, i) => i < 10 ? l : { ...l, thumb: null });
+    try { setLogs(slim); } catch (e2) { setLogs(logs.slice(0, 20).map(l => ({ ...l, thumb: null }))); }
+  }
   $('saveStatus').classList.remove('hidden');
 }
 $('saveVisitBtn').addEventListener('click', saveCurrentVisit);
+
+const TYPES10 = ['単純温泉','塩化物泉','炭酸水素塩泉','硫酸塩泉','二酸化炭素泉','含鉄泉','硫黄泉','酸性泉','放射能泉','含よう素泉'];
 
 function renderLogs() {
   const logs = getLogs();
   if (!logs.length) { $('recentVisits').classList.add('hidden'); return; }
   $('recentVisits').classList.remove('hidden');
-  $('recentList').innerHTML = logs.slice(0, 6).map(l => `
+
+  // stats
+  $('statVisits').textContent = logs.length;
+  const gotTypes = new Set(logs.map(l => l.spring_type_main).filter(t => TYPES10.includes(t)));
+  $('statTypes').textContent = gotTypes.size;
+  $('typeCollection').innerHTML = TYPES10.map(t =>
+    `<span class="col-chip ${gotTypes.has(t) ? 'got' : 'not'}">${gotTypes.has(t) ? '✓ ' : ''}${t}</span>`).join('');
+
+  // map of visited onsen
+  renderLogMap(logs);
+
+  // cards
+  $('recentList').innerHTML = logs.slice(0, 12).map(l => {
+    const name = l.visit_name || l.spring_name || '名称未設定';
+    const subline = l.spring_type_full || l.spring_type_main || '';
+    const stars = l.rating ? '★'.repeat(l.rating) + '☆'.repeat(5 - l.rating) : '';
+    return `
     <article class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
-      <div class="flex items-start justify-between gap-2">
+      <div class="flex items-start gap-3">
+        ${l.thumb ? `<img src="${l.thumb}" alt="" class="log-thumb">` : ''}
         <div class="flex-1 min-w-0">
-          <p class="text-xs text-slate-500">${new Date(l.date).toLocaleDateString('ja-JP', { year:'numeric', month:'short', day:'numeric' })}</p>
-          <p class="text-sm font-semibold text-slate-900 mt-0.5 truncate">${escape(l.spring_name || '名称未設定')}</p>
-          <p class="text-xs text-slate-600 mt-1 line-clamp-2">${escape(l.spring_type_full || l.spring_type_main || '')}</p>
+          <div class="flex items-center gap-2">
+            <p class="text-xs text-slate-500">${new Date(l.date).toLocaleDateString('ja-JP', { year:'numeric', month:'short', day:'numeric' })}</p>
+            ${l.lat != null ? '<svg class="w-3 h-3 text-primary-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>' : ''}
+          </div>
+          <p class="text-sm font-semibold text-slate-900 mt-0.5 truncate">${escape(name)}</p>
+          ${stars ? `<p class="star-display mt-0.5">${stars}</p>` : ''}
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">${escape(subline)}</p>
+          ${l.memo ? `<p class="text-xs text-slate-500 mt-1 line-clamp-1 italic">${escape(l.memo)}</p>` : ''}
         </div>
-        <button data-id="${l.id}" class="del-log w-7 h-7 inline-flex items-center justify-center text-slate-400 hover:text-red-600 cursor-pointer">
+        <button data-id="${l.id}" class="del-log w-7 h-7 inline-flex items-center justify-center text-slate-400 hover:text-red-600 cursor-pointer flex-shrink-0" aria-label="このログを削除">
           <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
         </button>
       </div>
-    </article>`).join('');
+    </article>`;
+  }).join('');
   document.querySelectorAll('.del-log').forEach(b => b.addEventListener('click', e => {
     e.stopPropagation();
     const id = Number(b.dataset.id);
     setLogs(getLogs().filter(l => l.id !== id));
   }));
+}
+
+// ============ Visited onsen map (log list) ============
+let logMap = null, logMarkerLayer = null;
+function renderLogMap(logs) {
+  const located = logs.filter(l => l.lat != null && l.lon != null);
+  const wrap = $('logMapWrap');
+  if (!located.length || typeof L === 'undefined') { wrap.classList.add('hidden'); return; }
+  wrap.classList.remove('hidden');
+  if (!logMap) {
+    logMap = L.map('logMap', { scrollWheelZoom: false });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap', maxZoom: 18 }).addTo(logMap);
+    logMarkerLayer = L.layerGroup().addTo(logMap);
+  }
+  logMarkerLayer.clearLayers();
+  const bounds = [];
+  for (const l of located) {
+    const name = l.visit_name || l.spring_name || '名称未設定';
+    const stars = l.rating ? '★'.repeat(l.rating) : '';
+    const icon = L.divIcon({
+      className: '',
+      html: '<div style="width:16px;height:16px;border-radius:50%;background:#2b70ef;border:3px solid white;box-shadow:0 2px 5px rgba(0,0,0,.3)"></div>',
+      iconSize: [16, 16], iconAnchor: [8, 8]
+    });
+    L.marker([l.lat, l.lon], { icon }).addTo(logMarkerLayer)
+      .bindPopup(`<strong>${escape(name)}</strong><br>${new Date(l.date).toLocaleDateString('ja-JP')}${stars ? '<br><span style="color:#f59e0b">' + stars + '</span>' : ''}`);
+    bounds.push([l.lat, l.lon]);
+  }
+  logMap.fitBounds(bounds, { padding: [30, 30], maxZoom: 13 });
+  setTimeout(() => logMap.invalidateSize(), 100);
 }
 $('clearLogsBtn').addEventListener('click', () => {
   if (!confirm('湯巡りログをすべて削除しますか？')) return;
@@ -813,8 +985,130 @@ const SYSTEM_PROMPT = `あなたは温泉ソムリエAIです。日本の温泉�
 - summary_3lines は読み手の興味を引く具体的な文章で各40〜80文字
 - checkpoints は必ず7項目（タグ1〜7）。データ不足の場合も推測してinterpretationを書く`;
 
+// ============ Onsen presets (Saitama DB: 秩父19湯 + 県内主要施設) ============
+const ONSEN_PRESETS = [
+  // 秩父エリア
+  { name:"御代の湯 新木鉱泉",           area:"秩父市山田",     lat:36.0099, lon:139.1101 },
+  { name:"柴原温泉 かやの家",           area:"秩父市荒川",     lat:35.9854, lon:138.9912 },
+  { name:"白久温泉 谷津川館",           area:"秩父市荒川白久", lat:35.9601, lon:138.9870 },
+  { name:"薬師の湯 松ノ沢",             area:"小鹿野町",       lat:36.0142, lon:138.9054 },
+  { name:"霊泉旅館 不動の湯",           area:"秩父市山田",     lat:36.0150, lon:139.1182 },
+  { name:"美やま温泉",                  area:"皆野町",         lat:36.0857, lon:139.1046 },
+  { name:"丸山鉱泉 花悦の湯",           area:"長瀞町",         lat:36.1147, lon:139.1096 },
+  { name:"秩父湯元 武甲温泉",           area:"横瀬町",         lat:35.9905, lon:139.1023 },
+  { name:"将門のかくし湯 みやこ旅館",   area:"秩父市荒川白久", lat:35.9605, lon:138.9823 },
+  { name:"両神温泉薬師の湯 両神荘",     area:"小鹿野町両神",   lat:36.0078, lon:138.9750 },
+  { name:"道の駅 両神温泉薬師の湯",     area:"小鹿野町両神薄", lat:36.0051, lon:138.9713 },
+  { name:"赤谷温泉 小鹿荘",             area:"小鹿野町三山",   lat:36.0192, lon:138.8716 },
+  { name:"かおる鉱泉",                  area:"秩父市上吉田",   lat:36.0731, lon:138.9384 },
+  { name:"秩父温泉 満願の湯",           area:"皆野町日野沢",   lat:36.0825, lon:139.0723 },
+  { name:"西武秩父駅前温泉 祭の湯",     area:"秩父市野坂町",   lat:35.9904, lon:139.0837 },
+  // 飯能・名栗
+  { name:"名栗温泉 大松閣",             area:"飯能市下名栗",   lat:35.8595, lon:139.1846 },
+  { name:"宮沢湖温泉 喜楽里 別邸",      area:"飯能市",         lat:35.8442, lon:139.3245 },
+  { name:"さわらびの湯",                area:"飯能市下名栗",   lat:35.8713, lon:139.1809 },
+  // 比企・中部
+  { name:"おがわ温泉 花和楽の湯",       area:"小川町",         lat:36.0596, lon:139.2689 },
+  { name:"玉川温泉（ときがわ）",        area:"ときがわ町",     lat:36.0192, lon:139.2840 },
+  // 北部
+  { name:"行田天然温泉 古代蓮物語",     area:"行田市",         lat:36.1500, lon:139.4585 },
+  { name:"熊谷天然温泉 花湯スパリゾート", area:"熊谷市",       lat:36.1556, lon:139.4044 },
+  { name:"おふろcafé 白寿の湯",         area:"神川町",         lat:36.1774, lon:139.0607 },
+  { name:"おふろcafé ハレニワの湯",     area:"熊谷市",         lat:36.1440, lon:139.4078 },
+  // 東部
+  { name:"春日部温泉 湯楽の里",         area:"春日部市",       lat:35.9892, lon:139.7575 },
+  { name:"ゆの華 越谷天然温泉 美人の湯", area:"越谷市",        lat:35.8898, lon:139.7700 },
+  { name:"百観音温泉",                  area:"久喜市",         lat:36.0914, lon:139.6770 },
+  { name:"小江戸はつかり温泉 川越店",   area:"川越市",         lat:35.8850, lon:139.5328 },
+  // 南部
+  { name:"七福の湯 戸田店",             area:"戸田市",         lat:35.8058, lon:139.6959 },
+  { name:"極楽湯 川口店",               area:"川口市",         lat:35.8067, lon:139.7144 },
+  { name:"湯乃泉 草加健康センター",     area:"草加市",         lat:35.8254, lon:139.7956 }
+];
+
+// datalist autocomplete
+$('onsenPresets').innerHTML = ONSEN_PRESETS.map(p => `<option value="${escape(p.name)}">${escape(p.area)}</option>`).join('');
+
+// preset name match → auto-set coords
+$('visitName').addEventListener('change', () => {
+  const v = $('visitName').value.trim();
+  const p = ONSEN_PRESETS.find(x => x.name === v);
+  if (p) setVisitCoords(p.lat, p.lon, `${p.name}（${p.area}）の登録位置`);
+});
+
+// ============ Rating stars ============
+function renderStars() {
+  const wrap = $('ratingStars');
+  wrap.innerHTML = '';
+  for (let i = 1; i <= 5; i++) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'star-btn' + (i <= state.rating ? ' filled' : '');
+    btn.setAttribute('role', 'radio');
+    btn.setAttribute('aria-checked', i === state.rating ? 'true' : 'false');
+    btn.setAttribute('aria-label', `${i}つ星`);
+    btn.innerHTML = '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>';
+    btn.addEventListener('click', () => {
+      state.rating = (state.rating === i) ? 0 : i;  // 同じ星をもう一度押すと取り消し
+      renderStars();
+    });
+    wrap.appendChild(btn);
+  }
+}
+
+// ============ Visit location (form mini-map + geolocation) ============
+let visitMap = null, visitMarker = null;
+
+function initVisitMap() {
+  if (visitMap || typeof L === 'undefined' || !document.getElementById('visitMap')) return;
+  visitMap = L.map('visitMap', { scrollWheelZoom: false }).setView([36.00, 139.25], 9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap', maxZoom: 18 }).addTo(visitMap);
+  visitMap.on('click', e => setVisitCoords(e.latlng.lat, e.latlng.lng, '地図で指定'));
+}
+
+function setVisitCoords(lat, lon, sourceLabel) {
+  state.visitCoords = { lat: +lat.toFixed(6), lon: +lon.toFixed(6) };
+  $('geoStatus').textContent = `📍 ${sourceLabel}`;
+  $('geoStatus').classList.remove('text-slate-500');
+  $('geoStatus').classList.add('text-primary-600', 'font-medium');
+  if (!visitMap) return;
+  if (visitMarker) {
+    visitMarker.setLatLng([lat, lon]);
+  } else {
+    visitMarker = L.marker([lat, lon], { draggable: true }).addTo(visitMap);
+    visitMarker.on('dragend', () => {
+      const ll = visitMarker.getLatLng();
+      state.visitCoords = { lat: +ll.lat.toFixed(6), lon: +ll.lng.toFixed(6) };
+      $('geoStatus').textContent = '📍 ピンの位置（手動調整）';
+    });
+  }
+  visitMap.setView([lat, lon], 13);
+}
+
+function setupVisitLocation() {
+  initVisitMap();
+  setTimeout(() => { if (visitMap) visitMap.invalidateSize(); }, 150);
+  // 抽出された施設名がプリセットに合致すれば自動で位置設定
+  const v = $('visitName').value.trim();
+  if (v) {
+    const p = ONSEN_PRESETS.find(x => x.name === v || (v.length >= 3 && x.name.includes(v)));
+    if (p) setVisitCoords(p.lat, p.lon, `${p.name}（${p.area}）の登録位置`);
+  }
+}
+
+$('geoBtn').addEventListener('click', () => {
+  if (!navigator.geolocation) { $('geoStatus').textContent = 'この端末では位置情報が使えません'; return; }
+  $('geoStatus').textContent = '取得中…';
+  navigator.geolocation.getCurrentPosition(
+    p => setVisitCoords(p.coords.latitude, p.coords.longitude, '現在地'),
+    () => { $('geoStatus').textContent = '現在地を取得できませんでした（位置情報の許可を確認）'; },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+});
+
 // ============ Init ============
 loadSettings();
+renderStars();
 renderLogs();
 showStep('Upload');
 </script>
