@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>いちご農家マップ｜秩父・横瀬・長瀞・小鹿野・皆野｜埼玉いちご大學</title>
+  <meta name="description" content="埼玉県の中山間地域（秩父市・横瀬町・長瀞町・小鹿野町・皆野町）のいちご農家22軒を一覧とマップでご紹介。いちご大學の連携農家、いちご狩りができる観光農園情報も。">
+  <meta name="keywords" content="秩父 いちご狩り,横瀬 いちご,長瀞 いちご,いちご農家,観光農園,あまりん,埼玉いちご大學">
+  <link rel="canonical" href="https://ichigo-saitama.net/farms.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="いちご農家マップ｜秩父・横瀬・長瀞・小鹿野・皆野">
+  <meta property="og:description" content="中山間地域のいちご農家22軒を一覧とマップでご紹介。いちご狩りの計画にもどうぞ。">
+  <meta property="og:image" content="https://ichigo-saitama.net/images/ogp/og-default.jpg">
+  <meta property="og:image:secure_url" content="https://ichigo-saitama.net/images/ogp/og-default.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ichigo-saitama.net/farms.html">
+  <meta property="og:site_name" content="埼玉いちご大學">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="いちご農家マップ｜秩父・横瀬・長瀞・小鹿野・皆野">
+  <meta name="twitter:description" content="中山間地域のいちご農家22軒を一覧とマップでご紹介。">
+  <meta name="twitter:image" content="https://ichigo-saitama.net/images/ogp/og-default.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#CC0000">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://ichigo-saitama.net/" },
+      { "@type": "ListItem", "position": 2, "name": "いちご農家マップ", "item": "https://ichigo-saitama.net/farms.html" }
+    ]
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM1JXQ0EMM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GM1JXQ0EMM');
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { ichigo:'#CC0000', base:'#FBEDED', ink:'#0A0A0A', mute:'#1F1F1F' },
+        fontFamily: { sans:['"Noto Sans JP"','sans-serif'], serif:['"Noto Serif JP"','serif'] }
+      }}
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style>
+    body { font-family:"Noto Sans JP",sans-serif; color:#0A0A0A; background:#FBEDED; font-feature-settings:"palt" 1; }
+    .h-display { font-weight:200; letter-spacing:0.02em; line-height:1.3; }
+    .h-display-thin { font-weight:100; letter-spacing:0.04em; line-height:1.25; }
+    .label-en { font-weight:500; letter-spacing:0.3em; font-size:11px; }
+    .body-jp { line-height:2.0; letter-spacing:0.04em; font-weight:500; font-feature-settings: normal; }
+    .text-mute { color: #1F1F1F !important; }
+    .text-ink { color: #0A0A0A !important; }
+    .pill-nav { background:#fff; border:1.5px solid #0A0A0A; border-radius:999px; padding:8px 18px; font-weight:500; font-size:14px; color:#0A0A0A; transition:all 0.2s ease; text-decoration:none; }
+    .pill-nav:hover { background:#0A0A0A; color:#fff; }
+    .pill-nav.active { background:#CC0000; color:#fff; border-color:#CC0000; }
+    .pill-nav-shop { background:#CC0000; border:1.5px solid #CC0000; border-radius:999px; padding:8px 18px; font-weight:600; font-size:14px; color:#fff; transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+    .pill-nav-shop:hover { background:#A30000; border-color:#A30000; }
+
+    /* ── いちごの種パターン ── */
+    .seed-pattern-white {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M14 8c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23ffffff' opacity='0.13'/%3E%3Cpath d='M42 34c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23ffffff' opacity='0.13'/%3E%3C/svg%3E");
+    }
+
+    /* ── スクロールリビール ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.is-visible { opacity:1; transform:none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+
+    /* ── マップ ── */
+    #farm-map { height: 60vh; min-height: 420px; max-height: 640px; width: 100%; z-index: 1; }
+    .leaflet-popup-content-wrapper { border-radius: 4px; }
+    .farm-popup .fp-name { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+    .farm-popup .fp-partner { display:inline-block; background:#CC0000; color:#fff; font-size:10px; font-weight:700; padding:1px 8px; border-radius:999px; margin-bottom:6px; }
+    .farm-popup .fp-addr { font-size: 12px; color: #444; margin-bottom: 6px; }
+    .farm-popup a { color: #CC0000; font-weight: 600; font-size: 12px; }
+
+    /* ── フィルターチップ ── */
+    .filter-chip { background:#fff; border:1.5px solid rgba(10,10,10,0.25); border-radius:999px; padding:7px 18px; font-size:13px; font-weight:600; cursor:pointer; transition:all .2s ease; }
+    .filter-chip:hover { border-color:#0A0A0A; }
+    .filter-chip.active { background:#CC0000; border-color:#CC0000; color:#fff; }
+
+    /* ── 農家カード ── */
+    .farm-card { background:#fff; transition:transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease; }
+    .farm-card:hover { transform:translateY(-3px); box-shadow:0 12px 32px -10px rgba(204,0,0,.16); }
+  </style>
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="absolute top-0 left-0 right-0 z-30">
+    <div class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-7 pb-5 sm:pt-5 flex items-center justify-between" style="padding-top: max(env(safe-area-inset-top), 1.75rem);">
+      <a href="index.html" class="inline-flex items-center" aria-label="埼玉いちご大學 トップへ">
+        <img src="images/logo/logo-crest.png" alt="埼玉いちご大學 校章" class="h-14 sm:h-16 w-auto">
+      </a>
+      <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-2">
+        <a href="about.html" class="pill-nav">いちご大學とは</a>
+        <a href="events.html" class="pill-nav">お知らせ</a>
+        <a href="lab.html" class="pill-nav">いちごの研究室</a>
+        <a href="farms.html" class="pill-nav active" aria-current="page">農家マップ</a>
+        <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="pill-nav-shop">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          ONLINE SHOP
+        </a>
+      </nav>
+      <button id="menu-btn" class="md:hidden w-12 h-12 inline-flex items-center justify-center bg-white border border-ink rounded-full" aria-label="メニューを開く" aria-expanded="false">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-black/10">
+      <div class="px-6 py-4 space-y-2">
+        <a href="about.html" class="block py-3 text-base font-medium border-b border-black/5">いちご大學とは</a>
+        <a href="events.html" class="block py-3 text-base font-medium border-b border-black/5">お知らせ</a>
+        <a href="lab.html" class="block py-3 text-base font-medium border-b border-black/5">いちごの研究室</a>
+        <a href="farms.html" class="block py-3 text-base font-medium border-b border-black/5 text-ichigo">農家マップ</a>
+        <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="block py-3 text-base font-bold text-ichigo">🛒 ONLINE SHOP →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ページタイトル -->
+  <section class="pt-32 sm:pt-40 pb-16 sm:pb-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="label-en text-ichigo mb-6">FARMS MAP</p>
+      <h1 class="h-display-thin text-4xl sm:text-6xl md:text-7xl text-ink mb-6">いちご農家マップ</h1>
+      <p class="body-jp text-sm sm:text-base text-mute max-w-2xl mx-auto">
+        埼玉県の中山間地域——秩父市・横瀬町・長瀞町・小鹿野町・皆野町。<br>
+        この土地で、いちごを育てる農家さんたちをご紹介します。
+      </p>
+    </div>
+  </section>
+
+  <!-- マップ -->
+  <section class="bg-white pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div id="farm-map" class="border border-black/10"></div>
+      <p class="text-xs text-mute mt-3 text-right">※ 地図上のピンは住所に基づくおおよその位置です。お出かけ前に各農園にご確認ください。</p>
+    </div>
+  </section>
+
+  <!-- フィルター + 一覧 -->
+  <section class="bg-white py-12 sm:py-16">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <!-- 凡例 + フィルター -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
+        <div id="filter-chips" class="flex flex-wrap gap-2" role="group" aria-label="エリアで絞り込み">
+          <button class="filter-chip active" data-area="all">すべて <span id="count-all"></span></button>
+          <button class="filter-chip" data-area="秩父市">秩父市</button>
+          <button class="filter-chip" data-area="横瀬町">横瀬町</button>
+          <button class="filter-chip" data-area="長瀞町">長瀞町</button>
+        </div>
+        <p class="text-xs text-mute flex items-center gap-2">
+          <span class="inline-block w-3 h-3 rounded-full" style="background:#CC0000;"></span>いちご大學 連携農家
+          <span class="inline-block w-3 h-3 rounded-full ml-2" style="background:#E8A0A8;"></span>地域のいちご農家
+        </p>
+      </div>
+
+      <!-- カードグリッド -->
+      <div id="farm-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
+
+      <!-- 小鹿野・皆野 注記 -->
+      <div class="mt-10 bg-base p-6 sm:p-8 text-center">
+        <p class="body-jp text-sm text-mute">
+          小鹿野町・皆野町のいちご農家さんは、現在情報を集めています。<br>
+          「うちも載せてほしい」「情報が違う」など、お気軽にご連絡ください。
+        </p>
+        <a href="https://line.me/ti/g2/hjGV3KSFBkkdt-RT16RJS7MCXm9znbkNzcAgkw?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-4 text-sm font-bold text-ichigo hover:underline">
+          LINEオープンチャットで連絡する
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <!-- シーズン注記 -->
+      <p class="text-xs text-mute mt-8 leading-relaxed">
+        ※ いちご狩りのシーズンはおおむね1月〜5月です。営業日・予約方法・品種・料金は各農園に直接お問い合わせください。<br>
+        ※ 掲載情報は埼玉いちご大學の活動を通じて確認した内容に基づきます。最新情報と異なる場合があります。
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 sm:py-28 bg-ichigo seed-pattern-white text-white">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="h-display-thin text-2xl sm:text-4xl mb-6">農家さんと一緒に、いちごの可能性を。</h2>
+      <p class="body-jp text-base text-white mb-10">埼玉いちご大學は、地域のいちご農家さんとともに<br>新しい商品・体験づくりに取り組んでいます。</p>
+      <a href="about.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold bg-white text-ichigo rounded-full hover:bg-ink hover:text-white transition-colors">
+        いちご大學の活動を見る
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="bg-ink text-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <div>
+          <img src="images/logo/logo-text.webp" alt="埼玉いちご大學" class="w-48 h-auto mb-4">
+          <p class="text-sm text-white leading-loose">「いちごが好き」という気持ちを<br>持ち寄る場所。</p>
+        </div>
+        <div>
+          <p class="label-en text-white mb-5" style="opacity:0.55;">SITE MAP</p>
+          <ul class="space-y-3 text-sm">
+            <li><a href="about.html" class="text-white hover:text-ichigo">いちご大學とは</a></li>
+            <li><a href="events.html" class="text-white hover:text-ichigo">お知らせ</a></li>
+            <li><a href="lab.html" class="text-white hover:text-ichigo">いちごの研究室</a></li>
+            <li><a href="farms.html" class="text-white hover:text-ichigo">いちご農家マップ</a></li>
+            <li><a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="text-white hover:text-ichigo font-bold">🛒 ONLINE SHOP →</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="label-en text-white mb-5" style="opacity:0.55;">ABOUT</p>
+          <p class="text-sm text-white leading-loose mb-4">主催：埼玉県 農林部 農業ビジネス支援課<br>運営：<a href="https://llschema.com/" target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-ichigo">株式会社スキーマ</a></p>
+          <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" aria-label="Instagram" class="inline-flex w-10 h-10 items-center justify-center rounded-full border border-white/30 hover:bg-white hover:text-ink transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-white/15 pt-6 text-xs text-white/60 text-center">© 2024-2026 埼玉いちご大學</div>
+    </div>
+  </footer>
+
+  <script>
+    // ───────────────────────────────
+    // 農家データ（出典: いちご大學 全体管理シート / 位置: 国土地理院ジオコーディング）
+    // partner: いちご大學の活動（説明会・WS・出店）に参加いただいた連携農家
+    // ───────────────────────────────
+    const FARMS = [
+      { name: 'いちごハウスAYA', addr: '秩父市下吉田4124-1', tel: '0494-26-7411', area: '秩父市', partner: true, lat: 36.037281, lng: 139.025421 },
+      { name: 'ただかね農園', addr: '秩父市下吉田4091', tel: '0494-77-0977', area: '秩父市', partner: true, lat: 36.037281, lng: 139.025421 },
+      { name: '冨田農園', addr: '秩父市下吉田4359', tel: '0494-77-0968', area: '秩父市', partner: false, lat: 36.037281, lng: 139.025421 },
+      { name: '上の原農園', addr: '秩父郡横瀬町横瀬3460-1', tel: '0494-24-0410', area: '横瀬町', partner: false, lat: 35.982277, lng: 139.090469 },
+      { name: 'おきうね農園', addr: '秩父郡横瀬町横瀬3126', tel: '0494-23-2712', area: '横瀬町', partner: false, lat: 35.976704, lng: 139.092865 },
+      { name: '琴平農園', addr: '秩父郡横瀬町芦ヶ久保361-2', tel: '0494-24-1497', area: '横瀬町', partner: false, lat: 35.966351, lng: 139.154968 },
+      { name: '小松沢レジャー農園', addr: '秩父郡横瀬町横瀬1408', tel: '0494-24-0412', area: '横瀬町', partner: true, lat: 35.981754, lng: 139.114243 },
+      { name: 'まるとみ農園', addr: '秩父郡横瀬町芦ヶ久保494', tel: '0494-24-2191', area: '横瀬町', partner: false, lat: 35.966351, lng: 139.154968 },
+      { name: '八木原農園', addr: '秩父郡横瀬町横瀬3338-2', tel: '', area: '横瀬町', partner: true, lat: 35.982735, lng: 139.092239 },
+      { name: '長瀞福島農園', addr: '秩父郡長瀞町大字中野上111', tel: '', area: '長瀞町', partner: false, lat: 36.113533, lng: 139.094559 },
+      { name: '市川いちご園', addr: '秩父市田村924', tel: '0494-23-9732', area: '秩父市', partner: true, lat: 36.002354, lng: 139.056976 },
+      { name: '内田農園', addr: '秩父市寺尾2307', tel: '0494-23-9603', area: '秩父市', partner: false, lat: 36.025261, lng: 139.085419 },
+      { name: '太田観光農園', addr: '秩父市太田2364', tel: '0494-62-0880', area: '秩父市', partner: true, lat: 36.056049, lng: 139.06572 },
+      { name: 'けや木農園', addr: '秩父市寺尾630', tel: '0494-26-6320', area: '秩父市', partner: false, lat: 36.041698, lng: 139.091812 },
+      { name: '秩父フルーツファーム', addr: '秩父市下影森877-1', tel: '0494-23-2711', area: '秩父市', partner: true, lat: 35.978172, lng: 139.07402 },
+      { name: '中蒔田・富田農園', addr: '秩父市蒔田1666', tel: '0494-23-9210', area: '秩父市', partner: false, lat: 36.035313, lng: 139.074341 },
+      { name: '福島いちご園', addr: '秩父市寺尾2145', tel: '0494-23-9054', area: '秩父市', partner: true, lat: 36.01712, lng: 139.081223 },
+      { name: '八木観光農園', addr: '秩父市寺尾3287', tel: '0494-23-9035', area: '秩父市', partner: true, lat: 36.012753, lng: 139.070923 },
+      { name: '和銅農園', addr: '秩父市黒谷457-3', tel: '0494-25-4733', area: '秩父市', partner: false, lat: 36.045376, lng: 139.103256 },
+      { name: '石井園', addr: '秩父市荒川日野695', tel: '0494-54-1762', area: '秩父市', partner: false, lat: 35.928349, lng: 139.005371 },
+      { name: '将門園', addr: '秩父市荒川日野584', tel: '0494-54-1699', area: '秩父市', partner: false, lat: 35.928349, lng: 139.005371 },
+      { name: 'いちごの森 あかずきん', addr: '秩父市下吉田4106', tel: '', area: '秩父市', partner: false, lat: 36.037281, lng: 139.025421 }
+    ];
+  </script>
+
+  <script>
+    // メニュー
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      const open = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+
+    // 同一座標のピンを少しずらす（大字レベルの概算位置対策）
+    const seen = {};
+    FARMS.forEach(f => {
+      const key = f.lat.toFixed(5) + ',' + f.lng.toFixed(5);
+      const n = seen[key] || 0;
+      if (n > 0) {
+        const angle = n * 2.0944; // 120度ずつ
+        f.lat += 0.0016 * Math.cos(angle);
+        f.lng += 0.0020 * Math.sin(angle);
+      }
+      seen[key] = n + 1;
+    });
+
+    // マップ初期化
+    const map = L.map('farm-map', { scrollWheelZoom: false }).setView([36.005, 139.075], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // マーカー
+    const markers = [];
+    FARMS.forEach((f, i) => {
+      const gmaps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.name + ' 埼玉県' + f.addr);
+      const m = L.circleMarker([f.lat, f.lng], {
+        radius: f.partner ? 10 : 7,
+        fillColor: f.partner ? '#CC0000' : '#E8A0A8',
+        color: '#ffffff',
+        weight: 2,
+        fillOpacity: 0.95
+      }).addTo(map);
+      m.bindPopup(
+        '<div class="farm-popup">' +
+        (f.partner ? '<span class="fp-partner">いちご大學 連携農家</span><br>' : '') +
+        '<span class="fp-name">' + f.name + '</span>' +
+        '<div class="fp-addr">' + f.area + '・' + f.addr + (f.tel ? '<br>TEL: ' + f.tel : '') + '</div>' +
+        '<a href="' + gmaps + '" target="_blank" rel="noopener">Googleマップで見る →</a>' +
+        '</div>'
+      );
+      m._farmIndex = i;
+      markers.push(m);
+    });
+
+    // カード描画
+    const grid = document.getElementById('farm-grid');
+    function renderCards(area) {
+      grid.innerHTML = '';
+      const list = FARMS.filter(f => area === 'all' || f.area === area);
+      list.forEach(f => {
+        const gmaps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.name + ' 埼玉県' + f.addr);
+        const card = document.createElement('div');
+        card.className = 'farm-card p-5 sm:p-6 border border-black/5';
+        card.innerHTML =
+          '<div class="flex items-start justify-between gap-2 mb-2">' +
+            '<h3 class="text-base font-bold text-ink leading-snug">' + f.name + '</h3>' +
+            (f.partner ? '<span class="flex-shrink-0 inline-block px-2 py-0.5 text-white font-bold rounded-full" style="background:#CC0000;font-size:10px;">連携農家</span>' : '') +
+          '</div>' +
+          '<p class="text-xs text-mute mb-1">' + f.area + '</p>' +
+          '<p class="text-sm text-mute mb-1">' + f.addr + '</p>' +
+          (f.tel ? '<p class="text-sm text-mute mb-3">TEL: <a href="tel:' + f.tel.replace(/-/g,'') + '" class="hover:text-ichigo">' + f.tel + '</a></p>' : '<p class="text-sm text-mute mb-3">&nbsp;</p>') +
+          '<div class="flex items-center gap-4">' +
+            '<a href="' + gmaps + '" target="_blank" rel="noopener" class="text-xs font-bold text-ichigo hover:underline">Googleマップ →</a>' +
+            '<button class="text-xs font-bold text-ink hover:text-ichigo focus-pin" data-i="' + FARMS.indexOf(f) + '">地図でみる ↑</button>' +
+          '</div>';
+        grid.appendChild(card);
+      });
+      document.getElementById('count-all').textContent = '(' + FARMS.length + ')';
+    }
+    renderCards('all');
+
+    // 「地図でみる」→ 該当ピンへ
+    grid.addEventListener('click', (e) => {
+      const b = e.target.closest('.focus-pin');
+      if (!b) return;
+      const i = parseInt(b.dataset.i, 10);
+      const f = FARMS[i];
+      document.getElementById('farm-map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => { map.setView([f.lat, f.lng], 15); markers[i].openPopup(); }, 450);
+    });
+
+    // フィルター
+    document.getElementById('filter-chips').addEventListener('click', (e) => {
+      const chip = e.target.closest('.filter-chip');
+      if (!chip) return;
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const area = chip.dataset.area;
+      renderCards(area);
+      // 地図側も絞り込み
+      markers.forEach((m, i) => {
+        const f = FARMS[i];
+        const show = area === 'all' || f.area === area;
+        if (show) { m.addTo(map); } else { map.removeLayer(m); }
+      });
+    });
+
+    // スクロールリビール
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    }
+  </script>
+
+</body>
+</html>
