@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>いちご農家マップ｜秩父・横瀬・長瀞・小鹿野・皆野｜埼玉いちご大學</title>
-  <meta name="description" content="埼玉県の中山間地域（秩父市・横瀬町・長瀞町・小鹿野町・皆野町）のいちご農家22軒を一覧とマップでご紹介。いちご大學の連携農家、いちご狩りができる観光農園情報も。">
+  <meta name="description" content="埼玉県の中山間地域（秩父市・横瀬町・長瀞町・小鹿野町・皆野町）のいちご農家23軒を一覧とマップでご紹介。いちご大學の連携農家、いちご狩りができる観光農園情報も。">
   <meta name="keywords" content="秩父 いちご狩り,横瀬 いちご,長瀞 いちご,いちご農家,観光農園,あまりん,埼玉いちご大學">
   <link rel="canonical" href="https://ichigo-saitama.net/farms.html">
 
   <!-- Open Graph -->
   <meta property="og:title" content="いちご農家マップ｜秩父・横瀬・長瀞・小鹿野・皆野">
-  <meta property="og:description" content="中山間地域のいちご農家22軒を一覧とマップでご紹介。いちご狩りの計画にもどうぞ。">
+  <meta property="og:description" content="中山間地域のいちご農家23軒を一覧とマップでご紹介。いちご狩りの計画にもどうぞ。">
   <meta property="og:image" content="https://ichigo-saitama.net/images/ogp/og-default.jpg">
   <meta property="og:image:secure_url" content="https://ichigo-saitama.net/images/ogp/og-default.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -24,7 +24,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="いちご農家マップ｜秩父・横瀬・長瀞・小鹿野・皆野">
-  <meta name="twitter:description" content="中山間地域のいちご農家22軒を一覧とマップでご紹介。">
+  <meta name="twitter:description" content="中山間地域のいちご農家23軒を一覧とマップでご紹介。">
   <meta name="twitter:image" content="https://ichigo-saitama.net/images/ogp/og-default.jpg">
 
   <!-- Favicon -->
@@ -178,18 +178,17 @@
           <button class="filter-chip" data-area="長瀞町">長瀞町</button>
         </div>
         <p class="text-xs text-mute flex items-center gap-2">
-          <span class="inline-block w-3 h-3 rounded-full" style="background:#CC0000;"></span>いちご大學 連携農家
-          <span class="inline-block w-3 h-3 rounded-full ml-2" style="background:#E8A0A8;"></span>地域のいちご農家
+          <span class="inline-block w-3 h-3 rounded-full" style="background:#CC0000;"></span>いちご大學と連携する、地域のいちご農家さんたちです
         </p>
       </div>
 
       <!-- カードグリッド -->
       <div id="farm-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
 
-      <!-- 小鹿野・皆野 注記 -->
+      <!-- 小鹿野 注記 -->
       <div class="mt-10 bg-base p-6 sm:p-8 text-center">
         <p class="body-jp text-sm text-mute">
-          小鹿野町・皆野町のいちご農家さんは、現在情報を集めています。<br>
+          小鹿野町のいちご農家さんは、現在情報を集めています。<br>
           「うちも載せてほしい」「情報が違う」など、お気軽にご連絡ください。
         </p>
         <a href="https://line.me/ti/g2/hjGV3KSFBkkdt-RT16RJS7MCXm9znbkNzcAgkw?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-4 text-sm font-bold text-ichigo hover:underline">
@@ -272,6 +271,7 @@
       { name: '中蒔田・富田農園', addr: '秩父市蒔田1666', tel: '0494-23-9210', area: '秩父市', partner: false, lat: 36.035313, lng: 139.074341 },
       { name: '福島いちご園', addr: '秩父市寺尾2145', tel: '0494-23-9054', area: '秩父市', partner: true, lat: 36.01712, lng: 139.081223 },
       { name: '八木観光農園', addr: '秩父市寺尾3287', tel: '0494-23-9035', area: '秩父市', partner: true, lat: 36.012753, lng: 139.070923 },
+      { name: "M's BERRY", addr: '秩父市田村91-1', tel: '0494-23-9704', area: '秩父市', partner: true, lat: 36.016918, lng: 139.061996 },
       { name: '和銅農園', addr: '秩父市黒谷457-3', tel: '0494-25-4733', area: '秩父市', partner: false, lat: 36.045376, lng: 139.103256 },
       { name: '石井園', addr: '秩父市荒川日野695', tel: '0494-54-1762', area: '秩父市', partner: false, lat: 35.928349, lng: 139.005371 },
       { name: '将門園', addr: '秩父市荒川日野584', tel: '0494-54-1699', area: '秩父市', partner: false, lat: 35.928349, lng: 139.005371 },
@@ -314,15 +314,15 @@
     FARMS.forEach((f, i) => {
       const gmaps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.name + ' 埼玉県' + f.addr);
       const m = L.circleMarker([f.lat, f.lng], {
-        radius: f.partner ? 10 : 7,
-        fillColor: f.partner ? '#CC0000' : '#E8A0A8',
+        radius: 9,
+        fillColor: '#CC0000',
         color: '#ffffff',
         weight: 2,
         fillOpacity: 0.95
       }).addTo(map);
       m.bindPopup(
         '<div class="farm-popup">' +
-        (f.partner ? '<span class="fp-partner">いちご大學 連携農家</span><br>' : '') +
+        '<span class="fp-partner">いちご大學 連携農家</span><br>' +
         '<span class="fp-name">' + f.name + '</span>' +
         '<div class="fp-addr">' + f.area + '・' + f.addr + (f.tel ? '<br>TEL: ' + f.tel : '') + '</div>' +
         '<a href="' + gmaps + '" target="_blank" rel="noopener">Googleマップで見る →</a>' +
@@ -344,7 +344,6 @@
         card.innerHTML =
           '<div class="flex items-start justify-between gap-2 mb-2">' +
             '<h3 class="text-base font-bold text-ink leading-snug">' + f.name + '</h3>' +
-            (f.partner ? '<span class="flex-shrink-0 inline-block px-2 py-0.5 text-white font-bold rounded-full" style="background:#CC0000;font-size:10px;">連携農家</span>' : '') +
           '</div>' +
           '<p class="text-xs text-mute mb-1">' + f.area + '</p>' +
           '<p class="text-sm text-mute mb-1">' + f.addr + '</p>' +
