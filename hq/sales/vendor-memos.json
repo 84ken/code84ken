@@ -1,6 +1,152 @@
 {
   "projects": [
     {
+      "name": "県産木材 流通体制構築 実行性調査",
+      "client": "埼玉県",
+      "description": "令和8年度県産木材の新たな流通体制構築に向けた実行性調査等委託業務。提案するか検討中。TATELab.実績が直結。",
+      "scheduleStart": "",
+      "scheduleEnd": "",
+      "contractAmount": 19500000,
+      "status": "proposal",
+      "aliases": [
+        "県産木材",
+        "木材流通"
+      ],
+      "id": "d4tssify8hd",
+      "createdAt": "2026-06-12T00:00:00.000Z",
+      "vendors": []
+    },
+    {
+      "name": "中山間地域 特産農産物 誘客促進",
+      "client": "埼玉県",
+      "description": "中山間地域の特産農産物を活用した誘客促進。資料提出済 → 6/17（水）プレゼン。",
+      "scheduleStart": "2026-07",
+      "scheduleEnd": "2027-03",
+      "contractAmount": 4499000,
+      "status": "proposal",
+      "aliases": [
+        "中山間",
+        "特産農産物"
+      ],
+      "id": "ika0sxpxxqr",
+      "createdAt": "2026-06-12T00:00:00.000Z",
+      "vendors": []
+    },
+    {
+      "name": "ルーキーオブザイヤー",
+      "client": "（要確認）",
+      "description": "表彰楯製作（aoiem 加藤健太）。2026-04単発。",
+      "scheduleStart": "2026-04",
+      "scheduleEnd": "2026-04",
+      "contractAmount": 0,
+      "status": "active",
+      "aliases": [
+        "ルーキーオブザイヤー"
+      ],
+      "id": "vtkftjd3hb",
+      "createdAt": "2026-06-12T00:00:00.000Z",
+      "vendors": [
+        {
+          "vendor": "aoiem\n加藤 健太",
+          "task": "表彰楯製作",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "q4bbrdw2e69"
+        }
+      ]
+    },
+    {
+      "name": "ワクワク（カーセブン）",
+      "client": "カーセブン",
+      "description": "カーセブン「ワクワク」サイト運用。レンタルサーバー等月次。",
+      "scheduleStart": "2026-01",
+      "scheduleEnd": "",
+      "contractAmount": 0,
+      "status": "active",
+      "recurring": true,
+      "aliases": [
+        "ワクワク",
+        "カーセブン"
+      ],
+      "id": "nwdpuo20x6h",
+      "createdAt": "2026-06-12T00:00:00.000Z",
+      "vendors": [
+        {
+          "vendor": "Paid/お名前.com",
+          "task": "レンタルサーバー（4月分）",
+          "amount": 1891,
+          "amountTax": 2081,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "j8kcqepfwak"
+        }
+      ]
+    },
+    {
+      "name": "TOKYO UNITE",
+      "client": "東京ユナイト",
+      "description": "TOKYO UNITE 運用業務。Poster利用料ほか月次。",
+      "scheduleStart": "2025-12",
+      "scheduleEnd": "",
+      "contractAmount": 0,
+      "status": "active",
+      "recurring": true,
+      "aliases": [
+        "TOKYO UNITE",
+        "東京ユナイト"
+      ],
+      "id": "rrm5cple5a9",
+      "createdAt": "2026-06-12T00:00:00.000Z",
+      "vendors": [
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "Poster利用料（4月分）",
+          "amount": 42000,
+          "amountTax": 46200,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "32n8hobt1lw"
+        }
+      ]
+    },
+    {
+      "name": "観光客誘致・戦略的情報発信（R8）",
+      "client": "埼玉県物産観光協会 DMO事業本部",
+      "description": "令和8年度 観光客誘致に向けた戦略的情報発信業務。12LP更新＋動画5本制作＋ターゲティング広告。4/10プレゼン→受注。",
+      "manager": "橋本",
+      "scheduleStart": "2026-04",
+      "scheduleEnd": "2027-03",
+      "contractAmount": 39600000,
+      "status": "active",
+      "recurring": true,
+      "aliases": [
+        "ちょこたびLP",
+        "ちょこたびＬＰ",
+        "ちょこたび",
+        "観光客誘致",
+        "ちょこたび埼玉"
+      ],
+      "id": "edyq5d506kp",
+      "createdAt": "2026-06-12T00:00:00.000Z",
+      "vendors": [
+        {
+          "vendor": "meta広告",
+          "task": "広告費（2026年4月）",
+          "amount": 9039,
+          "amountTax": 9943,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "in1lo23e2g"
+        }
+      ]
+    },
+    {
       "name": "リトデポチラシ更新",
       "client": "JEKI",
       "description": "リトデポのチラシ更新",
@@ -13,7 +159,7 @@
       "estimate": 0,
       "sales": 0,
       "risks": "",
-      "status": "active",
+      "status": "closed",
       "id": "mn00zgvn8tu9",
       "createdAt": "2026-03-21T07:47:38.675Z",
       "vendors": [
@@ -47,7 +193,8 @@
           "note": "Excel外注費リストから追加",
           "id": "go153ljq0590"
         }
-      ]
+      ],
+      "closedAt": "2026-06-12"
     },
     {
       "name": "リトデポ広告",
@@ -62,7 +209,7 @@
       "estimate": 0,
       "sales": 0,
       "risks": "請求先はインターメディア",
-      "status": "active",
+      "status": "closed",
       "id": "mmz3la4h0spz",
       "createdAt": "2026-03-20T16:12:49.409Z",
       "vendors": [
@@ -76,7 +223,8 @@
           "note": "",
           "id": "mn00x2oqndmw"
         }
-      ]
+      ],
+      "closedAt": "2026-06-12"
     },
     {
       "id": "mmz0y85sj1yb",
@@ -144,9 +292,24 @@
           "status": "invoiced",
           "note": "請求書4件（リバサポ/スポツリ/情報発信/KOSE）",
           "id": "mmz3asnx66gl"
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "task": "LINE公式アカウント月額プラン（4月分）",
+          "amount": 5000,
+          "amountTax": 5500,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "obblktv5gg"
         }
       ],
-      "billings": []
+      "billings": [],
+      "aliases": [
+        "スポツリ",
+        "ちょこたびスポツリ",
+        "スポツリ埼玉"
+      ]
     },
     {
       "id": "mmyzj34d1958",
@@ -313,6 +476,43 @@
           "status": "invoiced",
           "note": "Excel外注費リストから追加",
           "id": "5q52c1g7xaxm"
+        },
+        {
+          "vendor": "株式会社ポリリズム",
+          "task": "リバーサポーターズサーバ保守（2025年度）",
+          "amount": 720000,
+          "amountInc": 792000,
+          "invoiceMonth": "2026-03",
+          "invoiceStatus": "received",
+          "memo": ""
+        },
+        {
+          "vendor": "タテジマ（大西晃）",
+          "task": "サイト保守・運用業務",
+          "amount": 120000,
+          "amountInc": 132000,
+          "invoiceMonth": "2026-03",
+          "invoiceStatus": "received",
+          "memo": "源泉徴収あり 支払額¥119,748"
+        },
+        {
+          "vendor": "株式会社温泉道場",
+          "task": "宿泊割引券（景品）",
+          "amount": 54545,
+          "amountInc": 60000,
+          "invoiceMonth": "2026-03",
+          "invoiceStatus": "received",
+          "memo": ""
+        },
+        {
+          "vendor": "X",
+          "task": "Xプレミアム月額（4月分）",
+          "amount": 834,
+          "amountTax": 918,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "w6p7rgwweef"
         }
       ],
       "billings": [
@@ -332,7 +532,11 @@
         }
       ],
       "contractAmount": 8753334,
-      "contractExTax": 7957576
+      "contractExTax": 7957576,
+      "aliases": [
+        "リバサポ",
+        "リバサポ・各ポスター案件"
+      ]
     },
     {
       "id": "mmyzj34fwqjf",
@@ -419,6 +623,16 @@
           "status": "invoiced",
           "note": "",
           "id": "mn01l28z5cby"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "Poster利用料（4月分）",
+          "amount": 44000,
+          "amountTax": 48400,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "kjf9673hoha"
         }
       ],
       "billings": [
@@ -438,7 +652,10 @@
         }
       ],
       "contractAmount": 13272974,
-      "contractExTax": 12066340
+      "contractExTax": 12066340,
+      "aliases": [
+        "すぽったま"
+      ]
     },
     {
       "id": "mmyzj34fjss7",
@@ -575,6 +792,26 @@
           "status": "invoiced",
           "note": "Excel外注費リストから追加",
           "id": "ksfextkfkqr9"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "Poster利用料（4月分）＋配信クレジット",
+          "amount": 63000,
+          "amountTax": 69300,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "15mik2jduih"
+        },
+        {
+          "vendor": "LINE広告",
+          "task": "広告費（2026年4月）",
+          "amount": 12373,
+          "amountTax": 13611,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "yzrbz3m5fuf"
         }
       ],
       "billings": [
@@ -594,17 +831,21 @@
         }
       ],
       "contractAmount": 17650996,
-      "contractExTax": 16046360
+      "contractExTax": 16046360,
+      "aliases": [
+        "ぶんたま",
+        "伝統文化団体PR動画"
+      ]
     },
     {
       "id": "mmyzj34fdhbs",
       "createdAt": "2026-03-20T14:19:08.559Z",
-      "name": "サーキュラーエコノミー イベント",
-      "client": "埼玉県庁",
-      "description": "サーキュラーエコノミー推進事業 イベント企画運営",
+      "name": "サーキュラーエコノミー普及啓発（R8）",
+      "client": "埼玉県 環境部",
+      "description": "令和8年度埼玉県内大規模集客施設等におけるサーキュラーエコノミー普及啓発業務。受注確定 2026-06。",
       "manager": "橋本",
-      "scheduleStart": "2025-07",
-      "scheduleEnd": "2026-03",
+      "scheduleStart": "2026-06",
+      "scheduleEnd": "2027-03",
       "stakeholders": "埼玉県",
       "deliverables": "イベント企画運営",
       "estimate": 4496,
@@ -635,11 +876,11 @@
         {
           "vendor": "LINE広告",
           "task": "広告費（2026年3月）",
-          "amount": 136364,
-          "amountInc": 150000,
+          "amount": 150000,
+          "amountInc": 165000,
           "invoiceMonth": "2026-03",
-          "invoiceStatus": "memo",
-          "memo": "クレジット払い 請求書未着"
+          "invoiceStatus": "received",
+          "memo": "クレジット払い bill-2026-3.pdf"
         }
       ],
       "billings": [
@@ -651,8 +892,14 @@
           "note": "一括請求予定"
         }
       ],
-      "contractAmount": 4945875,
-      "contractExTax": 4496250
+      "contractAmount": 5483720,
+      "contractExTax": 4496250,
+      "aliases": [
+        "サーキュラーエコノミー",
+        "サーキュラー",
+        "資源循環課",
+        "CEラボ"
+      ]
     },
     {
       "id": "mmyzj34fud9q",
@@ -729,9 +976,24 @@
           "status": "invoiced",
           "note": "Paid経由・印刷費",
           "id": "mmz10fvgy7lh"
+        },
+        {
+          "vendor": "STUDIO",
+          "task": "STUDIO月額（4月分）",
+          "amount": 1563,
+          "amountTax": 1720,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "asu4ire8dll"
         }
       ],
-      "billings": []
+      "billings": [],
+      "aliases": [
+        "いちご大學",
+        "いちご大学",
+        "農業ビジネス支援課"
+      ]
     },
     {
       "id": "mmyzj34fboez",
@@ -747,7 +1009,7 @@
       "estimate": 26818,
       "sales": 27299,
       "risks": "大型案件・外注多数。広告費込みで外注率高め",
-      "status": "active",
+      "status": "closed",
       "vendors": [
         {
           "id": "mmyzj34firwi",
@@ -1116,6 +1378,15 @@
           "invoiceMonth": "2026-03",
           "invoiceStatus": "received",
           "memo": "クレジット払い"
+        },
+        {
+          "vendor": "LINE広告",
+          "task": "広告費（2026年3月）",
+          "amount": 47822,
+          "amountInc": 52604,
+          "invoiceMonth": "2026-03",
+          "invoiceStatus": "received",
+          "memo": "クレジット払い bill-2026-3(1).pdf"
         }
       ],
       "billings": [
@@ -1135,7 +1406,8 @@
         }
       ],
       "contractAmount": 43599265,
-      "contractExTax": 39635695
+      "contractExTax": 39635695,
+      "closedAt": "2026-06-12"
     },
     {
       "id": "mmyzj34flmwh",
@@ -1204,7 +1476,12 @@
           "note": "実績（自動取込）"
         }
       ],
-      "billings": []
+      "billings": [],
+      "aliases": [
+        "マクドナルド",
+        "日本マクドナルド",
+        "EBIS"
+      ]
     },
     {
       "id": "mmyzj34f50sm",
@@ -1333,7 +1610,11 @@
           "note": "実績（自動取込）"
         }
       ],
-      "billings": []
+      "billings": [],
+      "aliases": [
+        "リトデポ",
+        "JR東日本"
+      ]
     },
     {
       "id": "mmyzj34fgc5m",
@@ -1461,6 +1742,16 @@
           "expectedMonth": "2026-03",
           "status": "invoiced",
           "note": "クレジット払い"
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "task": "LINE公式アカウント月額プラン（4月分）",
+          "amount": 14999,
+          "amountTax": 16500,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "lmy1g1u8lh9"
         }
       ],
       "billings": [
@@ -1474,7 +1765,11 @@
       ],
       "billingTo": "",
       "contractAmount": 2752750,
-      "recurring": false
+      "recurring": false,
+      "aliases": [
+        "読売新聞",
+        "読売スタンプラリー"
+      ]
     },
     {
       "id": "mmyzj34f7nk6",
@@ -1541,12 +1836,25 @@
           "expectedMonth": "",
           "status": "paid",
           "note": "実績（自動取込）"
+        },
+        {
+          "vendor": "google広告",
+          "task": "広告費（2026年4月）",
+          "amount": 246099,
+          "amountTax": 270710,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "rdqivf7frgg"
         }
       ],
       "billings": [],
       "contractAmount": 0,
       "billingTo": "",
-      "recurring": true
+      "recurring": true,
+      "aliases": [
+        "ヒロ建工"
+      ]
     },
     {
       "id": "mmyzj34f2f36",
@@ -1603,12 +1911,25 @@
           "status": "invoiced",
           "note": "Excel外注費リストから追加",
           "id": "00aq2a8t0rcu"
+        },
+        {
+          "vendor": "株式会社ポリリズム",
+          "task": "サイトサーバ保守（4月）",
+          "amount": 90000,
+          "amountTax": 99000,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "tdn5y47c9rj"
         }
       ],
       "billings": [],
       "billingTo": "",
       "contractAmount": 0,
-      "recurring": true
+      "recurring": true,
+      "aliases": [
+        "横瀬町"
+      ]
     },
     {
       "id": "mmyzj34ffme8",
@@ -1624,7 +1945,7 @@
       "estimate": 0,
       "sales": 0,
       "risks": "",
-      "status": "active",
+      "status": "closed",
       "vendors": [
         {
           "id": "mmyzj34f92wp",
@@ -1650,7 +1971,12 @@
       "billings": [],
       "contractAmount": 0,
       "billingTo": "",
-      "recurring": true
+      "recurring": true,
+      "aliases": [
+        "ウィザース",
+        "ウイザース"
+      ],
+      "closedAt": "2026-06-12"
     },
     {
       "id": "mmyzj34fc231",
@@ -1782,7 +2108,11 @@
         }
       ],
       "billings": [],
-      "contractAmount": 0
+      "contractAmount": 0,
+      "aliases": [
+        "インテグレート",
+        "ston"
+      ]
     },
     {
       "id": "mmyzj34f5ch2",
@@ -1834,7 +2164,7 @@
       "estimate": 0,
       "sales": 0,
       "risks": "",
-      "status": "active",
+      "status": "closed",
       "vendors": [
         {
           "vendor": "城内匡",
@@ -1849,7 +2179,11 @@
       ],
       "billings": [],
       "contractAmount": 2000000,
-      "billingTo": ""
+      "billingTo": "",
+      "aliases": [
+        "レペルティオ"
+      ],
+      "closedAt": "2026-06-12"
     },
     {
       "id": "mmz07e4w1b3h",
@@ -1867,7 +2201,7 @@
       "estimate": 11296,
       "sales": 11296,
       "risks": "",
-      "status": "active",
+      "status": "closed",
       "vendors": [
         {
           "id": "mmyzj34ft63f",
@@ -1905,7 +2239,8 @@
           "status": "planned",
           "note": "残金請求予定"
         }
-      ]
+      ],
+      "closedAt": "2026-06-12"
     },
     {
       "id": "mmz09lnsxoy8",
@@ -1970,7 +2305,7 @@
       "estimate": 385000,
       "sales": 0,
       "risks": "印刷原価227,073円（税別）",
-      "status": "active",
+      "status": "closed",
       "id": "mn1a0ston01",
       "createdAt": "2026-03-25T00:00:00.000Z",
       "vendors": [
@@ -1994,7 +2329,8 @@
           "memo": ""
         }
       ],
-      "billings": []
+      "billings": [],
+      "closedAt": "2026-06-12"
     },
     {
       "name": "泡盛ラベルデザイン",
@@ -2010,7 +2346,7 @@
       "estimate": 850000,
       "sales": 0,
       "risks": "",
-      "status": "active",
+      "status": "closed",
       "id": "mn1a0awamori01",
       "createdAt": "2026-03-25T00:00:00.000Z",
       "vendors": [
@@ -2025,7 +2361,8 @@
           "id": "mn1a0awamori02"
         }
       ],
-      "billings": []
+      "billings": [],
+      "closedAt": "2026-06-12"
     },
     {
       "id": "y6tm0fpx5wnq",
@@ -2053,7 +2390,42 @@
           "status": "invoiced",
           "note": "Excel外注費リストから追加",
           "id": "a39uxk7cfdof"
+        },
+        {
+          "vendor": "株式会社ベクトル",
+          "task": "Clipkitクラウド利用料（4月分）",
+          "amount": 50000,
+          "amountTax": 55000,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "fzy2yj8uglf"
+        },
+        {
+          "vendor": "城内由香",
+          "task": "KOSEビューティースポーツ対応（4月）",
+          "amount": 40000,
+          "amountTax": 44000,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "b27sa2hiw8c"
+        },
+        {
+          "vendor": "大西 晃\n（タテジマ大西）",
+          "task": "運用業務（4月）PM・KV実装",
+          "amount": 250000,
+          "amountTax": 275000,
+          "expectedMonth": "2026-04",
+          "status": "invoiced",
+          "note": "2026-04 請求書まとめから自動同期",
+          "id": "2x1in3cpnqd"
         }
+      ],
+      "aliases": [
+        "コーセー",
+        "KOSE",
+        "SPORTS BEAUTY"
       ]
     }
   ]
