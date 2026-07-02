@@ -7,41 +7,95 @@
 <meta name="description" content="温泉ソムリエ認定講座テキストを、読みやすく再構成した学習ノート。泉質10種、適応症マトリクス、成分表の読み方、美人の湯まで。">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
-<meta name="theme-color" content="#2b70ef">
+<meta name="theme-color" content="#33538d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
+/* 湯宿モダン テーマ: 藍(primary) × 朱(accent) × 和紙(warm neutrals)
+   既存クラスはそのまま、トークン再定義で全体を温泉色にシフト */
 tailwind.config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
-          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
-          800:'#13318d',900:'#0e266a',950:'#07194e'
+        primary: {  /* 藍 — 暖簾の藍染め */
+          50:'#f0f4fa',100:'#dde7f3',200:'#c2d3e8',300:'#97b3d6',
+          400:'#6890c0',500:'#3f66a8',600:'#33538d',700:'#2b4374',
+          800:'#24375d',900:'#1e2d4b',950:'#131d33'
+        },
+        accent: {  /* 朱 — 朱印・番台の印 */
+          50:'#fdf3f1',100:'#fae3df',200:'#f4c8c0',300:'#eba396',
+          400:'#de7663',500:'#cd4f3a',600:'#b83c2b',700:'#993124',
+          800:'#7e2b22',900:'#672620'
+        },
+        white: '#fffdf9',  /* 乳白色の湯 */
+        gray: {
+          50:'#f8f4ec',100:'#f2ecdf',200:'#e8dfcd'
+        },
+        slate: {  /* 暖グレー（和紙の影） */
+          50:'#faf7f1',100:'#f2ede2',200:'#e6ddcc',300:'#d4c8b0',
+          400:'#a89a82',500:'#7d7160',600:'#5f5546',700:'#4a4237',
+          800:'#38322a',900:'#28231d',950:'#191511'
         }
       },
       fontFamily: {
         sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'],
-        serif: ['"Noto Serif JP"','"Hiragino Mincho ProN"','serif']
+        serif: ['"Noto Serif JP"','"Hiragino Mincho ProN"','"Yu Mincho"','serif']
       }
     }
   }
 }
 </script>
 <style>
-  body { color: #3d4b5f; }
-  .text-body { color: #3d4b5f; }
+  body {
+    color: #4c4638;
+    background-color: #f6f1e6;
+    /* 青海波 — 極薄の伝統紋様。カードの隙間にだけ覗く */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='30'%3E%3Cg fill='none' stroke='%23eae2cf' stroke-width='1.2'%3E%3Cpath d='M0 30a30 30 0 0 1 60 0'/%3E%3Cpath d='M6 30a24 24 0 0 1 48 0'/%3E%3Cpath d='M12 30a18 18 0 0 1 36 0'/%3E%3Cpath d='M-30 15a30 30 0 0 1 60 0'/%3E%3Cpath d='M-24 15a24 24 0 0 1 48 0'/%3E%3Cpath d='M-18 15a18 18 0 0 1 36 0'/%3E%3Cpath d='M30 15a30 30 0 0 1 60 0'/%3E%3Cpath d='M36 15a24 24 0 0 1 48 0'/%3E%3Cpath d='M42 15a18 18 0 0 1 36 0'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .text-body { color: #4c4638; }
   .prose-body { font-size: 1rem; line-height: 1.9; }
   .anchor { scroll-margin-top: 24px; }
   /* sidebar nav active highlight */
-  .nav-link.active { background:#dde8ff; color:#2b70ef; }
+  .nav-link.active { background:#dde7f3; color:#2b4374; }
   /* table niceties */
   table.matrix th, table.matrix td { font-size: 0.8125rem; }
-  table.matrix th { background:#f8fafc; color:#475569; font-weight:500; }
+  table.matrix th { background:#f6f1e7; color:#5f5546; font-weight:500; }
   table.matrix td.yes { background:#dcfce7; color:#166534; text-align:center; font-weight:600; }
-  table.matrix td.no  { color:#cbd5e1; text-align:center; }
+  table.matrix td.no  { color:#d4c8b0; text-align:center; }
+  /* 朱印スタンプ風の章ラベル */
+  .chapter-stamp {
+    display:inline-flex; align-items:center; gap:.45em;
+    font-family:'Noto Serif JP','Hiragino Mincho ProN',serif;
+    font-size:.7rem; font-weight:600; letter-spacing:.18em;
+    color:#b83c2b; border:1.5px solid #cd4f3a; border-radius:9999px;
+    padding:.3em .95em .3em .8em;
+  }
+  .chapter-stamp::before { content:'♨'; font-size:1em; line-height:1; }
+  /* 章見出しの朱下線 */
+  main section h2.font-serif { position:relative; padding-bottom:.4em; }
+  main section h2.font-serif::after {
+    content:''; position:absolute; left:0; bottom:0;
+    width:56px; height:4px; border-radius:9999px; background:#cd4f3a;
+  }
+  /* 暖簾（サイドバーヘッダー） */
+  .noren { position:relative; background:#2b4374; }
+  .noren::after {
+    content:''; position:absolute; left:0; right:0; bottom:-9px; height:10px;
+    background: radial-gradient(circle at 10px -2px, #2b4374 11px, transparent 12px);
+    background-size: 20px 12px; background-repeat: repeat-x;
+  }
+  /* 湯けむり */
+  @keyframes steamRise {
+    0%, 100% { opacity:.3; transform: translateY(0); }
+    50%      { opacity:.75; transform: translateY(-7px); }
+  }
+  .steam path { animation: steamRise 4.5s ease-in-out infinite; }
+  .steam path:nth-child(2) { animation-delay: 1.2s; }
+  .steam path:nth-child(3) { animation-delay: 2.4s; }
   /* category color chips */
   .chip { display:inline-flex; align-items:center; gap:.25rem; padding:.125rem .5rem; border-radius:9999px; font-size:.75rem; font-weight:500; }
   /* print */
@@ -60,11 +114,11 @@ tailwind.config = {
   .map-popup .badge { display: inline-flex; padding: 2px 8px; border-radius: 9999px; font-size: 11px; }
   /* custom marker color circles */
   .marker-pin { width: 28px; height: 28px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 6px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 700; }
-  .marker-active { background: #2b70ef; }
+  .marker-active { background: #3f66a8; }
   .marker-closed { background: #94a3b8; }
   .marker-seven { background: #f59e0b; }
   /* callout tags for sample analysis sheet */
-  .callout-tag { display:inline-flex; align-items:center; justify-content:center; width:1.4em; height:1.4em; border-radius:9999px; background:#2b70ef; color:#fff; font-size:.75rem; font-weight:700; vertical-align:middle; margin: 0 .15em; line-height:1; }
+  .callout-tag { display:inline-flex; align-items:center; justify-content:center; width:1.4em; height:1.4em; border-radius:9999px; background:#cd4f3a; color:#fff; font-size:.75rem; font-weight:700; vertical-align:middle; margin: 0 .15em; line-height:1; }
   .callout-mark { background:#fef9c3; padding:0 .25em; border-radius:.25rem; font-weight:600; color:#854d0e; }
   .sheet-frame { font-feature-settings: "palt"; }
   .sheet-frame ol { counter-reset: item; }
@@ -78,7 +132,7 @@ tailwind.config = {
   details summary::-webkit-details-marker { display:none; }
 </style>
 </head>
-<body class="bg-gray-50 min-h-screen font-sans">
+<body class="min-h-screen font-sans">
 
 <!-- Mobile hamburger -->
 <button id="navToggle" aria-label="メニューを開く" class="fixed top-4 left-4 z-30 lg:hidden w-10 h-10 inline-flex items-center justify-center bg-white border border-slate-200 rounded-lg shadow-sm cursor-pointer">
@@ -89,12 +143,12 @@ tailwind.config = {
 
   <!-- ============= Sidebar ============= -->
   <aside id="sidebar" class="w-64 fixed inset-y-0 left-0 bg-white border-r border-slate-200 flex flex-col h-screen z-20">
-    <div class="px-5 py-6 border-b border-slate-200">
-      <p class="text-xs font-medium text-slate-500 tracking-wider">ONSEN SOMMELIER NOTE</p>
-      <p class="text-lg font-bold text-slate-900 mt-1">温泉ソムリエ ノート</p>
-      <p class="text-xs text-slate-500 mt-1">成分表で読む、自分に効く温泉</p>
+    <div class="noren px-5 pt-6 pb-5">
+      <p class="text-[10px] font-medium tracking-[0.25em] text-primary-200">ONSEN SOMMELIER NOTE</p>
+      <p class="font-serif text-lg font-bold text-white mt-1.5">♨ 温泉ソムリエ ノート</p>
+      <p class="text-xs text-primary-200 mt-1">成分表で読む、自分に効く温泉</p>
     </div>
-    <nav aria-label="メインナビゲーション" class="flex-1 overflow-y-auto px-3 py-4 space-y-0.5 text-sm">
+    <nav aria-label="メインナビゲーション" class="flex-1 overflow-y-auto px-3 pt-6 pb-4 space-y-0.5 text-sm">
       <a href="#intro"     class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">はじめに</a>
       <a href="#whatis"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">1. 温泉とは</a>
       <a href="#axes"      class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">2. 4つの分類軸</a>
@@ -121,8 +175,13 @@ tailwind.config = {
   <main class="lg:ml-64 flex-1 max-w-5xl mx-auto px-6 lg:px-10 py-12 lg:py-16">
 
     <!-- Hero -->
-    <section id="intro" class="anchor">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">ONSEN SOMMELIER NOTE</p>
+    <section id="intro" class="anchor relative">
+      <svg class="steam absolute right-2 lg:right-10 -top-2 w-20 h-28 text-primary-300 hidden sm:block pointer-events-none" viewBox="0 0 96 128" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" aria-hidden="true">
+        <path d="M20 118 C8 98 34 86 22 66 C14 52 22 40 30 32"/>
+        <path d="M50 122 C38 100 66 88 52 64 C44 50 52 38 60 28"/>
+        <path d="M80 118 C68 98 94 86 82 66 C74 52 82 40 90 32"/>
+      </svg>
+      <p class="text-xs font-medium text-primary-500 tracking-[0.25em]">ONSEN SOMMELIER NOTE</p>
       <h1 class="font-serif text-4xl lg:text-5xl font-bold text-slate-900 mt-2 leading-tight">
         成分表で読む、<br class="hidden sm:inline">自分に効く温泉。
       </h1>
@@ -190,7 +249,7 @@ tailwind.config = {
 
     <!-- ====================== 1. 温泉とは ====================== -->
     <section id="whatis" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 1</p>
+      <p class="chapter-stamp">CHAPTER 1</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">温泉とは</h2>
       <p class="mt-4 text-body leading-relaxed">
         日本では「温泉」と「療養泉」は別の概念です。<strong>温泉法（昭和23年）</strong>で「温泉」が、その下位概念として<strong>「療養泉」</strong>が定義されています。療養泉の条件を満たして初めて<strong>「適応症」</strong>（＝効能）を名乗ることができます。
@@ -331,7 +390,7 @@ tailwind.config = {
 
     <!-- ====================== 2. 4軸 ====================== -->
     <section id="axes" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 2</p>
+      <p class="chapter-stamp">CHAPTER 2</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">4つの分類軸</h2>
       <p class="mt-4 text-body leading-relaxed">
         どんな温泉にも、必ず4つのタグがつきます。<strong>泉質・泉温・液性（pH）・浸透圧</strong>。これを覚えれば、分析書の冒頭1行で温泉の正体が9割わかります。
@@ -421,7 +480,7 @@ tailwind.config = {
 
     <!-- ====================== 3. 10種の泉質 ====================== -->
     <section id="types" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 3</p>
+      <p class="chapter-stamp">CHAPTER 3</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">10種の泉質図鑑</h2>
       <p class="mt-4 text-body leading-relaxed">
         平成26年改正後の正式な泉質は10種類。それぞれに「キャラクター」があります。「自分はこの泉質が好き」が見つかると温泉巡りが一気に深くなります。
@@ -694,7 +753,7 @@ tailwind.config = {
 
     <!-- ====================== 4. 効能マトリクス ====================== -->
     <section id="matrix" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 4</p>
+      <p class="chapter-stamp">CHAPTER 4</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">効能マトリクス</h2>
       <p class="mt-4 text-body leading-relaxed">
         平成26年（2014年）7月1日改定の<strong>泉質別適応症 早見表</strong>。「自分の症状はどの泉質に効くか」を逆引きできます。<br>
@@ -779,7 +838,7 @@ tailwind.config = {
 
     <!-- ====================== 5. 美人の湯 ====================== -->
     <section id="beauty" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 5</p>
+      <p class="chapter-stamp">CHAPTER 5</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">美人の湯 3条件</h2>
       <p class="mt-4 text-body leading-relaxed">
         「美人の湯」は俗称で、明確な基準はないが、教本では <strong>3つの効果系統</strong> として整理されています。役割の違う3つを <strong>湯巡りで組み合わせる</strong> のが理想。
@@ -822,7 +881,7 @@ tailwind.config = {
 
     <!-- ====================== 6. 成分表の読み方 ====================== -->
     <section id="read" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 6</p>
+      <p class="chapter-stamp">CHAPTER 6</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">温泉分析書の読み方</h2>
       <p class="mt-4 text-body leading-relaxed">
         各温泉施設の脱衣所に必ず掲示されている「温泉分析書」。次の<strong>10ポイント</strong>を順に確認すれば、その温泉の正体がほぼわかります。
@@ -951,7 +1010,7 @@ tailwind.config = {
 
     <!-- ====================== 7. 実例で読んでみる ====================== -->
     <section id="example" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 7</p>
+      <p class="chapter-stamp">CHAPTER 7</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">実例で読んでみる</h2>
       <p class="mt-4 text-body leading-relaxed">
         実際の温泉分析書を一緒に読み解きます。下の見本に <span class="callout-tag">1</span> 〜 <span class="callout-tag">7</span> の番号タグを打ったので、第6章の10ポイントと照合しながら追ってください。<br>
@@ -1213,7 +1272,7 @@ tailwind.config = {
 
     <!-- ====================== 8. 入浴法 ====================== -->
     <section id="bath" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 8</p>
+      <p class="chapter-stamp">CHAPTER 8</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">正しい入浴法</h2>
       <p class="mt-4 text-body leading-relaxed">
         効能を引き出すには入り方も大事。「どう入るか」が「どこに入るか」と同じくらい結果を変えます。
@@ -1286,7 +1345,7 @@ tailwind.config = {
 
     <!-- ====================== 9. 禁忌症 ====================== -->
     <section id="contra" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 9</p>
+      <p class="chapter-stamp">CHAPTER 9</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">禁忌症と注意</h2>
 
       <div class="mt-6 p-5 bg-red-50 border border-red-200 rounded-lg">
@@ -1340,7 +1399,7 @@ tailwind.config = {
 
     <!-- ====================== 10. 用語辞典 ====================== -->
     <section id="glossary" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 10</p>
+      <p class="chapter-stamp">CHAPTER 10</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">用語ミニ辞典</h2>
       <p class="mt-4 text-body leading-relaxed">
         分析書や温泉紹介でよく出てくる用語をまとめて。覚えておくと旅館の説明文がスラスラ読めます。
@@ -1400,7 +1459,7 @@ tailwind.config = {
 
     <!-- ====================== 11. 秩父温泉図鑑 ====================== -->
     <section id="chichibu" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 11 — LOCAL FOCUS</p>
+      <p class="chapter-stamp">CHAPTER 11 — LOCAL FOCUS</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">秩父温泉図鑑</h2>
       <p class="mt-4 text-body leading-relaxed">
         埼玉県秩父エリアの19温泉を、貴重なローカル資料から再構成。<br>
@@ -1749,7 +1808,7 @@ tailwind.config = {
 
     <!-- ====================== 12. 秩父×北投 国際比較 ====================== -->
     <section id="beitou" class="anchor mt-16">
-      <p class="text-xs font-medium text-pink-600 tracking-wider">CHAPTER 12 — INTERNATIONAL</p>
+      <p class="chapter-stamp">CHAPTER 12 — INTERNATIONAL</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">秩父 × 北投　日台温泉比較</h2>
       <p class="mt-4 text-body leading-relaxed">
         2026年5月、西武秩父駅前温泉「祭の湯」で台北・<strong>北投温泉博物館</strong>との文化交流展が開催。<br>
@@ -2018,7 +2077,7 @@ tailwind.config = {
 
     <!-- ====================== 13. 埼玉県の温泉マップ ====================== -->
     <section id="saitama" class="anchor mt-16">
-      <p class="text-xs font-medium text-primary-500 tracking-wider">CHAPTER 13 — STATEWIDE</p>
+      <p class="chapter-stamp">CHAPTER 13 — STATEWIDE</p>
       <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">埼玉県の温泉マップ</h2>
       <p class="mt-4 text-body leading-relaxed">
         秩父エリアを飛び出して、<strong>埼玉県全域の温泉地・温泉施設</strong>を地図と一覧で。<br>

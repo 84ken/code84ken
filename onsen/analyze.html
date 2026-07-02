@@ -7,35 +7,66 @@
 <meta name="description" content="温泉分析書を撮影するだけで効能カルテを自動生成。湯巡りログにも保存できる。">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
-<meta name="theme-color" content="#2b70ef">
+<meta name="theme-color" content="#33538d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
+/* 湯宿モダン テーマ（index.htmlと共通） */
 tailwind.config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
-          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
-          800:'#13318d',900:'#0e266a',950:'#07194e'
+        primary: {  /* 藍 */
+          50:'#f0f4fa',100:'#dde7f3',200:'#c2d3e8',300:'#97b3d6',
+          400:'#6890c0',500:'#3f66a8',600:'#33538d',700:'#2b4374',
+          800:'#24375d',900:'#1e2d4b',950:'#131d33'
+        },
+        accent: {  /* 朱 */
+          50:'#fdf3f1',100:'#fae3df',200:'#f4c8c0',300:'#eba396',
+          400:'#de7663',500:'#cd4f3a',600:'#b83c2b',700:'#993124',
+          800:'#7e2b22',900:'#672620'
+        },
+        white: '#fffdf9',
+        gray: {
+          50:'#f8f4ec',100:'#f2ecdf',200:'#e8dfcd'
+        },
+        slate: {
+          50:'#faf7f1',100:'#f2ede2',200:'#e6ddcc',300:'#d4c8b0',
+          400:'#a89a82',500:'#7d7160',600:'#5f5546',700:'#4a4237',
+          800:'#38322a',900:'#28231d',950:'#191511'
         }
       },
       fontFamily: {
         sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'],
-        serif: ['"Noto Serif JP"','"Hiragino Mincho ProN"','serif']
+        serif: ['"Noto Serif JP"','"Hiragino Mincho ProN"','"Yu Mincho"','serif']
       }
     }
   }
 }
 </script>
 <style>
-  body { color: #3d4b5f; }
-  .text-body { color: #3d4b5f; }
+  body {
+    color: #4c4638;
+    background-color: #f6f1e6;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='30'%3E%3Cg fill='none' stroke='%23eae2cf' stroke-width='1.2'%3E%3Cpath d='M0 30a30 30 0 0 1 60 0'/%3E%3Cpath d='M6 30a24 24 0 0 1 48 0'/%3E%3Cpath d='M12 30a18 18 0 0 1 36 0'/%3E%3Cpath d='M-30 15a30 30 0 0 1 60 0'/%3E%3Cpath d='M-24 15a24 24 0 0 1 48 0'/%3E%3Cpath d='M-18 15a18 18 0 0 1 36 0'/%3E%3Cpath d='M30 15a30 30 0 0 1 60 0'/%3E%3Cpath d='M36 15a24 24 0 0 1 48 0'/%3E%3Cpath d='M42 15a18 18 0 0 1 36 0'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .text-body { color: #4c4638; }
+  /* 朱印スタンプ風ラベル */
+  .chapter-stamp {
+    display:inline-flex; align-items:center; gap:.45em;
+    font-family:'Noto Serif JP','Hiragino Mincho ProN',serif;
+    font-size:.7rem; font-weight:600; letter-spacing:.18em;
+    color:#b83c2b; border:1.5px solid #cd4f3a; border-radius:9999px;
+    padding:.3em .95em .3em .8em;
+  }
+  .chapter-stamp::before { content:'♨'; font-size:1em; line-height:1; }
   /* drag-drop area */
-  .dropzone { border:2px dashed #cbd5e1; transition: all .2s; }
-  .dropzone:hover, .dropzone.dragover { border-color:#2b70ef; background:#f0f5ff; }
+  .dropzone { border:2px dashed #d4c8b0; transition: all .2s; }
+  .dropzone:hover, .dropzone.dragover { border-color:#3f66a8; background:#f0f4fa; }
   .dropzone.has-file { border-color:#10b981; background:#ecfdf5; border-style:solid; }
   /* loading dots */
   @keyframes pulse-dot { 0%,80%,100% { opacity:.3; } 40% { opacity:1; } }
@@ -45,15 +76,15 @@ tailwind.config = {
   /* loading step */
   .loading-step { display:flex; align-items:center; gap:.75rem; padding:.75rem 0; color:#94a3b8; transition: color .2s; }
   .loading-step .check { width:1.5rem; height:1.5rem; border-radius:50%; border:2px solid currentColor; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .loading-step.active { color:#2b70ef; }
-  .loading-step.active .check::after { content:''; width:.5rem; height:.5rem; border-radius:50%; background:#2b70ef; animation: pulse-dot 1s infinite; }
+  .loading-step.active { color:#3f66a8; }
+  .loading-step.active .check::after { content:''; width:.5rem; height:.5rem; border-radius:50%; background:#3f66a8; animation: pulse-dot 1s infinite; }
   .loading-step.done { color:#10b981; }
   .loading-step.done .check::after { content:'✓'; font-size:.85rem; line-height:1; }
   /* callout tags (matches index.html) */
-  .callout-tag { display:inline-flex; align-items:center; justify-content:center; width:1.4em; height:1.4em; border-radius:9999px; background:#2b70ef; color:#fff; font-size:.75rem; font-weight:700; vertical-align:middle; margin: 0 .15em; line-height:1; }
+  .callout-tag { display:inline-flex; align-items:center; justify-content:center; width:1.4em; height:1.4em; border-radius:9999px; background:#cd4f3a; color:#fff; font-size:.75rem; font-weight:700; vertical-align:middle; margin: 0 .15em; line-height:1; }
   /* spring type chip colors */
   .type-chip { display:inline-flex; align-items:center; padding:.25rem .75rem; border-radius:9999px; font-size:.875rem; font-weight:500; }
-  .type-単純温泉 { background:#f1f5f9; color:#334155; }
+  .type-単純温泉 { background:#f2ede2; color:#4a4237; }
   .type-塩化物泉 { background:#dbeafe; color:#1e40af; }
   .type-炭酸水素塩泉 { background:#cffafe; color:#155e75; }
   .type-硫酸塩泉 { background:#d1fae5; color:#065f46; }
@@ -64,7 +95,7 @@ tailwind.config = {
   .type-放射能泉 { background:#e9d5ff; color:#6b21a8; }
   .type-含よう素泉 { background:#fde68a; color:#92400e; }
   /* axis tag */
-  .axis-tag { display:inline-flex; align-items:center; padding:.125rem .625rem; border-radius:9999px; font-size:.75rem; background:#f1f5f9; color:#475569; }
+  .axis-tag { display:inline-flex; align-items:center; padding:.125rem .625rem; border-radius:9999px; font-size:.75rem; background:#f2ede2; color:#5f5546; }
   /* image preview */
   .preview-img { max-height:300px; max-width:100%; object-fit:contain; border-radius:.5rem; border:1px solid #e2e8f0; }
   /* modal */
@@ -92,7 +123,7 @@ tailwind.config = {
   details summary::-webkit-details-marker { display:none; }
 </style>
 </head>
-<body class="bg-gray-50 min-h-screen font-sans">
+<body class="min-h-screen font-sans">
 
 <!-- Header -->
 <header class="bg-white border-b border-slate-200 sticky top-0 z-10">
@@ -101,7 +132,7 @@ tailwind.config = {
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       <span class="hidden sm:inline">温泉ソムリエ ノート</span>
     </a>
-    <p class="text-sm font-bold text-slate-900">温泉カルテ</p>
+    <p class="font-serif text-sm font-bold text-slate-900">♨ 温泉カルテ</p>
     <button id="settingsBtn" aria-label="設定" class="w-9 h-9 inline-flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-gray-50 rounded-lg cursor-pointer">
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     </button>
@@ -112,7 +143,7 @@ tailwind.config = {
 
   <!-- ========== Step 1: Upload ========== -->
   <section id="stepUpload" class="step">
-    <p class="text-xs font-medium text-primary-500 tracking-wider">STEP 1</p>
+    <p class="chapter-stamp">STEP 1</p>
     <h1 class="font-serif text-3xl lg:text-4xl font-bold text-slate-900 mt-2">成分表を撮るだけで、<br>カルテになる。</h1>
     <p class="mt-4 text-base text-body leading-relaxed">
       温泉施設の脱衣所にある「温泉分析書」を撮影してアップロードしてください。<br>
@@ -203,7 +234,7 @@ tailwind.config = {
 
   <!-- ========== Step 2: Loading ========== -->
   <section id="stepLoading" class="step hidden">
-    <p class="text-xs font-medium text-primary-500 tracking-wider">STEP 2</p>
+    <p class="chapter-stamp">STEP 2</p>
     <h1 class="font-serif text-3xl font-bold text-slate-900 mt-2">カルテを作成中</h1>
     <p class="mt-3 text-sm text-body">10〜30秒ほどお待ちください</p>
 
@@ -237,7 +268,7 @@ tailwind.config = {
     <!-- header -->
     <div class="flex flex-wrap items-start justify-between gap-3">
       <div>
-        <p class="text-xs font-medium text-primary-500 tracking-wider">温泉カルテ</p>
+        <p class="chapter-stamp">温泉カルテ</p>
         <h1 id="resultSpringName" class="font-serif text-2xl lg:text-3xl font-bold text-slate-900 mt-1"></h1>
         <p id="resultLocation" class="text-sm text-slate-500 mt-1"></p>
       </div>
@@ -848,7 +879,7 @@ function renderLogMap(logs) {
     const stars = l.rating ? '★'.repeat(l.rating) : '';
     const icon = L.divIcon({
       className: '',
-      html: '<div style="width:16px;height:16px;border-radius:50%;background:#2b70ef;border:3px solid white;box-shadow:0 2px 5px rgba(0,0,0,.3)"></div>',
+      html: '<div style="width:16px;height:16px;border-radius:50%;background:#3f66a8;border:3px solid white;box-shadow:0 2px 5px rgba(0,0,0,.3)"></div>',
       iconSize: [16, 16], iconAnchor: [8, 8]
     });
     L.marker([l.lat, l.lon], { icon }).addTo(logMarkerLayer)
