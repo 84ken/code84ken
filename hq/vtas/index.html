@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VTAS 判定デモ</title>
+<style>
+  :root {
+    --navy: #12284C;
+    --blue: #0B5394;
+    --teal: #159AA6;
+    --green: #2E9E5B;
+    --yellow: #D68910;
+    --orange: #C0392B;
+    --red: #8E1B12;
+    --gray: #8a94a3;
+    --border: #dde4ec;
+    --bg: #f6f8fb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+    background: var(--bg);
+    color: #2b3a4d;
+    line-height: 1.7;
+  }
+  .container { max-width: 1080px; margin: 0 auto; padding: 32px 20px 48px; }
+
+  header { margin-bottom: 28px; }
+  header h1 {
+    font-size: 1.75rem;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+  }
+  header p {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(18, 40, 76, 0.06);
+    padding: 24px;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+    color: var(--blue);
+    margin-bottom: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  /* --- 入力エリア --- */
+  .field { margin-bottom: 18px; }
+  .field label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .field label .guide {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--gray);
+  }
+  .field .controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .field input[type="number"] {
+    width: 84px;
+    padding: 8px 10px;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: right;
+  }
+  .field input[type="number"]:focus {
+    outline: 2px solid rgba(21, 154, 166, 0.4);
+    border-color: var(--teal);
+  }
+  .field input[type="range"] {
+    flex: 1;
+    accent-color: var(--teal);
+  }
+
+  .judge-btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--blue);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .judge-btn:hover { background: var(--navy); }
+
+  .samples { margin-top: 20px; }
+  .samples h3 {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .samples .btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .samples button {
+    padding: 7px 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--blue);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .samples button:hover {
+    background: #eef5fb;
+    border-color: var(--blue);
+  }
+
+  /* --- 結果エリア --- */
+  .result-empty {
+    text-align: center;
+    color: var(--gray);
+    padding: 56px 16px;
+    font-size: 0.95rem;
+  }
+
+  .state-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .state-name {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .urgency-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 16px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .reason {
+    font-size: 0.92rem;
+    color: #4a5a6e;
+    margin-bottom: 20px;
+  }
+
+  .func-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 480px) {
+    .func-cards { grid-template-columns: 1fr; }
+  }
+  .func-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .func-card .fname {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+  .func-card .fval {
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+  .func-card .fmark { font-size: 1.5rem; line-height: 1.2; }
+
+  .fv-normal  { color: var(--green); }
+  .fv-abnormal{ color: var(--orange); }
+  .fv-comp    { color: var(--yellow); }
+  .fv-none    { color: var(--gray); }
+
+  .inputs-echo {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--gray);
+  }
+
+  footer {
+    margin-top: 36px;
+    padding: 16px 20px;
+    background: #eef1f6;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    color: #5a6878;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>VTAS 判定デモ</h1>
+    <p>バイタルサインアセスメント3者間メソッド ／ モック</p>
+  </header>
+
+  <div class="layout">
+
+    <!-- 入力エリア -->
+    <section class="card">
+      <h2>バイタルサイン入力</h2>
+
+      <div class="field">
+        <label for="hr">脈拍（bpm）<span class="guide">正常目安 60〜80</span></label>
+        <div class="controls">
+          <input type="range" id="hr-slider" min="30" max="180" value="70" aria-label="脈拍スライダー">
+          <input type="number" id="hr" min="30" max="180" value="70">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="sbp">血圧・上（収縮期 mmHg）<span class="guide">正常目安 100〜139</span></label>
+        <div class="controls">
+          <input type="range" id="sbp-slider" min="60" max="220" value="120" aria-label="収縮期血圧スライダー">
+          <input type="number" id="sbp" min="60" max="220" value="120">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="dbp">血圧・下（拡張期 mmHg）<span class="guide">参考表示</span></label>
+        <div class="controls">
+          <input type="range" id="dbp-slider" min="40" max="140" value="78" aria-label="拡張期血圧スライダー">
+          <input type="number" id="dbp" min="40" max="140" value="78">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="spo2">SpO2（%）<span class="guide">96〜100が正常</span></label>
+        <div class="controls">
+          <input type="range" id="spo2-slider" min="70" max="100" value="98" aria-label="SpO2スライダー">
+          <input type="number" id="spo2" min="70" max="100" value="98">
+        </div>
+      </div>
+
+      <button class="judge-btn" id="judge">判定する</button>
+
+      <div class="samples">
+        <h3>サンプル例（押すと即判定）</h3>
+        <div class="btns">
+          <button data-sample="70,120,78,98">正常</button>
+          <button data-sample="120,100,70,98">循環不全</button>
+          <button data-sample="90,135,85,92">呼吸不全</button>
+          <button data-sample="130,90,60,90">改善不全</button>
+          <button data-sample="60,85,55,90">危険</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 結果エリア -->
+    <section class="card" aria-live="polite">
+      <h2>判定結果</h2>
+      <div id="result">
+        <p class="result-empty">数値を入力して「判定する」を押してください</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    本デモは概念確認用のモックです。判定ロジックは暫定であり、医療機器ではありません。実際の評価は監修者による正式ロジックに置き換えます。
+  </footer>
+
+</div>
+
+<script>
+// =====================================================================
+// 第1層：数値 → 3機能の評価
+// ※ このしきい値はデモ用の仮ルールです。
+//    後日、監修者（櫻井さん）の約180項目の正式ロジックに差し替えます。
+// =====================================================================
+function evaluate(hr, sbp, dbp, spo2) {
+  // 拍出機能：脈拍に対して血圧が伴っているか
+  const cardiac = (sbp < 100 || (hr > 100 && sbp < 130)) ? '異常' : '正常';
+  // 肺機能：酸素がしっかり運べているか
+  const pulmonary = (spo2 < 96) ? '異常' : '正常';
+  // 代償機能：低下分を脈拍で補えているか
+  let comp;
+  if (cardiac === '正常' && pulmonary === '正常') {
+    comp = '不要';
+  } else {
+    comp = (hr > 100) ? 'あり' : 'なし';
+  }
+  return { cardiac, pulmonary, comp };
+}
+
+// =====================================================================
+// 第2層：3機能の結果 → 状態と緊急度（VTAS 状態判断マトリクス・正式決定表）
+// =====================================================================
+function judgeState(f) {
+  const { cardiac, pulmonary, comp } = f;
+  if (cardiac === '正常' && pulmonary === '正常') {
+    return { name: '心肺機能 正常・異常なし', level: '低' };
+  }
+  if (cardiac === '異常' && pulmonary === '正常') {
+    return comp === 'あり'
+      ? { name: '循環不全パターン（代償あり）', level: '中〜高' }
+      : { name: '循環不全パターン（代償なし）', level: '高' };
+  }
+  if (cardiac === '正常' && pulmonary === '異常') {
+    return comp === 'あり'
+      ? { name: '呼吸不全パターン（代償あり）', level: '中〜高' }
+      : { name: '呼吸不全パターン（代償なし）', level: '高' };
+  }
+  // 拍出・肺 ともに異常
+  return comp === 'あり'
+    ? { name: '改善不全パターン（代償あり）', level: '高' }
+    : { name: '改善不全パターン（代償なし）', level: '危険' };
+}
+
+// 緊急度 → バッジ色
+const LEVEL_COLORS = {
+  '低':    '#2E9E5B',
+  '中〜高': '#D68910',
+  '高':    '#C0392B',
+  '危険':  '#8E1B12'
+};
+
+// 「ひとこと理由」の生成
+function buildReason(hr, sbp, spo2, f) {
+  const parts = [];
+  if (f.cardiac === '異常') {
+    if (hr > 100 && sbp < 130) parts.push('脈が上がっているのに血圧が伴っていません');
+    else parts.push('血圧が低く、拍出が保てていない可能性があります');
+  }
+  if (f.pulmonary === '異常') {
+    parts.push('SpO2が低く、酸素の運搬が十分でない可能性があります');
+  }
+  if (f.cardiac === '正常' && f.pulmonary === '正常') {
+    return '脈拍・血圧・SpO2のバランスに大きな乱れはありません。';
+  }
+  if (f.comp === 'あり') parts.push('脈拍で代償している状態です');
+  else parts.push('代償反応がみられず、注意が必要です');
+  return parts.join('。') + '。';
+}
+
+// --- スライダーと数値入力の同期 ---
+['hr', 'sbp', 'dbp', 'spo2'].forEach(id => {
+  const num = document.getElementById(id);
+  const slider = document.getElementById(id + '-slider');
+  slider.addEventListener('input', () => { num.value = slider.value; });
+  num.addEventListener('input', () => { slider.value = num.value; });
+});
+
+// --- 判定の実行と表示 ---
+function funcCardHtml(label, value) {
+  let cls, mark;
+  if (value === '正常')      { cls = 'fv-normal';   mark = '○'; }
+  else if (value === '異常') { cls = 'fv-abnormal'; mark = '●'; }
+  else if (value === 'あり') { cls = 'fv-comp';     mark = '●'; }
+  else if (value === 'なし') { cls = 'fv-abnormal'; mark = '●'; }
+  else                       { cls = 'fv-none';     mark = '－'; } // 不要
+  return `
+    <div class="func-card">
+      <div class="fname">${label}</div>
+      <div class="fmark ${cls}">${mark}</div>
+      <div class="fval ${cls}">${value}</div>
+    </div>`;
+}
+
+function runJudge() {
+  const hr   = Number(document.getElementById('hr').value);
+  const sbp  = Number(document.getElementById('sbp').value);
+  const dbp  = Number(document.getElementById('dbp').value);
+  const spo2 = Number(document.getElementById('spo2').value);
+
+  if (!hr || !sbp || !dbp || !spo2) {
+    document.getElementById('result').innerHTML =
+      '<p class="result-empty">すべての項目に数値を入力してください</p>';
+    return;
+  }
+
+  const f = evaluate(hr, sbp, dbp, spo2);
+  const state = judgeState(f);
+  const color = LEVEL_COLORS[state.level];
+  const reason = buildReason(hr, sbp, spo2, f);
+
+  document.getElementById('result').innerHTML = `
+    <div class="state-row">
+      <span class="state-name">${state.name}</span>
+      <span class="urgency-badge" style="background:${color}">緊急度：${state.level}</span>
+    </div>
+    <p class="reason">${reason}</p>
+    <div class="func-cards">
+      ${funcCardHtml('拍出機能', f.cardiac)}
+      ${funcCardHtml('肺機能', f.pulmonary)}
+      ${funcCardHtml('代償機能', f.comp)}
+    </div>
+    <p class="inputs-echo">入力値：脈拍 ${hr} bpm ／ 血圧 ${sbp}/${dbp} mmHg ／ SpO2 ${spo2}%</p>
+  `;
+}
+
+document.getElementById('judge').addEventListener('click', runJudge);
+
+document.querySelectorAll('[data-sample]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const [hr, sbp, dbp, spo2] = btn.dataset.sample.split(',');
+    [['hr', hr], ['sbp', sbp], ['dbp', dbp], ['spo2', spo2]].forEach(([id, v]) => {
+      document.getElementById(id).value = v;
+      document.getElementById(id + '-slider').value = v;
+    });
+    runJudge();
+  });
+});
+</script>
+</body>
+</html>
