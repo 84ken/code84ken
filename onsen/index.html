@@ -164,6 +164,7 @@ tailwind.config = {
       <a href="#chichibu"  class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">11. 秩父温泉図鑑</a>
       <a href="#beitou"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">12. 秩父×北投 国際比較</a>
       <a href="#saitama"   class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">13. 埼玉県の温泉マップ</a>
+      <a href="#genesis"   class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">14. 埼玉温泉発達史</a>
     </nav>
     <div class="px-5 py-4 border-t border-slate-200 text-xs text-slate-500">
       <p>出典: 温泉ソムリエ認定講座テキスト</p>
@@ -2382,6 +2383,241 @@ tailwind.config = {
       <p class="mt-5 text-xs text-slate-500">
         ※ このリストは主要施設の抜粋です。県内には他にも多数の温泉・スパ施設があります。<br>
         出典：環境省「温泉利用状況」令和5年度／<a href="https://chocotabi-saitama.jp/" target="_blank" class="underline hover:text-primary-500">ちょこたび埼玉</a>／各施設公式サイト
+      </p>
+    </section>
+
+    <!-- ====================== 14. 埼玉温泉発達史 ====================== -->
+    <section id="genesis" class="anchor mt-16">
+      <p class="chapter-stamp">CHAPTER 14 — GENESIS</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">埼玉温泉発達史</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        <strong class="text-slate-900">なぜ、火山も海もない埼玉に温泉が湧くのか。</strong><br>
+        答えは「地質が泉質を決め、地形が立地を決め、歴史が文化を育て、技術が平野へ広げた」という4層構造にあります。この章では、県内の温泉発達を地質・水文・歴史・技術の面から紐解きます。
+      </p>
+
+      <!-- ===== 断面図 ===== -->
+      <h3 class="mt-10 text-xl font-semibold text-slate-900">まず1枚で理解する：埼玉の地下断面</h3>
+      <div class="mt-4 bg-white rounded-xl border border-slate-200 p-4 lg:p-6 shadow-sm overflow-x-auto">
+        <svg viewBox="0 0 820 330" class="w-full min-w-[640px]" role="img" aria-label="埼玉県の温泉成因断面図：西部山地の破砕帯浸透型冷鉱泉と東部平野の化石海水型温泉">
+          <!-- 雨（山地への涵養） -->
+          <g stroke="#6890c0" stroke-width="2" stroke-linecap="round">
+            <line x1="70" y1="22" x2="62" y2="40"/><line x1="105" y1="14" x2="97" y2="32"/><line x1="140" y1="24" x2="132" y2="42"/><line x1="175" y1="16" x2="167" y2="34"/>
+          </g>
+          <text x="195" y="30" font-size="12" fill="#33538d">降水（荒川水系の水源域）</text>
+
+          <!-- 山（奥・手前） -->
+          <polygon points="20,170 110,52 200,170" fill="#dde7f3"/>
+          <polygon points="90,170 185,70 290,170" fill="#97b3d6"/>
+          <text x="105" y="120" font-size="13" font-weight="bold" fill="#1e2d4b">秩父山地</text>
+          <text x="80" y="138" font-size="11" fill="#2b4374">秩父帯＝海底起源の古い付加体</text>
+
+          <!-- 破砕帯（断層に沿う浸透） -->
+          <g stroke="#cd4f3a" stroke-width="2" stroke-dasharray="5 4" fill="none">
+            <path d="M150 95 L165 175 L160 225"/>
+            <path d="M215 110 L228 180 L224 230"/>
+          </g>
+          <text x="238" y="205" font-size="11" fill="#993124">断層・破砕帯に沿って</text>
+          <text x="238" y="219" font-size="11" fill="#993124">雨水がゆっくり浸透</text>
+
+          <!-- 地表 -->
+          <path d="M290 170 L820 170" stroke="#a89a82" stroke-width="2" fill="none"/>
+
+          <!-- 地層（丘陵の第三紀層 → 平野の堆積盆地） -->
+          <path d="M290 170 L820 170 L820 200 L290 195 Z" fill="#f2ede2"/>
+          <path d="M290 195 L820 200 L820 245 L290 220 Z" fill="#e8dfcd"/>
+          <text x="320" y="188" font-size="11" fill="#5f5546">第三紀層（丘陵）</text>
+          <text x="560" y="192" font-size="11" fill="#5f5546">沖積層・関東ローム</text>
+
+          <!-- 基盤岩の落ち込み -->
+          <path d="M0 235 C200 240 400 275 820 305 L820 330 L0 330 Z" fill="#d4c8b0"/>
+          <text x="380" y="315" font-size="11" fill="#5f5546">基盤岩（東へ深く落ち込む＝関東平野は巨大な堆積盆地）</text>
+
+          <!-- 化石海水 -->
+          <ellipse cx="640" cy="262" rx="150" ry="26" fill="#6890c0" opacity="0.45"/>
+          <text x="560" y="258" font-size="12" font-weight="bold" fill="#1e2d4b">化石海水</text>
+          <text x="560" y="273" font-size="11" fill="#24375d">太古の海水＋植物 → 黒湯・塩化物泉</text>
+
+          <!-- 冷鉱泉 ♨ -->
+          <text x="180" y="163" font-size="20" fill="#cd4f3a">♨</text>
+          <text x="20" y="196" font-size="12" font-weight="bold" fill="#993124">秩父の冷鉱泉（25℃未満）</text>
+          <text x="20" y="211" font-size="11" fill="#4a4237">硫黄・pH9前後 → 加温して利用</text>
+
+          <!-- 掘削 -->
+          <rect x="646" y="150" width="8" height="20" fill="#4a4237"/>
+          <polygon points="640,150 660,150 650,132" fill="#4a4237"/>
+          <line x1="650" y1="170" x2="650" y2="258" stroke="#4a4237" stroke-width="3"/>
+          <text x="662" y="222" font-size="12" font-weight="bold" fill="#28231d">大深度掘削</text>
+          <text x="662" y="237" font-size="11" fill="#4a4237">1,000〜1,500m / 45〜55℃</text>
+          <text x="645" y="126" font-size="18" fill="#cd4f3a">♨</text>
+
+          <!-- 地温勾配 -->
+          <g>
+            <line x1="795" y1="175" x2="795" y2="295" stroke="#7d7160" stroke-width="1.5" marker-end="none"/>
+            <polygon points="795,300 790,290 800,290" fill="#7d7160"/>
+            <text x="790" y="188" font-size="10" fill="#5f5546" text-anchor="end">0m</text>
+            <text x="790" y="292" font-size="10" fill="#5f5546" text-anchor="end">深いほど高温</text>
+          </g>
+        </svg>
+        <p class="mt-2 text-xs text-slate-500">※ 模式図。地下は深さ100mごとに約3℃温度が上がる（地温勾配）ため、火山がなくても地下1,000mで約50℃に達する（産総研 地質調査総合センター）。</p>
+      </div>
+
+      <!-- ===== 3つの成因 ===== -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">① 地質 — 2つの「非火山性温泉」メカニズム</h3>
+      <p class="mt-2 text-sm text-body">日本の温泉は火山性と非火山性に大別され、非火山性はさらに「深層地下水型」と「化石海水型」に分かれます（神奈川県温泉地学研究所の分類）。<strong>埼玉はこの両方を持つ、非火山性温泉の見本市</strong>です。</p>
+
+      <div class="mt-5 grid md:grid-cols-2 gap-4">
+        <article class="bg-white rounded-xl border border-blue-200 p-6 shadow-sm">
+          <p class="text-xs font-medium text-blue-700 tracking-wider">WEST — 破砕帯浸透型（深層地下水型）</p>
+          <h4 class="text-lg font-bold text-slate-900 mt-1">秩父・飯能の「硫黄冷鉱泉」の正体</h4>
+          <ol class="mt-3 space-y-2 text-sm text-body leading-relaxed">
+            <li><strong>1.</strong> 秩父帯・三波川帯は<strong>ジュラ紀の海底堆積物が押し付けられた付加体</strong>。海成層には還元環境で生じた<strong>黄鉄鉱（硫化鉄）</strong>が豊富。</li>
+            <li><strong>2.</strong> 関東山地に降った雨が<strong>断層・破砕帯に沿って浸透</strong>し、長い年月をかけて岩と反応。硫黄分（H₂S・HS⁻）が溶け出す → <strong>たまご臭の硫黄泉</strong>。</li>
+            <li><strong>3.</strong> 滞留時間の長い古い地下水はCO₂を失い、Na⁺を溶かして<strong>pH9前後のアルカリ性</strong>に → ツルツルの美肌泉。</li>
+            <li><strong>4.</strong> 火山の熱源がないので<strong>25℃未満の「冷鉱泉」</strong>のまま湧出 → 薪で沸かす湯治文化が発達。</li>
+          </ol>
+        </article>
+        <article class="bg-white rounded-xl border border-slate-300 p-6 shadow-sm">
+          <p class="text-xs font-medium text-slate-700 tracking-wider">EAST — 化石海水型</p>
+          <h4 class="text-lg font-bold text-slate-900 mt-1">平野の地下に眠る「太古の海」</h4>
+          <ol class="mt-3 space-y-2 text-sm text-body leading-relaxed">
+            <li><strong>1.</strong> 関東平野は基盤岩が深く落ち込んだ<strong>巨大な堆積盆地</strong>。数百万年の海進・海退の間に<strong>海水と植物が地層に封じ込められた</strong>。</li>
+            <li><strong>2.</strong> 地温勾配（+3℃/100m）により、<strong>地下1,000〜1,500mで45〜55℃</strong>。掘れば温泉になる。</li>
+            <li><strong>3.</strong> 植物由来の<strong>フミン酸で琥珀〜黒色</strong>（黒湯）、海水由来の<strong>塩分で高濃度塩化物泉</strong>。ヨウ素・メタンガスを伴うことも（百観音温泉の石油臭はこれ）。</li>
+            <li><strong>4.</strong> 保温力が高く「熱の湯」。<strong>海なし県の地下には海がある</strong>。</li>
+          </ol>
+        </article>
+      </div>
+
+      <!-- ===== 地質×泉質対応表 ===== -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">② 地質と泉質の対応関係</h3>
+      <div class="mt-4 bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm matrix">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">エリア</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">地質</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">成因タイプ</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">典型的な泉質</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">代表例</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr>
+                <td class="py-2 px-3 font-medium text-slate-900">秩父山地</td>
+                <td class="py-2 px-3 text-xs">秩父帯・三波川帯（海成付加体）</td>
+                <td class="py-2 px-3 text-xs">破砕帯浸透型</td>
+                <td class="py-2 px-3"><span class="chip type-硫黄泉">単純硫黄冷鉱泉 pH9±</span></td>
+                <td class="py-2 px-3 text-xs">新木鉱泉・満願の湯・両神</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-medium text-slate-900">秩父盆地縁</td>
+                <td class="py-2 px-3 text-xs">第三紀層（秩父盆地の海成層）</td>
+                <td class="py-2 px-3 text-xs">破砕帯浸透型</td>
+                <td class="py-2 px-3"><span class="chip type-塩化物泉">塩化物・炭酸水素塩泉</span></td>
+                <td class="py-2 px-3 text-xs">白久温泉・柴原温泉</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-medium text-slate-900">外秩父・比企丘陵</td>
+                <td class="py-2 px-3 text-xs">第三紀層〜古生層境界</td>
+                <td class="py-2 px-3 text-xs">浸透型＋中深度掘削</td>
+                <td class="py-2 px-3"><span class="chip type-単純温泉">強アルカリ単純温泉 pH10</span></td>
+                <td class="py-2 px-3 text-xs">玉川温泉・花和楽の湯</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-medium text-slate-900">県北縁辺</td>
+                <td class="py-2 px-3 text-xs">神流川扇状地の深部</td>
+                <td class="py-2 px-3 text-xs">化石海水（高濃度）</td>
+                <td class="py-2 px-3"><span class="chip type-含鉄泉">含鉄Na-塩化物強塩泉</span></td>
+                <td class="py-2 px-3 text-xs">白寿の湯（溶存35g/kg=関東一）</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-medium text-slate-900">東部平野</td>
+                <td class="py-2 px-3 text-xs">堆積盆地深部（1,000m級）</td>
+                <td class="py-2 px-3 text-xs">化石海水型</td>
+                <td class="py-2 px-3"><span class="chip type-塩化物泉">Na-塩化物泉（黒湯）</span></td>
+                <td class="py-2 px-3 text-xs">百観音・春日部・越谷・行田</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== 歴史タイムライン ===== -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">③ 歴史 — 5つの時代レイヤー</h3>
+      <p class="mt-2 text-sm text-body">地質が「どこに湧くか」を決めたなら、歴史は「どう使われてきたか」を決めました。</p>
+
+      <div class="mt-5 space-y-0">
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center"><span class="w-4 h-4 rounded-full bg-amber-500 flex-shrink-0 mt-1"></span><span class="w-0.5 flex-1 bg-slate-200"></span></div>
+          <div class="pb-8">
+            <p class="text-sm font-bold text-slate-900">中世 — 発見と伝説の時代</p>
+            <p class="mt-1 text-sm text-body leading-relaxed">承久年間(1219-21)名栗で<strong>手負いの鹿</strong>が傷を癒す姿から開湯。文明15年(1473)には秩父七湯最古の<strong>鳩の湯</strong>。山の民が破砕帯から染み出す「効く水」を見つけていく時代。</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center"><span class="w-4 h-4 rounded-full bg-amber-600 flex-shrink-0 mt-1"></span><span class="w-0.5 flex-1 bg-slate-200"></span></div>
+          <div class="pb-8">
+            <p class="text-sm font-bold text-slate-900">江戸 — 巡礼×湯治の黄金期</p>
+            <p class="mt-1 text-sm text-body leading-relaxed"><strong>秩父札所34観音</strong>が「江戸から近く、関所なしで回れる巡礼地」として大流行。秩父往還を歩く巡礼者の宿として<strong>秩父七湯</strong>が発達。結願寺（34番水潜寺）のふもとに湧く<strong>満願の湯</strong>はその象徴。冷鉱泉を薪で沸かす「沸かし湯治」文化が確立。</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center"><span class="w-4 h-4 rounded-full bg-primary-500 flex-shrink-0 mt-1"></span><span class="w-0.5 flex-1 bg-slate-200"></span></div>
+          <div class="pb-8">
+            <p class="text-sm font-bold text-slate-900">明治〜昭和 — 鉄道と「東京の奥座敷」化</p>
+            <p class="mt-1 text-sm text-body leading-relaxed">秩父鉄道（明治期〜）、<strong>西武秩父線（1969）</strong>の開通で秩父は日帰り圏に。1948年の<strong>温泉法</strong>が「25℃未満でも規定成分があれば温泉」と定義したことで、秩父の鉱泉群が正式に「温泉」を名乗れる制度基盤が整う。</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center"><span class="w-4 h-4 rounded-full bg-primary-700 flex-shrink-0 mt-1"></span><span class="w-0.5 flex-1 bg-slate-200"></span></div>
+          <div class="pb-8">
+            <p class="text-sm font-bold text-slate-900">平成 — 大深度掘削が平野に温泉を生む</p>
+            <p class="mt-1 text-sm text-body leading-relaxed">1990年代に1,000m級の掘削技術が普及（東京の掘削許可は1997年の90本から急増）。埼玉でも<strong>玉川温泉1991（1,700m）→ 百観音1999 → 白寿の湯2001 → 花和楽・春日部2004</strong>と、それまで温泉と無縁だった丘陵・平野部に続々開湯。「海なし県の地下の海」が姿を現した時代。</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center"><span class="w-4 h-4 rounded-full bg-emerald-500 flex-shrink-0 mt-1"></span></div>
+          <div class="pb-2">
+            <p class="text-sm font-bold text-slate-900">令和 — リブランドと文化交流の時代</p>
+            <p class="mt-1 text-sm text-body leading-relaxed">ときがわ町発の<strong>温泉道場</strong>（2011創業）が「おふろcafé」で県内温泉を次々リブランド。<strong>祭の湯（2017）</strong>は駅直結型、2026年には<strong>台湾・北投温泉博物館との交流展</strong>も。温泉が「入る場所」から「地域文化の交流拠点」へ進化中。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 気候・水文コラム ===== -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">④ では、天候は関係あるのか？</h3>
+      <div class="mt-4 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-200 p-6 shadow-sm">
+        <p class="text-sm text-body leading-relaxed">
+          結論から言うと、<strong class="text-slate-900">天候は「主因」ではなく「供給源」</strong>です。埼玉の平野部は日本有数の少雨地域（冬は乾いた晴天が続く）ですが、温泉の発達を左右したのは降水量そのものではありません。
+        </p>
+        <ul class="mt-4 space-y-2 text-sm text-body leading-relaxed">
+          <li>・ <strong>西部の冷鉱泉</strong>にとっての雨：関東山地は県内では相対的な多雨域で、<strong>荒川水系の水源</strong>。ここに降った雨が破砕帯に浸透し、数十年〜数百年かけて鉱泉として湧く。つまり「今日の湯は、昔の雨」。</li>
+          <li>・ <strong>東部の化石海水</strong>にとっての雨：ほぼ無関係。<strong>数百万年前に閉じ込められた海水</strong>なので、現在の気候とは切り離されている（＝再生しない資源。だから汲みすぎに規制がある）。</li>
+          <li>・ むしろ効いたのは<strong>地形</strong>：荒川が山地→盆地→平野を貫き、秩父往還も鉄道も温泉地もこの谷筋に沿って発達した。<strong>川が温泉文化の動線をつくった</strong>。</li>
+        </ul>
+      </div>
+
+      <!-- ===== まとめ ===== -->
+      <div class="mt-10 p-6 bg-gradient-to-br from-amber-50 to-white border border-amber-200 rounded-xl shadow-sm">
+        <h3 class="text-base font-semibold text-slate-900">まとめ：埼玉温泉の発達 4層構造</h3>
+        <ol class="mt-3 space-y-2 text-sm text-body leading-relaxed">
+          <li><strong>① 地質が泉質を決めた</strong> — 海成付加体の黄鉄鉱→西部の硫黄冷鉱泉。堆積盆地の化石海水→東部の黒湯塩化物泉。</li>
+          <li><strong>② 地形が立地を決めた</strong> — 荒川の谷筋に湧出・街道・鉄道・温泉地が並んだ。</li>
+          <li><strong>③ 歴史が文化を育てた</strong> — 札所巡礼×湯治が「沸かして入る」秩父スタイルを確立し、温泉法（1948）が制度で追認した。</li>
+          <li><strong>④ 技術が平野へ広げた</strong> — 平成の大深度掘削が「地下の海」を開放し、令和のリブランドが温泉を交流拠点に変えつつある。</li>
+        </ol>
+        <p class="mt-4 text-sm text-slate-900 font-medium">
+          ♨ 埼玉は「火山がないのに温泉が多様」という、日本でも珍しい<strong>非火山性温泉の教科書</strong>のような県。
+        </p>
+      </div>
+
+      <p class="mt-5 text-xs text-slate-500 leading-relaxed">
+        出典：<a href="https://www.gsj.jp/hazards/geologic-hazard/kanto-hotsprings.html" target="_blank" class="underline hover:text-primary-500">産総研 地質調査総合センター「東京にどうして温泉があるの？」</a> /
+        <a href="https://www.onken.odawara.kanagawa.jp/hotspring/onsen_kouza/20200518-02.html" target="_blank" class="underline hover:text-primary-500">神奈川県温泉地学研究所「火山性と非火山性温泉」</a> /
+        <a href="https://jagh.jp/activities/faq/archive/72/" target="_blank" class="underline hover:text-primary-500">日本地下水学会（地下水のpH）</a> /
+        <a href="https://geopark.jp/geopark/chichibu/" target="_blank" class="underline hover:text-primary-500">ジオパーク秩父</a> /
+        <a href="https://www.lib.pref.saitama.jp/event/exhibit/webexhibit/web-1.html" target="_blank" class="underline hover:text-primary-500">埼玉県立図書館「江戸の出版物と巡る秩父霊場」</a> / 温泉科学68巻「群馬県の大深度掘削泉」
       </p>
     </section>
 
