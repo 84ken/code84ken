@@ -179,6 +179,7 @@
   }
   .text-box.boss-battle { border-color: var(--orange); }
   .text-box .asterisk { color: var(--white); margin-right: 8px; }
+  #messageText, #victoryMsg { white-space: pre-line; }
 
   /* ===== Battle box (question / minigames) ===== */
   .battle-box {
@@ -274,7 +275,7 @@
   <!-- ===== NAME ENTRY ===== -->
   <div id="nameScreen" class="screen" style="position:relative;z-index:1;">
     <div style="text-align:center; padding-top:90px;">
-      <p class="font-jp" style="font-size:18px; line-height:2; margin-bottom:28px;">ゆうしゃの なまえを<br>おしえてください。</p>
+      <p class="font-jp" style="font-size:18px; line-height:2; margin-bottom:28px;">ちきゅう さいごの きぼう。<br>きみの なまえを おしえてください。</p>
       <input id="nameInput" class="name-input" maxlength="6" placeholder="なまえ" autocomplete="off">
       <div style="margin-top:28px;">
         <button class="ut-btn" style="font-size:12px;padding:10px 28px;" onclick="confirmName()">
@@ -282,7 +283,8 @@
           けってい
         </button>
       </div>
-      <p id="nameNote" class="font-jp" style="font-size:13px; color:var(--gray); margin-top:24px;"></p>
+      <p class="font-jp" style="font-size:12px; color:var(--gray); margin-top:20px;">※ ほんみょうじゃなくても いい。</p>
+      <p id="nameNote" class="font-jp" style="font-size:13px; color:var(--gray); margin-top:10px;"></p>
     </div>
   </div>
 
@@ -294,11 +296,11 @@
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
         <h1 class="font-pixel" style="font-size:20px; letter-spacing:4px; margin-bottom:6px; animation: titleGlow 3s ease-in-out infinite;">STUDY QUEST</h1>
-        <p class="font-jp" style="font-size:13px; color:var(--gray);">&#12316; べんきょうクエスト &#12316;</p>
+        <p class="font-jp" style="font-size:13px; color:var(--gray);">&#12316; ちきゅうを すくうのは きみの しゅくだい &#12316;</p>
       </div>
 
       <div class="ut-box" style="margin-bottom:14px;">
-        <p class="font-jp" style="font-size:16px; color:var(--yellow); margin-bottom:4px;">* きょうかを えらんでください</p>
+        <p class="font-jp" style="font-size:16px; color:var(--yellow); margin-bottom:4px;">* きょうは どの しゅくだいで たたかう?</p>
         <div class="subject-grid">
           <button class="subject-btn" onclick="startGame('math')">
             <div class="emoji">&#10133;&#10134;</div>
@@ -333,7 +335,7 @@
         <span class="font-jp" style="color:var(--gray);">データ ロードちゅう...</span>
       </div>
 
-      <p class="font-jp" style="font-size:13px; color:var(--dark-gray); margin-top:16px;">&#9733; きみは けついに みちあふれている。</p>
+      <p class="font-jp" style="font-size:13px; color:var(--dark-gray); margin-top:16px;">&#9733; ちきゅうは きょうも ぶじだ。きみの おかげで。</p>
     </div>
   </div>
 
@@ -402,18 +404,18 @@
     <div style="display:flex; gap:8px; margin-top:10px;">
       <button id="btnItem" class="ut-btn" style="flex:1;" onclick="openItems()">&#10084; ITEM<span class="font-jp" style="font-size:11px;">どうぐ</span></button>
       <button id="btnMercy" class="ut-btn" style="flex:1; display:none;" onclick="doSpare()">&#9733; MERCY<span class="font-jp" style="font-size:11px;">みのがす</span></button>
-      <button class="ut-btn" style="flex:1;" onclick="goTitle()">&#9664; にげる</button>
+      <button class="ut-btn" style="flex:1;" onclick="goTitle()"><span class="font-jp" style="font-size:12px;">こんどにする</span></button>
     </div>
   </div>
 
   <!-- ===== SHOP ===== -->
   <div id="shopScreen" class="screen" style="position:relative;z-index:1;">
     <div style="text-align:center; padding-top:20px;">
-      <div style="font-size:56px; line-height:1;">&#128571;</div>
-      <h2 class="font-pixel" style="font-size:14px; color:var(--yellow); margin:8px 0 2px;">NYAMY SHOP</h2>
-      <p class="font-jp" style="font-size:13px; color:var(--gray); margin-bottom:10px;">&#12316; ニャミーの おみせ &#12316;</p>
+      <div style="font-size:56px; line-height:1;">&#128125;</div>
+      <h2 class="font-pixel" style="font-size:14px; color:var(--yellow); margin:8px 0 2px;">TEN-IN SHOP</h2>
+      <p class="font-jp" style="font-size:13px; color:var(--gray); margin-bottom:10px;">&#12316; テンイン星人の おみせ &#12316;</p>
       <div class="text-box" style="text-align:left; margin-bottom:12px;">
-        <span class="asterisk">*</span><span id="shopMessage" class="font-jp">いらっしゃいませ にゃ!</span>
+        <span class="asterisk">*</span><span id="shopMessage" class="font-jp">いらっしゃい。</span>
       </div>
       <div class="ut-box" style="padding:12px;">
         <p class="font-pixel" style="font-size:9px; text-align:right; margin-bottom:10px;"><span class="gold-text"><span id="shopGold">0</span> G</span></p>
@@ -473,8 +475,8 @@
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
       </div>
-      <p class="font-jp" style="font-size:18px; color:var(--red); margin-bottom:8px; line-height:1.8;">* きみは たおれてしまった...</p>
-      <p class="font-jp" style="font-size:13px; color:var(--gray); margin-bottom:24px; line-height:1.8;">でも けいけんちと ゴールドは のこる。<br>きみは けついに みちあふれた。</p>
+      <p class="font-jp" style="font-size:18px; color:var(--red); margin-bottom:8px; line-height:1.8;">* きみは ゴロゴロに のみこまれた…</p>
+      <p class="font-jp" style="font-size:13px; color:var(--gray); margin-bottom:24px; line-height:1.8;">でも けいけんちと ゴールドは のこっている。<br>しゅくだいは にげない。きみも にげない。</p>
       <div style="display:flex; gap:12px; justify-content:center;">
         <button class="ut-btn" onclick="retryBattle()" style="color:var(--yellow);">&#10084; RETRY</button>
         <button class="ut-btn" onclick="goTitle()">TITLE</button>
@@ -816,214 +818,213 @@ document.getElementById('musicToggle').addEventListener('click', () => {
 // PIXEL ART SPRITES
 // ===================================================================
 const SPRITES = {
-  froggy: {
-    palette: { G:'#4caf50', D:'#2e7031', W:'#ffffff', B:'#111111', P:'#ff9e9e', Y:'#c8e6c9' },
+  nemukedama: {
+    palette: { P:'#b39ddb', D:'#7e57c2', K:'#111111', Y:'#ffe082', W:'#ffffff' },
     map: [
-      "...GG......GG...",
-      "..GWWG....GWWG..",
-      "..GWBG....GWBG..",
-      "..GGGG....GGGG..",
-      ".GGGGGGGGGGGGGG.",
-      "GGGGGGGGGGGGGGGG",
-      "GPGGGGGGGGGGGGPG",
-      "GPGGDDDDDDDDGGPG",
-      "GGGGGGGGGGGGGGGG",
-      ".GGGGGGGGGGGGGG.",
-      "..GGG.GGGG.GGG..",
-      ".GG...G..G...GG.",
-      ".GGG.GG..GG.GGG.",
-    ]
-  },
-  whitty: {
-    palette: { W:'#f2f2f2', B:'#111111', S:'#c9c9d9' },
-    map: [
-      ".....WWWWWW.....",
-      "...WWWWWWWWWW...",
-      "..WWWWWWWWWWWW..",
-      ".WWWWWWWWWWWWWW.",
-      ".WWBBWWWWWWBBWW.",
-      ".WWBBWWWWWWBBWW.",
-      ".WWWWWWWWWWWWWW.",
-      ".WWWWWSBBSWWWWW.",
-      ".WWWWWWWWWWWWWW.",
-      ".WWWWWWWWWWWWWW.",
-      ".WWWWWWWWWWWWWW.",
-      ".WW.WWW..WW.WWW.",
-      ".W...W....W...W.",
-    ]
-  },
-  kinokon: {
-    palette: { R:'#e53935', W:'#ffffff', C:'#ffe0b2', B:'#111111', D:'#8d4a3a' },
-    map: [
-      ".....RRRRRR.....",
-      "...RRRRWWRRRR...",
-      "..RRWWRRRRWWRR..",
-      ".RRRRRRRRRRRRRR.",
-      ".RRWWRRRRRRWWRR.",
-      ".RRRRRRRRRRRRRR.",
-      "..CCCCCCCCCCCC..",
-      "..CCBBCCCCBBCC..",
-      "..CCCCCCCCCCCC..",
-      "..CCCCDDDDCCCC..",
-      "...CCCCCCCCCC...",
-      "....CCCCCCCC....",
-    ]
-  },
-  medaman: {
-    palette: { W:'#f5f5f5', B:'#42a5f5', K:'#111111', L:'#9e9e9e', R:'#ef9a9a' },
-    map: [
-      ".....WWWWWW.....",
-      "...WWWWWWWWWW...",
-      "..WWWWWWWWWWWW..",
-      ".WWWWWBBBBWWWWW.",
-      ".WWWWBBKKBBWWWW.",
-      ".WWWWBBKKBBWWWW.",
-      ".WWWWWBBBBWWWWW.",
-      "..WWWWWWWWWWWW..",
-      "...WWWWWWWWWW...",
-      ".....WWWWWW.....",
-      "....L..LL..L....",
-      "...LL..LL..LL...",
-    ]
-  },
-  vegetaro: {
-    palette: { O:'#ff8f2b', L:'#66bb6a', B:'#111111', D:'#c25e00', W:'#ffffff' },
-    map: [
-      "......L..L......",
-      ".....LL.LL......",
-      "......LLLL......",
-      ".....OOOOOO.....",
-      "....OOOOOOOO....",
-      "...OOOOOOOOOO...",
-      "...OBBOOOOBBO...",
-      "...OOOOOOOOOO...",
-      "...OODDDDDDOO...",
-      "....OODDDDOO....",
-      "....OOOOOOOO....",
-      ".....OOOOOO.....",
-      "......OOOO......",
-      ".......OO.......",
-    ]
-  },
-  wandaf: {
-    palette: { W:'#ececec', B:'#111111', K:'#333333', P:'#ff8a80', G:'#bdbdbd' },
-    map: [
-      ".GWW........WWG.",
-      ".WWWW......WWWW.",
-      ".WWWWWWWWWWWWWW.",
-      ".WWWWWWWWWWWWWW.",
-      ".WWBBWWWWWWBBWW.",
-      ".WWWWWWWWWWWWWW.",
-      ".WWWWWWKKWWWWWW.",
-      ".WWWWWKKKKWWWWW.",
-      ".WWWWWWWWWWWWWW.",
-      "..WWWWPPPPWWWW..",
-      "...WWWWPPWWWW...",
-      "....WWWWWWWW....",
-    ]
-  },
-  gaikottsu: {
-    palette: { W:'#f5f5f5', B:'#111111', K:'#333333' },
-    map: [
-      "....WWWWWWWW....",
-      "..WWWWWWWWWWWW..",
-      ".WWWWWWWWWWWWWW.",
-      ".WWWWWWWWWWWWWW.",
-      ".WWBBWWWWWWBBWW.",
-      ".WWBBWWWWWWBBWW.",
-      ".WWWWWWKKWWWWWW.",
-      "..WWWWWWWWWWWW..",
-      "..WKWKWKWKWKWW..",
-      "..WWWWWWWWWWWW..",
-      "...WWWWWWWWWW...",
-    ]
-  },
-  kumorina: {
-    palette: { P:'#ab47bc', W:'#ffffff', K:'#111111', D:'#6a1b9a', R:'#f48fb1' },
-    map: [
-      "..P..........P..",
-      "..P.P......P.P..",
-      "...P.PPPPPP.P...",
-      "..P.PPPPPPPP.P..",
-      "..PPPWWPPWWPPP..",
-      "..P.PWKPPWKP.P..",
+      "......YYYY......",
+      ".....YYYYYY.....",
+      "....YYYYYYYY....",
       "...PPPPPPPPPP...",
-      "..P.PPDDDDPP.P..",
-      "..P..PPPPPP..P..",
-      "..P...PPPP...P..",
-      "..P..P....P..P..",
-      "....P......P....",
+      "..PPPPPPPPPPPP..",
+      ".PPPPPPPPPPPPPP.",
+      ".PPKKPPPPPPKKPP.",
+      ".PPPPPPPPPPPPPP.",
+      ".PPPPPDDDDPPPPP.",
+      ".PPPPPDDDDPPPPP.",
+      "..PPPPPPPPPPPP..",
+      "...PPPPPPPPPP...",
+      "....PP.PP.PP....",
     ]
   },
-  slimeking: {
-    palette: { B:'#42a5f5', W:'#ffffff', K:'#111111', Y:'#ffd700', D:'#1565c0' },
+  iiwakemushi: {
+    palette: { G:'#8bc34a', D:'#33691e', K:'#111111', W:'#ffffff', R:'#ef5350' },
     map: [
-      "...Y..Y..Y..Y...",
-      "...YYYYYYYYYY...",
+      "..K..........K..",
+      "...K........K...",
+      "....GGGGGGGG....",
+      "..GGGGGGGGGGGG..",
+      ".GGWWGGGGGGWWGG.",
+      ".GGWKGGGGGGWKGG.",
+      ".GGGGGGGGGGGGGG.",
+      ".GGRRRRRRRRRRGG.",
+      ".GGRRWWRRWWRRGG.",
+      ".GGGRRRRRRRRGGG.",
+      "..GGGGGGGGGGGG..",
+      "..G..G....G..G..",
+    ]
+  },
+  purinmajin: {
+    palette: { C:'#ffd54f', B:'#795548', K:'#111111', W:'#ffffff', P:'#ffab91' },
+    map: [
       "....BBBBBBBB....",
       "...BBBBBBBBBB...",
       "..BBBBBBBBBBBB..",
-      ".BBWWBBBBBBWWBB.",
-      ".BBWKBBBBBBWKBB.",
-      ".BBBBBBBBBBBBBB.",
-      ".BBBBDDDDDDBBBB.",
-      ".BBBBBBBBBBBBBB.",
-      "..BBBBBBBBBBBB..",
-      ".BBBBBBBBBBBBBB.",
-      ".BB.BBB.BBB.BBB.",
+      "..CCCCCCCCCCCC..",
+      ".CCCCCCCCCCCCCC.",
+      ".CCKKCCCCCCKKCC.",
+      ".CPCCCCCCCCCCPC.",
+      ".CCCCCKKKKCCCCC.",
+      ".CCCCCCCCCCCCCC.",
+      "..CCCCCCCCCCCC..",
+      "..CC.CCC.CC.CC..",
+      ".C...C....C...C.",
     ]
   },
-  darkknight: {
-    palette: { K:'#37374f', R:'#ff1744', S:'#9fa8da', D:'#1a1a2e', W:'#ffffff' },
+  tsuzuki: {
+    palette: { F:'#8d6e63', S:'#4fc3f7', K:'#111111', W:'#ffffff', Y:'#ffee58' },
     map: [
-      ".S....KKKK....S.",
-      ".S...KKKKKK...S.",
-      ".S..KKKKKKKK..S.",
-      ".SS.KKRRKKRR.SS.",
-      ".S..KKKKKKKK..S.",
-      ".S..KKKKKKKK..S.",
-      ".S.KKKKKKKKKK.S.",
-      ".S.KKKDKKDKKK.S.",
-      ".S.KKKKKKKKKK.S.",
-      "...KKKKKKKKKK...",
-      "...KKK.KK.KKK...",
-      "...KK..KK..KK...",
+      "...K........K...",
+      "....K......K....",
+      ".....K....K.....",
+      "..FFFFFFFFFFFF..",
+      ".FFFFFFFFFFFFFF.",
+      ".FFSSSSSSSSSSFF.",
+      ".FFSSSSYYSSSSFF.",
+      ".FFSSSSYYSSSSFF.",
+      ".FFSSSSYYSSSSFF.",
+      ".FFSSSSSSSSSSFF.",
+      ".FFSSSSYYSSSSFF.",
+      ".FFSSSSSSSSSSFF.",
+      ".FFFFFFFFFFFFFF.",
+      "...FF......FF...",
     ]
   },
-  doragon: {
-    palette: { G:'#43a047', R:'#e53935', Y:'#ffee58', K:'#111111', W:'#ffffff', D:'#1b5e20' },
+  mangayama: {
+    palette: { R:'#ef5350', B:'#42a5f5', G:'#66bb6a', W:'#ffffff', K:'#111111' },
     map: [
-      "..R...........R.",
-      "..RR.........RR.",
-      "...GGGGGGGGGG...",
-      "..GGGGGGGGGGGG..",
-      ".GGYYGGGGGGYYGG.",
-      ".GGYKGGGGGGYKGG.",
+      "..RRRRRRRRRRRR..",
+      ".RRWWRRRRRRWWRR.",
+      ".RRWKRRRRRRWKRR.",
+      ".RRRRRRRRRRRRRR.",
+      "..WWWWWWWWWWWW..",
+      ".BBBBBBBBBBBBBB.",
+      ".BBBBBBBBBBBBBB.",
+      "..WWWWWWWWWWWW..",
       ".GGGGGGGGGGGGGG.",
       ".GGGGGGGGGGGGGG.",
-      "..GGWWWWWWWWGG..",
-      "..GGWKWKWKWKGG..",
-      "...GGGGGGGGGG...",
-      "..DG..GG..GG.D..",
+      "..WWWWWWWWWWWW..",
+    ]
+  },
+  sofa: {
+    palette: { S:'#26a69a', D:'#00695c', K:'#111111', W:'#ffffff' },
+    map: [
       ".DD..........DD.",
+      ".DSS........SSD.",
+      ".DSSSSSSSSSSSSD.",
+      ".DSSKKSSSSKKSSD.",
+      ".DSSSSSSSSSSSSD.",
+      ".DSSSKKKKKKSSSD.",
+      ".DSSSSSSSSSSSSD.",
+      ".DDDDDDDDDDDDDD.",
+      ".DSSSSSSSSSSSSD.",
+      ".DDDDDDDDDDDDDD.",
+      "..DD........DD..",
     ]
   },
-  maou: {
-    palette: { P:'#7b1fa2', Y:'#ffee58', K:'#111111', W:'#ffffff', R:'#d50000' },
+  unagi: {
+    palette: { U:'#546e7a', K:'#111111', W:'#ffffff', Y:'#ffe082' },
     map: [
-      ".R.....RR.....R.",
-      ".RR...RRRR...RR.",
-      "..RR..RRRR..RR..",
+      "....UUUUUUU.....",
+      "...UUUUUUUUU....",
+      "..UUWWUUWWUUU...",
+      "..UUWKUUWKUUU...",
+      "..UUUUUUUUUUU...",
+      "..UUUYYYYUUU....",
+      "...UUUYYUUU.....",
+      ".....UUYYUU.....",
+      "......UUYYUU....",
+      ".......UUYYUU...",
+      ".....UUUUUUUU...",
+      "....UUUUUUU.....",
+    ]
+  },
+  ashitayaru: {
+    palette: { A:'#b0bec5', K:'#111111', W:'#ffffff', T:'#ef5350', D:'#37474f' },
+    map: [
+      "....AAAAAAAA....",
+      "...AAAAAAAAAA...",
+      "..AAAAAAAAAAAA..",
+      "..AAKKAAAAKKAA..",
+      "..AAAAAAAAAAAA..",
+      "..AAAKKKKKKAAA..",
+      "...AAAAAAAAAA...",
+      "..DDDDDTTDDDDD..",
+      "..DDDDDTTDDDDD..",
+      "..DDDDDTTDDDDD..",
+      "..DDDDDDDDDDDD..",
+      "...DD......DD...",
+    ]
+  },
+  mendokusai: {
+    palette: { G:'#90a4ae', H:'#eceff1', K:'#111111', W:'#ffffff', D:'#546e7a' },
+    map: [
+      ".......HH.......",
+      "......HHHH......",
+      "....GGGGGGGGG...",
+      "..GGGGGGGGGGGG..",
+      ".GGGGGGGGGGGGGG.",
+      ".GGWKGGGGGGWKGG.",
+      ".GGKKGGGGGGKKGG.",
+      ".GGGGGGGGGGGGGG.",
+      ".GGGGGKKKKGGGGG.",
+      ".GGGGGGGGGGGGGG.",
+      "..GGGGGGGGGGGG..",
+      "..GG..GG..GG....",
+      "..GG..GG..GG....",
+    ]
+  },
+  suitoru: {
+    palette: { M:'#78909c', R:'#ff1744', K:'#111111', W:'#ffffff', D:'#37474f' },
+    map: [
+      "....MMMMMMMM....",
+      "...MMMMMMMMMM...",
+      "..MMRRMMMMRRMM..",
+      "..MMMMMMMMMMMM..",
+      "..MMMKKKKKKMMM..",
+      "..MMKKKKKKKKMM..",
+      "..MMKKKKKKKKMM..",
+      "..MMMKKKKKKMMM..",
+      "...MMMMMMMMMM...",
+      "..MMMMMMMMMMMM..",
+      ".MM.MM.MM.MM.MM.",
+      "..D...D..D...D..",
+    ]
+  },
+  shimekiryu: {
+    palette: { R:'#e53935', Y:'#ffee58', W:'#ffffff', K:'#111111', C:'#fffde7' },
+    map: [
+      "..Y...........Y.",
+      "..YY.........YY.",
+      "...RRRRRRRRRRR..",
+      "..RRRRRRRRRRRR..",
+      ".RRYKRRRRRRYKRR.",
+      ".RRRRRRRRRRRRRR.",
+      "..RRWWWWWWWWRR..",
+      "..RRWKWKWKWKRR..",
+      "...RRRRRRRRRR...",
+      "..RRCCCCCCCCRR..",
+      "..RCCCKKKCCCCR..",
+      "..RCCCCKCCCCCR..",
+      "...RRRRRRRRRR...",
+      "..RR..RR..RR....",
+    ]
+  },
+  atomawashi: {
+    palette: { P:'#6a1b9a', Y:'#ffd700', K:'#111111', W:'#ffffff', R:'#d50000' },
+    map: [
+      "...Y..Y..Y..Y...",
+      "...YYYYYYYYYY...",
       "..PPPPPPPPPPPP..",
       ".PPPPPPPPPPPPPP.",
-      ".PPYYPPPPPPYYPP.",
-      ".PPYKPPPPPPYKPP.",
+      ".PPWWWPPPPWWWPP.",
+      ".PPWKWPPPPWKWPP.",
+      ".PPWWWPPPPWWWPP.",
       ".PPPPPPPPPPPPPP.",
-      ".PPPWWWWWWWWPPP.",
-      ".PPPWKWKKWKWPPP.",
+      ".PPPPKKKKKKPPPP.",
       ".PPPPPPPPPPPPPP.",
       "..PPPPPPPPPPPP..",
-      "...PP..PP..PP...",
+      ".PPPPPPPPPPPPPP.",
+      ".PP.PP.PP.PP.PP.",
     ]
   },
 };
@@ -1210,68 +1211,95 @@ const questions = {
 // ENEMIES & BOSSES
 // ===================================================================
 const enemies = [
-  { id:'froggy', name:'フロッギー', hp:30, atk:8, exp:15, gold:6,
-    appear:'* フロッギーが ぴょんと とびだしてきた!',
-    lines:['* フロッギーは ゲコゲコ ないている。','* フロッギーは あしを ぷるぷる させている。','* あまい あめの においが する。'],
-    spare:'* フロッギーは うれしそうに ぴょんぴょん かえっていった。' },
-  { id:'whitty', name:'ホワッティ', hp:25, atk:6, exp:12, gold:5,
-    appear:'* ホワッティが ふわ〜っと あらわれた…',
-    lines:['* ホワッティは かなしそうに こっちを みている…','* ホワッティは「べつに いいけど…」と つぶやいた。','* しずかな よるの においが する。'],
-    spare:'* ホワッティは「ありがと…」と きえていった。' },
-  { id:'kinokon', name:'キノコン', hp:35, atk:10, exp:18, gold:8,
-    appear:'* キノコンが にょきっと はえてきた!',
-    lines:['* キノコンは ぼうしを ぴこぴこ うごかしている。','* キノコンの ほうしが キラキラ まっている。','* もりの においが する。'],
-    spare:'* キノコンは ぺこりと おじぎして つちに もどった。' },
-  { id:'medaman', name:'メダマン', hp:40, atk:12, exp:20, gold:10,
-    appear:'* メダマンが じ〜っと みつめてきた!',
-    lines:['* メダマンは まばたきを わすれている。','* メダマンと めが あった。きまずい。','* にらめっこの よかん…!'],
-    spare:'* メダマンは ウインクして ころがっていった。' },
-  { id:'vegetaro', name:'ベジタロウ', hp:45, atk:14, exp:22, gold:11,
-    appear:'* ベジタロウが つちから とびだした!',
-    lines:['* ベジタロウは「やさいも たべなさい」と いっている。','* ベジタロウは はっぱを ゆらしている。','* しんせんな においが する。'],
-    spare:'* ベジタロウは まんぞくして はたけに かえった。' },
-  { id:'wandaf', name:'ワンダフ', hp:55, atk:16, exp:28, gold:13,
-    appear:'* ワンダフが しっぽを ふって あらわれた!',
-    lines:['* ワンダフは ボールを なげてほしそうだ。','* ワンダフは くんくん においを かいでいる。','* なでたい…でも いまは バトルちゅうだ。'],
-    spare:'* ワンダフは「ワン!」と ほえて なついてきた。' },
-  { id:'gaikottsu', name:'ガイコッツ', hp:70, atk:18, exp:35, gold:16,
-    appear:'* ガイコッツが カタカタ わらいながら あらわれた!',
-    lines:['* ガイコッツは ホネのギャグを かんがえている。','* ガイコッツ「ホネのある やつだな!」','* カタカタ カタカタ…'],
-    spare:'* ガイコッツは サムズアップして さっていった。' },
-  { id:'kumorina', name:'クモリーナ', hp:80, atk:20, exp:38, gold:18,
-    appear:'* クモリーナが いとに ぶらさがって おりてきた!',
-    lines:['* クモリーナは クモのすで あみものを している。','* クモリーナは クッキーを うりたそうに している。','* あまい クッキーの においが する。'],
-    spare:'* クモリーナは クッキーを 1まい おいて かえった。' },
+  { id:'nemukedama', name:'ねむけだま', hp:30, atk:8, exp:15, gold:6,
+    appear:'* ねむけだまが ふわふわ ちかづいてきた。まぶたが おもくなる。',
+    atkName:'「あと5ふん」シャワー',
+    lines:['* ねむけだまは「あと 5ふんだけ…」と ささやいている。','* ねむけだまから おふとんの においが する。あぶない。','* よくみると ねむけだま じしんが いちばん ねむそうだ。'],
+    spare:'* ねむけだまは まくらを かかえて かえっていった。おやすみ。',
+    win:'* ねむけだまは ぱちっと めが さめて きえた!' },
+  { id:'iiwakemushi', name:'いいわけムシ', hp:25, atk:6, exp:12, gold:5,
+    appear:'* いいわけムシが あらわれた! くちが とても よく うごく。',
+    atkName:'いいわけマシンガン',
+    lines:['* いいわけムシ「だって きょうは なんか そういう ひだし…」','* いいわけムシ「おれ あしたから ほんき だすタイプなんで」','* いいわけムシは いいわけを あと3こ ストックしている。'],
+    spare:'* いいわけムシは「…すんませんした」と ちいさく あやまって かえった。',
+    win:'* いいわけムシは なにも いいかえせなかった!' },
+  { id:'purinmajin', name:'プリンまじん', hp:35, atk:10, exp:18, gold:8,
+    appear:'* プリンまじんが ぷるんと あらわれた! おいしそうだ。こまる。',
+    atkName:'カラメルのゆうわく',
+    lines:['* プリンまじん「べんきょうの まえに いっこ どう?」','* プリンまじんは ぷるぷる ゆれて ゆうわくしてくる。','* あまい においで しゅうちゅうりょくが けずられていく…!'],
+    spare:'* プリンまじんは「しゅくだいの あとで たべてね」と いって さっていった。',
+    win:'* プリンまじんは スプーンの けはいを かんじて にげさった!' },
+  { id:'tsuzuki', name:'テレビのつづき', hp:40, atk:12, exp:20, gold:10,
+    appear:'* テレビのつづきが あらわれた! いちばん いいところで「つづく」に なったままだ。',
+    atkName:'よこくへんビーム',
+    lines:['* テレビのつづきは「このあと すぐ!」と いっている。','* つづきが きになる… きになるが、いまは しゅくだいだ。','* だいじょうぶ。ろくがに のこっている。あわてるな。'],
+    spare:'* テレビのつづきは「ろくがで まってるよ」と いって きえていった。',
+    win:'* テレビのつづきは プツンと でんげんが きれた!' },
+  { id:'mangayama', name:'マンガのやま', hp:45, atk:14, exp:22, gold:11,
+    appear:'* マンガのやまが ずずんと あらわれた! ぜんぶ よみたい。',
+    atkName:'いっきよみプレス',
+    lines:['* やまの いちばん うえの まんがが ちょっとだけ ひらいている。わなだ。','* マンガのやま「つぎの かん、きになるでしょ」','* マンガのやまは くずれそうで くずれない。'],
+    spare:'* マンガのやまは ほんだなに きちんと ならんで まつことにした。',
+    win:'* マンガのやまは しおりを はさんで しずかになった!' },
+  { id:'sofa', name:'ねころびソファ', hp:55, atk:16, exp:28, gold:13,
+    appear:'* ねころびソファが のっそり あらわれた! すわったら まけだ。',
+    atkName:'だきこみクッション',
+    lines:['* ねころびソファ「ちょっとだけ よこに なりなよ」','* ソファは ぜつみょうな やわらかさを アピールしている。','* ソファの うえに リモコンが おいてある。かんぺきな わなだ。'],
+    spare:'* ねころびソファは「おわったら おいで」と いった。いいやつだった。',
+    win:'* ねころびソファは ただの ソファに もどった!' },
+  { id:'unagi', name:'ダラダラウナギ', hp:70, atk:18, exp:35, gold:16,
+    appear:'* ダラダラウナギが にょろにょろ あらわれた! つかみどころが ない。',
+    atkName:'ぬるぬるタイムどろぼう',
+    lines:['* ダラダラウナギは とくに なにも していない。それが こうげきだ。','* きがつくと 30ぷん たっていた。ウナギの しわざだ。','* ダラダラウナギは「まあ そのうちね」と いった。'],
+    spare:'* ダラダラウナギは かわに かえっていった。たまには いいやつだ。',
+    win:'* ダラダラウナギは しゃきっと まっすぐに なった!' },
+  { id:'ashitayaru', name:'あしたやるさん', hp:80, atk:20, exp:38, gold:18,
+    appear:'* あしたやるさんが あらわれた! おとなの すがたを した あくまだ。',
+    atkName:'「あしたから ほんき」ビーム',
+    lines:['* あしたやるさん「あしたって いつも あるから すごいよね」','* あしたやるさんの てちょうは まっしろだ。','* あしたやるさんは 30ねんかん「あした」と いいつづけている らしい。'],
+    spare:'* あしたやるさんは「…きょう、やってみるよ」と なみだぐんだ。',
+    win:'* あしたやるさんは「きょうやるさん」に てんしょくした!' },
 ];
 
 const bosses = [
-  { id:'slimeking', name:'スライムキング', hp:100, atk:20, exp:60, gold:50, stage:5,
-    appear:'* スライムキングが あらわれた!\nすべてを のみこむ ぬるぬるだ!',
-    lines:['* スライムキングは ぷるぷる ふるえている。','* おうかんが ずり おちそうだ。'],
-    spare:'* スライムキングは おうかんを かたむけて さっていった。' },
-  { id:'darkknight', name:'ダークナイト', hp:180, atk:30, exp:100, gold:90, stage:10,
-    appear:'* ダークナイトが あらわれた!\nやみの けんが うなる!',
-    lines:['* ダークナイトは しずかに かまえている。','* よろいの おくで あかい めが ひかる。'],
-    spare:'* ダークナイトは けんを おさめ、しずかに きえた。' },
-  { id:'doragon', name:'ドラゴン', hp:280, atk:40, exp:150, gold:140, stage:15,
-    appear:'* ドラゴンが あらわれた!\nほのおの いきが せまる!',
-    lines:['* ドラゴンの はねが かぜを おこしている。','* ドラゴンは のどの おくで ほのおを ためている。'],
-    spare:'* ドラゴンは おおきく はばたき、そらへ きえた。' },
-  { id:'maou', name:'まおう', hp:400, atk:55, exp:250, gold:250, stage:20,
-    appear:'* まおうが あらわれた!\nせかいが やみに つつまれる…',
-    lines:['* まおうは あんこくの オーラを まとっている。','* まおう「よくぞ ここまで きたな…」'],
-    spare:'* まおうは「…おもしろい ニンゲンだ」と わらった。' },
+  { id:'mendokusai', name:'めんどくサイ', hp:100, atk:20, exp:60, gold:50, stage:5,
+    appear:'* あとまわし星人の せんぽう めんどくサイが あらわれた!\nぜんしんから「めんどくさい」が あふれでている!',
+    atkName:'ためいきハリケーン',
+    lines:['* めんどくサイ「あー なんか もう ぜんぶ めんどくサイ」','* めんどくサイは たちあがるのも めんどくさそうだ。'],
+    spare:'* めんどくサイは「みのがされるのも めんどくサイ…」と いいながら かえっていった。',
+    win:'* めんどくサイは「やれば できるじゃん おれ」と つぶやいて きえた!' },
+  { id:'suitoru', name:'ヤルキスイトール', hp:180, atk:30, exp:100, gold:90, stage:10,
+    appear:'* やるきそうじき ヤルキスイトールが あらわれた!\nこどもの やるきを すいとる きかいだ!',
+    atkName:'やるきバキューム',
+    lines:['* ヤルキスイトールの ゴミパックは せかいじゅうの やるきで まんぱんだ。','* ヤルキスイトールは ゴウンゴウンと うなっている。'],
+    spare:'* ヤルキスイトールは ぎゃくかいてんして、すいとった やるきを ぜんぶ かえしてくれた!',
+    win:'* ヤルキスイトールが はれつして、やるきが せかいに あふれだした!' },
+  { id:'shimekiryu', name:'シメキリュウ', hp:280, atk:40, exp:150, gold:140, stage:15,
+    appear:'* しめきりの りゅう シメキリュウが あらわれた!\nおなかの とけいが カチカチ なっている!',
+    atkName:'カウントダウンブレス',
+    lines:['* シメキリュウ「しめきりは まもるものではない。おいかけてくるものだ」','* とけいの おとが だんだん はやくなっている きがする…!'],
+    spare:'* シメキリュウは とけいを 5ふんだけ もどしてくれた。やさしい。',
+    win:'* シメキリュウの とけいが やさしい おとに かわった!' },
+  { id:'atomawashi', name:'アトマワシ大王', hp:400, atk:55, exp:250, gold:250, stage:20,
+    appear:'* あとまわし星人の おうさま アトマワシ大王が あらわれた!\nちきゅうじゅうの「あとでやる」が うずを まいている!',
+    atkName:'あとまわしの だいうず',
+    lines:['* アトマワシ大王「あとで あとで… ぜんぶ あとで いいのだ…」','* 大王の マントには せかいじゅうの やりのこしが ぬいこまれている。'],
+    spare:'* アトマワシ大王「…『いまやる』とは、そんなに つよいのか」\nおうは しずかに うちゅうへ かえっていった。',
+    win:'* アトマワシ大王は もとの ちいさな「あとでやろう」に もどった。\nそれは きみの ポケットで しずかに ねむった。' },
 ];
 
 // ===================================================================
 // ITEMS
 // ===================================================================
 const ITEMS = {
-  candy: { name:'モンスターキャンディ', desc:'HP +15', heal:15, price:10 },
-  toast: { name:'こんがりトースト', desc:'HP +40', heal:40, price:25 },
-  pie:   { name:'バタースコッチパイ', desc:'HP ぜんかいふく', heal:'full', price:60 },
+  candy: { name:'おかあさんの おにぎり', icon:'&#127833;', desc:'HP +15', heal:15, price:10,
+    useMsg:'おにぎりを たべた! なかみは しゃけだった。あたりだ。' },
+  toast: { name:'ばあちゃんの カレー', icon:'&#127835;', desc:'HP +40', heal:40, price:25,
+    useMsg:'カレーを たべた! ばあちゃんの あじが した。ちからが わく!' },
+  pie:   { name:'おふろあがりの プリン', icon:'&#127854;', desc:'HP ぜんかいふく', heal:'full', price:60,
+    useMsg:'プリンを たべた! ちきゅうが すくわれる あじが する!' },
 };
-const BADGE = { name:'ゆうきのバッジ', desc:'ATK +2 (ずっと)', price:100 };
+const BADGE = { name:'けずりたての えんぴつ', icon:'&#9999;&#65039;', desc:'ATK +2 (ずっと)', price:100 };
 
 // ===================================================================
 // GAME STATE
@@ -1400,7 +1428,7 @@ function updateSavedStatus() {
     <div style="display:flex;justify-content:space-between;align-items:center;">
       <span class="font-jp" style="font-size:15px;">
         <svg class="soul-heart" viewBox="0 0 24 24" style="width:12px;height:12px;vertical-align:middle;margin-right:4px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        ゆうしゃ ${nm}  LV ${state.playerLevel}
+        しゅくだいがかり ${nm}  LV ${state.playerLevel}
       </span>
       <span class="font-pixel" style="font-size:9px;"><span class="gold-text">${state.gold} G</span></span>
     </div>
@@ -1415,11 +1443,11 @@ function updateSavedStatus() {
 // INTRO STORY & NAME
 // ===================================================================
 const INTRO_SLIDES = [
-  'むかしむかし。\nちじょうには ニンゲンと\nモンスターが すんでいた。',
-  'あるひ、『もんだい』という\nふしぎな まほうが\nせかいじゅうに あふれだした。',
-  'モンスターたちは もんだいに\nこたえないと かてない\nせかいに なってしまった。',
-  'そこに ひとりの ゆうしゃが\nたちあがった…\n\nそう、きみだ。',
-  'ただしい こたえは 「けつい」となり、\nつるぎよりも つよい ちからになる。\n\nさあ、ぼうけんの はじまりだ!',
+  'ある よるの こと。\nせかいじゅうの テレビが\nきゅうに こう つたえた。',
+  '「うちゅうから あとまわし星人が\nせめてきました。やつらは 子どもの\n『あとでやる』を たべて そだちます」',
+  'あとまわし星人が ふえると、ちきゅうは\n「めんどくさい」に つつまれて\nとまってしまう。じつに こまる。',
+  'せかいの えらい ひとたちは かんがえた。\nそして きづいてしまった。\n「しゅくだいを ちゃんとやる子」だけが\nやつらに かてるのだと。',
+  'というわけで、ちきゅうの うんめいは\nきみに きまった。りゆうは\n「なんとなく つよそうだから」だそうだ。\n\n…がんばって。',
 ];
 let introIdx = 0;
 function startIntro() {
@@ -1499,7 +1527,13 @@ function showZukan() {
 // ===================================================================
 // SHOP
 // ===================================================================
-const SHOP_LINES = ['いらっしゃいませ にゃ!', 'きょうも べんきょう がんばってる にゃ?', 'パイは ぜんかいふくで おとくだ にゃ〜', 'ゴールドは モンスターとの バトルで もらえる にゃ!'];
+const SHOP_LINES = [
+  'いらっしゃい。ぼくは あとまわし星人を やめた テンイン星人。',
+  'はたらくのって わりと たのしい。ないしょだよ。',
+  'プリンは おふろあがりに たべると ちきゅうが すくわれる あじが するよ。',
+  'ゴールドは てきを たおすか、ともだちに なると もらえるよ。',
+  'えんぴつは けずりたてが いちばん つよい。これは うちゅうの じょうしきだ。',
+];
 function showShop() {
   music.playSfx('select');
   document.getElementById('shopMessage').textContent = SHOP_LINES[Math.floor(Math.random()*SHOP_LINES.length)];
@@ -1515,14 +1549,14 @@ function renderShop() {
     const btn = document.createElement('button');
     btn.className = 'shop-item';
     btn.disabled = state.gold < it.price;
-    btn.innerHTML = `<span>&#127853; ${it.name}<span style="color:var(--gray);font-size:12px;"> … ${it.desc} (もってる: ${state.items[key]||0})</span></span><span class="gold-text">${it.price} G</span>`;
+    btn.innerHTML = `<span>${it.icon} ${it.name}<span style="color:var(--gray);font-size:12px;"> … ${it.desc} (もってる: ${state.items[key]||0})</span></span><span class="gold-text">${it.price} G</span>`;
     btn.onclick = () => buyItem(key);
     wrap.appendChild(btn);
   });
   const badgeBtn = document.createElement('button');
   badgeBtn.className = 'shop-item';
   badgeBtn.disabled = state.gold < BADGE.price;
-  badgeBtn.innerHTML = `<span>&#127941; ${BADGE.name}<span style="color:var(--gray);font-size:12px;"> … ${BADGE.desc}</span></span><span class="gold-text">${BADGE.price} G</span>`;
+  badgeBtn.innerHTML = `<span>${BADGE.icon} ${BADGE.name}<span style="color:var(--gray);font-size:12px;"> … ${BADGE.desc}</span></span><span class="gold-text">${BADGE.price} G</span>`;
   badgeBtn.onclick = buyBadge;
   wrap.appendChild(badgeBtn);
 }
@@ -1532,7 +1566,7 @@ function buyItem(key) {
   state.gold -= it.price;
   state.items[key] = (state.items[key] || 0) + 1;
   music.playSfx('buy');
-  document.getElementById('shopMessage').textContent = `${it.name}を おかいあげ ありがと にゃ!`;
+  document.getElementById('shopMessage').textContent = `まいど。${it.name}だね。ちきゅうを たのむよ。`;
   saveGame();
   renderShop();
 }
@@ -1541,7 +1575,7 @@ function buyBadge() {
   state.gold -= BADGE.price;
   state.playerAtk += 2;
   music.playSfx('levelup');
-  document.getElementById('shopMessage').textContent = `ATKが 2 あがった にゃ! (いまの ATK: ${state.playerAtk})`;
+  document.getElementById('shopMessage').textContent = `いいおとで けずれた。ATKが 2 あがったよ。(いまの ATK: ${state.playerAtk})`;
   saveGame();
   renderShop();
 }
@@ -1742,7 +1776,7 @@ function selectAnswer(choiceIdx) {
     state.combo = 0;
     updateBattleUI();
     music.playSfx('wrong');
-    setMessage(`ざんねん… こたえは「${currentQuestion.c[currentQuestion.a]}」。てきの こうげきが くる! よけろ!!`, true);
+    setMessage(`ざんねん… こたえは「${currentQuestion.c[currentQuestion.a]}」。${state.enemy.name}の ${state.enemy.atkName || 'こうげき'}! よけろ!!`, true);
     hideAllBoxModes();
     setTimeout(() => startDodge(), 1100);
   }
@@ -1959,7 +1993,7 @@ function endDodge() {
   const perHit = Math.max(2, Math.ceil(state.enemy.atk * 0.5));
   const dmg = dodge.hits * perHit;
   if (dodge.hits === 0) {
-    setMessage('すごい! かんぺきに よけた! ノーダメージ!', true);
+    setMessage('かんぺきに よけた! ノーダメージ! ちきゅうが ちょっと よろこんだ。', true);
     music.playSfx('correct');
   } else {
     setMessage(`${dodge.hits}かい あたった… -${dmg} HP`, true);
@@ -2071,7 +2105,7 @@ function handleVictory() {
     victoryTitle.style.fontSize = '14px';
   }
   document.getElementById('victorySprite').innerHTML = '';
-  document.getElementById('victoryMsg').textContent = `${state.enemy.name}を たおした!`;
+  document.getElementById('victoryMsg').textContent = (state.enemy.win || `* ${state.enemy.name}を たおした!`).replace(/^\* /, '');
   document.getElementById('expGained').textContent = expGain;
   document.getElementById('goldGained').textContent = goldGain;
 
@@ -2131,7 +2165,7 @@ function openItems() {
     const it = ITEMS[key];
     const btn = document.createElement('button');
     btn.className = 'item-row';
-    btn.innerHTML = `<span>&#127853; ${it.name} <span style="color:var(--gray);">x${cnt}</span></span><span style="color:var(--green);">${it.desc}</span>`;
+    btn.innerHTML = `<span>${it.icon} ${it.name} <span style="color:var(--gray);">x${cnt}</span></span><span style="color:var(--green);">${it.desc}</span>`;
     btn.onclick = () => useItem(key);
     box.appendChild(btn);
   });
@@ -2156,7 +2190,7 @@ function useItem(key) {
   const heal = it.heal === 'full' ? state.playerMaxHp : it.heal;
   state.playerHp = Math.min(state.playerMaxHp, state.playerHp + heal);
   music.playSfx('heal');
-  setMessage(`${it.name}を たべた! HPが かいふくした!`, true);
+  setMessage(it.useMsg || `${it.name}を たべた! HPが かいふくした!`, true);
   saveGame();
   updateBattleUI();
   closeItems();
