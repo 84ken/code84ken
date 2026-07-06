@@ -108,6 +108,9 @@
     .pill-nav-shop:hover { background:#A30000; border-color:#A30000; }
     .btn-ichigo { background:#CC0000; color:#fff; border:1.5px solid #CC0000; border-radius:999px; padding:14px 32px; font-weight:600; letter-spacing:0.04em; transition:all 0.2s ease; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
     .btn-ichigo:hover { background:#fff; color:#CC0000; }
+    .img-zoom { overflow:hidden; }
+    .img-zoom img { transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .img-zoom:hover img { transform:scale(1.05); }
   </style>
 </head>
 <body>
@@ -239,6 +242,102 @@
             <p class="text-sm font-medium text-ink">おつまみに</p>
           </li>
         </ul>
+      </div>
+
+      <!-- レシピ -->
+      <div class="mt-24">
+        <p class="label-en text-ichigo text-center mb-3">RECIPE</p>
+        <h3 class="h-display text-2xl sm:text-3xl text-ink text-center mb-14">いちご塩の、おいしい食べ方。</h3>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          <!-- レシピ① いちご塩おにぎり -->
+          <article class="bg-white">
+            <div class="aspect-[4/3] img-zoom bg-base">
+              <img src="images/recipes/recipe-onigiri.jpg" alt="いちご塩おにぎり" class="w-full h-full object-cover" loading="lazy">
+            </div>
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center justify-between mb-4">
+                <p class="label-en text-mute">RECIPE 01</p>
+                <p class="text-xs text-mute font-medium"><span class="text-ichigo">★</span><span class="text-ichigo/25">★★</span>　5分</p>
+              </div>
+              <h4 class="text-lg sm:text-xl font-medium text-ink mb-5">いちご塩おにぎり</h4>
+              <p class="text-xs font-medium text-mute mb-2">材料</p>
+              <p class="text-sm text-mute leading-loose mb-6">ごはん1合 ／ いちご塩 小さじ1/2 ／ お好みの具材</p>
+              <p class="text-xs font-medium text-mute mb-3">作り方</p>
+              <ol class="space-y-3 mb-6">
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-ichigo/15 text-ichigo text-xs font-semibold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                  <p class="text-sm text-mute leading-relaxed">ごはんを炊く</p>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-ichigo/15 text-ichigo text-xs font-semibold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                  <p class="text-sm text-mute leading-relaxed">手を水で濡らし、いちご塩を手のひらに広げる</p>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-ichigo/15 text-ichigo text-xs font-semibold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                  <p class="text-sm text-mute leading-relaxed">ごはんをのせ、やさしく握る</p>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-ichigo/15 text-ichigo text-xs font-semibold flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+                  <p class="text-sm text-mute leading-relaxed">お好みで、仕上げにいちご塩をひとふり</p>
+                </li>
+              </ol>
+              <div class="bg-base p-4">
+                <p class="text-xs font-semibold text-ichigo mb-1">ワンポイント</p>
+                <p class="text-sm text-mute leading-relaxed">塩むすびが一番のおすすめ。いちごの香りをダイレクトに楽しめます。お漬物とも好相性。</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- レシピ② 天ぷら×いちご塩 -->
+          <article class="bg-white">
+            <div class="aspect-[4/3] img-zoom bg-base">
+              <img src="images/recipes/recipe-tempura.jpg" alt="白身魚の天ぷらといちご塩" class="w-full h-full object-cover" loading="lazy">
+            </div>
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center justify-between mb-4">
+                <p class="label-en text-mute">RECIPE 02</p>
+                <p class="text-xs text-mute font-medium"><span class="text-ichigo">★★</span><span class="text-ichigo/25">★</span>　20分</p>
+              </div>
+              <h4 class="text-lg sm:text-xl font-medium text-ink mb-5">天ぷら×いちご塩</h4>
+              <p class="text-xs font-medium text-mute mb-2">材料</p>
+              <p class="text-sm text-mute leading-loose mb-6">お好みの天ぷら（白身魚・エビ・野菜）／ いちご塩 適量</p>
+              <p class="text-xs font-medium text-mute mb-3">作り方</p>
+              <ol class="space-y-3 mb-6">
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-ichigo/15 text-ichigo text-xs font-semibold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                  <p class="text-sm text-mute leading-relaxed">天ぷらを揚げる</p>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-ichigo/15 text-ichigo text-xs font-semibold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                  <p class="text-sm text-mute leading-relaxed">器に盛る</p>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-ichigo/15 text-ichigo text-xs font-semibold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                  <p class="text-sm text-mute leading-relaxed">いちご塩を小皿に添える</p>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-ichigo/15 text-ichigo text-xs font-semibold flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+                  <p class="text-sm text-mute leading-relaxed">つけながらいただく</p>
+                </li>
+              </ol>
+              <div class="bg-base p-4">
+                <p class="text-xs font-semibold text-ichigo mb-1">ワンポイント</p>
+                <p class="text-sm text-mute leading-relaxed">白身魚との相性が最高。淡白な味わいに、いちごの甘い香りがふわりと広がります。かき揚げにもぜひ。</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Coming Soon -->
+        <div class="mt-10 bg-base border border-dashed border-ichigo/40 p-8 sm:p-10 text-center">
+          <p class="label-en text-ichigo mb-4">MORE RECIPES COMING SOON</p>
+          <ul class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-sm text-mute font-medium">
+            <li>🍨 バニラアイス</li>
+            <li>🍅 カプレーゼ</li>
+            <li>🔥 焼きマシュマロ</li>
+          </ul>
+        </div>
       </div>
 
       <!-- 取扱店舗 -->
