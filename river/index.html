@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>川の国 流域アトラス — リバサポ新サービス構想プロトタイプ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
+          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
+          800:'#13318d',900:'#0e266a',950:'#07194e'
+        }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif']
+      }
+    }
+  }
+}
+</script>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<style>
+.text-body { color: #3d4b5f; }
+html, body { height: 100%; margin: 0; }
+.maplibregl-popup-content {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+  padding: 14px 16px;
+  font-family: 'Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
+  max-width: 280px;
+}
+.maplibregl-popup-close-button { font-size: 16px; padding: 4px 8px; color: #64748b; }
+input[type="range"] { accent-color: #2b70ef; }
+@media (max-width: 768px) {
+  #app { flex-direction: column; }
+  #sidebar { width: 100%; height: 45vh; order: 2; border-right: none; border-top: 1px solid #e2e8f0; }
+  #map { height: 55vh; }
+}
+</style>
+</head>
+<body>
+<div id="app" class="flex h-screen bg-gray-50">
+
+  <!-- サイドバー -->
+  <aside id="sidebar" class="w-80 bg-white border-r border-slate-200 flex-shrink-0 flex flex-col h-full overflow-y-auto">
+    <!-- Header -->
+    <div class="px-5 pt-5 pb-4 border-b border-slate-200">
+      <p class="text-xs font-medium text-primary-500 tracking-wider uppercase">Saitama River Supporters — Concept Prototype</p>
+      <h1 class="text-xl font-bold text-slate-900 mt-1">川の国 流域アトラス</h1>
+      <p class="text-xs font-medium text-slate-500 mt-1">上流に誇りと元気を、下流に安全と癒しを</p>
+      <p class="text-xs text-body mt-2 leading-relaxed">埼玉県の流域・源流・高低差・ダム堰・生きものを3D地形で俯瞰するプロトタイプ。ドラッグで回転（右ドラッグ/Ctrl+ドラッグでチルト）。</p>
+    </div>
+
+    <!-- 視点プリセット -->
+    <div class="px-5 py-4 border-b border-slate-200 leading-normal">
+      <h2 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-3">流域をめぐる視点</h2>
+      <div class="grid grid-cols-1 gap-2" id="viewButtons">
+        <button data-view="all" class="inline-flex items-center gap-2 h-10 px-4 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-700 cursor-pointer">県全体を俯瞰する</button>
+        <button data-view="genryu" class="inline-flex items-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">荒川源流（甲武信ヶ岳）へ</button>
+        <button data-view="dams" class="inline-flex items-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">秩父のダム群を見る</button>
+        <button data-view="tone" class="inline-flex items-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">利根大堰（見沼代用水の起点）</button>
+        <button data-view="akigase" class="inline-flex items-center gap-2 h-10 px-4 text-sm font-medium bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-gray-50 cursor-pointer">秋ヶ瀬・田島ケ原（低地の自然）</button>
+      </div>
+    </div>
+
+    <!-- 川図鑑 -->
+    <div class="px-5 py-4 border-b border-slate-200 leading-normal">
+      <h2 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-3">川図鑑で読む</h2>
+      <div class="flex flex-wrap gap-2" id="zukanButtons"></div>
+      <p class="text-xs text-slate-500 mt-2.5">リバサポ・マガジン「川図鑑」掲載の川。クリックでその川へ飛び、図鑑データを表示します。</p>
+    </div>
+
+    <!-- レイヤー -->
+    <div class="px-5 py-4 border-b border-slate-200 leading-normal">
+      <h2 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-3">レイヤー</h2>
+      <div class="space-y-2.5 text-sm text-slate-700">
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglRelief" checked class="w-4 h-4 rounded border-slate-300"> 色別標高図（高低差）</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglHill" checked class="w-4 h-4 rounded border-slate-300"> 陰影起伏</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglFlood" class="w-4 h-4 rounded border-slate-300"> 洪水浸水想定区域</label>
+        <div class="border-t border-slate-200 my-2"></div>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglDam" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#2b70ef"></span> ダム・堰・治水施設</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglBio" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#10b981"></span> 流域の生きもの</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglSrc" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#f59e0b"></span> 源流ポイント</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglLearn" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#8b5cf6"></span> 学びの拠点</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglField" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#f43f5e"></span> リバサポ重点フィールド</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglZukan" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#13318d"></span> 川図鑑</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglQuest" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#06b6d4"></span> クエストスポット</label>
+      </div>
+    </div>
+
+    <!-- 地形強調 -->
+    <div class="px-5 py-4 border-b border-slate-200 leading-normal">
+      <h2 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-3">地形の強調（<span id="exagVal">1.5</span>倍）</h2>
+      <input type="range" id="exag" min="0" max="4" step="0.1" value="1.5" class="w-full">
+      <p class="text-xs text-slate-500 mt-1.5">0にすると平面表示。強調すると外秩父の山並みと低地の高低差が際立ちます。</p>
+    </div>
+
+    <!-- コンセプトノート -->
+    <div class="px-5 py-4 mt-auto">
+      <div class="flex items-start gap-3 p-4 bg-primary-50 border border-primary-200 text-primary-800 rounded-lg">
+        <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <p class="text-xs leading-relaxed">掲載ポイントは構想検討用のサンプルです（位置は概略）。川図鑑・クエストスポットはリバサポ公式サイトの公開情報をもとに作成。本開発では国土数値情報（河川・ダム）、環境省いきものログ、県レッドデータブック等の実データを流し込みます。</p>
+      </div>
+      <p class="text-[10px] text-slate-400 mt-3 leading-relaxed">地図タイル: 国土地理院（淡色地図・色別標高図・陰影起伏・標高タイル）／ハザードマップポータルサイト（洪水浸水想定）</p>
+    </div>
+  </aside>
+
+  <!-- 地図 -->
+  <div id="map" class="flex-1 h-full"></div>
+</div>
+
+<script>
+// ===== 地理院DEM(dem_png) → Terrain-RGB 変換プロトコル =====
+maplibregl.addProtocol('gsidem', (params) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width; canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const d = imageData.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const r = d[i], g = d[i+1], b = d[i+2];
+        let h = 0;
+        if (!(r === 128 && g === 0 && b === 0)) {
+          const x = r * 65536 + g * 256 + b;
+          h = x < 8388608 ? x * 0.01 : (x - 16777216) * 0.01;
+        }
+        const v = Math.max(0, Math.round((h + 10000) * 10)); // mapbox terrain-rgb encode
+        d[i]   = Math.floor(v / 65536);
+        d[i+1] = Math.floor((v % 65536) / 256);
+        d[i+2] = v % 256;
+      }
+      ctx.putImageData(imageData, 0, 0);
+      canvas.toBlob((blob) => blob.arrayBuffer().then((buf) => resolve({ data: buf })));
+    };
+    img.onerror = () => reject(new Error('tile not found'));
+    img.src = params.url.replace('gsidem://', '');
+  });
+});
+
+// ===== サンプルデータ（構想検討用・位置は概略） =====
+const POINTS = { type: 'FeatureCollection', features: [
+  // ダム・堰・治水施設
+  pt(138.919, 35.952, 'dam', '二瀬ダム（秩父湖）', '荒川本流最上流の多目的ダム。ここから県土を貫く173kmの旅が始まる。'),
+  pt(138.866, 35.937, 'dam', '滝沢ダム（奥秩父もみじ湖）', '中津川の多目的ダム。ループ橋（雷電廿六木橋）とセットで土木観光の名所。'),
+  pt(139.069, 35.966, 'dam', '浦山ダム（秩父さくら湖）', '重力式では国内屈指の堤高156m。堤体内部を見学できる。'),
+  pt(138.968, 36.021, 'dam', '合角ダム（西秩父桃湖）', '吉田川の県営多目的ダム。'),
+  pt(139.150, 35.881, 'dam', '有間ダム（名栗湖）', '入間川水系初の県営ダム。カヌー工房やハイキングの拠点。'),
+  pt(139.184, 36.107, 'dam', '玉淀ダム（寄居町）', '荒川本流の発電用ダム。直下に川の博物館。'),
+  pt(139.500, 36.192, 'dam', '利根大堰（行田市）', '利根川から武蔵水路・見沼代用水へ取水する巨大堰。首都圏の水がめの入口。'),
+  pt(139.580, 35.840, 'dam', '秋ヶ瀬取水堰（さいたま市/志木市）', '荒川下流の取水堰。東京・埼玉の水道水源のひとつ。'),
+  pt(139.710, 36.093, 'dam', '権現堂調節池（行幸湖）', '中川水系の調節池。桜堤で有名な権現堂堤に隣接。'),
+  pt(139.417, 35.766, 'dam', '山口貯水池（狭山湖）', '多摩川の水を貯める人造湖。狭山丘陵の生態系の核。'),
+  pt(139.798, 35.997, 'dam', '首都圏外郭放水路（春日部市）', '「地下神殿」。中川・綾瀬川流域の洪水を江戸川へ流す世界最大級の地下放水路。'),
+  // 生きもの
+  pt(139.360, 36.140, 'bio', 'ムサシトミヨ（熊谷市・元荒川源流）', '世界で唯一、ここにしか生息しない魚。湧水環境の保全が生命線。県の魚。'),
+  pt(139.361, 36.065, 'bio', 'ミヤコタナゴ（比企丘陵）', '国指定天然記念物の淡水魚。谷津の細流とマツカサガイに依存する。'),
+  pt(139.617, 35.852, 'bio', 'サクラソウ（田島ケ原）', '荒川の氾濫原に残る自生地。国の特別天然記念物。洪水がつくる自然の象徴。'),
+  pt(139.790, 35.890, 'bio', 'シラコバト（県東部）', '県民の鳥。中川流域の農地・屋敷林とともに生きる。'),
+  pt(139.520, 36.065, 'bio', 'コウノトリ（鴻巣市）', '放鳥・定着の取り組みが進む。田んぼと川がつながる流域環境の指標種。'),
+  pt(138.800, 35.950, 'bio', 'カジカ・イワナ（荒川源流域）', '奥秩父の渓流に棲む冷水魚。源流の森の健全さのバロメーター。'),
+  pt(139.312, 35.898, 'bio', 'アユ（高麗川・巾着田）', '清流の女王。遡上できる川の連続性（堰の魚道）が鍵。'),
+  pt(139.303, 36.032, 'bio', 'ゲンジボタル（嵐山・都幾川流域）', '槻川・都幾川の里川環境に生息。水質と岸辺の暗さが命。'),
+  pt(139.550, 35.800, 'bio', 'カワセミ（県南の中小河川）', '柳瀬川・黒目川など都市河川再生のシンボル。'),
+  // 源流
+  pt(138.729, 35.907, 'src', '荒川源流点（甲武信ヶ岳 2,475m）', '埼玉・山梨・長野の県境。一滴がさいたま市を経て東京湾へ。'),
+  pt(139.133, 35.933, 'src', '入間川源流（大持山周辺）', '名栗の山々から入間川が生まれる。'),
+  pt(139.232, 35.960, 'src', '高麗川源流（刈場坂峠周辺）', '外秩父の尾根から高麗川・越辺川へ。'),
+  // 学びの拠点
+  pt(139.194, 36.110, 'learn', '埼玉県立 川の博物館（かわはく）', '荒川を軸にした川の総合博物館。日本一の大水車と荒川大模型173。'),
+  pt(139.798, 35.996, 'learn', '龍Q館（首都圏外郭放水路 地底探検ミュージアム）', '地下神殿の見学拠点。流域治水を体感できる。'),
+  // リバサポ重点フィールド
+  pt(139.075, 35.995, 'field', 'ARAKAWAリバーフィールド（秩父市）', '2026年オープンの体験型リバーパーク。教育・防災・スポーツ合宿・関係人口の4層で川と人をつなぐ社会実証。'),
+  pt(139.130, 36.070, 'field', '三沢川プロジェクト（皆野町）', '廃校となる三沢小学校を起点にした「リバーウォーカブル・モデル地区」第1号構想。'),
+  // 川図鑑（リバサポ・マガジン）
+  pt(139.255, 35.988, 'zukan', '都幾川', 'カワセミ（ときがわ町の鳥）が川面を飛ぶ「人との距離感がとても近い川」。三波渓谷の水遊び、鞍掛橋などの冠水橋、桜堤と菜の花。',
+    { stats: '荒川水系・一級河川｜延長35.4km｜流域面積161.4km²', link: 'https://saitama-riversupporters.pref.saitama.lg.jp/magazine/picture-book-tokigawa/' }),
+  pt(139.383, 36.144, 'zukan', '星川', '熊谷の市街地を流れる小さな川。名勝・星溪園を起点に「水と緑と彫刻のプロムナード」が続く。星川夜市やとうろう流しなど暮らしの延長の水辺。',
+    { stats: '利根川水系・一級河川｜延長11.52km｜流域面積23.74km²', link: 'https://saitama-riversupporters.pref.saitama.lg.jp/magazine/picture-book-hoshikawa/' }),
+  pt(139.590, 35.812, 'zukan', '黒目川', 'アユが戻った清流。黒目川桜堤の花まつり、妙音沢の新種桜「妙音沢旗桜」、8月に一面に咲くキツネノカミソリ。グリーントレイルで散策。',
+    { stats: '荒川水系・一級河川｜延長17.3km｜流域面積37.6km²', link: 'https://saitama-riversupporters.pref.saitama.lg.jp/magazine/picture-book-kuromegawa/' }),
+  pt(139.018, 36.115, 'zukan', '神流川', 'アユ繁殖の北限。国の名勝・天然記念物「三波石峡」と、堤頂長605mで日本最長の下久保ダム（神流湖・ダム湖百選）。神流湖には25種の魚。',
+    { stats: '利根川水系・一級河川｜延長87.4km｜流域面積407km²', link: 'https://saitama-riversupporters.pref.saitama.lg.jp/magazine/picture-book-kannagawa/' }),
+  pt(139.533, 35.875, 'zukan', 'びん沼川', '旧荒川の名残をとどめる川。ヘラブナ釣りの聖地。びん沼自然公園の展望台から田園風景と富士山を一望。カブトムシの森・メジロの森も。',
+    { stats: '荒川水系・一級河川｜延長5.9km｜流域面積11.66km²', link: 'https://saitama-riversupporters.pref.saitama.lg.jp/magazine/picture-book-binnumakawa/' }),
+]};
+
+// リバサポ・クエスト対象スポット（2026.7.7〜2027.2.15 / 位置は概略）
+const QUEST_URL = 'https://saitama-riversupporters.pref.saitama.lg.jp/project/quest/';
+[
+  [139.030, 36.128, '道のオアシス 神泉', '神川町'],
+  [139.033, 36.118, '矢納フィッシングパーク', '神川町'],
+  [139.190, 36.115, 'かわせみ河原', '寄居町・荒川'],
+  [139.113, 36.100, 'カヌーヴィレッジ長瀞', '長瀞町'],
+  [139.111, 36.093, '埼玉県立自然の博物館', '長瀞町'],
+  [139.098, 36.070, 'ぼくらのミナノベース', '皆野町'],
+  [139.302, 36.030, '嵐山渓谷バーベキュー場', '嵐山町'],
+  [139.026, 35.967, '秩父ジオグラビティパーク', '秩父市荒川贄川'],
+  [139.050, 35.980, 'カナディアンカヌークラブ Bencher', '秩父市荒川上田野'],
+  [139.130, 35.970, '道の駅果樹公園あしがくぼ バーベキュー場', '横瀬町'],
+  [139.210, 35.990, '木のむらキャンプ場', 'ときがわ町'],
+  [139.290, 35.995, '川の広場バーベキュー場', 'ときがわ町'],
+  [139.200, 35.930, '喜多川キャンピングベース', '飯能市'],
+  [139.196, 35.918, '休暇村奥武蔵', '飯能市吾野'],
+  [139.148, 35.882, '名栗カヌー工房', '飯能市・名栗湖'],
+  [139.163, 35.893, 'ケニーズ・ファミリー・ビレッジ', '飯能市上名栗'],
+  [139.160, 35.885, '大松閣', '飯能市下名栗'],
+  [139.315, 35.900, '阿里山カフェ', '日高市・高麗川'],
+  [139.312, 35.856, '飯能河原 ステージ広場・バーベキュー場', '飯能市'],
+  [139.317, 35.853, '奥むさし飯能観光協会', '飯能市本町'],
+  [139.457, 35.919, 'ホットスタッフ川越パーク（川越公園）', '川越市池辺'],
+  [139.533, 35.877, 'びん沼自然公園', '富士見市'],
+  [139.494, 35.799, '所沢市観光情報・物産館 YOT-TOKO', '所沢市松郷'],
+  [139.575, 36.184, 'さいたま水族館', '羽生市三田ヶ谷'],
+  [139.633, 36.106, 'キサイフーズはなさきふれあいパーク', '加須市'],
+  [139.585, 36.073, '埼玉県環境科学国際センター', '加須市上種足'],
+  [139.645, 36.062, 'てつお君パークKuki（久喜菖蒲公園）', '久喜市'],
+  [139.726, 36.026, '杉戸町観光案内所', '杉戸町'],
+  [139.632, 35.917, '大宮公園 大宮ボートハーバー', 'さいたま市大宮区'],
+  [139.756, 35.927, 'アルネットホームスマイルパークしらこばと', '越谷市・しらこばと水上公園'],
+  [139.826, 35.876, '越谷レイクサイドマリーナ HOBIE BASE LAKETOWN', '越谷市レイクタウン'],
+  [139.828, 35.878, '越谷レイクタウン水辺のまちづくり館', '越谷市レイクタウン'],
+].forEach(([lng, lat, name, area]) => {
+  POINTS.features.push(pt(lng, lat, 'quest', name, area + '。LINEで参加するリバサポ・クエストの対象スポット（2026.7.7〜2027.2.15）。訪問でポイントが貯まります。', { link: QUEST_URL }));
+});
+
+function pt(lng, lat, cat, name, desc, extra) {
+  return { type: 'Feature', geometry: { type: 'Point', coordinates: [lng, lat] }, properties: Object.assign({ cat, name, desc }, extra || {}) };
+}
+const CAT = {
+  dam:   { color: '#2b70ef', label: 'ダム・堰・治水施設' },
+  bio:   { color: '#10b981', label: '流域の生きもの' },
+  src:   { color: '#f59e0b', label: '源流ポイント' },
+  learn: { color: '#8b5cf6', label: '学びの拠点' },
+  field: { color: '#f43f5e', label: 'リバサポ重点フィールド' },
+  quest: { color: '#06b6d4', label: 'クエストスポット' },
+  zukan: { color: '#13318d', label: '川図鑑' },
+};
+
+// ===== 地図 =====
+const map = new maplibregl.Map({
+  container: 'map',
+  center: [139.30, 35.95],
+  zoom: 8.8,
+  pitch: 55,
+  bearing: -8,
+  maxPitch: 80,
+  hash: true,
+  style: {
+    version: 8,
+    sources: {
+      pale: {
+        type: 'raster',
+        tiles: ['https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png'],
+        tileSize: 256, maxzoom: 18,
+        attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">国土地理院</a> | <a href="https://disaportal.gsi.go.jp/" target="_blank">ハザードマップポータル</a>'
+      },
+      relief: {
+        type: 'raster',
+        tiles: ['https://cyberjapandata.gsi.go.jp/xyz/relief/{z}/{x}/{y}.png'],
+        tileSize: 256, minzoom: 5, maxzoom: 15
+      },
+      hillshade: {
+        type: 'raster',
+        tiles: ['https://cyberjapandata.gsi.go.jp/xyz/hillshademap/{z}/{x}/{y}.png'],
+        tileSize: 256, minzoom: 2, maxzoom: 16
+      },
+      flood: {
+        type: 'raster',
+        tiles: ['https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin_data/{z}/{x}/{y}.png'],
+        tileSize: 256, minzoom: 2, maxzoom: 17
+      },
+      gsidem: {
+        type: 'raster-dem',
+        tiles: ['gsidem://https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'],
+        tileSize: 256, minzoom: 2, maxzoom: 14
+      },
+      points: { type: 'geojson', data: POINTS }
+    },
+    layers: [
+      { id: 'pale', type: 'raster', source: 'pale' },
+      { id: 'relief', type: 'raster', source: 'relief', paint: { 'raster-opacity': 0.5 } },
+      { id: 'hillshade', type: 'raster', source: 'hillshade', paint: { 'raster-opacity': 0.28 } },
+      { id: 'flood', type: 'raster', source: 'flood', layout: { visibility: 'none' }, paint: { 'raster-opacity': 0.55 } },
+      ...Object.keys(CAT).map((cat) => ({
+        id: 'pt-' + cat, type: 'circle', source: 'points',
+        filter: ['==', ['get', 'cat'], cat],
+        paint: {
+          'circle-radius': cat === 'zukan'
+            ? ['interpolate', ['linear'], ['zoom'], 7, 8, 12, 13]
+            : ['interpolate', ['linear'], ['zoom'], 7, 5, 12, 9],
+          'circle-color': CAT[cat].color,
+          'circle-stroke-color': '#ffffff',
+          'circle-stroke-width': cat === 'zukan' ? 2.5 : 2,
+          'circle-opacity': 0.92
+        }
+      }))
+    ]
+  }
+});
+map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right');
+map.addControl(new maplibregl.ScaleControl(), 'bottom-right');
+
+map.on('load', () => {
+  map.setTerrain({ source: 'gsidem', exaggeration: 1.5 });
+});
+
+// ポップアップ
+const popup = new maplibregl.Popup({ offset: 12 });
+function popupHTML(p) {
+  return '<div class="text-xs font-medium mb-1" style="color:' + CAT[p.cat].color + '">● ' + CAT[p.cat].label + '</div>' +
+    '<div class="text-sm font-bold text-slate-900">' + p.name + '</div>' +
+    (p.stats ? '<div class="text-[11px] mt-1 font-medium" style="color:#64748b">' + p.stats + '</div>' : '') +
+    '<div class="text-xs mt-1.5 leading-relaxed" style="color:#3d4b5f">' + p.desc + '</div>' +
+    (p.link ? '<a href="' + p.link + '" target="_blank" rel="noopener" class="inline-block text-xs font-medium mt-2" style="color:#2b70ef">リバサポで詳しく見る →</a>' : '') +
+    '<div class="text-[10px] mt-2" style="color:#94a3b8">※位置は概略（プロトタイプ）</div>';
+}
+function openPopup(coords, p) {
+  popup.setLngLat(coords).setHTML(popupHTML(p)).addTo(map);
+}
+Object.keys(CAT).forEach((cat) => {
+  const layerId = 'pt-' + cat;
+  map.on('click', layerId, (e) => {
+    const f = e.features[0];
+    openPopup(f.geometry.coordinates, f.properties);
+  });
+  map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer'; });
+  map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
+});
+
+// 川図鑑クイックアクセス
+const zukanFeatures = POINTS.features.filter((f) => f.properties.cat === 'zukan');
+const zukanWrap = document.getElementById('zukanButtons');
+zukanFeatures.forEach((f) => {
+  const btn = document.createElement('button');
+  btn.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border border-slate-200 bg-white text-slate-700 hover:bg-gray-50 cursor-pointer';
+  btn.innerHTML = '<span class="inline-block w-2 h-2 rounded-full" style="background:#13318d"></span>' + f.properties.name;
+  btn.addEventListener('click', () => {
+    map.flyTo({ center: f.geometry.coordinates, zoom: 11.8, pitch: 60, bearing: 0, duration: 2200, essential: true });
+    openPopup(f.geometry.coordinates, f.properties);
+  });
+  zukanWrap.appendChild(btn);
+});
+
+// レイヤートグル
+function bindToggle(id, layers) {
+  document.getElementById(id).addEventListener('change', (e) => {
+    layers.forEach((l) => map.setLayoutProperty(l, 'visibility', e.target.checked ? 'visible' : 'none'));
+  });
+}
+bindToggle('tglRelief', ['relief']);
+bindToggle('tglHill', ['hillshade']);
+bindToggle('tglFlood', ['flood']);
+bindToggle('tglDam', ['pt-dam']);
+bindToggle('tglBio', ['pt-bio']);
+bindToggle('tglSrc', ['pt-src']);
+bindToggle('tglLearn', ['pt-learn']);
+bindToggle('tglField', ['pt-field']);
+bindToggle('tglZukan', ['pt-zukan']);
+bindToggle('tglQuest', ['pt-quest']);
+
+// 地形強調スライダー
+document.getElementById('exag').addEventListener('input', (e) => {
+  const v = parseFloat(e.target.value);
+  document.getElementById('exagVal').textContent = v.toFixed(1);
+  map.setTerrain(v === 0 ? null : { source: 'gsidem', exaggeration: v });
+});
+
+// 視点プリセット
+const VIEWS = {
+  all:     { center: [139.30, 35.95], zoom: 8.8,  pitch: 55, bearing: -8 },
+  genryu:  { center: [138.729, 35.907], zoom: 12.2, pitch: 70, bearing: 35 },
+  dams:    { center: [138.96, 35.95], zoom: 10.3, pitch: 65, bearing: -25 },
+  tone:    { center: [139.500, 36.192], zoom: 12.0, pitch: 55, bearing: 0 },
+  akigase: { center: [139.60, 35.85], zoom: 11.8, pitch: 55, bearing: -15 },
+};
+document.getElementById('viewButtons').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-view]');
+  if (!btn) return;
+  map.flyTo({ ...VIEWS[btn.dataset.view], duration: 2600, essential: true });
+});
+</script>
+</body>
+</html>
