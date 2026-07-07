@@ -95,6 +95,8 @@ input[type="range"] { accent-color: #2b70ef; }
         <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglField" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#f43f5e"></span> リバサポ重点フィールド</label>
         <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglZukan" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#13318d"></span> 川図鑑</label>
         <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglQuest" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#06b6d4"></span> クエストスポット</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglForest" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#15803d"></span> 林業・森の仕事</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglCulture" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#c026d3"></span> 川の祭り・民俗</label>
       </div>
     </div>
 
@@ -186,6 +188,26 @@ const POINTS = { type: 'FeatureCollection', features: [
   // リバサポ重点フィールド
   pt(139.075, 35.995, 'field', 'ARAKAWAリバーフィールド（秩父市）', '2026年オープンの体験型リバーパーク。教育・防災・スポーツ合宿・関係人口の4層で川と人をつなぐ社会実証。'),
   pt(139.130, 36.070, 'field', '三沢川プロジェクト（皆野町）', '廃校となる三沢小学校を起点にした「リバーウォーカブル・モデル地区」第1号構想。'),
+  // 林業・森の仕事（森は川の水源。「森を育み水を守る」流域の上流側）
+  pt(139.353, 35.838, 'forest', '西川広域森林組合（飯能市・林業センター内）', '西川材（スギ・ヒノキ）の産地組合。飯能・日高・毛呂山・越生をカバー。「西の川から江戸へ」— 入間川を筏で下した流域林業の本場。'),
+  pt(139.125, 35.900, 'forest', '名栗・西川林業地', '入間川最上流の人工林地帯。江戸時代から筏を組んで千住まで約5日かけて材を流した。筏流しは大正の鉄道開通まで200年以上続いた。'),
+  pt(139.090, 35.992, 'forest', '秩父広域森林組合（秩父市）', '「森を育み水を守る」を掲げる秩父郡市の組合。荒川源流域の森林整備・木材生産を担う。'),
+  pt(139.245, 36.065, 'forest', '埼玉県中央部森林組合（小川町）', '熊谷・小川・嵐山・ときがわ・東秩父・寄居など、槻川・都幾川流域の里山林業をカバーする組合。'),
+  pt(139.245, 35.982, 'forest', 'ときがわ町の建具・木工（建具会館）', '「建具の里」。都幾川の水と山の木が育てた木工文化で、ときがわ建具は県の伝統的手工芸品。'),
+  pt(138.850, 35.920, 'forest', '大滝の水源林（秩父市大滝）', '荒川最上流の水源涵養林。森が蓄えた一滴が二瀬ダムを経て下流の暮らしを支える。森林の保水力こそ流域治水の起点。'),
+  // 川の祭り・民俗（水とともに生きてきた文化資源）
+  pt(139.084, 35.998, 'culture', '秩父神社の祭礼（川瀬祭・秩父夜祭）', '夏の川瀬祭は神輿を荒川の武の鼻河原で清める「神輿洗い」の祭り。冬の秩父夜祭はユネスコ無形文化遺産。'),
+  pt(138.931, 35.926, 'culture', '三峯神社（秩父市三峰）', '荒川源流域の山岳信仰の聖地。オオカミ（大口真神）のお犬様信仰とともに、水源の森が守られてきた。'),
+  pt(139.118, 36.088, 'culture', '長瀞船玉まつり', '荒川の船頭たちの水神祭が起源とされる水上安全祈願の祭り。万灯船が岩畳の川面を行き、灯籠が流れる。'),
+  pt(139.186, 36.103, 'culture', '寄居玉淀水天宮祭', '「関東一の水祭り」。水難除けの水天宮に、提灯を灯した舟山車と花火を奉納する。'),
+  pt(139.243, 36.037, 'culture', '細川紙・和紙の里（東秩父村・小川町）', 'ユネスコ無形文化遺産の手漉き和紙。槻川の清流と楮が育てた紙の文化で、川の水質がそのまま紙の質になる。'),
+  pt(139.330, 36.058, 'culture', 'ささら獅子舞（比企・入間の川筋）', '雨乞いや悪疫退散を祈る三頭立ての獅子舞が、比企・入間の川沿いの村々に数多く伝わる。水への祈りの芸能。'),
+  pt(139.375, 35.934, 'culture', '脚折雨乞（鶴ヶ島市）', '麦わらと竹で作る長さ36mの龍蛇が雷電池に入水する雨乞い神事（4年に一度）。水を乞う祈りの記憶を今に伝える。'),
+  pt(139.486, 35.925, 'culture', '川越氷川祭（川越まつり）', 'ユネスコ無形文化遺産の山車行事。新河岸川の舟運が育てた商都・川越の繁栄が生んだ祭り。'),
+  pt(139.629, 35.913, 'culture', '武蔵一宮 氷川神社（大宮）', '社前にかつて広がった見沼（御沼）の水神信仰と竜神伝説。見沼田んぼ・芝川へ続く水の聖地。'),
+  pt(139.665, 36.102, 'culture', '鷲宮催馬楽神楽（久喜市）', '関東神楽の源流とされる国指定重要無形民俗文化財。古利根の水郷に鎮座する鷲宮神社に伝わる。'),
+  pt(139.570, 36.100, 'culture', '玉敷神社神楽（加須市騎西）', '300年以上続く江戸神楽の古形を伝える神楽。騎西は見沼代用水・騎西領用水が潤す水郷の町。'),
+  pt(139.730, 36.018, 'culture', '古利根川流灯まつり（杉戸町・宮代町）', '大落古利根川の川面を大型灯籠が埋め尽くす夏の祭り。川と暮らしの近さを物語る。'),
   // 川図鑑（リバサポ・マガジン 全19河川）
   pt(139.480, 36.060, 'zukan', '荒川', '埼玉が誇る母なる大河。甲武信ヶ岳の一滴から東京湾まで173km。鴻巣・滝馬室で川幅日本一（2,537m）、430万人の水を支える。',
     { stats: '荒川水系・一級河川｜延長173km｜流域面積2,940km²', link: 'https://saitama-riversupporters.pref.saitama.lg.jp/magazine/picture-book-arakawa/' }),
@@ -276,6 +298,8 @@ const CAT = {
   learn: { color: '#8b5cf6', label: '学びの拠点' },
   field: { color: '#f43f5e', label: 'リバサポ重点フィールド' },
   quest: { color: '#06b6d4', label: 'クエストスポット' },
+  forest: { color: '#15803d', label: '林業・森の仕事' },
+  culture: { color: '#c026d3', label: '川の祭り・民俗' },
   zukan: { color: '#13318d', label: '川図鑑' },
 };
 
@@ -447,6 +471,8 @@ bindToggle('tglLearn', ['pt-learn']);
 bindToggle('tglField', ['pt-field']);
 bindToggle('tglZukan', ['pt-zukan']);
 bindToggle('tglQuest', ['pt-quest']);
+bindToggle('tglForest', ['pt-forest']);
+bindToggle('tglCulture', ['pt-culture']);
 
 // 地形強調スライダー
 document.getElementById('exag').addEventListener('input', (e) => {
