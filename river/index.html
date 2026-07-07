@@ -82,6 +82,8 @@ input[type="range"] { accent-color: #2b70ef; }
     <div class="px-5 py-4 border-b border-slate-200 leading-normal">
       <h2 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-3">レイヤー</h2>
       <div class="space-y-2.5 text-sm text-slate-700">
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglRivers" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-4 h-0.5 rounded" style="background:#2563eb"></span> 河川ライン</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglPref" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-4 h-0.5 rounded" style="background:#0e266a"></span> 県境フォーカス</label>
         <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglRelief" checked class="w-4 h-4 rounded border-slate-300"> 色別標高図（高低差）</label>
         <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglHill" checked class="w-4 h-4 rounded border-slate-300"> 陰影起伏</label>
         <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglFlood" class="w-4 h-4 rounded border-slate-300"> 洪水浸水想定区域</label>
@@ -287,6 +289,9 @@ const map = new maplibregl.Map({
         tiles: ['gsidem://https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'],
         tileSize: 256, minzoom: 2, maxzoom: 14
       },
+      mask: { type: 'geojson', data: 'saitama-mask.geojson' },
+      boundary: { type: 'geojson', data: 'saitama-boundary.geojson' },
+      rivers: { type: 'geojson', data: 'rivers.geojson', attribution: '河川: © OpenStreetMap contributors' },
       points: { type: 'geojson', data: POINTS }
     },
     layers: [
@@ -294,6 +299,33 @@ const map = new maplibregl.Map({
       { id: 'relief', type: 'raster', source: 'relief', paint: { 'raster-opacity': 0.5 } },
       { id: 'hillshade', type: 'raster', source: 'hillshade', paint: { 'raster-opacity': 0.28 } },
       { id: 'flood', type: 'raster', source: 'flood', layout: { visibility: 'none' }, paint: { 'raster-opacity': 0.55 } },
+      { id: 'mask', type: 'fill', source: 'mask',
+        paint: { 'fill-color': '#f8fafc', 'fill-opacity': 0.55 } },
+      { id: 'rivers-casing', type: 'line', source: 'rivers',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': '#ffffff',
+          'line-opacity': 0.6,
+          'line-width': ['interpolate', ['linear'], ['zoom'],
+            8, ['case', ['in', ['get', 'name'], ['literal', ['荒川', '利根川', '江戸川']]], 4, 2.2],
+            13, ['case', ['in', ['get', 'name'], ['literal', ['荒川', '利根川', '江戸川']]], 8, 4.5]]
+        } },
+      { id: 'rivers', type: 'line', source: 'rivers',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': '#2563eb',
+          'line-opacity': 0.85,
+          'line-width': ['interpolate', ['linear'], ['zoom'],
+            8, ['case', ['in', ['get', 'name'], ['literal', ['荒川', '利根川', '江戸川']]], 2.4, 1.1],
+            13, ['case', ['in', ['get', 'name'], ['literal', ['荒川', '利根川', '江戸川']]], 5.5, 2.8]]
+        } },
+      { id: 'boundary', type: 'line', source: 'boundary',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': '#0e266a',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2.2, 12, 4],
+          'line-opacity': 0.9
+        } },
       ...Object.keys(CAT).map((cat) => ({
         id: 'pt-' + cat, type: 'circle', source: 'points',
         filter: ['==', ['get', 'cat'], cat],
@@ -340,6 +372,21 @@ Object.keys(CAT).forEach((cat) => {
   map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
 });
 
+// 河川ラインのクリックで川名を表示（ポイントが重なっている場合はポイント優先）
+map.on('click', 'rivers', (e) => {
+  const ptHit = map.queryRenderedFeatures(e.point, { layers: Object.keys(CAT).map((c) => 'pt-' + c) });
+  if (ptHit.length) return;
+  const name = e.features[0].properties.name;
+  popup.setLngLat(e.lngLat)
+    .setHTML(
+      '<div class="text-xs font-medium mb-1" style="color:#2563eb">● 河川</div>' +
+      '<div class="text-sm font-bold text-slate-900">' + (name || '名称未登録の川') + '</div>' +
+      '<div class="text-[10px] mt-2" style="color:#94a3b8">河川データ: © OpenStreetMap contributors</div>'
+    ).addTo(map);
+});
+map.on('mouseenter', 'rivers', () => { map.getCanvas().style.cursor = 'pointer'; });
+map.on('mouseleave', 'rivers', () => { map.getCanvas().style.cursor = ''; });
+
 // 川図鑑クイックアクセス
 const zukanFeatures = POINTS.features.filter((f) => f.properties.cat === 'zukan');
 const zukanWrap = document.getElementById('zukanButtons');
@@ -360,6 +407,8 @@ function bindToggle(id, layers) {
     layers.forEach((l) => map.setLayoutProperty(l, 'visibility', e.target.checked ? 'visible' : 'none'));
   });
 }
+bindToggle('tglRivers', ['rivers', 'rivers-casing']);
+bindToggle('tglPref', ['mask', 'boundary']);
 bindToggle('tglRelief', ['relief']);
 bindToggle('tglHill', ['hillshade']);
 bindToggle('tglFlood', ['flood']);
