@@ -324,21 +324,31 @@
             <div class="emoji">&#10133;&#10134;</div>
             <div class="label">MATH</div>
             <div class="font-jp" style="font-size:12px;margin-top:4px;color:var(--gray);">さんすう</div>
+            <div class="font-jp subject-badge" id="badge-math" style="font-size:10px;margin-top:2px;color:var(--gold);min-height:13px;"></div>
           </button>
           <button class="subject-btn" onclick="startGame('japanese')">
             <div class="emoji">&#12354;</div>
             <div class="label">KOKUGO</div>
             <div class="font-jp" style="font-size:12px;margin-top:4px;color:var(--gray);">こくご</div>
+            <div class="font-jp subject-badge" id="badge-japanese" style="font-size:10px;margin-top:2px;color:var(--gold);min-height:13px;"></div>
           </button>
           <button class="subject-btn" onclick="startGame('science')">
             <div class="emoji">&#9889;</div>
             <div class="label">SCIENCE</div>
             <div class="font-jp" style="font-size:12px;margin-top:4px;color:var(--gray);">りか</div>
+            <div class="font-jp subject-badge" id="badge-science" style="font-size:10px;margin-top:2px;color:var(--gold);min-height:13px;"></div>
           </button>
           <button class="subject-btn" onclick="startGame('social')">
             <div class="emoji">&#127757;</div>
             <div class="label">SOCIAL</div>
             <div class="font-jp" style="font-size:12px;margin-top:4px;color:var(--gray);">しゃかい</div>
+            <div class="font-jp subject-badge" id="badge-social" style="font-size:10px;margin-top:2px;color:var(--gold);min-height:13px;"></div>
+          </button>
+          <button class="subject-btn" onclick="startGame('english')" style="grid-column:1/-1;">
+            <div class="emoji">&#127760; ABC</div>
+            <div class="label">ENGLISH</div>
+            <div class="font-jp" style="font-size:12px;margin-top:4px;color:var(--gray);">えいご</div>
+            <div class="font-jp subject-badge" id="badge-english" style="font-size:10px;margin-top:2px;color:var(--gold);min-height:13px;"></div>
           </button>
         </div>
       </div>
@@ -493,7 +503,8 @@
       <p id="victoryTitle" class="font-pixel" style="font-size:14px; color:var(--yellow); margin-bottom:8px;">* YOU WON!</p>
       <p id="victoryMsg" class="font-jp" style="font-size:16px; margin-bottom:8px; line-height:1.8;"></p>
       <p class="font-pixel" style="font-size:10px; color:var(--yellow); margin-bottom:6px;">+<span id="expGained">10</span> EXP</p>
-      <p class="font-pixel" style="font-size:10px; margin-bottom:22px;"><span class="gold-text">+<span id="goldGained">5</span> G</span></p>
+      <p class="font-pixel" style="font-size:10px; margin-bottom:10px;"><span class="gold-text">+<span id="goldGained">5</span> G</span></p>
+      <p id="victoryNote" class="font-jp" style="font-size:14px; color:var(--gold); margin-bottom:14px; line-height:1.8;"></p>
       <button class="ut-btn" onclick="nextBattle()" style="font-size:12px;padding:10px 26px;">
         <svg class="soul-heart" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
         つぎへ &#9654;
@@ -1433,6 +1444,42 @@ const questions = {
     { q: "日本が石油を多く\n輸入している地域は?", c: ["ヨーロッパ","中東","アメリカ","アフリカ"], a: 1 },
     { q: "世界で一番面積が\n大きい国は?", c: ["カナダ","中国","アメリカ","ロシア"], a: 3 },
     { q: "瀬戸内海に面して\nない県は?", c: ["岡山県","香川県","鳥取県","広島県"], a: 2 },
+  ],
+  english: [
+    { q: "\"apple\" のいみは?", c: ["みかん","りんご","ぶどう","もも"], a: 1 },
+    { q: "\"Good morning.\"\nのいみは?", c: ["こんばんは","さようなら","おはよう","おやすみ"], a: 2 },
+    { q: "\"red\" はどんないろ?", c: ["あか","あお","きいろ","みどり"], a: 0 },
+    { q: "\"seven\" はどのかず?", c: ["5","6","7","8"], a: 2 },
+    { q: "\"dog\" のいみは?", c: ["ねこ","いぬ","とり","うま"], a: 1 },
+    { q: "\"Thank you.\"\nのいみは?", c: ["ごめんね","おねがい","どういたしまして","ありがとう"], a: 3 },
+    { q: "\"I like cats.\"\nのいみは?", c: ["ねこがすき","ねこがきらい","ねこをかっている","ねこになりたい"], a: 0 },
+    { q: "アルファベットで\nCのつぎは?", c: ["B","D","E","A"], a: 1 },
+    { q: "\"blue\" はどんないろ?", c: ["しろ","くろ","あお","あか"], a: 2 },
+    { q: "\"ten\" はどのかず?", c: ["1","10","100","5"], a: 1 },
+    { q: "\"Hello.\" のいみは?", c: ["こんにちは","さようなら","おめでとう","いただきます"], a: 0 },
+    { q: "\"cat\" のいみは?", c: ["いぬ","うさぎ","ねこ","くま"], a: 2 },
+    { q: "\"big\" のはんたいは?", c: ["small","tall","long","new"], a: 0 },
+    { q: "\"Monday\" は なんようび?", c: ["にちようび","げつようび","かようび","どようび"], a: 1 },
+    { q: "\"What's your name?\"\nときかれたら なにをこたえる?", c: ["とし","すきなたべもの","なまえ","てんき"], a: 2 },
+    { q: "\"banana\" のいみは?", c: ["バナナ","りんご","いちご","メロン"], a: 0 },
+    { q: "one, two, three,\nのつぎは?", c: ["five","four","six","ten"], a: 1 },
+    { q: "\"fish\" のいみは?", c: ["とり","むし","はな","さかな"], a: 3 },
+    { q: "\"yellow\" はどんないろ?", c: ["みどり","きいろ","むらさき","ちゃいろ"], a: 1 },
+    { q: "\"Good night.\"\nはいつ つかう?", c: ["あさおきたとき","ごはんのまえ","ねるまえ","がっこうについたとき"], a: 2 },
+    { q: "\"How are you?\"\nのいみは?", c: ["げんき?","なんさい?","どこいくの?","だれ?"], a: 0 },
+    { q: "\"school\" のいみは?", c: ["いえ","がっこう","こうえん","おみせ"], a: 1 },
+    { q: "\"Sunday\" は なんようび?", c: ["きんようび","すいようび","もくようび","にちようび"], a: 3 },
+    { q: "\"rabbit\" のいみは?", c: ["うさぎ","かめ","ねずみ","きつね"], a: 0 },
+    { q: "\"small\" のいみは?", c: ["おおきい","ながい","ちいさい","たかい"], a: 2 },
+    { q: "アルファベットで\nGのまえは?", c: ["H","F","E","I"], a: 1 },
+    { q: "\"milk\" のいみは?", c: ["ぎゅうにゅう","みず","ジュース","おちゃ"], a: 0 },
+    { q: "\"I'm hungry.\"\nのいみは?", c: ["ねむい","さむい","たのしい","おなかがすいた"], a: 3 },
+    { q: "\"bird\" のいみは?", c: ["さかな","とり","いぬ","へび"], a: 1 },
+    { q: "\"green\" はどんないろ?", c: ["あお","あか","みどり","しろ"], a: 2 },
+    { q: "\"five\"と\"four\"\nおおきいのは どっち?", c: ["five","four","おなじ","わからない"], a: 0 },
+    { q: "\"Let's play!\"\nのいみは?", c: ["たべよう!","あそぼう!","ねよう!","べんきょうしよう!"], a: 1 },
+    { q: "\"pencil\" のいみは?", c: ["けしゴム","ノート","えんぴつ","つくえ"], a: 2 },
+    { q: "\"See you.\" のいみは?", c: ["またね","はじめまして","ごちそうさま","おかえり"], a: 0 },
   ]
 };
 
@@ -1597,10 +1644,15 @@ const STORY = {
     'タイトルがめんに あかい ボタンが\nあらわれた。じゅんびが できたら こい。\nプリンを わすれるな。',
   ],
   5: [
-    '8がつ31にちは ただの\nカレンダーの 1まいに もどった。',
-    'なつやすみの さいごのひは、\nしゅくだいが おわっていれば\nせかいで いちばん たのしい ひに なる。',
-    'きみは それを しょうめいした。\nちきゅうかんそくしじょう もっとも つよい\n小学生と して。',
+    'たたかいが おわった。\nきえていくまえに、8がつ31にちは\nちいさな こえで いった。',
+    '「ぼくはね、ほんとうは\nたのしみだったんだ。\nなつやすみの さいごに、みんなが\nあわてて ぼくのところに くるのが」',
+    '「ことしは だれも こなかった。\nみんな ちゃんと おわらせてたから。\n…うれしいような、\nすこし さみしいような」',
+    'きみは すこし かんがえて、\nやりのこしていた「ドッジボール」に\n8がつ31にちを さそった。',
+    'さいきょうの まものは その日、\nうまれて はじめて、なつやすみの さいごを\nだれかと いっしょに あそんで すごした。',
+    'なつやすみの さいごのひは、\nしゅくだいが おわっていれば\nせかいで いちばん たのしい ひに なる。\n\nきみは それを しょうめいした。',
     'おめでとう。そして ありがとう。\n\n— ほんとうの THE END —\n\n(しゅくだいは あしたも あるけどね)',
+    '…そのころ。\nとおい ほしの かいぎしつで、\nあたらしい かげが うごきだしていた。',
+    '「つぎは 『かたづけ』だ。\nこどもたちの へやを、えいえんに\nちらかしつづけるのだ…フフフ」\n\nSTUDY QUEST 2 (よてい は みてい)',
   ],
 };
 
@@ -1618,6 +1670,38 @@ const ITEMS = {
 const BADGE = { name:'けずりたての えんぴつ', icon:'&#9999;&#65039;', desc:'ATK +2 (ずっと)', price:100 };
 
 // ===================================================================
+// LEGENDARY EQUIPMENT (endgame gold sink)
+// ===================================================================
+const LEGENDARY = {
+  excalibur: { name:'でんせつのえんぴつ「エクスカリバー2B」', icon:'&#128481;&#65039;', desc:'ATK +10', price:999,
+    lore:'ゆうしゃだけが けずれる えんぴつ。かきごこち むてき。' },
+  scale: { name:'りゅうのうろこの したじき', icon:'&#128737;&#65039;', desc:'うけるダメージ 30%カット', price:777,
+    lore:'シメキリュウの ぬけがら から できている。じょうぶ。' },
+  fudebako: { name:'ほしのふでばこ', icon:'&#127775;', desc:'さいだいHP +50', price:1500,
+    lore:'よぞらの かけらで できた ふでばこ。もつと あんしんする。' },
+};
+
+// ===================================================================
+// SUBJECTS: labels / clear benefits / mastery ranks
+// ===================================================================
+const SUBJECT_JA = { math:'さんすう', japanese:'こくご', science:'りか', social:'しゃかい', english:'えいご' };
+const SUBJECT_BENEFIT = {
+  math:'クリティカルが でやすくなった!',
+  japanese:'みのがしが しやすくなった!',
+  science:'たべものの かいふくが 1.5ばいに なった!',
+  social:'もらえる ゴールドが 1.3ばいに なった!',
+  english:'もらえる EXPが 1.2ばいに なった!',
+};
+const RANK_NAMES = ['', 'みならい', 'いっちょまえ', 'はかせ', 'かみさま'];
+const RANK_STEPS = [10, 30, 60, 100]; // correct answers needed
+function subjectRank(subject) {
+  const n = (state.subjectCorrect && state.subjectCorrect[subject]) || 0;
+  let r = 0;
+  RANK_STEPS.forEach(step => { if (n >= step) r++; });
+  return r;
+}
+
+// ===================================================================
 // GAME STATE
 // ===================================================================
 let state = {
@@ -1629,6 +1713,9 @@ let state = {
   stage: 1, totalDefeated: 0, totalSpared: 0,
   gold: 0,
   items: { candy: 1, toast: 0, pie: 0 },
+  equipment: { excalibur: false, scale: false, fudebako: false },
+  subjectClears: { math: false, japanese: false, science: false, social: false, english: false },
+  subjectCorrect: { math: 0, japanese: 0, science: 0, social: 0, english: 0 },
   enemy: null, enemyHp: 0, enemyMaxHp: 0,
   usedQuestions: [],
   isAnimating: false,
@@ -1665,6 +1752,7 @@ function saveGame() {
     maxCombo: state.maxCombo, gold: state.gold, items: state.items,
     monsterBook: state.monsterBook, introSeen: state.introSeen,
     storyChapter: state.storyChapter, superUnlocked: state.superUnlocked, superBeaten: state.superBeaten,
+    equipment: state.equipment, subjectClears: state.subjectClears, subjectCorrect: state.subjectCorrect,
   }));
 }
 function loadGame() {
@@ -1682,6 +1770,9 @@ function loadGame() {
         introSeen: !!s.introSeen,
         storyChapter: s.storyChapter || 0,
         superUnlocked: !!s.superUnlocked, superBeaten: !!s.superBeaten,
+        equipment: Object.assign({ excalibur:false, scale:false, fudebako:false }, s.equipment || {}),
+        subjectClears: Object.assign({ math:false, japanese:false, science:false, social:false, english:false }, s.subjectClears || {}),
+        subjectCorrect: Object.assign({ math:0, japanese:0, science:0, social:0, english:0 }, s.subjectCorrect || {}),
       });
       if (s.monsterBook) state.monsterBook = s.monsterBook;
     } catch(e) {}
@@ -1748,6 +1839,15 @@ function goTitle() {
   showScreen('titleScreen');
   updateSavedStatus();
   document.getElementById('superBtn').style.display = state.superUnlocked ? '' : 'none';
+  Object.keys(SUBJECT_JA).forEach(s => {
+    const el = document.getElementById('badge-' + s);
+    if (!el) return;
+    const parts = [];
+    if (state.subjectClears[s]) parts.push('&#127941;');
+    const r = subjectRank(s);
+    if (r > 0) parts.push(RANK_NAMES[r]);
+    el.innerHTML = parts.join(' ');
+  });
 }
 
 function updateSavedStatus() {
@@ -1868,6 +1968,7 @@ const SHOP_LINES = [
   'プリンは おふろあがりに たべると ちきゅうが すくわれる あじが するよ。',
   'ゴールドは てきを たおすか、ともだちに なると もらえるよ。',
   'えんぴつは けずりたてが いちばん つよい。これは うちゅうの じょうしきだ。',
+  'でんせつの そうび? ああ、おくに かざってあるやつね。たかいよ。すごく。',
 ];
 function showShop() {
   music.playSfx('select');
@@ -1894,6 +1995,37 @@ function renderShop() {
   badgeBtn.innerHTML = `<span>${BADGE.icon} ${BADGE.name}<span style="color:var(--gray);font-size:12px;"> … ${BADGE.desc}</span></span><span class="gold-text">${BADGE.price} G</span>`;
   badgeBtn.onclick = buyBadge;
   wrap.appendChild(badgeBtn);
+
+  // Legendary equipment
+  const header = document.createElement('p');
+  header.className = 'font-jp';
+  header.style.cssText = 'font-size:14px;color:var(--gold);margin:14px 0 8px;text-align:center;';
+  header.innerHTML = '&#9733; でんせつの そうび &#9733;';
+  wrap.appendChild(header);
+  Object.keys(LEGENDARY).forEach(key => {
+    const lg = LEGENDARY[key];
+    const owned = state.equipment[key];
+    const btn = document.createElement('button');
+    btn.className = 'shop-item';
+    btn.disabled = owned || state.gold < lg.price;
+    btn.style.borderColor = owned ? 'var(--gold)' : '';
+    btn.innerHTML = `<span>${lg.icon} ${lg.name}<span style="color:var(--gray);font-size:12px;"> … ${lg.desc}</span></span><span class="gold-text">${owned ? 'そうびちゅう' : lg.price + ' G'}</span>`;
+    if (!owned) btn.onclick = () => buyLegendary(key);
+    wrap.appendChild(btn);
+  });
+}
+
+function buyLegendary(key) {
+  const lg = LEGENDARY[key];
+  if (state.equipment[key] || state.gold < lg.price) return;
+  state.gold -= lg.price;
+  state.equipment[key] = true;
+  if (key === 'excalibur') state.playerAtk += 10;
+  if (key === 'fudebako') { state.playerMaxHp += 50; state.playerHp = state.playerMaxHp; }
+  music.playSfx('bossClear');
+  document.getElementById('shopMessage').textContent = `…ほんとうに かうんだ。すごいな きみ。${lg.lore}`;
+  saveGame();
+  renderShop();
 }
 function buyItem(key) {
   const it = ITEMS[key];
@@ -2098,7 +2230,9 @@ function updateBattleUI() {
 function isSpareable() {
   if (!state.enemy) return false;
   if (state.isSuperBattle) return state.enemyHp <= state.enemyMaxHp * 0.2;
-  return state.combo >= 3 || state.enemyHp <= state.enemyMaxHp * 0.3;
+  const comboNeed = state.subjectClears.japanese ? 2 : 3;
+  const hpLine = state.subjectClears.japanese ? 0.4 : 0.3;
+  return state.combo >= comboNeed || state.enemyHp <= state.enemyMaxHp * hpLine;
 }
 function updateMercyUI() {
   const btn = document.getElementById('btnMercy');
@@ -2119,7 +2253,7 @@ function updateMercyUI() {
 function showNextQuestion() {
   hideAllBoxModes();
   const pool = state.isSuperBattle
-    ? [].concat(questions.math, questions.japanese, questions.science, questions.social)
+    ? [].concat(questions.math, questions.japanese, questions.science, questions.social, questions.english)
     : questions[state.subject];
   let avail = pool.map((_, i) => i).filter(i => !state.usedQuestions.includes(i));
   if (avail.length === 0) { state.usedQuestions = []; avail = pool.map((_, i) => i); }
@@ -2156,6 +2290,12 @@ function selectAnswer(choiceIdx) {
   if (choiceIdx === currentQuestion.a) {
     state.combo++;
     if (state.combo > state.maxCombo) state.maxCombo = state.combo;
+    if (!state.isSuperBattle) {
+      const before = subjectRank(state.subject);
+      state.subjectCorrect[state.subject]++;
+      const after = subjectRank(state.subject);
+      if (after > before) pendingRankUp = `${SUBJECT_JA[state.subject]}の うでまえが 「${RANK_NAMES[after]}」に あがった!`;
+    }
     music.playSfx('correct');
     const g = ['bar','bar','mash','roulette'][Math.floor(Math.random() * 4)];
     if (g === 'mash') { setMessage('せいかい! れんだで こうげきだ!!', true); startMash(); }
@@ -2203,8 +2343,9 @@ function attackTap() {
   attackState.stopped = true;
   const p = attackState.pos;
   const acc = 1 - Math.abs(p - 0.5) * 2; // 1.0 = perfect center
+  const critLine = state.subjectClears.math ? 0.80 : 0.88;
   let mult, crit = false;
-  if (acc >= 0.88) { mult = 2.0; crit = true; }
+  if (acc >= critLine) { mult = 2.0; crit = true; }
   else mult = 0.7 + acc * 0.8;
   finishAttack(mult, crit);
 }
@@ -2239,7 +2380,7 @@ function endMash() {
   mashState.active = false;
   document.getElementById('boxMash').style.display = 'none';
   const t = mashState.taps;
-  const crit = t >= 22;
+  const crit = t >= (state.subjectClears.math ? 19 : 22);
   const mult = crit ? 2.0 : 0.6 + Math.min(t, 20) * 0.06;
   finishAttack(mult, crit);
 }
@@ -2267,9 +2408,9 @@ function rouletteStop() {
   clearInterval(rouState.iv);
   document.getElementById('boxRoulette').style.display = 'none';
   const n = rouState.num;
-  const crit = n === 9;
+  const crit = n === 9 || (state.subjectClears.math && n === 8);
   const mult = crit ? 2.0 : 0.5 + n * 0.15;
-  if (crit) setMessage('ラッキーナイン!!', true);
+  if (crit) setMessage('ラッキーナンバー!!', true);
   finishAttack(mult, crit);
 }
 document.getElementById('boxRoulette').addEventListener('pointerdown', rouletteStop);
@@ -2295,16 +2436,19 @@ function screenFlashShake() {
   setTimeout(() => app.classList.remove('shake'), 400);
 }
 
+let pendingRankUp = '';
 function finishAttack(mult, crit) {
   stopAttackBar(false);
   const comboMult = 1 + Math.max(0, state.combo - 1) * 0.15;
-  const dmg = Math.max(1, Math.floor(state.playerAtk * comboMult * mult));
+  const rankMult = 1 + subjectRank(state.subject) * 0.1;
+  const dmg = Math.max(1, Math.floor(state.playerAtk * comboMult * mult * rankMult));
   music.playSfx(crit ? 'crit' : 'slash');
   if (crit) screenFlashShake();
 
   let msg = crit ? `かいしんの いちげき!! ${dmg}ダメージ!!` : `${dmg}ダメージ!`;
   if (state.combo >= 3) msg += ` ${state.combo}コンボ!`;
-  setMessage(msg, true);
+  if (pendingRankUp) { msg += `\n&#9733; ${pendingRankUp}`; pendingRankUp = ''; setTimeout(() => music.playSfx('levelup'), 300); }
+  setMessage(msg.replace('&#9733;', '★'), true);
 
   const wrap = document.getElementById('enemySpriteWrap');
   wrap.classList.remove('float-bounce','boss-float');
@@ -2496,7 +2640,8 @@ function drawHeart(ctx, x, y, r, color) {
 function endDodge() {
   stopDodge(false);
   document.getElementById('dodgeCanvas').style.display = 'none';
-  const perHit = Math.max(2, Math.ceil(state.enemy.atk * 0.5));
+  let perHit = Math.max(2, Math.ceil(state.enemy.atk * 0.5));
+  if (state.equipment.scale) perHit = Math.max(1, Math.floor(perHit * 0.7));
   const dmg = dodge.hits * perHit;
   if (dodge.hits === 0) {
     setMessage('かんぺきに よけた! ノーダメージ! ちきゅうが ちょっと よろこんだ。', true);
@@ -2558,11 +2703,15 @@ function doSpare() {
   const book = state.monsterBook[state.enemy.id];
   if (book) { book.spared = true; book.friendCount = (book.friendCount || 0) + 1; }
   queueChapter();
+  const emblemNote = awardSubjectEmblem();
 
-  const expGain = Math.floor((state.enemy.exp + state.combo * 2) * (isBoss ? 1.5 : 0.5));
-  const goldGain = (state.enemy.gold + state.combo) * 2;
+  let expGain = Math.floor((state.enemy.exp + state.combo * 2) * (isBoss ? 1.5 : 0.5));
+  let goldGain = (state.enemy.gold + state.combo) * 2;
+  if (state.subjectClears.english) expGain = Math.floor(expGain * 1.2);
+  if (state.subjectClears.social) goldGain = Math.floor(goldGain * 1.3);
   state.playerExp += expGain;
   state.gold += goldGain;
+  document.getElementById('victoryNote').innerHTML = emblemNote;
 
   setMessage((state.enemy.spare || '* てきは しずかに さっていった。').replace(/^\* /, ''), false);
   const wrap = document.getElementById('enemySpriteWrap');
@@ -2590,6 +2739,15 @@ function queueChapter() {
   if (ch && state.storyChapter < ch) pendingChapter = ch;
 }
 
+function awardSubjectEmblem() {
+  // beating any boss earns that subject's emblem (permanent benefit)
+  if (!state.isBossBattle || state.isSuperBattle) return '';
+  const s = state.subject;
+  if (state.subjectClears[s]) return '';
+  state.subjectClears[s] = true;
+  return `&#127941; ${SUBJECT_JA[s]}バッジ かくとく!<br>${SUBJECT_BENEFIT[s]}`;
+}
+
 function handleVictory() {
   state.totalDefeated++;
   const isBoss = state.isBossBattle;
@@ -2597,11 +2755,15 @@ function handleVictory() {
   if (book) { book.defeated = true; book.count = (book.count || 0) + 1; }
   queueChapter();
   if (isBoss) screenFlashShake();
+  const emblemNote = awardSubjectEmblem();
 
-  const expGain = (state.enemy.exp + Math.floor(state.combo * 2)) * (isBoss ? 3 : 1);
-  const goldGain = state.enemy.gold + state.combo;
+  let expGain = (state.enemy.exp + Math.floor(state.combo * 2)) * (isBoss ? 3 : 1);
+  let goldGain = state.enemy.gold + state.combo;
+  if (state.subjectClears.english) expGain = Math.floor(expGain * 1.2);
+  if (state.subjectClears.social) goldGain = Math.floor(goldGain * 1.3);
   state.playerExp += expGain;
   state.gold += goldGain;
+  document.getElementById('victoryNote').innerHTML = emblemNote;
 
   music.playSfx(isBoss ? 'bossClear' : 'victory');
 
@@ -2722,7 +2884,8 @@ function useItem(key) {
   const it = ITEMS[key];
   if ((state.items[key] || 0) <= 0) return;
   state.items[key]--;
-  const heal = it.heal === 'full' ? state.playerMaxHp : it.heal;
+  let heal = it.heal === 'full' ? state.playerMaxHp : it.heal;
+  if (state.subjectClears.science && it.heal !== 'full') heal = Math.floor(heal * 1.5);
   state.playerHp = Math.min(state.playerMaxHp, state.playerHp + heal);
   music.playSfx('heal');
   setMessage(it.useMsg || `${it.name}を たべた! HPが かいふくした!`, true);
