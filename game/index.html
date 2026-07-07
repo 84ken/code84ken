@@ -134,6 +134,24 @@
   .sprite-spare-out { animation: spriteSpareOut 0.9s ease-in forwards; }
   .sprite-dust { animation: spriteDust 0.9s ease-in forwards; }
 
+  /* ===== Danger (low HP) ===== */
+  @keyframes dangerPulse { 0%,100%{border-color:var(--white)} 50%{border-color:var(--red)} }
+  #playerHpBox.danger { animation: dangerPulse 0.7s infinite; }
+  #playerHpBox.danger .hp-bar-fill { background: var(--orange); }
+
+  /* ===== Super boss battle ===== */
+  body.super-battle { background: #0d0004; }
+  body.super-battle #stars { display: none; }
+  body.super-battle .ut-box.boss-battle,
+  body.super-battle .text-box.boss-battle,
+  body.super-battle .battle-box.boss-battle {
+    border-color: var(--red);
+    box-shadow: 0 0 20px rgba(255,0,0,0.35), inset 0 0 20px rgba(255,0,0,0.1);
+  }
+  @keyframes superPulse { 0%,100%{ box-shadow:0 0 6px rgba(255,0,0,0.4);} 50%{ box-shadow:0 0 18px rgba(255,0,0,0.9);} }
+  #superBtn { animation: superPulse 1.2s infinite; border-color: var(--red); color: var(--red); }
+  #superBtn:hover { color: var(--yellow); border-color: var(--yellow); }
+
   .boss-flash-overlay { position: fixed; inset: 0; background: white; opacity: 0; pointer-events: none; z-index: 99; animation: screenFlash 0.6s ease-out forwards; }
 
   .star { position: absolute; background: #fff; border-radius: 50%; animation: starTwinkle 3s ease-in-out infinite; }
@@ -331,6 +349,8 @@
         <button class="ut-btn" onclick="replayIntro()" style="flex:1;justify-content:center;padding:12px;font-size:10px;">STORY<span class="font-jp" style="font-size:12px;">おはなし</span></button>
       </div>
 
+      <button id="superBtn" class="ut-btn" onclick="startSuperBattle()" style="display:none;width:100%;justify-content:center;padding:12px;margin-bottom:14px;font-size:10px;">&#9888; ? ? ?<span class="font-jp" style="font-size:12px;">うちゅうの おく</span></button>
+
       <div id="savedStatus" class="ut-box" style="text-align:left;font-size:13px;">
         <span class="font-jp" style="color:var(--gray);">データ ロードちゅう...</span>
       </div>
@@ -394,6 +414,20 @@
             <div id="attackCursor" class="attack-cursor"></div>
           </div>
           <p class="attack-label">&#9733; まんなかで タップ! &#9733;</p>
+        </div>
+      </div>
+      <div id="boxMash" style="display:none;">
+        <div style="text-align:center; padding:14px 4px 6px; cursor:pointer;">
+          <p class="font-pixel" style="font-size:12px; color:var(--yellow); margin-bottom:12px;">&#128293; RENDA! &#128293;</p>
+          <div style="height:28px; border:3px solid var(--white); background:#101018;"><div id="mashFill" style="height:100%; width:0%; background:var(--yellow); transition:width 0.05s;"></div></div>
+          <p class="attack-label">れんだ! れんだ! (<span id="mashCount">0</span>かい)</p>
+        </div>
+      </div>
+      <div id="boxRoulette" style="display:none;">
+        <div style="text-align:center; padding:6px 4px 4px; cursor:pointer;">
+          <p class="font-jp" style="font-size:15px; color:var(--yellow);">おおきい かずで とめろ!</p>
+          <div id="rouNum" class="font-pixel" style="font-size:60px; padding:6px 0; text-shadow:0 0 20px rgba(255,255,0,0.4);">1</div>
+          <p class="attack-label">&#9733; タップで ストップ &#9733;</p>
         </div>
       </div>
       <canvas id="dodgeCanvas" width="520" height="220" style="display:none;"></canvas>
@@ -494,7 +528,7 @@ class ChiptunePlayer {
   constructor() {
     this.ctx = null; this.playing = false;
     this.nextNoteTime = 0; this.currentNote = 0; this.timerID = null;
-    this.tempo = 165; this.gainNode = null; this.currentBGM = 'battle';
+    this.tempo = 165; this.gainNode = null; this.currentBGM = 'title';
   }
   init() {
     if (this.ctx) return;
@@ -602,6 +636,72 @@ class ChiptunePlayer {
       [G4,4],[R,4],
     ];
   }
+  // FINAL BOSS BGM - fast, relentless, E minor
+  getFinalMelody() {
+    const G4=392,A4=440,B4=493.88,C5=523.25,D5=587.33,E5=659.25,F5=698.46,G5=784; const R=0;
+    return [
+      [E5,1],[R,1],[E5,1],[E5,1],[R,1],[D5,1],[E5,1],[R,1],
+      [B4,1],[R,1],[B4,1],[C5,1],[B4,1],[A4,1],[B4,2],
+      [C5,1],[R,1],[C5,1],[D5,1],[R,1],[C5,1],[B4,1],[A4,1],
+      [G4,2],[A4,1],[B4,1],[C5,2],[B4,1],[A4,1],
+      [E5,1],[R,1],[E5,1],[F5,1],[E5,1],[D5,1],[C5,1],[B4,1],
+      [A4,1],[B4,1],[C5,1],[D5,1],[E5,2],[D5,1],[C5,1],
+      [B4,1],[C5,1],[D5,1],[E5,1],[F5,1],[G5,2],[F5,1],
+      [E5,2],[D5,2],[B4,2],[R,2],
+    ];
+  }
+  getFinalBass() {
+    const E2=82.41,G2=98,A2=110,B2=123.47,C3=130.81,D3=146.83,E3=164.81,G3=196,A3=220; const R=0;
+    return [
+      [E2,1],[E3,1],[E2,1],[E3,1],[E2,1],[E3,1],[E2,1],[E3,1],
+      [E2,1],[E3,1],[E2,1],[E3,1],[E2,1],[E3,1],[E2,1],[E3,1],
+      [A2,1],[A3,1],[A2,1],[A3,1],[A2,1],[A3,1],[A2,1],[A3,1],
+      [G2,1],[G3,1],[G2,1],[G3,1],[C3,1],[G3,1],[C3,1],[G3,1],
+      [E2,1],[E3,1],[E2,1],[E3,1],[E2,1],[E3,1],[E2,1],[E3,1],
+      [A2,1],[A3,1],[A2,1],[A3,1],[C3,1],[C3,1],[D3,1],[D3,1],
+      [B2,1],[B2,1],[D3,1],[D3,1],[G2,1],[G3,1],[G2,1],[G3,1],
+      [E2,1],[B2,1],[E3,1],[B2,1],[E2,2],[R,2],
+    ];
+  }
+  getFinalHarmony() {
+    const E4=329.63,G4=392,A4=440,B4=493.88,C5=523.25; const R=0;
+    return [
+      [G4,2],[R,2],[G4,2],[R,2],
+      [G4,2],[R,2],[G4,2],[R,2],
+      [A4,2],[R,2],[A4,2],[R,2],
+      [E4,2],[R,2],[E4,2],[R,2],
+      [G4,2],[R,2],[G4,2],[R,2],
+      [C5,2],[R,2],[A4,2],[R,2],
+      [B4,2],[R,2],[B4,2],[R,2],
+      [B4,2],[G4,2],[E4,2],[R,2],
+    ];
+  }
+  // TITLE BGM - gentle lullaby, C major
+  getTitleMelody() {
+    const C4=261.63,D4=293.66,E4=329.63,G4=392,A4=440,B4=493.88,C5=523.25,D5=587.33,E5=659.25; const R=0;
+    return [
+      [E4,2],[G4,2],[C5,4],[B4,2],[A4,2],[G4,4],
+      [A4,2],[C5,2],[E5,4],[D5,2],[C5,2],[D5,4],
+      [E5,2],[D5,2],[C5,4],[A4,2],[G4,2],[A4,4],
+      [G4,2],[E4,2],[D4,2],[E4,2],[C4,6],[R,2],
+    ];
+  }
+  getTitleBass() {
+    const C3=130.81,E3=164.81,F3=174.61,G3=196,A3=220; const R=0;
+    return [
+      [C3,4],[G3,4],[A3,4],[E3,4],
+      [F3,4],[C3,4],[G3,4],[G3,4],
+      [A3,4],[F3,4],[C3,4],[F3,4],
+      [G3,4],[G3,4],[C3,6],[R,2],
+    ];
+  }
+  getTitleHarmony() {
+    const E4=329.63,F4=349.23,G4=392,A4=440; const R=0;
+    return [
+      [R,8],[G4,8],[R,8],[F4,8],
+      [R,8],[A4,8],[R,8],[E4,8],
+    ];
+  }
   playSquare(freq, startTime, duration, type='square') {
     if (!this.ctx || freq === 0) return;
     const osc = this.ctx.createOscillator();
@@ -638,8 +738,15 @@ class ChiptunePlayer {
       noise.start(startTime); noise.stop(startTime + 0.05);
     }
   }
-  playBattleBGM() { this.currentBGM = 'battle'; this.tempo = 165; if (this.playing) this.restart(); }
-  playBossBGM() { this.currentBGM = 'boss'; this.tempo = 180; if (this.playing) this.restart(); }
+  playBGM(kind) {
+    const tempos = { title: 96, battle: 165, boss: 180, final: 200 };
+    const changed = this.currentBGM !== kind;
+    this.currentBGM = kind;
+    this.tempo = tempos[kind] || 165;
+    if (this.playing && changed) this.restart();
+  }
+  playBattleBGM() { this.playBGM('battle'); }
+  playBossBGM() { this.playBGM('boss'); }
   restart() { this.stop(); this.start(); }
   start() {
     this.init();
@@ -650,11 +757,11 @@ class ChiptunePlayer {
   }
   schedule() {
     if (!this.playing) return;
-    const isBoss = this.currentBGM === 'boss';
-    const melody = isBoss ? this.getBossMelody() : this.getMelody();
-    const bass = isBoss ? this.getBossBass() : this.getBass();
-    const harmony = isBoss ? this.getBossHarmony() : this.getHarmony();
-    const drums = this.getDrumPattern();
+    let melody, bass, harmony, drums = this.getDrumPattern();
+    if (this.currentBGM === 'boss') { melody = this.getBossMelody(); bass = this.getBossBass(); harmony = this.getBossHarmony(); }
+    else if (this.currentBGM === 'final') { melody = this.getFinalMelody(); bass = this.getFinalBass(); harmony = this.getFinalHarmony(); }
+    else if (this.currentBGM === 'title') { melody = this.getTitleMelody(); bass = this.getTitleBass(); harmony = this.getTitleHarmony(); drums = [['rest',4]]; }
+    else { melody = this.getMelody(); bass = this.getBass(); harmony = this.getHarmony(); }
     const secPer16th = 60 / this.tempo / 4;
     while (this.nextNoteTime < this.ctx.currentTime + 0.2) {
       const [mFreq, mDur] = melody[this.currentNote % melody.length];
@@ -1027,6 +1134,128 @@ const SPRITES = {
       ".PP.PP.PP.PP.PP.",
     ]
   },
+  pirorin: {
+    palette: { S:'#37474f', C:'#81d4fa', R:'#ff1744', W:'#ffffff', K:'#111111' },
+    map: [
+      "..SSSSSSSSSS.RRR",
+      "..SCCCCCCCCSSRWR",
+      "..SCCCCCCCCS.RRR",
+      "..SCKKCCKKCS....",
+      "..SCCCCCCCCS....",
+      "..SCCKKKKCCS....",
+      "..SCCKWWKCCS....",
+      "..SCCCCCCCCS....",
+      "..SCCCCCCCCS....",
+      "..SSSSSSSSSS....",
+      "..SSSSKKSSSS....",
+      "..SSSSSSSSSS....",
+    ]
+  },
+  neko: {
+    palette: { O:'#ffb74d', D:'#f57c00', K:'#111111', W:'#ffffff', B:'#90caf9', P:'#ffab91' },
+    map: [
+      "...OO......OO...",
+      "...OOO....OOO...",
+      "..OOOOOOOOOOOO..",
+      ".ODOOOOOOOOOODO.",
+      ".OOKKOOOOOOKKOO.",
+      ".OOOOOOPPOOOOOO.",
+      ".OOOKKOOOOKKOOO.",
+      ".ODOOOOOOOOOODO.",
+      ".OOOOOOOOOOOOOO.",
+      "WWWWWWWWWWWWWWWW",
+      "WBBBBBBBBBBBBBBW",
+      "WWWWWWWWWWWWWWWW",
+    ]
+  },
+  pikopikon: {
+    palette: { G:'#9e9e9e', D:'#616161', K:'#111111', R:'#ef5350', B:'#42a5f5', Y:'#ffee58', W:'#ffffff' },
+    map: [
+      "..GGGGGGGGGGGG..",
+      ".GGGGGGGGGGGGGG.",
+      ".GGKGGWWWWGGYGG.",
+      ".GKKKGWKKWGRGBG.",
+      ".GGKGGWWWWGGBGG.",
+      ".GGGGGKKKKGGGGG.",
+      ".GGGGGGGGGGGGGG.",
+      ".GGGG......GGGG.",
+      ".GGG........GGG.",
+      ".GG..........GG.",
+    ]
+  },
+  asobouze: {
+    palette: { C:'#42a5f5', F:'#ffcc80', K:'#111111', R:'#ef5350', W:'#ffffff' },
+    map: [
+      "....CCCCCCCC....",
+      "...CCCCCCCCCCC..",
+      "....FFFFFFFF....",
+      "...FFFFFFFFFF...",
+      "...FFKKFFKKFF...",
+      "...FFFFFFFFFF...",
+      "...FFFKKKKFFF...",
+      "...FFFKWWKFFF...",
+      "....FFFFFFFF....",
+      "...RRRRRRRRRR...",
+      "...RRRRRRRRRR...",
+      "....RR....RR....",
+    ]
+  },
+  keshikasu: {
+    palette: { P:'#f8bbd0', G:'#e0e0e0', K:'#111111', W:'#ffffff' },
+    map: [
+      "....PP..GG......",
+      "..PPPPGGGGPP....",
+      ".PPPPPPPPPPPP...",
+      ".PPKKPPPPKKPP...",
+      ".PPPPPPPPPPPP...",
+      ".PPPKKKKKKPPP...",
+      "..PPPPPPPPPP....",
+      ".G.PPPPPPPP.G...",
+      "..G..GGGG..G....",
+      "......GG........",
+    ]
+  },
+  iitenki: {
+    palette: { Y:'#ffee58', O:'#ffb300', K:'#111111', R:'#ff8a65' },
+    map: [
+      "...O...OO...O...",
+      "....O..OO..O....",
+      ".....YYYYYY.....",
+      "...YYYYYYYYYY...",
+      "OO.YYYYYYYYYY.OO",
+      "..YYYKKYYKKYYY..",
+      "..YYYYYYYYYYYY..",
+      "..YYRYYYYYYRYY..",
+      "..YYYYKKKKYYYY..",
+      "...YYYYYYYYYY...",
+      "OO...YYYYYY..OO.",
+      "....O..OO..O....",
+      "...O...OO...O...",
+    ]
+  },
+  hachigatsu: {
+    palette: { D:'#1c1c24', R:'#d50000', W:'#ffffff', G:'#9e9e9e', K:'#000000' },
+    map: [
+      "..G...G...G...G...G.",
+      ".RRRRRRRRRRRRRRRRRR.",
+      ".RRRRRRRRRRRRRRRRRR.",
+      ".DDDDDDDDDDDDDDDDDD.",
+      ".DDDDDDDDDDDDDDDDDD.",
+      ".DDRRRDDDDDDDDRRRDD.",
+      ".DDRRRDDDDDDDDRRRDD.",
+      ".DDDDDDDDDDDDDDDDDD.",
+      ".DDWWWWDDDDDDDWWDDD.",
+      ".DDDDDWWDDDDDWWWDDD.",
+      ".DDDWWWDDDDDDDWWDDD.",
+      ".DDDDDWWDDDDDDWWDDD.",
+      ".DDWWWWDDDDDWWWWWWD.",
+      ".DDDDDDDDDDDDDDDDDD.",
+      ".DDKWKWKWKWKWKWKWDD.",
+      ".DDWKWKWKWKWKWKWKDD.",
+      ".DDDDDDDDDDDDDDDDDD.",
+      ".DDDDDDDDDDDDDDDDDD.",
+    ]
+  },
 };
 
 function renderSprite(spriteId, scale, silhouette) {
@@ -1217,7 +1446,7 @@ const enemies = [
     lines:['* ねむけだまは「あと 5ふんだけ…」と ささやいている。','* ねむけだまから おふとんの においが する。あぶない。','* よくみると ねむけだま じしんが いちばん ねむそうだ。'],
     spare:'* ねむけだまは まくらを かかえて かえっていった。おやすみ。',
     win:'* ねむけだまは ぱちっと めが さめて きえた!' },
-  { id:'iiwakemushi', name:'いいわけムシ', hp:25, atk:6, exp:12, gold:5,
+  { id:'iiwakemushi', name:'いいわけムシ', hp:32, atk:9, exp:16, gold:7,
     appear:'* いいわけムシが あらわれた! くちが とても よく うごく。',
     atkName:'いいわけマシンガン',
     lines:['* いいわけムシ「だって きょうは なんか そういう ひだし…」','* いいわけムシ「おれ あしたから ほんき だすタイプなんで」','* いいわけムシは いいわけを あと3こ ストックしている。'],
@@ -1229,31 +1458,67 @@ const enemies = [
     lines:['* プリンまじん「べんきょうの まえに いっこ どう?」','* プリンまじんは ぷるぷる ゆれて ゆうわくしてくる。','* あまい においで しゅうちゅうりょくが けずられていく…!'],
     spare:'* プリンまじんは「しゅくだいの あとで たべてね」と いって さっていった。',
     win:'* プリンまじんは スプーンの けはいを かんじて にげさった!' },
-  { id:'tsuzuki', name:'テレビのつづき', hp:40, atk:12, exp:20, gold:10,
+  { id:'pirorin', name:'ピロリン', hp:38, atk:11, exp:19, gold:9,
+    appear:'* ピロリンが「ピロリン&#9834;」と なりながら あらわれた!',
+    atkName:'つうちおん れんぱつ',
+    lines:['* ピロリン「ピロリン&#9834; だれかから メッセージかも」','* ひらいてみると、みなくていい おしらせ ばかりだ。','* ピロリンは 5ふんおきに なる れんしゅうを している。'],
+    spare:'* ピロリンは マナーモードに なって しずかに かえっていった。',
+    win:'* ピロリンは でんげんオフに なった! せかいが しずかだ。' },
+  { id:'tsuzuki', name:'テレビのつづき', hp:42, atk:12, exp:20, gold:10,
     appear:'* テレビのつづきが あらわれた! いちばん いいところで「つづく」に なったままだ。',
     atkName:'よこくへんビーム',
     lines:['* テレビのつづきは「このあと すぐ!」と いっている。','* つづきが きになる… きになるが、いまは しゅくだいだ。','* だいじょうぶ。ろくがに のこっている。あわてるな。'],
     spare:'* テレビのつづきは「ろくがで まってるよ」と いって きえていった。',
     win:'* テレビのつづきは プツンと でんげんが きれた!' },
-  { id:'mangayama', name:'マンガのやま', hp:45, atk:14, exp:22, gold:11,
+  { id:'neko', name:'おひるねネコ', hp:46, atk:13, exp:24, gold:11,
+    appear:'* おひるねネコが ノートのうえに どっかり すわった!',
+    atkName:'ノートのうえで まるくなる',
+    lines:['* ネコは どかない。ぜったいに どかない。','* かわいい。それが いちばんの こうげきだ。','* ネコが おおきく のびを した。しゅうちゅうが とぎれる…!'],
+    spare:'* おひるねネコは ひざのうえに ひっこしてくれた。それなら いい。',
+    win:'* おひるねネコは まどべに おひっこしした!' },
+  { id:'mangayama', name:'マンガのやま', hp:50, atk:14, exp:26, gold:12,
     appear:'* マンガのやまが ずずんと あらわれた! ぜんぶ よみたい。',
     atkName:'いっきよみプレス',
     lines:['* やまの いちばん うえの まんがが ちょっとだけ ひらいている。わなだ。','* マンガのやま「つぎの かん、きになるでしょ」','* マンガのやまは くずれそうで くずれない。'],
     spare:'* マンガのやまは ほんだなに きちんと ならんで まつことにした。',
     win:'* マンガのやまは しおりを はさんで しずかになった!' },
-  { id:'sofa', name:'ねころびソファ', hp:55, atk:16, exp:28, gold:13,
+  { id:'pikopikon', name:'ピコピコン', hp:55, atk:15, exp:28, gold:13,
+    appear:'* ピコピコンが「つづきから はじめますか?」と きいてきた!',
+    atkName:'「もう1かいだけ」ラッシュ',
+    lines:['* ピコピコン「セーブポイントの てまえ なんでしょ? しってるよ」','* ピコピコンの ボタンは おしごろの かたさだ。','* ピコピコン「きみの レベルあげ、てつだいたいなあ」'],
+    spare:'* ピコピコンは「クリアしたら あそぼうね」と いって スリープした。',
+    win:'* ピコピコンは じぶんで じぶんの でんげんを きった! えらい!' },
+  { id:'sofa', name:'ねころびソファ', hp:60, atk:16, exp:30, gold:14,
     appear:'* ねころびソファが のっそり あらわれた! すわったら まけだ。',
     atkName:'だきこみクッション',
     lines:['* ねころびソファ「ちょっとだけ よこに なりなよ」','* ソファは ぜつみょうな やわらかさを アピールしている。','* ソファの うえに リモコンが おいてある。かんぺきな わなだ。'],
     spare:'* ねころびソファは「おわったら おいで」と いった。いいやつだった。',
     win:'* ねころびソファは ただの ソファに もどった!' },
+  { id:'asobouze', name:'あそぼうぜくん', hp:65, atk:17, exp:32, gold:15,
+    appear:'* あそぼうぜくんが げんかんの チャイムを ならした!',
+    atkName:'「こうえん いこうぜ」コール',
+    lines:['* あそぼうぜくん「おーい! こうえん いこうぜ!」','* まどのそとから ボールを つく おとが きこえる。','* あそぼうぜくんは わるいやつでは ない。タイミングが わるいだけだ。'],
+    spare:'* あそぼうぜくん「しゅくだい おわったら こいよ!」…いいやつだ。',
+    win:'* あそぼうぜくんは さきに こうえんで まつことにした!' },
   { id:'unagi', name:'ダラダラウナギ', hp:70, atk:18, exp:35, gold:16,
     appear:'* ダラダラウナギが にょろにょろ あらわれた! つかみどころが ない。',
     atkName:'ぬるぬるタイムどろぼう',
     lines:['* ダラダラウナギは とくに なにも していない。それが こうげきだ。','* きがつくと 30ぷん たっていた。ウナギの しわざだ。','* ダラダラウナギは「まあ そのうちね」と いった。'],
     spare:'* ダラダラウナギは かわに かえっていった。たまには いいやつだ。',
     win:'* ダラダラウナギは しゃきっと まっすぐに なった!' },
-  { id:'ashitayaru', name:'あしたやるさん', hp:80, atk:20, exp:38, gold:18,
+  { id:'keshikasu', name:'けしカスかいじゅう', hp:75, atk:19, exp:36, gold:17,
+    appear:'* つくえのうえで けしカスかいじゅうが うまれた!',
+    atkName:'けしカスさんぷ',
+    lines:['* けしカスかいじゅうは まちがえた かずだけ おおきくなる。','* つくえの うえが どんどん ちらかっていく…!','* けしカスかいじゅう「おれを あつめて だんごに するなよ」'],
+    spare:'* けしカスかいじゅうは ゴミばこに ジャンプして きえた。ナイスダイブ。',
+    win:'* けしカスかいじゅうは きれいに はらわれた!' },
+  { id:'iitenki', name:'いいてんき', hp:80, atk:20, exp:38, gold:18,
+    appear:'* きょうは ものすごく いいてんきだ。それが てきとして あらわれた!',
+    atkName:'ぽかぽかビーム',
+    lines:['* いいてんき「そとで あそばないと もったいないよ?」','* くもひとつ ない。ざんこくなほどの いいてんきだ。','* あしたも いいてんきらしい。じゃあ あしたで いいか… いや、だめだ!'],
+    spare:'* いいてんき「しゅくだいのあとの そらは もっと あおいよ」',
+    win:'* いいてんきは きれいな ゆうやけに なった!' },
+  { id:'ashitayaru', name:'あしたやるさん', hp:85, atk:21, exp:40, gold:19,
     appear:'* あしたやるさんが あらわれた! おとなの すがたを した あくまだ。',
     atkName:'「あしたから ほんき」ビーム',
     lines:['* あしたやるさん「あしたって いつも あるから すごいよね」','* あしたやるさんの てちょうは まっしろだ。','* あしたやるさんは 30ねんかん「あした」と いいつづけている らしい。'],
@@ -1289,6 +1554,57 @@ const bosses = [
 ];
 
 // ===================================================================
+// SUPER BOSS (hidden final boss)
+// ===================================================================
+const superBoss = {
+  id:'hachigatsu', name:'8がつ31にち', hp:666, atk:60, exp:400, gold:500,
+  appear:'* すべての こどもが おそれる さいきょうの まもの\n「8がつ31にち」が めを さました!',
+  atkName:'なつやすみの しゅうえん',
+  lines:[
+    '* 8がつ31にち「まだ ドリルが 30ページ のこってるよ」',
+    '* 8がつ31にち「じゆうけんきゅう、テーマも きめてないんでしょ」',
+    '* 8がつ31にち「アサガオの かんさつにっき、7がつで とまってるね」',
+    '* 8がつ31にち「きみ、いい めを してるね。よゆうの ある めだ」',
+  ],
+  spare:'* 8がつ31にちは ふっと わらった。\n「…そうか。おわってるなら、ぼくは こわくないんだ」\nさいごのひは しずかに カレンダーに もどった。',
+  win:'* 8がつ31にちは 9がつ1にちに なった!\nあたらしい がっきの はじまりだ!' };
+
+// ===================================================================
+// STORY CHAPTERS (played after boss clears)
+// ===================================================================
+const BOSS_CHAPTER = { mendokusai:1, suitoru:2, shimekiryu:3, atomawashi:4, hachigatsu:5 };
+const STORY = {
+  1: [
+    'ニュースそくほう。\nせかいの こどもたちが すこしだけ\nしゅくだいを やるように なったらしい。',
+    'おかあさんたちが なんだか やさしい。\nカレーの おかわりが ふえた。\nちきゅうは すこし かるくなった。',
+    'でも うちゅうの おくから、\nまだ ゴウンゴウンという おとが\nきこえてくる…',
+  ],
+  2: [
+    'すいとられていた「やるき」が\nせかいじゅうに かえっていく。\nとなりの おじさんも さんぽを はじめた。',
+    'テンイン星人から てがみが きた。\n「そろそろ おおものが うごきだす。\nプリンを たべて そなえて」',
+  ],
+  3: [
+    'ちきゅうの とけいが\nただしい はやさで うごきだした。\nあしたは ちゃんと あしたに くる。',
+    'そのとき。そらの おくで\nおおきな むらさきいろの うずが\nゆっくりと まわりはじめた…',
+    'あとまわし星人の おうさま。\nアトマワシ大王の おでましだ。',
+  ],
+  4: [
+    'アトマワシ大王は ほしに かえった。\nちきゅうの「あとでやる」は\nちいさな こえに もどった。',
+    'せかいの こどもたちは きょうも\nしゅくだいを やったり、やらなかったり\nしている。それで いいのだ。',
+    'きみは ちきゅうを すくった。\nしゅくだいを やっただけなのに。\n\n— THE END —',
+    '…と おもったら。\n\nカレンダーの さいごの ページが\nカサリと めくれる おとが した。',
+    '『8がつ31にち』。\nすべての こどもが おそれる\nさいきょうの まものが めを さました。',
+    'タイトルがめんに あかい ボタンが\nあらわれた。じゅんびが できたら こい。\nプリンを わすれるな。',
+  ],
+  5: [
+    '8がつ31にちは ただの\nカレンダーの 1まいに もどった。',
+    'なつやすみの さいごのひは、\nしゅくだいが おわっていれば\nせかいで いちばん たのしい ひに なる。',
+    'きみは それを しょうめいした。\nちきゅうかんそくしじょう もっとも つよい\n小学生と して。',
+    'おめでとう。そして ありがとう。\n\n— ほんとうの THE END —\n\n(しゅくだいは あしたも あるけどね)',
+  ],
+};
+
+// ===================================================================
 // ITEMS
 // ===================================================================
 const ITEMS = {
@@ -1317,16 +1633,21 @@ let state = {
   usedQuestions: [],
   isAnimating: false,
   isBossBattle: false,
+  isSuperBattle: false,
   introSeen: false,
+  storyChapter: 0,
+  superUnlocked: false,
+  superBeaten: false,
   monsterBook: {}, // id -> { defeated, spared, count, friendCount, isBoss }
 };
 
-function allMonsterDefs() { return [...enemies, ...bosses]; }
+function allMonsterDefs() { return [...enemies, ...bosses, superBoss]; }
+function isBossId(id) { return bosses.some(b => b.id === id) || id === superBoss.id; }
 
 function initMonsterBook() {
   allMonsterDefs().forEach(m => {
     if (!state.monsterBook[m.id]) {
-      state.monsterBook[m.id] = { defeated:false, spared:false, count:0, friendCount:0, isBoss: bosses.some(b => b.id === m.id) };
+      state.monsterBook[m.id] = { defeated:false, spared:false, count:0, friendCount:0, isBoss: isBossId(m.id) };
     }
   });
 }
@@ -1343,6 +1664,7 @@ function saveGame() {
     totalDefeated: state.totalDefeated, totalSpared: state.totalSpared,
     maxCombo: state.maxCombo, gold: state.gold, items: state.items,
     monsterBook: state.monsterBook, introSeen: state.introSeen,
+    storyChapter: state.storyChapter, superUnlocked: state.superUnlocked, superBeaten: state.superBeaten,
   }));
 }
 function loadGame() {
@@ -1358,6 +1680,8 @@ function loadGame() {
         maxCombo: s.maxCombo || 0, gold: s.gold || 0,
         items: s.items || { candy:1, toast:0, pie:0 },
         introSeen: !!s.introSeen,
+        storyChapter: s.storyChapter || 0,
+        superUnlocked: !!s.superUnlocked, superBeaten: !!s.superBeaten,
       });
       if (s.monsterBook) state.monsterBook = s.monsterBook;
     } catch(e) {}
@@ -1415,11 +1739,15 @@ function goTitle() {
   typeToken++;
   stopDodge(true);
   stopAttackBar(true);
+  stopMiniGames();
   state.isAnimating = false;
+  state.isSuperBattle = false;
+  removeSuperStyle();
   saveGame();
-  if (musicOn && music.currentBGM !== 'battle') music.playBattleBGM();
+  music.playBGM('title');
   showScreen('titleScreen');
   updateSavedStatus();
+  document.getElementById('superBtn').style.display = state.superUnlocked ? '' : 'none';
 }
 
 function updateSavedStatus() {
@@ -1436,6 +1764,7 @@ function updateSavedStatus() {
       <span class="font-pixel" style="font-size:7px;color:var(--gray);">WIN: ${state.totalDefeated}  FRIEND: ${state.totalSpared}</span>
       <span class="font-pixel" style="font-size:7px;color:var(--gray);">MAX COMBO: ${state.maxCombo}  ATK: ${state.playerAtk}</span>
     </div>
+    ${state.storyChapter > 0 ? `<div class="font-jp" style="margin-top:6px;font-size:12px;color:${state.storyChapter >= 5 ? 'var(--gold)' : 'var(--yellow)'};">${['','&#9733; だい1しょう クリア','&#9733; だい2しょう クリア','&#9733; だい3しょう クリア','&#9733; アトマワシ大王を やっつけた!','&#127881; ほんとうの THE END とうたつ!'][state.storyChapter]}</div>` : ''}
   `;
 }
 
@@ -1450,21 +1779,27 @@ const INTRO_SLIDES = [
   'というわけで、ちきゅうの うんめいは\nきみに きまった。りゆうは\n「なんとなく つよそうだから」だそうだ。\n\n…がんばって。',
 ];
 let introIdx = 0;
-function startIntro() {
+let currentSlides = INTRO_SLIDES;
+let slideDone = null;
+function showStory(slides, done) {
+  currentSlides = slides;
+  slideDone = done || null;
   introIdx = 0;
   showScreen('introScreen');
-  typeText(document.getElementById('introText'), INTRO_SLIDES[0], 45);
+  typeText(document.getElementById('introText'), slides[0], 45);
+}
+function startIntro() {
+  showStory(INTRO_SLIDES, () => { state.introSeen = true; saveGame(); goTitle(); });
 }
 function advanceIntro() {
   music.playSfx('select');
   introIdx++;
-  if (introIdx >= INTRO_SLIDES.length) {
-    state.introSeen = true;
-    saveGame();
-    goTitle();
+  if (introIdx >= currentSlides.length) {
+    const cb = slideDone; slideDone = null;
+    if (cb) cb(); else goTitle();
     return;
   }
-  typeText(document.getElementById('introText'), INTRO_SLIDES[introIdx], 45);
+  typeText(document.getElementById('introText'), currentSlides[introIdx], 45);
 }
 function replayIntro() { startIntro(); }
 
@@ -1496,7 +1831,7 @@ function showZukan() {
   defs.forEach(d => {
     const m = state.monsterBook[d.id] || {};
     const known = m.defeated || m.spared;
-    const isBoss = bosses.some(b => b.id === d.id);
+    const isBoss = isBossId(d.id);
     const card = document.createElement('div');
     card.className = 'zukan-card' + (known ? ' defeated' : '') + (m.spared ? ' friend' : '') + (isBoss ? ' boss-card' : '');
     const cv = renderSprite(d.id, 3, !known);
@@ -1594,11 +1929,55 @@ function startGame(subject) {
   state.stage = 1;
   state.usedQuestions = [];
   state.isBossBattle = false;
+  state.isSuperBattle = false;
+  removeSuperStyle();
   spawnEnemy();
   showScreen('battleScreen');
   updateBattleUI();
   beginEncounter();
-  if (musicOn && music.currentBGM !== 'battle' && !state.isBossBattle) music.playBattleBGM();
+  music.playBGM('battle');
+}
+
+// ===================================================================
+// SUPER BOSS BATTLE
+// ===================================================================
+const SUPER_INTRO = [
+  'よく きたね。',
+  'きみが みんなを ともだちに しちゃうから、ぼくの でばんが きちゃったよ。',
+  'ぼくは 8がつ31にち。おわらなかった しゅくだい ぜんぶの、さいしゅうけっさん。',
+  'さあ はじめよう。さいごの ひは、いつだって いちばん みじかい。',
+];
+function startSuperBattle() {
+  music.playSfx('bossAppear');
+  state.subject = 'math';
+  state.playerHp = state.playerMaxHp;
+  state.combo = 0;
+  state.usedQuestions = [];
+  state.isSuperBattle = true;
+  state.isBossBattle = true;
+  state.enemy = { ...superBoss };
+  state.enemyHp = superBoss.hp;
+  state.enemyMaxHp = superBoss.hp;
+  applySuperStyle();
+  placeEnemySprite('hachigatsu', 9);
+  showScreen('battleScreen');
+  updateBattleUI();
+  music.playBGM('final');
+  showBossEntrance();
+  hideAllBoxModes();
+  superIntroSequence(0);
+}
+function superIntroSequence(i) {
+  if (!state.isSuperBattle) return;
+  if (i >= SUPER_INTRO.length) { showNextQuestion(); return; }
+  typeText(document.getElementById('messageText'), SUPER_INTRO[i], 40, () => setTimeout(() => superIntroSequence(i + 1), 950));
+}
+function applySuperStyle() {
+  applyBossStyle();
+  document.body.classList.add('super-battle');
+}
+function removeSuperStyle() {
+  document.body.classList.remove('super-battle');
 }
 
 function spawnEnemy() {
@@ -1635,7 +2014,7 @@ function spawnBoss(boss) {
   applyBossStyle();
   placeEnemySprite(boss.id, 8);
   showBossEntrance();
-  if (musicOn) music.playBossBGM();
+  music.playBGM(boss.id === 'atomawashi' ? 'final' : 'boss');
 }
 
 function placeEnemySprite(spriteId, scale) {
@@ -1643,7 +2022,7 @@ function placeEnemySprite(spriteId, scale) {
   wrap.innerHTML = '';
   wrap.className = '';
   const cv = renderSprite(spriteId, scale, false);
-  cv.style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,0.12))';
+  cv.style.filter = state.isSuperBattle ? 'drop-shadow(0 0 26px rgba(255,0,0,0.55))' : 'drop-shadow(0 0 16px rgba(255,255,255,0.12))';
   wrap.appendChild(cv);
   wrap.classList.add(state.isBossBattle ? 'boss-float' : 'float-bounce');
   enemySpriteEl = wrap;
@@ -1654,7 +2033,7 @@ function applyBossStyle() {
 }
 function removeBossStyle() {
   ['battleField','playerHpBox','messageBox','battleBox'].forEach(id => document.getElementById(id).classList.remove('boss-battle'));
-  if (musicOn && music.currentBGM === 'boss') music.playBattleBGM();
+  if (music.currentBGM === 'boss' || music.currentBGM === 'final') music.playBGM('battle');
 }
 function showBossEntrance() {
   const flash = document.createElement('div');
@@ -1675,7 +2054,7 @@ function beginEncounter() {
 }
 
 function hideAllBoxModes() {
-  ['boxQuestion','boxAttack','boxItems'].forEach(id => document.getElementById(id).style.display = 'none');
+  ['boxQuestion','boxAttack','boxMash','boxRoulette','boxItems'].forEach(id => document.getElementById(id).style.display = 'none');
   document.getElementById('dodgeCanvas').style.display = 'none';
 }
 
@@ -1704,6 +2083,10 @@ function updateBattleUI() {
   const expPct = (state.playerExp / state.expToNext) * 100;
   document.getElementById('expBar').style.width = Math.min(100, expPct) + '%';
 
+  const pbox = document.getElementById('playerHpBox');
+  if (state.playerHp > 0 && state.playerHp <= state.playerMaxHp * 0.25) pbox.classList.add('danger');
+  else pbox.classList.remove('danger');
+
   const cd = document.getElementById('comboDisplay');
   if (state.combo >= 5) cd.style.color = 'var(--yellow)';
   else if (state.combo >= 3) cd.style.color = 'var(--orange)';
@@ -1713,7 +2096,9 @@ function updateBattleUI() {
 }
 
 function isSpareable() {
-  return state.enemy && (state.combo >= 3 || state.enemyHp <= state.enemyMaxHp * 0.3);
+  if (!state.enemy) return false;
+  if (state.isSuperBattle) return state.enemyHp <= state.enemyMaxHp * 0.2;
+  return state.combo >= 3 || state.enemyHp <= state.enemyMaxHp * 0.3;
 }
 function updateMercyUI() {
   const btn = document.getElementById('btnMercy');
@@ -1733,7 +2118,9 @@ function updateMercyUI() {
 // ===================================================================
 function showNextQuestion() {
   hideAllBoxModes();
-  const pool = questions[state.subject];
+  const pool = state.isSuperBattle
+    ? [].concat(questions.math, questions.japanese, questions.science, questions.social)
+    : questions[state.subject];
   let avail = pool.map((_, i) => i).filter(i => !state.usedQuestions.includes(i));
   if (avail.length === 0) { state.usedQuestions = []; avail = pool.map((_, i) => i); }
   const qi = avail[Math.floor(Math.random() * avail.length)];
@@ -1769,9 +2156,11 @@ function selectAnswer(choiceIdx) {
   if (choiceIdx === currentQuestion.a) {
     state.combo++;
     if (state.combo > state.maxCombo) state.maxCombo = state.combo;
-    setMessage('せいかい! こうげきの チャンス!', true);
     music.playSfx('correct');
-    startAttackBar();
+    const g = ['bar','bar','mash','roulette'][Math.floor(Math.random() * 4)];
+    if (g === 'mash') { setMessage('せいかい! れんだで こうげきだ!!', true); startMash(); }
+    else if (g === 'roulette') { setMessage('せいかい! うんだめし ルーレット!', true); startRoulette(); }
+    else { setMessage('せいかい! まんなかで とめろ!', true); startAttackBar(); }
   } else {
     state.combo = 0;
     updateBattleUI();
@@ -1824,11 +2213,94 @@ document.addEventListener('keydown', e => {
   if ((e.code === 'Space' || e.code === 'Enter') && attackState.active) { e.preventDefault(); attackTap(); }
 });
 
+// ===================================================================
+// MASH MINIGAME
+// ===================================================================
+const mashState = { active:false, taps:0, timer:0 };
+function startMash() {
+  hideAllBoxModes();
+  document.getElementById('boxMash').style.display = '';
+  mashState.active = true;
+  mashState.taps = 0;
+  document.getElementById('mashCount').textContent = '0';
+  document.getElementById('mashFill').style.width = '0%';
+  clearTimeout(mashState.timer);
+  mashState.timer = setTimeout(endMash, 2600);
+}
+function mashTap() {
+  if (!mashState.active) return;
+  mashState.taps++;
+  music.playSfx('select');
+  document.getElementById('mashCount').textContent = mashState.taps;
+  document.getElementById('mashFill').style.width = Math.min(100, mashState.taps * 4.5) + '%';
+}
+function endMash() {
+  if (!mashState.active) return;
+  mashState.active = false;
+  document.getElementById('boxMash').style.display = 'none';
+  const t = mashState.taps;
+  const crit = t >= 22;
+  const mult = crit ? 2.0 : 0.6 + Math.min(t, 20) * 0.06;
+  finishAttack(mult, crit);
+}
+document.getElementById('boxMash').addEventListener('pointerdown', mashTap);
+
+// ===================================================================
+// ROULETTE MINIGAME
+// ===================================================================
+const rouState = { active:false, num:1, iv:0, timeout:0 };
+function startRoulette() {
+  hideAllBoxModes();
+  document.getElementById('boxRoulette').style.display = '';
+  rouState.active = true;
+  clearInterval(rouState.iv);
+  rouState.iv = setInterval(() => {
+    rouState.num = rouState.num % 9 + 1;
+    document.getElementById('rouNum').textContent = rouState.num;
+  }, 85);
+  clearTimeout(rouState.timeout);
+  rouState.timeout = setTimeout(rouletteStop, 3200);
+}
+function rouletteStop() {
+  if (!rouState.active) return;
+  rouState.active = false;
+  clearInterval(rouState.iv);
+  document.getElementById('boxRoulette').style.display = 'none';
+  const n = rouState.num;
+  const crit = n === 9;
+  const mult = crit ? 2.0 : 0.5 + n * 0.15;
+  if (crit) setMessage('ラッキーナイン!!', true);
+  finishAttack(mult, crit);
+}
+document.getElementById('boxRoulette').addEventListener('pointerdown', rouletteStop);
+
+document.addEventListener('keydown', e => {
+  if (e.code !== 'Space' && e.code !== 'Enter') return;
+  if (mashState.active) { e.preventDefault(); mashTap(); }
+  else if (rouState.active) { e.preventDefault(); rouletteStop(); }
+});
+
+function stopMiniGames() {
+  mashState.active = false; clearTimeout(mashState.timer);
+  rouState.active = false; clearInterval(rouState.iv); clearTimeout(rouState.timeout);
+}
+
+function screenFlashShake() {
+  const flash = document.createElement('div');
+  flash.className = 'boss-flash-overlay';
+  document.body.appendChild(flash);
+  setTimeout(() => flash.remove(), 700);
+  const app = document.getElementById('app');
+  app.classList.add('shake');
+  setTimeout(() => app.classList.remove('shake'), 400);
+}
+
 function finishAttack(mult, crit) {
   stopAttackBar(false);
   const comboMult = 1 + Math.max(0, state.combo - 1) * 0.15;
   const dmg = Math.max(1, Math.floor(state.playerAtk * comboMult * mult));
   music.playSfx(crit ? 'crit' : 'slash');
+  if (crit) screenFlashShake();
 
   let msg = crit ? `かいしんの いちげき!! ${dmg}ダメージ!!` : `${dmg}ダメージ!`;
   if (state.combo >= 3) msg += ` ${state.combo}コンボ!`;
@@ -1881,7 +2353,12 @@ function startDodge() {
   dodge.hits = 0;
   dodge.invUntil = 0;
   dodge.lastT = performance.now();
-  const dur = state.isBossBattle ? 4300 : 3300;
+  if (state.isSuperBattle) dodge.pattern = 'mix';
+  else if (state.isBossBattle) dodge.pattern = ['rain','aimed','spiral'][Math.floor(Math.random() * 3)];
+  else dodge.pattern = Math.random() < 0.6 ? 'rain' : 'aimed';
+  dodge.angle = 0;
+  const dur = state.isSuperBattle ? 6000 : (state.isBossBattle ? 4300 : 3300);
+  dodge.duration = dur;
   dodge.endAt = dodge.lastT + dur;
   dodge.spawnAt = dodge.lastT + 150;
   dodge.raf = requestAnimationFrame(dodgeFrame);
@@ -1909,26 +2386,55 @@ function dodgeFrame(t) {
   // spawn bullets
   const isBoss = state.isBossBattle;
   if (t >= dodge.spawnAt && t < dodge.endAt - 500) {
-    const n = isBoss ? 2 : 1;
-    for (let i = 0; i < n; i++) {
-      dodge.bullets.push({
-        x: 20 + Math.random() * (DODGE_W - 40),
-        y: -8,
-        vx: (Math.random() - 0.5) * (isBoss ? 90 : 50),
-        vy: (isBoss ? 130 : 100) + Math.random() * (isBoss ? 110 : 80),
-        r: 5 + Math.random() * 3,
-      });
+    let pattern = dodge.pattern;
+    if (pattern === 'mix') {
+      const elapsed = t - (dodge.endAt - dodge.duration);
+      pattern = ['rain','aimed','spiral'][Math.floor(elapsed / 1600) % 3];
     }
-    if (isBoss && Math.random() < 0.4) {
-      const fromLeft = Math.random() < 0.5;
-      dodge.bullets.push({
-        x: fromLeft ? -8 : DODGE_W + 8,
-        y: 40 + Math.random() * (DODGE_H - 80),
-        vx: fromLeft ? 150 + Math.random()*60 : -(150 + Math.random()*60),
-        vy: 0, r: 6,
-      });
+    const spd = state.isSuperBattle ? 1.35 : 1;
+    if (pattern === 'rain') {
+      const n = isBoss ? 2 : 1;
+      for (let i = 0; i < n; i++) {
+        dodge.bullets.push({
+          x: 20 + Math.random() * (DODGE_W - 40), y: -8,
+          vx: (Math.random() - 0.5) * (isBoss ? 90 : 50) * spd,
+          vy: ((isBoss ? 130 : 100) + Math.random() * (isBoss ? 110 : 80)) * spd,
+          r: 5 + Math.random() * 3,
+        });
+      }
+      if (isBoss && Math.random() < 0.4) {
+        const fromLeft = Math.random() < 0.5;
+        dodge.bullets.push({
+          x: fromLeft ? -8 : DODGE_W + 8,
+          y: 40 + Math.random() * (DODGE_H - 80),
+          vx: (fromLeft ? 1 : -1) * (150 + Math.random() * 60) * spd,
+          vy: 0, r: 6,
+        });
+      }
+    } else if (pattern === 'aimed') {
+      const n = isBoss ? 2 : 1;
+      for (let i = 0; i < n; i++) {
+        const x = 20 + Math.random() * (DODGE_W - 40);
+        dodge.bullets.push({
+          x, y: -8,
+          vx: (dodge.soul.x - x) * 0.55 * spd,
+          vy: (120 + Math.random() * 60) * spd,
+          r: 6,
+        });
+      }
+    } else if (pattern === 'spiral') {
+      dodge.angle += 0.9;
+      for (let k = 0; k < 2; k++) {
+        const a = dodge.angle + k * Math.PI;
+        dodge.bullets.push({
+          x: DODGE_W / 2, y: 30,
+          vx: Math.cos(a) * 130 * spd,
+          vy: Math.abs(Math.sin(a)) * 110 * spd + 35,
+          r: 5,
+        });
+      }
     }
-    dodge.spawnAt = t + (isBoss ? 200 : 270);
+    dodge.spawnAt = t + (state.isSuperBattle ? 170 : (isBoss ? 200 : 270));
   }
 
   // update bullets + collision
@@ -1952,7 +2458,7 @@ function dodgeFrame(t) {
   ctx.fillStyle = '#000';
   ctx.fillRect(0, 0, DODGE_W, DODGE_H);
   // time gauge
-  const remain = Math.max(0, dodge.endAt - t) / (state.isBossBattle ? 4300 : 3300);
+  const remain = Math.max(0, dodge.endAt - t) / dodge.duration;
   ctx.fillStyle = '#333';
   ctx.fillRect(0, 0, DODGE_W, 4);
   ctx.fillStyle = '#ff0';
@@ -2051,6 +2557,7 @@ function doSpare() {
   state.totalSpared++;
   const book = state.monsterBook[state.enemy.id];
   if (book) { book.spared = true; book.friendCount = (book.friendCount || 0) + 1; }
+  queueChapter();
 
   const expGain = Math.floor((state.enemy.exp + state.combo * 2) * (isBoss ? 1.5 : 0.5));
   const goldGain = (state.enemy.gold + state.combo) * 2;
@@ -2077,11 +2584,19 @@ function doSpare() {
 // ===================================================================
 // VICTORY
 // ===================================================================
+let pendingChapter = 0;
+function queueChapter() {
+  const ch = BOSS_CHAPTER[state.enemy.id] || 0;
+  if (ch && state.storyChapter < ch) pendingChapter = ch;
+}
+
 function handleVictory() {
   state.totalDefeated++;
   const isBoss = state.isBossBattle;
   const book = state.monsterBook[state.enemy.id];
   if (book) { book.defeated = true; book.count = (book.count || 0) + 1; }
+  queueChapter();
+  if (isBoss) screenFlashShake();
 
   const expGain = (state.enemy.exp + Math.floor(state.combo * 2)) * (isBoss ? 3 : 1);
   const goldGain = state.enemy.gold + state.combo;
@@ -2136,12 +2651,32 @@ function closeLevelUp() { showScreen('victoryScreen'); }
 
 function nextBattle() {
   music.playSfx('select');
+  if (pendingChapter) { playPendingStory(); return; }
+  if (state.isSuperBattle) { goTitle(); return; }
   state.stage++;
   state.playerHp = Math.min(state.playerMaxHp, state.playerHp + Math.floor(state.playerMaxHp * 0.2));
   spawnEnemy();
   showScreen('battleScreen');
   updateBattleUI();
   beginEncounter();
+}
+
+function playPendingStory() {
+  const ch = pendingChapter;
+  pendingChapter = 0;
+  state.storyChapter = Math.max(state.storyChapter, ch);
+  if (ch >= 4) state.superUnlocked = true;
+  if (ch >= 5) state.superBeaten = true;
+  saveGame();
+  showStory(STORY[ch], () => {
+    if (ch >= 4) { goTitle(); return; }
+    state.stage++;
+    state.playerHp = Math.min(state.playerMaxHp, state.playerHp + Math.floor(state.playerMaxHp * 0.2));
+    spawnEnemy();
+    showScreen('battleScreen');
+    updateBattleUI();
+    beginEncounter();
+  });
 }
 
 // ===================================================================
@@ -2211,6 +2746,7 @@ function handleGameOver() {
 }
 function retryBattle() {
   music.playSfx('select');
+  if (state.isSuperBattle) { startSuperBattle(); return; }
   state.playerHp = state.playerMaxHp;
   state.combo = 0;
   spawnEnemy();
