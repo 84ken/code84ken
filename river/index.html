@@ -78,6 +78,18 @@ input[type="range"] { accent-color: #2b70ef; }
       <p class="text-xs text-slate-500 mt-2.5">リバサポ・マガジン「川図鑑」掲載の川。クリックでその川へ飛び、図鑑データを表示します。</p>
     </div>
 
+    <!-- 林業モード -->
+    <div class="px-5 py-4 border-b border-slate-200 leading-normal">
+      <label class="flex items-center justify-between cursor-pointer">
+        <span class="flex items-center gap-2 text-sm font-medium text-slate-900">
+          <svg class="w-4 h-4 text-emerald-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L4 14h5l-3 8h12l-3-8h5L12 2z"/></svg>
+          林業モード
+        </span>
+        <input type="checkbox" id="tglForestMode" class="w-9 h-5 appearance-none rounded-full bg-slate-200 checked:bg-emerald-600 relative cursor-pointer transition-colors after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:rounded-full after:bg-white after:transition-transform checked:after:translate-x-4">
+      </label>
+      <p class="text-xs text-slate-500 mt-2">市町村ごとの森林率で塗り分け（令和7年度 森林・林業と統計）。緑が濃いほど森林が多い。クリックで面積を表示。</p>
+    </div>
+
     <!-- レイヤー -->
     <div class="px-5 py-4 border-b border-slate-200 leading-normal">
       <h2 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-3">レイヤー</h2>
@@ -118,7 +130,19 @@ input[type="range"] { accent-color: #2b70ef; }
   </aside>
 
   <!-- 地図 -->
-  <div id="map" class="flex-1 h-full"></div>
+  <div class="flex-1 h-full relative">
+    <div id="map" class="w-full h-full"></div>
+    <!-- 林業モード凡例 -->
+    <div id="forestLegend" class="hidden absolute left-4 bottom-8 bg-white/95 rounded-xl border border-slate-200 shadow-md p-3.5 w-56 pointer-events-none">
+      <div class="flex items-center gap-2 mb-2">
+        <svg class="w-4 h-4 text-emerald-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L4 14h5l-3 8h12l-3-8h5L12 2z"/></svg>
+        <span class="text-sm font-bold text-slate-900">市町村別 森林率</span>
+      </div>
+      <div class="h-3 rounded" style="background:linear-gradient(to right,#f7fcf5,#e5f5e0,#c7e9c0,#a1d99b,#74c476,#41ab5d,#238b45)"></div>
+      <div class="flex justify-between text-[10px] text-slate-500 mt-1"><span>0%</span><span>30%</span><span>60%</span><span>90%</span></div>
+      <p class="text-[10px] text-slate-400 mt-2 leading-relaxed">秩父市87%・飯能市75%が上流の森。下流の市街地はほぼ0%。森が水源＝川の始まり。</p>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -314,6 +338,7 @@ const map = new maplibregl.Map({
   hash: true,
   style: {
     version: 8,
+    glyphs: 'https://glyphs.geolonia.com/{fontstack}/{range}.pbf',
     sources: {
       pale: {
         type: 'raster',
@@ -343,6 +368,7 @@ const map = new maplibregl.Map({
       },
       mask: { type: 'geojson', data: 'saitama-mask.geojson' },
       boundary: { type: 'geojson', data: 'saitama-boundary.geojson' },
+      muni: { type: 'geojson', data: 'forest-muni.geojson', attribution: '森林率: 埼玉県「森林・林業と統計」令和7年度版' },
       rivers: { type: 'geojson', data: 'rivers.geojson', attribution: '河川: © OpenStreetMap contributors' },
       points: { type: 'geojson', data: POINTS }
     },
@@ -351,6 +377,23 @@ const map = new maplibregl.Map({
       { id: 'relief', type: 'raster', source: 'relief', paint: { 'raster-opacity': 0.5 } },
       { id: 'hillshade', type: 'raster', source: 'hillshade', paint: { 'raster-opacity': 0.28 } },
       { id: 'flood', type: 'raster', source: 'flood', layout: { visibility: 'none' }, paint: { 'raster-opacity': 0.55 } },
+      { id: 'muni-fill', type: 'fill', source: 'muni', layout: { visibility: 'none' },
+        paint: {
+          'fill-color': ['interpolate', ['linear'], ['get', 'ratio'],
+            0, '#f7fcf5', 5, '#e5f5e0', 15, '#c7e9c0', 30, '#a1d99b',
+            50, '#74c476', 70, '#41ab5d', 90, '#238b45'],
+          'fill-opacity': 0.82
+        } },
+      { id: 'muni-outline', type: 'line', source: 'muni', layout: { visibility: 'none' },
+        paint: { 'line-color': '#ffffff', 'line-width': 0.8, 'line-opacity': 0.9 } },
+      { id: 'muni-label', type: 'symbol', source: 'muni', layout: {
+          visibility: 'none',
+          'text-field': ['concat', ['get', 'm'], '\n', ['to-string', ['get', 'ratio']], '%'],
+          'text-size': ['interpolate', ['linear'], ['zoom'], 8, 9, 11, 13],
+          'text-font': ['Noto Sans Regular'],
+          'text-allow-overlap': false
+        },
+        paint: { 'text-color': '#14532d', 'text-halo-color': '#ffffff', 'text-halo-width': 1.4 } },
       { id: 'mask', type: 'fill', source: 'mask',
         paint: { 'fill-color': '#f8fafc', 'fill-opacity': 0.55 } },
       { id: 'rivers-casing', type: 'line', source: 'rivers',
@@ -473,6 +516,40 @@ bindToggle('tglZukan', ['pt-zukan']);
 bindToggle('tglQuest', ['pt-quest']);
 bindToggle('tglForest', ['pt-forest']);
 bindToggle('tglCulture', ['pt-culture']);
+
+// 林業モード（市町村別 森林率コロプレス）
+const forestModeLayers = ['muni-fill', 'muni-outline', 'muni-label'];
+document.getElementById('tglForestMode').addEventListener('change', (e) => {
+  const on = e.target.checked;
+  forestModeLayers.forEach((l) => map.setLayoutProperty(l, 'visibility', on ? 'visible' : 'none'));
+  document.getElementById('forestLegend').classList.toggle('hidden', !on);
+  // 色別標高図は色が競合するのでモード中は退避
+  if (map.getLayer('relief')) {
+    const reliefOn = document.getElementById('tglRelief').checked;
+    map.setLayoutProperty('relief', 'visibility', (on || !reliefOn) ? 'none' : 'visible');
+  }
+});
+const muniPopup = new maplibregl.Popup({ offset: 8 });
+map.on('click', 'muni-fill', (e) => {
+  const p = e.features[0].properties;
+  muniPopup.setLngLat(e.lngLat).setHTML(
+    '<div class="text-xs font-medium mb-1" style="color:#238b45">● 市町村別 森林データ</div>' +
+    '<div class="text-sm font-bold text-slate-900">' + p.m + '</div>' +
+    '<div class="text-xs mt-1.5 leading-relaxed" style="color:#3d4b5f">' +
+      '森林率 <span style="font-weight:700;color:#238b45">' + p.ratio + '%</span><br>' +
+      '森林面積 ' + Number(p.forest).toLocaleString() + ' ha ／ 総面積 ' + Number(p.area).toLocaleString() + ' ha</div>' +
+    '<div class="text-[10px] mt-2" style="color:#94a3b8">出典: 埼玉県「森林・林業と統計」令和7年度版</div>'
+  ).addTo(map);
+});
+map.on('mouseenter', 'muni-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
+map.on('mouseleave', 'muni-fill', () => { map.getCanvas().style.cursor = ''; });
+// ディープリンク: ?mode=forest で林業モードを初期表示
+if (new URLSearchParams(location.search).get('mode') === 'forest') {
+  map.on('load', () => {
+    const cb = document.getElementById('tglForestMode');
+    cb.checked = true; cb.dispatchEvent(new Event('change'));
+  });
+}
 
 // 地形強調スライダー
 document.getElementById('exag').addEventListener('input', (e) => {
