@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>育成会とは | 中山田青少年育成会</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,10 +15,10 @@
           colors: {
             sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
             forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
           },
           fontFamily: {
-            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
           }
         }
       }
@@ -29,7 +32,7 @@
 <body class="bg-warm-bg min-h-screen">
 
   <!-- ヘッダー -->
-  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+  <header class="bg-white/90 backdrop-blur border-b border-warm-border sticky top-0 z-10">
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
       <a href="index.html" class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-sky-50 text-sky-500 hover:bg-sky-100 transition-colors flex-shrink-0" aria-label="ホームに戻る">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -51,7 +54,7 @@
         </span>
         育成会とは
       </h2>
-      <div class="bg-white rounded-xl border border-warm-border p-5 shadow-sm">
+      <div class="bg-white rounded-2xl border border-warm-border p-5 shadow-sm">
         <p class="text-sm text-slate-700 leading-relaxed mb-3">
           青少年育成会は、<strong class="text-slate-900">地域の子どもたちの健全育成を支援する、保護者・地域の大人による組織</strong>です。
         </p>
@@ -80,21 +83,21 @@
         子どもの成長は、3つの教育の場で支えられています。育成会は<strong class="text-slate-900">地域社会教育の中核</strong>を担います。
       </p>
       <div class="grid grid-cols-3 gap-2">
-        <div class="bg-white rounded-xl border border-warm-border p-3 text-center shadow-sm">
+        <div class="bg-white rounded-2xl border border-warm-border p-3 text-center shadow-sm">
           <div class="w-10 h-10 mx-auto rounded-full bg-amber-50 flex items-center justify-center mb-2">
             <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
           </div>
           <p class="text-xs font-bold text-slate-900 mb-1">家庭教育</p>
           <p class="text-xs text-slate-500 leading-relaxed">しつけ・生活習慣・愛情の基盤</p>
         </div>
-        <div class="bg-white rounded-xl border border-warm-border p-3 text-center shadow-sm">
+        <div class="bg-white rounded-2xl border border-warm-border p-3 text-center shadow-sm">
           <div class="w-10 h-10 mx-auto rounded-full bg-sky-50 flex items-center justify-center mb-2">
             <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
           </div>
           <p class="text-xs font-bold text-slate-900 mb-1">学校教育</p>
           <p class="text-xs text-slate-500 leading-relaxed">知識・社会性・集団生活の学び</p>
         </div>
-        <div class="bg-white rounded-xl border border-warm-border p-3 text-center shadow-sm relative ring-2 ring-forest-500/30">
+        <div class="bg-white rounded-2xl border border-warm-border p-3 text-center shadow-sm relative ring-2 ring-forest-500/30">
           <div class="absolute -top-2 left-1/2 -translate-x-1/2">
             <span class="bg-forest-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">育成会</span>
           </div>
@@ -115,7 +118,7 @@
         </span>
         組織図
       </h2>
-      <div class="bg-white rounded-xl border border-warm-border p-5 shadow-sm">
+      <div class="bg-white rounded-2xl border border-warm-border p-5 shadow-sm">
         <!-- Tree structure -->
         <div class="flex flex-col items-center space-y-0">
 
@@ -195,7 +198,7 @@
       </h2>
 
       <!-- 中山田独自事業 -->
-      <div class="bg-white rounded-xl border border-warm-border shadow-sm overflow-hidden mb-3">
+      <div class="bg-white rounded-2xl border border-warm-border shadow-sm overflow-hidden mb-3">
         <div class="bg-amber-500 px-4 py-2 flex items-center gap-2">
           <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
           <span class="text-sm font-bold text-white">中山田育成会が主体で実施</span>
@@ -213,7 +216,7 @@
       </div>
 
       <!-- 高篠地区連合会参加事業 -->
-      <div class="bg-white rounded-xl border border-warm-border shadow-sm overflow-hidden mb-3">
+      <div class="bg-white rounded-2xl border border-warm-border shadow-sm overflow-hidden mb-3">
         <div class="bg-sky-500 px-4 py-2 flex items-center gap-2">
           <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           <span class="text-sm font-bold text-white">高篠地区連合会の事業に参加</span>
@@ -230,7 +233,7 @@
       </div>
 
       <!-- 見合わせ中の事業 -->
-      <div class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
+      <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden">
         <div class="px-4 py-2 border-b border-slate-200 flex items-center gap-2">
           <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <span class="text-sm font-medium text-slate-500">現在 見合わせ中</span>
@@ -263,13 +266,13 @@
       </div>
 
       <!-- 目標 -->
-      <div class="bg-sky-50 border border-sky-200 rounded-xl p-4 mb-3">
+      <div class="bg-sky-50 border border-sky-200 rounded-2xl p-4 mb-3">
         <p class="text-sm font-bold text-sky-700 text-center">「負担を減らし、やる意味を高める」</p>
       </div>
 
       <div class="space-y-3">
         <!-- スリム化 -->
-        <div class="bg-white rounded-xl border border-warm-border p-4 shadow-sm">
+        <div class="bg-white rounded-2xl border border-warm-border p-4 shadow-sm">
           <div class="flex items-start gap-3">
             <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0 mt-0.5">
               <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
@@ -282,7 +285,7 @@
         </div>
 
         <!-- 繰越金の有効活用 -->
-        <div class="bg-white rounded-xl border border-warm-border p-4 shadow-sm">
+        <div class="bg-white rounded-2xl border border-warm-border p-4 shadow-sm">
           <div class="flex items-start gap-3">
             <div class="w-8 h-8 rounded-full bg-forest-50 flex items-center justify-center flex-shrink-0 mt-0.5">
               <svg class="w-4 h-4 text-forest-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -310,7 +313,7 @@
         </div>
 
         <!-- 運営効率化 -->
-        <div class="bg-white rounded-xl border border-warm-border p-4 shadow-sm">
+        <div class="bg-white rounded-2xl border border-warm-border p-4 shadow-sm">
           <div class="flex items-start gap-3">
             <div class="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center flex-shrink-0 mt-0.5">
               <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -334,7 +337,7 @@
       </h2>
 
       <!-- 入学・卒業記念品 -->
-      <div class="bg-white rounded-xl border border-warm-border overflow-hidden mb-3">
+      <div class="bg-white rounded-2xl border border-warm-border overflow-hidden mb-3">
         <div class="px-4 py-3 bg-slate-50 border-b border-warm-border">
           <p class="text-sm font-semibold text-slate-800 flex items-center gap-2">
             <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4H5z"/></svg>
@@ -386,7 +389,7 @@
       </div>
 
       <!-- 会費集金スケジュール -->
-      <div class="bg-white rounded-xl border border-warm-border overflow-hidden mb-3">
+      <div class="bg-white rounded-2xl border border-warm-border overflow-hidden mb-3">
         <div class="px-4 py-3 bg-slate-50 border-b border-warm-border">
           <p class="text-sm font-semibold text-slate-800 flex items-center gap-2">
             <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
@@ -436,7 +439,7 @@
       <div class="space-y-2">
 
         <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-1">会費・財務</p>
-        <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-50">
+        <div class="bg-white rounded-2xl border border-warm-border divide-y divide-slate-50">
           <label class="flex items-start gap-3 px-4 py-3 cursor-pointer hover:bg-slate-50">
             <input type="checkbox" class="mt-0.5 flex-shrink-0 w-4 h-4 rounded border-slate-300 text-sky-500 cursor-pointer">
             <div>
@@ -461,7 +464,7 @@
         </div>
 
         <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-1 pt-1">繰越金活用の施策</p>
-        <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-50">
+        <div class="bg-white rounded-2xl border border-warm-border divide-y divide-slate-50">
           <label class="flex items-start gap-3 px-4 py-3 cursor-pointer hover:bg-slate-50">
             <input type="checkbox" class="mt-0.5 flex-shrink-0 w-4 h-4 rounded border-slate-300 text-sky-500 cursor-pointer">
             <div>
@@ -486,7 +489,7 @@
         </div>
 
         <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-1 pt-1">エリアマップ・運営</p>
-        <div class="bg-white rounded-xl border border-warm-border divide-y divide-slate-50">
+        <div class="bg-white rounded-2xl border border-warm-border divide-y divide-slate-50">
           <label class="flex items-start gap-3 px-4 py-3 cursor-pointer hover:bg-slate-50">
             <input type="checkbox" class="mt-0.5 flex-shrink-0 w-4 h-4 rounded border-slate-300 text-sky-500 cursor-pointer">
             <div>

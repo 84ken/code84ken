@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>口コミ掲示板 | 中山田青少年育成会</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,10 +15,10 @@
           colors: {
             sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
             forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
           },
           fontFamily: {
-            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
           }
         }
       }
@@ -28,7 +31,7 @@
 </head>
 <body class="bg-warm-bg min-h-screen">
 
-  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+  <header class="bg-white/90 backdrop-blur border-b border-warm-border sticky top-0 z-10">
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
       <a href="index.html" class="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="ホームに戻る">
         <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -41,7 +44,7 @@
 
     <!-- 投稿フォーム -->
     <section class="mb-6">
-      <div class="bg-white rounded-xl border border-warm-border p-5">
+      <div class="bg-white rounded-2xl border border-warm-border p-5">
         <h2 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
           <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
           投稿する
@@ -178,7 +181,7 @@
       const replies = post.replies || [];
 
       return `
-        <div class="${isReply ? 'ml-8 mt-2' : ''} bg-white rounded-xl border border-warm-border ${isReply ? 'border-l-2 border-l-sky-200' : ''} p-4" id="post-${post.id}">
+        <div class="${isReply ? 'ml-8 mt-2' : ''} bg-white rounded-2xl border border-warm-border ${isReply ? 'border-l-2 border-l-sky-200' : ''} p-4" id="post-${post.id}">
           <div class="flex items-start gap-3">
             <div class="w-8 h-8 rounded-full ${isReply ? 'bg-slate-100' : 'bg-sky-50'} flex items-center justify-center flex-shrink-0">
               <span class="text-xs font-medium ${isReply ? 'text-slate-600' : 'text-sky-600'}">${initial}</span>

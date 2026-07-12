@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>廃品回収について | 中山田青少年育成会</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,10 +15,10 @@
           colors: {
             sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
             forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
           },
           fontFamily: {
-            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
           }
         }
       }
@@ -25,7 +28,7 @@
 <body class="bg-warm-bg min-h-screen">
 
   <!-- ヘッダー -->
-  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+  <header class="bg-white/90 backdrop-blur border-b border-warm-border sticky top-0 z-10">
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
       <a href="index.html" class="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="ホームに戻る">
         <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -38,7 +41,7 @@
 
     <!-- 概要 -->
     <section class="mb-6">
-      <div class="bg-white rounded-xl border border-warm-border p-5">
+      <div class="bg-white rounded-2xl border border-warm-border p-5">
         <h2 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
           <svg class="w-5 h-5 text-forest-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           廃品回収とは
@@ -63,7 +66,7 @@
 
     <!-- 回収品目 -->
     <section class="mb-6">
-      <div class="bg-white rounded-xl border border-warm-border p-5">
+      <div class="bg-white rounded-2xl border border-warm-border p-5">
         <h2 class="text-base font-bold text-slate-900 mb-3">回収品目</h2>
         <div class="space-y-2">
           <div class="flex items-center gap-3 p-2 rounded-lg bg-forest-50">
@@ -131,7 +134,7 @@
 
     <!-- 回収エリア -->
     <section class="mb-6">
-      <div class="bg-white rounded-xl border border-warm-border p-5">
+      <div class="bg-white rounded-2xl border border-warm-border p-5">
         <h2 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
           <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           回収エリア
@@ -180,7 +183,7 @@
 
     <!-- ルートマップ（たたき台） -->
     <section class="mb-6">
-      <div class="bg-white rounded-xl border border-warm-border overflow-hidden">
+      <div class="bg-white rounded-2xl border border-warm-border overflow-hidden">
         <div class="px-5 pt-5 pb-2">
           <div class="flex items-center gap-2 mb-2">
             <h2 class="text-base font-bold text-slate-900">ルートマップ</h2>
@@ -283,7 +286,7 @@
 
     <!-- 当日タイムスケジュール -->
     <section class="mb-6">
-      <div class="bg-white rounded-xl border border-warm-border p-5">
+      <div class="bg-white rounded-2xl border border-warm-border p-5">
         <h2 class="text-base font-bold text-slate-900 mb-4">当日のながれ</h2>
         <div class="relative">
           <!-- タイムライン線 -->
@@ -332,7 +335,7 @@
 
     <!-- 持ち物チェックリスト -->
     <section class="mb-6">
-      <div class="bg-white rounded-xl border border-warm-border p-5">
+      <div class="bg-white rounded-2xl border border-warm-border p-5">
         <h2 class="text-base font-bold text-slate-900 mb-3">当日の持ち物</h2>
         <p class="text-xs text-slate-500 mb-3">タップでチェックできます</p>
         <div class="space-y-2" id="checklist">
@@ -358,7 +361,7 @@
 
     <!-- 準備チェックリスト（役員向け） -->
     <section class="mb-6">
-      <div class="bg-white rounded-xl border border-warm-border p-5">
+      <div class="bg-white rounded-2xl border border-warm-border p-5">
         <h2 class="text-base font-bold text-slate-900 mb-1">役員向け準備リスト</h2>
         <p class="text-xs text-slate-500 mb-3">2〜3週間前から準備が必要です</p>
 
@@ -447,7 +450,7 @@
 
     <!-- 過去実績 -->
     <section class="mb-6">
-      <div class="bg-white rounded-xl border border-warm-border p-5">
+      <div class="bg-white rounded-2xl border border-warm-border p-5">
         <h2 class="text-base font-bold text-slate-900 mb-3">過去の実績</h2>
         <div class="space-y-3">
           <div class="p-3 bg-slate-50 rounded-lg">
@@ -483,7 +486,7 @@
 
     <!-- 注意事項 -->
     <section class="mb-6">
-      <div class="bg-amber-50 rounded-xl border border-amber-200 p-4">
+      <div class="bg-amber-50 rounded-2xl border border-amber-200 p-4">
         <h3 class="text-sm font-semibold text-amber-800 mb-2 flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
           安全共済保険について
@@ -496,7 +499,7 @@
 
     <!-- 雨天時 -->
     <section class="mb-6">
-      <div class="bg-sky-50 rounded-xl border border-sky-100 p-4">
+      <div class="bg-sky-50 rounded-2xl border border-sky-100 p-4">
         <h3 class="text-sm font-semibold text-sky-800 mb-2 flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
           雨天時の対応

@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>育成会だより | 中山田青少年育成会</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,10 +15,10 @@
           colors: {
             sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
             forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
           },
           fontFamily: {
-            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
           }
         }
       }
@@ -24,7 +27,7 @@
 </head>
 <body class="bg-warm-bg min-h-screen">
 
-  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+  <header class="bg-white/90 backdrop-blur border-b border-warm-border sticky top-0 z-10">
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
       <a href="index.html" class="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="ホームに戻る">
         <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -49,7 +52,7 @@
     <div class="space-y-4" id="news-list">
 
       <!-- 第3回連合理事会ダイジェスト -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">NEW</span>
           <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
@@ -93,7 +96,7 @@
       </article>
 
       <!-- 廃品回収 結果報告 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
           <span class="text-xs text-slate-400">2026.06.21</span>
@@ -159,7 +162,7 @@
       </article>
 
       <!-- 木戸原子ども神輿 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-amber-100 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
           <span class="text-xs text-slate-400">2026.07.12</span>
@@ -188,7 +191,7 @@
       </article>
 
       <!-- 指導者研修会 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">NEW</span>
           <span class="inline-block bg-purple-100 text-purple-700 text-xs font-medium px-2 py-0.5 rounded-full">青育協</span>
@@ -213,7 +216,7 @@
       </article>
 
       <!-- 青育協総会 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-purple-100 text-purple-700 text-xs font-medium px-2 py-0.5 rounded-full">青育協</span>
           <span class="text-xs text-slate-400">2026.05.08</span>
@@ -234,7 +237,7 @@
       </article>
 
       <!-- 第2回理事会ダイジェスト -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
           <span class="text-xs text-slate-400">2026.04.30</span>
@@ -295,7 +298,7 @@
       </article>
 
       <!-- 育成会のお金の仕組み -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="subsidy">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="subsidy">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-amber-100 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">助成金・制度</span>
           <span class="text-xs text-slate-400">2026.04.28</span>
@@ -329,7 +332,7 @@
       </article>
 
       <!-- 育成会TIPS: スポーツの話 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="tips">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="tips">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-purple-100 text-purple-700 text-xs font-medium px-2 py-0.5 rounded-full">育成会TIPS</span>
           <span class="text-xs text-slate-400">2026.04.28</span>
@@ -346,7 +349,7 @@
       </article>
 
       <!-- 連合総会ダイジェスト -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
           <span class="text-xs text-slate-400">2026.04.22</span>
@@ -368,7 +371,7 @@
       </article>
 
       <!-- 第2回理事会のお知らせ -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
           <span class="text-xs text-slate-400">2026.04.22</span>
@@ -380,7 +383,7 @@
       </article>
 
       <!-- 記事1 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
           <span class="text-xs text-slate-400">2026.03.28</span>
@@ -392,7 +395,7 @@
       </article>
 
       <!-- 記事2 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="subsidy">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="subsidy">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-amber-100 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">助成金・制度</span>
           <span class="text-xs text-slate-400">2026.03.28</span>
@@ -404,7 +407,7 @@
       </article>
 
       <!-- 記事3 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="event">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="event">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-sky-100 text-sky-700 text-xs font-medium px-2 py-0.5 rounded-full">地域イベント</span>
           <span class="text-xs text-slate-400">2026.03.28</span>
@@ -416,7 +419,7 @@
       </article>
 
       <!-- 記事4 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="seasonal">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="seasonal">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-forest-100 text-forest-700 text-xs font-medium px-2 py-0.5 rounded-full">季節の情報</span>
           <span class="text-xs text-slate-400">2026.03.28</span>
@@ -428,7 +431,7 @@
       </article>
 
       <!-- 記事5 -->
-      <article class="bg-white rounded-xl border border-warm-border p-4" data-category="subsidy">
+      <article class="bg-white rounded-2xl border border-warm-border p-4" data-category="subsidy">
         <div class="flex items-center gap-2 mb-2">
           <span class="inline-block bg-amber-100 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">助成金・制度</span>
           <span class="text-xs text-slate-400">2026.03.28</span>

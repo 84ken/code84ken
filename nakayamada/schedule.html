@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>今年度の予定 | 中山田青少年育成会</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,10 +15,10 @@
           colors: {
             sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
             forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
           },
           fontFamily: {
-            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
           }
         }
       }
@@ -30,7 +33,7 @@
 <body class="bg-warm-bg min-h-screen">
 
   <!-- ヘッダー -->
-  <header class="bg-white border-b border-warm-border sticky top-0 z-20">
+  <header class="bg-white/90 backdrop-blur border-b border-warm-border sticky top-0 z-20">
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
       <a href="index.html" class="w-10 h-10 inline-flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors flex-shrink-0" aria-label="トップへ戻る">
         <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -63,7 +66,7 @@
     </div>
 
     <!-- カテゴリ凡例 -->
-    <div class="bg-white rounded-xl border border-warm-border p-4">
+    <div class="bg-white rounded-2xl border border-warm-border p-4">
       <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">カテゴリ</p>
       <div class="flex flex-wrap gap-2">
         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-sky-50 text-sky-700">
@@ -230,7 +233,7 @@
 
       const card = document.createElement('div');
       card.id = 'month-' + m;
-      card.className = 'month-card bg-white rounded-xl border border-warm-border overflow-hidden'
+      card.className = 'month-card bg-white rounded-2xl border border-warm-border overflow-hidden'
         + (isCurrent ? ' ring-2 ring-sky-500 ring-offset-2' : '');
 
       // ヘッダー部分
@@ -241,7 +244,7 @@
       left.className = 'flex items-center gap-3';
 
       const monthNum = document.createElement('div');
-      monthNum.className = 'w-12 h-12 rounded-xl inline-flex items-center justify-center font-bold text-lg'
+      monthNum.className = 'w-12 h-12 rounded-2xl inline-flex items-center justify-center font-bold text-lg'
         + (isCurrent ? ' bg-sky-500 text-white' : ' bg-slate-100 text-slate-700');
       monthNum.textContent = m;
 

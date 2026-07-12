@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>子育て便利リンク | 中山田青少年育成会</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,10 +15,10 @@
           colors: {
             sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
             forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
           },
           fontFamily: {
-            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
           }
         }
       }
@@ -24,7 +27,7 @@
 </head>
 <body class="bg-warm-bg min-h-screen">
 
-  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+  <header class="bg-white/90 backdrop-blur border-b border-warm-border sticky top-0 z-10">
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
       <a href="index.html" class="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="ホームに戻る">
         <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -42,7 +45,7 @@
         行政・公共
       </h2>
       <div class="space-y-2">
-        <a href="https://www.city.chichibu.lg.jp/" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://www.city.chichibu.lg.jp/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">秩父市役所</p>
@@ -51,7 +54,7 @@
             <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </div>
         </a>
-        <a href="https://www.city.chichibu.lg.jp/menu2035.html" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://www.city.chichibu.lg.jp/menu2035.html" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">秩父市 子育て支援</p>
@@ -60,7 +63,7 @@
             <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </div>
         </a>
-        <a href="https://www.pref.saitama.lg.jp/" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://www.pref.saitama.lg.jp/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">埼玉県庁</p>
@@ -79,7 +82,7 @@
         育成会・子ども会関連
       </h2>
       <div class="space-y-2">
-        <a href="https://www.kodomo-kai.or.jp/" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://www.kodomo-kai.or.jp/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">全国子ども会連合会</p>
@@ -88,7 +91,7 @@
             <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </div>
         </a>
-        <a href="https://www.kodomo-kai.or.jp/mutual-aid/" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://www.kodomo-kai.or.jp/mutual-aid/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">全国子ども会安全共済会</p>
@@ -107,7 +110,7 @@
         助成金・補助金
       </h2>
       <div class="space-y-2">
-        <a href="https://yumekikin.niye.go.jp/" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://yumekikin.niye.go.jp/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">子どもゆめ基金</p>
@@ -116,7 +119,7 @@
             <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </div>
         </a>
-        <a href="https://www.niye.go.jp/" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://www.niye.go.jp/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">国立青少年教育振興機構</p>
@@ -135,7 +138,7 @@
         学校関連
       </h2>
       <div class="space-y-2">
-        <a href="https://chichibu-stm.ed.jp/takashino-e/" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://chichibu-stm.ed.jp/takashino-e/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">高篠小学校</p>
@@ -154,7 +157,7 @@
         子育て情報サイト
       </h2>
       <div class="space-y-2">
-        <a href="https://www.pref.saitama.lg.jp/a0607/kodomo-ouen/" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://www.pref.saitama.lg.jp/a0607/kodomo-ouen/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">埼玉県 子育て応援</p>
@@ -163,7 +166,7 @@
             <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </div>
         </a>
-        <a href="https://kosodateswitch.jp/" target="_blank" rel="noopener" class="block bg-white rounded-xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
+        <a href="https://kosodateswitch.jp/" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-warm-border p-4 hover:shadow-sm transition-shadow">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm font-medium text-slate-900">子育てスイッチ</p>
@@ -182,15 +185,15 @@
         緊急時の連絡先
       </h2>
       <div class="space-y-2">
-        <div class="bg-white rounded-xl border border-warm-border p-4">
+        <div class="bg-white rounded-2xl border border-warm-border p-4">
           <p class="text-sm font-medium text-slate-900">警察（秩父警察署）</p>
           <a href="tel:0494-24-0110" class="text-sm text-sky-600 font-medium">0494-24-0110</a>
         </div>
-        <div class="bg-white rounded-xl border border-warm-border p-4">
+        <div class="bg-white rounded-2xl border border-warm-border p-4">
           <p class="text-sm font-medium text-slate-900">消防（秩父消防署）</p>
           <a href="tel:119" class="text-sm text-sky-600 font-medium">119</a>
         </div>
-        <div class="bg-white rounded-xl border border-warm-border p-4">
+        <div class="bg-white rounded-2xl border border-warm-border p-4">
           <p class="text-sm font-medium text-slate-900">秩父市役所（代表）</p>
           <a href="tel:0494-22-2211" class="text-sm text-sky-600 font-medium">0494-22-2211</a>
         </div>

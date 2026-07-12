@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>エリアマップ | 中山田青少年育成会</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,10 +15,10 @@
           colors: {
             sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
             forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#F8FAF8', surface: '#FFFFFF', border: '#E2E8F0' }
+            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
           },
           fontFamily: {
-            sans: ['Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'sans-serif']
+            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
           }
         }
       }
@@ -29,7 +32,7 @@
 </head>
 <body class="bg-warm-bg min-h-screen">
 
-  <header class="bg-white border-b border-warm-border sticky top-0 z-10">
+  <header class="bg-white/90 backdrop-blur border-b border-warm-border sticky top-0 z-10">
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
       <a href="index.html" class="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors" aria-label="ホームに戻る">
         <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -44,7 +47,7 @@
   <main class="max-w-lg mx-auto px-4 py-4 space-y-4">
 
     <!-- 呼びかけバナー -->
-    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4">
       <p class="text-sm font-bold text-amber-800 mb-1">みんなで作るエリアマップ</p>
       <p class="text-xs text-amber-700 leading-relaxed">「自分の区の範囲はここからここ」「この道が境界」など、ご存じの方はぜひ<a href="board.php" class="underline font-semibold">掲示板</a>で教えてください。皆さんの情報をもとに、エリアの境界線と施設情報を追加していきます。</p>
     </div>
@@ -57,7 +60,7 @@
 
     <div class="space-y-3">
 
-      <div class="bg-white rounded-xl border border-warm-border p-4">
+      <div class="bg-white rounded-2xl border border-warm-border p-4">
         <div class="flex items-center gap-2 mb-2">
           <span class="w-3 h-3 rounded-full inline-block" style="background:#3B82F6"></span>
           <h3 class="text-sm font-bold text-slate-900">4区西</h3>
@@ -69,7 +72,7 @@
         </div>
       </div>
 
-      <div class="bg-white rounded-xl border border-warm-border p-4">
+      <div class="bg-white rounded-2xl border border-warm-border p-4">
         <div class="flex items-center gap-2 mb-2">
           <span class="w-3 h-3 rounded-full inline-block" style="background:#22C55E"></span>
           <h3 class="text-sm font-bold text-slate-900">4区東</h3>
@@ -81,7 +84,7 @@
         </div>
       </div>
 
-      <div class="bg-white rounded-xl border border-warm-border p-4">
+      <div class="bg-white rounded-2xl border border-warm-border p-4">
         <div class="flex items-center gap-2 mb-2">
           <span class="w-3 h-3 rounded-full inline-block" style="background:#F97316"></span>
           <h3 class="text-sm font-bold text-slate-900">5区</h3>
@@ -93,7 +96,7 @@
         </div>
       </div>
 
-      <div class="bg-white rounded-xl border border-warm-border p-4">
+      <div class="bg-white rounded-2xl border border-warm-border p-4">
         <div class="flex items-center gap-2 mb-2">
           <span class="w-3 h-3 rounded-full inline-block" style="background:#A855F7"></span>
           <h3 class="text-sm font-bold text-slate-900">6区</h3>
@@ -108,7 +111,7 @@
     </div>
 
     <!-- 情報提供のお願い -->
-    <div class="bg-sky-50 border border-sky-200 rounded-xl p-4">
+    <div class="bg-sky-50 border border-sky-200 rounded-2xl p-4">
       <p class="text-sm font-bold text-sky-800 mb-2">こんな情報を探しています</p>
       <ul class="text-xs text-sky-700 space-y-1.5 list-none">
         <li>「4区西と4区東の境界はこの道路」</li>
