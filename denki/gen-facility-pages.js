@@ -468,6 +468,7 @@ const today = new Date().toISOString().slice(0, 10);
 const baseUrls = [
   { loc: 'https://denki.schema.tokyo/',              lastmod: today, changefreq: 'weekly',  priority: '1.0' },
   { loc: 'https://denki.schema.tokyo/about.html',    lastmod: today, changefreq: 'monthly', priority: '0.8' },
+  { loc: 'https://denki.schema.tokyo/science.html',  lastmod: today, changefreq: 'monthly', priority: '0.8' },
   { loc: 'https://denki.schema.tokyo/history.html',  lastmod: today, changefreq: 'monthly', priority: '0.8' },
   { loc: 'https://denki.schema.tokyo/post.html',     lastmod: today, changefreq: 'monthly', priority: '0.9' },
 ];
