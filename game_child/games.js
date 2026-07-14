@@ -49,7 +49,7 @@ const GAMES = [
     date: "2026-07",
     age: 3,
     emoji: "🧸",
-    memo: "すてられてしまったくまちゃんを、アイテムをあつめてなおしてあげるゲーム。",
+    memo: "まちがえてすてられちゃったくまちゃんが、しかえしにやってきた！かくれながら「はり・いと・ボタン」をあつめて、うしろからそーっとなおしてあげるステルスゲーム。",
     sketch: [
       { src: "sketches/kuma-namida.jpg",   label: "ないてるくまちゃん" },
       { src: "sketches/kuma-kowareta.jpg", label: "こわれたくまちゃん" },

@@ -40,7 +40,7 @@
   }
 
   #stage { position:relative; flex:1; display:flex; justify-content:center; align-items:flex-start; }
-  canvas { background:#fdfbf5; display:block; width:100%; height:auto; max-height:100%; }
+  #game { background:#fdfbf5; display:block; width:100%; height:auto; max-height:100%; }
 
   /* アクションボタン */
   #fixBtn {
@@ -57,7 +57,9 @@
   .screen {
     position:absolute; inset:0; background:#fdfbf5;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
+    justify-content:safe center;
     text-align:center; padding:20px; z-index:10;
+    overflow-y:auto;
   }
   .screen h1 { font-size:28px; line-height:1.4; transform:rotate(-1.5deg); margin-bottom:8px; }
   .screen p { font-size:16px; line-height:1.8; margin:10px 0; }
