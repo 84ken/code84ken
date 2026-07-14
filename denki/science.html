@@ -278,9 +278,20 @@ input[type="range"]::-webkit-slider-thumb:active{cursor:grabbing}
       <h3 class="display-kana text-2xl text-white">ビリビリシミュレーター</h3>
     </div>
     <p class="display-eng text-sm text-soda-500 mb-4">INTERACTIVE FIELD SIMULATOR</p>
-    <p class="text-sm text-denki-100/90 leading-relaxed mb-5">
-      浴槽を上から見た図です。<strong class="text-denki-400">人（黄色い丸）をドラッグ</strong>して動かし、スライダーで電極板の設定を変えて、どこが一番ビリビリするか検証してみよう ⚡
+    <p class="text-sm text-denki-100/90 leading-relaxed mb-4">
+      浴槽を上から見た図です。<strong class="text-denki-400">人（黄色い丸）をドラッグ</strong>して動かし、配置タイプとスライダーを変えて、どこが一番ビリビリするか検証してみよう ⚡
     </p>
+
+    <!-- Layout presets -->
+    <div class="mb-3">
+      <div class="text-xs font-bold text-denki-200 label-kana mb-2">電極板の配置タイプ（『電浴ガイド』の分類より）</div>
+      <div class="flex flex-wrap gap-2">
+        <button class="preset-btn active" id="layout-standard" onclick="setLayout('standard',this)">標準配置型（向かい合わせ）</button>
+        <button class="preset-btn" id="layout-single" onclick="setLayout('single',this)">片面配置型（同じ壁に2枚）</button>
+        <button class="preset-btn" id="layout-lshape" onclick="setLayout('lshape',this)">L字配置型（角をはさむ）</button>
+      </div>
+      <div id="layout-desc" class="text-[11px] text-denki-200/70 mt-2 font-mono">向かい合う壁に1枚ずつ。板どうしを結ぶ直線上が最強ゾーン。いちばん古典的な配置。</div>
+    </div>
 
     <canvas id="sim-canvas" width="720" height="400" class="w-full rounded-lg border-2 border-denki-400"></canvas>
 
@@ -305,13 +316,43 @@ input[type="range"]::-webkit-slider-thumb:active{cursor:grabbing}
         <input type="range" id="ctl-width" min="10" max="90" value="40" class="mt-2">
       </div>
       <div>
-        <label class="text-xs font-bold text-denki-200 label-kana flex justify-between">板の間隔 <span id="val-gap" class="font-mono text-denki-400">120cm</span></label>
+        <label class="text-xs font-bold text-denki-200 label-kana flex justify-between"><span id="lbl-gap">板の間隔</span> <span id="val-gap" class="font-mono text-denki-400">120cm</span></label>
         <input type="range" id="ctl-gap" min="60" max="160" value="120" class="mt-2">
       </div>
       <div>
         <label class="text-xs font-bold text-denki-200 label-kana flex justify-between">出力 <span id="val-power" class="font-mono text-denki-400">5</span></label>
         <input type="range" id="ctl-power" min="1" max="10" value="5" class="mt-2">
       </div>
+    </div>
+
+    <!-- Depth panel (side view) -->
+    <div class="mt-5 grid sm:grid-cols-[1fr_auto] gap-4 items-center bg-bath-navy rounded-lg border-2 border-denki-400/40 p-4">
+      <div>
+        <div class="text-xs font-bold text-denki-200 label-kana mb-1 flex justify-between">設置の深さ（水面から） <span id="val-depth" class="font-mono text-denki-400">30cm</span></div>
+        <input type="range" id="ctl-depth" min="10" max="47" value="30" class="mt-1">
+        <div class="text-xs text-denki-200/80 mt-3 font-mono">狙えるゾーン: <span id="depth-zone" class="text-denki-400 font-bold">腰（定番の設置）</span></div>
+        <p class="text-[11px] text-denki-200/60 mt-2 leading-relaxed">板を設置する高さで、効く部位が決まる。「腰深め」「首元」といった施設ごとの個性はここ。ほかに腰＋足を同時に狙う<strong class="text-denki-200">上下配置型</strong>、縦に板を張る<strong class="text-denki-200">縦配置型</strong>もある。</p>
+      </div>
+      <svg viewBox="0 0 220 210" class="w-[200px] mx-auto shrink-0 rounded-lg border-2 border-denki-400/40" style="background:#10243f" role="img" aria-label="浴槽の断面図：電極板の深さと座った人の位置関係">
+        <rect x="10" y="42" width="200" height="150" rx="8" fill="none" stroke="#00b7e0" stroke-width="3"/>
+        <line x1="10" y1="57" x2="210" y2="57" stroke="#4ed3ff" stroke-width="2" stroke-dasharray="5 4"/>
+        <text x="16" y="52" font-size="9" fill="#4ed3ff" font-family="monospace">WATER LINE</text>
+        <text x="150" y="38" font-size="9" fill="#94a3b8" font-family="monospace">SIDE VIEW</text>
+        <!-- seated person -->
+        <circle cx="120" cy="48" r="13" fill="#fde68a" stroke="#0c1222" stroke-width="2"/>
+        <circle cx="115" cy="46" r="1.8" fill="#0c1222"/>
+        <circle cx="125" cy="46" r="1.8" fill="#0c1222"/>
+        <path d="M120 61 L120 145 L172 145 L172 188" stroke="#fde68a" stroke-width="15" fill="none" stroke-linecap="round"/>
+        <!-- plate group (moves with depth) -->
+        <g id="depth-group">
+          <rect x="14" y="109" width="9" height="36" fill="#fff" stroke="#facc15" stroke-width="2"/>
+          <g stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.9">
+            <path d="M28 115 q 10 -4 20 0"/>
+            <path d="M28 127 q 12 -4 24 0"/>
+            <path d="M28 139 q 10 4 20 0"/>
+          </g>
+        </g>
+      </svg>
     </div>
 
     <!-- Maker presets -->
@@ -360,6 +401,49 @@ input[type="range"]::-webkit-slider-thumb:active{cursor:grabbing}
       <strong class="text-stamp-red label-kana">⚠️ 安全に楽しむために：</strong>
       心臓疾患のある方・ペースメーカー等の体内埋込型医療機器を使用中の方・妊娠中の方は入浴を控えてください。飲酒後や体調不良時もNG。各施設の注意書きに必ず従い、異変を感じたらすぐに出ましょう。本ページは医学的助言ではありません。
     </div>
+  </section>
+
+  <!-- ===== 5. 電気代シミュレーション ===== -->
+  <section class="zine-card rounded-xl p-6 md:p-8 mb-10">
+    <div class="flex items-baseline gap-3 mb-4 flex-wrap">
+      <span class="display-eng text-3xl text-denki-500">05</span>
+      <h3 class="display-kana text-2xl text-bath-dark">電気代シミュレーション</h3>
+      <span class="display-eng text-sm text-soda-600">/ RUNNING COST</span>
+    </div>
+    <p class="text-sm md:text-base text-body leading-relaxed mb-2">
+      電気風呂に流れる電流は<strong>乾電池程度の微弱さ</strong>。本体は家庭用コンセントから電源が取れて、大きな工事なく設置できる（『電浴ガイド』より）。
+    </p>
+    <p class="text-sm md:text-base text-body leading-relaxed mb-5">
+      では実際、他の浴場の電気設備と比べてどれくらい安いのか？ <strong>営業条件を入れて検証</strong>してみよう。
+    </p>
+
+    <!-- Inputs -->
+    <div class="grid grid-cols-3 gap-3 mb-5">
+      <div>
+        <label class="text-xs font-bold text-bath-dark label-kana block mb-1" for="cost-hours">営業時間 / 日</label>
+        <input type="number" id="cost-hours" value="10" min="1" max="24" class="w-full px-3 py-2 border-2 border-bath-dark rounded-lg font-mono text-sm">
+      </div>
+      <div>
+        <label class="text-xs font-bold text-bath-dark label-kana block mb-1" for="cost-days">営業日数 / 月</label>
+        <input type="number" id="cost-days" value="26" min="1" max="31" class="w-full px-3 py-2 border-2 border-bath-dark rounded-lg font-mono text-sm">
+      </div>
+      <div>
+        <label class="text-xs font-bold text-bath-dark label-kana block mb-1" for="cost-unit">電気単価 円/kWh</label>
+        <input type="number" id="cost-unit" value="31" min="10" max="60" class="w-full px-3 py-2 border-2 border-bath-dark rounded-lg font-mono text-sm">
+      </div>
+    </div>
+
+    <!-- Device rows -->
+    <div id="cost-rows" class="space-y-4 mb-5"></div>
+
+    <!-- Punchline -->
+    <div id="cost-punch" class="bg-denki-100 border-2 border-bath-dark rounded-lg p-5 text-center">
+      <div class="display-kana text-lg text-bath-dark"></div>
+    </div>
+
+    <p class="text-[11px] text-slate-500 mt-4 leading-relaxed">
+      ※ 消費電力は一般的な機器の目安（各Wは編集可能）。サウナストーブはサーモスタット制御の稼働率60%と仮定。お湯の加温・保温にかかるガス代・燃料代や水道代は含みません。実際の費用は機器・契約・使用状況により変動します。
+    </p>
   </section>
 
   <!-- CTA -->
@@ -417,39 +501,81 @@ const state = {
   power: 5,         // 1-10
   body: { x: W/2, y: H/2, r: 34 },
   maker: 'konishi',
+  layout: 'standard', // standard | single | lshape
   t: 0,
 };
 
-// Convert cm settings to canvas geometry
+// Layout definitions（電浴ガイドの分類）
+const LAYOUTS = {
+  standard: { name:'標準配置型', gapLabel:'板の間隔', gapMin:60, gapMax:160, gapDef:120,
+    desc:'向かい合う壁に1枚ずつ。板どうしを結ぶ直線上が最強ゾーン。いちばん古典的な配置。' },
+  single:   { name:'片面配置型', gapLabel:'板と板の間', gapMin:20, gapMax:100, gapDef:50,
+    desc:'同じ壁に2枚並べる。電流は壁際をアーチ状に流れ、壁に寄るほど強い。設置しやすく最近増加中。' },
+  lshape:   { name:'L字配置型', gapLabel:'角からの距離', gapMin:10, gapMax:80, gapDef:30,
+    desc:'角をはさんで2枚。コーナー付近が交差ゾーン。腰であてやすい（江戸川湯などで体験可）。' },
+};
+
+// Convert cm settings to canvas geometry — plates as arbitrary segments
 function plateGeometry() {
-  const lenPx = (state.plateWidth / 100) * TUB.h;         // plate length in px
-  const gapPx = (state.gap / 170) * TUB.w;                // separation in px
+  const L = state.layout;
+  if (L === 'single') {
+    // 同じ壁（左壁）に2枚、縦に並べる
+    let len = (state.plateWidth / 100) * TUB.h * 0.9;
+    const gapPx = (state.gap / 100) * TUB.h * 0.5;
+    const maxTotal = TUB.h - 30;
+    if (2 * len + gapPx > maxTotal) len = Math.max(20, (maxTotal - gapPx) / 2);
+    const x = TUB.x + 12, cy = TUB.y + TUB.h / 2;
+    return { plates: [
+      { x1: x, y1: cy - gapPx/2 - len, x2: x, y2: cy - gapPx/2, sign: +1 },
+      { x1: x, y1: cy + gapPx/2, x2: x, y2: cy + gapPx/2 + len, sign: -1 },
+    ]};
+  }
+  if (L === 'lshape') {
+    // 左壁と下壁、角をはさんで1枚ずつ
+    const d = (state.gap / 100) * Math.min(TUB.w, TUB.h) * 0.6;
+    let len = (state.plateWidth / 100) * TUB.h * 0.9;
+    len = Math.min(len, TUB.h - d - 40, TUB.w - d - 40);
+    const cX = TUB.x, cY = TUB.y + TUB.h; // 左下コーナー
+    return { plates: [
+      { x1: cX + 12, y1: cY - d - len, x2: cX + 12, y2: cY - d, sign: +1 },
+      { x1: cX + d, y1: cY - 12, x2: cX + d + len, y2: cY - 12, sign: -1 },
+    ]};
+  }
+  // standard: 向かい合わせ
+  const lenPx = (state.plateWidth / 100) * TUB.h;
+  const gapPx = (state.gap / 170) * TUB.w;
   const cx = TUB.x + TUB.w / 2, cy = TUB.y + TUB.h / 2;
-  const x1 = cx - gapPx / 2, x2 = cx + gapPx / 2;
-  return {
-    left:  { x: x1, y1: cy - lenPx/2, y2: cy + lenPx/2 },
-    right: { x: x2, y1: cy - lenPx/2, y2: cy + lenPx/2 },
-  };
+  return { plates: [
+    { x1: cx - gapPx/2, y1: cy - lenPx/2, x2: cx - gapPx/2, y2: cy + lenPx/2, sign: +1 },
+    { x1: cx + gapPx/2, y1: cy - lenPx/2, x2: cx + gapPx/2, y2: cy + lenPx/2, sign: -1 },
+  ]};
 }
 
-// Field |E| at point p from two plates (point-charge approximation)
+// Field |E| at point p from plate segments (point-charge approximation)
 const N_SRC = 14;
 function fieldAt(px, py, g) {
   let ex = 0, ey = 0;
-  for (let i = 0; i < N_SRC; i++) {
-    const f = N_SRC === 1 ? 0.5 : i / (N_SRC - 1);
-    // + sources (left plate)
-    let sy = g.left.y1 + f * (g.left.y2 - g.left.y1);
-    let dx = px - g.left.x, dy = py - sy;
-    let r2 = dx*dx + dy*dy + 40; // soften
-    ex += dx / r2; ey += dy / r2;
-    // - sources (right plate)
-    sy = g.right.y1 + f * (g.right.y2 - g.right.y1);
-    dx = px - g.right.x; dy = py - sy;
-    r2 = dx*dx + dy*dy + 40;
-    ex -= dx / r2; ey -= dy / r2;
+  for (const p of g.plates) {
+    for (let i = 0; i < N_SRC; i++) {
+      const f = i / (N_SRC - 1);
+      const sx = p.x1 + f * (p.x2 - p.x1);
+      const sy = p.y1 + f * (p.y2 - p.y1);
+      const dx = px - sx, dy = py - sy;
+      const r2 = dx*dx + dy*dy + 40; // soften
+      ex += p.sign * dx / r2; ey += p.sign * dy / r2;
+    }
   }
   return Math.sqrt(ex*ex + ey*ey);
+}
+
+// 正規化基準：板Aの面ぎわの電場（両側サンプルの大きい方）
+function refField(g) {
+  const p = g.plates[0];
+  const mx = (p.x1 + p.x2) / 2, my = (p.y1 + p.y2) / 2;
+  const dx = p.x2 - p.x1, dy = p.y2 - p.y1;
+  const l = Math.hypot(dx, dy) || 1;
+  const nx = -dy / l, ny = dx / l;
+  return Math.max(fieldAt(mx + nx*14, my + ny*14, g), fieldAt(mx - nx*14, my - ny*14, g));
 }
 
 // Waveform modulation per maker
@@ -485,7 +611,7 @@ function draw() {
 
   // Heatmap
   // normalize: find rough max at plate face
-  const ref = fieldAt(g.left.x + 12, (g.left.y1 + g.left.y2)/2, g);
+  const ref = refField(g);
   for (let y = TUB.y; y < TUB.y + TUB.h; y += CELL) {
     for (let x = TUB.x; x < TUB.x + TUB.w; x += CELL) {
       const v = Math.min(1, fieldAt(x + CELL/2, y + CELL/2, g) / ref * 1.6) * mod * powerScale;
@@ -502,16 +628,23 @@ function draw() {
   ctx.strokeStyle = '#00b7e0'; ctx.lineWidth = 4;
   roundRect(TUB.x, TUB.y, TUB.w, TUB.h, 20); ctx.stroke();
 
-  // Plates
-  ctx.fillStyle = '#fff'; ctx.strokeStyle = '#facc15'; ctx.lineWidth = 3;
-  [g.left, g.right].forEach(p => {
-    ctx.fillRect(p.x - 5, p.y1, 10, p.y2 - p.y1);
-    ctx.strokeRect(p.x - 5, p.y1, 10, p.y2 - p.y1);
+  // Plates (arbitrary segments)
+  g.plates.forEach(p => {
+    ctx.lineCap = 'butt';
+    ctx.strokeStyle = '#facc15'; ctx.lineWidth = 14;
+    ctx.beginPath(); ctx.moveTo(p.x1, p.y1); ctx.lineTo(p.x2, p.y2); ctx.stroke();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 8;
+    ctx.beginPath(); ctx.moveTo(p.x1, p.y1); ctx.lineTo(p.x2, p.y2); ctx.stroke();
+    // ＋/− ラベル：板の中点から浴槽内側方向へ
+    const mx = (p.x1 + p.x2) / 2, my = (p.y1 + p.y2) / 2;
+    let nx = -(p.y2 - p.y1), ny = (p.x2 - p.x1);
+    const nl = Math.hypot(nx, ny) || 1; nx /= nl; ny /= nl;
+    const tcx = TUB.x + TUB.w / 2, tcy = TUB.y + TUB.h / 2;
+    if ((tcx - mx) * nx + (tcy - my) * ny < 0) { nx = -nx; ny = -ny; }
+    ctx.font = "900 16px 'Zen Kaku Gothic New',sans-serif";
+    ctx.fillStyle = '#facc15'; ctx.textAlign = 'center';
+    ctx.fillText(p.sign > 0 ? '＋' : '−', mx + nx * 24, my + ny * 24 + 5);
   });
-  ctx.font = "900 14px 'Zen Kaku Gothic New',sans-serif";
-  ctx.fillStyle = '#facc15'; ctx.textAlign = 'center';
-  ctx.fillText('＋', g.left.x, g.left.y1 - 8);
-  ctx.fillText('−', g.right.x, g.right.y1 - 8);
 
   // Body
   const b = state.body;
@@ -560,7 +693,7 @@ function draw() {
 // avg field over body sample points, normalized
 function bodyLevel(g) {
   const b = state.body;
-  const ref = fieldAt(g.left.x + 12, (g.left.y1 + g.left.y2) / 2, g);
+  const ref = refField(g);
   let sum = 0, n = 0;
   for (let a = 0; a < 8; a++) {
     const th = a / 8 * Math.PI * 2;
@@ -650,12 +783,110 @@ document.getElementById('ctl-power').addEventListener('input', e => {
   document.getElementById('val-power').textContent = e.target.value;
 });
 
-// Maker presets
+// Maker presets（波形ボタン群のみ切替）
 function setMaker(m, btn) {
   state.maker = m;
-  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.preset-btn[data-maker]').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 }
+
+// Layout presets（配置タイプボタン群のみ切替）
+function setLayout(l, btn) {
+  state.layout = l;
+  const def = LAYOUTS[l];
+  ['layout-standard','layout-single','layout-lshape'].forEach(id =>
+    document.getElementById(id).classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('layout-desc').textContent = def.desc;
+  // gapスライダーの意味と範囲を切替
+  const gapCtl = document.getElementById('ctl-gap');
+  gapCtl.min = def.gapMin; gapCtl.max = def.gapMax; gapCtl.value = def.gapDef;
+  state.gap = def.gapDef;
+  document.getElementById('lbl-gap').textContent = def.gapLabel;
+  document.getElementById('val-gap').textContent = def.gapDef + 'cm';
+}
+
+// Depth panel（側面図）
+const depthCtl = document.getElementById('ctl-depth');
+function updateDepth(d) {
+  document.getElementById('val-depth').textContent = d + 'cm';
+  // 水面(y=57)から 2.4px/cm、基準は深さ30cm
+  document.getElementById('depth-group').setAttribute('transform', `translate(0, ${((d - 30) * 2.4).toFixed(1)})`);
+  const zone =
+    d <= 18 ? '肩・背中（首元タイプ：平田温泉方式）' :
+    d <= 32 ? '腰（定番の設置）' :
+    d <= 42 ? 'おしり・太もも（腰深めタイプ）' :
+    'ふくらはぎ・足元（足狙い）';
+  document.getElementById('depth-zone').textContent = zone;
+}
+depthCtl.addEventListener('input', e => updateDepth(+e.target.value));
+updateDepth(30);
+
+// ============================================================
+// 電気代シミュレーション
+// ============================================================
+const COST_DEVICES = [
+  { id:'denki',  name:'⚡ 電気風呂 本体',          w:15,   duty:1,   color:'#facc15', note:'乾電池レベルの微弱電流。装置の消費電力はごくわずか' },
+  { id:'light',  name:'💡 浴室の照明・換気扇',      w:300,  duty:1,   color:'#94a3b8', note:'LED照明＋換気扇の合計目安' },
+  { id:'jet',    name:'💨 ジェットバス ポンプ',     w:750,  duty:1,   color:'#00b7e0', note:'バイブラ・ジェット用ポンプ1台の目安' },
+  { id:'sauna',  name:'🔥 電気サウナストーブ',      w:9000, duty:0.6, color:'#ff4040', note:'業務用9kW級・サーモ稼働率60%と仮定' },
+];
+
+// 行は初回のみ生成（入力中のフォーカスを守るため、再計算では数値とバーだけ更新）
+function renderCostRows() {
+  document.getElementById('cost-rows').innerHTML = COST_DEVICES.map(r => `
+    <div>
+      <div class="flex items-baseline justify-between gap-2 flex-wrap mb-1">
+        <div class="text-sm font-bold text-bath-dark label-kana">${r.name}
+          <input type="number" id="w-${r.id}" value="${r.w}" min="0" max="30000"
+                 class="w-20 px-2 py-0.5 ml-1 border-2 border-bath-dark rounded font-mono text-xs" oninput="calcCost()">
+          <span class="text-xs text-slate-500 font-mono">W${r.duty < 1 ? ' ×' + (r.duty * 100) + '%稼働' : ''}</span>
+        </div>
+        <div class="font-mono text-sm font-bold" style="color:${r.color === '#facc15' ? '#b45309' : r.color}">
+          <span id="yen-${r.id}">—</span><span class="text-xs text-slate-400 font-normal" id="kwh-${r.id}"></span>
+        </div>
+      </div>
+      <div class="h-6 bg-slate-100 rounded-full border-2 border-bath-dark overflow-hidden">
+        <div class="h-full rounded-full transition-all duration-300" id="bar-${r.id}" style="width:2%;background:${r.color}"></div>
+      </div>
+      <div class="text-[11px] text-slate-500 mt-0.5">${r.note}</div>
+    </div>`).join('');
+}
+
+function calcCost() {
+  const h = Math.max(1, +document.getElementById('cost-hours').value || 10);
+  const d = Math.max(1, +document.getElementById('cost-days').value || 26);
+  const unit = Math.max(1, +document.getElementById('cost-unit').value || 31);
+
+  const results = COST_DEVICES.map(dev => {
+    const w = Math.max(0, +(document.getElementById('w-' + dev.id)?.value ?? dev.w));
+    const kwh = w * dev.duty * h * d / 1000;
+    return { ...dev, w, kwh, yen: kwh * unit };
+  });
+  const maxYen = Math.max(...results.map(r => r.yen), 1);
+
+  results.forEach(r => {
+    // sqrtスケールで小さい値も見えるように（それでも電気風呂は極小＝それが主張）
+    const pct = Math.max(1.2, Math.sqrt(r.yen / maxYen) * 100);
+    document.getElementById('bar-' + r.id).style.width = pct + '%';
+    document.getElementById('yen-' + r.id).textContent = Math.round(r.yen).toLocaleString() + '円/月';
+    document.getElementById('kwh-' + r.id).textContent = `（${r.kwh < 10 ? r.kwh.toFixed(1) : Math.round(r.kwh).toLocaleString()}kWh）`;
+  });
+
+  // Punchline
+  const denki = results.find(r => r.id === 'denki');
+  const sauna = results.find(r => r.id === 'sauna');
+  const jet = results.find(r => r.id === 'jet');
+  const ratioSauna = denki.yen > 0 ? Math.round(sauna.yen / denki.yen) : 0;
+  const ratioJet = denki.yen > 0 ? Math.round(jet.yen / denki.yen) : 0;
+  document.querySelector('#cost-punch div').innerHTML =
+    `電気風呂の電気代は <span class="text-stamp-red" style="font-size:1.4em">月およそ${Math.round(denki.yen).toLocaleString()}円</span>。<br>
+     <span class="text-sm">サウナストーブの<strong style="color:#ff4040">約${ratioSauna.toLocaleString()}分の1</strong>、ジェットバスの<strong style="color:#0092b5">約${ratioJet.toLocaleString()}分の1</strong>。⚡ 圧倒的リーズナブル設備。</span>`;
+}
+renderCostRows();
+['cost-hours','cost-days','cost-unit'].forEach(id =>
+  document.getElementById(id).addEventListener('input', calcCost));
+calcCost();
 
 // Animation loop
 function loop() {
