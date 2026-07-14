@@ -6,6 +6,7 @@ on:
       - 'toyama/**'
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -13,13 +14,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Deploy to ConoHa WING
-        uses: burnett01/rsync-deployments@6.0.0
+      # ConoHa WING の SSH 一時停止（CVE-2026-43499 対応）のため rsync から FTPS に切替中。
+      # SSH 復旧後に戻す場合: git 履歴の burnett01/rsync-deployments 版を参照。
+      - name: Deploy to ConoHa WING (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          switches: -avz --delete --exclude 'slack-config.php' --exclude 'data/' --exclude 'photos/' --exclude 'uploads/'
-          path: toyama/
-          remote_path: /home/c4244218/public_html/toyama.schema.tokyo/
-          remote_host: ${{ secrets.SSH_HOST }}
-          remote_user: ${{ secrets.SSH_USER }}
-          remote_port: ${{ secrets.SSH_PORT }}
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          server: www194.conoha.ne.jp
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: toyama/
+          server-dir: public_html/toyama.schema.tokyo/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            slack-config.php
+            data/**
+            photos/**
+            uploads/**
