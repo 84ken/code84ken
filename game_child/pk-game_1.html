@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>モフモフキーパーのPKゲーム</title>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { height:100%; overflow:hidden; }
+  body {
+    font-family:'Yusei Magic', sans-serif;
+    background:#fdfbf5;
+    color:#1a1a1a;
+    display:flex; flex-direction:column; align-items:center;
+    touch-action:manipulation;
+    user-select:none; -webkit-user-select:none;
+  }
+  #app { width:100%; max-width:480px; height:100%; display:flex; flex-direction:column; position:relative; }
+
+  /* ヘッダー */
+  #topbar {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 16px 4px;
+  }
+  .scorebox { font-size:26px; letter-spacing:2px; }
+  .scorebox small { font-size:13px; display:block; letter-spacing:0; }
+  #kicksLeft { font-size:15px; text-align:right; }
+
+  /* メッセージ */
+  #msg {
+    text-align:center; font-size:22px; min-height:34px; padding:2px 8px;
+    transform:rotate(-1deg);
+  }
+  #msg.big { font-size:34px; animation:pop .45s ease; }
+  @keyframes pop { 0%{transform:scale(.3) rotate(-8deg);} 60%{transform:scale(1.2) rotate(2deg);} 100%{transform:scale(1) rotate(-1deg);} }
+
+  /* ゲーム画面 */
+  #stage { flex:1; position:relative; }
+  svg { width:100%; height:100%; display:block; }
+  .ink { stroke:#1a1a1a; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+  /* ボタンエリア */
+  #controls { padding:8px 14px 20px; text-align:center; }
+  .hint { font-size:15px; margin-bottom:8px; }
+  .btnrow { display:flex; gap:10px; justify-content:center; }
+  button {
+    font-family:inherit; font-size:20px; padding:14px 0; flex:1; max-width:130px;
+    background:#fff; color:#1a1a1a;
+    border:3px solid #1a1a1a; border-radius:14px 18px 15px 17px / 17px 14px 18px 15px;
+    box-shadow:2px 3px 0 #1a1a1a;
+    cursor:pointer;
+  }
+  button:active { transform:translate(2px,3px); box-shadow:none; }
+  button:disabled { opacity:.35; }
+
+  /* スタート・リザルト画面 */
+  .overlay {
+    position:absolute; inset:0; background:rgba(253,251,245,.96);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:18px; text-align:center; padding:24px; z-index:10;
+  }
+  .overlay h1 { font-size:32px; transform:rotate(-2deg); line-height:1.4; }
+  .overlay p { font-size:17px; line-height:1.7; }
+  .overlay button { font-size:22px; padding:16px 8px; max-width:240px; width:100%; flex:none; }
+  .modebtns { display:flex; flex-direction:column; gap:14px; width:100%; align-items:center; }
+  #resultScore { font-size:64px; transform:rotate(-2deg); }
+  .hidden { display:none !important; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- スタート画面 -->
+  <div class="overlay" id="startScreen">
+    <svg viewBox="0 0 120 110" style="width:150px;height:auto;flex:none">
+      <g class="ink" stroke-width="3.5">
+        <path d="M18 20 Q16 68 24 96 Q60 104 100 94 Q106 55 100 18 Q58 12 18 20 Z"/>
+        <circle cx="52" cy="16" r="10"/>
+        <circle cx="72" cy="20" r="9"/>
+        <circle cx="55" cy="17" r="3" fill="#1a1a1a"/>
+        <circle cx="69" cy="21" r="3" fill="#1a1a1a"/>
+        <path d="M42 34 L74 32 L72 66 L44 68 Z"/>
+        <path d="M84 34 Q96 44 86 56 Q76 62 78 50"/>
+        <path d="M40 72 q-8 2 -6 10 q2 8 10 6 q8 2 10 -6 q-2 -8 -6 -8 l-4 4 Z"/>
+        <path d="M76 70 q-8 2 -6 10 q2 8 10 6 q8 -2 8 -10 q-2 -8 -12 -6 Z"/>
+      </g>
+    </svg>
+    <h1>モフモフキーパーの<br>PKゲーム</h1>
+    <p>ゴールにボールを けるか、<br>キーパーになって とめるか！<br>5かい しょうぶだよ</p>
+    <div class="modebtns">
+      <button onclick="startGame('kick')">⚽ ける！</button>
+      <button onclick="startGame('keep')">🧤 とめる！</button>
+    </div>
+  </div>
+
+  <!-- リザルト画面 -->
+  <div class="overlay hidden" id="resultScreen">
+    <h1 id="resultTitle">おしまい！</h1>
+    <div id="resultScore">0てん</div>
+    <p id="resultComment"></p>
+    <div class="modebtns">
+      <button onclick="startGame(currentMode)">もういっかい！</button>
+      <button onclick="showStart()">モードをかえる</button>
+    </div>
+  </div>
+
+  <div id="topbar">
+    <div class="scorebox"><small>てんすう</small><span id="score">0</span>てん</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div id="kicksLeft">のこり 5かい</div>
+      <button id="sndBtn" onclick="Snd.toggle()" style="flex:none;font-size:18px;padding:6px 10px;max-width:none">🔊</button>
+    </div>
+  </div>
+  <div id="msg">　</div>
+
+  <div id="stage">
+    <svg id="field" viewBox="0 0 400 420">
+      <!-- ゴール -->
+      <g class="ink" stroke-width="3">
+        <path id="goalFrame" d="M50 90 Q48 200 54 280 M50 90 Q200 78 350 92 M350 92 Q356 200 348 282"/>
+        <g id="net" stroke-width="1.8" opacity=".85"></g>
+      </g>
+      <!-- 草 -->
+      <path class="ink" stroke-width="3" d="M10 300 l10 -16 l8 16 l9 -14 l8 14 l10 -17 l9 17 l9 -13 l8 13 l10 -16 l9 16 l9 -15 l8 15 l10 -17 l9 17 l9 -14 l8 14 l10 -16 l9 16 l9 -15 l8 15 l10 -17 l9 17 l9 -13 l8 13 l10 -15 l9 15 l10 -16 l9 16 l10 -14 l9 14"/>
+      <!-- 鳥さん(おうえん) -->
+      <g id="bird" class="ink" stroke-width="2.5" transform="translate(20,300)">
+        <ellipse cx="0" cy="18" rx="17" ry="21"/>
+        <circle cx="0" cy="-8" r="11"/>
+        <circle cx="-4" cy="-10" r="1.8" fill="#1a1a1a"/>
+        <circle cx="4" cy="-10" r="1.8" fill="#1a1a1a"/>
+        <path d="M-2 -5 L2 -5 L0 -1 Z" fill="#1a1a1a"/>
+        <path d="M-15 8 Q-26 16 -18 26"/>
+        <path d="M15 8 Q26 16 18 26"/>
+        <path d="M-6 39 l0 6 M6 39 l0 6"/>
+      </g>
+      <!-- キーパー(モフモフの手の子) -->
+      <g id="keeper" transform="translate(200,190)">
+        <g class="ink" stroke-width="3.5">
+          <path d="M-42 -52 Q-46 0 -40 40 Q0 48 42 38 Q47 -6 42 -50 Q0 -58 -42 -52 Z"/>
+          <circle cx="-8" cy="-52" r="11"/>
+          <circle cx="14" cy="-48" r="10"/>
+          <circle cx="-5" cy="-51" r="3.2" fill="#1a1a1a"/>
+          <circle cx="11" cy="-47" r="3.2" fill="#1a1a1a"/>
+          <path d="M-20 -34 L14 -36 L12 -2 L-18 0 Z"/>
+          <path d="M26 -34 Q40 -22 30 -10 Q20 -4 22 -16"/>
+          <g id="handL"><path d="M-24 6 q-10 2 -8 12 q2 10 12 8 q10 2 12 -8 q-2 -10 -8 -10 l-5 5 Z"/></g>
+          <g id="handR"><path d="M18 4 q-10 2 -8 12 q2 10 12 8 q10 -2 10 -12 q-2 -10 -14 -8 Z"/></g>
+        </g>
+      </g>
+      <!-- ボール -->
+      <g id="ball" transform="translate(200,360)">
+        <circle class="ink" stroke-width="3" r="20"/>
+        <path class="ink" stroke-width="2.5" d="M-4 -8 l0 14 M5 -8 l0 14"/>
+      </g>
+      <!-- ゴール!の文字 -->
+      <text id="burst" x="200" y="60" text-anchor="middle" font-size="42" font-family="'Yusei Magic',sans-serif" fill="#1a1a1a" opacity="0" transform="rotate(-4 200 60)">ゴール！</text>
+    </svg>
+  </div>
+
+  <div id="controls">
+    <div class="hint" id="hint">どこに ける？</div>
+    <div class="btnrow">
+      <button id="btnL" onclick="choose(0)">← ひだり</button>
+      <button id="btnC" onclick="choose(1)">まんなか</button>
+      <button id="btnR" onclick="choose(2)">みぎ →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== 音楽・効果音(Web Audioで全部その場で作る) =====
+const Snd = {
+  ctx:null, master:null, bgmGain:null, muted:false, bgmTimer:null,
+  step:0, nextTime:0,
+  BPM:138,
+
+  init(){
+    if(!this.ctx){
+      this.ctx = new (window.AudioContext||window.webkitAudioContext)();
+      this.master = this.ctx.createGain();
+      this.master.gain.value = 0.9;
+      this.master.connect(this.ctx.destination);
+      this.bgmGain = this.ctx.createGain();
+      this.bgmGain.gain.value = 0.22;
+      this.bgmGain.connect(this.master);
+    }
+    if(this.ctx.state==='suspended') this.ctx.resume();
+  },
+
+  toggle(){
+    this.init();
+    this.muted = !this.muted;
+    this.master.gain.value = this.muted ? 0 : 0.9;
+    document.getElementById('sndBtn').textContent = this.muted ? '🔇' : '🔊';
+  },
+
+  tone(freq, when, dur, type='square', vol=0.15, dest=null, slideTo=0){
+    const o = this.ctx.createOscillator();
+    const g = this.ctx.createGain();
+    o.type = type;
+    o.frequency.setValueAtTime(freq, when);
+    if(slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, when+dur);
+    g.gain.setValueAtTime(vol, when);
+    g.gain.exponentialRampToValueAtTime(0.001, when+dur);
+    o.connect(g); g.connect(dest||this.master);
+    o.start(when); o.stop(when+dur+0.05);
+  },
+
+  // ---- BGM:あかるいマーチふうループ ----
+  MELO:[523,659,784,659, 880,784,659,523, 587,698,880,698, 784,659,587,523],
+  BASS:[131,0,196,0, 175,0,196,0, 147,0,175,0, 196,0,196,0],
+  bgmStart(){
+    this.bgmStop();
+    this.step = 0;
+    this.nextTime = this.ctx.currentTime + 0.1;
+    const beat = 60/this.BPM/2; // 8分音符
+    this.bgmTimer = setInterval(()=>{
+      while(this.nextTime < this.ctx.currentTime + 0.25){
+        const i = this.step % 16;
+        const m = this.MELO[i];
+        if(m) this.tone(m, this.nextTime, beat*0.9, 'square', 0.12, this.bgmGain);
+        const b = this.BASS[i];
+        if(b) this.tone(b, this.nextTime, beat*0.95, 'triangle', 0.3, this.bgmGain);
+        // 2ループめは1オクターブ上でにぎやかに
+        if(Math.floor(this.step/16)%4===3 && m) this.tone(m*2, this.nextTime, beat*0.5, 'square', 0.05, this.bgmGain);
+        this.nextTime += beat;
+        this.step++;
+      }
+    }, 90);
+  },
+  bgmStop(){ if(this.bgmTimer){ clearInterval(this.bgmTimer); this.bgmTimer=null; } },
+
+  // ---- 効果音 ----
+  whistle(){ // ピッ!ピー!
+    this.init();
+    const t = this.ctx.currentTime;
+    this.tone(2200, t, 0.12, 'square', 0.12);
+    this.tone(2200, t+0.2, 0.35, 'square', 0.12);
+  },
+  kick(){ // ポンッ
+    const t = this.ctx.currentTime;
+    this.tone(180, t, 0.12, 'triangle', 0.5, null, 60);
+  },
+  goal(){ // ファンファーレ
+    const t = this.ctx.currentTime;
+    [523,659,784,1047].forEach((f,i)=> this.tone(f, t+i*0.09, 0.14, 'square', 0.18));
+    this.tone(1047, t+0.4, 0.5, 'square', 0.18);
+    this.tone(523, t+0.4, 0.5, 'triangle', 0.25);
+  },
+  save(){ // とめた!(バシッ+きらり)
+    const t = this.ctx.currentTime;
+    this.tone(120, t, 0.15, 'square', 0.4, null, 50);
+    [784,988,1175].forEach((f,i)=> this.tone(f, t+0.15+i*0.07, 0.12, 'triangle', 0.2));
+  },
+  miss(){ // ざんねん…
+    const t = this.ctx.currentTime;
+    this.tone(392, t, 0.2, 'triangle', 0.25, null, 330);
+    this.tone(330, t+0.22, 0.35, 'triangle', 0.25, null, 262);
+  },
+  fanfare(good){ // けっかはっぴょう
+    const t = this.ctx.currentTime;
+    if(good){
+      [523,523,523,659,784,1047].forEach((f,i)=> this.tone(f, t+i*0.13, 0.16, 'square', 0.18));
+      this.tone(1319, t+0.8, 0.7, 'square', 0.15);
+      this.tone(659, t+0.8, 0.7, 'triangle', 0.22);
+    } else {
+      [392,370,349,330].forEach((f,i)=> this.tone(f, t+i*0.18, 0.2, 'triangle', 0.22));
+    }
+  }
+};
+
+// ゴールネットを描く(手描き風にちょっとゆらす)
+(function(){
+  const net = document.getElementById('net');
+  let d = '';
+  const w = (x)=> x + (Math.random()*6-3);
+  for(let x=70; x<=340; x+=24){ d += `M${w(x)} ${w(95)} Q${w(x-3)} ${w(190)} ${w(x)} ${w(278)} `; }
+  for(let y=110; y<=270; y+=22){ d += `M${w(56)} ${w(y)} Q${w(200)} ${w(y+4)} ${w(346)} ${w(y)} `; }
+  const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+  p.setAttribute('d', d);
+  net.appendChild(p);
+})();
+
+const ZONES = [110, 200, 290];       // 左・中・右のX座標
+const keeper = document.getElementById('keeper');
+const ball = document.getElementById('ball');
+const bird = document.getElementById('bird');
+const burst = document.getElementById('burst');
+const msg = document.getElementById('msg');
+const scoreEl = document.getElementById('score');
+const kicksEl = document.getElementById('kicksLeft');
+const hint = document.getElementById('hint');
+const btns = [document.getElementById('btnL'), document.getElementById('btnC'), document.getElementById('btnR')];
+
+let currentMode = 'kick';
+let score = 0, round = 0, busy = false;
+const TOTAL = 5;
+
+function showStart(){
+  document.getElementById('startScreen').classList.remove('hidden');
+  document.getElementById('resultScreen').classList.add('hidden');
+}
+
+function startGame(mode){
+  Snd.init();
+  Snd.bgmStart();
+  Snd.whistle();
+  currentMode = mode;
+  score = 0; round = 0; busy = false;
+  scoreEl.textContent = 0;
+  kicksEl.textContent = `のこり ${TOTAL}かい`;
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.add('hidden');
+  msg.className=''; 
+  msg.textContent = mode==='kick' ? 'キーパーに とられないように！' : 'シュートを よんで とめよう！';
+  hint.textContent = mode==='kick' ? 'どこに ける？' : 'どこに とぶ？';
+  resetPositions();
+  setButtons(true);
+}
+
+function resetPositions(){
+  keeper.setAttribute('transform','translate(200,190)');
+  ball.setAttribute('transform','translate(200,360)');
+  ball.style.opacity = 1;
+  burst.setAttribute('opacity', 0);
+}
+
+function setButtons(on){ btns.forEach(b=>b.disabled=!on); }
+
+function animate(el, fromX, fromY, toX, toY, ms, done){
+  const t0 = performance.now();
+  function step(t){
+    let k = Math.min((t-t0)/ms, 1);
+    k = 1-(1-k)*(1-k); // ease-out
+    const x = fromX+(toX-fromX)*k, y = fromY+(toY-fromY)*k;
+    el.setAttribute('transform',`translate(${x},${y})`);
+    if(k<1) requestAnimationFrame(step); else done && done();
+  }
+  requestAnimationFrame(step);
+}
+
+function birdCheer(){
+  let n=0;
+  const iv = setInterval(()=>{
+    bird.setAttribute('transform', `translate(20,${n%2? 292:300})`);
+    if(++n>5){ clearInterval(iv); bird.setAttribute('transform','translate(20,300)'); }
+  },120);
+}
+
+function choose(zone){
+  if(busy) return;
+  busy = true; setButtons(false);
+  Snd.kick();
+  round++;
+
+  const other = [0,1,2];
+  const aiZone = other[Math.floor(Math.random()*3)];
+
+  let playerBallZone, keeperZone;
+  if(currentMode==='kick'){ playerBallZone = zone; keeperZone = aiZone; }
+  else { playerBallZone = aiZone; keeperZone = zone; }
+
+  const saved = (playerBallZone === keeperZone);
+  const playerWins = currentMode==='kick' ? !saved : saved;
+
+  // キーパーが飛ぶ & ボールが飛ぶ
+  animate(keeper, 200,190, ZONES[keeperZone],185, 420);
+  animate(ball, 200,360, ZONES[playerBallZone], saved? 205:130, 460, ()=>{
+    if(saved) ball.style.opacity = .25;
+    msg.className = 'big';
+    if(currentMode==='kick'){
+      msg.textContent = saved ? 'とられた〜！' : 'ゴール！！';
+    } else {
+      msg.textContent = saved ? 'ナイスキーパー！' : 'いれられた〜！';
+    }
+    if(playerWins){
+      score++; scoreEl.textContent = score;
+      burst.textContent = currentMode==='kick' ? 'ゴール！' : 'とめた！';
+      burst.setAttribute('opacity',1);
+      birdCheer();
+      currentMode==='kick' ? Snd.goal() : Snd.save();
+    } else {
+      Snd.miss();
+    }
+    kicksEl.textContent = `のこり ${TOTAL-round}かい`;
+    setTimeout(()=>{
+      msg.className='';
+      if(round>=TOTAL){ endGame(); }
+      else{
+        msg.textContent = currentMode==='kick' ? 'つぎ いくよ！' : 'つぎ くるよ！';
+        resetPositions();
+        busy=false; setButtons(true);
+      }
+    }, 1400);
+  });
+}
+
+function endGame(){
+  Snd.bgmStop();
+  Snd.fanfare(score>=3);
+  const rs = document.getElementById('resultScreen');
+  document.getElementById('resultScore').textContent = score + 'てん';
+  const c = document.getElementById('resultComment');
+  if(score===5) c.textContent = 'パーフェクト！！すごすぎる！🎉';
+  else if(score>=3) c.textContent = 'すごい！そのちょうし！';
+  else if(score>=1) c.textContent = 'いいぞいいぞ！つぎは もっといける！';
+  else c.textContent = 'おしい！もういっかい やってみよう！';
+  rs.classList.remove('hidden');
+}
+</script>
+</body>
+</html>

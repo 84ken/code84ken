@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>すてられちゃった くまちゃん</title>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { height:100%; overflow:hidden; }
+  body {
+    font-family:'Yusei Magic', sans-serif;
+    background:#fdfbf5; color:#1a1a1a;
+    display:flex; justify-content:center;
+    touch-action:none; user-select:none; -webkit-user-select:none;
+  }
+  #app { width:100%; max-width:480px; height:100%; display:flex; flex-direction:column; position:relative; }
+
+  #topbar {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:8px 14px 2px; font-size:15px;
+  }
+  #items { display:flex; gap:8px; align-items:center; }
+  .itemSlot {
+    width:42px; height:42px; border:3px solid #1a1a1a; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; background:#fff; opacity:.25; transform:rotate(-2deg);
+  }
+  .itemSlot:nth-child(2){ transform:rotate(1.5deg); }
+  .itemSlot:nth-child(3){ transform:rotate(-1deg); }
+  .itemSlot.got { opacity:1; background:#fff3b0; }
+  #muteBtn {
+    font-family:inherit; font-size:20px; border:3px solid #1a1a1a; border-radius:50%;
+    width:42px; height:42px; background:#fff; cursor:pointer;
+  }
+
+  #msg {
+    text-align:center; font-size:15px; min-height:24px; padding:2px 10px;
+    transform:rotate(-.5deg);
+  }
+
+  #stage { position:relative; flex:1; display:flex; justify-content:center; align-items:flex-start; }
+  canvas { background:#fdfbf5; display:block; width:100%; height:auto; max-height:100%; }
+
+  /* アクションボタン */
+  #fixBtn {
+    position:absolute; right:14px; bottom:110px;
+    font-family:inherit; font-size:22px; padding:14px 22px;
+    border:4px solid #1a1a1a; border-radius:40px;
+    background:#ffd6e0; display:none; cursor:pointer;
+    transform:rotate(-2deg); box-shadow:3px 3px 0 #1a1a1a;
+    animation:pyon .5s infinite alternate;
+  }
+  @keyframes pyon { from{transform:rotate(-2deg) translateY(0);} to{transform:rotate(-2deg) translateY(-6px);} }
+
+  /* 画面オーバーレイ */
+  .screen {
+    position:absolute; inset:0; background:#fdfbf5;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:20px; z-index:10;
+  }
+  .screen h1 { font-size:28px; line-height:1.4; transform:rotate(-1.5deg); margin-bottom:8px; }
+  .screen p { font-size:16px; line-height:1.8; margin:10px 0; }
+  .bigbtn {
+    font-family:inherit; font-size:24px; padding:14px 40px; margin-top:18px;
+    border:4px solid #1a1a1a; border-radius:40px; background:#fff3b0;
+    cursor:pointer; box-shadow:4px 4px 0 #1a1a1a; transform:rotate(1deg);
+  }
+  .bigbtn:active { transform:rotate(1deg) translate(3px,3px); box-shadow:1px 1px 0 #1a1a1a; }
+  #overScreen { background:#23233a; color:#fdfbf5; display:none; }
+  #overScreen h1 { color:#fdfbf5; }
+  #clearScreen { display:none; overflow:hidden; }
+  .faceCanvas { margin:6px 0; }
+  #busCanvas { position:absolute; bottom:40px; left:-260px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <div id="items">
+      <div class="itemSlot" id="slot-needle">はり</div>
+      <div class="itemSlot" id="slot-thread">いと</div>
+      <div class="itemSlot" id="slot-button">ボタン</div>
+    </div>
+    <button id="muteBtn">🔊</button>
+  </div>
+  <div id="msg">はり・いと・ボタンを あつめよう</div>
+  <div id="stage">
+    <canvas id="game" width="480" height="560"></canvas>
+    <button id="fixBtn">なおす！</button>
+
+    <div class="screen" id="titleScreen">
+      <h1>すてられちゃった<br>くまちゃん</h1>
+      <canvas class="faceCanvas" id="titleBear" width="140" height="150"></canvas>
+      <p>まちがえて すてられちゃった くまちゃんが<br>しかえしに やってきた…！<br><b>みつかったら おしまい。</b></p>
+      <p>かくれながら「はり・いと・ボタン」をあつめて<br>うしろから そーっとちかづいて<br>くまちゃんを なおしてあげよう。</p>
+      <button class="bigbtn" id="startBtn">はじめる</button>
+      <p style="font-size:13px; opacity:.7;">がめんをおして うごかす／やじるしキーでもOK<br>カーテンやハコにかさなると かくれられるよ</p>
+    </div>
+
+    <div class="screen" id="overScreen">
+      <h1>みつかっちゃった…</h1>
+      <canvas class="faceCanvas" id="overBear" width="180" height="190"></canvas>
+      <p>くまちゃんに つかまっちゃった！</p>
+      <button class="bigbtn" id="retryBtn">もういちど</button>
+    </div>
+
+    <div class="screen" id="clearScreen">
+      <h1>なかなおり できた！</h1>
+      <canvas class="faceCanvas" id="clearBear" width="160" height="170"></canvas>
+      <p id="clearText">はりと いとで ちくちく…<br>ボタンのおめめも つけてあげた。<br>くまちゃんは にっこり わらったよ。</p>
+      <canvas id="busCanvas" width="240" height="110"></canvas>
+      <button class="bigbtn" id="againBtn">もういちど あそぶ</button>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ============ サウンド ============ */
+const Snd = (()=>{
+  let ctx=null, muted=false, bgmTimer=null, heartTimer=null;
+  const ac=()=>ctx||(ctx=new (window.AudioContext||window.webkitAudioContext)());
+  function tone(f,dur,type,vol,when=0,slide=0){
+    if(muted) return;
+    const c=ac(), o=c.createOscillator(), g=c.createGain();
+    o.type=type; o.frequency.setValueAtTime(f,c.currentTime+when);
+    if(slide) o.frequency.linearRampToValueAtTime(f+slide,c.currentTime+when+dur);
+    g.gain.setValueAtTime(vol,c.currentTime+when);
+    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+when+dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(c.currentTime+when); o.stop(c.currentTime+when+dur+.05);
+  }
+  return {
+    toggle(){ muted=!muted; return muted; },
+    bgmStart(){
+      this.bgmStop();
+      let step=0;
+      const seq=[110,0,130.8,0,110,0,98,0];
+      bgmTimer=setInterval(()=>{
+        const f=seq[step%seq.length];
+        if(f) tone(f,.45,'triangle',.06);
+        step++;
+      },500);
+    },
+    bgmStop(){ if(bgmTimer){clearInterval(bgmTimer); bgmTimer=null;} },
+    heart(rate){ // rate 0-1
+      if(heartTimer) return;
+      heartTimer=setTimeout(()=>{
+        heartTimer=null;
+        tone(70,.1,'sine',.25); tone(60,.12,'sine',.2,.13);
+      }, 900-700*rate);
+    },
+    pickup(){ tone(660,.1,'square',.12); tone(880,.15,'square',.12,.1); tone(1320,.2,'square',.1,.22); },
+    spotted(){ tone(880,.15,'sawtooth',.2); tone(830,.3,'sawtooth',.18,.12,-200); },
+    caught(){ tone(300,.3,'sawtooth',.25,0,-150); tone(150,.6,'sawtooth',.22,.25,-80); },
+    sew(){ for(let i=0;i<6;i++) tone(1200+((i%2)*300),.05,'square',.08,i*.15); },
+    fanfare(){
+      const n=[523,659,784,1047];
+      n.forEach((f,i)=>tone(f,.25,'triangle',.15,i*.16));
+      tone(1047,.6,'triangle',.15,.75);
+      tone(784,.6,'triangle',.1,.75);
+    }
+  };
+})();
+
+/* ============ キャラ描画 ============ */
+function drawBearFace(c, cx, cy, s, mode){ // mode: 'scary' | 'cute'
+  c.save(); c.translate(cx,cy); c.scale(s,s);
+  c.strokeStyle = c.fillStyle = (mode==='scaryWhite') ? '#fdfbf5' : '#1a1a1a';
+  const ink = c.strokeStyle;
+  c.lineWidth=3/s*Math.min(s*1.4,3); c.lineWidth=3; c.lineCap='round'; c.lineJoin='round';
+  // みみ
+  c.beginPath(); c.arc(-26,-30,11,0,7); c.stroke();
+  c.beginPath(); c.arc(26,-30,11,0,7); c.stroke();
+  // かお
+  c.beginPath(); c.arc(0,0,34,0,7); c.stroke();
+  if(mode==='scary'||mode==='scaryWhite'){
+    // ベレーぼう(1まいめの絵)
+    c.beginPath(); c.ellipse(10,-38,22,12,-0.15,0,7); c.stroke();
+    // バッテンぐるぐるおめめ
+    [[-13,-4],[13,-8]].forEach(([x,y])=>{
+      c.save(); c.translate(x,y);
+      c.globalAlpha=.35; c.beginPath(); c.arc(0,0,9,0,7); c.fill(); c.globalAlpha=1;
+      c.beginPath(); c.arc(0,0,9,0,7); c.stroke();
+      c.beginPath(); c.moveTo(-7,-7); c.lineTo(7,7); c.moveTo(7,-7); c.lineTo(-7,7); c.stroke();
+      c.restore();
+    });
+    // ぬいめ(ほっぺのキズ)
+    c.beginPath();
+    c.moveTo(-26,10); c.lineTo(-12,22);
+    for(let i=0;i<3;i++){ const t=(i+1)/4, x=-26+14*t, y=10+12*t; c.moveTo(x-4,y+3); c.lineTo(x+3,y-5); }
+    c.stroke();
+    // ギザギザくち
+    c.beginPath(); c.moveTo(-4,16);
+    c.lineTo(0,20); c.lineTo(4,15); c.lineTo(8,20); c.lineTo(12,15);
+    c.stroke();
+  } else {
+    // にっこり(2まいめの絵)
+    c.beginPath(); c.arc(-12,-6,5,0,7); c.stroke();
+    c.beginPath(); c.arc(-12,-6,2,0,7); c.fill();
+    c.beginPath(); c.arc(12,-6,5,0,7); c.stroke();
+    c.beginPath(); c.arc(12,-6,2,0,7); c.fill();
+    c.beginPath(); c.moveTo(-2,6); c.lineTo(0,9); c.lineTo(2,6); c.closePath(); c.fill(); // はな
+    c.beginPath(); c.arc(0,10,14,0.25,Math.PI-0.25); c.stroke(); // にっこり
+  }
+  c.restore();
+}
+function drawBearBody(c, x, y, mode, walk){
+  c.save(); c.translate(x,y);
+  c.strokeStyle='#1a1a1a'; c.lineWidth=3; c.lineCap='round'; c.lineJoin='round';
+  const sway = Math.sin(walk)*3;
+  // からだ
+  c.beginPath(); c.moveTo(-14,-6); c.lineTo(-17,22); c.lineTo(17,22); c.lineTo(14,-6); c.stroke();
+  // ボタン ⊕
+  [[0,4],[0,14]].forEach(([bx,by])=>{
+    c.beginPath(); c.arc(bx,by,4,0,7); c.stroke();
+    c.beginPath(); c.moveTo(bx-4,by); c.lineTo(bx+4,by); c.moveTo(bx,by-4); c.lineTo(bx,by+4); c.stroke();
+  });
+  // あし
+  c.beginPath(); c.moveTo(-8,22); c.lineTo(-8+sway,30); c.moveTo(8,22); c.lineTo(8-sway,30); c.stroke();
+  // かお
+  drawBearFace(c, 0, -26, .55, mode);
+  c.restore();
+}
+function drawPlayer(c, x, y, walk, hidden){
+  c.save(); c.translate(x,y);
+  if(hidden) c.globalAlpha=.35;
+  c.strokeStyle='#1a1a1a'; c.lineWidth=3; c.lineCap='round'; c.lineJoin='round';
+  const sway=Math.sin(walk)*3;
+  // あたま
+  c.beginPath(); c.arc(0,-16,10,0,7); c.stroke();
+  // かみのけ
+  c.beginPath(); c.moveTo(-8,-24); c.quadraticCurveTo(0,-32,8,-24); c.stroke();
+  // かお
+  c.beginPath(); c.arc(-3,-17,1.3,0,7); c.fill();
+  c.beginPath(); c.arc(3,-17,1.3,0,7); c.fill();
+  c.beginPath(); c.arc(0,-13,3,0.3,Math.PI-0.3); c.stroke();
+  // からだ(ワンピース)
+  c.beginPath(); c.moveTo(-6,-6); c.lineTo(-11,12); c.lineTo(11,12); c.lineTo(6,-6); c.closePath(); c.stroke();
+  // あし
+  c.beginPath(); c.moveTo(-5,12); c.lineTo(-5+sway,20); c.moveTo(5,12); c.lineTo(5-sway,20); c.stroke();
+  c.restore();
+}
+function drawBus(c, x, y, withRiders){
+  c.save(); c.translate(x,y);
+  c.strokeStyle='#1a1a1a'; c.lineWidth=4; c.lineCap='round'; c.lineJoin='round';
+  c.fillStyle='#fff';
+  c.beginPath(); c.rect(0,0,180,60); c.fill(); c.stroke();
+  // まど
+  for(let i=0;i<4;i++){
+    c.beginPath(); c.rect(14+i*42,12,28,24); c.stroke();
+  }
+  if(withRiders){
+    c.save(); c.translate(70,26); c.scale(.32,.32); drawBearFace(c,0,0,1,'cute'); c.restore();
+    c.save(); c.translate(112,28); c.scale(.9,.9);
+    c.beginPath(); c.arc(0,-2,10,0,7); c.stroke();
+    c.beginPath(); c.moveTo(-8,-10); c.quadraticCurveTo(0,-18,8,-10); c.stroke();
+    c.beginPath(); c.arc(-3,-3,1.2,0,7); c.fill();
+    c.beginPath(); c.arc(3,-3,1.2,0,7); c.fill();
+    c.beginPath(); c.arc(0,1,3.4,0.3,Math.PI-0.3); c.stroke();
+    c.restore();
+  }
+  // タイヤ
+  [40,140].forEach(tx=>{
+    c.beginPath(); c.arc(tx,64,11,0,7); c.fillStyle='#fff'; c.fill(); c.stroke();
+    c.beginPath(); c.arc(tx,64,5,0,7); c.stroke();
+  });
+  c.restore();
+}
+
+/* ============ ゲーム本体 ============ */
+const cv=document.getElementById('game'), ctx=cv.getContext('2d');
+const W=480,H=560;
+const msgEl=document.getElementById('msg');
+const fixBtn=document.getElementById('fixBtn');
+
+const walls=[
+  {x:0,y:0,w:W,h:12},{x:0,y:H-12,w:W,h:12},{x:0,y:0,w:12,h:H},{x:W-12,y:0,w:12,h:H},
+  {x:12,y:260,w:168,h:12},   // よこかべ(ひだり)
+  {x:300,y:260,w:168,h:12},  // よこかべ(みぎ)
+  {x:240,y:12,w:12,h:118},   // たてかべ(うえ)
+];
+const hideSpots=[
+  {x:40,y:60,w:70,h:60,type:'box',label:'ハコ'},
+  {x:390,y:40,w:60,h:110,type:'curtain',label:'カーテン'},
+  {x:40,y:430,w:110,h:70,type:'bed',label:'ベッド'},
+  {x:395,y:440,w:55,h:80,type:'plant',label:'はっぱ'},
+];
+const itemsDef=[
+  {id:'needle',label:'はり',x:430,y:190},
+  {id:'thread',label:'いと',x:100,y:370},
+  {id:'button',label:'ボタン',x:360,y:340},
+];
+const patrol=[[120,170],[350,140],[246,215],[246,360],[400,430],[110,410],[246,360],[246,215]];
+
+let player, bear, items, state, walkT=0, spotFlash=0, tLast=0;
+
+function reset(){
+  player={x:60,y:180,r:12,hidden:false};
+  bear={x:246,y:360,r:16,wp:4,mode:'patrol',dirX:0,dirY:-1,loseT:0,alertT:0};
+  items=itemsDef.map(o=>({...o,got:false}));
+  itemsDef.forEach(o=>document.getElementById('slot-'+o.id).classList.remove('got'));
+  state='play';
+  setMsg('みつからないように はり・いと・ボタンを あつめよう');
+}
+function setMsg(t){ msgEl.textContent=t; }
+
+/* --- 入力 --- */
+const keys={};
+addEventListener('keydown',e=>{keys[e.key]=true;});
+addEventListener('keyup',e=>{keys[e.key]=false;});
+let touchVec=null, touchOrigin=null;
+cv.addEventListener('touchstart',e=>{
+  e.preventDefault();
+  const t=e.touches[0], r=cv.getBoundingClientRect();
+  touchOrigin={x:t.clientX,y:t.clientY}; touchVec={x:0,y:0};
+},{passive:false});
+cv.addEventListener('touchmove',e=>{
+  e.preventDefault();
+  if(!touchOrigin) return;
+  const t=e.touches[0];
+  touchVec={x:t.clientX-touchOrigin.x, y:t.clientY-touchOrigin.y};
+},{passive:false});
+cv.addEventListener('touchend',e=>{ touchOrigin=null; touchVec=null; },{passive:false});
+
+function inputVec(){
+  let dx=0,dy=0;
+  if(keys.ArrowLeft||keys.a) dx-=1;
+  if(keys.ArrowRight||keys.d) dx+=1;
+  if(keys.ArrowUp||keys.w) dy-=1;
+  if(keys.ArrowDown||keys.s) dy+=1;
+  if(touchVec){
+    const m=Math.hypot(touchVec.x,touchVec.y);
+    if(m>12){ dx=touchVec.x/m; dy=touchVec.y/m; }
+  }
+  const m=Math.hypot(dx,dy);
+  return m>0 ? {x:dx/m,y:dy/m} : {x:0,y:0};
+}
+
+/* --- 当たり・視線 --- */
+function hitWall(x,y,r){
+  return walls.some(w=> x+r>w.x && x-r<w.x+w.w && y+r>w.y && y-r<w.y+w.h);
+}
+function losClear(ax,ay,bx,by){
+  const steps=24;
+  for(let i=1;i<steps;i++){
+    const t=i/steps, x=ax+(bx-ax)*t, y=ay+(by-ay)*t;
+    if(walls.some(w=> x>w.x && x<w.x+w.w && y>w.y && y<w.y+w.h)) return false;
+  }
+  return true;
+}
+function inHideSpot(){
+  return hideSpots.some(h=> player.x>h.x && player.x<h.x+h.w && player.y>h.y && player.y<h.y+h.h);
+}
+
+/* --- 更新 --- */
+const VISION_R=165, VISION_A=Math.PI/4;
+function update(dt){
+  walkT+=dt*8;
+  // プレイヤー
+  const v=inputVec(), sp=110*dt;
+  let nx=player.x+v.x*sp, ny=player.y+v.y*sp;
+  if(!hitWall(nx,player.y,player.r)) player.x=nx;
+  if(!hitWall(player.x,ny,player.r)) player.y=ny;
+  player.hidden = inHideSpot();
+
+  // アイテム
+  items.forEach(it=>{
+    if(!it.got && Math.hypot(player.x-it.x,player.y-it.y)<26){
+      it.got=true; Snd.pickup();
+      document.getElementById('slot-'+it.id).classList.add('got');
+      const left=items.filter(i=>!i.got).length;
+      setMsg(left ? `「${it.label}」をゲット！ あと${left}つ` :
+        'ぜんぶあつめた！ うしろから そーっとちかづこう');
+    }
+  });
+
+  // くま
+  const dToP=Math.hypot(player.x-bear.x,player.y-bear.y);
+  const seen = !player.hidden && dToP<VISION_R &&
+    (()=>{ const ang=Math.atan2(player.y-bear.y,player.x-bear.x);
+      const bAng=Math.atan2(bear.dirY,bear.dirX);
+      let d=Math.abs(ang-bAng); if(d>Math.PI) d=2*Math.PI-d;
+      return d<VISION_A; })() &&
+    losClear(bear.x,bear.y,player.x,player.y);
+
+  if(bear.mode==='patrol'){
+    if(seen){
+      bear.alertT+=dt;
+      if(bear.alertT>0.55){ bear.mode='chase'; bear.loseT=0; Snd.spotted(); spotFlash=1; setMsg('みつかった！ にげてー！'); }
+    } else bear.alertT=Math.max(0,bear.alertT-dt*2);
+    const [tx,ty]=patrol[bear.wp];
+    const dx=tx-bear.x, dy=ty-bear.y, d=Math.hypot(dx,dy);
+    if(d<6) bear.wp=(bear.wp+1)%patrol.length;
+    else {
+      const s=55*dt;
+      bear.dirX=dx/d; bear.dirY=dy/d;
+      bear.x+=bear.dirX*s; bear.y+=bear.dirY*s;
+    }
+  } else { // chase
+    const canSee = seen || (dToP<60 && !player.hidden);
+    bear.loseT = canSee ? 0 : bear.loseT+dt;
+    if(bear.loseT>2.6){
+      bear.mode='patrol'; bear.alertT=0;
+      let best=0,bd=1e9;
+      patrol.forEach((p,i)=>{const dd=Math.hypot(p[0]-bear.x,p[1]-bear.y); if(dd<bd){bd=dd;best=i;}});
+      bear.wp=best;
+      setMsg('…いなくなった？ いまのうち！');
+    } else {
+      const dx=player.x-bear.x, dy=player.y-bear.y, d=Math.hypot(dx,dy)||1;
+      bear.dirX=dx/d; bear.dirY=dy/d;
+      const s=104*dt;
+      let bx=bear.x+bear.dirX*s, by=bear.y+bear.dirY*s;
+      if(!hitWall(bx,bear.y,bear.r)) bear.x=bx;
+      if(!hitWall(bear.x,by,bear.r)) bear.y=by;
+      if(d<24 && !player.hidden) return gameOver();
+    }
+  }
+
+  // 心音
+  if(dToP<200 && state==='play') Snd.heart(1-dToP/200);
+
+  // なおすボタン
+  const allGot = items.every(i=>i.got);
+  const behind = allGot && bear.mode==='patrol' && dToP<70 && !seen;
+  fixBtn.style.display = behind ? 'block' : 'none';
+
+  spotFlash=Math.max(0,spotFlash-dt*2);
+}
+
+/* --- 描画 --- */
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='#1a1a1a'; ctx.lineWidth=3; ctx.lineCap='round'; ctx.lineJoin='round';
+
+  // ゆか(てがきの点々)
+  ctx.fillStyle='rgba(26,26,26,.12)';
+  for(let i=0;i<40;i++){ ctx.fillRect((i*97)%W, (i*211)%H, 3,3); }
+
+  // かべ
+  ctx.fillStyle='#fdfbf5';
+  walls.forEach(w=>{ ctx.fillStyle='#e8e2d4'; ctx.fillRect(w.x,w.y,w.w,w.h); ctx.strokeRect(w.x,w.y,w.w,w.h); });
+
+  // かくれスポット
+  hideSpots.forEach(h=>{
+    ctx.save(); ctx.translate(h.x,h.y);
+    ctx.fillStyle='#fff'; ctx.strokeStyle='#1a1a1a';
+    if(h.type==='box'){
+      ctx.fillRect(0,10,h.w,h.h-10); ctx.strokeRect(0,10,h.w,h.h-10);
+      ctx.beginPath(); ctx.moveTo(0,10); ctx.lineTo(10,0); ctx.lineTo(h.w+10,0); ctx.lineTo(h.w,10); ctx.stroke();
+      ctx.font='13px "Yusei Magic"'; ctx.fillStyle='#1a1a1a'; ctx.fillText('ゴミ',h.w/2-13,h.h/2+12);
+    } else if(h.type==='curtain'){
+      ctx.beginPath(); ctx.moveTo(0,0);
+      for(let i=0;i<=4;i++){ ctx.quadraticCurveTo(h.w*(i+.5)/5, 14, h.w*(i+1)/5, 0); }
+      ctx.lineTo(h.w,h.h);
+      for(let i=4;i>=0;i--){ ctx.quadraticCurveTo(h.w*(i+.5)/5, h.h+14, h.w*i/5, h.h); }
+      ctx.closePath(); ctx.fillStyle='#fff'; ctx.fill(); ctx.stroke();
+      for(let i=1;i<5;i++){ ctx.beginPath(); ctx.moveTo(h.w*i/5,6); ctx.lineTo(h.w*i/5,h.h-4); ctx.stroke(); }
+    } else if(h.type==='bed'){
+      ctx.fillRect(0,0,h.w,h.h); ctx.strokeRect(0,0,h.w,h.h);
+      ctx.strokeRect(6,8,30,h.h-16);
+      ctx.beginPath(); ctx.moveTo(42,14); ctx.lineTo(h.w-8,14); ctx.stroke();
+    } else {
+      ctx.beginPath(); ctx.ellipse(h.w/2,20,22,18,0,0,7); ctx.fillStyle='#fff'; ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(h.w/2-14,38,14,12,0.4,0,7); ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(h.w/2+12,42,14,12,-0.4,0,7); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(h.w/2,50); ctx.lineTo(h.w/2,h.h); ctx.stroke();
+    }
+    ctx.restore();
+  });
+
+  // アイテム
+  ctx.strokeStyle='#1a1a1a';
+  items.forEach(it=>{
+    if(it.got) return;
+    ctx.save(); ctx.translate(it.x,it.y);
+    const bob=Math.sin(walkT/2+it.x)*3; ctx.translate(0,bob);
+    if(it.id==='needle'){
+      ctx.beginPath(); ctx.moveTo(-8,8); ctx.lineTo(8,-8); ctx.stroke();
+      ctx.beginPath(); ctx.arc(8,-8,3,0,7); ctx.stroke();
+    } else if(it.id==='thread'){
+      ctx.beginPath(); ctx.rect(-8,-10,16,20); ctx.stroke();
+      for(let i=-6;i<=6;i+=4){ ctx.beginPath(); ctx.moveTo(-8,i); ctx.lineTo(8,i); ctx.stroke(); }
+    } else {
+      ctx.beginPath(); ctx.arc(0,0,9,0,7); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-9,0); ctx.lineTo(9,0); ctx.moveTo(0,-9); ctx.lineTo(0,9); ctx.stroke();
+    }
+    ctx.font='12px "Yusei Magic"'; ctx.fillStyle='#1a1a1a';
+    ctx.fillText(it.label, -it.label.length*6, 26);
+    ctx.restore();
+  });
+
+  // くまの視界(えんぴつぬりぬり風)
+  const bAng=Math.atan2(bear.dirY,bear.dirX);
+  ctx.save();
+  ctx.fillStyle = bear.mode==='chase' ? 'rgba(200,40,40,.16)' : 'rgba(26,26,26,.10)';
+  ctx.beginPath(); ctx.moveTo(bear.x,bear.y);
+  ctx.arc(bear.x,bear.y,VISION_R,bAng-VISION_A,bAng+VISION_A);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+
+  // くま・プレイヤー
+  drawBearBody(ctx,bear.x,bear.y, bear.mode==='chase'?'scary':'scary', walkT);
+  if(bear.mode==='chase'||bear.alertT>0.15){
+    ctx.font='26px "Yusei Magic"'; ctx.fillStyle='#c82828';
+    ctx.fillText('！', bear.x-6, bear.y-58);
+  }
+  drawPlayer(ctx,player.x,player.y,walkT,player.hidden);
+  if(player.hidden){
+    ctx.font='13px "Yusei Magic"'; ctx.fillStyle='#1a1a1a';
+    ctx.fillText('かくれてる…', player.x-36, player.y-38);
+  }
+
+  // よるのくらさ
+  const g=ctx.createRadialGradient(player.x,player.y,60,player.x,player.y,240);
+  g.addColorStop(0,'rgba(30,30,55,0)');
+  g.addColorStop(1,'rgba(30,30,55,.42)');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+
+  if(spotFlash>0){
+    ctx.fillStyle=`rgba(200,40,40,${spotFlash*.22})`;
+    ctx.fillRect(0,0,W,H);
+  }
+}
+
+/* --- ループ --- */
+function loop(t){
+  if(state!=='play'){ return; }
+  const dt=Math.min((t-tLast)/1000,.05); tLast=t;
+  update(dt);
+  if(state==='play'){ draw(); requestAnimationFrame(loop); }
+}
+
+/* --- 画面遷移 --- */
+const titleScreen=document.getElementById('titleScreen');
+const overScreen=document.getElementById('overScreen');
+const clearScreen=document.getElementById('clearScreen');
+
+function startGame(){
+  titleScreen.style.display='none';
+  overScreen.style.display='none';
+  clearScreen.style.display='none';
+  reset();
+  Snd.bgmStart();
+  tLast=performance.now();
+  requestAnimationFrame(loop);
+}
+function gameOver(){
+  state='over'; Snd.bgmStop(); Snd.caught();
+  fixBtn.style.display='none';
+  const oc=document.getElementById('overBear').getContext('2d');
+  oc.clearRect(0,0,180,190);
+  drawBearFace(oc,90,105,1.6,'scaryWhite');
+  overScreen.style.display='flex';
+}
+function gameClear(){
+  state='clear'; Snd.bgmStop();
+  fixBtn.style.display='none';
+  Snd.sew();
+  setTimeout(()=>Snd.fanfare(),1100);
+  const cc=document.getElementById('clearBear').getContext('2d');
+  cc.clearRect(0,0,160,170);
+  drawBearFace(cc,80,95,1.5,'cute');
+  // ハート
+  cc.fillStyle='#e26a8d'; cc.font='22px sans-serif';
+  cc.fillText('♥',10,40); cc.fillText('♥',130,30); cc.fillText('♥',125,150);
+  clearScreen.style.display='flex';
+  // バス(3まいめの絵)がはしってくる
+  const bus=document.getElementById('busCanvas'), bc=bus.getContext('2d');
+  bc.clearRect(0,0,240,110); drawBus(bc,20,10,true);
+  let bx=-260;
+  const anim=setInterval(()=>{
+    bx+=4; bus.style.left=bx+'px';
+    if(bx>window.innerWidth) clearInterval(anim);
+  },16);
+}
+
+document.getElementById('startBtn').addEventListener('click',startGame);
+document.getElementById('retryBtn').addEventListener('click',startGame);
+document.getElementById('againBtn').addEventListener('click',startGame);
+fixBtn.addEventListener('click',()=>{ if(state==='play') gameClear(); });
+document.getElementById('muteBtn').addEventListener('click',e=>{
+  e.target.textContent = Snd.toggle() ? '🔇' : '🔊';
+});
+
+// タイトルのくま
+drawBearFace(document.getElementById('titleBear').getContext('2d'),70,85,1.3,'scary');
+</script>
+</body>
+</html>

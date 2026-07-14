@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>うちのこゲームミュージアム</title>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Yusei Magic', 'Hiragino Maru Gothic ProN', sans-serif;
+    background:#fdfbf5; color:#1a1a1a;
+    line-height:1.8;
+  }
+  .container { max-width:960px; margin:0 auto; padding:0 20px; }
+
+  /* ===== ヘッダー ===== */
+  header { text-align:center; padding:56px 20px 28px; }
+  .site-title {
+    font-size:clamp(30px, 6vw, 46px); letter-spacing:2px;
+    transform:rotate(-1deg); display:inline-block;
+  }
+  .site-title .tilt { display:inline-block; transform:rotate(2deg); }
+  .tagline {
+    margin-top:14px; font-size:clamp(13px, 2.6vw, 16px); color:#555;
+    transform:rotate(-0.4deg);
+  }
+  .crayon-line {
+    width:180px; height:6px; margin:22px auto 0; border-radius:3px;
+    background:linear-gradient(90deg,#ffd6e0 0 33%,#fff3b0 33% 66%,#cde8ff 66%);
+    transform:rotate(-0.6deg);
+  }
+
+  /* ===== 統計 ===== */
+  .stats { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; padding:10px 0 8px; }
+  .stat {
+    background:#fff; border:3px solid #1a1a1a; padding:10px 22px;
+    border-radius:18px 22px 16px 24px / 22px 16px 24px 18px;
+    text-align:center; transform:rotate(-1deg);
+  }
+  .stat:nth-child(2){ transform:rotate(0.8deg); }
+  .stat:nth-child(3){ transform:rotate(-0.5deg); }
+  .stat b { font-size:26px; display:block; line-height:1.3; }
+  .stat span { font-size:12px; color:#666; }
+
+  /* ===== フィルターチップ ===== */
+  .filters { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:18px; }
+  .chip {
+    font-family:inherit; font-size:14px; cursor:pointer;
+    padding:6px 20px; background:#fff; color:#1a1a1a;
+    border:3px solid #1a1a1a; border-radius:30px;
+    transform:rotate(-0.8deg); transition:transform .12s ease;
+  }
+  .chip:nth-child(2){ transform:rotate(0.6deg); }
+  .chip:nth-child(3){ transform:rotate(-0.4deg); }
+  .chip:hover { transform:rotate(0deg) translateY(-2px); }
+  .chip.on { background:#fff3b0; box-shadow:3px 3px 0 rgba(26,26,26,.18); }
+
+  /* ===== 年グループ ===== */
+  .year-block { margin-top:44px; }
+  .year-label {
+    display:inline-flex; align-items:baseline; gap:8px;
+    font-size:24px; padding:4px 20px;
+    background:#fff3b0; border:3px solid #1a1a1a;
+    border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
+    transform:rotate(-1.2deg);
+  }
+  .year-label small { font-size:13px; color:#666; }
+
+  /* ===== カードグリッド ===== */
+  .grid {
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(270px, 1fr));
+    gap:26px; margin-top:24px;
+  }
+  .card {
+    background:#fff; border:3px solid #1a1a1a;
+    border-radius:22px 18px 24px 16px / 18px 24px 16px 22px;
+    overflow:hidden; cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease;
+    display:flex; flex-direction:column;
+  }
+  .card:nth-child(3n+1){ transform:rotate(-0.7deg); }
+  .card:nth-child(3n+2){ transform:rotate(0.6deg); }
+  .card:nth-child(3n)  { transform:rotate(-0.3deg); }
+  .card:hover { transform:rotate(0deg) translateY(-5px); box-shadow:0 10px 0 rgba(26,26,26,.12); }
+
+  /* サムネイル：ミニプレビュー */
+  .thumb {
+    position:relative; height:190px; overflow:hidden;
+    background:#fdfbf5; border-bottom:3px solid #1a1a1a;
+  }
+  .thumb .fallback {
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:64px;
+  }
+  .thumb iframe {
+    position:absolute; top:0; left:50%;
+    width:480px; height:760px;
+    transform:translateX(-50%) scale(0.4); transform-origin:top center;
+    border:0; pointer-events:none; background:#fdfbf5;
+  }
+  .thumb .play-hint {
+    position:absolute; right:10px; bottom:10px;
+    background:#1a1a1a; color:#fff; font-size:13px;
+    padding:4px 14px; border-radius:20px; opacity:.85;
+  }
+
+  .card-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .card-title { font-size:18px; line-height:1.5; }
+  .meta { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .badge {
+    font-size:12px; padding:2px 12px;
+    border:2px solid #1a1a1a; border-radius:20px; background:#fff;
+  }
+  .badge.maker { font-weight:bold; }
+  .badge.age { background:#fff3b0; }
+  .memo { font-size:13.5px; color:#555; flex:1; }
+  .date-line { font-size:12px; color:#999; }
+
+  /* 原画ポラロイド */
+  .sketch-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+  .sketch {
+    background:#fff; border:2px solid #1a1a1a;
+    padding:5px 5px 4px; transform:rotate(1.5deg);
+    cursor:zoom-in; transition:transform .15s ease;
+  }
+  .sketch:nth-child(2){ transform:rotate(-1.2deg); }
+  .sketch:nth-child(3){ transform:rotate(0.8deg); }
+  .sketch:hover { transform:rotate(0deg) scale(1.06); }
+  .sketch img { width:82px; height:82px; object-fit:cover; display:block; }
+  .sketch figcaption {
+    font-size:9px; text-align:center; color:#888;
+    max-width:82px; line-height:1.4; padding-top:3px;
+  }
+
+  /* ===== つくりかたセクション ===== */
+  .howto { margin-top:70px; text-align:center; }
+  .howto h2 {
+    display:inline-block; font-size:22px; padding:4px 24px;
+    background:#cde8ff; border:3px solid #1a1a1a;
+    border-radius:15px 225px 15px 255px / 225px 15px 255px 15px;
+    transform:rotate(0.8deg);
+  }
+  .steps { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:26px; }
+  .step {
+    width:200px; background:#fff; border:3px solid #1a1a1a;
+    border-radius:20px 16px 22px 18px / 16px 22px 18px 20px;
+    padding:20px 16px; transform:rotate(-1deg);
+  }
+  .step:nth-child(2){ transform:rotate(1deg); }
+  .step:nth-child(3){ transform:rotate(-0.5deg); }
+  .step .num {
+    width:34px; height:34px; margin:0 auto 10px;
+    border:3px solid #1a1a1a; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; background:#ffd6e0;
+  }
+  .step:nth-child(2) .num { background:#fff3b0; }
+  .step:nth-child(3) .num { background:#cde8ff; }
+  .step .icon { font-size:36px; }
+  .step h3 { font-size:15px; margin-top:6px; }
+  .step p { font-size:12px; color:#666; margin-top:4px; line-height:1.6; }
+  .arrow { align-self:center; font-size:24px; color:#aaa; }
+  .guide-link {
+    display:inline-block; margin-top:28px; font-size:17px; color:#1a1a1a;
+    background:#ffd6e0; border:3px solid #1a1a1a; padding:12px 28px;
+    border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
+    text-decoration:none; transform:rotate(-0.8deg);
+    transition:transform .15s ease;
+  }
+  .guide-link:hover { transform:rotate(0deg) translateY(-3px); }
+
+  footer { text-align:center; padding:60px 20px 40px; font-size:13px; color:#999; }
+
+  /* ===== プレイヤーモーダル ===== */
+  #player {
+    position:fixed; inset:0; z-index:100; display:none;
+    background:rgba(26,26,26,.72);
+    align-items:center; justify-content:center; padding:16px;
+  }
+  #player.open { display:flex; }
+  .player-frame {
+    position:relative; width:min(480px, 100%); height:min(820px, 96vh);
+    background:#fdfbf5; border:4px solid #1a1a1a;
+    border-radius:24px; overflow:hidden;
+    box-shadow:0 14px 0 rgba(0,0,0,.3);
+    display:flex; flex-direction:column;
+  }
+  .player-bar {
+    display:flex; align-items:center; gap:8px;
+    padding:8px 12px; border-bottom:3px solid #1a1a1a; background:#fff;
+  }
+  .player-bar .p-title { flex:1; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .player-bar a, .player-bar button {
+    font-family:inherit; font-size:13px; cursor:pointer;
+    border:2px solid #1a1a1a; border-radius:14px; background:#fff;
+    padding:3px 12px; color:#1a1a1a; text-decoration:none; line-height:1.6;
+  }
+  .player-bar button.close { background:#ffd6e0; }
+  #playerFrame { flex:1; width:100%; border:0; }
+</style>
+</head>
+<body>
+
+<header class="container">
+  <h1 class="site-title" id="siteTitle"></h1>
+  <p class="tagline" id="tagline"></p>
+  <div class="crayon-line"></div>
+</header>
+
+<div class="container">
+  <div class="stats" id="stats"></div>
+  <div class="filters" id="filters" role="group" aria-label="つくった人でしぼりこむ"></div>
+  <main id="timeline"></main>
+
+  <section class="howto">
+    <h2>ゲームのつくりかた</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="icon">🖍️</div>
+        <h3>えをかく</h3>
+        <p>あたまのなかのアイディアを、えや ずにかきおこす</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="icon">🎤</div>
+        <h3>こえでせつめい</h3>
+        <p>どんなゲームか、ボイスメモにふきこむ</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="icon">🤖</div>
+        <h3>Claudeとつくる</h3>
+        <p>えとこえをもとに、AIといっしょにゲームをつくる</p>
+      </div>
+    </div>
+    <a class="guide-link" href="guide.html">📖 くわしいつくりかたガイドを見る →</a>
+  </section>
+</div>
+
+<footer id="footer"></footer>
+
+<!-- プレイヤーモーダル -->
+<div id="player" role="dialog" aria-modal="true" aria-label="ゲームプレイヤー">
+  <div class="player-frame">
+    <div class="player-bar">
+      <span class="p-title" id="playerTitle"></span>
+      <a id="playerNewTab" href="#" target="_blank" rel="noopener">べつタブで</a>
+      <button class="close" id="playerClose">とじる ×</button>
+    </div>
+    <iframe id="playerFrame" src="about:blank" allow="autoplay"></iframe>
+  </div>
+</div>
+
+<script src="games.js"></script>
+<script>
+(function () {
+  /* ---------- ユーティリティ ---------- */
+  function parseDate(s) {
+    if (!s) return null;
+    if (s.length === 7) s += "-01";   // "YYYY-MM" 形式に対応
+    return new Date(s + "T00:00:00");
+  }
+
+  function calcAge(birthdayStr, dateStr) {
+    if (!birthdayStr || !dateStr) return null;
+    const b = parseDate(birthdayStr), d = parseDate(dateStr);
+    let age = d.getFullYear() - b.getFullYear();
+    if (d.getMonth() < b.getMonth() ||
+        (d.getMonth() === b.getMonth() && d.getDate() < b.getDate())) age--;
+    return age;
+  }
+
+  /* ゲームの age 欄を優先し、なければ誕生日から自動計算 */
+  function ageFor(g, m) {
+    if (g.age != null) {
+      if (typeof g.age === "number") return g.age;
+      if (g.age[m.key] != null) return g.age[m.key];
+    }
+    return calcAge(m.birthday, g.date);
+  }
+
+  function fmtDate(s) {
+    const d = parseDate(s);
+    if (!d) return "日付ふめい";
+    const ymd = d.getFullYear() + "年" + (d.getMonth() + 1) + "月";
+    return s.length === 7 ? ymd : ymd + d.getDate() + "日";
+  }
+
+  function makers(g) {
+    if (!g.maker) return [];
+    return (Array.isArray(g.maker) ? g.maker : [g.maker])
+      .map(k => ({ key: k, ...FAMILY[k] }))
+      .filter(m => m.name);
+  }
+
+  /* ---------- ヘッダー・統計 ---------- */
+  document.title = SITE.title;
+  const t = SITE.title;
+  const half = Math.ceil(t.length / 2);
+  document.getElementById("siteTitle").innerHTML =
+    escapeHtml(t.slice(0, half)) + '<span class="tilt">' + escapeHtml(t.slice(half)) + "</span>";
+  document.getElementById("tagline").textContent = SITE.tagline;
+  document.getElementById("footer").textContent =
+    SITE.title + " — かぞくの さくひんしゅう";
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c =>
+      ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+  }
+
+  const sorted = GAMES.slice().sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  const statsEl = document.getElementById("stats");
+  statsEl.innerHTML = [
+    [sorted.length, "さくひん"],
+    [new Set(sorted.map(g => (g.date || "").slice(0, 4)).filter(Boolean)).size, "ねんかん"],
+  ].map(([v, l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+
+  /* ---------- フィルターチップ ---------- */
+  const filtersEl = document.getElementById("filters");
+  const makerKeys = Object.keys(FAMILY).filter(k =>
+    sorted.some(g => makers(g).some(m => m.key === k)));
+  let currentFilter = "all";
+
+  function renderChips() {
+    const chips = [{ key: "all", label: "ぜんぶ" }].concat(
+      makerKeys.map(k => ({ key: k, label: FAMILY[k].emoji + " " + FAMILY[k].name, color: FAMILY[k].color })));
+    filtersEl.innerHTML = chips.map(c => `
+      <button class="chip${c.key === currentFilter ? " on" : ""}"
+              data-key="${c.key}" aria-pressed="${c.key === currentFilter}"
+              ${c.key === currentFilter && c.color ? `style="background:${c.color}"` : ""}>
+        ${c.label}
+      </button>`).join("");
+    filtersEl.querySelectorAll(".chip").forEach(btn =>
+      btn.addEventListener("click", () => {
+        currentFilter = btn.dataset.key;
+        renderChips();
+        renderTimeline();
+      }));
+  }
+
+  /* ---------- タイムライン ---------- */
+  const timeline = document.getElementById("timeline");
+
+  function renderTimeline() {
+    const list = currentFilter === "all"
+      ? sorted
+      : sorted.filter(g => makers(g).some(m => m.key === currentFilter));
+
+    timeline.innerHTML = "";
+    if (!list.length) {
+      timeline.innerHTML = '<p style="text-align:center;padding:60px 0;color:#999;">まだ さくひんが ないよ</p>';
+      return;
+    }
+    const byYear = {};
+    list.forEach(g => {
+      const y = g.date ? g.date.slice(0, 4) : "？？？？";
+      (byYear[y] = byYear[y] || []).push(g);
+    });
+    Object.keys(byYear).sort().reverse().forEach(year => {
+      const block = document.createElement("section");
+      block.className = "year-block";
+      block.innerHTML =
+        `<h2 class="year-label">${year}ねん <small>${byYear[year].length}さくひん</small></h2>`;
+      const grid = document.createElement("div");
+      grid.className = "grid";
+      byYear[year].forEach(g => grid.appendChild(buildCard(g)));
+      block.appendChild(grid);
+      timeline.appendChild(block);
+    });
+  }
+
+  renderChips();
+  renderTimeline();
+
+  /* 原画（文字列1枚 or {src,label}の配列） */
+  function sketchRow(g) {
+    if (!g.sketch) return "";
+    const list = (Array.isArray(g.sketch) ? g.sketch : [g.sketch])
+      .map(s => typeof s === "string" ? { src: s, label: "げんが" } : s);
+    return `<div class="sketch-row">` + list.map(s => `
+      <figure class="sketch" data-src="${encodeURI(s.src)}">
+        <img src="${encodeURI(s.src)}"
+             alt="${escapeHtml(g.title)} の原画：${escapeHtml(s.label || "げんが")}">
+        <figcaption>${escapeHtml(s.label || "げんが")}</figcaption>
+      </figure>`).join("") + `</div>`;
+  }
+
+  function buildCard(g) {
+    const card = document.createElement("article");
+    card.className = "card";
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", g.title + " をあそぶ");
+
+    const ms = makers(g);
+    const badges = ms.map(m =>
+      `<span class="badge maker" style="background:${m.color}">${m.emoji} ${escapeHtml(m.name)}</span>`
+    );
+    ms.forEach(m => {
+      const age = ageFor(g, m);
+      const ageText = (age === null ? "？" : age) + "さい";
+      badges.push(`<span class="badge age">つくったとき ${ms.length > 1 ? m.emoji + " " : ""}${ageText}</span>`);
+    });
+
+    card.innerHTML = `
+      <div class="thumb">
+        <div class="fallback">${g.emoji || "🎮"}</div>
+        <iframe src="${encodeURI(g.file)}" loading="lazy" tabindex="-1"
+                scrolling="no" title="${escapeHtml(g.title)} プレビュー"></iframe>
+        <span class="play-hint">▶ あそぶ</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">${escapeHtml(g.title)}</h3>
+        <div class="meta">${badges.join("")}</div>
+        <p class="memo">${escapeHtml(g.memo || "")}</p>
+        ${sketchRow(g)}
+        <div class="date-line">📅 ${fmtDate(g.date)}</div>
+      </div>`;
+
+    card.querySelectorAll(".sketch").forEach(fig =>
+      fig.addEventListener("click", e => {
+        e.stopPropagation();
+        window.open(fig.dataset.src, "_blank", "noopener");
+      }));
+
+    const open = () => openPlayer(g);
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
+    return card;
+  }
+
+  /* ---------- プレイヤー ---------- */
+  const player = document.getElementById("player");
+  const frame = document.getElementById("playerFrame");
+
+  function openPlayer(g) {
+    document.getElementById("playerTitle").textContent = g.title;
+    document.getElementById("playerNewTab").href = g.file;
+    frame.src = g.file;
+    player.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closePlayer() {
+    player.classList.remove("open");
+    frame.src = "about:blank";
+    document.body.style.overflow = "";
+  }
+  document.getElementById("playerClose").addEventListener("click", closePlayer);
+  player.addEventListener("click", e => { if (e.target === player) closePlayer(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && player.classList.contains("open")) closePlayer();
+  });
+})();
+</script>
+</body>
+</html>

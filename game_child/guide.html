@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おうちゲームづくりガイド | うちのこゲームミュージアム</title>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Yusei Magic', 'Hiragino Maru Gothic ProN', sans-serif;
+    background:#fdfbf5; color:#1a1a1a; line-height:1.9;
+  }
+  .container { max-width:760px; margin:0 auto; padding:0 20px; }
+
+  /* ===== ヘッダー ===== */
+  header { text-align:center; padding:48px 20px 24px; }
+  .back {
+    display:inline-block; font-size:14px; color:#1a1a1a; text-decoration:none;
+    border:2px solid #1a1a1a; border-radius:20px; padding:4px 18px;
+    background:#fff; margin-bottom:26px; transform:rotate(-1deg);
+  }
+  .back:hover { background:#fff3b0; }
+  h1 {
+    font-size:clamp(26px, 5.5vw, 40px); letter-spacing:2px;
+    transform:rotate(-1deg);
+  }
+  h1 .tilt { display:inline-block; transform:rotate(2deg); }
+  .lead { margin-top:14px; font-size:clamp(14px, 2.6vw, 16px); color:#555; }
+  .crayon-line {
+    width:180px; height:6px; margin:22px auto 0; border-radius:3px;
+    background:linear-gradient(90deg,#ffd6e0 0 33%,#fff3b0 33% 66%,#cde8ff 66%);
+    transform:rotate(-0.6deg);
+  }
+
+  /* ===== 用意するもの ===== */
+  section { margin-top:52px; }
+  h2 {
+    display:inline-block; font-size:21px; padding:4px 22px; margin-bottom:20px;
+    border:3px solid #1a1a1a;
+    border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
+    transform:rotate(-1deg);
+  }
+  h2.pink { background:#ffd6e0; }
+  h2.yellow { background:#fff3b0; }
+  h2.blue { background:#cde8ff; }
+  .items { display:flex; gap:14px; flex-wrap:wrap; }
+  .item {
+    flex:1; min-width:180px; background:#fff; border:3px solid #1a1a1a;
+    border-radius:20px 16px 22px 18px / 16px 22px 18px 20px;
+    padding:18px 16px; text-align:center; transform:rotate(-0.8deg);
+  }
+  .item:nth-child(2){ transform:rotate(0.7deg); }
+  .item:nth-child(3){ transform:rotate(-0.4deg); }
+  .item .icon { font-size:38px; }
+  .item h3 { font-size:16px; margin-top:6px; }
+  .item p { font-size:12.5px; color:#666; margin-top:4px; }
+
+  /* ===== ステップ ===== */
+  .step-card {
+    position:relative; background:#fff; border:3px solid #1a1a1a;
+    border-radius:22px 18px 24px 16px / 18px 24px 16px 22px;
+    padding:24px 24px 22px 76px; margin-bottom:26px;
+  }
+  .step-card:nth-child(odd){ transform:rotate(-0.4deg); }
+  .step-card:nth-child(even){ transform:rotate(0.4deg); }
+  .step-num {
+    position:absolute; left:20px; top:22px;
+    width:40px; height:40px; border:3px solid #1a1a1a; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; background:#ffd6e0;
+  }
+  .step-card:nth-child(2) .step-num { background:#fff3b0; }
+  .step-card:nth-child(3) .step-num { background:#cde8ff; }
+  .step-card:nth-child(4) .step-num { background:#d8f3dc; }
+  .step-card:nth-child(5) .step-num { background:#ffe5b4; }
+  .step-card h3 { font-size:19px; }
+  .step-card h3 .em { font-size:22px; margin-right:6px; }
+  .step-card p { font-size:14px; color:#444; margin-top:8px; }
+  .tips {
+    margin-top:12px; background:#fdfbf5; border:2px dashed #999;
+    border-radius:12px; padding:12px 16px; font-size:13px; color:#555;
+  }
+  .tips b { color:#1a1a1a; }
+  .tips ul { margin:4px 0 0 18px; }
+  .tips li { margin-top:2px; }
+
+  /* ===== プロンプトテンプレート ===== */
+  .prompt-box {
+    position:relative; background:#1a1a1a; color:#fdfbf5;
+    border-radius:16px; padding:20px 18px; margin-top:14px;
+    font-size:13px; line-height:1.8; white-space:pre-wrap;
+    font-family:'Yusei Magic', monospace;
+  }
+  .copy-btn {
+    position:absolute; right:12px; top:12px;
+    font-family:inherit; font-size:12px; cursor:pointer;
+    background:#fdfbf5; color:#1a1a1a; border:2px solid #fdfbf5;
+    border-radius:14px; padding:4px 14px;
+  }
+  .copy-btn:hover { background:#fff3b0; }
+
+  /* ===== コツ ===== */
+  .kotsu { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:16px; }
+  .kotsu-card {
+    background:#fff; border:3px solid #1a1a1a;
+    border-radius:18px 22px 16px 24px / 22px 16px 24px 18px;
+    padding:16px 18px;
+  }
+  .kotsu-card:nth-child(odd){ transform:rotate(-0.6deg); }
+  .kotsu-card:nth-child(even){ transform:rotate(0.5deg); }
+  .kotsu-card h3 { font-size:15px; }
+  .kotsu-card p { font-size:12.5px; color:#666; margin-top:4px; }
+
+  /* ===== フッター ===== */
+  .cta { text-align:center; margin-top:56px; }
+  .cta a {
+    display:inline-block; font-size:17px; color:#1a1a1a;
+    background:#cde8ff; border:3px solid #1a1a1a; padding:12px 30px;
+    border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
+    text-decoration:none; transform:rotate(-0.8deg);
+    transition:transform .15s ease;
+  }
+  .cta a:hover { transform:rotate(0deg) translateY(-3px); }
+  footer { text-align:center; padding:56px 20px 40px; font-size:13px; color:#999; }
+</style>
+</head>
+<body>
+
+<header class="container">
+  <a class="back" href="index.html">← ミュージアムにもどる</a>
+  <h1>おうちゲームづくり<span class="tilt">ガイド</span></h1>
+  <p class="lead">絵とおしゃべりができれば、なんさいでもゲームはつくれる。<br>3さいの作品も、10さいの作品も、このやり方で生まれました。</p>
+  <div class="crayon-line"></div>
+</header>
+
+<div class="container">
+
+  <!-- 用意するもの -->
+  <section>
+    <h2 class="pink">🎒 用意するもの</h2>
+    <div class="items">
+      <div class="item">
+        <div class="icon">🖍️</div>
+        <h3>紙とクレヨン</h3>
+        <p>らくがき帳でOK。色えんぴつでもマーカーでも</p>
+      </div>
+      <div class="item">
+        <div class="icon">📱</div>
+        <h3>スマホ</h3>
+        <p>絵を写真にとる＆ボイスメモを録音する</p>
+      </div>
+      <div class="item">
+        <div class="icon">🤖</div>
+        <h3>Claude</h3>
+        <p>claude.ai（無料でもOK）。写真が送れるAIならほかでも</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ステップ -->
+  <section>
+    <h2 class="yellow">🪜 つくりかた 5ステップ</h2>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3><span class="em">🖍️</span>アイディアを絵にかく</h3>
+      <p>「どんなゲームをつくりたい？」と聞いて、あたまの中のせかいを紙にかいてもらいます。上手じゃなくて大丈夫。3さいの子のぐちゃぐちゃな線でも、本人には ちゃんと意味があります。</p>
+      <div class="tips">
+        <b>💡 かいてもらうといいもの</b>
+        <ul>
+          <li>主人公（うごかすキャラクター）</li>
+          <li>敵や、じゃまするもの</li>
+          <li>ゴールやごほうび（何をしたら勝ち？）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3><span class="em">🎤</span>こえでルールを説明してもらう</h3>
+      <p>絵を見せてもらいながら「これはなに？」「どうやってあそぶの？」とインタビューして、ボイスメモに録音します。子どもの言葉をそのまま残すのがポイント。あとで聞き返すと最高の思い出になります。</p>
+      <div class="tips">
+        <b>💡 聞いてみる質問</b>
+        <ul>
+          <li>「どうなったら勝ち？ どうなったら負け？」</li>
+          <li>「ボタンをおすと、なにがおこる？」</li>
+          <li>「どんな音がなる？ どんな色がすき？」</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3><span class="em">🤖</span>Claudeにわたしてゲームにしてもらう</h3>
+      <p>絵の写真をClaudeに送って、ボイスメモで話していた内容を文章にして伝えます。下のテンプレートをコピーして、【 】の中を書きかえるだけでOK。</p>
+      <div class="prompt-box"><button class="copy-btn" id="copyBtn">コピー</button>子どもがかいたゲームのアイディアの絵を添付します。
+これをもとに、スマホでもあそべるゲームを
+HTMLファイル1つだけで作ってください。
+
+・作った子：【3さいの娘】
+・ゲームの名前：【すてられちゃった くまちゃん】
+・子どもの説明（ボイスメモより）：
+【くまちゃんがすてられちゃって、かわいそうだから、
+ばんそうこうとかハートをあつめて、なおしてあげるの。
+なおったら くまちゃんが わらうの。】
+
+おねがい：
+・手がきふうの、やさしい見た目にしてください
+・むずかしい操作はなし（タップだけであそべるように）
+・子どもの言った言葉を、なるべくそのままセリフに使ってください
+・クリアしたら、うれしい演出をつけてください</div>
+      <div class="tips" style="margin-top:14px;">
+        <b>💡 コツ</b>
+        <ul>
+          <li>「HTMLファイル1つだけで」と頼むと、あとで保存・公開がかんたん</li>
+          <li>子どもの言いまわし（「モフモフ」「ばーん！」等）をそのまま書くと、その子らしいゲームになる</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h3><span class="em">🎮</span>いっしょにあそんで、直してもらう</h3>
+      <p>できたゲームを子どもとあそんでみて、「もっとこうしたい！」を聞きます。それをまたClaudeに伝えるだけ。「敵をもっとはやく」「ボスを出して」——この繰り返しで、ゲームはどんどん その子の作品になっていきます。</p>
+      <div class="tips">
+        <b>💡 じっさいにあった注文</b>
+        <ul>
+          <li>「槍がもっといっぱい出てきてほしい」→ 難易度アップ</li>
+          <li>「ボスをとうじょうさせて」→ ボス戦を追加</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <h3><span class="em">🏛️</span>ミュージアムにかざる</h3>
+      <p>できあがったHTMLファイルをゲームのフォルダに保存して、作品リスト（games.js）に タイトル・作った日・作った子の年齢・思い出メモを1件追加すれば、アルバムに新作が並びます。原画の写真も一緒にかざれます。</p>
+      <div class="tips">
+        <b>💡 記録しておくといいこと</b>
+        <ul>
+          <li>作った日と、そのときの年齢（成長の記録になる）</li>
+          <li>ボイスメモで言っていたことをメモに残す</li>
+          <li>アイディアの原画は写真にとっておく</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- コツ -->
+  <section>
+    <h2 class="blue">✨ うまくいくコツ</h2>
+    <div class="kotsu">
+      <div class="kotsu-card">
+        <h3>🌱 完成度より「その子らしさ」</h3>
+        <p>きれいなゲームより、子どもの言葉やへんてこな設定がそのまま残っているほうが、あとで見返したとき何倍も面白い。</p>
+      </div>
+      <div class="kotsu-card">
+        <h3>⏱️ 1回30分くらいで</h3>
+        <p>絵をかく→録音→生成まで30分あれば1本できます。あきる前に「あそべた！」までいくのが大事。</p>
+      </div>
+      <div class="kotsu-card">
+        <h3>🗣️ 直しの注文は子どもに言わせる</h3>
+        <p>大人が代わりに直さない。「Claudeになんてお願いする？」と聞くと、子ども自身がディレクターになれます。</p>
+      </div>
+      <div class="kotsu-card">
+        <h3>📅 日付と年齢をセットで残す</h3>
+        <p>「3さいのときの作品」という記録が、このアルバムをただのゲーム置き場ではなく成長アルバムにしてくれます。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <a href="index.html">🏛️ ミュージアムで作品を見る →</a>
+  </div>
+</div>
+
+<footer>おうちゲームづくりガイド — うちのこゲームミュージアム</footer>
+
+<script>
+  document.getElementById("copyBtn").addEventListener("click", function () {
+    const btn = this;
+    const text = btn.parentElement.textContent.replace(/^コピー(ずみ！)?/, "").trim();
+    const done = () => {
+      btn.textContent = "コピーずみ！";
+      setTimeout(() => { btn.textContent = "コピー"; }, 1600);
+    };
+    const fallback = () => {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+</script>
+</body>
+</html>
