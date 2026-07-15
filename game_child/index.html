@@ -117,6 +117,23 @@
   .memo { font-size:13.5px; color:#555; flex:1; }
   .date-line { font-size:12px; color:#999; }
 
+  /* いいね・コメントボタン */
+  .card-foot { display:flex; align-items:center; gap:8px; margin-top:4px; }
+  .card-foot .date-line { margin-left:auto; }
+  .react-btn {
+    font-family:inherit; font-size:13px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:5px;
+    padding:4px 14px; background:#fff; color:#1a1a1a;
+    border:2px solid #1a1a1a; border-radius:20px;
+    transition:transform .12s ease;
+  }
+  .react-btn:hover { transform:translateY(-2px); }
+  .react-btn:active { transform:scale(.92); }
+  .like-btn.liked { background:#ffd6e0; }
+  .like-btn .heart { font-size:14px; }
+  .like-btn.liked .heart { animation:beat .4s ease; }
+  @keyframes beat { 0%{transform:scale(1);} 40%{transform:scale(1.5);} 100%{transform:scale(1);} }
+
   /* 原画ポラロイド */
   .sketch-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
   .sketch {
@@ -198,6 +215,84 @@
   }
   .player-bar button.close { background:#ffd6e0; }
   #playerFrame { flex:1; width:100%; border:0; }
+
+  /* ===== 原画ライトボックス ===== */
+  #lightbox {
+    position:fixed; inset:0; z-index:120; display:none;
+    background:rgba(26,26,26,.78);
+    align-items:center; justify-content:center; padding:20px;
+  }
+  #lightbox.open { display:flex; }
+  .lb-frame {
+    background:#fff; border:4px solid #1a1a1a; border-radius:6px;
+    padding:12px 12px 14px; max-width:min(680px, 94vw);
+    box-shadow:0 14px 0 rgba(0,0,0,.3); transform:rotate(-0.6deg);
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .lb-frame img {
+    max-width:100%; max-height:min(70vh, 640px);
+    object-fit:contain; display:block; border:2px solid #1a1a1a;
+  }
+  .lb-foot { display:flex; align-items:center; gap:10px; }
+  .lb-foot .lb-cap { flex:1; font-size:14px; color:#555; }
+  .lb-foot button {
+    font-family:inherit; font-size:13px; cursor:pointer;
+    border:2px solid #1a1a1a; border-radius:14px; background:#ffd6e0;
+    padding:4px 16px;
+  }
+
+  /* ===== コメントモーダル ===== */
+  #cmtModal {
+    position:fixed; inset:0; z-index:110; display:none;
+    background:rgba(26,26,26,.72);
+    align-items:center; justify-content:center; padding:16px;
+  }
+  #cmtModal.open { display:flex; }
+  .cmt-frame {
+    width:min(480px, 100%); max-height:92vh;
+    background:#fdfbf5; border:4px solid #1a1a1a; border-radius:24px;
+    overflow:hidden; box-shadow:0 14px 0 rgba(0,0,0,.3);
+    display:flex; flex-direction:column;
+  }
+  .cmt-note {
+    margin:12px 14px 0; padding:10px 14px; font-size:12.5px; color:#7a5b00;
+    background:#fff3b0; border:2px dashed #d5b100; border-radius:12px;
+  }
+  #cmtList { flex:1; overflow-y:auto; padding:12px 14px; display:flex; flex-direction:column; gap:10px; }
+  .cmt-item {
+    background:#fff; border:2px solid #1a1a1a;
+    border-radius:16px 18px 14px 20px / 18px 14px 20px 16px;
+    padding:10px 14px; transform:rotate(-0.4deg);
+  }
+  .cmt-item:nth-child(even){ transform:rotate(0.4deg); }
+  .cmt-item .cmt-head { display:flex; gap:8px; align-items:baseline; }
+  .cmt-item .cmt-name { font-size:13px; font-weight:bold; }
+  .cmt-item .cmt-date { font-size:10px; color:#aaa; }
+  .cmt-item .cmt-body { font-size:14px; margin-top:2px; white-space:pre-wrap; word-break:break-word; }
+  .cmt-empty { text-align:center; color:#999; font-size:13px; padding:20px 0; }
+  #cmtForm { border-top:3px solid #1a1a1a; background:#fff; padding:10px 14px 14px; }
+  .stamp-row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
+  .stamp {
+    font-family:inherit; font-size:12px; cursor:pointer;
+    border:2px solid #1a1a1a; border-radius:16px; background:#fdfbf5;
+    padding:3px 12px;
+  }
+  .stamp:hover { background:#fff3b0; }
+  #cmtForm input, #cmtForm textarea {
+    font-family:inherit; font-size:14px; width:100%;
+    border:2px solid #1a1a1a; border-radius:10px; padding:7px 10px;
+    background:#fdfbf5; margin-bottom:8px;
+  }
+  #cmtForm textarea { height:64px; resize:none; }
+  .cmt-send-row { display:flex; align-items:center; gap:10px; }
+  #cmtError { flex:1; font-size:12px; color:#c0392b; }
+  #cmtSend {
+    font-family:inherit; font-size:15px; cursor:pointer;
+    border:3px solid #1a1a1a; border-radius:20px; background:#ffd6e0;
+    padding:7px 26px; box-shadow:3px 3px 0 #1a1a1a;
+  }
+  #cmtSend:active { transform:translate(2px,2px); box-shadow:1px 1px 0 #1a1a1a; }
+  #cmtSend:disabled { opacity:.5; cursor:default; }
 </style>
 </head>
 <body>
@@ -242,6 +337,43 @@
 </div>
 
 <footer id="footer"></footer>
+
+<!-- 原画ライトボックス -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="原画かくだい表示">
+  <figure class="lb-frame">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-foot">
+      <figcaption class="lb-cap" id="lbCap"></figcaption>
+      <button id="lbClose">とじる ×</button>
+    </div>
+  </figure>
+</div>
+
+<!-- コメントモーダル -->
+<div id="cmtModal" role="dialog" aria-modal="true" aria-label="おうえんコメント">
+  <div class="cmt-frame">
+    <div class="player-bar">
+      <span class="p-title" id="cmtTitle"></span>
+      <button class="close" id="cmtClose">とじる ×</button>
+    </div>
+    <div class="cmt-note">🌟 ここは <b>いいところを つたえる ばしょ</b>だよ。「すごい！」「かわいい！」を どんどん おくって、つぎの さくひんの パワーにしよう😊</div>
+    <div id="cmtList"></div>
+    <form id="cmtForm">
+      <div class="stamp-row" id="stampRow">
+        <button type="button" class="stamp">🌟 すごい！</button>
+        <button type="button" class="stamp">🥰 かわいい！</button>
+        <button type="button" class="stamp">😆 おもしろい！</button>
+        <button type="button" class="stamp">🎮 またあそぶ！</button>
+      </div>
+      <input id="cmtName" type="text" maxlength="20" placeholder="なまえ（パパ・ママ・おばあちゃん など）">
+      <textarea id="cmtBody" maxlength="300" placeholder="すごいと おもったところを おしえてあげよう！"></textarea>
+      <div class="cmt-send-row">
+        <span id="cmtError"></span>
+        <button type="submit" id="cmtSend">おくる 💌</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- プレイヤーモーダル -->
 <div id="player" role="dialog" aria-modal="true" aria-label="ゲームプレイヤー">
@@ -371,10 +503,8 @@
       block.appendChild(grid);
       timeline.appendChild(block);
     });
+    refreshCounts();
   }
-
-  renderChips();
-  renderTimeline();
 
   /* 原画（文字列1枚 or {src,label}の配列） */
   function sketchRow(g) {
@@ -418,14 +548,32 @@
         <div class="meta">${badges.join("")}</div>
         <p class="memo">${escapeHtml(g.memo || "")}</p>
         ${sketchRow(g)}
-        <div class="date-line">📅 ${fmtDate(g.date)}</div>
+        <div class="card-foot">
+          <button class="react-btn like-btn" data-file="${encodeURI(g.file)}"
+                  aria-label="${escapeHtml(g.title)} にいいね">
+            <span class="heart">♥</span><span class="lk">0</span></button>
+          <button class="react-btn cmt-btn" data-file="${encodeURI(g.file)}"
+                  aria-label="${escapeHtml(g.title)} におうえんコメント">
+            💬 <span class="ck">0</span></button>
+          <span class="date-line">📅 ${fmtDate(g.date)}</span>
+        </div>
       </div>`;
 
-    card.querySelectorAll(".sketch").forEach(fig =>
+    card.querySelectorAll(".sketch").forEach(fig => {
+      const label = fig.querySelector("figcaption").textContent;
       fig.addEventListener("click", e => {
         e.stopPropagation();
-        window.open(fig.dataset.src, "_blank", "noopener");
-      }));
+        openLightbox(fig.dataset.src, g.title + " ── " + label);
+      });
+    });
+    card.querySelector(".like-btn").addEventListener("click", e => {
+      e.stopPropagation();
+      toggleLike(g.file);
+    });
+    card.querySelector(".cmt-btn").addEventListener("click", e => {
+      e.stopPropagation();
+      openComments(g);
+    });
 
     const open = () => openPlayer(g);
     card.addEventListener("click", open);
@@ -453,9 +601,187 @@
   }
   document.getElementById("playerClose").addEventListener("click", closePlayer);
   player.addEventListener("click", e => { if (e.target === player) closePlayer(); });
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && player.classList.contains("open")) closePlayer();
+
+  /* ---------- 原画ライトボックス ---------- */
+  const lightbox = document.getElementById("lightbox");
+
+  function openLightbox(src, caption) {
+    document.getElementById("lbImg").src = src;
+    document.getElementById("lbImg").alt = caption;
+    document.getElementById("lbCap").textContent = caption;
+    lightbox.classList.add("open");
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    document.getElementById("lbImg").src = "";
+  }
+  document.getElementById("lbClose").addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+
+  /* ---------- いいね・コメント データ層 ----------
+     album-api.php（サーバー保存・家族で共有）が使えないときは
+     localStorage（この端末だけ）に自動フォールバック */
+  const API = "album-api.php";
+  let album = {};
+  let serverMode = true;
+
+  function localLoad() {
+    try { return JSON.parse(localStorage.getItem("albumLocal") || "{}"); }
+    catch (e) { return {}; }
+  }
+  function localSave() { localStorage.setItem("albumLocal", JSON.stringify(album)); }
+
+  function entryOf(file) {
+    if (!album[file]) album[file] = { likes: 0, likedByMe: false, comments: [] };
+    return album[file];
+  }
+
+  function refreshCounts() {
+    document.querySelectorAll(".like-btn").forEach(b => {
+      const en = entryOf(decodeURI(b.dataset.file));
+      b.querySelector(".lk").textContent = en.likes;
+      b.classList.toggle("liked", !!en.likedByMe);
+    });
+    document.querySelectorAll(".cmt-btn").forEach(b => {
+      b.querySelector(".ck").textContent = entryOf(decodeURI(b.dataset.file)).comments.length;
+    });
+  }
+
+  async function loadAlbum() {
+    try {
+      const r = await fetch(API, { cache: "no-store" });
+      if (!r.ok) throw new Error();
+      const j = await r.json();
+      album = j.games || {};
+      serverMode = true;
+    } catch (e) {
+      serverMode = false;
+      album = localLoad();
+    }
+    refreshCounts();
+  }
+
+  async function toggleLike(file) {
+    const en = entryOf(file);
+    en.likedByMe = !en.likedByMe;                 // 先に見た目を更新
+    en.likes = Math.max(0, en.likes + (en.likedByMe ? 1 : -1));
+    refreshCounts();
+    if (serverMode) {
+      try {
+        const r = await fetch(API + "?action=like", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ game: file }),
+        });
+        const j = await r.json();
+        en.likes = j.count; en.likedByMe = j.liked;
+      } catch (e) { serverMode = false; localSave(); }
+    } else {
+      localSave();
+    }
+    refreshCounts();
+  }
+
+  /* ---------- コメントモーダル ---------- */
+  const cmtModal = document.getElementById("cmtModal");
+  const cmtBody = document.getElementById("cmtBody");
+  const cmtName = document.getElementById("cmtName");
+  const cmtError = document.getElementById("cmtError");
+  let cmtGame = null;
+
+  function fmtCmtDate(s) { return s ? s.slice(0, 16).replace(/-/g, "/") : ""; }
+
+  function renderComments() {
+    const list = entryOf(cmtGame).comments;
+    const el = document.getElementById("cmtList");
+    el.innerHTML = list.length
+      ? list.map(c => `
+          <div class="cmt-item">
+            <div class="cmt-head">
+              <span class="cmt-name">${escapeHtml(c.nickname)}</span>
+              <span class="cmt-date">${escapeHtml(fmtCmtDate(c.created_at))}</span>
+            </div>
+            <div class="cmt-body">${escapeHtml(c.body)}</div>
+          </div>`).join("")
+      : '<div class="cmt-empty">まだ おうえんが ないよ。いちばんのりで おくろう！</div>';
+    el.scrollTop = el.scrollHeight;
+  }
+
+  function openComments(g) {
+    cmtGame = g.file;
+    document.getElementById("cmtTitle").textContent = g.title + " への おうえん";
+    cmtName.value = localStorage.getItem("albumName") || "";
+    cmtError.textContent = "";
+    renderComments();
+    cmtModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeComments() {
+    cmtModal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  document.getElementById("cmtClose").addEventListener("click", closeComments);
+  cmtModal.addEventListener("click", e => { if (e.target === cmtModal) closeComments(); });
+
+  document.getElementById("stampRow").addEventListener("click", e => {
+    const btn = e.target.closest(".stamp");
+    if (!btn) return;
+    cmtBody.value = (cmtBody.value ? cmtBody.value + " " : "") + btn.textContent.trim();
+    cmtBody.focus();
   });
+
+  document.getElementById("cmtForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const body = cmtBody.value.trim();
+    if (!body) { cmtError.textContent = "メッセージをかいてね"; return; }
+    const nickname = cmtName.value.trim();
+    if (nickname) localStorage.setItem("albumName", nickname);
+    const sendBtn = document.getElementById("cmtSend");
+    sendBtn.disabled = true;
+    cmtError.textContent = "";
+    try {
+      let comment;
+      if (serverMode) {
+        const r = await fetch(API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ game: cmtGame, nickname, body }),
+        });
+        const j = await r.json();
+        if (!r.ok) throw new Error(j.error || "おくれなかった…もういちど ためしてね");
+        comment = j.comment;
+      } else {
+        comment = {
+          id: "local_" + Date.now(),
+          nickname: nickname || "だれかさん",
+          body,
+          created_at: new Date().toISOString().slice(0, 19).replace("T", " "),
+        };
+      }
+      entryOf(cmtGame).comments.push(comment);
+      if (!serverMode) localSave();
+      cmtBody.value = "";
+      renderComments();
+      refreshCounts();
+    } catch (err) {
+      cmtError.textContent = err.message || "おくれなかった…もういちど ためしてね";
+    } finally {
+      sendBtn.disabled = false;
+    }
+  });
+
+  /* ---------- Escで閉じる（手前のものから） ---------- */
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape") return;
+    if (lightbox.classList.contains("open")) closeLightbox();
+    else if (cmtModal.classList.contains("open")) closeComments();
+    else if (player.classList.contains("open")) closePlayer();
+  });
+
+  /* ---------- 初期化（全定義のあとで実行） ---------- */
+  renderChips();
+  renderTimeline();
+  loadAlbum();
 })();
 </script>
 </body>
