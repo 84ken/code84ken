@@ -9,6 +9,10 @@
 
 date_default_timezone_set('Asia/Tokyo');
 header('Content-Type: application/json; charset=utf-8');
+// ConoHa WING等のサーバーキャッシュに乗らないよう明示
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
 
 define('ADMIN_TOKEN', 'kuma-hana-kotaro-2026');
 
