@@ -109,6 +109,7 @@ input[type="range"] { accent-color: #2b70ef; }
         <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglQuest" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#06b6d4"></span> クエストスポット</label>
         <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglForest" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#15803d"></span> 林業・森の仕事</label>
         <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglCulture" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#c026d3"></span> 川の祭り・民俗</label>
+        <label class="flex items-center gap-2.5 cursor-pointer"><input type="checkbox" id="tglOecm" checked class="w-4 h-4 rounded border-slate-300"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#0f766e"></span> 自然共生サイト（30by30）</label>
       </div>
     </div>
 
@@ -123,7 +124,7 @@ input[type="range"] { accent-color: #2b70ef; }
     <div class="px-5 py-4 mt-auto">
       <div class="flex items-start gap-3 p-4 bg-primary-50 border border-primary-200 text-primary-800 rounded-lg">
         <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <p class="text-xs leading-relaxed">掲載ポイントは構想検討用のサンプルです（位置は概略）。川図鑑・クエストスポットはリバサポ公式サイトの公開情報をもとに作成。本開発では国土数値情報（河川・ダム）、環境省いきものログ、県レッドデータブック等の実データを流し込みます。</p>
+        <p class="text-xs leading-relaxed">掲載ポイントは構想検討用のサンプルです（位置は概略）。川図鑑・クエストスポットはリバサポ公式サイトの、自然共生サイトは環境省30by30の公開情報をもとに作成。本開発では国土数値情報（河川・ダム）、環境省いきものログ、県レッドデータブック等の実データを流し込みます。</p>
       </div>
       <p class="text-[10px] text-slate-400 mt-3 leading-relaxed">地図タイル: 国土地理院（淡色地図・色別標高図・陰影起伏・標高タイル）／ハザードマップポータルサイト（洪水浸水想定）</p>
     </div>
@@ -232,6 +233,25 @@ const POINTS = { type: 'FeatureCollection', features: [
   pt(139.665, 36.102, 'culture', '鷲宮催馬楽神楽（久喜市）', '関東神楽の源流とされる国指定重要無形民俗文化財。古利根の水郷に鎮座する鷲宮神社に伝わる。'),
   pt(139.570, 36.100, 'culture', '玉敷神社神楽（加須市騎西）', '300年以上続く江戸神楽の古形を伝える神楽。騎西は見沼代用水・騎西領用水が潤す水郷の町。'),
   pt(139.730, 36.018, 'culture', '古利根川流灯まつり（杉戸町・宮代町）', '大落古利根川の川面を大型灯籠が埋め尽くす夏の祭り。川と暮らしの近さを物語る。'),
+  // 自然共生サイト（環境省30by30／令和5〜6年度認定 埼玉県内9件）— 管理者の多くが企業
+  pt(139.607, 35.837, 'oecm', 'さいたま市桜環境センター', '荒川・鴨川沿いのビオトープ。ごみ処理施設に併設された「環境をつくる場」。管理: 埼玉県さいたま市（R6前期認定）。',
+    { link: 'https://policies.env.go.jp/nature/biodiversity/30by30alliance/kyousei/nintei/' }),
+  pt(139.677, 35.887, 'oecm', '緑のトラスト保全第1号地「見沼田圃周辺斜面林」', '見沼田圃の斜面林。芝川が潤す見沼＝氷川神社の水神信仰の舞台そのもの。管理: 埼玉県（R6前期認定・R7第1回移行）。',
+    { link: 'https://policies.env.go.jp/nature/biodiversity/30by30alliance/kyousei/nintei/' }),
+  pt(139.620, 35.865, 'oecm', 'さいたま市 大宮南部浄化センター', '荒川沿いの下水処理施設の緑地。「水をきれいにして川に返す」施設が生きものの居場所に。管理: 埼玉県さいたま市（R6後期認定）。',
+    { link: 'https://policies.env.go.jp/nature/biodiversity/30by30alliance/kyousei/nintei/' }),
+  pt(139.435, 35.775, 'oecm', 'トトロの森', '狭山丘陵の里山。柳瀬川の水源であり、狭山湖（山口貯水池）を抱く森。埼玉・東京5市町にまたがる。管理: 公益財団法人トトロのふるさと基金（R5前期認定）。',
+    { link: 'https://policies.env.go.jp/nature/biodiversity/30by30alliance/kyousei/nintei/' }),
+  pt(139.320, 35.870, 'oecm', '飯能・西武の森', '入間川流域の企業有林。西川材の産地で、鉄道会社が森を保全する。管理: 株式会社西武リアルティソリューションズ（R5前期認定）。',
+    { link: 'https://policies.env.go.jp/nature/biodiversity/30by30alliance/kyousei/nintei/' }),
+  pt(139.318, 35.858, 'oecm', '天覧山東谷津・ほとけどじょうの里', '飯能河原のすぐ上手の谷津。ホトケドジョウは湧水がある谷津にしか棲めない指標種。市民の手による保全。管理: NPO法人天覧山・多峯主山の自然を守る会（R5前期認定）。',
+    { link: 'https://policies.env.go.jp/nature/biodiversity/30by30alliance/kyousei/nintei/' }),
+  pt(139.517, 35.833, 'oecm', '三富今昔村', '武蔵野の落ち葉堆肥農法（世界農業遺産）の平地林。産廃処理業が里山を再生した。管理: 石坂産業株式会社（R5後期認定・R7第1回移行）。',
+    { link: 'https://policies.env.go.jp/nature/biodiversity/30by30alliance/kyousei/nintei/' }),
+  pt(139.205, 36.095, 'oecm', 'HondaWoods みなみ寄居 集いの里', '荒川・玉淀の近く、工場に隣接する森。製造業が「集いの里」として森をひらく。管理: 本田技研工業株式会社（R6前期認定・R7第1回移行）。',
+    { link: 'https://policies.env.go.jp/nature/biodiversity/30by30alliance/kyousei/nintei/' }),
+  pt(139.735, 36.033, 'oecm', 'TOPPANホールディングス(株)総合研究所', '大落古利根川・中川流域の研究所の緑地。低地の水郷に生まれた企業の森。管理: TOPPANホールディングス株式会社総合研究所（R5前期認定）。',
+    { link: 'https://policies.env.go.jp/nature/biodiversity/30by30alliance/kyousei/nintei/' }),
   // 川図鑑（リバサポ・マガジン 全19河川）
   pt(139.480, 36.060, 'zukan', '荒川', '埼玉が誇る母なる大河。甲武信ヶ岳の一滴から東京湾まで173km。鴻巣・滝馬室で川幅日本一（2,537m）、430万人の水を支える。',
     { stats: '荒川水系・一級河川｜延長173km｜流域面積2,940km²', link: 'https://saitama-riversupporters.pref.saitama.lg.jp/magazine/picture-book-arakawa/' }),
@@ -324,6 +344,7 @@ const CAT = {
   quest: { color: '#06b6d4', label: 'クエストスポット' },
   forest: { color: '#15803d', label: '林業・森の仕事' },
   culture: { color: '#c026d3', label: '川の祭り・民俗' },
+  oecm: { color: '#0f766e', label: '自然共生サイト（30by30）' },
   zukan: { color: '#13318d', label: '川図鑑' },
 };
 
@@ -516,6 +537,7 @@ bindToggle('tglZukan', ['pt-zukan']);
 bindToggle('tglQuest', ['pt-quest']);
 bindToggle('tglForest', ['pt-forest']);
 bindToggle('tglCulture', ['pt-culture']);
+bindToggle('tglOecm', ['pt-oecm']);
 
 // 林業モード（市町村別 森林率コロプレス）
 const forestModeLayers = ['muni-fill', 'muni-outline', 'muni-label'];
