@@ -166,6 +166,9 @@ tailwind.config = {
       <a href="#saitama"   class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">13. 埼玉県の温泉マップ</a>
       <a href="#genesis"   class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">14. 埼玉温泉発達史</a>
       <a href="#history500" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">15. 温泉観光500年史</a>
+      <div class="my-2 border-t border-slate-100"></div>
+      <a href="#nozawa"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">16. 野沢温泉フィールドノート</a>
+      <a href="#towns"     class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">17. 全国温泉街くらべ</a>
     </nav>
     <div class="px-5 py-4 border-t border-slate-200 text-xs text-slate-500">
       <p>出典: 温泉ソムリエ認定講座テキスト</p>
@@ -2833,6 +2836,272 @@ tailwind.config = {
       </p>
     </section>
 
+    <!-- ====================== 16. 野沢温泉フィールドノート ====================== -->
+    <section id="nozawa" class="anchor mt-16">
+      <p class="chapter-stamp">CHAPTER 16 — FIELD NOTE</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">野沢温泉フィールドノート</h2>
+      <p class="mt-1 text-sm text-slate-500">「湯の鮮度」を測る温泉地 — 2026年7月 現地取材</p>
+      <p class="mt-4 text-body leading-relaxed">
+        長野県下高井郡野沢温泉村。<strong class="text-slate-900">13の外湯すべてが源泉かけ流し</strong>で、村の地縁組織<strong class="text-slate-900">「野沢組」</strong>が源泉を供給し、地域の「湯仲間」が管理運営する。
+        そして本ノートの1〜10章で触れなかった<strong class="text-slate-900">酸化還元電位（ORP）＝湯の鮮度</strong>という指標を、野沢温泉は公式に掲げている。現地の掲示物・案内板から再構成した実地ノート。
+      </p>
+      <div class="mt-4 p-3 bg-gray-100 rounded-lg text-xs text-slate-500">
+        ※ 本章は現地掲示の記録にもとづく。数値・時間等は掲示時点のもの。<a href="#nozawa-todo" class="underline">要確認リスト</a>の項目は一次情報での再確認前。
+      </div>
+
+      <!-- stats -->
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl border border-accent-200 p-5 shadow-sm">
+          <p class="text-xs text-accent-700">外湯（共同浴場）</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">13<span class="text-base font-normal text-slate-500 ml-1">湯</span></p>
+          <p class="text-sm text-body mt-1">すべて源泉かけ流し・入浴は賽銭</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">還元性</p>
+          <p class="text-xl font-bold text-slate-900 mt-2">国内有数</p>
+          <p class="text-sm text-body mt-1">全国50源泉の比較で最高水準</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">根拠論文</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">1949<span class="text-base font-normal text-slate-500 ml-1">年</span></p>
+          <p class="text-sm text-body mt-1">岡山大医学部・關正次教授</p>
+        </div>
+        <div class="bg-white rounded-xl border border-amber-200 p-5 shadow-sm">
+          <p class="text-xs text-amber-700">道祖神祭り</p>
+          <p class="text-base font-bold text-slate-900 mt-2">国指定 重要無形民俗文化財</p>
+          <p class="text-sm text-body mt-1">平成5年指定</p>
+        </div>
+      </div>
+
+      <!-- ① ORP -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">① ORP（酸化還元電位）— 「泉質」ではなく「鮮度」の軸</h3>
+      <p class="mt-2 text-sm text-body leading-relaxed">
+        第2章の4軸（泉質・泉温・液性・浸透圧）は「湯に<strong>何がどれだけ入っているか</strong>」の軸。ORPは「その湯が<strong>いまどれだけ新鮮か</strong>（酸化していないか）」を測る、まったく別の軸です。村内に掲示されている日本温泉総合研究所のパネルより。
+      </p>
+
+      <div class="mt-5 grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <h4 class="text-base font-semibold text-slate-900">ORPの読み方</h4>
+          <ul class="mt-3 space-y-2 text-sm text-body leading-relaxed">
+            <li>・ORPが<strong>高い（プラス側）＝酸化系</strong>。塩素消毒された温泉水はこの領域に分布</li>
+            <li>・ORPが<strong>低い（マイナス側）＝還元系</strong>。湧出直後の新鮮な温泉はこちら</li>
+            <li>・温泉は湧出後、刻々と酸化して新鮮さを失っていく</li>
+          </ul>
+          <p class="mt-3 text-xs text-slate-500">⚠ パネルは「還元性の高低は温泉の優劣を示すものではない」と明記。あくまで個性の一端。</p>
+        </div>
+        <div class="bg-white rounded-xl border border-accent-200 p-5 shadow-sm">
+          <h4 class="text-base font-semibold text-slate-900">野沢温泉の位置づけ</h4>
+          <ul class="mt-3 space-y-2 text-sm text-body leading-relaxed">
+            <li>・主要温泉50カ所の源泉をpH×ORPでプロットすると、<strong>国内有数の高い還元性</strong></li>
+            <li>・根拠は1949年の論文「野澤泉水の電子放出の傾向（酸化還元電位）」（岡山大・關正次教授）</li>
+            <li>・古くから<strong>「我が国で稀な強還元泉」</strong>と評されてきた</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-4 grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <h4 class="text-base font-semibold text-slate-900">源泉→湯口で劣化していない</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            主な泉源「麻釜（おがま）」ほか（▲）と各浴場の湯口（●）のORPを比較すると<strong>両者に変化がほとんどない</strong>＝源泉とほぼ同じ状態のまま浴槽に届いている。対象は村内13共同浴場と「野沢温泉源泉かけ流しの会」所属施設。
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <h4 class="text-base font-semibold text-slate-900">5分の入浴で肌が「還元系」へ</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            被験者25名の実験掲示。野沢温泉に5分入浴した肌は<strong>より還元系へ</strong>、塩素消毒温泉では<strong>逆に酸化側へ</strong>。肌は加齢とともに酸化傾向を示すため「アンチエイジングに期待」という論理。2か月毎日入浴で弾力性回復の記載も（いずれも出浴後数時間で元に戻る）。
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 p-4 bg-primary-50 border border-primary-200 rounded-lg flex items-start gap-3">
+        <svg class="w-5 h-5 text-primary-700 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <p class="text-sm text-primary-900 leading-relaxed">
+          <strong>ここが重要</strong>：「源泉かけ流し」は普通、加水・加温・循環・消毒の有無という<strong>手続き</strong>で語られる。野沢温泉はそれを<strong>ORPという測定値</strong>で裏づけている。第6章「分析書の読み方」10ポイントの、事実上の<strong>11番目のチェック項目</strong>になり得る発想。
+        </p>
+      </div>
+
+      <!-- ② 野沢組 -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">② 野沢組 — 湯を「所有」しない運営モデル</h3>
+      <p class="mt-2 text-sm text-body leading-relaxed">
+        野沢温泉の最大の独自性は泉質ではなく、<strong>湯のガバナンス</strong>にある。
+      </p>
+      <div class="mt-4 grid md:grid-cols-3 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs font-medium text-accent-700 tracking-wider">供給と運営</p>
+          <p class="mt-2 text-sm text-body leading-relaxed"><strong>野沢組が源泉を供給し、「湯仲間」が資金を出して外湯を管理運営</strong>（大湯前掲示・野沢組惣代）。清掃・点検も湯仲間が担う。</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs font-medium text-accent-700 tracking-wider">料金ではなく奉納</p>
+          <p class="mt-2 text-sm text-body leading-relaxed">入浴は無料、入口に<strong>賽銭箱</strong>。温泉守護仏の薬師如来と十二神将への感謝として納める。<strong>湯は商品ではなく、預かりもの</strong>という整理。</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs font-medium text-accent-700 tracking-wider">案内板の「主語」</p>
+          <p class="mt-2 text-sm text-body leading-relaxed">道祖神場から外湯の由緒まで、村の解説サインの発信主体はほぼすべて<strong>「野沢組惣代」</strong>。湯・祭り・景観の管理主体が一本化されている。</p>
+        </div>
+      </div>
+
+      <details class="mt-5 bg-white rounded-xl border border-slate-200 p-5">
+        <summary class="text-sm font-medium text-slate-900 flex items-center justify-between">
+          <span>13外湯の利用時間・清掃当番表（冬期版・現地掲示より）</span>
+          <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full text-sm matrix">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">外湯</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">利用時間</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">清掃日</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">利用不可時間</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">中尾の湯</td><td class="py-1.5 px-3">5:00〜24:00</td><td class="py-1.5 px-3">毎週 月・金</td><td class="py-1.5 px-3">6:00〜8:00</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">新田の湯</td><td class="py-1.5 px-3">5:00〜23:00</td><td class="py-1.5 px-3">毎週 月・金</td><td class="py-1.5 px-3">9:00〜11:00</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">十王堂の湯</td><td class="py-1.5 px-3">6:00〜23:00</td><td class="py-1.5 px-3">毎週 月・金</td><td class="py-1.5 px-3">8:00〜9:00</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">秋葉の湯</td><td class="py-1.5 px-3">5:00〜24:00</td><td class="py-1.5 px-3">毎月 5・10・15・20・25・30日</td><td class="py-1.5 px-3">8:00〜12:00</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">松葉の湯</td><td class="py-1.5 px-3">6:00〜24:00</td><td class="py-1.5 px-3">毎月 5・10・15・20・25・月末日</td><td class="py-1.5 px-3">午前中（不定時）</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">大湯</td><td class="py-1.5 px-3">6:00〜23:00</td><td class="py-1.5 px-3">毎週 月・金</td><td class="py-1.5 px-3">12:30〜16:00</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">河原湯</td><td class="py-1.5 px-3">6:00〜24:00</td><td class="py-1.5 px-3">毎月 5・10・15・20・25・月末日</td><td class="py-1.5 px-3">8:00〜10:00</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">麻釜の湯</td><td class="py-1.5 px-3">6:00〜23:00</td><td class="py-1.5 px-3">毎月 5・10・15・20・25・30日</td><td class="py-1.5 px-3">8:00〜9:30</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">滝の湯</td><td class="py-1.5 px-3">6:00〜22:00</td><td class="py-1.5 px-3">不定期（週1）</td><td class="py-1.5 px-3">不定時</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">真湯</td><td class="py-1.5 px-3">6:00〜22:00</td><td class="py-1.5 px-3">毎月 5・10・15・20・25・30日</td><td class="py-1.5 px-3">不定時</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">熊の手洗湯</td><td class="py-1.5 px-3">5:00〜23:00</td><td class="py-1.5 px-3">毎月 5・10・15・20・25・30日</td><td class="py-1.5 px-3">不定時</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">上寺湯</td><td class="py-1.5 px-3">5:00〜23:00</td><td class="py-1.5 px-3">毎月 5・10・15・20・25・30日</td><td class="py-1.5 px-3">不定時</td></tr>
+              <tr><td class="py-1.5 px-3 font-medium text-slate-900">横落の湯</td><td class="py-1.5 px-3">5:00〜23:00</td><td class="py-1.5 px-3">3日ごと</td><td class="py-1.5 px-3">不定時</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 text-xs text-slate-500">※ 冬期（11/1〜3/31）版の現地掲示の写真からの読み取り。掲示にも「あくまでも目安」と注記あり。公開情報としては村・野沢組の一次情報で要再確認。</p>
+      </details>
+
+      <!-- ③ 道祖神 -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">③ 道祖神祭り — 火と、火の通り道</h3>
+      <div class="mt-4 grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <h4 class="text-base font-semibold text-slate-900">道祖神場（馬場の原）</h4>
+          <ul class="mt-3 space-y-1.5 text-sm text-body leading-relaxed">
+            <li>・毎年1月15日開催。道祖神は村境や辻で災厄の侵入を防ぐ神</li>
+            <li>・江戸後期には<strong>上根と下根の二カ所</strong>で盛大に実施</li>
+            <li>・<strong>大正元年（1912）</strong>、防災上の理由で「馬場の原」に統合</li>
+            <li>・平成5年、国の重要無形民俗文化財に指定</li>
+            <li>・平成10年の<strong>長野パラリンピック</strong>では3月開催、社殿を聖火台に</li>
+            <li>・現在も<strong>野沢組惣代が総元締め</strong></li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-amber-200 p-5 shadow-sm">
+          <h4 class="text-base font-semibold text-slate-900">旧火元道（きゅうひもとみち）</h4>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            河野家で採火された祭りの火元が祭場まで運ばれた<strong>「火の通り道」を遺構として保存</strong>し、案内板を立てている。
+          </p>
+          <div class="mt-3 p-3 bg-amber-50 rounded-lg">
+            <p class="text-xs text-amber-900 leading-relaxed">💡 <strong>企画的に面白い点</strong>：無形文化財の見どころを、当日の祭場だけでなく<strong>オフシーズンに歩ける動線</strong>として設計している。祭りのない7月でも、火の経路をたどれば祭りの構造が理解できる。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ④ 由緒 -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">④ 湯の由緒 — 『犬養の御湯』と熊の手洗湯</h3>
+      <div class="mt-4 grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <h4 class="text-base font-semibold text-slate-900">大湯＝『犬養の御湯』説</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            日本書紀の安閑天皇二年（534年）に犬飼部を置く記事があり、この地方は古来「犬養の郷」（小管神社付近に犬飼の遺跡、戸那子に犬養城跡）。『信濃地名考』に基づき<strong>『犬養の御湯』＝野沢の湯の総称＝大湯（惣湯）</strong>と推定する説を、大湯脇の郷土誌「菜の花畑」の掲示が紹介。現在の大湯正面の『犬養の御湯』の額は、<strong>明治21年の開湯式</strong>に初代長野県知事・木梨精一郎が書き贈ったもの。
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <h4 class="text-base font-semibold text-slate-900">熊の手洗湯（寺湯）</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            <strong>傷ついた熊が湯を発見した</strong>と伝わる。医療の仏・薬師様を祀る。
+          </p>
+          <div class="mt-3 p-3 bg-primary-50 rounded-lg">
+            <p class="text-xs text-primary-900 leading-relaxed">🔗 名栗温泉の<strong>「手負いの鹿」伝説（第13章）と同じ動物発見譚の型</strong>。全国の開湯伝説を横断比較する切り口になる——第17章の比較軸「開湯譚の型」はここから。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑤ 対比 -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">⑤ 秩父から見た野沢温泉</h3>
+      <div class="mt-4 bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm matrix">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">項目</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">秩父（19湯）</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">野沢温泉（13外湯）</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><td class="py-2 px-3 font-medium text-slate-900">成因</td><td class="py-2 px-3">第三紀層・破砕帯浸透型（非火山性）</td><td class="py-2 px-3">火山性（高温泉）</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">主流泉質</td><td class="py-2 px-3">単純硫黄冷鉱泉 pH9前後</td><td class="py-2 px-3">硫黄泉（第3章 代表温泉地掲載）</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">源泉温度</td><td class="py-2 px-3">25℃未満（加温前提）</td><td class="py-2 px-3">高温・加水加温なしで供給</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">かけ流し</td><td class="py-2 px-3">構造上ほぼ不可能</td><td class="py-2 px-3">全外湯で実現、<strong>ORPで裏づけ</strong></td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">運営主体</td><td class="py-2 px-3">民間旅館・日帰り施設</td><td class="py-2 px-3">地縁組織「野沢組」＋湯仲間</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">料金</td><td class="py-2 px-3">¥600〜1,000</td><td class="py-2 px-3">賽銭（実質無料）</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">文化資源</td><td class="py-2 px-3">札所巡礼・湯治宿</td><td class="py-2 px-3">道祖神祭り（重要無形民俗文化財）</td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">共通点</td><td class="py-2 px-3" colspan="2">開湯譚が動物発見譚（手負いの鹿 ⇔ 傷ついた熊）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="mt-4 p-4 bg-gradient-to-br from-amber-50 to-white border border-amber-200 rounded-lg">
+        <p class="text-sm text-body leading-relaxed">
+          <strong class="text-slate-900">示唆</strong>：秩父は「湯そのもの」で勝てないから、第15章のとおり<strong>滞在様式（日帰り・ととのい）で頂点を取った</strong>。野沢温泉は逆に<strong>湯の鮮度と運営の共同性</strong>という、掘削では作れない資産で勝負している。正反対のポジショニングだが、どちらも「火山の有無」という制約を出発点にしている点で同型。
+        </p>
+      </div>
+
+      <!-- ⑥ 要確認 -->
+      <details id="nozawa-todo" class="mt-8 bg-white rounded-xl border border-slate-200 p-5">
+        <summary class="text-sm font-medium text-slate-900 flex items-center justify-between">
+          <span>要確認・追加取材リスト（7件）</span>
+          <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <ul class="mt-4 space-y-1.5 text-sm text-body">
+          <li>☐ 大湯ほか各外湯の温泉分析書（泉質名・4軸タグ・pH・溶存物質・総硫黄量）</li>
+          <li>☐ 麻釜の湧出温度・湧出量</li>
+          <li>☐ 実測ORP値（パネルは図示のみで数値表記なし）</li>
+          <li>☐ 「野沢温泉源泉かけ流しの会」の加盟施設数・加盟条件</li>
+          <li>☐ 外湯利用時間表の夏期版</li>
+          <li>☐ 關正次教授1949年論文の書誌情報（掲載誌）</li>
+          <li>☐ 「湯仲間」の実態（1湯あたりの戸数・分担金の仕組み）</li>
+        </ul>
+      </details>
+
+      <p class="mt-5 text-xs text-slate-500 leading-relaxed">
+        出典：日本温泉総合研究所パネル「野沢温泉の酸化還元電位」（現地掲示）／「野澤泉水の電子放出の傾向（酸化還元電位）」岡山大学医学部・關正次教授 1949年／野沢組惣代 各案内板（道祖神場・旧火元道・大湯前）／郷土誌「菜の花畑」『犬養の御湯』について（大湯脇掲示）／熊の手洗湯（寺湯）マップ（現地掲示）／現地取材 2026年7月
+      </p>
+    </section>
+
+    <!-- ====================== 17. 全国温泉街くらべ ====================== -->
+    <section id="towns" class="anchor mt-16">
+      <p class="chapter-stamp">CHAPTER 17 — COMPARISON</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">全国温泉街くらべ</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        温泉街を訪れるたびに、同じ物差しで記録して比較していく<strong class="text-slate-900">育つ章</strong>。
+        物差しは本ノートで培った軸——<strong>成因（14章）・供給と鮮度（16章）・運営・開湯譚の型・500年史のどの様式を生きているか（15章）・食</strong>——で構成。
+        レーダーの5軸は <strong>湯力／共同性／物語／アクセス／食</strong>（各5点・主観評点）。
+      </p>
+
+      <div id="townCards" class="mt-8 grid md:grid-cols-3 gap-4"></div>
+
+      <h3 class="mt-10 text-xl font-semibold text-slate-900">カルテ比較表</h3>
+      <div class="mt-4 bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm matrix" id="townTable"></table>
+        </div>
+      </div>
+
+      <div class="mt-6 p-4 bg-gray-100 rounded-lg">
+        <p class="text-sm text-body leading-relaxed">
+          ♨ <strong class="text-slate-900">次の温泉街へ行ったら</strong>：フィールドノート（16章の型）を書き、この章のカルテに1行足す。
+          比較対象が増えるほど、「その温泉街は何で勝負しているか」の解像度が上がっていく。
+          <span class="text-xs text-slate-500">候補：草津（番付の東大関）・玉川温泉（北投石）・別府・道後…</span>
+        </p>
+      </div>
+    </section>
+
     <!-- footer -->
     <footer class="mt-20 pt-8 border-t border-slate-200">
       <p class="text-sm text-slate-600">
@@ -2986,6 +3255,120 @@ if (document.getElementById('saitama-map') && typeof L !== 'undefined') {
     L.marker([o.lat, o.lon], { icon }).addTo(smap).bindPopup(popup);
   }
 }
+
+// ============ Chapter 17: 全国温泉街くらべ ============
+// 新しい温泉街を訪れたら、このデータに1オブジェクト足すだけでカードと比較表が増える
+const TOWN_PROFILES = [
+  {
+    id: 'nozawa', name: '野沢温泉', pref: '長野県', visited: '2026年7月 訪問',
+    color: '#cd4f3a',
+    genesis: '火山性（高温泉）',
+    quality: '硫黄泉・国内有数の強還元泉',
+    supply: '13外湯すべて源泉かけ流し（ORPで裏づけ）',
+    gov: '地縁組織「野沢組」＋湯仲間',
+    fee: '賽銭（実質無料・奉納モデル）',
+    legend: '動物発見譚（傷ついた熊）',
+    heritage: '道祖神祭り（重要無形民俗文化財）',
+    era: '江戸 — 共同浴場の湯治文化が現役',
+    food: '野沢菜・温泉まんじゅう',
+    scores: { yu: 5, kyodo: 5, monogatari: 5, access: 2, shoku: 4 },
+    link: '#nozawa'
+  },
+  {
+    id: 'chichibu', name: '秩父・埼玉温浴圏', pref: '埼玉県', visited: 'ホームグラウンド',
+    color: '#3f66a8',
+    genesis: '非火山性（破砕帯浸透＋化石海水）',
+    quality: '単純硫黄冷鉱泉 pH9±／黒湯塩化物泉',
+    supply: '加温前提（かけ流しは構造上困難）',
+    gov: '民間（旅館・スーパー銭湯・おふろcafé）',
+    fee: '¥600〜1,000',
+    legend: '動物発見譚（手負いの鹿・名栗）',
+    heritage: '秩父夜祭・札所34観音',
+    era: '令和 — 日帰り・ととのい様式の最先進',
+    food: 'わらじカツ丼・みそポテト・武蔵野うどん',
+    scores: { yu: 2, kyodo: 2, monogatari: 4, access: 4, shoku: 4 },
+    link: '#chichibu'
+  },
+  {
+    id: 'beitou', name: '北投温泉', pref: '台湾・台北', visited: '交流展で接続（12章）',
+    color: '#a855f7',
+    genesis: '火山性（大屯火山群）',
+    quality: '青磺 pH1〜2・白磺・鉄磺の3種',
+    supply: '地熱谷から高温源泉',
+    gov: '博物館は住民運動で再生（公設）',
+    fee: '公衆浴場は低額',
+    legend: '近代開湯（1896年 天狗庵）',
+    heritage: '北投温泉博物館（1913・市定古蹟）',
+    era: '明治 — 鉄道と温泉の都市モデル',
+    food: '台湾小吃・温泉たまご（地熱谷）',
+    scores: { yu: 5, kyodo: 3, monogatari: 4, access: 5, shoku: 3 },
+    link: '#beitou'
+  }
+];
+
+const RADAR_AXES = [['湯力','yu'],['共同性','kyodo'],['物語','monogatari'],['アクセス','access'],['食','shoku']];
+
+function radarSVG(scores, color) {
+  const cx = 100, cy = 108, R = 66;
+  const pt = (i, r) => {
+    const a = -Math.PI / 2 + i * 2 * Math.PI / 5;
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+  };
+  let grid = '';
+  for (let lv = 1; lv <= 5; lv++) {
+    const pts = RADAR_AXES.map((_, i) => pt(i, R * lv / 5).map(v => v.toFixed(1)).join(',')).join(' ');
+    grid += `<polygon points="${pts}" fill="none" stroke="#e6ddcc" stroke-width="1"/>`;
+  }
+  const spokes = RADAR_AXES.map((_, i) => {
+    const [x, y] = pt(i, R);
+    return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#e6ddcc"/>`;
+  }).join('');
+  const poly = RADAR_AXES.map(([_, k], i) => pt(i, R * (scores[k] || 0) / 5).map(v => v.toFixed(1)).join(',')).join(' ');
+  const labels = RADAR_AXES.map(([lb], i) => {
+    const [x, y] = pt(i, R + 20);
+    return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="11" fill="#5f5546" text-anchor="middle" dominant-baseline="middle">${lb}</text>`;
+  }).join('');
+  return `<svg viewBox="0 0 200 216" role="img" aria-label="評点レーダーチャート">${grid}${spokes}<polygon points="${poly}" fill="${color}30" stroke="${color}" stroke-width="2"/>${labels}</svg>`;
+}
+
+function renderTowns() {
+  const cardsEl = document.getElementById('townCards');
+  const tableEl = document.getElementById('townTable');
+  if (!cardsEl || !tableEl) return;
+
+  cardsEl.innerHTML = TOWN_PROFILES.map(t => `
+    <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+      <div class="flex items-start justify-between gap-2">
+        <div>
+          <p class="text-xs text-slate-500">${t.pref} / ${t.visited}</p>
+          <h4 class="font-serif text-lg font-bold text-slate-900 mt-0.5">
+            <a href="${t.link}" class="hover:underline" style="color:inherit">${t.name}</a>
+          </h4>
+        </div>
+        <span class="inline-block w-3.5 h-3.5 rounded-full mt-1.5 flex-shrink-0" style="background:${t.color}"></span>
+      </div>
+      <div class="mt-2 max-w-[220px] mx-auto">${radarSVG(t.scores, t.color)}</div>
+      <p class="text-xs text-body leading-relaxed mt-1"><strong class="text-slate-900">勝負どころ:</strong> ${t.era}</p>
+    </article>`).join('');
+
+  const rows = [
+    ['成因', 'genesis'], ['主な泉質', 'quality'], ['供給と鮮度', 'supply'],
+    ['運営', 'gov'], ['料金モデル', 'fee'], ['開湯譚の型', 'legend'],
+    ['文化資源', 'heritage'], ['500年史の現在地', 'era'], ['食', 'food']
+  ];
+  tableEl.innerHTML = `
+    <thead><tr class="border-b border-slate-200">
+      <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider w-32">軸</th>
+      ${TOWN_PROFILES.map(t => `<th scope="col" class="text-left py-2 px-3 uppercase tracking-wider"><span class="inline-block w-2.5 h-2.5 rounded-full mr-1.5" style="background:${t.color}"></span>${t.name}</th>`).join('')}
+    </tr></thead>
+    <tbody class="divide-y divide-slate-100">
+      ${rows.map(([label, key]) => `<tr>
+        <td class="py-2 px-3 font-medium text-slate-900">${label}</td>
+        ${TOWN_PROFILES.map(t => `<td class="py-2 px-3 text-xs">${t[key] || '—'}</td>`).join('')}
+      </tr>`).join('')}
+    </tbody>`;
+}
+renderTowns();
 </script>
 
 </body>
