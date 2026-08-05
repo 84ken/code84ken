@@ -106,6 +106,17 @@ tailwind.config = {
   /* leaflet map */
   #chichibu-map, #saitama-map { height: 480px; border-radius: 12px; border: 1px solid #e2e8f0; overflow:hidden; }
   #saitama-map { height: 560px; }
+  /* モバイル: タップするまで地図を操作不可にして、ページの縦スクロールを奪わせない */
+  .map-wrap { position: relative; }
+  .map-veil {
+    position: absolute; inset: 0; z-index: 500; display: flex;
+    align-items: center; justify-content: center; cursor: pointer;
+    background: rgba(40,35,29,.10); border-radius: 12px;
+  }
+  .map-veil span {
+    background: rgba(43,67,116,.92); color: #fff; font-size: .8125rem; font-weight: 600;
+    padding: .5rem 1rem; border-radius: 9999px; box-shadow: 0 4px 14px rgba(0,0,0,.2);
+  }
   .leaflet-popup-content-wrapper { border-radius: 12px; }
   .leaflet-popup-content { margin: 14px; font-family: 'Inter', 'Hiragino Sans', sans-serif; }
   .map-popup h4 { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
@@ -128,6 +139,61 @@ tailwind.config = {
   @media (min-width: 1024px) {
     #sidebar { transform: translateX(0) !important; }
   }
+  /* サイドバー展開時の背景オーバーレイ（モバイル） */
+  #sidebarOverlay {
+    position: fixed; inset: 0; z-index: 15; background: rgba(40,35,29,.45);
+    opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  }
+  #sidebarOverlay.show { opacity: 1; pointer-events: auto; }
+  @media (min-width: 1024px) { #sidebarOverlay { display: none; } }
+  body.nav-open { overflow: hidden; }
+
+  /* 横スクロールできる表に気づけるようにヒントを出す */
+  .scroll-hint { position: relative; }
+  .scroll-hint::after {
+    content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 28px;
+    background: linear-gradient(to right, rgba(255,253,249,0), rgba(255,253,249,.95));
+    pointer-events: none; border-radius: 0 12px 12px 0;
+  }
+  .scroll-note { display: none; }
+
+  /* ============ モバイル最適化 ============ */
+  @media (max-width: 767px) {
+    /* 見出し・余白を画面幅に合わせて圧縮 */
+    main h1.font-serif { font-size: 1.875rem; line-height: 1.35; }
+    main section h2.font-serif { font-size: 1.5rem; }
+    main section h2.font-serif::after { width: 40px; height: 3px; }
+    main > section { margin-top: 3rem; }
+    main h3 { font-size: 1.0625rem; }
+    /* 朱印スタンプは字間を詰めて折り返さないように */
+    .chapter-stamp { font-size: .625rem; letter-spacing: .1em; padding: .28em .7em .28em .6em; }
+    /* 地図は画面を占有しすぎない高さに */
+    #chichibu-map, #saitama-map { height: 320px; }
+    /* リンクのタップ領域を確保。
+       :where() で詳細度を 0 にしてあるので、p-5 などの指定があるカード型リンクは
+       そちらが優先され、余白を持たない素のリンクだけが当たり判定を広げる。
+       インライン要素の上下パディングは行の高さに影響しないので見た目は変わらない。 */
+    main :where(a) { padding-block: .5em; text-underline-offset: 2px; }
+    .leaflet-container :where(a) { padding-block: 0; }
+    /* 地図のズームボタンを押しやすく */
+    .leaflet-touch .leaflet-bar a,
+    .leaflet-bar a { width: 36px; height: 36px; line-height: 36px; }
+    /* 折りたたみの見出しもタップしやすく */
+    details > summary { padding-top: .5rem; padding-bottom: .5rem; }
+    /* 表は少しだけ小さくして列を稼ぐ */
+    table.matrix th, table.matrix td { font-size: .75rem; padding-left: .5rem; padding-right: .5rem; }
+    /* スクロールできる表の注記を表示 */
+    .scroll-note { display: block; }
+    /* カード内の余白を圧縮 */
+    main article.p-6, main .p-6 { padding: 1.125rem; }
+    /* iOSで表を指スクロールしたときの慣性を有効に */
+    .overflow-x-auto { -webkit-overflow-scrolling: touch; }
+    /* チャットの丸ボタンがフッターに重ならないように余白を足す
+       （py-10 に勝つよう、クラスを含めた詳細度にしている） */
+    main.min-w-0 { padding-bottom: 5.5rem; }
+  }
+  /* 端末の回転・小画面でのタップ強調を抑制 */
+  a, button, summary { -webkit-tap-highlight-color: rgba(63,102,168,.15); }
   details summary { cursor: pointer; }
   details summary::-webkit-details-marker { display:none; }
 </style>
@@ -178,7 +244,7 @@ tailwind.config = {
   </aside>
 
   <!-- ============= Main ============= -->
-  <main class="lg:ml-64 flex-1 max-w-5xl mx-auto px-6 lg:px-10 py-12 lg:py-16">
+  <main class="lg:ml-64 flex-1 min-w-0 max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 lg:py-16">
 
     <!-- Hero -->
     <section id="intro" class="anchor relative">
@@ -3324,14 +3390,53 @@ function highlight() {
 document.addEventListener('scroll', highlight, { passive: true });
 highlight();
 
-// mobile nav
+// mobile nav（オーバーレイ + 背景スクロールロック）
 const sb = document.getElementById('sidebar');
-document.getElementById('navToggle').addEventListener('click', () => {
-  sb.classList.toggle('open');
-});
+const navOverlay = document.createElement('div');
+navOverlay.id = 'sidebarOverlay';
+navOverlay.setAttribute('aria-hidden', 'true');
+document.body.appendChild(navOverlay);
+
+function setNav(open) {
+  sb.classList.toggle('open', open);
+  navOverlay.classList.toggle('show', open);
+  document.body.classList.toggle('nav-open', open);
+  document.getElementById('navToggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.getElementById('navToggle').addEventListener('click', () => setNav(!sb.classList.contains('open')));
+navOverlay.addEventListener('click', () => setNav(false));
 sb.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  if (window.innerWidth < 1024) sb.classList.remove('open');
+  if (window.innerWidth < 1024) setNav(false);
 }));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setNav(false); });
+// デスクトップ幅に戻したら状態をリセット
+window.addEventListener('resize', () => { if (window.innerWidth >= 1024) setNav(false); });
+
+// 横スクロールできる表・図に、はみ出している時だけヒントを出す
+function markScrollables() {
+  document.querySelectorAll('.overflow-x-auto').forEach(el => {
+    const over = el.scrollWidth > el.clientWidth + 2;
+    el.classList.toggle('scroll-hint', over && el.scrollLeft < 4);
+    let note = el.parentElement.querySelector(':scope > .scroll-note');
+    if (over && !note) {
+      note = document.createElement('p');
+      note.className = 'scroll-note text-xs text-slate-500 mt-1.5';
+      note.textContent = '← 横にスクロールできます →';
+      el.parentElement.insertBefore(note, el.nextSibling);
+    } else if (!over && note) {
+      note.remove();
+    }
+    if (over && !el.dataset.hintBound) {
+      el.dataset.hintBound = '1';
+      el.addEventListener('scroll', () => {
+        el.classList.toggle('scroll-hint', el.scrollLeft < 4);
+      }, { passive: true });
+    }
+  });
+}
+window.addEventListener('load', markScrollables);
+window.addEventListener('resize', markScrollables);
+markScrollables();
 
 // ============ Chichibu Onsen Map (Leaflet) ============
 const CHICHIBU_ONSEN = [
@@ -3355,6 +3460,33 @@ const CHICHIBU_ONSEN = [
   { id:18, name:"かおる鉱泉",            lat:36.0731, lon:138.9384, status:"active",  seven:false, type:"弱アルカリ性弱張性冷鉱泉", area:"秩父市上吉田", note:"たまご水／硫化水素臭" },
   { id:19, name:"秩父温泉 満願の湯",     lat:36.0825, lon:139.0723, status:"active",  seven:false, type:"単純硫黄冷鉱泉",       ph:9.5,   area:"皆野町日野沢",     note:"札所34番水潜寺のふところ" }
 ];
+
+// モバイルでは地図が縦スクロールを奪うため、タップするまで操作を止めておく
+function tapToActivateMap(map, containerId) {
+  if (window.innerWidth >= 768) return;
+  const el = document.getElementById(containerId);
+  if (!el || !el.parentElement) return;
+  map.dragging.disable();
+  if (map.touchZoom) map.touchZoom.disable();
+  // 地図要素だけをラッパーで包む（セクション全体を覆わないように）
+  const wrap = document.createElement('div');
+  const mt = (el.className.match(/\bmt-\d+(\.\d+)?\b/) || [''])[0];
+  wrap.className = ('map-wrap ' + mt).trim();
+  el.parentElement.insertBefore(wrap, el);
+  wrap.appendChild(el);
+  el.classList.remove(mt);
+  const veil = document.createElement('div');
+  veil.className = 'map-veil';
+  veil.innerHTML = '<span>タップして地図を操作</span>';
+  veil.addEventListener('click', () => {
+    map.dragging.enable();
+    if (map.touchZoom) map.touchZoom.enable();
+    veil.remove();
+    map.invalidateSize();
+  });
+  wrap.appendChild(veil);
+  map.invalidateSize();
+}
 
 if (document.getElementById('chichibu-map') && typeof L !== 'undefined') {
   const map = L.map('chichibu-map', { scrollWheelZoom: false }).setView([36.000, 139.020], 11);
@@ -3385,6 +3517,7 @@ if (document.getElementById('chichibu-map') && typeof L !== 'undefined') {
     </div>`;
     L.marker([o.lat, o.lon], { icon }).addTo(map).bindPopup(popup);
   }
+  tapToActivateMap(map, 'chichibu-map');
 }
 
 // ============ Saitama Statewide Onsen Map ============
@@ -3449,6 +3582,7 @@ if (document.getElementById('saitama-map') && typeof L !== 'undefined') {
     </div>`;
     L.marker([o.lat, o.lon], { icon }).addTo(smap).bindPopup(popup);
   }
+  tapToActivateMap(smap, 'saitama-map');
 }
 
 // ============ Chapter 17: 全国温泉街くらべ ============

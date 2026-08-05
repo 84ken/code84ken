@@ -121,6 +121,26 @@ tailwind.config = {
   /* prose body */
   details summary { cursor:pointer; }
   details summary::-webkit-details-marker { display:none; }
+  a, button, summary { -webkit-tap-highlight-color: rgba(63,102,168,.15); }
+
+  /* ============ モバイル最適化 ============ */
+  @media (max-width: 767px) {
+    /* リンクのタップ領域（:where で詳細度0。余白指定のあるボタン型はそのまま） */
+    :where(a) { padding-block: .5em; text-underline-offset: 2px; }
+    header :where(a) { padding-block: .35em; }
+    .leaflet-container :where(a) { padding-block: 0; }
+    details > summary { padding-top: .5rem; padding-bottom: .5rem; }
+    /* 評価の星を押しやすく */
+    .star-btn { width: 2.5rem; height: 2.5rem; }
+    /* 地図の高さを圧縮 */
+    #visitMap { height: 200px; }
+    #logMap { height: 240px; }
+    /* チャットの丸ボタンが最下部のUIに重ならないように余白を足す
+       （py-8 に勝つよう、クラスを含めた詳細度にしている） */
+    main.mx-auto { padding-bottom: 5.5rem; }
+    /* 見出しを画面幅に合わせる */
+    main h1.font-serif { font-size: 1.75rem; line-height: 1.35; }
+  }
 </style>
 </head>
 <body class="min-h-screen font-sans">
