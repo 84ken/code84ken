@@ -52,31 +52,125 @@ tailwind.config = {
         <p class="text-sm text-slate-500">BBKK木馬 / あたまのいす / TATELab. — 国際デザイン賞エントリー管理</p>
       </div>
     </div>
-    <p class="text-xs text-slate-400 mt-2">最終更新: 2026年3月25日 ｜ CONFIDENTIAL — 社内限定</p>
+    <p class="text-xs text-slate-400 mt-2">最終更新: 2026年8月4日 ｜ CONFIDENTIAL — 社内限定</p>
   </div>
+
+  <!-- ===== 直近のアクション ===== -->
+  <section class="mb-10">
+    <h2 class="text-sm font-bold text-red-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+      <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span></span>
+      Next Actions — 直近の締切
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+      <!-- IDA 2026 — 最短の締切 -->
+      <div class="bg-white rounded-xl border-2 border-red-400 p-5 shadow-sm relative">
+        <div class="absolute -top-3 left-4 bg-red-500 text-white text-xs font-bold px-3 py-0.5 rounded-full" id="ida-countdown"></div>
+        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">IDA 2026 <span class="text-red-500 font-bold">&#9733;</span></p>
+        <p class="text-lg font-bold text-slate-900 mt-1">8月15日 Regular</p>
+        <p class="text-xs text-body mt-1">20th edition / 応募受付中</p>
+        <div class="mt-3 space-y-1">
+          <p class="text-xs text-amber-600 flex items-center gap-1.5"><span class="font-bold">!</span> 前回エントリー分の確認</p>
+          <p class="text-xs text-amber-600 flex items-center gap-1.5"><span class="font-bold">!</span> 追加応募の要否を判断</p>
+        </div>
+      </div>
+
+      <!-- A' Design 2027 — 進行中 -->
+      <div class="bg-white rounded-xl border-2 border-emerald-400 p-5 shadow-sm relative">
+        <div class="absolute -top-3 left-4 bg-emerald-500 text-white text-xs font-bold px-3 py-0.5 rounded-full" id="adesign-countdown"></div>
+        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">A' Design 2027 <span class="text-emerald-500 font-bold">&#9733;</span></p>
+        <p class="text-lg font-bold text-slate-900 mt-1">9月30日 Regular</p>
+        <p class="text-xs text-body mt-1">予備スコアは<span class="font-bold text-emerald-600">無料</span></p>
+        <div class="mt-3 space-y-1">
+          <p class="text-xs text-slate-500 flex items-center gap-1.5"><span class="text-emerald-500">&#10003;</span> 正方形画像5枚 作成済</p>
+          <p class="text-xs text-slate-500 flex items-center gap-1.5"><span class="text-emerald-500">&#10003;</span> 英文テキスト 作成済</p>
+          <p class="text-xs text-amber-600 flex items-center gap-1.5"><span class="font-bold">!</span> アカウント登録→アップロード</p>
+        </div>
+      </div>
+
+      <!-- iF 2027 — 判断待ち -->
+      <div class="bg-white rounded-xl border border-amber-300 p-5 shadow-sm relative">
+        <div class="absolute -top-3 left-4 bg-amber-500 text-white text-xs font-bold px-3 py-0.5 rounded-full" id="if-countdown"></div>
+        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">iF Design 2027</p>
+        <p class="text-lg font-bold text-slate-900 mt-1">9月18日 Regular</p>
+        <p class="text-xs text-body mt-1">€400 ＋ 審査€300 ＋ 受賞€3,000</p>
+        <div class="mt-3 space-y-1">
+          <p class="text-xs text-red-600 flex items-center gap-1.5"><span class="font-bold">!</span> 発売2年ルール要確認</p>
+          <p class="text-xs text-amber-600 flex items-center gap-1.5"><span class="font-bold">!</span> 現物のドイツ発送が必要</p>
+          <p class="text-xs text-slate-400">Last Chance 11/4 (€500)</p>
+        </div>
+      </div>
+
+      <!-- Red Dot B&CD — 結果確定 -->
+      <div class="bg-white rounded-xl border border-slate-300 p-5 shadow-sm relative" style="background:#fafafa;">
+        <div class="absolute -top-3 left-4 bg-slate-400 text-white text-xs font-bold px-3 py-0.5 rounded-full">結果確定</div>
+        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">Red Dot B&amp;CD 2026</p>
+        <p class="text-lg font-bold text-slate-500 mt-1">受賞ならず</p>
+        <p class="text-xs text-body mt-1">Bouba-Kiki Brand Identity</p>
+        <div class="mt-3 space-y-1">
+          <p class="text-xs text-slate-500 flex items-center gap-1.5"><span class="text-slate-400">&#10007;</span> 02-02647-2026BC 選外</p>
+          <p class="text-xs text-slate-400">個別フィードバックなし</p>
+          <p class="text-xs text-slate-400">通知: 2026年7月</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 逃した締切 -->
+    <div class="mt-4 bg-red-50 border border-red-200 rounded-xl p-4">
+      <p class="text-xs font-bold text-red-700 mb-1">&#9888; 応募期限を逃したもの</p>
+      <p class="text-xs text-red-600"><span class="font-medium">ウッドデザイン賞2026</span> — 応募期間 6/22〜7/31 18:00 で終了。資料（プレゼンPDF・応募テキスト）は作成済みのため<span class="font-medium">2027年版にそのまま流用可能</span>（要項は例年6月上旬公表）。</p>
+    </div>
+  </section>
 
   <!-- ===== サマリーカード ===== -->
   <section class="mb-10">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">エントリー済</p>
-        <p class="text-3xl font-bold text-slate-900 mt-1">4<span class="text-lg text-slate-400 font-normal">件</span></p>
-        <p class="text-xs text-body mt-1">IDA 2026 ×3 + 木材活用コンクール</p>
+        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">結果が出たもの</p>
+        <p class="text-3xl font-bold text-slate-900 mt-1">2<span class="text-lg text-slate-400 font-normal">件</span></p>
+        <p class="text-xs text-body mt-1">木材活用・Red Dot B&amp;CD — <span class="text-slate-500">いずれも選外</span></p>
       </div>
       <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">検討中</p>
-        <p class="text-3xl font-bold text-amber-600 mt-1">10<span class="text-lg text-slate-400 font-normal">件</span></p>
-        <p class="text-xs text-body mt-1">Phase 1: 5件 / Phase 2: 5件</p>
+        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">結果待ち</p>
+        <p class="text-3xl font-bold text-blue-600 mt-1">3<span class="text-lg text-slate-400 font-normal">件</span></p>
+        <p class="text-xs text-body mt-1">IDA ×3 — 発表は2027年2月頃</p>
+      </div>
+      <div class="bg-white rounded-xl border-2 border-emerald-300 p-5 shadow-sm" style="background:#f0fdf4;">
+        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">次の一手</p>
+        <p class="text-3xl font-bold text-emerald-600 mt-1">¥0</p>
+        <p class="text-xs text-body mt-1">A' Design 予備スコア（無料）→ 結果次第で判断</p>
       </div>
       <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Phase 1 費用概算</p>
-        <p class="text-3xl font-bold text-slate-900 mt-1">¥14<span class="text-lg text-slate-400 font-normal">万</span></p>
-        <p class="text-xs text-body mt-1">〜4月末・5件</p>
+        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">今年度の投資</p>
+        <p class="text-3xl font-bold text-slate-900 mt-1">€330</p>
+        <p class="text-xs text-body mt-1">Red Dot B&amp;CD のみ（約¥5.4万）</p>
       </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Phase 2 費用概算</p>
-        <p class="text-3xl font-bold text-slate-900 mt-1">¥47<span class="text-lg text-slate-400 font-normal">万</span></p>
-        <p class="text-xs text-body mt-1">秋〜・7件（受賞時+最大¥200万）</p>
+    </div>
+  </section>
+
+  <!-- ===== 2026年の総括 ===== -->
+  <section class="mb-10">
+    <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">2026年の総括と方針</h2>
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <p class="text-xs font-bold text-slate-700 mb-2">わかったこと</p>
+          <ul class="space-y-2 text-xs text-body">
+            <li class="flex gap-2"><span class="text-slate-400">—</span><span>Red Dot B&amp;CD は<span class="font-medium">ブランドアイデンティティ</span>としての応募だった。木馬椅子そのものの造形・素材は評価対象外。</span></li>
+            <li class="flex gap-2"><span class="text-slate-400">—</span><span>BBKKが評価された唯一の実績（新商品AWARD大賞）は<span class="font-medium">プロダクトとしての評価</span>。この土俵で勝負できていない。</span></li>
+            <li class="flex gap-2"><span class="text-slate-400">—</span><span>ウッドデザイン賞は<span class="font-medium">プロダクツ分野で正面から出せる</span>うえ一次審査無料。2026は逃したが資料は完成済み。</span></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-slate-700 mb-2">2027年に向けた優先順位</p>
+          <ol class="space-y-2 text-xs text-body">
+            <li class="flex gap-2"><span class="font-bold text-emerald-600">1.</span><span><span class="font-medium">A' Design 予備スコア</span>（無料・9/30まで）— 客観評価を得る</span></li>
+            <li class="flex gap-2"><span class="font-bold text-emerald-600">2.</span><span><span class="font-medium">ウッドデザイン賞2027</span>（来年6月）— 一次無料・資料流用可・iF連携特典あり</span></li>
+            <li class="flex gap-2"><span class="font-bold text-amber-600">3.</span><span><span class="font-medium">iF 2027</span> — 発売2年ルールの確認が前提。総額€3,700のリスクを許容できるかで判断</span></li>
+            <li class="flex gap-2"><span class="font-bold text-slate-400">4.</span><span>写真の<span class="font-medium">高解像度原本の確保</span>（現状1920px上限が全応募のボトルネック）</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </section>
@@ -146,53 +240,63 @@ tailwind.config = {
             <td class="py-3 px-4"><span class="status-submitted px-2.5 py-1 rounded-full text-xs font-medium">提出済</span></td>
             <td class="py-3 px-4 text-sm text-slate-400">なし</td>
           </tr>
-          <!-- Red Dot BCD - BBKK -->
+          <!-- Red Dot BCD - BBKK（提出済） -->
           <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk">
             <td class="py-3 px-4 text-sm font-medium text-slate-900">Red Dot B&CD 2026</td>
             <td class="py-3 px-4 text-sm text-body">BBKK木馬</td>
             <td class="py-3 px-4 text-sm text-body">Brand Design & Identity</td>
-            <td class="py-3 px-4 text-sm text-body"><span class="font-medium text-amber-600">4/24</span></td>
+            <td class="py-3 px-4 text-sm text-body">4/21提出</td>
             <td class="py-3 px-4 text-sm text-body">€330</td>
-            <td class="py-3 px-4"><span class="status-open px-2.5 py-1 rounded-full text-xs font-medium">受付中</span></td>
+            <td class="py-3 px-4"><span class="status-submitted px-2.5 py-1 rounded-full text-xs font-medium">提出済</span></td>
             <td class="py-3 px-4 text-sm text-amber-600 font-medium">€2,200〜</td>
           </tr>
-          <!-- FRAME - TATELab. -->
+          <!-- FRAME - TATELab. 見送り -->
           <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-tatelab">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">FRAME Awards 2026</td>
-            <td class="py-3 px-4 text-sm text-body">TATELab.</td>
-            <td class="py-3 px-4 text-sm text-body">Makers Space / Work</td>
-            <td class="py-3 px-4 text-sm text-body">4/30</td>
-            <td class="py-3 px-4 text-sm text-body">€295</td>
-            <td class="py-3 px-4"><span class="status-open px-2.5 py-1 rounded-full text-xs font-medium">受付中</span></td>
-            <td class="py-3 px-4 text-sm text-slate-400">不明</td>
+            <td class="py-3 px-4 text-sm font-medium text-slate-400 line-through">FRAME Awards 2026</td>
+            <td class="py-3 px-4 text-sm text-slate-400">TATELab.</td>
+            <td class="py-3 px-4 text-sm text-slate-400">Makers Space / Work</td>
+            <td class="py-3 px-4 text-sm text-slate-400">4/30</td>
+            <td class="py-3 px-4 text-sm text-slate-400">€295</td>
+            <td class="py-3 px-4"><span class="bg-slate-100 text-slate-400 px-2.5 py-1 rounded-full text-xs font-medium">見送り</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
           </tr>
-          <!-- DFA x3 -->
+          <!-- 日本空間デザイン賞 - 見送り -->
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-tatelab">
+            <td class="py-3 px-4 text-sm font-medium text-slate-400 line-through">日本空間デザイン賞 2026</td>
+            <td class="py-3 px-4 text-sm text-slate-400">TATELab.</td>
+            <td class="py-3 px-4 text-sm text-slate-400">クリエイティブスタジオ</td>
+            <td class="py-3 px-4 text-sm text-slate-400">5/14</td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
+            <td class="py-3 px-4"><span class="bg-slate-100 text-slate-400 px-2.5 py-1 rounded-full text-xs font-medium">見送り</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">規模感が合わない</td>
+          </tr>
+          <!-- DFA x3 — 見送り -->
           <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">DFA 2026</td>
-            <td class="py-3 px-4 text-sm text-body">BBKK木馬</td>
-            <td class="py-3 px-4 text-sm text-body">Product Design</td>
-            <td class="py-3 px-4 text-sm text-body">4月Open予定</td>
-            <td class="py-3 px-4 text-sm text-body">~$141</td>
-            <td class="py-3 px-4"><span class="status-upcoming px-2.5 py-1 rounded-full text-xs font-medium">公示待ち</span></td>
-            <td class="py-3 px-4 text-sm text-amber-600 font-medium">HK$3,500〜</td>
+            <td class="py-3 px-4 text-sm font-medium text-slate-400 line-through">DFA 2026</td>
+            <td class="py-3 px-4 text-sm text-slate-400">BBKK木馬</td>
+            <td class="py-3 px-4 text-sm text-slate-400">Product Design</td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
+            <td class="py-3 px-4 text-sm text-slate-400">~$141</td>
+            <td class="py-3 px-4"><span class="bg-slate-100 text-slate-400 px-2.5 py-1 rounded-full text-xs font-medium">見送り</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
           </tr>
           <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-atama">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">DFA 2026</td>
-            <td class="py-3 px-4 text-sm text-body">あたまのいす</td>
-            <td class="py-3 px-4 text-sm text-body">Product Design</td>
-            <td class="py-3 px-4 text-sm text-body">4月Open予定</td>
-            <td class="py-3 px-4 text-sm text-body">~$141</td>
-            <td class="py-3 px-4"><span class="status-upcoming px-2.5 py-1 rounded-full text-xs font-medium">公示待ち</span></td>
-            <td class="py-3 px-4 text-sm text-amber-600 font-medium">HK$3,500〜</td>
+            <td class="py-3 px-4 text-sm font-medium text-slate-400 line-through">DFA 2026</td>
+            <td class="py-3 px-4 text-sm text-slate-400">あたまのいす</td>
+            <td class="py-3 px-4 text-sm text-slate-400">Product Design</td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
+            <td class="py-3 px-4 text-sm text-slate-400">~$141</td>
+            <td class="py-3 px-4"><span class="bg-slate-100 text-slate-400 px-2.5 py-1 rounded-full text-xs font-medium">見送り</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
           </tr>
-          <tr class="hover:bg-gray-50 transition-colors product-tatelab">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">DFA 2026</td>
-            <td class="py-3 px-4 text-sm text-body">TATELab.</td>
-            <td class="py-3 px-4 text-sm text-body">Space / Community</td>
-            <td class="py-3 px-4 text-sm text-body">4月Open予定</td>
-            <td class="py-3 px-4 text-sm text-body">~$141</td>
-            <td class="py-3 px-4"><span class="status-upcoming px-2.5 py-1 rounded-full text-xs font-medium">公示待ち</span></td>
-            <td class="py-3 px-4 text-sm text-amber-600 font-medium">HK$3,500〜</td>
+          <tr class="hover:bg-gray-50 transition-colors product-tatelab border-b border-slate-100">
+            <td class="py-3 px-4 text-sm font-medium text-slate-400 line-through">DFA 2026</td>
+            <td class="py-3 px-4 text-sm text-slate-400">TATELab.</td>
+            <td class="py-3 px-4 text-sm text-slate-400">Space / Community</td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
+            <td class="py-3 px-4 text-sm text-slate-400">~$141</td>
+            <td class="py-3 px-4"><span class="bg-slate-100 text-slate-400 px-2.5 py-1 rounded-full text-xs font-medium">見送り</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
           </tr>
         </tbody>
       </table>
@@ -201,10 +305,10 @@ tailwind.config = {
     <div class="mt-4 bg-primary-50 rounded-xl border border-primary-200 p-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span class="text-sm font-medium text-primary-800">Phase 1 合計: 8件（提出済2 + 候補6）</span>
+        <span class="text-sm font-medium text-primary-800">Phase 1 合計: 9件（提出済3 + 候補6 + NEW 1）</span>
       </div>
       <div class="text-right">
-        <p class="text-sm font-bold text-primary-800">エントリー費: 約¥140,000</p>
+        <p class="text-sm font-bold text-primary-800">エントリー費: 約¥140,000 + α</p>
         <p class="text-xs text-primary-600">受賞時追加: 最大 約¥80,000〜</p>
       </div>
     </div>
@@ -246,61 +350,89 @@ tailwind.config = {
             <td class="py-3 px-4"><span class="status-closed px-2.5 py-1 rounded-full text-xs font-medium">次期待ち</span></td>
             <td class="py-3 px-4 text-sm text-red-600 font-medium">€4,900〜</td>
           </tr>
-          <!-- iF -->
-          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">iF Design 2027</td>
+          <!-- iF — Early Bird 受付中！ -->
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk" style="background: #fef2f2;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">iF Design 2027 <span class="ml-1 text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded">EB受付中</span></td>
             <td class="py-3 px-4 text-sm text-body">BBKK木馬</td>
-            <td class="py-3 px-4 text-sm text-body">Product Design</td>
-            <td class="py-3 px-4 text-sm text-body">2026年秋</td>
+            <td class="py-3 px-4 text-sm text-body">Product Design &gt; Baby/Child</td>
+            <td class="py-3 px-4 text-sm text-body"><span class="font-medium text-red-600">6/26 EB</span></td>
             <td class="py-3 px-4 text-sm text-body">€300</td>
-            <td class="py-3 px-4"><span class="status-closed px-2.5 py-1 rounded-full text-xs font-medium">次期待ち</span></td>
-            <td class="py-3 px-4 text-sm text-amber-600 font-medium">Jury €300</td>
+            <td class="py-3 px-4"><span class="status-open px-2.5 py-1 rounded-full text-xs font-medium">受付中</span></td>
+            <td class="py-3 px-4 text-sm text-amber-600 font-medium">Jury €300 + Winners €2,900〜</td>
           </tr>
-          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-atama">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">iF Design 2027</td>
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-atama" style="background: #fef2f2;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">iF Design 2027 <span class="ml-1 text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded">EB受付中</span></td>
             <td class="py-3 px-4 text-sm text-body">あたまのいす</td>
-            <td class="py-3 px-4 text-sm text-body">Product Design</td>
-            <td class="py-3 px-4 text-sm text-body">2026年秋</td>
+            <td class="py-3 px-4 text-sm text-body">Product Design &gt; Furniture</td>
+            <td class="py-3 px-4 text-sm text-body"><span class="font-medium text-red-600">6/26 EB</span></td>
             <td class="py-3 px-4 text-sm text-body">€300</td>
-            <td class="py-3 px-4"><span class="status-closed px-2.5 py-1 rounded-full text-xs font-medium">次期待ち</span></td>
-            <td class="py-3 px-4 text-sm text-amber-600 font-medium">Jury €300</td>
+            <td class="py-3 px-4"><span class="status-open px-2.5 py-1 rounded-full text-xs font-medium">受付中</span></td>
+            <td class="py-3 px-4 text-sm text-amber-600 font-medium">Jury €300 + Winners €2,900〜</td>
           </tr>
-          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-tatelab">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">iF Design 2027</td>
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-tatelab" style="background: #fef2f2;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">iF Design 2027 <span class="ml-1 text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded">EB受付中</span></td>
             <td class="py-3 px-4 text-sm text-body">TATELab.</td>
             <td class="py-3 px-4 text-sm text-body">Interior Architecture</td>
-            <td class="py-3 px-4 text-sm text-body">2026年秋</td>
+            <td class="py-3 px-4 text-sm text-body"><span class="font-medium text-red-600">6/26 EB</span></td>
             <td class="py-3 px-4 text-sm text-body">€300</td>
-            <td class="py-3 px-4"><span class="status-closed px-2.5 py-1 rounded-full text-xs font-medium">次期待ち</span></td>
-            <td class="py-3 px-4 text-sm text-amber-600 font-medium">Jury €300</td>
+            <td class="py-3 px-4"><span class="status-open px-2.5 py-1 rounded-full text-xs font-medium">受付中</span></td>
+            <td class="py-3 px-4 text-sm text-amber-600 font-medium">Jury €300 + Winners €2,900〜</td>
           </tr>
-          <!-- A' Design -->
-          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">A' Design 2027</td>
+          <!-- A' Design — 準備完了 -->
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk" style="background:#f0fdf4;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">A' Design 2027 <span class="ml-1 text-xs bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded">素材完成</span></td>
             <td class="py-3 px-4 text-sm text-body">BBKK木馬</td>
-            <td class="py-3 px-4 text-sm text-body">Toy, Games & Hobby</td>
-            <td class="py-3 px-4 text-sm text-body">2026年4月</td>
-            <td class="py-3 px-4 text-sm text-body">~€350</td>
-            <td class="py-3 px-4"><span class="status-upcoming px-2.5 py-1 rounded-full text-xs font-medium">間もなくOpen</span></td>
-            <td class="py-3 px-4 text-sm text-slate-400">なし（込み）</td>
+            <td class="py-3 px-4 text-sm text-body">Furniture Design</td>
+            <td class="py-3 px-4 text-sm"><span class="font-medium text-emerald-700">9/30 Regular</span></td>
+            <td class="py-3 px-4 text-sm text-body"><span class="font-medium text-emerald-600">予備スコア無料</span></td>
+            <td class="py-3 px-4"><span class="status-open px-2.5 py-1 rounded-full text-xs font-medium">受付中</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">なし（No Further Fees）</td>
           </tr>
           <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-atama">
             <td class="py-3 px-4 text-sm font-medium text-slate-900">A' Design 2027</td>
             <td class="py-3 px-4 text-sm text-body">あたまのいす</td>
-            <td class="py-3 px-4 text-sm text-body">Furniture & Homeware</td>
-            <td class="py-3 px-4 text-sm text-body">2026年4月</td>
-            <td class="py-3 px-4 text-sm text-body">~€350</td>
-            <td class="py-3 px-4"><span class="status-upcoming px-2.5 py-1 rounded-full text-xs font-medium">間もなくOpen</span></td>
-            <td class="py-3 px-4 text-sm text-slate-400">なし（込み）</td>
+            <td class="py-3 px-4 text-sm text-body">Furniture Design</td>
+            <td class="py-3 px-4 text-sm text-body">9/30 Regular</td>
+            <td class="py-3 px-4 text-sm text-body">予備スコア無料</td>
+            <td class="py-3 px-4"><span class="status-open px-2.5 py-1 rounded-full text-xs font-medium">受付中</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">なし（No Further Fees）</td>
           </tr>
-          <tr class="hover:bg-gray-50 transition-colors product-tatelab">
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-tatelab">
             <td class="py-3 px-4 text-sm font-medium text-slate-900">A' Design 2027</td>
             <td class="py-3 px-4 text-sm text-body">TATELab.</td>
             <td class="py-3 px-4 text-sm text-body">Interior Space & Exhibition</td>
-            <td class="py-3 px-4 text-sm text-body">2026年4月</td>
-            <td class="py-3 px-4 text-sm text-body">~€350</td>
-            <td class="py-3 px-4"><span class="status-upcoming px-2.5 py-1 rounded-full text-xs font-medium">間もなくOpen</span></td>
-            <td class="py-3 px-4 text-sm text-slate-400">なし（込み）</td>
+            <td class="py-3 px-4 text-sm text-body">9/30 Regular</td>
+            <td class="py-3 px-4 text-sm text-body">予備スコア無料</td>
+            <td class="py-3 px-4"><span class="status-open px-2.5 py-1 rounded-full text-xs font-medium">受付中</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">なし（No Further Fees）</td>
+          </tr>
+          <!-- MUSE Design Awards 2027 -->
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk" style="background: #f0fdf4;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">MUSE Design 2027 <span class="ml-1 text-xs bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded">NEW</span></td>
+            <td class="py-3 px-4 text-sm text-body">BBKK木馬</td>
+            <td class="py-3 px-4 text-sm text-body">Product / Furniture</td>
+            <td class="py-3 px-4 text-sm text-body">2026年10月〜</td>
+            <td class="py-3 px-4 text-sm text-body">~$209</td>
+            <td class="py-3 px-4"><span class="status-closed px-2.5 py-1 rounded-full text-xs font-medium">次期待ち</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">なし</td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-atama" style="background: #f0fdf4;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">MUSE Design 2027 <span class="ml-1 text-xs bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded">NEW</span></td>
+            <td class="py-3 px-4 text-sm text-body">あたまのいす</td>
+            <td class="py-3 px-4 text-sm text-body">Product / Furniture</td>
+            <td class="py-3 px-4 text-sm text-body">2026年10月〜</td>
+            <td class="py-3 px-4 text-sm text-body">~$209</td>
+            <td class="py-3 px-4"><span class="status-closed px-2.5 py-1 rounded-full text-xs font-medium">次期待ち</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">なし</td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors product-tatelab" style="background: #f0fdf4;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">MUSE Design 2027 <span class="ml-1 text-xs bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded">NEW</span></td>
+            <td class="py-3 px-4 text-sm text-body">TATELab.</td>
+            <td class="py-3 px-4 text-sm text-body">Interior / Space Design</td>
+            <td class="py-3 px-4 text-sm text-body">2026年10月〜</td>
+            <td class="py-3 px-4 text-sm text-body">~$209</td>
+            <td class="py-3 px-4"><span class="status-closed px-2.5 py-1 rounded-full text-xs font-medium">次期待ち</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">なし</td>
           </tr>
         </tbody>
       </table>
@@ -309,7 +441,7 @@ tailwind.config = {
     <div class="mt-4 bg-amber-50 rounded-xl border border-amber-200 p-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path></svg>
-        <span class="text-sm font-medium text-amber-800">Phase 2 合計: 8件</span>
+        <span class="text-sm font-medium text-amber-800">Phase 2 合計: 11件（既存8 + NEW 3）</span>
       </div>
       <div class="text-right">
         <p class="text-sm font-bold text-amber-800">エントリー費: 約¥470,000</p>
@@ -335,28 +467,28 @@ tailwind.config = {
         </thead>
         <tbody>
           <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">キッズデザイン賞</td>
-            <td class="py-3 px-4 text-sm text-body">BBKK木馬</td>
-            <td class="py-3 px-4 text-sm text-body"><span class="font-medium text-amber-600">5/12</span></td>
-            <td class="py-3 px-4 text-sm text-body">¥66,000</td>
-            <td class="py-3 px-4"><span class="status-open px-2.5 py-1 rounded-full text-xs font-medium">準備中</span></td>
-            <td class="py-3 px-4 text-sm text-body">感性・創造性育成部門</td>
+            <td class="py-3 px-4 text-sm font-medium text-slate-400 line-through">キッズデザイン賞</td>
+            <td class="py-3 px-4 text-sm text-slate-400">BBKK木馬</td>
+            <td class="py-3 px-4 text-sm text-slate-400">5/12</td>
+            <td class="py-3 px-4 text-sm text-slate-400">¥66,000</td>
+            <td class="py-3 px-4"><span class="bg-slate-100 text-slate-400 px-2.5 py-1 rounded-full text-xs font-medium">見送り</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">品位向上効果薄い</td>
           </tr>
           <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">木材活用コンクール</td>
-            <td class="py-3 px-4 text-sm text-body">BBKK木馬</td>
-            <td class="py-3 px-4 text-sm text-body">6/13 表彰式</td>
-            <td class="py-3 px-4 text-sm text-body">—</td>
-            <td class="py-3 px-4"><span class="status-submitted px-2.5 py-1 rounded-full text-xs font-medium">エントリー済</span></td>
-            <td class="py-3 px-4 text-sm text-body">結果待ち</td>
+            <td class="py-3 px-4 text-sm font-medium text-slate-400 line-through">木材活用コンクール</td>
+            <td class="py-3 px-4 text-sm text-slate-400">BBKK木馬</td>
+            <td class="py-3 px-4 text-sm text-slate-400">6/13</td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
+            <td class="py-3 px-4"><span class="bg-slate-100 text-slate-400 px-2.5 py-1 rounded-full text-xs font-medium">受賞ならず</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">選外</td>
           </tr>
           <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 product-bbkk">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">ウッドデザイン賞</td>
-            <td class="py-3 px-4 text-sm text-body">BBKK木馬</td>
-            <td class="py-3 px-4 text-sm text-body">6〜7月予定</td>
-            <td class="py-3 px-4 text-sm text-body">未定</td>
-            <td class="py-3 px-4"><span class="status-upcoming px-2.5 py-1 rounded-full text-xs font-medium">公示待ち</span></td>
-            <td class="py-3 px-4 text-sm text-body">—</td>
+            <td class="py-3 px-4 text-sm font-medium text-slate-400 line-through">ウッドデザイン賞 2026</td>
+            <td class="py-3 px-4 text-sm text-slate-400">BBKK木馬</td>
+            <td class="py-3 px-4 text-sm text-slate-400">6〜7月</td>
+            <td class="py-3 px-4 text-sm text-slate-400">一次無料 / 二次¥33,000</td>
+            <td class="py-3 px-4"><span class="bg-red-50 text-red-500 px-2.5 py-1 rounded-full text-xs font-medium">応募ミス</span></td>
+            <td class="py-3 px-4 text-sm text-slate-400">応募手続き不成立 / 2027再挑戦</td>
           </tr>
           <tr class="hover:bg-gray-50 transition-colors product-bbkk">
             <td class="py-3 px-4 text-sm font-medium text-slate-900 line-through text-slate-400">グッドデザイン賞</td>
@@ -480,12 +612,12 @@ tailwind.config = {
             <td class="py-3 px-4 text-sm text-red-600 font-medium">€4,900〜8,900</td>
             <td class="py-3 px-4 text-sm text-amber-500">★★★★★</td>
           </tr>
-          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
-            <td class="py-3 px-4 text-sm font-medium text-slate-900">iF Design</td>
-            <td class="py-3 px-4 text-sm text-body">€300</td>
-            <td class="py-3 px-4 text-sm text-body">€400</td>
-            <td class="py-3 px-4 text-sm text-body">€500</td>
-            <td class="py-3 px-4 text-sm text-amber-600 font-medium">Jury €300</td>
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100" style="background: #fef2f2;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">iF Design <span class="ml-1 text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded">6/26 EB</span></td>
+            <td class="py-3 px-4 text-sm text-body font-medium text-red-600">€300 (6/26)</td>
+            <td class="py-3 px-4 text-sm text-body">€400 (9/18)</td>
+            <td class="py-3 px-4 text-sm text-body">€500 (11/4)</td>
+            <td class="py-3 px-4 text-sm text-amber-600 font-medium">Jury €300 + Winners €2,900〜</td>
             <td class="py-3 px-4 text-sm text-amber-500">★★★★★</td>
           </tr>
           <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
@@ -528,11 +660,25 @@ tailwind.config = {
             <td class="py-3 px-4 text-sm text-amber-600 font-medium">€2,200〜</td>
             <td class="py-3 px-4 text-sm text-amber-500">★★★★★</td>
           </tr>
-          <tr class="hover:bg-gray-50 transition-colors">
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100">
             <td class="py-3 px-4 text-sm font-medium text-slate-900">キッズデザイン賞</td>
             <td class="py-3 px-4 text-sm text-body" colspan="3">¥66,000（一律）</td>
             <td class="py-3 px-4 text-sm text-slate-400">なし</td>
             <td class="py-3 px-4 text-sm text-amber-500">★★★☆☆（国内）</td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100" style="background: #f0fdf4;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">日本空間デザイン賞 <span class="ml-1 text-xs bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded">NEW</span></td>
+            <td class="py-3 px-4 text-sm text-body" colspan="3">要確認（3/30公開）</td>
+            <td class="py-3 px-4 text-sm text-slate-400">—</td>
+            <td class="py-3 px-4 text-sm text-amber-500">★★★★☆（国内＋iF連携）</td>
+          </tr>
+          <tr class="hover:bg-gray-50 transition-colors" style="background: #f0fdf4;">
+            <td class="py-3 px-4 text-sm font-medium text-slate-900">MUSE Design <span class="ml-1 text-xs bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded">NEW</span></td>
+            <td class="py-3 px-4 text-sm text-body">$209</td>
+            <td class="py-3 px-4 text-sm text-body">$219</td>
+            <td class="py-3 px-4 text-sm text-body">$269</td>
+            <td class="py-3 px-4 text-sm text-slate-400">なし</td>
+            <td class="py-3 px-4 text-sm text-amber-500">★★★☆☆</td>
           </tr>
         </tbody>
       </table>
@@ -541,10 +687,35 @@ tailwind.config = {
 
   <!-- フッター -->
   <footer class="text-center text-xs text-slate-400 mt-12 pt-6 border-t border-slate-200">
-    <p>SCHEMA Awards Dashboard — Generated by Claude Code</p>
-    <p class="mt-1">データは2026年3月時点の調査に基づく。最新の締切・費用は各アワード公式サイトを要確認。</p>
+    <p>SCHEMA Awards Dashboard — Generated by Claude</p>
+    <p class="mt-1">データは2026年5月時点の調査に基づく。最新の締切・費用は各アワード公式サイトを要確認。</p>
   </footer>
 
 </div>
+
+<script>
+// カウントダウン表示
+function updateCountdowns() {
+  const now = new Date();
+  const deadlines = [
+    { id: 'ida-countdown', date: new Date('2026-08-15'), label: 'Regular' },
+    { id: 'adesign-countdown', date: new Date('2026-09-30'), label: 'Regular' },
+    { id: 'if-countdown', date: new Date('2026-09-18'), label: 'Regular' },
+  ];
+  deadlines.forEach(d => {
+    const el = document.getElementById(d.id);
+    if (!el) return;
+    const diff = Math.ceil((d.date - now) / (1000 * 60 * 60 * 24));
+    if (diff > 0) {
+      el.textContent = 'あと ' + diff + ' 日';
+    } else if (diff === 0) {
+      el.textContent = '本日!';
+    } else {
+      el.textContent = '終了';
+    }
+  });
+}
+updateCountdowns();
+</script>
 </body>
 </html>
