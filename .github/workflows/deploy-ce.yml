@@ -1,0 +1,31 @@
+name: Deploy CE Lab
+
+on:
+  push:
+    paths:
+      - 'ce/**'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # ConoHa WING の SSH 一時停止（CVE-2026-43499 対応）のため rsync から FTPS に切替中。
+      # SSH 復旧後に戻す場合: git 履歴の burnett01/rsync-deployments 版を参照。
+      - name: Deploy to ConoHa WING (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: www194.conoha.ne.jp
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ce/
+          server-dir: public_html/ce.llschema.com/
+          exclude: |
+            **/.git*
+            **/.git*/**

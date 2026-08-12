@@ -1,0 +1,392 @@
+/* =========================================================
+   サーキュラーエコノミーラボ 公式サイト
+   デザインシステム
+
+   チラシ（ce_チラシ_ol_250922 / ce_チラシ_260202）と
+   動画（CE動画FB_0128）のアートディレクションに準拠。
+
+   世界観の4本柱
+     1. 深緑の紙テクスチャ（斑のある塗り壁のような地）
+     2. 白い角丸カード＋黄色の縁取り（動画の情報カード）
+     3. ちぎり紙のエッジ（セクションの境目）
+     4. サーキュロ所長の吹き出しが案内する
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. トークン
+   --------------------------------------------------------- */
+
+:root {
+  /* 緑（チラシ実物からサンプリング） */
+  --g-950: #1a3a1d;
+  --g-900: #26502a;  /* 最も深い帯 */
+  --g-800: #2f6032;  /* ヒーローの地 */
+  --g-700: #38803f;
+  --g-600: #46a03f;
+  --g-500: #58b444;
+  --g-400: #70c050;  /* 重なる明るい円 */
+  --g-300: #96d477;
+  --g-200: #bfe5a8;
+  --g-100: #ddf1c9;
+  --g-50:  #f1f9e9;
+
+  /* アクセント */
+  --sun:       #f7d85a;  /* ロゴの「e」／カードの縁 */
+  --sun-deep:  #d9a91f;
+  --tangerine: #f5a93c;  /* 出展日バッジ（2日目） */
+  --navy:      #1f2a5a;  /* サーキュロのマフラー */
+  --cream:     #fbfaf3;
+  --ink:       #2a3342;  /* 本文 */
+  --ink-soft:  #5a6472;
+
+  /* 図解の4色（動画の循環図から） */
+  --dia-red:  #f2626e;
+  --dia-amber:#f5b14e;
+  --dia-sky:  #4fc3e0;
+  --dia-green:#5cb85c;
+
+  --radius-card: 1.75rem;
+
+  /* 紙テクスチャ：細かい粒 */
+  --noise-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* 紙テクスチャ：大きな斑 */
+  --noise-blotch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='520' height='520' filter='url(%23b)'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------
+   2. ベース
+   --------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+  color: var(--ink);
+  background-color: var(--cream);
+  line-height: 1.95;
+  letter-spacing: 0.02em;
+  overflow-wrap: break-word;
+}
+
+/* 見出しは丸ゴシック（動画の書体に寄せる） */
+h1, h2, h3, h4, .rounded-type {
+  font-family: 'Zen Maru Gothic', 'Noto Sans JP', 'Hiragino Maru Gothic ProN', sans-serif;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+/* 英字・数字の見出し（CIRCULAR ECONOMY LAB. や巨大な日付） */
+.display-en {
+  font-family: 'Anton', 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+.display-num {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 0.92;
+  font-feature-settings: 'tnum';
+}
+
+.text-body { color: var(--ink); }
+.text-soft { color: var(--ink-soft); }
+.leading-normal { line-height: 1.5; }
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+/* 白背景では黄色だと見えないので濃緑のリングにする */
+.on-light a:focus-visible,
+.on-light button:focus-visible,
+.on-light [tabindex]:focus-visible {
+  outline-color: var(--g-800);
+}
+
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 100; }
+.skip-link:focus {
+  left: 1rem; top: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: #fff; color: var(--g-900);
+  border: 3px solid var(--sun);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   3. 紙テクスチャの地
+   --------------------------------------------------------- */
+
+.paper {
+  position: relative;
+  isolation: isolate;
+}
+.paper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--noise-fine), var(--noise-blotch);
+  background-size: 180px 180px, 520px 520px;
+  opacity: 0.16;
+  mix-blend-mode: soft-light;
+}
+
+.paper-deep   { background-color: var(--g-900); }
+.paper-dark   { background-color: var(--g-800); }
+.paper-mid    { background-color: var(--g-700); }
+.paper-bright { background-color: var(--g-400); }
+.paper-cream  { background-color: var(--cream); }
+.paper-pale   { background-color: var(--g-50); }
+
+/* 深緑の地に、明るい緑の大きな円弧が重なる（チラシ表紙の構図） */
+.arc-overlay { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
+.arc-overlay span {
+  position: absolute;
+  border-radius: 50%;
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   4. ちぎり紙のエッジ
+   --------------------------------------------------------- */
+
+.torn {
+  display: block;
+  width: 100%;
+  height: 22px;
+  line-height: 0;
+}
+.torn svg { display: block; width: 100%; height: 100%; }
+@media (min-width: 768px) {
+  .torn { height: 34px; }
+}
+
+/* ---------------------------------------------------------
+   5. カード（白地＋黄色の縁 ＝ 動画の情報カード）
+   --------------------------------------------------------- */
+
+.card-y {
+  background: #fff;
+  border: 4px solid var(--sun);
+  border-radius: var(--radius-card);
+  box-shadow: 0 6px 0 rgba(26, 58, 29, 0.10);
+}
+.card-plain {
+  background: #fff;
+  border: 3px solid var(--g-100);
+  border-radius: 1.25rem;
+}
+/* 出展企業カードのように、ちぎった紙をそのまま置いた見え方 */
+.card-torn {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 3px 0 rgba(26, 58, 29, 0.12);
+  -webkit-mask-image: var(--torn-mask);
+  mask-image: var(--torn-mask);
+}
+
+/* ---------------------------------------------------------
+   6. 吹き出し（サーキュロ所長のせりふ）
+   --------------------------------------------------------- */
+
+.bubble {
+  position: relative;
+  background: #fff;
+  border-radius: 1.5rem;
+  color: var(--g-800);
+}
+/* 左向きのしっぽ（キャラが左にいるとき）。
+   ::before が黄色の縁、::after が白の内側。カードの border と同じ見え方にする。 */
+.bubble-l::before,
+.bubble-l::after {
+  content: '';
+  position: absolute;
+  width: 0; height: 0;
+  border-style: solid;
+}
+.bubble-l::before {
+  left: -30px;
+  top: 2.25rem;
+  border-width: 18px 30px 18px 0;
+  border-color: transparent var(--sun) transparent transparent;
+}
+.bubble-l::after {
+  left: -22px;
+  top: calc(2.25rem + 5px);
+  border-width: 13px 22px 13px 0;
+  border-color: transparent #fff transparent transparent;
+}
+@media (max-width: 767px) {
+  .bubble-l::before {
+    left: 2.25rem;
+    top: -30px;
+    border-width: 0 18px 30px 18px;
+    border-color: transparent transparent var(--sun) transparent;
+  }
+  .bubble-l::after {
+    left: calc(2.25rem + 5px);
+    top: -22px;
+    border-width: 0 13px 22px 13px;
+    border-color: transparent transparent #fff transparent;
+  }
+}
+
+/* ---------------------------------------------------------
+   7. バッジ・ピル
+   --------------------------------------------------------- */
+
+/* チラシの「事前申込不要」「参加費無料」 */
+.pill-outline {
+  display: inline-flex;
+  align-items: center;
+  border: 3px solid #fff;
+  border-radius: 999px;
+  padding: 0.3rem 1.1rem;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+/* 出展日の丸バッジ（チラシ裏面） */
+.badge-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.25rem;
+  height: 3.25rem;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+}
+.badge-day.is-second { background: var(--tangerine); }
+
+/* ---------------------------------------------------------
+   8. 見出しまわり
+   --------------------------------------------------------- */
+
+/* 深緑の地に載る白の大見出し */
+.title-on-dark { color: #fff; }
+
+/* 白地の見出しの上に置く小さなラベル */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.14em;
+  color: var(--g-700);
+  line-height: 1.4;
+}
+.eyebrow::before {
+  content: '';
+  width: 1.75rem; height: 4px;
+  border-radius: 2px;
+  background: var(--sun-deep);
+}
+/* 深い緑（--g-800 / --g-900）の上でだけ使う。黄色の文字は
+   明るい緑（--g-700）に載せると 3.45:1 で AA を満たさないため。 */
+.eyebrow-light { color: var(--sun); }
+.eyebrow-light::before { background: var(--sun); }
+
+/* 明るい緑（.paper-mid）の上ではラベルも白にする（黄色は棒だけ） */
+.eyebrow-white { color: #ffffff; }
+.eyebrow-white::before { background: var(--sun); }
+
+/* 黄色いアンダーライン（チラシの強調） */
+.underline-sun {
+  background-image: linear-gradient(transparent 62%, rgba(247, 216, 90, 0.85) 62%);
+  padding: 0 0.1em;
+}
+
+/* ---------------------------------------------------------
+   9. 写真
+   --------------------------------------------------------- */
+
+.photo-figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* 動画で多用される円形トリミング */
+.photo-circle {
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #fff;
+  box-shadow: 0 4px 0 rgba(26, 58, 29, 0.12);
+}
+
+.photo-placeholder {
+  background-color: var(--g-50);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(56, 128, 63, 0.10) 0, rgba(56, 128, 63, 0.10) 9px,
+    transparent 9px, transparent 18px
+  );
+}
+
+/* ---------------------------------------------------------
+   10. 動画埋め込み
+   --------------------------------------------------------- */
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: var(--g-950);
+}
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* ---------------------------------------------------------
+   11. 表
+   --------------------------------------------------------- */
+
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-scroll table { min-width: 40rem; }
+
+/* ---------------------------------------------------------
+   12. サーキュロ所長
+   --------------------------------------------------------- */
+
+.circulo { filter: drop-shadow(0 8px 10px rgba(26, 58, 29, 0.25)); }
+
+/* ゆっくり上下に浮く（控えめ） */
+@keyframes circulo-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.circulo-float { animation: circulo-float 5s ease-in-out infinite; }
+
+/* ---------------------------------------------------------
+   13. 配慮
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body { line-height: 1.7; background: #fff; }
+  .paper::after { display: none; }
+}
