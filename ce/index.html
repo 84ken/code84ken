@@ -46,8 +46,8 @@ tailwind.config = {
   }
 }
 </script>
-<link rel="stylesheet" href="/assets/css/site.css">
-<script src="/assets/js/site.js" defer></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=64ddd2f8">
+<script src="/assets/js/site.js?v=ba63475e" defer></script>
 </head>
 <body class="bg-cream">
 <a href="#main" class="skip-link">本文へスキップ</a>
@@ -355,7 +355,10 @@ tailwind.config = {
 
       <div class="mt-8 grid md:grid-cols-2 gap-5 lg:gap-6">
         <article class="bg-white rounded-3xl p-6 lg:p-8 flex flex-col">
-          <span class="self-start font-round bg-primary-100 text-primary-800 px-4 py-1.5 rounded-full text-sm font-bold leading-normal">登録制度</span>
+          <div class="flex items-start justify-between gap-4">
+            <span class="self-start font-round bg-primary-100 text-primary-800 px-4 py-1.5 rounded-full text-sm font-bold leading-normal">登録制度</span>
+            <img src="/assets/img/brand/sainokuni-ce.png" alt="彩の国サーキュラーエコノミー ロゴマーク" width="760" height="331" loading="lazy" decoding="async" class="h-14 sm:h-16 w-auto shrink-0">
+          </div>
           <h3 class="mt-4 text-xl lg:text-2xl font-bold text-primary-800">彩の国サーキュラーエコノミー</h3>
           <p class="mt-3 text-base text-body leading-relaxed flex-1">
             循環資源を使った製品や、サーキュラーエコノミーに取り組む企業を、埼玉県が登録して紹介する制度です。
@@ -367,7 +370,10 @@ tailwind.config = {
           </a>
         </article>
         <article class="bg-white rounded-3xl p-6 lg:p-8 flex flex-col">
-          <span class="self-start font-round bg-primary-100 text-primary-800 px-4 py-1.5 rounded-full text-sm font-bold leading-normal">認定制度</span>
+          <div class="flex items-start justify-between gap-4">
+            <span class="self-start font-round bg-primary-100 text-primary-800 px-4 py-1.5 rounded-full text-sm font-bold leading-normal">認定制度</span>
+            <img src="/assets/img/brand/sainokuni-recycle.png" alt="彩の国リサイクル製品 認定マーク" width="300" height="300" loading="lazy" decoding="async" class="h-20 sm:h-24 w-auto shrink-0">
+          </div>
           <h3 class="mt-4 text-xl lg:text-2xl font-bold text-primary-800">彩の国リサイクル認定製品</h3>
           <p class="mt-3 text-base text-body leading-relaxed flex-1">
             県内で発生した循環資源を使い、埼玉県の基準を満たした製品を認定する制度です。

@@ -1,6 +1,25 @@
 {
-  "_readme": "開催情報データ。status は upcoming / past。新しい開催を追加するときは配列の先頭に足してください。planned:true にすると「計画中」バッジになり、詳細ページへのリンクが外れます（日程・会場が固まったら planned を消して url を入れてください）。",
+  "_readme": "開催情報データ。配列の並び順がそのまま表示順になります。status は upcoming / past。planned:true にすると「計画中」バッジになり、詳細ページへのリンクが外れます（日程・会場が固まったら planned を消して url を入れてください）。",
   "events": [
+    {
+      "id": "koshigaya-2026",
+      "status": "upcoming",
+      "title": "サーキュラーエコノミーラボ in 越谷",
+      "titleNote": "名称は仮です",
+      "dateLabel": "2026年10月3日（土）・4日（日）",
+      "dateStart": "2026-10-03",
+      "dateEnd": "2026-10-04",
+      "venue": "越谷レイクタウン",
+      "area": "越谷市",
+      "concurrent": "SDGsフェス 併催",
+      "fee": "参加無料",
+      "booking": "事前申込不要",
+      "photo": "/assets/img/photo/koshigaya-lakepeace.jpg",
+      "photoAlt": "越谷レイクタウンの会場の様子",
+      "url": "/lab/events/koshigaya-2026/",
+      "reportUrl": null,
+      "summary": "2年ぶりに越谷レイクタウンへ。SDGsフェスと併せて開催します。出展企業と当日プログラムは決まりしだいお知らせします。"
+    },
     {
       "id": "kawagoe-2026",
       "status": "upcoming",
@@ -20,25 +39,6 @@
       "url": null,
       "reportUrl": null,
       "summary": "川越での開催を計画しています。日程・会場・出展企業は決まりしだい、このページでお知らせします。"
-    },
-    {
-      "id": "koshigaya-2026",
-      "status": "upcoming",
-      "title": "サーキュラーエコノミーラボ in 越谷",
-      "titleNote": "名称は仮です",
-      "dateLabel": "2026年10月3日（土）・4日（日）",
-      "dateStart": "2026-10-03",
-      "dateEnd": "2026-10-04",
-      "venue": "越谷レイクタウン",
-      "area": "越谷市",
-      "concurrent": "SDGsフェス 併催",
-      "fee": "参加無料",
-      "booking": "事前申込不要",
-      "photo": "/assets/img/photo/koshigaya-lakepeace.jpg",
-      "photoAlt": "越谷レイクタウンの会場の様子",
-      "url": "/lab/events/koshigaya-2026/",
-      "reportUrl": null,
-      "summary": "2年ぶりに越谷レイクタウンへ。SDGsフェスと併せて開催します。出展企業と当日プログラムは決まりしだいお知らせします。"
     },
     {
       "id": "hanyu-2026",
