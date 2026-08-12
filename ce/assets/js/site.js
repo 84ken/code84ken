@@ -144,27 +144,43 @@
         '</div>';
     }
 
-    var label = upcoming
-      ? '<span class="font-round bg-sun text-navy px-4 py-1.5 rounded-full text-sm font-bold">次回開催</span>'
-      : '<span class="font-round bg-primary-100 text-primary-800 px-4 py-1.5 rounded-full text-sm font-bold">開催終了</span>';
+    var planned = ev.planned === true;
+
+    var label = planned
+      ? '<span class="font-round bg-primary-100 text-primary-800 px-4 py-1.5 rounded-full text-sm font-bold">計画中</span>'
+      : upcoming
+        ? '<span class="font-round bg-sun text-navy px-4 py-1.5 rounded-full text-sm font-bold">次回開催</span>'
+        : '<span class="font-round bg-primary-100 text-primary-800 px-4 py-1.5 rounded-full text-sm font-bold">開催終了</span>';
+
+    var note = ev.titleNote
+      ? '<p class="mt-1 text-sm text-soft leading-normal">※ ' + esc(ev.titleNote) + '</p>'
+      : '';
 
     var cta = upcoming ? '開催のくわしい情報' : '開催レポートを読む';
-    var frame = upcoming ? 'card-y' : 'bg-white border-[3px] border-primary-100 rounded-3xl group-hover:border-sun transition-colors';
+    var frame = planned
+      ? 'bg-white border-[3px] border-dashed border-primary-300 rounded-3xl'
+      : upcoming
+        ? 'card-y'
+        : 'bg-white border-[3px] border-primary-100 rounded-3xl group-hover:border-sun transition-colors';
 
-    return '' +
-      '<article class="h-full">' +
-        '<a href="' + esc(ev.url) + '" class="group flex flex-col h-full ' + frame + ' overflow-hidden">' +
-          '<div class="photo-figure aspect-[3/2] bg-primary-50 overflow-hidden">' + img + '</div>' +
-          '<div class="p-6 flex flex-col flex-1">' +
-            '<div class="leading-normal mb-3">' + label + '</div>' +
-            '<h3 class="font-round text-xl font-bold text-primary-800">' + esc(ev.title) + '</h3>' +
-            '<div class="mt-3 space-y-1.5 text-[0.9375rem] text-body leading-relaxed">' + meta + '</div>' +
-            '<p class="mt-4 text-base text-body leading-relaxed flex-1">' + esc(ev.summary) + '</p>' +
-            stats +
-            '<span class="font-round mt-5 inline-flex items-center gap-1.5 text-base font-bold text-primary-700 leading-normal">' + cta + ARROW + '</span>' +
-          '</div>' +
-        '</a>' +
-      '</article>';
+    var inner =
+      '<div class="photo-figure aspect-[3/2] bg-primary-50 overflow-hidden">' + img + '</div>' +
+      '<div class="p-6 flex flex-col flex-1">' +
+        '<div class="leading-normal mb-3">' + label + '</div>' +
+        '<h3 class="font-round text-xl font-bold text-primary-800">' + esc(ev.title) + '</h3>' +
+        note +
+        '<div class="mt-3 space-y-1.5 text-[0.9375rem] text-body leading-relaxed">' + meta + '</div>' +
+        '<p class="mt-4 text-base text-body leading-relaxed flex-1">' + esc(ev.summary) + '</p>' +
+        stats +
+        (ev.url
+          ? '<span class="font-round mt-5 inline-flex items-center gap-1.5 text-base font-bold text-primary-700 leading-normal">' + cta + ARROW + '</span>'
+          : '<span class="font-round mt-5 inline-flex items-center gap-1.5 text-base font-bold text-soft leading-normal">続報をお待ちください</span>') +
+      '</div>';
+
+    // リンク先が無い（計画中の）回は、カード全体をリンクにしない
+    return ev.url
+      ? '<article class="h-full"><a href="' + esc(ev.url) + '" class="group flex flex-col h-full ' + frame + ' overflow-hidden">' + inner + '</a></article>'
+      : '<article class="h-full"><div class="flex flex-col h-full ' + frame + ' overflow-hidden">' + inner + '</div></article>';
   }
 
   function initEvents() {
