@@ -258,8 +258,21 @@
   function initExhibitors() {
     var host = $('[data-exhibitors]');
     if (!host) return;
-    var countEl = $('[data-exhibitor-count]');
+    var countEls = $$('[data-exhibitor-count]');
     var filterHost = $('[data-exhibitor-filters]');
+
+    // スマホ用：絞り込みパネルの開閉
+    var fToggle = $('#filterToggle');
+    var fPanel = $('#filterPanel');
+    if (fToggle && fPanel) {
+      fToggle.addEventListener('click', function () {
+        var open = fPanel.classList.contains('hidden');
+        fPanel.classList.toggle('hidden', !open);
+        fToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        var chev = $('[data-filter-chevron]', fToggle);
+        if (chev) chev.style.transform = open ? 'rotate(180deg)' : '';
+      });
+    }
 
     getJSON('exhibitors.json').then(function (d) {
       host.innerHTML = d.exhibitors.map(exhibitorCard).join('');
@@ -278,7 +291,7 @@
           card.classList.toggle('hidden', !ok);
           if (ok) shown++;
         });
-        if (countEl) countEl.textContent = shown;
+        countEls.forEach(function (el) { el.textContent = shown; });
         var empty = $('[data-exhibitor-empty]');
         if (empty) empty.classList.toggle('hidden', shown > 0);
       }
