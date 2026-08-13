@@ -259,6 +259,40 @@
     .project-tag { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; padding:.25rem .7rem; background:var(--blue-l); border:1px solid var(--blue); color:var(--blue-d); transition:background .4s,border-color .4s,color .4s; }
     .project-coming { text-align:center; padding:3rem 2rem; border:2px dashed var(--border); font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); }
 
+    /* ── FEATURED PRODUCT (ItaLog) ── */
+    .featured-product { display:grid; grid-template-columns:1.05fr 1fr; background:var(--white); border:2px solid var(--ink); margin-top:3rem; text-decoration:none; color:inherit; transition:transform .2s,box-shadow .2s; overflow:hidden; }
+    .featured-product:hover { transform:translateY(-4px); box-shadow:6px 6px 0 var(--blue); }
+    .featured-product-image { position:relative; overflow:hidden; min-height:360px; border-right:2px solid var(--ink); }
+    .featured-product-image img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s; }
+    .featured-product:hover .featured-product-image img { transform:scale(1.04); }
+    .featured-badge { position:absolute; top:1.2rem; left:1.2rem; background:var(--ink); color:var(--blue); font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:.75rem; letter-spacing:.25em; text-transform:uppercase; padding:.5rem 1rem; transition:color .4s; }
+    body.hot .featured-badge { color:var(--heat); }
+    .featured-product-body { padding:2.5rem; display:flex; flex-direction:column; justify-content:center; gap:1rem; }
+    .featured-status { font-family:'Barlow Condensed',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--blue-d); transition:color .4s; }
+    .featured-name { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,2.6rem); letter-spacing:.03em; text-transform:uppercase; color:var(--ink); line-height:1.05; }
+    .featured-tagline { font-size:.98rem; line-height:1.85; color:var(--ink-2); }
+    .featured-specs { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:.6rem; padding:1.2rem 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .featured-spec-label { font-family:'Barlow Condensed',sans-serif; font-size:.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:.3rem; }
+    .featured-spec-value { font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:800; color:var(--ink); letter-spacing:.02em; line-height:1.3; }
+    .featured-awards { display:flex; align-items:center; gap:.9rem; margin-top:.2rem; }
+    .featured-award-mark { width:62px; height:auto; display:block; flex-shrink:0; mix-blend-mode:multiply; }
+    .featured-award-label { font-family:'Barlow Condensed',sans-serif; font-size:.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:.15rem; }
+    .featured-award-value { font-size:.9rem; font-weight:700; color:var(--ink); line-height:1.5; }
+    .featured-price-row { display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap; }
+    .featured-price-label { font-family:'Barlow Condensed',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); }
+    .featured-price { font-family:'Barlow Condensed',sans-serif; font-size:1.6rem; font-weight:900; color:var(--ink); letter-spacing:.02em; }
+    .featured-price-unit { font-family:'Barlow Condensed',sans-serif; font-size:.9rem; font-weight:700; color:var(--ink-3); letter-spacing:.05em; }
+    .featured-cta { display:inline-flex; align-items:center; gap:.6rem; align-self:flex-start; background:var(--ink); color:var(--white); font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1rem; letter-spacing:.15em; text-transform:uppercase; padding:.9rem 1.6rem; margin-top:.4rem; transition:background .4s; }
+    body.hot .featured-cta { background:var(--heat); }
+    .featured-cta-arrow { display:inline-block; transition:transform .2s; }
+    .featured-product:hover .featured-cta-arrow { transform:translateX(4px); }
+    @media (max-width: 760px) {
+      .featured-product { grid-template-columns:1fr; }
+      .featured-product-image { border-right:none; border-bottom:2px solid var(--ink); min-height:260px; }
+      .featured-product-body { padding:1.8rem; }
+      .featured-specs { grid-template-columns:1fr 1fr; }
+    }
+
     /* ── INSTAGRAM ── */
     .instagram-wrap { background:var(--white); }
     .ig-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
@@ -529,6 +563,46 @@
       <h2 class="heading">SAUNA<br>PROJECTS</h2>
       <div class="rule"></div>
       <p style="color:var(--ink-2);line-height:1.8;max-width:560px;">サウナを軸にした企画・コラボレーション。<br>カルチャーとビジネスの交差点から、新しい価値を発信していきます。</p>
+
+      <a href="https://italog.schema.tokyo/" target="_blank" rel="noopener" class="featured-product heatable">
+        <div class="featured-product-image">
+          <img src="italog.jpg" alt="ITaLOG SAUNA — フィンランド式サウナ小屋">
+          <span class="featured-badge">Featured Product</span>
+        </div>
+        <div class="featured-product-body">
+          <div class="featured-status">Finnish Sauna Cabin</div>
+          <h3 class="featured-name">ITaLOG<br>SAUNA</h3>
+          <p class="featured-tagline">流体力学を応用したフィンランド式サウナ小屋。わずか30ccのロウリュで足元まで均一に蒸気が巡る独自設計。</p>
+          <div class="featured-specs">
+            <div>
+              <div class="featured-spec-label">Material</div>
+              <div class="featured-spec-value">100% 国産木材</div>
+            </div>
+            <div>
+              <div class="featured-spec-label">Löyly</div>
+              <div class="featured-spec-value">30cc / 全身循環</div>
+            </div>
+            <div>
+              <div class="featured-spec-label">Insulation</div>
+              <div class="featured-spec-value">石油系ゼロ</div>
+            </div>
+          </div>
+          <div class="featured-awards">
+            <img src="wooddesign-2024.jpg" alt="ウッドデザイン賞 2024 受賞マーク" class="featured-award-mark">
+            <div>
+              <div class="featured-award-label">Award</div>
+              <div class="featured-award-value">ウッドデザイン賞 2023・2024 受賞</div>
+            </div>
+          </div>
+          <div class="featured-price-row">
+            <span class="featured-price-label">Price</span>
+            <span class="featured-price">¥2,000,000</span>
+            <span class="featured-price-unit">〜（税別・オーダー可）</span>
+          </div>
+          <span class="featured-cta">View Product <span class="featured-cta-arrow">→</span></span>
+        </div>
+      </a>
+
       <div class="projects-grid">
         <a href="http://kawatosauna.love/" target="_blank" rel="noopener" class="project-card heatable" style="text-decoration:none;color:inherit;">
           <img src="kawa-to-sauna.jpg" alt="川とサウナ" class="project-thumb">
@@ -569,20 +643,6 @@
             <div class="project-tags">
               <span class="project-tag">#Facility</span>
               <span class="project-tag">#Produce</span>
-            </div>
-          </div>
-        </a>
-        <a href="https://italog.schema.tokyo/" target="_blank" rel="noopener" class="project-card heatable" style="text-decoration:none;color:inherit;">
-          <img src="italog.jpg" alt="ITaLOG SAUNA" class="project-thumb">
-          <div class="project-card-header">
-            <div class="project-status">Product</div>
-            <div class="project-name">ITaLOG SAUNA</div>
-          </div>
-          <div class="project-card-body">
-            <p class="project-desc">流体力学を応用したフィンランド式サウナ小屋。わずか30ccのロウリュで足元まで均一に蒸気が巡る独自設計。100%国産木材・石油系断熱材ゼロの有機構造。</p>
-            <div class="project-tags">
-              <span class="project-tag">#Cabin</span>
-              <span class="project-tag">#Engineering</span>
             </div>
           </div>
         </a>
