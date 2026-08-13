@@ -220,185 +220,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
-          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
-          800:'#13318d',900:'#0e266a',950:'#07194e'
-        },
-        wood: {
-          50:'#fbf7f0', 100:'#f4ead5', 200:'#e8d3a8', 300:'#d8b478',
-          400:'#c89052', 500:'#b27340', 600:'#925a32', 700:'#73452a',
-          800:'#553224', 900:'#3a221a'
-        }
-      },
-      fontFamily: {
-        sans: ['Inter','"Noto Sans JP"','"Hiragino Sans"','"Hiragino Kaku Gothic ProN"','sans-serif'],
-        serif: ['"Noto Serif JP"','"Hiragino Mincho ProN"','serif']
-      }
-    }
-  }
-}
-</script>
-<style>
-  :root { --body: #3d4b5f; --ink: #0a0a0a; }
-  body { font-family: 'Inter','Noto Sans JP','Hiragino Sans',sans-serif; -webkit-font-smoothing: antialiased; }
-  .text-body { color: var(--body); }
-  .text-ink { color: var(--ink); }
-  .leading-relaxed-jp { line-height: 2.0; }
-
-  /* === Pamphlet aesthetic === */
-  /* Wood texture backgrounds (using actual plywood photo) */
-  .bg-plywood {
-    background-image: url('assets/img/photos/img_8137.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-  .bg-plywood-dark {
-    background-image: linear-gradient(rgba(20,14,8,0.78), rgba(10,6,3,0.92)), url('assets/img/photos/img_8137.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-  .bg-plywood-warm {
-    background-image: linear-gradient(rgba(255,251,243,0.82), rgba(255,251,243,0.92)), url('assets/img/photos/img_8137.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-  /* Pill label — black with white text, like pamphlet section titles */
-  .pill-label {
-    display: inline-flex;
-    align-items: center;
-    background: var(--ink);
-    color: #fff;
-    border-radius: 9999px;
-    padding: 0.55rem 1.5rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-  }
-  .pill-label-light {
-    display: inline-flex;
-    align-items: center;
-    background: #fff;
-    color: var(--ink);
-    border-radius: 9999px;
-    padding: 0.55rem 1.5rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-  }
-  /* Pamphlet-style framed card */
-  .pamphlet-frame {
-    background: #fff;
-    border: 2px solid var(--ink);
-    border-radius: 1.75rem;
-    box-shadow: 0 0 0 6px #fff, 0 0 0 7px rgba(10,10,10,0.06);
-  }
-  .pamphlet-frame-dark {
-    background: var(--ink);
-    color: #fff;
-    border: 2px solid #fff;
-    border-radius: 1.75rem;
-    box-shadow: 0 0 0 6px var(--ink), 0 0 0 7px rgba(255,255,255,0.15);
-  }
-  /* Hero overlay */
-  .hero-image {
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.65) 100%), url('assets/img/photos/_dsc1232.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-  /* Vertical Japanese writing for desktop */
-  @media (min-width: 1024px) {
-    .vert-jp-lg {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      letter-spacing: 0.18em;
-    }
-  }
-  .vert-jp-sm {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    letter-spacing: 0.15em;
-  }
-  .marker-line {
-    background: linear-gradient(transparent 60%, rgba(10,10,10,0.12) 60%);
-  }
-  .step-num {
-    font-feature-settings: "tnum";
-    letter-spacing: -0.02em;
-  }
-  html { scroll-behavior: smooth; }
-  details > summary { list-style: none; cursor: pointer; }
-  details > summary::-webkit-details-marker { display: none; }
-
-  /* === Steam flow animations === */
-  @keyframes flow-dash {
-    to { stroke-dashoffset: -28; }
-  }
-  .flow-line {
-    stroke-dasharray: 8 6;
-    stroke-dashoffset: 0;
-    animation: flow-dash 2s linear infinite;
-  }
-  .flow-line-slow {
-    stroke-dasharray: 8 6;
-    stroke-dashoffset: 0;
-    animation: flow-dash 3.5s linear infinite;
-  }
-  /* For paths originally drawn with stroke-dasharray="3,2" — keep their dash but animate offset */
-  @keyframes flow-dash-short {
-    to { stroke-dashoffset: -10; }
-  }
-  .flow-line-short {
-    animation: flow-dash-short 1.2s linear infinite;
-  }
-  /* Karman vortex circles — gentle pulse */
-  @keyframes vortex-pulse {
-    0%, 100% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.15); opacity: 1; }
-  }
-  .vortex {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: vortex-pulse 2.4s ease-in-out infinite;
-  }
-  /* Slight rotation on the central karman cylinder for "spinning vortex" feeling */
-  @keyframes vortex-spin {
-    to { transform: rotate(360deg); }
-  }
-  /* Stagger delays so vortices feel like a chain */
-  .vortex-d1 { animation-delay: 0.3s; }
-  .vortex-d2 { animation-delay: 0.6s; }
-  .vortex-d3 { animation-delay: 0.9s; }
-  .vortex-d4 { animation-delay: 1.2s; }
-
-  /* === Hero ambient steam wisps === */
-  @keyframes hero-wisp {
-    to { stroke-dashoffset: -80; }
-  }
-  .hero-wisp {
-    stroke-dasharray: 14 10;
-    animation: hero-wisp 6s linear infinite;
-  }
-  .hero-wisp-slow {
-    stroke-dasharray: 14 10;
-    animation: hero-wisp 10s linear infinite;
-  }
-  .hero-wisp-faster {
-    stroke-dasharray: 14 10;
-    animation: hero-wisp 4.5s linear infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .flow-line, .flow-line-slow, .flow-line-short, .vortex,
-    .hero-wisp, .hero-wisp-slow, .hero-wisp-faster { animation: none; }
-  }
-</style>
+<link rel="stylesheet" href="/assets/css/style.css" />
 </head>
 <body class="bg-white text-body antialiased">
 
@@ -415,7 +237,7 @@ tailwind.config = {
       <a href="#spec" class="hover:text-slate-900 transition-colors">仕様</a>
       <a href="#cases" class="hover:text-slate-900 transition-colors">導入事例</a>
       <a href="#process" class="hover:text-slate-900 transition-colors">導入の流れ</a>
-      <a href="#faq" class="hover:text-slate-900 transition-colors">よくあるご質問</a>
+      <a href="/guide/" class="hover:text-slate-900 transition-colors">導入ガイド</a>
       <a href="#contact" class="ml-2 inline-flex items-center justify-center h-9 px-4 text-sm font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">お問い合わせ</a>
     </nav>
     <a href="#contact" class="md:hidden inline-flex items-center justify-center h-9 px-3 text-sm font-medium bg-slate-900 text-white rounded-lg cursor-pointer">お問い合わせ</a>
@@ -903,6 +725,12 @@ tailwind.config = {
     <p class="mt-10 text-center text-sm text-body">
       その他、ウェルネス事業者・宿泊施設・地域施設への導入事例を順次公開予定。
     </p>
+    <div class="mt-8 text-center">
+      <a href="/guide/" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-white text-slate-900 border border-slate-300 rounded-full hover:bg-gray-50 cursor-pointer transition-colors">
+        設置条件・費用・法規を詳しく見る（導入ガイド）
+        <svg class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 

@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== ITaLOG SAUNA custom styles ===== */
+  :root { --body: #3d4b5f; --ink: #0a0a0a; }
+  body { font-family: 'Inter','Noto Sans JP','Hiragino Sans',sans-serif; -webkit-font-smoothing: antialiased; }
+  .text-body { color: var(--body); }
+  .text-ink { color: var(--ink); }
+  .leading-relaxed-jp { line-height: 2.0; }
+
+  /* === Pamphlet aesthetic === */
+  /* Wood texture backgrounds (using actual plywood photo) */
+  .bg-plywood {
+    background-image: url('/assets/img/photos/img_8137.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .bg-plywood-dark {
+    background-image: linear-gradient(rgba(20,14,8,0.78), rgba(10,6,3,0.92)), url('/assets/img/photos/img_8137.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .bg-plywood-warm {
+    background-image: linear-gradient(rgba(255,251,243,0.82), rgba(255,251,243,0.92)), url('/assets/img/photos/img_8137.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  /* Pill label — black with white text, like pamphlet section titles */
+  .pill-label {
+    display: inline-flex;
+    align-items: center;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 9999px;
+    padding: 0.55rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+  }
+  .pill-label-light {
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    color: var(--ink);
+    border-radius: 9999px;
+    padding: 0.55rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+  }
+  /* Pamphlet-style framed card */
+  .pamphlet-frame {
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 1.75rem;
+    box-shadow: 0 0 0 6px #fff, 0 0 0 7px rgba(10,10,10,0.06);
+  }
+  .pamphlet-frame-dark {
+    background: var(--ink);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 1.75rem;
+    box-shadow: 0 0 0 6px var(--ink), 0 0 0 7px rgba(255,255,255,0.15);
+  }
+  /* Hero overlay */
+  .hero-image {
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.65) 100%), url('/assets/img/photos/_dsc1232.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  /* Vertical Japanese writing for desktop */
+  @media (min-width: 1024px) {
+    .vert-jp-lg {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0.18em;
+    }
+  }
+  .vert-jp-sm {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.15em;
+  }
+  .marker-line {
+    background: linear-gradient(transparent 60%, rgba(10,10,10,0.12) 60%);
+  }
+  .step-num {
+    font-feature-settings: "tnum";
+    letter-spacing: -0.02em;
+  }
+  html { scroll-behavior: smooth; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+
+  /* === Steam flow animations === */
+  @keyframes flow-dash {
+    to { stroke-dashoffset: -28; }
+  }
+  .flow-line {
+    stroke-dasharray: 8 6;
+    stroke-dashoffset: 0;
+    animation: flow-dash 2s linear infinite;
+  }
+  .flow-line-slow {
+    stroke-dasharray: 8 6;
+    stroke-dashoffset: 0;
+    animation: flow-dash 3.5s linear infinite;
+  }
+  /* For paths originally drawn with stroke-dasharray="3,2" — keep their dash but animate offset */
+  @keyframes flow-dash-short {
+    to { stroke-dashoffset: -10; }
+  }
+  .flow-line-short {
+    animation: flow-dash-short 1.2s linear infinite;
+  }
+  /* Karman vortex circles — gentle pulse */
+  @keyframes vortex-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+  .vortex {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: vortex-pulse 2.4s ease-in-out infinite;
+  }
+  /* Slight rotation on the central karman cylinder for "spinning vortex" feeling */
+  @keyframes vortex-spin {
+    to { transform: rotate(360deg); }
+  }
+  /* Stagger delays so vortices feel like a chain */
+  .vortex-d1 { animation-delay: 0.3s; }
+  .vortex-d2 { animation-delay: 0.6s; }
+  .vortex-d3 { animation-delay: 0.9s; }
+  .vortex-d4 { animation-delay: 1.2s; }
+
+  /* === Hero ambient steam wisps === */
+  @keyframes hero-wisp {
+    to { stroke-dashoffset: -80; }
+  }
+  .hero-wisp {
+    stroke-dasharray: 14 10;
+    animation: hero-wisp 6s linear infinite;
+  }
+  .hero-wisp-slow {
+    stroke-dasharray: 14 10;
+    animation: hero-wisp 10s linear infinite;
+  }
+  .hero-wisp-faster {
+    stroke-dasharray: 14 10;
+    animation: hero-wisp 4.5s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flow-line, .flow-line-slow, .flow-line-short, .vortex,
+    .hero-wisp, .hero-wisp-slow, .hero-wisp-faster { animation: none; }
+  }

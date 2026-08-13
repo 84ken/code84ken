@@ -19,4 +19,14 @@
       <image:title>個人邸宅向けプライベートサウナ ITaLOG SAUNA</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://italog.schema.tokyo/guide/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://italog.schema.tokyo/assets/img/og-image.jpg</image:loc>
+      <image:title>サウナ小屋 導入ガイド — 設置条件・費用・電気工事・法規</image:title>
+    </image:image>
+  </url>
 </urlset>

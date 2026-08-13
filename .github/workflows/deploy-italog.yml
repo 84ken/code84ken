@@ -29,3 +29,5 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            **/_build/**
+            **/node_modules/**
