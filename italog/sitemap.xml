@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
   <url>
     <loc>https://italog.schema.tokyo/</loc>
-    <lastmod>2026-05-07</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/0.9">
+    <image:image>
       <image:loc>https://italog.schema.tokyo/assets/img/og-image.jpg</image:loc>
       <image:title>ITaLOG SAUNA — 常軌を逸した蒸気のサウナ小屋</image:title>
     </image:image>
-    <image:image xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/0.9">
+    <image:image>
       <image:loc>https://italog.schema.tokyo/assets/img/photos/_dsc1232.jpg</image:loc>
-      <image:title>ocomori sauna 内観</image:title>
+      <image:title>ocomori sauna 内観 — 流体力学で設計されたサウナ小屋</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://italog.schema.tokyo/assets/img/photos/img_4381.jpg</image:loc>
+      <image:title>個人邸宅向けプライベートサウナ ITaLOG SAUNA</image:title>
     </image:image>
   </url>
 </urlset>

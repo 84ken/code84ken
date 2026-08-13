@@ -1,0 +1,30 @@
+# ITaLOG SAUNA — canonical host + performance
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # www を non-www に統一（重複コンテンツ防止）
+  RewriteCond %{HTTP_HOST} ^www\.italog\.schema\.tokyo$ [NC]
+  RewriteRule ^(.*)$ https://italog.schema.tokyo/$1 [R=301,L]
+
+  # HTTP を HTTPS に統一
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://italog.schema.tokyo/$1 [R=301,L]
+</IfModule>
+
+# gzip 圧縮
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml text/xml application/xml
+</IfModule>
+
+# ブラウザキャッシュ
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
