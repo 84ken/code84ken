@@ -1,14 +1,15 @@
 # ITaLOG SAUNA — canonical host + performance
+#
+# 注: HTTP→HTTPS のリダイレクトは ConoHa WING の「常時SSL化」設定が
+# 既に処理しているため .htaccess では行わない。
+# （ConoHa はプロキシで SSL 終端するため %{HTTPS} が常に off となり、
+#   条件を書くと無限リダイレクトになる）
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
   # www を non-www に統一（重複コンテンツ防止）
   RewriteCond %{HTTP_HOST} ^www\.italog\.schema\.tokyo$ [NC]
-  RewriteRule ^(.*)$ https://italog.schema.tokyo/$1 [R=301,L]
-
-  # HTTP を HTTPS に統一
-  RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://italog.schema.tokyo/$1 [R=301,L]
 </IfModule>
 
