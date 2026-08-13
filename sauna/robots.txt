@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /og-convert.html
+Disallow: /*.ai$
+Disallow: /*.pdf$
+
+Sitemap: https://sauna.llschema.com/sitemap.xml

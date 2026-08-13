@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAUNAFULLNESS | 84ken（橋本健太郎）のサウナプロジェクト</title>
+
+  <!-- SEO -->
+  <meta name="description" content="84ken（橋本健太郎）のサウナサイト SAUNAFULLNESS。日本・北欧・台湾のサウナを巡るサウナー／プロデューサー。川とサウナ、BRUTUS編集、サウナ施設プロデュース、サウナマルシェ、サウナドリンク開発などのプロジェクトを発信。">
+  <meta name="author" content="84ken (橋本健太郎)">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://sauna.llschema.com/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%235bc4f0'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='38' fill='%230a0e14'>S</text></svg>">
+
+  <!-- OGP -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="SAUNAFULLNESS | 84ken（橋本健太郎）のサウナプロジェクト">
+  <meta property="og:description" content="84ken（橋本健太郎）のサウナサイト SAUNAFULLNESS。日本・北欧・台湾のサウナを巡るサウナー／プロデューサー。サウナ施設プロデュース、BRUTUS編集などのプロジェクトを発信。">
+  <meta property="og:image"       content="https://sauna.llschema.com/og-image.png">
+  <meta property="og:url"         content="https://sauna.llschema.com/">
+  <meta property="og:site_name"   content="SAUNAFULLNESS">
+  <meta property="og:locale"      content="ja_JP">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="SAUNAFULLNESS | 84ken（橋本健太郎）のサウナプロジェクト">
+  <meta name="twitter:description" content="84ken（橋本健太郎）のサウナサイト SAUNAFULLNESS。サウナー／プロデューサーによるプロジェクト発信。">
+  <meta name="twitter:image"      content="https://sauna.llschema.com/og-image.png">
+  <meta name="twitter:site"       content="@84ken">
+  <meta name="twitter:creator"    content="@84ken">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Barlow:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:   #5bc4f0;
+      --blue-d: #2aa8da;
+      --blue-l: #daf3fd;
+      --sky:    #e8f7fd;
+      --white:  #ffffff;
+      --ink:    #0a0e14;
+      --ink-2:  #2c3540;
+      --ink-3:  #6b7a8a;
+      --border: #c8e8f5;
+      --heat:   #e63946;
+      --heat-d: #c1121f;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family:'Barlow','Noto Sans JP',sans-serif;
+      background:var(--white); color:var(--ink);
+      overflow-x:hidden; transition:background .6s;
+    }
+
+    body.hot  { --blue:#e63946; --blue-d:#c1121f; --blue-l:#fde8ea; --sky:#fff0f1; --border:#f5c8cb; }
+    body.rainbow { animation:rainbowBG .4s linear infinite; }
+
+    @keyframes rainbowBG {
+      0%{background:#ffe0e0}14%{background:#fff4e0}28%{background:#fffde0}
+      42%{background:#e0ffe4}57%{background:#e0f4ff}71%{background:#eee0ff}
+      85%{background:#ffe0f8}100%{background:#ffe0e0}
+    }
+
+    /* ── GAUGE ── */
+    #gauge { position:fixed; right:1.5rem; top:50%; transform:translateY(-50%); z-index:200; display:flex; flex-direction:column; align-items:center; gap:.5rem; }
+    #gauge-label { font-family:'Barlow Condensed',sans-serif; font-size:.65rem; font-weight:900; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); writing-mode:vertical-rl; transform:rotate(180deg); }
+    #gauge-track { width:10px; height:120px; background:rgba(0,0,0,.08); border:2px solid var(--ink); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; }
+    #gauge-fill  { width:100%; height:0%; background:#5bc4f0; border-radius:4px; transition:height .3s,background .3s; }
+    #gauge-icon  { font-size:1.2rem; }
+
+    /* ── TOTONOU OVERLAY ── */
+    #totonou-overlay { position:fixed; inset:0; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; opacity:0; transition:opacity .5s; }
+    #totonou-overlay.show { opacity:1; pointer-events:all; animation:rainbowBG .3s linear infinite; }
+    #totonou-text { font-family:'Barlow Condensed',sans-serif; font-size:clamp(4rem,15vw,10rem); font-weight:900; text-transform:uppercase; text-align:center; line-height:1; animation:rainbowText .25s linear infinite; text-shadow:4px 4px 0 rgba(0,0,0,.12); }
+    #totonou-jp   { font-family:'Noto Sans JP',sans-serif; font-size:clamp(2rem,6vw,4rem); font-weight:900; margin-top:1rem; animation:rainbowText .25s linear infinite; animation-delay:.08s; }
+    #totonou-hint { margin-top:2rem; font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:rgba(0,0,0,.45); animation:fadeIn 1s ease .5s both; }
+    @keyframes rainbowText { 0%{color:#e63946}16%{color:#f4a261}33%{color:#2a9d8f}50%{color:#457b9d}66%{color:#7b2d8b}83%{color:#e9c46a}100%{color:#e63946} }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+    .particle { position:fixed; pointer-events:none; animation:floatUp 2s ease-out forwards; z-index:10000; }
+    @keyframes floatUp { 0%{transform:translateY(0) scale(1) rotate(0deg);opacity:1} 100%{transform:translateY(-300px) scale(.3) rotate(360deg);opacity:0} }
+    .ripple { position:fixed; border-radius:50%; pointer-events:none; transform:scale(0); animation:rippleOut .6s ease-out forwards; z-index:300; }
+    @keyframes rippleOut { to{transform:scale(4);opacity:0} }
+
+    /* ── DENKI (ELECTRIC) ── */
+    @keyframes biribiri {
+      0%{transform:translate(0,0)} 10%{transform:translate(-3px,2px)} 20%{transform:translate(3px,-2px)}
+      30%{transform:translate(-2px,-3px)} 40%{transform:translate(2px,3px)} 50%{transform:translate(-3px,1px)}
+      60%{transform:translate(3px,-1px)} 70%{transform:translate(-1px,3px)} 80%{transform:translate(1px,-3px)}
+      90%{transform:translate(-2px,2px)} 100%{transform:translate(0,0)}
+    }
+    body.biribiri { animation:biribiri .15s linear 3; }
+    body.biribiri::after {
+      content:''; position:fixed; inset:0; z-index:9998;
+      pointer-events:none; mix-blend-mode:overlay;
+      background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,0,.08) 2px,rgba(255,255,0,.08) 4px);
+      animation:biriFlash .1s steps(2) 5;
+    }
+    @keyframes biriFlash { 0%{opacity:1} 50%{opacity:0} 100%{opacity:1} }
+    .denki-spark {
+      position:fixed; pointer-events:none; z-index:10000;
+      font-size:1.5rem; animation:sparkFloat .6s ease-out forwards;
+    }
+    @keyframes sparkFloat {
+      0%{transform:translateY(0) scale(1);opacity:1}
+      100%{transform:translateY(-80px) scale(.4);opacity:0}
+    }
+
+    /* ── HOT HOVER ── */
+    .heatable { transition:background .3s,border-color .3s; }
+    .heatable.hot-hover { background:#fff0f1!important; border-color:var(--heat)!important; }
+    .heatable.hot-hover .step-num,.heatable.hot-hover .temp-num span { color:var(--heat)!important; }
+    .heatable.hot-hover .step-title,.heatable.hot-hover .step-jp { color:#e63946!important; }
+
+    /* ── NAV ── */
+    nav { position:fixed; top:0; width:100%; z-index:100; padding:0 2rem; height:72px; display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,.97); backdrop-filter:blur(14px); border-bottom:3px solid var(--ink); transition:border-color .4s; }
+    body.hot nav { border-bottom-color:var(--heat); }
+    .nav-title { font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); text-decoration:none; transition:color .3s; }
+    .nav-title:hover { color:var(--blue-d); }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-2); text-decoration:none; transition:color .15s; }
+    .nav-links a:hover { color:var(--blue-d); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; z-index:101; background:none; border:none; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--ink); border-radius:1px; transition:transform .3s, opacity .3s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    /* ── HERO ── */
+    .hero { min-height:100vh; background:var(--sky); display:grid; grid-template-rows:1fr auto; padding-top:72px; position:relative; overflow:hidden; transition:background .6s; }
+    .hero-bg-text { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'Barlow Condensed',sans-serif; font-size:clamp(120px,22vw,280px); font-weight:900; text-transform:uppercase; letter-spacing:-.03em; color:rgba(91,196,240,.12); white-space:nowrap; pointer-events:none; user-select:none; transition:color .6s; }
+    body.hot .hero-bg-text { color:rgba(230,57,70,.12); }
+    .hero-inner { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:4rem 2rem 2rem; position:relative; z-index:1; }
+    .hero-brand-img { width:min(480px,75vw); display:block; margin-bottom:2rem; animation:heroBrandIn .8s cubic-bezier(.22,1,.36,1) both; }
+    @keyframes heroBrandIn { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+    .hero-tagline { font-family:'Barlow Condensed',sans-serif; font-size:clamp(1rem,2.5vw,1.6rem); font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); margin-top:.5rem; }
+    .hero-desc { margin-top:1.5rem; max-width:480px; font-size:1rem; line-height:1.8; color:var(--ink-2); }
+    .hero-cta { display:flex; gap:1rem; margin-top:2.5rem; flex-wrap:wrap; justify-content:center; }
+    .btn { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1rem; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; padding:.9rem 2.2rem; transition:transform .15s,box-shadow .15s,background .4s; display:inline-block; cursor:pointer; border:none; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { background:var(--ink); color:var(--white); }
+    .btn-primary:hover { box-shadow:4px 4px 0 var(--blue); }
+    body.hot .btn-primary { background:var(--heat); }
+    .btn-outline { border:2px solid var(--ink); color:var(--ink); background:transparent; }
+    .btn-outline:hover { box-shadow:4px 4px 0 var(--blue); }
+    .hero-bar { background:var(--ink); color:var(--white); padding:1rem 2.5rem; display:flex; justify-content:space-around; align-items:center; gap:2rem; flex-wrap:wrap; transition:background .4s; }
+    body.hot .hero-bar { background:var(--heat-d); }
+    .hero-bar-num { font-family:'Barlow Condensed',sans-serif; font-size:2rem; font-weight:900; color:var(--blue); line-height:1; transition:color .4s; }
+    .hero-bar-label { font-family:'Barlow Condensed',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-top:.2rem; }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap { background:var(--blue); overflow:hidden; border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); padding:.8rem 0; transition:background .4s; }
+    body.hot .marquee-wrap { background:var(--heat); }
+    .marquee-track { display:flex; white-space:nowrap; animation:marquee 18s linear infinite; }
+    .marquee-item { font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:900; letter-spacing:.15em; text-transform:uppercase; color:var(--ink); padding:0 2rem; flex-shrink:0; }
+    .marquee-item::after { content:'✦'; margin-left:2rem; }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* ── SHARED ── */
+    .section { max-width:1080px; margin:0 auto; padding:6rem 2rem; }
+    .label { font-family:'Barlow Condensed',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.4em; text-transform:uppercase; color:var(--blue-d); margin-bottom:.6rem; transition:color .4s; }
+    .heading { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.5rem,7vw,5rem); font-weight:900; text-transform:uppercase; letter-spacing:-.01em; line-height:1; color:var(--ink); }
+    .rule { width:56px; height:4px; background:var(--blue); margin:1.2rem 0 2rem; transition:background .4s; }
+
+    /* ── ABOUT ── */
+    .about-wrap { background:var(--sky); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); transition:background .6s; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .about-text p { line-height:1.9; color:var(--ink-2); margin-bottom:1rem; }
+    .about-text strong { color:var(--blue-d); transition:color .4s; }
+    .about-photo { width:100%; height:280px; object-fit:cover; object-position:center top; display:block; border:3px solid var(--ink); border-bottom:none; }
+    .about-card { background:var(--white); border:3px solid var(--ink); border-top:none; padding:3rem 2rem; text-align:center; position:relative; }
+    .about-card::after { content:''; position:absolute; bottom:-8px; right:-8px; width:100%; height:calc(100% + 280px + 3px); border:3px solid var(--blue); z-index:-1; transition:border-color .4s; }
+    .temp-num { font-family:'Barlow Condensed',sans-serif; font-size:7rem; font-weight:900; line-height:1; color:var(--ink); }
+    .temp-num span { color:var(--blue); transition:color .4s; }
+    .temp-label { font-family:'Barlow Condensed',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--ink-3); margin-top:.5rem; }
+    .stats-row { display:flex; justify-content:space-around; margin-top:2rem; padding-top:2rem; border-top:2px solid var(--border); }
+    .stat-num { font-family:'Barlow Condensed',sans-serif; font-size:2rem; font-weight:900; color:var(--ink); }
+    .stat-label { font-family:'Barlow Condensed',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); margin-top:.2rem; }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy-wrap { background:var(--ink); transition:background .4s; }
+    body.hot .philosophy-wrap { background:#1a0205; }
+    .philosophy-wrap .label  { color:var(--blue); }
+    .philosophy-wrap .heading { color:var(--white); }
+    .philosophy-wrap .rule   { background:var(--blue); }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:3rem; border:2px solid rgba(255,255,255,.15); }
+    .step { padding:2.5rem 2rem; border-right:2px solid rgba(255,255,255,.1); transition:background .3s,border-color .3s; cursor:default; }
+    .step:last-child { border-right:none; }
+    .step-num { font-family:'Barlow Condensed',sans-serif; font-size:3.5rem; font-weight:900; color:var(--blue); line-height:1; margin-bottom:.75rem; transition:color .3s; }
+    .step-title { font-family:'Barlow Condensed',sans-serif; font-size:1.4rem; font-weight:900; text-transform:uppercase; letter-spacing:.05em; color:var(--white); margin-bottom:.75rem; transition:color .3s; }
+    .step-jp { font-size:.8rem; color:var(--blue); margin-bottom:.75rem; font-weight:700; letter-spacing:.1em; transition:color .3s; }
+    .step-desc { font-size:.9rem; color:rgba(255,255,255,.55); line-height:1.8; }
+    .flow-label { margin-top:2.5rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+    .flow-item { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.1rem; letter-spacing:.1em; text-transform:uppercase; color:var(--white); background:rgba(91,196,240,.15); border:1px solid var(--blue); padding:.4rem 1rem; transition:background .4s,border-color .4s; }
+    .flow-arrow { font-family:'Barlow Condensed',sans-serif; font-size:1.5rem; font-weight:900; color:var(--blue); transition:color .4s; }
+    .flow-end { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.3rem; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); transition:color .4s; }
+
+    /* ── QUOTE ── */
+    .quote-wrap { background:var(--blue-l); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); transition:background .6s; position:relative; overflow:hidden; }
+    .quote-bg { position:absolute; inset:0; background:url('84ken3.jpg') center/cover no-repeat; opacity:.15; pointer-events:none; }
+    .quote-inner { max-width:900px; margin:0 auto; padding:6rem 2rem; text-align:center; }
+    blockquote { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,5vw,3.8rem); font-weight:900; text-transform:uppercase; letter-spacing:-.01em; line-height:1.15; color:var(--ink); }
+    blockquote cite { display:block; margin-top:2rem; font-family:'Barlow Condensed',sans-serif; font-size:.9rem; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--blue-d); font-style:normal; transition:color .4s; }
+
+    /* ── PROJECTS ── */
+    .projects-wrap { background:var(--sky); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); transition:background .6s; }
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2rem; margin-top:3rem; }
+    .project-card { background:var(--white); border:2px solid var(--ink); position:relative; overflow:hidden; transition:transform .2s,box-shadow .2s; }
+    .project-card:hover { transform:translateY(-4px); box-shadow:6px 6px 0 var(--blue); }
+    .project-card-header { background:var(--ink); padding:1.2rem 1.5rem; transition:background .4s; }
+    body.hot .project-card-header { background:var(--heat-d); }
+    .project-status { font-family:'Barlow Condensed',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--blue); margin-bottom:.4rem; }
+    .project-name { font-family:'Barlow Condensed',sans-serif; font-size:1.4rem; font-weight:900; letter-spacing:.04em; text-transform:uppercase; color:var(--white); line-height:1.2; }
+    .project-thumb { width:100%; height:180px; object-fit:cover; display:block; border-bottom:2px solid var(--ink); }
+    .project-card-body { padding:1.5rem; }
+    .project-desc { font-size:.9rem; color:var(--ink-2); line-height:1.8; }
+    .project-tags { margin-top:1rem; display:flex; flex-wrap:wrap; gap:.4rem; }
+    .project-tag { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; padding:.25rem .7rem; background:var(--blue-l); border:1px solid var(--blue); color:var(--blue-d); transition:background .4s,border-color .4s,color .4s; }
+    .project-coming { text-align:center; padding:3rem 2rem; border:2px dashed var(--border); font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); }
+
+    /* ── INSTAGRAM ── */
+    .instagram-wrap { background:var(--white); }
+    .ig-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .ig-link { display:inline-flex; align-items:center; gap:.75rem; margin-top:2rem; padding:1rem 2rem; background:var(--ink); color:var(--white); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.1rem; letter-spacing:.1em; text-transform:uppercase; transition:box-shadow .15s,transform .15s,background .4s; }
+    .ig-link:hover { transform:translateY(-2px); box-shadow:4px 4px 0 var(--blue); }
+    body.hot .ig-link { background:var(--heat); }
+    .ig-icon { width:22px; height:22px; fill:white; }
+    .ig-right { background:var(--sky); border:3px solid var(--ink); padding:3rem 2rem; position:relative; transition:background .6s; }
+    .ig-right::after { content:''; position:absolute; bottom:-8px; right:-8px; width:100%; height:100%; border:3px solid var(--blue); z-index:-1; transition:border-color .4s; }
+    .ig-handle-big { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:900; text-transform:uppercase; letter-spacing:-.01em; color:var(--ink); line-height:1; }
+    .ig-sub { margin-top:.75rem; font-size:.9rem; color:var(--ink-3); line-height:1.7; }
+    .ig-tags { margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:.5rem; }
+    .tag { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; padding:.3rem .8rem; background:var(--blue-l); border:1px solid var(--blue); color:var(--blue-d); transition:background .4s,border-color .4s,color .4s; }
+    .suzuri-link { display:inline-flex; align-items:center; gap:.6rem; margin-top:1.5rem; padding:.8rem 1.5rem; border:2px solid var(--ink); color:var(--ink); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:.95rem; letter-spacing:.1em; text-transform:uppercase; transition:box-shadow .15s,transform .15s; }
+    .suzuri-link:hover { transform:translateY(-2px); box-shadow:4px 4px 0 var(--blue); }
+
+    /* ────────────────────────────────────────────
+       SAUNA LIST (Google Sheets)
+    ──────────────────────────────────────────── */
+    .reports-wrap { background:var(--white); border-top:3px solid var(--ink); }
+
+    .sheet-count {
+      font-family:'Barlow Condensed',sans-serif; font-size:.85rem; font-weight:700;
+      letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); margin-bottom:2rem;
+    }
+    .sheet-count span { color:var(--blue-d); font-size:1.4rem; font-weight:900; }
+
+    .sheet-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.5rem; }
+
+    .sheet-card {
+      background:var(--white); border:2px solid var(--ink);
+      position:relative; overflow:hidden;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .sheet-card:hover { transform:translateY(-4px); box-shadow:6px 6px 0 var(--blue); }
+    body.hot .sheet-card:hover { box-shadow:6px 6px 0 var(--heat); }
+
+    .sheet-card-header {
+      background:var(--ink); padding:1.1rem 1.5rem;
+      display:flex; justify-content:space-between; align-items:center;
+      gap:.75rem; transition:background .4s;
+    }
+    body.hot .sheet-card-header { background:var(--heat-d); }
+
+    .sheet-facility {
+      font-family:'Barlow Condensed',sans-serif; font-size:1.25rem; font-weight:900;
+      letter-spacing:.04em; color:var(--white); line-height:1.2;
+    }
+
+    .sheet-theme {
+      font-size:1.1rem; flex-shrink:0;
+    }
+
+    .sheet-card-body { padding:1.2rem 1.5rem; }
+
+    .sheet-location {
+      font-family:'Barlow Condensed',sans-serif; font-size:.78rem; font-weight:700;
+      letter-spacing:.15em; text-transform:uppercase; color:var(--blue-d); margin-bottom:.8rem;
+      display:flex; align-items:center; gap:.4rem;
+    }
+
+    .sheet-point {
+      font-size:.88rem; color:var(--ink-2); line-height:1.75; margin-bottom:.75rem;
+      padding:.65rem .9rem; background:var(--sky); border-left:3px solid var(--blue);
+      transition:background .4s,border-color .4s;
+    }
+
+    .sheet-memo {
+      font-size:.84rem; color:var(--ink-3); line-height:1.7;
+      padding-left:.5rem; border-left:2px solid var(--border);
+    }
+
+    .sheet-loading {
+      grid-column:1/-1; text-align:center; padding:4rem 2rem;
+      font-family:'Barlow Condensed',sans-serif; font-size:1.2rem;
+      font-weight:700; color:var(--ink-3); letter-spacing:.1em;
+    }
+    .sheet-loading::after {
+      content:''; display:inline-block; width:18px; height:18px;
+      border:3px solid var(--border); border-top-color:var(--blue);
+      border-radius:50%; margin-left:.8rem; vertical-align:middle;
+      animation:spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    .sheet-error {
+      grid-column:1/-1; text-align:center; padding:3rem 2rem;
+      border:2px dashed var(--heat); color:var(--heat);
+      font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700;
+    }
+
+    .sheet-more-wrap { text-align:center; margin-top:2.5rem; }
+    .btn-load-more {
+      font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1rem;
+      letter-spacing:.12em; text-transform:uppercase;
+      background:var(--ink); color:var(--white); border:2px solid var(--ink);
+      padding:.9rem 2.5rem; cursor:pointer;
+      transition:transform .15s,box-shadow .15s,background .4s;
+    }
+    .btn-load-more:hover { transform:translateY(-2px); box-shadow:4px 4px 0 var(--blue); }
+    body.hot .btn-load-more { background:var(--heat); border-color:var(--heat); }
+    .btn-load-more .load-remaining {
+      font-weight:400; font-size:.85rem; opacity:.6; margin-left:.4rem;
+    }
+
+    /* ── FOOTER ── */
+    footer { background:var(--ink); color:rgba(255,255,255,.35); padding:2rem 2.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; transition:background .4s; }
+    body.hot footer { background:var(--heat-d); }
+    .footer-logo img { height:28px; display:block; filter:invert(1); opacity:.8; }
+    footer p { font-family:'Barlow Condensed',sans-serif; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; }
+    footer a { color:var(--blue); text-decoration:none; transition:color .4s; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:720px) {
+      .about-grid,.ig-grid { grid-template-columns:1fr; }
+      .steps { grid-template-columns:1fr; }
+      .step { border-right:none; border-bottom:2px solid rgba(255,255,255,.1); }
+      .step:last-child { border-bottom:none; }
+      .nav-links {
+        display:none; position:fixed; top:72px; left:0; right:0; bottom:0;
+        flex-direction:column; gap:0; padding:0; z-index:99;
+        background:rgba(255,255,255,.98); backdrop-filter:blur(14px);
+      }
+      .nav-links.open { display:flex; }
+      .nav-links li { border-bottom:1px solid var(--border); }
+      .nav-links a { display:block; padding:1.2rem 2rem; font-size:1rem; letter-spacing:.12em; }
+      .hamburger { display:flex; }
+      footer { flex-direction:column; text-align:center; }
+      .about-card::after,.ig-right::after { display:none; }
+      #gauge { display:none; }
+      .sheet-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GAUGE -->
+  <div id="gauge">
+    <span id="gauge-icon">🧊</span>
+    <div id="gauge-track"><div id="gauge-fill"></div></div>
+    <span id="gauge-label">Heat</span>
+  </div>
+
+  <!-- TOTONOU OVERLAY -->
+  <div id="totonou-overlay">
+    <div id="totonou-text">TOTONOU!</div>
+    <div id="totonou-jp">と と の っ た</div>
+    <div id="totonou-hint">click to cool down — クリックで冷却</div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#top" class="nav-title">SAUNAFULLNESS</a>
+    <button class="hamburger" aria-label="メニュー" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#philosophy" onclick="closeMenu()">Philosophy</a></li>
+      <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+      <li><a href="#saunalist" onclick="closeMenu()">Sauna List</a></li>
+      <li><a href="sauna-history.html">History</a></li>
+      <li><a href="#follow" onclick="closeMenu()">Follow</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" id="top">
+    <div class="hero-bg-text">SAUNA</div>
+    <div class="hero-inner">
+      <img src="logo-bk.png" alt="SAUNAFULLNESS" class="hero-brand-img">
+      <p class="hero-tagline">Sauna Journey × Social Change × Projects</p>
+      <p class="hero-desc">日本・世界中のサウナを巡り、体験を発信。<br>サウナを通じて感じた社会の変化と、<br>サウナプロジェクトを展開中。</p>
+      <div class="hero-cta">
+        <a href="#saunalist" class="btn btn-primary">Sauna List</a>
+        <a href="#projects" class="btn btn-outline">Projects</a>
+      </div>
+    </div>
+    <div class="hero-bar">
+      <div class="hero-bar-item"><div class="hero-bar-num">90°</div><div class="hero-bar-label">Sauna Temp</div></div>
+      <div class="hero-bar-item"><div class="hero-bar-num">12°</div><div class="hero-bar-label">Cold Bath</div></div>
+      <div class="hero-bar-item"><div class="hero-bar-num">10<small style="font-size:1.2rem;">min</small></div><div class="hero-bar-label">Session</div></div>
+      <div class="hero-bar-item"><div class="hero-bar-num">∞</div><div class="hero-bar-label">Totonou</div></div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">SAUNAFULLNESS</span><span class="marquee-item">Journey</span>
+      <span class="marquee-item">Social Change</span><span class="marquee-item">Projects</span>
+      <span class="marquee-item">84ken</span><span class="marquee-item">ととのう</span>
+      <span class="marquee-item">SAUNAFULLNESS</span><span class="marquee-item">Journey</span>
+      <span class="marquee-item">Social Change</span><span class="marquee-item">Projects</span>
+      <span class="marquee-item">84ken</span><span class="marquee-item">ととのう</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-wrap" id="about">
+    <div class="section">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="label">About</p>
+          <h2 class="heading">SAUNER<br>84KEN</h2>
+          <div class="rule"></div>
+          <p>84ken は、日本全国から北欧・台湾まで世界中のサウナを巡り、その体験と気づきを発信するサウナー／プロデューサー。</p>
+          <p>フィンランドで「水風呂がなくても最高に気持ちよい」という原体験を得て以来、サウナはもっと<strong>自由</strong>であるべきだと確信。「整い」を目的化せず、自然と訪れる最高の状態を大切にする。</p>
+          <p>サウナブームの本質を問いながら、<strong>社会の変化</strong>——コミュニティ、ウェルネス、地方創生——を見つめ、サウナを軸とした<strong>プロジェクト</strong>でカルチャーの新しい可能性を切り拓いている。</p>
+          <p style="font-size:.85rem;color:var(--ink-3);margin-top:.5rem;">趣味は<span id="denki-trigger" style="cursor:pointer;border-bottom:2px dashed var(--blue-d);color:var(--blue-d);font-weight:700;">⚡ 電気風呂 ⚡</span></p>
+        </div>
+        <div>
+          <img src="84ken.jpg" alt="84ken" class="about-photo">
+          <div class="about-card heatable">
+            <div class="temp-num" id="temp-num"><span id="temp-val">37</span><span>°</span></div>
+            <div class="temp-label" id="temp-label">Body Temperature</div>
+            <div class="stats-row">
+              <div><div class="stat-num">12°</div><div class="stat-label">水風呂</div></div>
+              <div><div class="stat-num">10m</div><div class="stat-label">サウナ</div></div>
+              <div><div class="stat-num">∞</div><div class="stat-label">整い</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <div class="philosophy-wrap" id="philosophy">
+    <div class="section">
+      <p class="label">Philosophy</p>
+      <h2 class="heading">SAUNA<br>FULLNESS</h2>
+      <div class="rule"></div>
+      <p style="color:rgba(255,255,255,.55);max-width:560px;line-height:1.9;">サウナ（Sauna）× フルネス（Fullness / Mindfulness）。<br>体験・発信・実践の3つの軸で、サウナカルチャーを探求する。</p>
+      <div class="steps">
+        <div class="step heatable"><div class="step-num">01</div><div class="step-title">Journey</div><div class="step-jp">サウナ巡り</div><div class="step-desc">秩父から北欧、京都から台湾まで。各地のサウナを巡り、その土地の文化と溶け合う「ととのい」を体験し、発信する。</div></div>
+        <div class="step heatable"><div class="step-num">02</div><div class="step-title">Social Change</div><div class="step-jp">社会の変化</div><div class="step-desc">パーティー感ではなく、本質的なカルチャーへ。サウナブームの先にある社会の変化——コミュニティ、ウェルネス、地方創生を見つめ、伝える。</div></div>
+        <div class="step heatable"><div class="step-num">03</div><div class="step-title">Projects</div><div class="step-jp">プロジェクト</div><div class="step-desc">川とサウナ、BRUTUS、施設プロデュース、ドリンク開発。カルチャーとビジネスの接点から、新しい価値を生み出す。</div></div>
+      </div>
+      <div class="flow-label">
+        <span class="flow-item">Journey</span><span class="flow-arrow">→</span>
+        <span class="flow-item">Insight</span><span class="flow-arrow">→</span>
+        <span class="flow-item">Action</span><span class="flow-arrow">→</span>
+        <span class="flow-end">SAUNAFULLNESS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-wrap">
+    <div class="quote-bg"></div>
+    <div class="quote-inner" style="position:relative;z-index:1;">
+      <blockquote>"Sauna changes<br>people.<br>People change<br>the world."<cite>— 84ken</cite></blockquote>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="projects-wrap" id="projects">
+    <div class="section">
+      <p class="label">Projects</p>
+      <h2 class="heading">SAUNA<br>PROJECTS</h2>
+      <div class="rule"></div>
+      <p style="color:var(--ink-2);line-height:1.8;max-width:560px;">サウナを軸にした企画・コラボレーション。<br>カルチャーとビジネスの交差点から、新しい価値を発信していきます。</p>
+      <div class="projects-grid">
+        <a href="http://kawatosauna.love/" target="_blank" rel="noopener" class="project-card heatable" style="text-decoration:none;color:inherit;">
+          <img src="kawa-to-sauna.jpg" alt="川とサウナ" class="project-thumb">
+          <div class="project-card-header">
+            <div class="project-status">Outdoor Sauna</div>
+            <div class="project-name">川とサウナ</div>
+          </div>
+          <div class="project-card-body">
+            <p class="project-desc">埼玉県秩父エリアを中心に展開するアウトドアサウナプロジェクト。自然の中で体験する究極のととのい。</p>
+            <div class="project-tags">
+              <span class="project-tag">#Outdoor</span>
+              <span class="project-tag">#Chichibu</span>
+            </div>
+          </div>
+        </a>
+        <a href="https://brutus.jp/tag/eu_sauna_travel/" target="_blank" rel="noopener" class="project-card heatable" style="text-decoration:none;color:inherit;">
+          <img src="brutus.webp" alt="BRUTUS サウナ特集" class="project-thumb">
+          <div class="project-card-header">
+            <div class="project-status">Media</div>
+            <div class="project-name">BRUTUS サウナ特集</div>
+          </div>
+          <div class="project-card-body">
+            <p class="project-desc">カルチャー雑誌BRUTUSのサウナ特集号にてサウナディレクターを担当。北欧のサウナ旅を中心に編集記事をプロデュース。</p>
+            <div class="project-tags">
+              <span class="project-tag">#BRUTUS</span>
+              <span class="project-tag">#Director</span>
+            </div>
+          </div>
+        </a>
+        <a href="https://www.jreast.co.jp/lrd/" target="_blank" rel="noopener" class="project-card heatable" style="text-decoration:none;color:inherit;">
+          <img src="sauna-facility.webp" alt="サウナ施設プロデュース" class="project-thumb">
+          <div class="project-card-header">
+            <div class="project-status">Facility</div>
+            <div class="project-name">サウナ施設プロデュース</div>
+          </div>
+          <div class="project-card-body">
+            <p class="project-desc">SAUNA&co（蔵前）、楽天地スパ、霧宙、Little Retreat Depot（JR東日本）など多様なサウナ空間をプロデュース。</p>
+            <div class="project-tags">
+              <span class="project-tag">#Facility</span>
+              <span class="project-tag">#Produce</span>
+            </div>
+          </div>
+        </a>
+        <a href="https://saunamarche.com/" target="_blank" rel="noopener" class="project-card heatable" style="text-decoration:none;color:inherit;">
+          <img src="sauna-marche.jpg" alt="サウナマルシェ" class="project-thumb">
+          <div class="project-card-header">
+            <div class="project-status">Event</div>
+            <div class="project-name">サウナマルシェ</div>
+          </div>
+          <div class="project-card-body">
+            <p class="project-desc">サウナ好きが集まるPOPUPイベント。サウナカルチャーをリアルに体験できる場をプロデュース。</p>
+            <div class="project-tags">
+              <span class="project-tag">#Event</span>
+              <span class="project-tag">#POPUP</span>
+            </div>
+          </div>
+        </a>
+        <a href="https://www.miyanoen-shop.com/shopdetail/000000000332/" target="_blank" rel="noopener" class="project-card heatable" style="text-decoration:none;color:inherit;">
+          <img src="sayamacha.jpg" alt="SAUNAドリンク" class="project-thumb">
+          <div class="project-card-header">
+            <div class="project-status">Collab</div>
+            <div class="project-name">SAUNAドリンク</div>
+          </div>
+          <div class="project-card-body">
+            <p class="project-desc">ユーグレナ「サステナブルととのうのススメ」、coedoビール、狭山茶、ココナッツウォーターとのコラボレーション。</p>
+            <div class="project-tags">
+              <span class="project-tag">#Drink</span>
+              <span class="project-tag">#Collab</span>
+            </div>
+          </div>
+        </a>
+        <a href="https://tatelab.base.shop/items/81046818" target="_blank" rel="noopener" class="project-card heatable" style="text-decoration:none;color:inherit;">
+          <img src="saunafullness.jpeg" alt="サウナフルネスグッズ" class="project-thumb">
+          <div class="project-card-header">
+            <div class="project-status">Brand</div>
+            <div class="project-name">サウナフルネスグッズ</div>
+          </div>
+          <div class="project-card-body">
+            <p class="project-desc">タオル、パーカー、サぶとん、サウナ7つの習慣、サウナ小屋まで。サウナライフを豊かにするオリジナルプロダクト。</p>
+            <div class="project-tags">
+              <span class="project-tag">#Brand</span>
+              <span class="project-tag">#Product</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="sauna-history.html" class="btn btn-primary">View Full History</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SAUNA LIST
+  ══════════════════════════════════════ -->
+  <div class="reports-wrap" id="saunalist">
+    <div class="section">
+      <p class="label">Sauna List</p>
+      <h2 class="heading">VISITED<br>SAUNAS</h2>
+      <div class="rule"></div>
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem;">2025年に訪れたサウナ施設</p>
+      <div class="sheet-count" id="sheet-count"></div>
+      <div class="sheet-grid" id="sheet-grid">
+        <div class="sheet-loading">Loading saunas…</div>
+      </div>
+      <div class="sheet-more-wrap" id="sheet-more-wrap" style="display:none;">
+        <button class="btn-load-more" id="btn-load-more" onclick="showMore()">もっと見る<span class="load-remaining" id="load-remaining"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM -->
+  <div class="instagram-wrap" id="follow">
+    <div class="section">
+      <div class="ig-grid">
+        <div class="ig-left">
+          <p class="label">Follow</p>
+          <h2 class="heading">FOLLOW<br>THE<br>JOURNEY</h2>
+          <div class="rule"></div>
+          <p style="color:var(--ink-2);line-height:1.8;">日々のサウナ記録、施設レビュー、<br>ととのいの瞬間を発信中。</p>
+          <a href="https://www.instagram.com/sauna_fulness/" target="_blank" rel="noopener" class="ig-link">
+            <svg class="ig-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @sauna_fulness
+          </a><br>
+          <a href="https://x.com/84ken" target="_blank" rel="noopener" class="ig-link" style="margin-top:1rem;">
+            <svg class="ig-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            @84ken
+          </a><br>
+          <a href="https://note.com/saunafulness" target="_blank" rel="noopener" class="suzuri-link">&#9670; note — サウナフルネスのススメ</a><br>
+          <a href="https://suzuri.jp/SAUNAFULLNESS" target="_blank" rel="noopener" class="suzuri-link">&#9670; Goods on Suzuri</a>
+        </div>
+        <div class="ig-right heatable">
+          <div class="ig-handle-big">@sauna_<br>fulness</div>
+          <p class="ig-sub">サウナフルネスのすすめ<br>毎日更新中 — Instagram</p>
+          <div class="ig-tags">
+            <span class="tag">#サウナ</span><span class="tag">#ととのい</span>
+            <span class="tag">#水風呂</span><span class="tag">#サウナフルネス</span>
+            <span class="tag">#外気浴</span><span class="tag">#整い</span>
+          </div>
+          <p style="margin-top:1.5rem;padding:1rem 1.2rem;background:var(--white);border:2px solid var(--blue);font-size:.9rem;color:var(--ink-2);line-height:1.7;">サウナのおサそい・ご相談はお気軽に<br><a href="https://x.com/84ken" target="_blank" rel="noopener" style="color:var(--blue-d);font-weight:700;text-decoration:none;">@84ken</a> へDMください</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><img src="logo-bk.png" alt="SAUNAFULLNESS"></div>
+    <p>&copy; 2026 <a href="https://www.instagram.com/sauna_fulness/" target="_blank" rel="noopener">@sauna_fulness</a> — All rights reserved.</p>
+  </footer>
+
+  <script>
+    // ════════════════════════════════
+    //  MOBILE MENU
+    // ════════════════════════════════
+    function closeMenu() {
+      document.querySelector('.hamburger').classList.remove('open');
+      document.querySelector('.nav-links').classList.remove('open');
+    }
+
+    // ════════════════════════════════
+    //  HEAT INTERACTION
+    // ════════════════════════════════
+    const body      = document.body;
+    const gaugeFill = document.getElementById('gauge-fill');
+    const gaugeIcon = document.getElementById('gauge-icon');
+    const overlay   = document.getElementById('totonou-overlay');
+    const MAX_HEAT  = 15;
+    const PARTICLES = ['💦','🔥','✨','🌊','⚡','🌀','💎','🎇','🫧','❄️'];
+
+    let heatLevel  = 0, isTotonou = false;
+    let coolTimer  = null, rapidCount = 0, rapidTimer = null;
+
+    document.querySelectorAll('.heatable').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.classList.add('hot-hover'); body.classList.add('hot'); clearTimeout(coolTimer); });
+      el.addEventListener('mouseleave', () => {
+        el.classList.remove('hot-hover');
+        coolTimer = setTimeout(() => { if (!document.querySelector('.heatable:hover')) body.classList.remove('hot'); }, 600);
+      });
+    });
+
+    document.addEventListener('click', e => {
+      if (isTotonou) { coolDown(); return; }
+      spawnRipple(e.clientX, e.clientY);
+      heatLevel = Math.min(heatLevel + 1, MAX_HEAT);
+      updateGauge();
+      rapidCount++;
+      clearTimeout(rapidTimer);
+      rapidTimer = setTimeout(() => { rapidCount = 0; }, 700);
+      if (rapidCount >= 5) { heatLevel = MAX_HEAT; updateGauge(); }
+      if (heatLevel >= MAX_HEAT && !isTotonou) triggerTotonou();
+    });
+
+    function updateGauge() {
+      const pct = (heatLevel / MAX_HEAT) * 100;
+      gaugeFill.style.height = pct + '%';
+      if (pct < 35) { gaugeFill.style.background = '#5bc4f0'; gaugeIcon.textContent = '🧊'; }
+      else if (pct < 70) { gaugeFill.style.background = '#f4a261'; gaugeIcon.textContent = '♨️'; }
+      else { gaugeFill.style.background = '#e63946'; gaugeIcon.textContent = '🔥'; }
+    }
+
+    function spawnRipple(x, y) {
+      const r = document.createElement('div');
+      r.className = 'ripple';
+      const size = 60, pct = heatLevel / MAX_HEAT;
+      const color = isTotonou ? `hsla(${Math.random()*360},90%,60%,.5)` : pct > .6 ? `rgba(230,57,70,${.2+pct*.3})` : `rgba(91,196,240,${.3+pct*.2})`;
+      r.style.cssText = `width:${size}px;height:${size}px;left:${x-size/2}px;top:${y-size/2}px;background:${color};`;
+      document.body.appendChild(r);
+      r.addEventListener('animationend', () => r.remove());
+    }
+
+    function triggerTotonou() {
+      isTotonou = true; body.classList.add('rainbow'); overlay.classList.add('show');
+      for (let i = 0; i < 30; i++) setTimeout(spawnParticle, i * 70);
+    }
+
+    function spawnParticle() {
+      const p = document.createElement('div'); p.className = 'particle';
+      p.textContent = PARTICLES[Math.floor(Math.random() * PARTICLES.length)];
+      p.style.left  = Math.random() * 100 + 'vw';
+      p.style.top   = (50 + Math.random() * 50) + 'vh';
+      p.style.animationDuration = (1.2 + Math.random() * 1.2) + 's';
+      p.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+      document.body.appendChild(p);
+      p.addEventListener('animationend', () => p.remove());
+    }
+
+    function coolDown() {
+      isTotonou = false; heatLevel = 0; rapidCount = 0;
+      body.classList.remove('rainbow', 'hot');
+      overlay.classList.remove('show'); updateGauge();
+    }
+
+    // ════════════════════════════════
+    //  UTILS
+    // ════════════════════════════════
+    function escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // ════════════════════════════════
+    //  GOOGLE SHEETS SAUNA LIST
+    // ════════════════════════════════
+    const SHEET_ID  = '1SYQOD91f8wb8kSq3oG-zHveLPBXutHeOOgBTztwJ0fg';
+    const SHEET_GID = '923877797';
+    const INITIAL_SHOW = 6;
+    const LOAD_STEP    = 6;
+
+    let allEntries = [];
+    let showCount  = INITIAL_SHOW;
+
+    function cardHTML(row) {
+      const cell = (i) => (row.c[i] && row.c[i].v != null) ? String(row.c[i].v) : '';
+      const facility = cell(1);
+      const location = cell(2);
+      const theme    = cell(3);
+      const point    = cell(4);
+      const memo     = cell(5);
+      return `
+        <div class="sheet-card heatable">
+          <div class="sheet-card-header">
+            <div class="sheet-facility">${escHtml(facility)}</div>
+            ${theme ? `<div class="sheet-theme">${escHtml(theme)}</div>` : ''}
+          </div>
+          <div class="sheet-card-body">
+            ${location ? `<div class="sheet-location">📍 ${escHtml(location)}</div>` : ''}
+            ${point ? `<div class="sheet-point">${escHtml(point)}</div>` : ''}
+            ${memo ? `<div class="sheet-memo">${escHtml(memo)}</div>` : ''}
+          </div>
+        </div>`;
+    }
+
+    function renderCards() {
+      const grid = document.getElementById('sheet-grid');
+      const visible = allEntries.slice(0, showCount);
+      grid.innerHTML = visible.map(cardHTML).join('');
+
+      const remaining = allEntries.length - showCount;
+      const wrap = document.getElementById('sheet-more-wrap');
+      if (remaining > 0) {
+        wrap.style.display = '';
+        document.getElementById('load-remaining').textContent = `(+${remaining})`;
+      } else {
+        wrap.style.display = 'none';
+      }
+
+      // Re-bind heatable events for new cards
+      grid.querySelectorAll('.heatable').forEach(el => {
+        el.addEventListener('mouseenter', () => { el.classList.add('hot-hover'); body.classList.add('hot'); clearTimeout(coolTimer); });
+        el.addEventListener('mouseleave', () => {
+          el.classList.remove('hot-hover');
+          coolTimer = setTimeout(() => { if (!document.querySelector('.heatable:hover')) body.classList.remove('hot'); }, 600);
+        });
+      });
+    }
+
+    function showMore() {
+      showCount = Math.min(showCount + LOAD_STEP, allEntries.length);
+      renderCards();
+    }
+
+    function fetchSheetData() {
+      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
+      fetch(url)
+        .then(res => res.text())
+        .then(text => {
+          const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\((.+)\);?$/s)[1]);
+          const rows = json.table.rows;
+
+          if (!rows || rows.length === 0) {
+            document.getElementById('sheet-grid').innerHTML = '<div class="sheet-error">データが見つかりませんでした</div>';
+            return;
+          }
+
+          allEntries = rows.filter(row => row.c[1] && row.c[1].v);
+          document.getElementById('sheet-count').innerHTML =
+            `<span>${allEntries.length}</span> facilities visited`;
+
+          showCount = INITIAL_SHOW;
+          renderCards();
+        })
+        .catch(err => {
+          console.error('Sheet fetch error:', err);
+          document.getElementById('sheet-grid').innerHTML =
+            '<div class="sheet-error">スプレッドシートの読み込みに失敗しました。<br>公開設定を確認してください。</div>';
+        });
+    }
+
+    // ════════════════════════════════
+    //  TEMP COUNTER (37° → 84°)
+    // ════════════════════════════════
+    const tempVal   = document.getElementById('temp-val');
+    const tempLabel = document.getElementById('temp-label');
+    let tempAnimated = false;
+
+    const tempObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !tempAnimated) {
+          tempAnimated = true;
+          animateTemp(37, 84, 1200);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    tempObserver.observe(document.getElementById('temp-num'));
+
+    function animateTemp(from, to, duration) {
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // ease-out cubic
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(from + (to - from) * ease);
+        tempVal.textContent = current;
+
+        // color shift: blue → red as temp rises
+        const pct = (current - from) / (to - from);
+        const r = Math.round(91 + (230 - 91) * pct);
+        const g = Math.round(196 + (57 - 196) * pct);
+        const b = Math.round(240 + (70 - 240) * pct);
+        tempVal.style.color = `rgb(${r},${g},${b})`;
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          tempLabel.textContent = '84ken\'s Temperature';
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // ════════════════════════════════
+    //  DENKI BURO (ELECTRIC BATH)
+    // ════════════════════════════════
+    document.getElementById('denki-trigger').addEventListener('click', e => {
+      e.stopPropagation();
+      body.classList.add('biribiri');
+      // sparks
+      const sparks = ['⚡','💛','⚡','✨','⚡'];
+      sparks.forEach((s, i) => {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'denki-spark';
+          el.textContent = s;
+          el.style.left = (e.clientX - 10 + (Math.random() - .5) * 80) + 'px';
+          el.style.top = (e.clientY - 10 + (Math.random() - .5) * 40) + 'px';
+          document.body.appendChild(el);
+          el.addEventListener('animationend', () => el.remove());
+        }, i * 60);
+      });
+      setTimeout(() => body.classList.remove('biribiri'), 500);
+    });
+
+    // init
+    fetchSheetData();
+  </script>
+</body>
+</html>

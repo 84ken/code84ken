@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+  <url>
+    <loc>https://sauna.llschema.com/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://sauna.llschema.com/og-image.png</image:loc>
+      <image:title>SAUNAFULLNESS | 84ken</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sauna.llschema.com/84ken.jpg</image:loc>
+      <image:title>84ken（橋本健太郎）</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sauna.llschema.com/sauna-history.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sauna.llschema.com/84ken-finland.jpg</image:loc>
+      <image:title>84ken フィンランド</image:title>
+    </image:image>
+  </url>
+</urlset>
