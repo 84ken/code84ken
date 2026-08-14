@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-08T08:44:18.612Z",
+  "generatedAt": "2026-08-14T15:06:22.147Z",
   "vendorCount": 716,
   "vendors": [
     {
@@ -118064,6 +118064,1057 @@
           "task": "たてラボ賃料（4月分）",
           "amountExTax": 50000,
           "amountIncTax": 55000
+        }
+      ]
+    },
+    {
+      "period": "2026-05",
+      "totalExTax": 3434941,
+      "totalIncTax": 3778854,
+      "entryCount": 20,
+      "entries": [
+        {
+          "vendor": "株式会社ベクトル",
+          "type": "法人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "Clipkitクラウド利用料（5月分）",
+          "amountExTax": 50000,
+          "amountIncTax": 55000
+        },
+        {
+          "vendor": "城内由香",
+          "type": "個人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "KOSEビューティースポーツ対応",
+          "amountExTax": 40000,
+          "amountIncTax": 44000
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "type": "法人",
+          "project": "すぽったま",
+          "task": "Posterサポートプラン月額利用料（5月分）",
+          "amountExTax": 63800,
+          "amountIncTax": 70180
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "type": "法人",
+          "project": "ぶんたま",
+          "task": "Posterサポートプラン月額利用料（5月分）",
+          "amountExTax": 46200,
+          "amountIncTax": 50820
+        },
+        {
+          "vendor": "株式会社ポリリズム",
+          "type": "法人",
+          "project": "横瀬町",
+          "task": "サイトサーバ保守（5月対応）",
+          "amountExTax": 90000,
+          "amountIncTax": 99000
+        },
+        {
+          "vendor": "合同会社 浅見制作所",
+          "type": "法人",
+          "project": "月次制作業務",
+          "task": "ウイーザス・ヒロ建工・横瀬町・小川町撮影",
+          "amountExTax": 298332,
+          "amountIncTax": 328165
+        },
+        {
+          "vendor": "大西 晃 （タテジマ大西）",
+          "type": "個人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "運用業務（PM・TOP改修実装）",
+          "amountExTax": 450000,
+          "amountIncTax": 495000
+        },
+        {
+          "vendor": "twooo 城内匡",
+          "type": "個人",
+          "project": "D-0サイト制作他",
+          "task": "サイト制作・TTカーズ修正・Repertioサーバー設定",
+          "amountExTax": 830000,
+          "amountIncTax": 913000
+        },
+        {
+          "vendor": "aoiem 加藤 健太",
+          "type": "個人",
+          "project": "道の駅おがわまち",
+          "task": "ブロック積護岸ペイント費用",
+          "amountExTax": 605000,
+          "amountIncTax": 665500
+        },
+        {
+          "vendor": "株式会社like a bird",
+          "type": "法人",
+          "project": "護岸アートWS in小川町",
+          "task": "動画制作",
+          "amountExTax": 200000,
+          "amountIncTax": 220000
+        },
+        {
+          "vendor": "株式会社ヌーラボ",
+          "type": "法人",
+          "project": "社内ツール",
+          "task": "Backlogスタンダード年契約（2026/8〜2027/7）",
+          "amountExTax": 182400,
+          "amountIncTax": 200640
+        },
+        {
+          "vendor": "株式会社ENgaWA",
+          "type": "法人",
+          "project": "横瀬ふれあいプラザ",
+          "task": "たてラボ賃料（5月分）",
+          "amountExTax": 50000,
+          "amountIncTax": 55000
+        },
+        {
+          "vendor": "Google Japan（Google広告）",
+          "type": "法人",
+          "project": "ヒロ建工",
+          "task": "Google広告 小屋キャンペーン（5月分）",
+          "amountExTax": 180539,
+          "amountIncTax": 198593
+        },
+        {
+          "vendor": "高橋 亮",
+          "type": "個人",
+          "project": "デザイン業務",
+          "task": "cask&forest/古渡/長濱ボトル/CASK OF LIBRARY デザイン費",
+          "amountExTax": 250000,
+          "amountIncTax": 275000
+        },
+        {
+          "vendor": "井本佳孝",
+          "type": "個人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "記事原稿料（5月分）＋取材交通費",
+          "amountExTax": 20000,
+          "amountIncTax": 22418
+        },
+        {
+          "vendor": "オープラス株式会社",
+          "type": "法人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "出張撮影費＋交通費（5/28公開分）",
+          "amountExTax": 33000,
+          "amountIncTax": 36300
+        },
+        {
+          "vendor": "slack",
+          "type": "法人",
+          "project": "社内活用",
+          "task": "Slack利用料（5月分）",
+          "amountExTax": 14836,
+          "amountIncTax": 16320
+        },
+        {
+          "vendor": "X",
+          "type": "法人",
+          "project": "リバサポ",
+          "task": "Xプレミアム月額（5月分）",
+          "amountExTax": 834,
+          "amountIncTax": 918
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "type": "法人",
+          "project": "すぽったま",
+          "task": "LINE公式アカウント月額プラン（5月分）",
+          "amountExTax": 15000,
+          "amountIncTax": 16500
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "type": "法人",
+          "project": "ぶんたま",
+          "task": "LINE公式アカウント月額プラン（5月分）",
+          "amountExTax": 15000,
+          "amountIncTax": 16500
+        }
+      ],
+      "projects": [
+        {
+          "name": "コーセー SPORTS BEAUTY",
+          "exTax": 593000,
+          "incTax": 652718,
+          "vendorCount": 5,
+          "vendors": [
+            "株式会社ベクトル",
+            "城内由香",
+            "大西 晃 （タテジマ大西）",
+            "井本佳孝",
+            "オープラス株式会社"
+          ]
+        },
+        {
+          "name": "すぽったま",
+          "exTax": 78800,
+          "incTax": 86680,
+          "vendorCount": 2,
+          "vendors": [
+            "株式会社モスコソリューションズ",
+            "LINE公式アカウント"
+          ]
+        },
+        {
+          "name": "ぶんたま",
+          "exTax": 61200,
+          "incTax": 67320,
+          "vendorCount": 2,
+          "vendors": [
+            "株式会社モスコソリューションズ",
+            "LINE公式アカウント"
+          ]
+        },
+        {
+          "name": "横瀬町",
+          "exTax": 90000,
+          "incTax": 99000,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社ポリリズム"
+          ]
+        },
+        {
+          "name": "月次制作業務",
+          "exTax": 298332,
+          "incTax": 328165,
+          "vendorCount": 1,
+          "vendors": [
+            "合同会社 浅見制作所"
+          ]
+        },
+        {
+          "name": "D-0サイト制作他",
+          "exTax": 830000,
+          "incTax": 913000,
+          "vendorCount": 1,
+          "vendors": [
+            "twooo 城内匡"
+          ]
+        },
+        {
+          "name": "道の駅おがわまち",
+          "exTax": 605000,
+          "incTax": 665500,
+          "vendorCount": 1,
+          "vendors": [
+            "aoiem 加藤 健太"
+          ]
+        },
+        {
+          "name": "護岸アートWS in小川町",
+          "exTax": 200000,
+          "incTax": 220000,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社like a bird"
+          ]
+        },
+        {
+          "name": "社内ツール",
+          "exTax": 182400,
+          "incTax": 200640,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社ヌーラボ"
+          ]
+        },
+        {
+          "name": "横瀬ふれあいプラザ",
+          "exTax": 50000,
+          "incTax": 55000,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社ENgaWA"
+          ]
+        },
+        {
+          "name": "ヒロ建工",
+          "exTax": 180539,
+          "incTax": 198593,
+          "vendorCount": 1,
+          "vendors": [
+            "Google Japan（Google広告）"
+          ]
+        },
+        {
+          "name": "デザイン業務",
+          "exTax": 250000,
+          "incTax": 275000,
+          "vendorCount": 1,
+          "vendors": [
+            "高橋 亮"
+          ]
+        },
+        {
+          "name": "社内活用",
+          "exTax": 14836,
+          "incTax": 16320,
+          "vendorCount": 1,
+          "vendors": [
+            "slack"
+          ]
+        },
+        {
+          "name": "リバサポ",
+          "exTax": 834,
+          "incTax": 918,
+          "vendorCount": 1,
+          "vendors": [
+            "X"
+          ]
+        }
+      ]
+    },
+    {
+      "period": "2026-06",
+      "totalExTax": 2260352,
+      "totalIncTax": 2486388,
+      "entryCount": 23,
+      "entries": [
+        {
+          "vendor": "株式会社ベクトル",
+          "type": "法人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "Clipkitクラウド利用料（6月分）",
+          "amountExTax": 50000,
+          "amountIncTax": 55000
+        },
+        {
+          "vendor": "城内由香",
+          "type": "個人",
+          "project": "リバサポ/コーセー",
+          "task": "リバーサポーターズ対応＋KOSEビューティースポーツ対応",
+          "amountExTax": 140000,
+          "amountIncTax": 154000
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "type": "法人",
+          "project": "すぽったま",
+          "task": "Posterサポートプラン月額利用料（6月分）",
+          "amountExTax": 63800,
+          "amountIncTax": 70180
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "type": "法人",
+          "project": "ぶんたま",
+          "task": "Posterサポートプラン月額利用料（6月分）",
+          "amountExTax": 46200,
+          "amountIncTax": 50820
+        },
+        {
+          "vendor": "株式会社ポリリズム",
+          "type": "法人",
+          "project": "横瀬町",
+          "task": "サイトサーバ保守（6月対応）",
+          "amountExTax": 90000,
+          "amountIncTax": 99000
+        },
+        {
+          "vendor": "合同会社 浅見制作所",
+          "type": "法人",
+          "project": "月次制作業務",
+          "task": "ウイーザス・ヒロ建工・横瀬町",
+          "amountExTax": 210014,
+          "amountIncTax": 231015
+        },
+        {
+          "vendor": "大西 晃 （タテジマ大西）",
+          "type": "個人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "運用業務（PM・TOP改修・記事画像作成）",
+          "amountExTax": 200000,
+          "amountIncTax": 220000
+        },
+        {
+          "vendor": "株式会社ENgaWA",
+          "type": "法人",
+          "project": "横瀬ふれあいプラザ",
+          "task": "たてラボ賃料（6月分）",
+          "amountExTax": 50000,
+          "amountIncTax": 55000
+        },
+        {
+          "vendor": "umi.design合同会社",
+          "type": "法人",
+          "project": "かきだ鮨",
+          "task": "Webサイト制作費",
+          "amountExTax": 200000,
+          "amountIncTax": 220000
+        },
+        {
+          "vendor": "umi.design合同会社",
+          "type": "法人",
+          "project": "早川電工",
+          "task": "Webサイト制作費",
+          "amountExTax": 250000,
+          "amountIncTax": 275000
+        },
+        {
+          "vendor": "S.SKYDESIGN マツクラ マユミ",
+          "type": "個人",
+          "project": "かきだ鮨",
+          "task": "Webデザイン費",
+          "amountExTax": 150000,
+          "amountIncTax": 165000
+        },
+        {
+          "vendor": "S.SKYDESIGN マツクラ マユミ",
+          "type": "個人",
+          "project": "早川電工",
+          "task": "Webデザイン費",
+          "amountExTax": 200000,
+          "amountIncTax": 220000
+        },
+        {
+          "vendor": "大森玲緒奈",
+          "type": "個人",
+          "project": "早川電工",
+          "task": "イラスト制作",
+          "amountExTax": 70000,
+          "amountIncTax": 77000
+        },
+        {
+          "vendor": "株式会社ガーデンエイト",
+          "type": "法人",
+          "project": "リトデポ",
+          "task": "ウェブサイト調整（6月分）",
+          "amountExTax": 100000,
+          "amountIncTax": 110000
+        },
+        {
+          "vendor": "株式会社MIC FIELD 三國友哉",
+          "type": "法人",
+          "project": "ピックルボール",
+          "task": "6/7 ピックルボール出店・運営費用",
+          "amountExTax": 60000,
+          "amountIncTax": 66000
+        },
+        {
+          "vendor": "Google Japan（Google広告）",
+          "type": "法人",
+          "project": "ヒロ建工",
+          "task": "Google広告 小屋キャンペーン（6月分）",
+          "amountExTax": 204668,
+          "amountIncTax": 225135
+        },
+        {
+          "vendor": "倉橋碧",
+          "type": "個人",
+          "project": "あっぱれ",
+          "task": "デザイン業務（6月分）",
+          "amountExTax": 15000,
+          "amountIncTax": 16500
+        },
+        {
+          "vendor": "高橋 亮",
+          "type": "個人",
+          "project": "デザイン業務",
+          "task": "Village Vanguard 2027福袋 デザイン費",
+          "amountExTax": 100000,
+          "amountIncTax": 110000
+        },
+        {
+          "vendor": "slack",
+          "type": "法人",
+          "project": "社内活用",
+          "task": "Slack利用料（6月分）",
+          "amountExTax": 14836,
+          "amountIncTax": 16320
+        },
+        {
+          "vendor": "X",
+          "type": "法人",
+          "project": "リバサポ",
+          "task": "Xプレミアム月額（6月分）",
+          "amountExTax": 834,
+          "amountIncTax": 918
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "type": "法人",
+          "project": "すぽったま",
+          "task": "LINE公式アカウント月額プラン（6月分）",
+          "amountExTax": 15000,
+          "amountIncTax": 16500
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "type": "法人",
+          "project": "ぶんたま",
+          "task": "LINE公式アカウント月額プラン（6月分）",
+          "amountExTax": 15000,
+          "amountIncTax": 16500
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "type": "法人",
+          "project": "リバサポ",
+          "task": "LINE公式アカウント月額プラン（6月分）",
+          "amountExTax": 15000,
+          "amountIncTax": 16500
+        }
+      ],
+      "projects": [
+        {
+          "name": "コーセー SPORTS BEAUTY",
+          "exTax": 250000,
+          "incTax": 275000,
+          "vendorCount": 2,
+          "vendors": [
+            "株式会社ベクトル",
+            "大西 晃 （タテジマ大西）"
+          ]
+        },
+        {
+          "name": "リバサポ/コーセー",
+          "exTax": 140000,
+          "incTax": 154000,
+          "vendorCount": 1,
+          "vendors": [
+            "城内由香"
+          ]
+        },
+        {
+          "name": "すぽったま",
+          "exTax": 78800,
+          "incTax": 86680,
+          "vendorCount": 2,
+          "vendors": [
+            "株式会社モスコソリューションズ",
+            "LINE公式アカウント"
+          ]
+        },
+        {
+          "name": "ぶんたま",
+          "exTax": 61200,
+          "incTax": 67320,
+          "vendorCount": 2,
+          "vendors": [
+            "株式会社モスコソリューションズ",
+            "LINE公式アカウント"
+          ]
+        },
+        {
+          "name": "横瀬町",
+          "exTax": 90000,
+          "incTax": 99000,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社ポリリズム"
+          ]
+        },
+        {
+          "name": "月次制作業務",
+          "exTax": 210014,
+          "incTax": 231015,
+          "vendorCount": 1,
+          "vendors": [
+            "合同会社 浅見制作所"
+          ]
+        },
+        {
+          "name": "横瀬ふれあいプラザ",
+          "exTax": 50000,
+          "incTax": 55000,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社ENgaWA"
+          ]
+        },
+        {
+          "name": "かきだ鮨",
+          "exTax": 350000,
+          "incTax": 385000,
+          "vendorCount": 2,
+          "vendors": [
+            "umi.design合同会社",
+            "S.SKYDESIGN マツクラ マユミ"
+          ]
+        },
+        {
+          "name": "早川電工",
+          "exTax": 520000,
+          "incTax": 572000,
+          "vendorCount": 3,
+          "vendors": [
+            "umi.design合同会社",
+            "S.SKYDESIGN マツクラ マユミ",
+            "大森玲緒奈"
+          ]
+        },
+        {
+          "name": "リトデポ",
+          "exTax": 100000,
+          "incTax": 110000,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社ガーデンエイト"
+          ]
+        },
+        {
+          "name": "ピックルボール",
+          "exTax": 60000,
+          "incTax": 66000,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社MIC FIELD 三國友哉"
+          ]
+        },
+        {
+          "name": "ヒロ建工",
+          "exTax": 204668,
+          "incTax": 225135,
+          "vendorCount": 1,
+          "vendors": [
+            "Google Japan（Google広告）"
+          ]
+        },
+        {
+          "name": "あっぱれ",
+          "exTax": 15000,
+          "incTax": 16500,
+          "vendorCount": 1,
+          "vendors": [
+            "倉橋碧"
+          ]
+        },
+        {
+          "name": "デザイン業務",
+          "exTax": 100000,
+          "incTax": 110000,
+          "vendorCount": 1,
+          "vendors": [
+            "高橋 亮"
+          ]
+        },
+        {
+          "name": "社内活用",
+          "exTax": 14836,
+          "incTax": 16320,
+          "vendorCount": 1,
+          "vendors": [
+            "slack"
+          ]
+        },
+        {
+          "name": "リバサポ",
+          "exTax": 15834,
+          "incTax": 17418,
+          "vendorCount": 2,
+          "vendors": [
+            "X",
+            "LINE公式アカウント"
+          ]
+        }
+      ]
+    },
+    {
+      "period": "2026-07",
+      "totalExTax": 4288604,
+      "totalIncTax": 4717376,
+      "entryCount": 27,
+      "entries": [
+        {
+          "vendor": "umi.design合同会社",
+          "type": "法人",
+          "project": "早川電工",
+          "task": "Webサイト運用・修正対応費",
+          "amountExTax": 30000,
+          "amountIncTax": 33000
+        },
+        {
+          "vendor": "城内由香",
+          "type": "個人",
+          "project": "リバサポ/コーセー",
+          "task": "リバーサポーターズ対応＋KOSEビューティースポーツ対応",
+          "amountExTax": 140000,
+          "amountIncTax": 154000
+        },
+        {
+          "vendor": "高橋 亮",
+          "type": "個人",
+          "project": "THE NATIVE CASK",
+          "task": "THE NATIVE CASK_4 パッケージデザイン費",
+          "amountExTax": 70000,
+          "amountIncTax": 77000
+        },
+        {
+          "vendor": "株式会社ポリリズム",
+          "type": "法人",
+          "project": "横瀬町",
+          "task": "サイトサーバ保守（7月対応）",
+          "amountExTax": 90000,
+          "amountIncTax": 99000
+        },
+        {
+          "vendor": "twooo\r 城内匡",
+          "type": "個人",
+          "project": "TTカーズ",
+          "task": "TTカーズ 修正対応",
+          "amountExTax": 10000,
+          "amountIncTax": 11000
+        },
+        {
+          "vendor": "S.SKYDESIGN\r マツクラ マユミ",
+          "type": "個人",
+          "project": "かきだ寿司",
+          "task": "Webデザイン費",
+          "amountExTax": 10000,
+          "amountIncTax": 11000
+        },
+        {
+          "vendor": "合同会社 浅見制作所",
+          "type": "法人",
+          "project": "月次制作業務",
+          "task": "ウイーザス・ヒロ建工・横瀬町",
+          "amountExTax": 900643,
+          "amountIncTax": 990707
+        },
+        {
+          "vendor": "金崎敏也\r （zaki）",
+          "type": "個人",
+          "project": "リバサポ",
+          "task": "ドットキャラクター制作",
+          "amountExTax": 20000,
+          "amountIncTax": 22000
+        },
+        {
+          "vendor": "aoiem\r 加藤健太",
+          "type": "個人",
+          "project": "WITH RIVER",
+          "task": "看板製作費一式（広告看板①②③）",
+          "amountExTax": 879999.9999999999,
+          "amountIncTax": 968000
+        },
+        {
+          "vendor": "株式会社ENgaWA",
+          "type": "法人",
+          "project": "横瀬ふれあいプラザ",
+          "task": "たてラボ賃料（7月分・賃料＋共益費）",
+          "amountExTax": 50000,
+          "amountIncTax": 55000
+        },
+        {
+          "vendor": "大西 晃\r （タテジマ大西）",
+          "type": "個人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "運用業務（PM・サイトTOP KV設計/記事画像）",
+          "amountExTax": 249999.99999999997,
+          "amountIncTax": 275000
+        },
+        {
+          "vendor": "井本佳孝",
+          "type": "個人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "7月記事（ブレイキン原稿・ゴルフ2記事・取材交通費）",
+          "amountExTax": 50872,
+          "amountIncTax": 55872
+        },
+        {
+          "vendor": "オープラス株式会社",
+          "type": "法人",
+          "project": "コーセー SPORTS BEAUTY",
+          "task": "出張撮影費＋交通費（26/7公開分）",
+          "amountExTax": 33000,
+          "amountIncTax": 36300
+        },
+        {
+          "vendor": "倉橋碧",
+          "type": "個人",
+          "project": "あっぱれ",
+          "task": "サーキュラーエコノミー デザイン作業",
+          "amountExTax": 49999.99999999999,
+          "amountIncTax": 55000
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "type": "法人",
+          "project": "すぽったま",
+          "task": "Posterサポートプラン月額（7月分）",
+          "amountExTax": 108000,
+          "amountIncTax": 118800
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "type": "法人",
+          "project": "ぶんたま",
+          "task": "Posterサポートプラン月額（7月分）",
+          "amountExTax": 42000,
+          "amountIncTax": 46200
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "type": "法人",
+          "project": "すぽったま",
+          "task": "GPSチェックイン機能 開発費（一時）",
+          "amountExTax": 1125000,
+          "amountIncTax": 1237500
+        },
+        {
+          "vendor": "タクマ電設",
+          "type": "法人",
+          "project": "乾燥受託加工",
+          "task": "乾燥受託加工（5/20・6/16分）",
+          "amountExTax": 40000,
+          "amountIncTax": 44000
+        },
+        {
+          "vendor": "Google広告\r （Google Japan）",
+          "type": "法人",
+          "project": "ヒロ建工",
+          "task": "Google広告（小屋/収納リノベ/指名 ほか）",
+          "amountExTax": 266710,
+          "amountIncTax": 293381
+        },
+        {
+          "vendor": "IMAGE MAGIC",
+          "type": "法人",
+          "project": "印刷",
+          "task": "オンデマンド印刷（7/27）",
+          "amountExTax": 42902,
+          "amountIncTax": 47192
+        },
+        {
+          "vendor": "Slack",
+          "type": "法人",
+          "project": "社内活用",
+          "task": "Slack利用料（7月分）",
+          "amountExTax": 13650,
+          "amountIncTax": 15015
+        },
+        {
+          "vendor": "Figma",
+          "type": "法人",
+          "project": "社内活用",
+          "task": "Figma利用料（7月分）",
+          "amountExTax": 18100,
+          "amountIncTax": 19910
+        },
+        {
+          "vendor": "X（旧Twitter）",
+          "type": "法人",
+          "project": "リバサポ",
+          "task": "Xプレミアム月額（7月分）",
+          "amountExTax": 835,
+          "amountIncTax": 918
+        },
+        {
+          "vendor": "お名前.com",
+          "type": "法人",
+          "project": "サーバ",
+          "task": "レンタルサーバー利用料（7月分）",
+          "amountExTax": 1892,
+          "amountIncTax": 2081
+        },
+        {
+          "vendor": "Paid",
+          "type": "法人",
+          "project": "すぽったま",
+          "task": "LINE公式アカウント月額プラン",
+          "amountExTax": 15000,
+          "amountIncTax": 16500
+        },
+        {
+          "vendor": "Paid",
+          "type": "法人",
+          "project": "ぶんたま",
+          "task": "LINE公式アカウント月額プラン",
+          "amountExTax": 15000,
+          "amountIncTax": 16500
+        },
+        {
+          "vendor": "Paid",
+          "type": "法人",
+          "project": "リバサポ",
+          "task": "LINE公式アカウント月額プラン",
+          "amountExTax": 15000,
+          "amountIncTax": 16500
+        }
+      ],
+      "projects": [
+        {
+          "name": "早川電工",
+          "exTax": 30000,
+          "incTax": 33000,
+          "vendorCount": 1,
+          "vendors": [
+            "umi.design合同会社"
+          ]
+        },
+        {
+          "name": "リバサポ/コーセー",
+          "exTax": 140000,
+          "incTax": 154000,
+          "vendorCount": 1,
+          "vendors": [
+            "城内由香"
+          ]
+        },
+        {
+          "name": "THE NATIVE CASK",
+          "exTax": 70000,
+          "incTax": 77000,
+          "vendorCount": 1,
+          "vendors": [
+            "高橋 亮"
+          ]
+        },
+        {
+          "name": "横瀬町",
+          "exTax": 90000,
+          "incTax": 99000,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社ポリリズム"
+          ]
+        },
+        {
+          "name": "TTカーズ",
+          "exTax": 10000,
+          "incTax": 11000,
+          "vendorCount": 1,
+          "vendors": [
+            "twooo\r 城内匡"
+          ]
+        },
+        {
+          "name": "かきだ寿司",
+          "exTax": 10000,
+          "incTax": 11000,
+          "vendorCount": 1,
+          "vendors": [
+            "S.SKYDESIGN\r マツクラ マユミ"
+          ]
+        },
+        {
+          "name": "月次制作業務",
+          "exTax": 900643,
+          "incTax": 990707,
+          "vendorCount": 1,
+          "vendors": [
+            "合同会社 浅見制作所"
+          ]
+        },
+        {
+          "name": "リバサポ",
+          "exTax": 35835,
+          "incTax": 39418,
+          "vendorCount": 3,
+          "vendors": [
+            "金崎敏也\r （zaki）",
+            "X（旧Twitter）",
+            "Paid"
+          ]
+        },
+        {
+          "name": "WITH RIVER",
+          "exTax": 879999.9999999999,
+          "incTax": 968000,
+          "vendorCount": 1,
+          "vendors": [
+            "aoiem\r 加藤健太"
+          ]
+        },
+        {
+          "name": "横瀬ふれあいプラザ",
+          "exTax": 50000,
+          "incTax": 55000,
+          "vendorCount": 1,
+          "vendors": [
+            "株式会社ENgaWA"
+          ]
+        },
+        {
+          "name": "コーセー SPORTS BEAUTY",
+          "exTax": 333872,
+          "incTax": 367172,
+          "vendorCount": 3,
+          "vendors": [
+            "大西 晃\r （タテジマ大西）",
+            "井本佳孝",
+            "オープラス株式会社"
+          ]
+        },
+        {
+          "name": "あっぱれ",
+          "exTax": 49999.99999999999,
+          "incTax": 55000,
+          "vendorCount": 1,
+          "vendors": [
+            "倉橋碧"
+          ]
+        },
+        {
+          "name": "すぽったま",
+          "exTax": 1248000,
+          "incTax": 1372800,
+          "vendorCount": 2,
+          "vendors": [
+            "株式会社モスコソリューションズ",
+            "Paid"
+          ]
+        },
+        {
+          "name": "ぶんたま",
+          "exTax": 57000,
+          "incTax": 62700,
+          "vendorCount": 2,
+          "vendors": [
+            "株式会社モスコソリューションズ",
+            "Paid"
+          ]
+        },
+        {
+          "name": "乾燥受託加工",
+          "exTax": 40000,
+          "incTax": 44000,
+          "vendorCount": 1,
+          "vendors": [
+            "タクマ電設"
+          ]
+        },
+        {
+          "name": "ヒロ建工",
+          "exTax": 266710,
+          "incTax": 293381,
+          "vendorCount": 1,
+          "vendors": [
+            "Google広告\r （Google Japan）"
+          ]
+        },
+        {
+          "name": "印刷",
+          "exTax": 42902,
+          "incTax": 47192,
+          "vendorCount": 1,
+          "vendors": [
+            "IMAGE MAGIC"
+          ]
+        },
+        {
+          "name": "社内活用",
+          "exTax": 31750,
+          "incTax": 34925,
+          "vendorCount": 2,
+          "vendors": [
+            "Slack",
+            "Figma"
+          ]
+        },
+        {
+          "name": "サーバ",
+          "exTax": 1892,
+          "incTax": 2081,
+          "vendorCount": 1,
+          "vendors": [
+            "お名前.com"
+          ]
         }
       ]
     }

@@ -1,8 +1,9 @@
 {
-  "generatedAt": "2026-03-20T13:53:44.696Z",
+  "generatedAt": "2026-08-14T15:09:59.047Z",
   "summary": [
     {
       "period": "第二期",
+      "periodRaw": "第二期",
       "range": "2010.7〜2011.6",
       "firstHalf": 0,
       "firstHalfGrowth": null,
@@ -20,6 +21,7 @@
     },
     {
       "period": "第三期",
+      "periodRaw": "第三期",
       "range": "2011.7〜2012.6",
       "firstHalf": 46510,
       "firstHalfGrowth": null,
@@ -37,6 +39,7 @@
     },
     {
       "period": "第四期",
+      "periodRaw": "第四期",
       "range": "2012.7〜2013.6",
       "firstHalf": 58095,
       "firstHalfGrowth": 1.249086218,
@@ -54,6 +57,7 @@
     },
     {
       "period": "第五期",
+      "periodRaw": "第五期",
       "range": "2013.7〜2014.6",
       "firstHalf": 68014,
       "firstHalfGrowth": 1.170737585,
@@ -71,6 +75,7 @@
     },
     {
       "period": "第六期",
+      "periodRaw": "第六期",
       "range": "2014.7〜2015.6",
       "firstHalf": 95401,
       "firstHalfGrowth": 1.402667098,
@@ -88,6 +93,7 @@
     },
     {
       "period": "第七期",
+      "periodRaw": "第七期",
       "range": "2015.7〜2016.6",
       "firstHalf": 81177,
       "firstHalfGrowth": 0.8509030304,
@@ -105,6 +111,7 @@
     },
     {
       "period": "第八期",
+      "periodRaw": "第八期",
       "range": "2016.7〜2017.6",
       "firstHalf": 84367,
       "firstHalfGrowth": 1.039296845,
@@ -122,6 +129,7 @@
     },
     {
       "period": "第九期",
+      "periodRaw": "第九期",
       "range": "2017.7〜2018.6",
       "firstHalf": 68884,
       "firstHalfGrowth": 0.8164803774,
@@ -139,6 +147,7 @@
     },
     {
       "period": "第十期",
+      "periodRaw": "第十期",
       "range": "2018.7〜2019.6",
       "firstHalf": 57216,
       "firstHalfGrowth": 0.8306137855,
@@ -156,6 +165,7 @@
     },
     {
       "period": "第十一期",
+      "periodRaw": "第十一期",
       "range": "2019.7〜2020.6",
       "firstHalf": 63598,
       "firstHalfGrowth": 1.111542226,
@@ -173,6 +183,7 @@
     },
     {
       "period": "第十二期",
+      "periodRaw": "第十二期",
       "range": "2020.7〜2021.6",
       "firstHalf": 69791,
       "firstHalfGrowth": 1.097377276,
@@ -190,6 +201,7 @@
     },
     {
       "period": "第十三期",
+      "periodRaw": "第十三期",
       "range": "2021.7〜2022.6",
       "firstHalf": 75727,
       "firstHalfGrowth": 1.085053947,
@@ -207,6 +219,7 @@
     },
     {
       "period": "第十四期",
+      "periodRaw": "第十四期",
       "range": "2022.7〜2023.6",
       "firstHalf": 72233,
       "firstHalfGrowth": 0.9538605781,
@@ -224,6 +237,7 @@
     },
     {
       "period": "第十五期",
+      "periodRaw": "第十五期",
       "range": "2023.7〜2024.6",
       "firstHalf": 59886,
       "firstHalfGrowth": 0.8290670469,
@@ -241,6 +255,7 @@
     },
     {
       "period": "第十六期",
+      "periodRaw": "第十六期",
       "range": "2024.7〜2025.6",
       "firstHalf": 64990,
       "firstHalfGrowth": 1.085228601,
@@ -257,24 +272,528 @@
       "team": "橋本・(市原)・岡永・中村・(倉橋)・(板東)"
     },
     {
-      "period": "第十六期",
+      "period": "第十七期",
+      "periodRaw": "第十六期",
       "range": "2025.7〜2026.6",
-      "firstHalf": 101000,
-      "firstHalfGrowth": 1.554085244,
+      "firstHalf": 100200,
+      "firstHalfGrowth": 1.541775658,
       "firstHalfCost": 0,
-      "firstHalfProfit": 101000,
-      "secondHalf": 79856,
-      "secondHalfGrowth": 1.514575628,
+      "firstHalfProfit": 100200,
+      "secondHalf": 94631,
+      "secondHalfGrowth": 1.794803224,
       "secondHalfCost": 0,
-      "secondHalfProfit": 79856,
-      "total": 180856,
-      "totalGrowth": 1.536388736,
+      "secondHalfProfit": 94631,
+      "total": 194831,
+      "totalGrowth": 1.655107675,
       "totalCost": 0,
-      "totalProfit": 180856,
+      "totalProfit": 194831,
+      "team": "志連・橋本・(市原)・岡永・中村"
+    },
+    {
+      "period": "第十八期",
+      "periodRaw": "第十六期",
+      "range": "2026.7〜2027.6",
+      "firstHalf": 56936,
+      "firstHalfGrowth": 0.5682235529,
+      "firstHalfCost": 0,
+      "firstHalfProfit": 56936,
+      "secondHalf": 0,
+      "secondHalfGrowth": 0,
+      "secondHalfCost": 0,
+      "secondHalfProfit": 0,
+      "total": 56936,
+      "totalGrowth": 0.2922327556,
+      "totalCost": 0,
+      "totalProfit": 56936,
       "team": "志連・橋本・(市原)・岡永・中村"
     }
   ],
   "sheets": [
+    {
+      "period": "2026後期",
+      "sheetName": "2026年7-12",
+      "half": "second",
+      "clients": [
+        {
+          "name": "高島屋",
+          "entries": [
+            {
+              "month": "8月",
+              "action": "おせち",
+              "yomi": 0,
+              "sales": 800,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "コア",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "8月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "9月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "10月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "11月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "12月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "EPSON（DOKASEN）",
+          "entries": [
+            {
+              "month": "8月",
+              "action": "提案資料",
+              "yomi": 0,
+              "sales": 3000,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "物産観光協会",
+          "entries": [
+            {
+              "month": "10月",
+              "action": "ＬＰ前期",
+              "yomi": 0,
+              "sales": 15000,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "CASK＆フォレスト",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "パッケージ",
+              "yomi": 0,
+              "sales": 500,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "Ｍｓ",
+          "entries": [
+            {
+              "month": "10月",
+              "action": "コーポレートサイト",
+              "yomi": 0,
+              "sales": 2000,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "やっち",
+          "entries": [
+            {
+              "month": "8月",
+              "action": "イラスト",
+              "yomi": 0,
+              "sales": 500,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "マクドナルド",
+          "entries": [
+            {
+              "month": "8月",
+              "action": "ポロシャツ",
+              "yomi": 0,
+              "sales": 0,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "ウイザース",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 200,
+              "cost": 0
+            },
+            {
+              "month": "8月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 200,
+              "cost": 0
+            },
+            {
+              "month": "9月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 200,
+              "cost": 0
+            },
+            {
+              "month": "10月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 234,
+              "cost": 0
+            },
+            {
+              "month": "11月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 125,
+              "cost": 0
+            },
+            {
+              "month": "12月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 200,
+              "cost": 0
+            },
+            {
+              "month": "10月",
+              "action": "サイトリニューアル",
+              "yomi": 0,
+              "sales": 2000,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "あっぱれ",
+          "entries": [
+            {
+              "month": "12月",
+              "action": "更新",
+              "yomi": 0,
+              "sales": 300,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "ヒロ建工",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 231,
+              "cost": 0
+            },
+            {
+              "month": "8月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 150,
+              "cost": 0
+            },
+            {
+              "month": "9月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 150,
+              "cost": 0
+            },
+            {
+              "month": "10月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 110,
+              "cost": 0
+            },
+            {
+              "month": "11月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 110,
+              "cost": 0
+            },
+            {
+              "month": "12月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 150,
+              "cost": 0
+            },
+            {
+              "month": "7月",
+              "action": "採用サイト",
+              "yomi": 0,
+              "sales": 979,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "ヒロベース",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 221,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "ユニポテンシャル",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "更新",
+              "yomi": 0,
+              "sales": 90,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "おくりバント",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "更新",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "KOSE（熱帯）",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "KOSE運営",
+              "yomi": 0,
+              "sales": 600,
+              "cost": 0
+            },
+            {
+              "month": "8月",
+              "action": "KOSE運営",
+              "yomi": 0,
+              "sales": 600,
+              "cost": 0
+            },
+            {
+              "month": "9月",
+              "action": "KOSE運営",
+              "yomi": 0,
+              "sales": 600,
+              "cost": 0
+            },
+            {
+              "month": "10月",
+              "action": "KOSE運営",
+              "yomi": 0,
+              "sales": 600,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "ウニクス",
+          "entries": [
+            {
+              "month": "9月",
+              "action": "ピックル",
+              "yomi": 0,
+              "sales": 350,
+              "cost": 0
+            },
+            {
+              "month": "11月",
+              "action": "チャレフェス運用",
+              "yomi": 0,
+              "sales": 315,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "ADDReC",
+          "entries": [
+            {
+              "month": "8月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "9月",
+              "action": "ネイティブクラシック",
+              "yomi": 0,
+              "sales": 1500,
+              "cost": 0
+            },
+            {
+              "month": "10月",
+              "action": "ＫＩＳＳＡ",
+              "yomi": 0,
+              "sales": 3000,
+              "cost": 0
+            },
+            {
+              "month": "11月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "12月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "9月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "10月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "埼玉県庁",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "すぽったま",
+              "yomi": 0,
+              "sales": 6935,
+              "cost": 0
+            },
+            {
+              "month": "7月",
+              "action": "リバサポ",
+              "yomi": 0,
+              "sales": 3978,
+              "cost": 0
+            },
+            {
+              "month": "7月",
+              "action": "ぶんたま",
+              "yomi": 0,
+              "sales": 7628,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "カーセブン",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "8月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "9月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "10月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "11月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "12月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "SHINLOCAL",
+          "entries": [
+            {
+              "month": "7月",
+              "action": "看板",
+              "yomi": 0,
+              "sales": 1100,
+              "cost": 0
+            }
+          ]
+        }
+      ]
+    },
     {
       "period": "2026前期",
       "sheetName": "2026年1-6",
@@ -394,13 +913,25 @@
           ]
         },
         {
-          "name": "ヘッドスパ",
+          "name": "ビレッジバンガード",
+          "entries": [
+            {
+              "month": "6月",
+              "action": "福袋",
+              "yomi": 0,
+              "sales": 330,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "県土整備（オカベ建設）",
           "entries": [
             {
               "month": "5月",
-              "action": "リブランディング",
-              "yomi": 1500,
-              "sales": 0,
+              "action": "護岸アート",
+              "yomi": 0,
+              "sales": 2300,
               "cost": 0
             }
           ]
@@ -440,6 +971,39 @@
               "yomi": 0,
               "sales": 1000,
               "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "印刷",
+              "yomi": 0,
+              "sales": 385,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "CASK＆フォレスト",
+          "entries": [
+            {
+              "month": "3月",
+              "action": "パッケージ",
+              "yomi": 0,
+              "sales": 850,
+              "cost": 0
+            },
+            {
+              "month": "4月",
+              "action": "パッケージ",
+              "yomi": 0,
+              "sales": 500,
+              "cost": 0
+            },
+            {
+              "month": "5月",
+              "action": "パッケージ",
+              "yomi": 0,
+              "sales": 300,
+              "cost": 0
             }
           ]
         },
@@ -451,6 +1015,53 @@
               "action": "リトデポ追加",
               "yomi": 0,
               "sales": 726,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "床",
+              "yomi": 0,
+              "sales": 350,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "JEKI",
+          "entries": [
+            {
+              "month": "3月",
+              "action": "広告",
+              "yomi": 0,
+              "sales": 1600,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "WEB更新",
+              "yomi": 0,
+              "sales": 225,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "広告",
+              "yomi": 0,
+              "sales": 400,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "追加",
+              "yomi": 0,
+              "sales": 40,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "チラシ",
+              "yomi": 0,
+              "sales": 185,
               "cost": 0
             }
           ]
@@ -483,6 +1094,13 @@
               "yomi": 0,
               "sales": 300,
               "cost": 0
+            },
+            {
+              "month": "4月",
+              "action": "スタンプラリー",
+              "yomi": 0,
+              "sales": 60,
+              "cost": 0
             }
           ]
         },
@@ -497,10 +1115,10 @@
               "cost": 0
             },
             {
-              "month": "6月",
-              "action": "EBIS",
-              "yomi": 10000,
-              "sales": 0,
+              "month": "5月",
+              "action": "ポロシャツ",
+              "yomi": 0,
+              "sales": 120,
               "cost": 0
             },
             {
@@ -540,21 +1158,21 @@
               "month": "4月",
               "action": "運用他",
               "yomi": 0,
-              "sales": 200,
+              "sales": 234,
               "cost": 0
             },
             {
               "month": "5月",
               "action": "運用他",
               "yomi": 0,
-              "sales": 200,
+              "sales": 125,
               "cost": 0
             },
             {
               "month": "6月",
               "action": "運用他",
               "yomi": 0,
-              "sales": 200,
+              "sales": 138,
               "cost": 0
             }
           ]
@@ -587,21 +1205,42 @@
               "month": "4月",
               "action": "運用",
               "yomi": 0,
-              "sales": 150,
+              "sales": 110,
               "cost": 0
             },
             {
               "month": "5月",
               "action": "運用",
               "yomi": 0,
-              "sales": 150,
+              "sales": 110,
               "cost": 0
             },
             {
               "month": "6月",
               "action": "運用",
               "yomi": 0,
-              "sales": 150,
+              "sales": 110,
+              "cost": 0
+            },
+            {
+              "month": "4月",
+              "action": "広告",
+              "yomi": 0,
+              "sales": 201,
+              "cost": 0
+            },
+            {
+              "month": "5月",
+              "action": "広告",
+              "yomi": 0,
+              "sales": 201,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "広告",
+              "yomi": 0,
+              "sales": 222,
               "cost": 0
             }
           ]
@@ -619,25 +1258,89 @@
           ]
         },
         {
-          "name": "アットパーキング",
+          "name": "JR都市開発",
           "entries": [
             {
               "month": "6月",
-              "action": "サイトリニューアル",
-              "yomi": 4000,
-              "sales": 0,
+              "action": "サイト更新",
+              "yomi": 0,
+              "sales": 200,
               "cost": 0
             }
           ]
         },
         {
-          "name": "JR案件（REDD）",
+          "name": "学研",
           "entries": [
             {
               "month": "3月",
+              "action": "更新",
+              "yomi": 0,
+              "sales": 200,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "JT案件（REDD）",
+          "entries": [
+            {
+              "month": "5月",
               "action": "サイトリニューアル",
               "yomi": 0,
-              "sales": 4000,
+              "sales": 4490,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "おくりバント",
+          "entries": [
+            {
+              "month": "6月",
+              "action": "すしサイト",
+              "yomi": 0,
+              "sales": 1100,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "早川電工",
+              "yomi": 0,
+              "sales": 1650,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "KOSE（熱帯）",
+          "entries": [
+            {
+              "month": "3月",
+              "action": "KOSE運営",
+              "yomi": 0,
+              "sales": 1024,
+              "cost": 0
+            },
+            {
+              "month": "4月",
+              "action": "KOSE運営",
+              "yomi": 0,
+              "sales": 463,
+              "cost": 0
+            },
+            {
+              "month": "5月",
+              "action": "KOSE運営",
+              "yomi": 0,
+              "sales": 892,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "KOSE運営",
+              "yomi": 0,
+              "sales": 520,
               "cost": 0
             }
           ]
@@ -674,6 +1377,13 @@
               "action": "ワイン",
               "yomi": 0,
               "sales": 2000,
+              "cost": 0
+            },
+            {
+              "month": "5月",
+              "action": "印刷",
+              "yomi": 0,
+              "sales": 190,
               "cost": 0
             },
             {
@@ -1355,18 +2065,6 @@
               "action": "ロゴ",
               "yomi": 0,
               "sales": 100,
-              "cost": 0
-            }
-          ]
-        },
-        {
-          "name": "ADDReC",
-          "entries": [
-            {
-              "month": "12月",
-              "action": "メインビジュアル",
-              "yomi": 0,
-              "sales": 800,
               "cost": 0
             }
           ]
@@ -2973,270 +3671,290 @@
     }
   ],
   "currentPeriod": {
-    "period": "2026前期（1-6月）",
+    "period": "2026後期（7月-12月）",
+    "months": [
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ],
     "monthTotals": {
-      "1月": {
-        "sales": 7678,
+      "7月": {
+        "sales": 22842,
         "cost": 0,
         "yomi": 0
       },
-      "2月": {
-        "sales": 7584,
+      "8月": {
+        "sales": 5630,
         "cost": 0,
         "yomi": 0
       },
-      "3月": {
-        "sales": 60671,
+      "9月": {
+        "sales": 3180,
         "cost": 0,
         "yomi": 0
       },
-      "4月": {
-        "sales": 1564,
+      "10月": {
+        "sales": 23324,
         "cost": 0,
         "yomi": 0
       },
-      "5月": {
-        "sales": 1481,
+      "11月": {
+        "sales": 930,
         "cost": 0,
-        "yomi": 1500
+        "yomi": 0
       },
-      "6月": {
-        "sales": 630,
+      "12月": {
+        "sales": 1030,
         "cost": 0,
-        "yomi": 14000
+        "yomi": 0
       }
     },
-    "totalSales": 79608,
-    "totalYomi": 15500,
+    "totalSales": 56936,
+    "totalYomi": 0,
     "clients": [
       {
         "name": "埼玉県庁",
-        "totalSales": 26982,
+        "totalSales": 18541,
         "totalYomi": 0,
         "byMonth": {
-          "3月": 26982
+          "7月": 18541
         },
         "actions": [
           {
-            "action": "文化資源",
-            "sales": 8023,
+            "action": "ぶんたま",
+            "sales": 7628,
             "yomi": 0,
             "months": [
-              "3月"
+              "7月"
             ]
           },
           {
-            "action": "スポーツ",
-            "sales": 6033,
+            "action": "すぽったま",
+            "sales": 6935,
             "yomi": 0,
             "months": [
-              "3月"
+              "7月"
             ]
           },
           {
-            "action": "サーキュラーイベント",
-            "sales": 4496,
-            "yomi": 0,
-            "months": [
-              "3月"
-            ]
-          },
-          {
-            "action": "リバサポ後半",
+            "action": "リバサポ",
             "sales": 3978,
             "yomi": 0,
             "months": [
-              "3月"
-            ]
-          },
-          {
-            "action": "いちご大學",
-            "sales": 2271,
-            "yomi": 0,
-            "months": [
-              "3月"
-            ]
-          },
-          {
-            "action": "サーキュラーロゴ",
-            "sales": 2181,
-            "yomi": 0,
-            "months": [
-              "3月"
+              "7月"
             ]
           }
         ]
       },
       {
         "name": "物産観光協会",
-        "totalSales": 26818,
+        "totalSales": 15000,
         "totalYomi": 0,
         "byMonth": {
-          "3月": 26818
+          "10月": 15000
         },
         "actions": [
           {
-            "action": "LP残り",
-            "sales": 18013,
+            "action": "ＬＰ前期",
+            "sales": 15000,
             "yomi": 0,
             "months": [
-              "3月"
-            ]
-          },
-          {
-            "action": "SNS残り",
-            "sales": 5715,
-            "yomi": 0,
-            "months": [
-              "3月"
-            ]
-          },
-          {
-            "action": "スポーツツーリズム",
-            "sales": 3090,
-            "yomi": 0,
-            "months": [
-              "3月"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "GREE：CL",
-        "totalSales": 4019,
-        "totalYomi": 0,
-        "byMonth": {
-          "1月": 855,
-          "2月": 711,
-          "3月": 668,
-          "4月": 934,
-          "5月": 851
-        },
-        "actions": [
-          {
-            "action": "(定常)",
-            "sales": 4019,
-            "yomi": 0,
-            "months": [
-              "1月",
-              "2月",
-              "3月",
-              "4月",
-              "5月"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "JR案件（REDD）",
-        "totalSales": 4000,
-        "totalYomi": 0,
-        "byMonth": {
-          "3月": 4000
-        },
-        "actions": [
-          {
-            "action": "サイトリニューアル",
-            "sales": 4000,
-            "yomi": 0,
-            "months": [
-              "3月"
+              "10月"
             ]
           }
         ]
       },
       {
         "name": "ADDReC",
-        "totalSales": 4000,
+        "totalSales": 5000,
         "totalYomi": 0,
         "byMonth": {
-          "1月": 4000
+          "8月": 100,
+          "9月": 1600,
+          "10月": 3100,
+          "11月": 100,
+          "12月": 100
         },
         "actions": [
           {
-            "action": "ワイン",
-            "sales": 2000,
+            "action": "ＫＩＳＳＡ",
+            "sales": 3000,
             "yomi": 0,
             "months": [
-              "1月"
+              "10月"
             ]
           },
           {
-            "action": "ＤＡ",
-            "sales": 2000,
+            "action": "ネイティブクラシック",
+            "sales": 1500,
             "yomi": 0,
             "months": [
-              "1月"
+              "9月"
             ]
-          }
-        ]
-      },
-      {
-        "name": "読売新聞",
-        "totalSales": 2960,
-        "totalYomi": 0,
-        "byMonth": {
-          "2月": 2660,
-          "3月": 300
-        },
-        "actions": [
+          },
           {
-            "action": "スタンプラリー",
-            "sales": 2960,
+            "action": "定額",
+            "sales": 500,
             "yomi": 0,
             "months": [
-              "2月",
-              "3月"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "GREE：HN",
-        "totalSales": 2234,
-        "totalYomi": 0,
-        "byMonth": {
-          "1月": 789,
-          "2月": 622,
-          "3月": 823
-        },
-        "actions": [
-          {
-            "action": "(定常)",
-            "sales": 2234,
-            "yomi": 0,
-            "months": [
-              "1月",
-              "2月",
-              "3月"
+              "8月",
+              "11月",
+              "12月",
+              "9月",
+              "10月"
             ]
           }
         ]
       },
       {
         "name": "ウイザース",
-        "totalSales": 1200,
+        "totalSales": 3159,
         "totalYomi": 0,
         "byMonth": {
-          "1月": 200,
-          "2月": 200,
-          "3月": 200,
-          "4月": 200,
-          "5月": 200,
-          "6月": 200
+          "7月": 200,
+          "8月": 200,
+          "9月": 200,
+          "10月": 2234,
+          "11月": 125,
+          "12月": 200
         },
         "actions": [
           {
-            "action": "運用他",
-            "sales": 1200,
+            "action": "サイトリニューアル",
+            "sales": 2000,
             "yomi": 0,
             "months": [
-              "1月",
-              "2月",
-              "3月",
-              "4月",
-              "5月",
-              "6月"
+              "10月"
+            ]
+          },
+          {
+            "action": "運用他",
+            "sales": 1159,
+            "yomi": 0,
+            "months": [
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EPSON（DOKASEN）",
+        "totalSales": 3000,
+        "totalYomi": 0,
+        "byMonth": {
+          "8月": 3000
+        },
+        "actions": [
+          {
+            "action": "提案資料",
+            "sales": 3000,
+            "yomi": 0,
+            "months": [
+              "8月"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "KOSE（熱帯）",
+        "totalSales": 2400,
+        "totalYomi": 0,
+        "byMonth": {
+          "7月": 600,
+          "8月": 600,
+          "9月": 600,
+          "10月": 600
+        },
+        "actions": [
+          {
+            "action": "KOSE運営",
+            "sales": 2400,
+            "yomi": 0,
+            "months": [
+              "7月",
+              "8月",
+              "9月",
+              "10月"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Ｍｓ",
+        "totalSales": 2000,
+        "totalYomi": 0,
+        "byMonth": {
+          "10月": 2000
+        },
+        "actions": [
+          {
+            "action": "コーポレートサイト",
+            "sales": 2000,
+            "yomi": 0,
+            "months": [
+              "10月"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ヒロ建工",
+        "totalSales": 1880,
+        "totalYomi": 0,
+        "byMonth": {
+          "7月": 1210,
+          "8月": 150,
+          "9月": 150,
+          "10月": 110,
+          "11月": 110,
+          "12月": 150
+        },
+        "actions": [
+          {
+            "action": "採用サイト",
+            "sales": 979,
+            "yomi": 0,
+            "months": [
+              "7月"
+            ]
+          },
+          {
+            "action": "運用",
+            "sales": 901,
+            "yomi": 0,
+            "months": [
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SHINLOCAL",
+        "totalSales": 1100,
+        "totalYomi": 0,
+        "byMonth": {
+          "7月": 1100
+        },
+        "actions": [
+          {
+            "action": "看板",
+            "sales": 1100,
+            "yomi": 0,
+            "months": [
+              "7月"
             ]
           }
         ]
@@ -3246,12 +3964,12 @@
         "totalSales": 1080,
         "totalYomi": 0,
         "byMonth": {
-          "1月": 180,
-          "2月": 180,
-          "3月": 180,
-          "4月": 180,
-          "5月": 180,
-          "6月": 180
+          "7月": 180,
+          "8月": 180,
+          "9月": 180,
+          "10月": 180,
+          "11月": 180,
+          "12月": 180
         },
         "actions": [
           {
@@ -3259,247 +3977,193 @@
             "sales": 1080,
             "yomi": 0,
             "months": [
-              "1月",
-              "2月",
-              "3月",
-              "4月",
-              "5月",
-              "6月"
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月"
             ]
           }
         ]
       },
       {
-        "name": "カーセブン",
-        "totalSales": 1005,
+        "name": "高島屋",
+        "totalSales": 800,
         "totalYomi": 0,
         "byMonth": {
-          "1月": 235,
-          "2月": 235,
-          "3月": 235,
-          "4月": 100,
-          "5月": 100,
-          "6月": 100
+          "8月": 800
         },
         "actions": [
           {
-            "action": "運用",
-            "sales": 1005,
+            "action": "おせち",
+            "sales": 800,
             "yomi": 0,
             "months": [
-              "1月",
-              "2月",
-              "3月",
-              "4月",
-              "5月",
-              "6月"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "INTEGRATE",
-        "totalSales": 1000,
-        "totalYomi": 0,
-        "byMonth": {
-          "2月": 1000
-        },
-        "actions": [
-          {
-            "action": "サウナ ポスター制作（stons）",
-            "sales": 1000,
-            "yomi": 0,
-            "months": [
-              "2月"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "ヒロ建工",
-        "totalSales": 900,
-        "totalYomi": 0,
-        "byMonth": {
-          "1月": 150,
-          "2月": 150,
-          "3月": 150,
-          "4月": 150,
-          "5月": 150,
-          "6月": 150
-        },
-        "actions": [
-          {
-            "action": "運用",
-            "sales": 900,
-            "yomi": 0,
-            "months": [
-              "1月",
-              "2月",
-              "3月",
-              "4月",
-              "5月",
-              "6月"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "乃村不動産",
-        "totalSales": 900,
-        "totalYomi": 0,
-        "byMonth": {
-          "2月": 900
-        },
-        "actions": [
-          {
-            "action": "WEB",
-            "sales": 900,
-            "yomi": 0,
-            "months": [
-              "2月"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "マクドナルド",
-        "totalSales": 819,
-        "totalYomi": 10000,
-        "byMonth": {
-          "1月": 819,
-          "6月": 0
-        },
-        "actions": [
-          {
-            "action": "運用他",
-            "sales": 594,
-            "yomi": 0,
-            "months": [
-              "1月"
-            ]
-          },
-          {
-            "action": "ロゴ",
-            "sales": 225,
-            "yomi": 0,
-            "months": [
-              "1月"
-            ]
-          },
-          {
-            "action": "EBIS",
-            "sales": 0,
-            "yomi": 10000,
-            "months": [
-              "6月"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "JR東日本",
-        "totalSales": 726,
-        "totalYomi": 0,
-        "byMonth": {
-          "2月": 726
-        },
-        "actions": [
-          {
-            "action": "リトデポ追加",
-            "sales": 726,
-            "yomi": 0,
-            "months": [
-              "2月"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "パソナＪＯＢＨＵＢ",
-        "totalSales": 450,
-        "totalYomi": 0,
-        "byMonth": {
-          "1月": 450
-        },
-        "actions": [
-          {
-            "action": "ロゴ",
-            "sales": 450,
-            "yomi": 0,
-            "months": [
-              "1月"
+              "8月"
             ]
           }
         ]
       },
       {
         "name": "ウニクス",
-        "totalSales": 315,
+        "totalSales": 665,
         "totalYomi": 0,
         "byMonth": {
-          "3月": 315
+          "9月": 350,
+          "11月": 315
         },
         "actions": [
+          {
+            "action": "ピックル",
+            "sales": 350,
+            "yomi": 0,
+            "months": [
+              "9月"
+            ]
+          },
           {
             "action": "チャレフェス運用",
             "sales": 315,
             "yomi": 0,
             "months": [
-              "3月"
+              "11月"
             ]
           }
         ]
       },
       {
-        "name": "田口木工",
-        "totalSales": 200,
+        "name": "カーセブン",
+        "totalSales": 600,
         "totalYomi": 0,
         "byMonth": {
-          "2月": 200
+          "7月": 100,
+          "8月": 100,
+          "9月": 100,
+          "10月": 100,
+          "11月": 100,
+          "12月": 100
+        },
+        "actions": [
+          {
+            "action": "運用",
+            "sales": 600,
+            "yomi": 0,
+            "months": [
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CASK＆フォレスト",
+        "totalSales": 500,
+        "totalYomi": 0,
+        "byMonth": {
+          "7月": 500
         },
         "actions": [
           {
             "action": "パッケージ",
-            "sales": 200,
+            "sales": 500,
             "yomi": 0,
             "months": [
-              "2月"
+              "7月"
             ]
           }
         ]
       },
       {
-        "name": "ヘッドスパ",
-        "totalSales": 0,
-        "totalYomi": 1500,
+        "name": "やっち",
+        "totalSales": 500,
+        "totalYomi": 0,
         "byMonth": {
-          "5月": 0
+          "8月": 500
         },
         "actions": [
           {
-            "action": "リブランディング",
-            "sales": 0,
-            "yomi": 1500,
+            "action": "イラスト",
+            "sales": 500,
+            "yomi": 0,
             "months": [
-              "5月"
+              "8月"
             ]
           }
         ]
       },
       {
-        "name": "アットパーキング",
-        "totalSales": 0,
-        "totalYomi": 4000,
+        "name": "あっぱれ",
+        "totalSales": 300,
+        "totalYomi": 0,
         "byMonth": {
-          "6月": 0
+          "12月": 300
         },
         "actions": [
           {
-            "action": "サイトリニューアル",
-            "sales": 0,
-            "yomi": 4000,
+            "action": "更新",
+            "sales": 300,
+            "yomi": 0,
             "months": [
-              "6月"
+              "12月"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ヒロベース",
+        "totalSales": 221,
+        "totalYomi": 0,
+        "byMonth": {
+          "7月": 221
+        },
+        "actions": [
+          {
+            "action": "運用",
+            "sales": 221,
+            "yomi": 0,
+            "months": [
+              "7月"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "おくりバント",
+        "totalSales": 100,
+        "totalYomi": 0,
+        "byMonth": {
+          "7月": 100
+        },
+        "actions": [
+          {
+            "action": "更新",
+            "sales": 100,
+            "yomi": 0,
+            "months": [
+              "7月"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ユニポテンシャル",
+        "totalSales": 90,
+        "totalYomi": 0,
+        "byMonth": {
+          "7月": 90
+        },
+        "actions": [
+          {
+            "action": "更新",
+            "sales": 90,
+            "yomi": 0,
+            "months": [
+              "7月"
             ]
           }
         ]

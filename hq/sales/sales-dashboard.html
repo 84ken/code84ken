@@ -58,10 +58,19 @@ const PCT = (n) => n ? (n * 100).toFixed(1) + '%' : '-';
 const YEN = (n) => '¥' + FMT(n);
 
 async function init() {
-  const [data, memos] = await Promise.all([
+  const [data, memos, vendorData] = await Promise.all([
     fetch('sales-data.json').then(r => r.json()),
-    fetch('/api/memos').then(r => { if(!r.ok) throw new Error(); return r.json(); }).catch(() => fetch('vendor-memos.json').then(r => r.json()).catch(() => ({ projects: [] })))
+    fetch('/api/memos').then(r => { if(!r.ok) throw new Error(); return r.json(); }).catch(() => fetch('vendor-memos.json').then(r => r.json()).catch(() => ({ projects: [] }))),
+    fetch('vendor-data.json').then(r => r.json()).catch(() => ({ months: [] }))
   ]);
+
+  // 外注費の実績（請求書ベース）を period → 千円 で引けるように
+  const costByPeriod = {};
+  (vendorData.months || []).forEach(m => {
+    const ex = m.totalExTax != null ? m.totalExTax
+      : (m.entries || []).reduce((s, e) => s + (e.amountExTax || 0), 0);
+    costByPeriod[m.period] = { exTax: ex, count: (m.entries || []).length };
+  });
 
   // プロジェクト管理のデータを月別に集計（7月〜6月の期）
   const projects = memos.projects || [];
@@ -103,8 +112,15 @@ async function init() {
   const privSales = cp.totalSales - govSales;
   const privYomi = cp.totalYomi - govYomi;
 
-  const months = ['1月','2月','3月','4月','5月','6月'];
+  const months = cp.months || ['1月','2月','3月','4月','5月','6月'];
   const maxMonthSales = Math.max(...Object.values(cp.monthTotals).map(m => m.sales));
+
+  // 外注実績（vendor-data.json）を月次に対応づけ
+  const monthToPeriod = {};
+  months.forEach(m => {
+    const n = parseInt(m, 10);
+    monthToPeriod[m] = '2026-' + String(n).padStart(2, '0');
+  });
 
   let html = '';
 
@@ -243,6 +259,65 @@ async function init() {
     </div>
   </div>`;
 
+  // ===== 売上 × 外注費 × 粗利（請求書ベースの実績と突合） =====
+  let sumSales = 0, sumCost = 0, confirmedMonths = 0;
+  let rowsHtml = '';
+  months.forEach(m => {
+    const sales = cp.monthTotals[m].sales;              // 千円
+    const c = costByPeriod[monthToPeriod[m]];
+    const cost = c ? Math.round(c.exTax / 1000) : null; // 千円（税抜）
+    sumSales += sales;
+    if (cost != null) { sumCost += cost; confirmedMonths++; }
+    const gp = cost != null ? sales - cost : null;
+    const rate = (cost != null && sales > 0) ? (cost / sales) : null;
+    const rateCls = rate == null ? 'text-slate-400'
+      : rate >= 0.6 ? 'text-red-600' : rate >= 0.4 ? 'text-amber-600' : 'text-emerald-600';
+    rowsHtml += `
+      <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+        <td class="py-2.5 px-4 text-sm font-medium text-slate-900">${m}</td>
+        <td class="py-2.5 px-4 text-sm text-right text-slate-900">${FMT(sales)}</td>
+        <td class="py-2.5 px-4 text-sm text-right ${cost != null ? 'text-body' : 'text-slate-300'}">${cost != null ? FMT(cost) : '未確定'}</td>
+        <td class="py-2.5 px-4 text-sm text-right font-medium ${gp != null ? 'text-slate-900' : 'text-slate-300'}">${gp != null ? FMT(gp) : '—'}</td>
+        <td class="py-2.5 px-4 text-sm text-right font-medium ${rateCls}">${rate != null ? PCT(rate) : '—'}</td>
+        <td class="py-2.5 px-4 text-xs text-slate-400">${c ? c.count + '件' : ''}</td>
+      </tr>`;
+  });
+  const totalGp = sumSales - sumCost;
+  const totalRate = sumSales > 0 ? sumCost / sumSales : 0;
+
+  html += `
+  <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mb-8">
+    <div class="px-6 py-4 border-b border-slate-200 bg-gray-50 flex items-center justify-between">
+      <h2 class="text-sm font-bold text-slate-900">月別 売上 × 外注費 × 粗利</h2>
+      <span class="text-xs text-slate-400">外注費は請求書実績（税抜）／${confirmedMonths}ヶ月分 確定</span>
+    </div>
+    <table class="w-full">
+      <thead>
+        <tr class="border-b border-slate-200 bg-gray-50">
+          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">月</th>
+          <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">売上(千円)</th>
+          <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">外注費(千円)</th>
+          <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">粗利(千円)</th>
+          <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">原価率</th>
+          <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">明細</th>
+        </tr>
+      </thead>
+      <tbody>${rowsHtml}
+        <tr class="bg-gray-50 font-bold">
+          <td class="py-3 px-4 text-sm text-slate-900">合計</td>
+          <td class="py-3 px-4 text-sm text-right text-slate-900">${FMT(sumSales)}</td>
+          <td class="py-3 px-4 text-sm text-right text-slate-900">${FMT(sumCost)}</td>
+          <td class="py-3 px-4 text-sm text-right text-emerald-700">${FMT(totalGp)}</td>
+          <td class="py-3 px-4 text-sm text-right text-slate-900">${PCT(totalRate)}</td>
+          <td class="py-3 px-4"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="px-6 py-3 bg-amber-50 border-t border-amber-200">
+      <p class="text-xs text-amber-800">外注費は <code class="bg-white px-1 rounded">vendor-data.json</code>（請求書まとめの実績・税抜）を参照。売上Excelの外注費列は未入力のため、そちらではなく請求書ベースで算出しています。未確定の月は請求書の取り込み待ちです。</p>
+    </div>
+  </div>`;
+
   // ===== Client Table =====
   const maxClientSales = Math.max(...cp.clients.map(c => c.totalSales + c.totalYomi));
 
@@ -332,7 +407,7 @@ async function init() {
   html += `
   <div class="mt-8 pt-6 border-t border-slate-200 flex items-center justify-between">
     <p class="text-xs text-slate-400">
-      データソース: 2026年1-6月 SCHEMA,Inc.売上.xlsx
+      データソース: 2026年7-12月 SCHEMA,Inc.売上.xlsx
       &mdash; <code class="bg-slate-100 px-1 rounded">node sales/generate-sales-data.js</code> で更新
     </p>
     <p class="text-xs text-slate-400">&copy;2026 SCHEMA, Inc.</p>

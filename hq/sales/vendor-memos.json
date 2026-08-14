@@ -192,6 +192,16 @@
           "status": "invoiced",
           "note": "Excel外注費リストから追加",
           "id": "go153ljq0590"
+        },
+        {
+          "vendor": "株式会社ガーデンエイト",
+          "task": "ウェブサイト調整（6月分）",
+          "amount": 100000,
+          "amountTax": 110000,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "2ls63mrz0y"
         }
       ],
       "closedAt": "2026-06-12"
@@ -513,6 +523,86 @@
           "status": "invoiced",
           "note": "2026-04 請求書まとめから自動同期",
           "id": "w6p7rgwweef"
+        },
+        {
+          "vendor": "X",
+          "task": "Xプレミアム月額（5月分）",
+          "amount": 834,
+          "amountTax": 918,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "z4j8ypahdc"
+        },
+        {
+          "vendor": "城内由香",
+          "task": "リバーサポーターズ対応＋KOSEビューティースポーツ対応",
+          "amount": 140000,
+          "amountTax": 154000,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "esuuo6y42bc"
+        },
+        {
+          "vendor": "X",
+          "task": "Xプレミアム月額（6月分）",
+          "amount": 834,
+          "amountTax": 918,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "vmnlfb0otg"
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "task": "LINE公式アカウント月額プラン（6月分）",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "ti1c1y4z4jl"
+        },
+        {
+          "vendor": "城内由香",
+          "task": "リバーサポーターズ対応＋KOSEビューティースポーツ対応",
+          "amount": 140000,
+          "amountTax": 154000,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "9xuc89791d"
+        },
+        {
+          "vendor": "金崎敏也\r （zaki）",
+          "task": "ドットキャラクター制作",
+          "amount": 20000,
+          "amountTax": 22000,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "9efzrtx28sq"
+        },
+        {
+          "vendor": "X（旧Twitter）",
+          "task": "Xプレミアム月額（7月分）",
+          "amount": 835,
+          "amountTax": 918,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "brbo2tzeg9v"
+        },
+        {
+          "vendor": "Paid",
+          "task": "LINE公式アカウント月額プラン",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "kad0wdd3lw"
         }
       ],
       "billings": [
@@ -633,6 +723,76 @@
           "status": "invoiced",
           "note": "2026-04 請求書まとめから自動同期",
           "id": "kjf9673hoha"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "Posterサポートプラン月額利用料（5月分）",
+          "amount": 63800,
+          "amountTax": 70180,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "8qt5cp70k5a"
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "task": "LINE公式アカウント月額プラン（5月分）",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "f31ams9p72f"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "Posterサポートプラン月額利用料（6月分）",
+          "amount": 63800,
+          "amountTax": 70180,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "ze4bfpqfwg"
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "task": "LINE公式アカウント月額プラン（6月分）",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "jansb254uti"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "Posterサポートプラン月額（7月分）",
+          "amount": 108000,
+          "amountTax": 118800,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "lqdx0nawoci"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "GPSチェックイン機能 開発費（一時）",
+          "amount": 1125000,
+          "amountTax": 1237500,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "4yvtq28w2t5"
+        },
+        {
+          "vendor": "Paid",
+          "task": "LINE公式アカウント月額プラン",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "m8ajge5xok"
         }
       ],
       "billings": [
@@ -812,6 +972,66 @@
           "status": "invoiced",
           "note": "2026-04 請求書まとめから自動同期",
           "id": "yzrbz3m5fuf"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "Posterサポートプラン月額利用料（5月分）",
+          "amount": 46200,
+          "amountTax": 50820,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "ac05htjro3l"
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "task": "LINE公式アカウント月額プラン（5月分）",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "8zj3g60wxda"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "Posterサポートプラン月額利用料（6月分）",
+          "amount": 46200,
+          "amountTax": 50820,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "lzodmme1xi"
+        },
+        {
+          "vendor": "LINE公式アカウント",
+          "task": "LINE公式アカウント月額プラン（6月分）",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "dj2ndknlvjv"
+        },
+        {
+          "vendor": "株式会社モスコソリューションズ",
+          "task": "Posterサポートプラン月額（7月分）",
+          "amount": 42000,
+          "amountTax": 46200,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "i8qngaqpcr"
+        },
+        {
+          "vendor": "Paid",
+          "task": "LINE公式アカウント月額プラン",
+          "amount": 15000,
+          "amountTax": 16500,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "iqz5w0z0g2g"
         }
       ],
       "billings": [
@@ -1846,6 +2066,36 @@
           "status": "invoiced",
           "note": "2026-04 請求書まとめから自動同期",
           "id": "rdqivf7frgg"
+        },
+        {
+          "vendor": "Google Japan（Google広告）",
+          "task": "Google広告 小屋キャンペーン（5月分）",
+          "amount": 180539,
+          "amountTax": 198593,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "wa57cm3q93"
+        },
+        {
+          "vendor": "Google Japan（Google広告）",
+          "task": "Google広告 小屋キャンペーン（6月分）",
+          "amount": 204668,
+          "amountTax": 225135,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "x56h3se14k"
+        },
+        {
+          "vendor": "Google広告\r （Google Japan）",
+          "task": "Google広告（小屋/収納リノベ/指名 ほか）",
+          "amount": 266710,
+          "amountTax": 293381,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "vdvoh4swjy"
         }
       ],
       "billings": [],
@@ -1921,6 +2171,36 @@
           "status": "invoiced",
           "note": "2026-04 請求書まとめから自動同期",
           "id": "tdn5y47c9rj"
+        },
+        {
+          "vendor": "株式会社ポリリズム",
+          "task": "サイトサーバ保守（5月対応）",
+          "amount": 90000,
+          "amountTax": 99000,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "2xt7jmtfys5"
+        },
+        {
+          "vendor": "株式会社ポリリズム",
+          "task": "サイトサーバ保守（6月対応）",
+          "amount": 90000,
+          "amountTax": 99000,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "zw4fgacqc2k"
+        },
+        {
+          "vendor": "株式会社ポリリズム",
+          "task": "サイトサーバ保守（7月対応）",
+          "amount": 90000,
+          "amountTax": 99000,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "a646wf4awo4"
         }
       ],
       "billings": [],
@@ -2327,6 +2607,16 @@
           "invoiceMonth": "2026-03",
           "invoiceStatus": "received",
           "memo": ""
+        },
+        {
+          "vendor": "IMAGE MAGIC",
+          "task": "オンデマンド印刷（7/27）",
+          "amount": 42902,
+          "amountTax": 47192,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "yeyjtv083hs"
         }
       ],
       "billings": [],
@@ -2420,6 +2710,106 @@
           "status": "invoiced",
           "note": "2026-04 請求書まとめから自動同期",
           "id": "2x1in3cpnqd"
+        },
+        {
+          "vendor": "株式会社ベクトル",
+          "task": "Clipkitクラウド利用料（5月分）",
+          "amount": 50000,
+          "amountTax": 55000,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "0yqrsh9mpmhf"
+        },
+        {
+          "vendor": "城内由香",
+          "task": "KOSEビューティースポーツ対応",
+          "amount": 40000,
+          "amountTax": 44000,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "u4x5gc5bghq"
+        },
+        {
+          "vendor": "大西 晃 （タテジマ大西）",
+          "task": "運用業務（PM・TOP改修実装）",
+          "amount": 450000,
+          "amountTax": 495000,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "zjn1eu52n9"
+        },
+        {
+          "vendor": "井本佳孝",
+          "task": "記事原稿料（5月分）＋取材交通費",
+          "amount": 20000,
+          "amountTax": 22418,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "xemk3rpifp"
+        },
+        {
+          "vendor": "オープラス株式会社",
+          "task": "出張撮影費＋交通費（5/28公開分）",
+          "amount": 33000,
+          "amountTax": 36300,
+          "expectedMonth": "2026-05",
+          "status": "invoiced",
+          "note": "2026-05 請求書まとめから自動同期",
+          "id": "v5oq627t96c"
+        },
+        {
+          "vendor": "株式会社ベクトル",
+          "task": "Clipkitクラウド利用料（6月分）",
+          "amount": 50000,
+          "amountTax": 55000,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "jgw0hulo58"
+        },
+        {
+          "vendor": "大西 晃 （タテジマ大西）",
+          "task": "運用業務（PM・TOP改修・記事画像作成）",
+          "amount": 200000,
+          "amountTax": 220000,
+          "expectedMonth": "2026-06",
+          "status": "invoiced",
+          "note": "2026-06 請求書まとめから自動同期",
+          "id": "z1wqhlvl05p"
+        },
+        {
+          "vendor": "大西 晃\r （タテジマ大西）",
+          "task": "運用業務（PM・サイトTOP KV設計/記事画像）",
+          "amount": 249999.99999999997,
+          "amountTax": 275000,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "2habqfo96d"
+        },
+        {
+          "vendor": "井本佳孝",
+          "task": "7月記事（ブレイキン原稿・ゴルフ2記事・取材交通費）",
+          "amount": 50872,
+          "amountTax": 55872,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "1oit4x1qiwp"
+        },
+        {
+          "vendor": "オープラス株式会社",
+          "task": "出張撮影費＋交通費（26/7公開分）",
+          "amount": 33000,
+          "amountTax": 36300,
+          "expectedMonth": "2026-07",
+          "status": "invoiced",
+          "note": "2026-07 請求書まとめから自動同期",
+          "id": "h2u9lvhoxpq"
         }
       ],
       "aliases": [
