@@ -318,6 +318,55 @@ async function init() {
     </div>
   </div>`;
 
+  // ===== 前期（1-6月）月別実績 — 期をまたいで直前の推移も見えるように =====
+  const prevSheet = data.sheets.find(s => s.period === '2026前期');
+  if (prevSheet) {
+    const pm = {};
+    const pMonths = ['1月','2月','3月','4月','5月','6月'];
+    pMonths.forEach(m => pm[m] = 0);
+    prevSheet.clients.forEach(c => c.entries.forEach(e => { if (pm[e.month] != null) pm[e.month] += e.sales; }));
+    const pTotal = pMonths.reduce((s, m) => s + pm[m], 0);
+    const pMax = Math.max(...pMonths.map(m => pm[m]));
+
+    let pRows = '';
+    pMonths.forEach(m => {
+      const sales = pm[m];
+      const c = costByPeriod['2026-' + String(parseInt(m, 10)).padStart(2, '0')];
+      const cost = c ? Math.round(c.exTax / 1000) : null;
+      const gp = cost != null ? sales - cost : null;
+      const rate = (cost != null && sales > 0) ? (cost / sales) : null;
+      const pct = pMax > 0 ? (sales / pMax * 100) : 0;
+      pRows += `
+        <div class="flex items-center gap-3">
+          <span class="w-8 text-xs text-slate-500 text-right">${m}</span>
+          <div class="flex-1 bg-slate-100 rounded h-5 relative overflow-hidden">
+            <div class="bg-slate-400 h-5 rounded bar-fill" style="width:${pct}%"></div>
+          </div>
+          <span class="w-20 text-xs text-right font-medium text-slate-700">${FMT(sales)}</span>
+          <span class="w-16 text-xs text-right text-slate-400">${cost != null ? FMT(cost) : '—'}</span>
+          <span class="w-16 text-xs text-right ${gp != null ? 'text-slate-600' : 'text-slate-300'}">${gp != null ? FMT(gp) : '—'}</span>
+          <span class="w-14 text-xs text-right ${rate == null ? 'text-slate-300' : rate >= 0.6 ? 'text-red-600' : rate >= 0.4 ? 'text-amber-600' : 'text-emerald-600'}">${rate != null ? PCT(rate) : '—'}</span>
+        </div>`;
+    });
+
+    let pCost = 0;
+    pMonths.forEach(m => { const c = costByPeriod['2026-' + String(parseInt(m, 10)).padStart(2, '0')]; if (c) pCost += Math.round(c.exTax / 1000); });
+
+    html += `
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-bold text-slate-900">前期実績（2026年1-6月・第十七期 後半）</h2>
+        <span class="text-xs text-slate-400">売上 ${FMT(pTotal)}千円 ／ 外注 ${FMT(pCost)}千円 ／ 粗利 ${FMT(pTotal - pCost)}千円 ／ 原価率 ${PCT(pCost / pTotal)}</span>
+      </div>
+      <div class="flex items-center gap-3 mb-2 text-[10px] text-slate-400 font-medium">
+        <span class="w-8"></span><span class="flex-1"></span>
+        <span class="w-20 text-right">売上</span><span class="w-16 text-right">外注</span>
+        <span class="w-16 text-right">粗利</span><span class="w-14 text-right">原価率</span>
+      </div>
+      <div class="space-y-2">${pRows}</div>
+    </div>`;
+  }
+
   // ===== Client Table =====
   const maxClientSales = Math.max(...cp.clients.map(c => c.totalSales + c.totalYomi));
 
