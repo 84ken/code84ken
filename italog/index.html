@@ -220,7 +220,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/style.css" />
+<link rel="stylesheet" href="/assets/css/style.css?v=2" />
+<link rel="preload" as="image" href="/assets/img/photos/_dsc1232_hero.webp" fetchpriority="high" />
 </head>
 <body class="bg-white text-body antialiased">
 
@@ -228,7 +229,7 @@
 <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200">
   <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-3">
-      <img src="assets/img/logo/italog_logo.png" alt="ITaLOG" class="h-8 w-auto" />
+      <img src="assets/img/logo/italog_logo.png" width="512" height="512" alt="ITaLOG" class="h-8 w-auto" />
       <span class="text-sm font-semibold tracking-wider text-slate-900">ITaLOG SAUNA</span>
     </a>
     <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-8 text-sm font-medium text-body">
@@ -270,7 +271,7 @@
     </div>
 
     <!-- ITaLOG logo (large, top-right pamphlet style) — transparent PNG inverted to white -->
-    <img src="assets/img/logo/italog_logo_t_512.png" alt="" aria-hidden="true" class="absolute top-6 right-6 lg:top-10 lg:right-10 w-20 lg:w-32 opacity-95 drop-shadow-lg z-10" style="filter: invert(1);" />
+    <img src="assets/img/logo/italog_logo_t_512.png" width="512" height="512" alt="" aria-hidden="true" class="absolute top-6 right-6 lg:top-10 lg:right-10 w-20 lg:w-32 opacity-95 drop-shadow-lg z-10" style="filter: invert(1);" />
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white">
       <div class="lg:flex lg:items-end lg:justify-between lg:gap-12">
@@ -566,7 +567,10 @@
         </p>
       </div>
       <div class="rounded-xl overflow-hidden border border-white/10">
-        <img src="assets/img/photos/_dsc1245.jpg" alt="ITaLOG SAUNA 内観 — 流体力学で設計された波形ベンチとフィンランド製サウナストーブ。埼玉県産針葉樹合板を使用した国産フィンランド式サウナ小屋。" class="w-full h-auto" loading="lazy" />
+        <picture class="block">
+          <source srcset="assets/img/photos/_dsc1245.webp" type="image/webp" />
+          <img src="assets/img/photos/_dsc1245.jpg" width="1800" height="1200" alt="ITaLOG SAUNA 内観 — 流体力学で設計された波形ベンチとフィンランド製サウナストーブ。埼玉県産針葉樹合板を使用した国産フィンランド式サウナ小屋。" class="w-full h-auto" loading="lazy" />
+        </picture>
       </div>
     </div>
   </div>
@@ -644,7 +648,10 @@
     <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm mb-10">
       <div class="grid lg:grid-cols-2">
         <div class="aspect-[4/3] lg:aspect-auto">
-          <img src="assets/img/photos/_dsc1232.jpg" alt="ocomori sauna（埼玉県横瀬町の宿泊施設）の内観 — ITaLOG SAUNAによる流体力学設計の波形ベンチとフィンランド製9kWストーブ" class="w-full h-full object-cover" loading="lazy" />
+          <picture class="block w-full h-full">
+            <source srcset="assets/img/photos/_dsc1232.webp" type="image/webp" />
+            <img src="assets/img/photos/_dsc1232.jpg" width="1800" height="1200" alt="ocomori sauna（埼玉県横瀬町の宿泊施設）の内観 — ITaLOG SAUNAによる流体力学設計の波形ベンチとフィンランド製9kWストーブ" class="w-full h-full object-cover" loading="lazy" />
+          </picture>
         </div>
         <div class="p-8 lg:p-12 flex flex-col justify-center">
           <p class="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase mb-3">Case 01 — 宿泊施設</p>
@@ -680,9 +687,18 @@
       </div>
       <!-- Sub gallery -->
       <div class="grid grid-cols-3 gap-1 bg-white p-1 border-t border-slate-200">
-        <img src="assets/img/photos/_dsc1245.jpg" alt="ocomori sauna 内観の別アングル — 流体力学で設計されたサウナ小屋" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <img src="assets/img/photos/_dsc1274.jpg" alt="ocomori sauna 入口外観 — 横瀬町の宿泊施設" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <img src="assets/img/photos/_dsc0600.jpg" alt="ocomori 宿泊施設全景 — テラス下にITaLOG SAUNAを設置" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <picture class="block">
+          <source srcset="assets/img/photos/_dsc1245.webp" type="image/webp" />
+          <img src="assets/img/photos/_dsc1245.jpg" width="1800" height="1200" alt="ocomori sauna 内観の別アングル — 流体力学で設計されたサウナ小屋" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        </picture>
+        <picture class="block">
+          <source srcset="assets/img/photos/_dsc1274.webp" type="image/webp" />
+          <img src="assets/img/photos/_dsc1274.jpg" width="1800" height="1200" alt="ocomori sauna 入口外観 — 横瀬町の宿泊施設" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        </picture>
+        <picture class="block">
+          <source srcset="assets/img/photos/_dsc0600.webp" type="image/webp" />
+          <img src="assets/img/photos/_dsc0600.jpg" width="1800" height="1200" alt="ocomori 宿泊施設全景 — テラス下にITaLOG SAUNAを設置" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        </picture>
       </div>
     </article>
 
@@ -712,13 +728,25 @@
           </dl>
         </div>
         <div class="aspect-[4/3] lg:aspect-auto order-1 lg:order-2">
-          <img src="assets/img/photos/img_4381.jpg" alt="個人邸宅向けプライベートサウナ — ITaLOG SAUNA の内観。国産木材を使ったフィンランド式サウナ小屋。" class="w-full h-full object-cover" loading="lazy" />
+          <picture class="block w-full h-full">
+            <source srcset="assets/img/photos/img_4381.webp" type="image/webp" />
+            <img src="assets/img/photos/img_4381.jpg" width="1800" height="2400" alt="個人邸宅向けプライベートサウナ — ITaLOG SAUNA の内観。国産木材を使ったフィンランド式サウナ小屋。" class="w-full h-full object-cover" loading="lazy" />
+          </picture>
         </div>
       </div>
       <div class="grid grid-cols-3 gap-1 bg-white p-1 border-t border-slate-200">
-        <img src="assets/img/photos/img_4380.jpg" alt="ITaLOG SAUNA のドア — 国産ヒノキ無垢材のサウナ室入口" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <img src="assets/img/photos/img_4382.jpg" alt="ITaLOG SAUNA のサウナストーブとロウリュ用桶" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <img src="assets/img/photos/img_8094.jpg" alt="ITaLOG SAUNA の内装 — 国産スギ・ヒノキの無塗装仕上げ、有機サウナ" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <picture class="block">
+          <source srcset="assets/img/photos/img_4380.webp" type="image/webp" />
+          <img src="assets/img/photos/img_4380.jpg" width="1800" height="2400" alt="ITaLOG SAUNA のドア — 国産ヒノキ無垢材のサウナ室入口" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        </picture>
+        <picture class="block">
+          <source srcset="assets/img/photos/img_4382.webp" type="image/webp" />
+          <img src="assets/img/photos/img_4382.jpg" width="1800" height="2400" alt="ITaLOG SAUNA のサウナストーブとロウリュ用桶" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        </picture>
+        <picture class="block">
+          <source srcset="assets/img/photos/img_8094.webp" type="image/webp" />
+          <img src="assets/img/photos/img_8094.jpg" width="1800" height="1350" alt="ITaLOG SAUNA の内装 — 国産スギ・ヒノキの無塗装仕上げ、有機サウナ" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        </picture>
       </div>
     </article>
 
@@ -822,7 +850,10 @@
       </div>
       <div class="lg:col-span-8 grid sm:grid-cols-2 gap-5">
         <div class="bg-white/[0.06] backdrop-blur-sm border border-white/15 rounded-2xl p-7 flex items-center gap-5">
-          <img src="assets/img/wooddesign-2024.jpg" alt="ウッドデザイン賞 2024 受賞マーク" class="w-20 h-auto flex-shrink-0 rounded bg-white p-1" loading="lazy" />
+          <picture class="block flex-shrink-0">
+            <source srcset="assets/img/wooddesign-2024_sm.webp" type="image/webp" />
+            <img src="assets/img/wooddesign-2024_sm.jpg" width="400" height="353" alt="ウッドデザイン賞 2024 受賞マーク" class="w-20 h-auto rounded bg-white p-1" loading="lazy" />
+          </picture>
           <div>
             <p class="text-xs font-semibold tracking-[0.2em] text-white/60 mb-2">AWARD · 2年連続受賞</p>
             <p class="text-lg lg:text-xl font-bold mb-2 leading-tight">ウッドデザイン賞<br />2023・2024</p>
@@ -964,7 +995,7 @@
 <footer class="border-t border-slate-200 py-10">
   <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
     <div class="flex items-center gap-3">
-      <img src="assets/img/logo/italog_logo.png" alt="ITaLOG" class="h-6 w-auto opacity-70" />
+      <img src="assets/img/logo/italog_logo.png" width="512" height="512" alt="ITaLOG" class="h-6 w-auto opacity-70" />
       <span>ITaLOG SAUNA</span>
     </div>
     <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">

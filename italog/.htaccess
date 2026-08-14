@@ -13,6 +13,9 @@
   RewriteRule ^(.*)$ https://italog.schema.tokyo/$1 [R=301,L]
 </IfModule>
 
+# カスタム404（ソフト404防止）
+ErrorDocument 404 /404.html
+
 # gzip 圧縮
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml text/xml application/xml

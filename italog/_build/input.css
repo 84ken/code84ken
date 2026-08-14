@@ -12,17 +12,17 @@
   /* === Pamphlet aesthetic === */
   /* Wood texture backgrounds (using actual plywood photo) */
   .bg-plywood {
-    background-image: url('/assets/img/photos/img_8137.jpg');
+    background-image: url('/assets/img/photos/img_8137_bg.webp');
     background-size: cover;
     background-position: center;
   }
   .bg-plywood-dark {
-    background-image: linear-gradient(rgba(20,14,8,0.78), rgba(10,6,3,0.92)), url('/assets/img/photos/img_8137.jpg');
+    background-image: linear-gradient(rgba(20,14,8,0.78), rgba(10,6,3,0.92)), url('/assets/img/photos/img_8137_bg.webp');
     background-size: cover;
     background-position: center;
   }
   .bg-plywood-warm {
-    background-image: linear-gradient(rgba(255,251,243,0.82), rgba(255,251,243,0.92)), url('/assets/img/photos/img_8137.jpg');
+    background-image: linear-gradient(rgba(255,251,243,0.82), rgba(255,251,243,0.92)), url('/assets/img/photos/img_8137_bg.webp');
     background-size: cover;
     background-position: center;
   }
@@ -65,7 +65,7 @@
   }
   /* Hero overlay */
   .hero-image {
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.65) 100%), url('/assets/img/photos/_dsc1232.jpg');
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.65) 100%), url('/assets/img/photos/_dsc1232_hero.webp');
     background-size: cover;
     background-position: center;
   }
