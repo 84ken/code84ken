@@ -355,7 +355,7 @@ async function init() {
     html += `
     <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-8">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-sm font-bold text-slate-900">前期実績（2026年1-6月・第十七期 後半）</h2>
+        <h2 class="text-sm font-bold text-slate-900">直前の半期実績（2026年1-6月＝第十七期 後期）</h2>
         <span class="text-xs text-slate-400">売上 ${FMT(pTotal)}千円 ／ 外注 ${FMT(pCost)}千円 ／ 粗利 ${FMT(pTotal - pCost)}千円 ／ 原価率 ${PCT(pCost / pTotal)}</span>
       </div>
       <div class="flex items-center gap-3 mb-2 text-[10px] text-slate-400 font-medium">
@@ -366,6 +366,96 @@ async function init() {
       <div class="space-y-2">${pRows}</div>
     </div>`;
   }
+
+  // ===== 期別比較テーブル（第◯期どうしを並べて比較） =====
+  // 期は7月開始（第一期 = 2009.7〜2010.6）。Excelの「前期」＝7-12月 /「後期」＝1-6月
+  const kiNum = (range) => { const m = String(range).match(/(\d{4})\./); return m ? Number(m[1]) - 2009 + 1 : null; };
+  // 請求書実績から期別の外注費（税抜・千円）を算出 — Excelの外注費列は近年未入力のため
+  const costByKi = {};
+  (vendorData.months || []).forEach(mo => {
+    const ex = mo.totalExTax != null ? mo.totalExTax : (mo.entries || []).reduce((s, e) => s + (e.amountExTax || 0), 0);
+    if (!ex) return;
+    const [y, mm] = mo.period.split('-').map(Number);
+    const k = (mm >= 7 ? y : y - 1) - 2009 + 1;
+    if (!costByKi[k]) costByKi[k] = { cost: 0, months: 0 };
+    costByKi[k].cost += ex / 1000;
+    costByKi[k].months++;
+  });
+
+  const compare = summary.slice(-8).map(p => {
+    const k = kiNum(p.range);
+    const actual = costByKi[k];
+    const cost = actual ? Math.round(actual.cost) : (p.totalCost || 0);
+    const costSrc = actual ? (actual.months >= 12 ? 'full' : 'partial') : 'excel';
+    return {
+      period: p.period, range: p.range, ki: k,
+      h1: p.firstHalf, h2: p.secondHalf, total: p.total,
+      growth: p.totalGrowth, team: p.team,
+      cost, costSrc, months: actual ? actual.months : 0,
+      profit: p.total - cost,
+      rate: p.total > 0 ? cost / p.total : 0,
+      isCurrent: k === kiNum(summary[summary.length - 1].range),
+    };
+  });
+  const maxTotal = Math.max(...compare.map(c => c.total));
+
+  let cmpRows = '';
+  compare.forEach(c => {
+    const bar = maxTotal > 0 ? (c.total / maxTotal * 100) : 0;
+    const h1pct = c.total > 0 ? (c.h1 / c.total * 100) : 0;
+    const growthCls = c.growth == null ? 'text-slate-300' : c.growth >= 1 ? 'text-emerald-600' : 'text-red-500';
+    const rateCls = c.rate >= 0.6 ? 'text-red-600' : c.rate >= 0.4 ? 'text-amber-600' : 'text-emerald-600';
+    const note = c.costSrc === 'partial' ? `<span class="text-[10px] text-amber-600 ml-1">${c.months}ヶ月</span>`
+      : c.costSrc === 'excel' ? '<span class="text-[10px] text-slate-400 ml-1">Excel</span>' : '';
+    cmpRows += `
+      <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors ${c.isCurrent ? 'bg-primary-50/40' : ''}">
+        <td class="py-2.5 px-4 text-sm font-medium ${c.isCurrent ? 'text-primary-700' : 'text-slate-900'}">${c.period}${c.isCurrent ? '<span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-primary-200 text-primary-900 font-semibold">進行中</span>' : ''}</td>
+        <td class="py-2.5 px-4 text-xs text-slate-400 hidden sm:table-cell">${c.range}</td>
+        <td class="py-2.5 px-4 text-sm text-right text-body">${c.h1 ? FMT(c.h1) : '—'}</td>
+        <td class="py-2.5 px-4 text-sm text-right text-body">${c.h2 ? FMT(c.h2) : '—'}</td>
+        <td class="py-2.5 px-4 text-sm text-right font-bold text-slate-900">${FMT(c.total)}</td>
+        <td class="py-2.5 px-4 text-sm text-right ${growthCls}">${c.growth != null ? PCT(c.growth) : '—'}</td>
+        <td class="py-2.5 px-4 text-sm text-right text-body">${FMT(c.cost)}${note}</td>
+        <td class="py-2.5 px-4 text-sm text-right font-medium text-emerald-700">${FMT(c.profit)}</td>
+        <td class="py-2.5 px-4 text-sm text-right font-medium ${rateCls}">${PCT(c.rate)}</td>
+        <td class="py-2.5 px-4 w-32 hidden lg:table-cell">
+          <div class="bg-slate-100 rounded h-4 relative overflow-hidden" title="7-12月 ${FMT(c.h1)}千 / 1-6月 ${FMT(c.h2)}千">
+            <div class="absolute inset-y-0 left-0 ${c.isCurrent ? 'bg-primary-500' : 'bg-slate-400'} rounded-l" style="width:${bar * h1pct / 100}%"></div>
+            <div class="absolute inset-y-0 ${c.isCurrent ? 'bg-primary-300' : 'bg-slate-300'}" style="left:${bar * h1pct / 100}%; width:${bar * (100 - h1pct) / 100}%"></div>
+          </div>
+        </td>
+      </tr>`;
+  });
+
+  html += `
+  <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mb-8">
+    <div class="px-6 py-4 border-b border-slate-200 bg-gray-50 flex items-center justify-between flex-wrap gap-2">
+      <h2 class="text-sm font-bold text-slate-900">期別売上比較（直近8期）</h2>
+      <span class="text-xs text-slate-400">期は7月開始 ／ 外注費は請求書実績（税抜）</span>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">期</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider hidden sm:table-cell">期間</th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">前期<br><span class="font-normal normal-case">7-12月</span></th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">後期<br><span class="font-normal normal-case">1-6月</span></th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">年間売上</th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">前年比</th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">外注費</th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">粗利</th>
+            <th scope="col" class="text-right py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">原価率</th>
+            <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider hidden lg:table-cell">構成</th>
+          </tr>
+        </thead>
+        <tbody>${cmpRows}</tbody>
+      </table>
+    </div>
+    <div class="px-6 py-3 bg-slate-50 border-t border-slate-200">
+      <p class="text-xs text-body">単位: 千円。濃い色＝前期(7-12月) / 薄い色＝後期(1-6月)。外注費は <code class="bg-white px-1 rounded">vendor-data.json</code> の請求書実績（税抜）を使用。売上Excelの外注費列は第十六期後期以降が未入力のため、そのままでは粗利が過大になります。<span class="text-amber-700">「◯ヶ月」表示は期の途中で、まだ全月分が揃っていないことを示します。</span></p>
+    </div>
+  </div>`;
 
   // ===== Client Table =====
   const maxClientSales = Math.max(...cp.clients.map(c => c.totalSales + c.totalYomi));
