@@ -1,0 +1,19 @@
+{
+  "period": "第十八期",
+  "range": "2026.7〜2027.6",
+  "target": 200000,
+  "note": "単位は千円。確定契約は年間の受注額（プロポーザルダッシュボード基準）。既計上額は売上Excelから自動照合するため、ここには年間総額のみ記載する。",
+  "confirmedContracts": [
+    { "name": "観光客誘致・戦略的情報発信", "client": "物産観光協会", "amount": 39600, "source": "DMO事業本部" },
+    { "name": "ぶんたま（保守運用）", "client": "埼玉県庁", "amount": 16783, "source": "県民文化部" },
+    { "name": "すぽったま（運用保守）", "client": "埼玉県庁", "amount": 15259, "source": "県民生活部" },
+    { "name": "リバサポ", "client": "埼玉県庁", "amount": 8753, "source": "県土整備部" },
+    { "name": "サーキュラーエコノミー普及啓発", "client": "埼玉県庁", "amount": 5484, "source": "環境部", "isNew": true },
+    { "name": "いちご大學", "client": "埼玉県庁", "amount": 4490, "source": "随意契約" },
+    { "name": "すぽったま（コンテンツ）", "client": "埼玉県庁", "amount": 3527, "source": "県民生活部" }
+  ],
+  "pipeline": [
+    { "name": "温浴ツーリズム観光プロモーション", "client": "埼玉県庁", "amount": 13661, "status": "結果待ち", "detail": "8/6プレゼン → 結果8月中旬" },
+    { "name": "官民連携アドバイザー支援業務", "client": "埼玉県庁", "amount": 2081, "status": "提案予定", "detail": "申込〆8/10 → 提案〆8/20" }
+  ]
+}

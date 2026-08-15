@@ -58,10 +58,11 @@ const PCT = (n) => n ? (n * 100).toFixed(1) + '%' : '-';
 const YEN = (n) => '¥' + FMT(n);
 
 async function init() {
-  const [data, memos, vendorData] = await Promise.all([
+  const [data, memos, vendorData, periodTarget] = await Promise.all([
     fetch('sales-data.json').then(r => r.json()),
     fetch('/api/memos').then(r => { if(!r.ok) throw new Error(); return r.json(); }).catch(() => fetch('vendor-memos.json').then(r => r.json()).catch(() => ({ projects: [] }))),
-    fetch('vendor-data.json').then(r => r.json()).catch(() => ({ months: [] }))
+    fetch('vendor-data.json').then(r => r.json()).catch(() => ({ months: [] })),
+    fetch('period-target.json').then(r => r.json()).catch(() => null)
   ]);
 
   // 外注費の実績（請求書ベース）を period → 千円 で引けるように
@@ -103,7 +104,7 @@ async function init() {
   // Previous period for comparison
   const latestSummary = summary[summary.length - 1];
   const prevSummary = summary[summary.length - 2];
-  const target = 95400; // max target from Excel
+  const target = (periodTarget && periodTarget.target) || 95400;
 
   // Classify clients
   const govClients = ['埼玉県庁', '物産観光協会'];
@@ -202,6 +203,125 @@ async function init() {
       </div>
     </div>
   </div>`;
+
+  // ===== 目標達成トラッカー（確定契約 × 既計上 × 残り必要額） =====
+  if (periodTarget) {
+    const contracts = periodTarget.confirmedContracts || [];
+    const contractTotal = contracts.reduce((s, c) => s + c.amount, 0);
+
+    // 確定契約のうち、すでに売上計上済みの額（＝二重計上を避けるため差し引く）
+    const contractClients = [...new Set(contracts.map(c => c.client))];
+    const bookedFromContracts = cp.clients
+      .filter(c => contractClients.includes(c.name))
+      .reduce((s, c) => s + c.totalSales, 0);
+    const contractRemaining = Math.max(contractTotal - bookedFromContracts, 0);
+
+    // 契約先以外（民間など）の計上済み
+    const otherBooked = cp.totalSales - bookedFromContracts;
+
+    // 見えている合計 ＝ 確定契約(年間) + 契約先以外の計上済み
+    const visible = contractTotal + otherBooked;
+    const gap = Math.max(target - visible, 0);
+    const pipe = (periodTarget.pipeline || []).reduce((s, p) => s + p.amount, 0);
+    const gapAfterPipe = Math.max(target - visible - pipe, 0);
+
+    const segs = [
+      { label: '確定契約（未計上）', val: contractRemaining, cls: 'bg-emerald-400' },
+      { label: '計上済み', val: cp.totalSales, cls: 'bg-primary-500' },
+      { label: '不足', val: gap, cls: 'bg-slate-200' },
+    ];
+    let barHtml = '';
+    segs.forEach(s => {
+      const w = target > 0 ? (s.val / target * 100) : 0;
+      if (w <= 0) return;
+      barHtml += `<div class="${s.cls} h-full" style="width:${w}%" title="${s.label} ${FMT(s.val)}千円"></div>`;
+    });
+
+    let cRows = '';
+    contracts.forEach(c => {
+      cRows += `
+        <tr class="border-b border-slate-100">
+          <td class="py-2 px-3 text-sm text-slate-900">${c.name}${c.isNew ? '<span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-emerald-200 text-emerald-900 font-semibold">NEW</span>' : ''}</td>
+          <td class="py-2 px-3 text-xs text-slate-400 hidden sm:table-cell">${c.source || ''}</td>
+          <td class="py-2 px-3 text-sm text-right font-medium text-slate-900">${FMT(c.amount)}</td>
+        </tr>`;
+    });
+
+    let pRows = '';
+    (periodTarget.pipeline || []).forEach(p => {
+      pRows += `
+        <tr class="border-b border-slate-100">
+          <td class="py-2 px-3 text-sm text-slate-700">${p.name}</td>
+          <td class="py-2 px-3 text-xs text-slate-400 hidden sm:table-cell">${p.detail || ''}</td>
+          <td class="py-2 px-3 text-sm text-right text-slate-700">${FMT(p.amount)}</td>
+        </tr>`;
+    });
+
+    html += `
+    <div class="bg-white rounded-xl border-2 border-primary-200 p-6 shadow-sm mb-8">
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+        <h2 class="text-sm font-bold text-slate-900">${periodTarget.period} 目標達成トラッカー</h2>
+        <span class="text-xs text-slate-400">目標 ${FMT(target)}千円（${(target / 100000).toFixed(0)}億円）／ ${periodTarget.range}</span>
+      </div>
+      <p class="text-xs text-body mb-4">確定契約は年間受注額。うち計上済み分は二重計上しないよう差し引いています。</p>
+
+      <div class="flex h-7 rounded-lg overflow-hidden bg-slate-100 mb-2">${barHtml}</div>
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs mb-5">
+        <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-primary-500"></span>計上済み ${FMT(cp.totalSales)}</span>
+        <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-emerald-400"></span>確定契約の未計上 ${FMT(contractRemaining)}</span>
+        <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-slate-200"></span>不足 ${FMT(gap)}</span>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+        <div class="rounded-lg bg-emerald-50 border border-emerald-200 p-4">
+          <p class="text-xs text-emerald-700 font-medium">確定契約（年間）</p>
+          <p class="text-xl font-bold text-emerald-700 mt-1">${FMT(contractTotal)}<span class="text-xs font-normal ml-1">千円</span></p>
+          <p class="text-xs text-emerald-600 mt-1">うち計上済 ${FMT(bookedFromContracts)}</p>
+        </div>
+        <div class="rounded-lg bg-primary-50 border border-primary-200 p-4">
+          <p class="text-xs text-primary-700 font-medium">その他（民間等）計上済</p>
+          <p class="text-xl font-bold text-primary-700 mt-1">${FMT(otherBooked)}<span class="text-xs font-normal ml-1">千円</span></p>
+          <p class="text-xs text-primary-600 mt-1">7-12月の実績</p>
+        </div>
+        <div class="rounded-lg bg-slate-50 border border-slate-200 p-4">
+          <p class="text-xs text-slate-600 font-medium">見えている合計</p>
+          <p class="text-xl font-bold text-slate-900 mt-1">${FMT(visible)}<span class="text-xs font-normal ml-1">千円</span></p>
+          <p class="text-xs text-slate-500 mt-1">目標の ${PCT(visible / target)}</p>
+        </div>
+        <div class="rounded-lg ${gap > 0 ? 'bg-amber-50 border-amber-300' : 'bg-emerald-50 border-emerald-300'} border-2 p-4">
+          <p class="text-xs ${gap > 0 ? 'text-amber-700' : 'text-emerald-700'} font-medium">あと必要な額</p>
+          <p class="text-xl font-bold ${gap > 0 ? 'text-amber-700' : 'text-emerald-700'} mt-1">${FMT(gap)}<span class="text-xs font-normal ml-1">千円</span></p>
+          <p class="text-xs ${gap > 0 ? 'text-amber-600' : 'text-emerald-600'} mt-1">提案中2件込みで ${FMT(gapAfterPipe)}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div>
+          <p class="text-xs font-bold text-slate-700 mb-2">確定契約（${contracts.length}件）</p>
+          <table class="w-full">
+            <tbody>${cRows}
+              <tr class="bg-emerald-50">
+                <td class="py-2 px-3 text-sm font-bold text-emerald-900" colspan="2">受注確定額</td>
+                <td class="py-2 px-3 text-sm text-right font-bold text-emerald-900">${FMT(contractTotal)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-slate-700 mb-2">提案中・結果待ち（${(periodTarget.pipeline || []).length}件）</p>
+          <table class="w-full">
+            <tbody>${pRows}
+              <tr class="bg-slate-50">
+                <td class="py-2 px-3 text-sm font-bold text-slate-700" colspan="2">小計</td>
+                <td class="py-2 px-3 text-sm text-right font-bold text-slate-700">${FMT(pipe)}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-xs text-body mt-3">全部取れても <strong>${FMT(gapAfterPipe)}千円</strong> 不足。${periodTarget.pipeline && periodTarget.pipeline.length ? '残りは民間案件で積む必要があります。' : ''}</p>
+        </div>
+      </div>
+    </div>`;
+  }
 
   // ===== Monthly Chart =====
   let cumulative = 0;
