@@ -150,6 +150,17 @@ body { font-size: 14px; line-height: 1.7; }
       </div>
 
       <div class="leading-normal">
+        <label class="block text-sm font-medium text-slate-700 mb-1">年度（行政年度・4月〜3月）</label>
+        <select id="pm-fy" class="w-full px-3 py-2 text-base border border-slate-300 rounded-lg bg-white">
+          <option value="">自動（スケジュールから判定）</option>
+          <option value="2024">2024年度（令和6年度）</option>
+          <option value="2025">2025年度（令和7年度）</option>
+          <option value="2026">2026年度（令和8年度）</option>
+          <option value="2027">2027年度（令和9年度）</option>
+        </select>
+      </div>
+
+      <div class="leading-normal">
         <label class="flex items-center gap-2 cursor-pointer">
           <input type="checkbox" id="pm-recurring" class="w-4 h-4 rounded border-slate-300 text-primary-500 cursor-pointer">
           <span class="text-sm font-medium text-slate-700">毎月請求あり</span>
@@ -244,7 +255,25 @@ var FMT = function(n) { return n ? '¥' + Math.round(n).toLocaleString() : '¥0'
 var el = function(id) { return document.getElementById(id); };
 var D = { projects: [] };
 var view = 'active';
-var groupMode = true;
+var groupMode = 'fiscal';   // 'fiscal'（年度別）| 'client'（クライアント別）| 'none'
+var fyFilter = '';          // '' = 全年度 / '2026' 等
+
+// 行政年度（4月〜3月）。2025年度＝令和7年度
+function fyOf(ym) {
+  if (!ym) return null;
+  var a = ym.split('-'); var y = parseInt(a[0]), m = parseInt(a[1]);
+  if (!y || !m) return null;
+  return m >= 4 ? y : y - 1;
+}
+function projectFY(p) {
+  if (p.fiscalYear) return p.fiscalYear;
+  var vm = (p.vendors || []).map(function(v){ return v.expectedMonth; }).filter(Boolean).sort();
+  return fyOf(p.scheduleStart || vm[0] || (p.createdAt || '').slice(0, 7));
+}
+function fyLabel(fy) {
+  if (!fy) return '年度不明';
+  return fy + '年度（令和' + (fy - 2018) + '年度）';
+}
 var NOW = (function() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); })();
 
 // 期の計算（7月〜6月）
@@ -675,8 +704,25 @@ function renderFilters() {
       (active ? 'bg-primary-500 text-white' : 'bg-slate-100 text-slate-600') + '">' + t[1] + '</button>';
   }).join('');
   h += '<span style="border-left:1px solid #e2e8f0;height:20px;margin:0 4px"></span>';
-  h += '<button onclick="groupMode=!groupMode;renderProjects();renderFilters()" class="px-3 py-1.5 text-xs font-medium rounded-full cursor-pointer ' +
-    (groupMode ? 'bg-slate-700 text-white' : 'bg-slate-100 text-slate-600') + '">クライアント別</button>';
+  // グルーピング切替
+  [['fiscal','年度別'],['client','クライアント別'],['none','一覧']].forEach(function(g) {
+    h += '<button onclick="groupMode=\'' + g[0] + '\';renderProjects();renderFilters()" class="px-3 py-1.5 text-xs font-medium rounded-full cursor-pointer ' +
+      (groupMode === g[0] ? 'bg-slate-700 text-white' : 'bg-slate-100 text-slate-600') + '">' + g[1] + '</button>';
+  });
+
+  // 年度フィルター
+  var fys = {};
+  D.projects.forEach(function(p) { var f = projectFY(p); if (f) fys[f] = true; });
+  var fyList = Object.keys(fys).sort().reverse();
+  if (fyList.length > 1) {
+    h += '<span style="border-left:1px solid #e2e8f0;height:20px;margin:0 4px"></span>';
+    h += '<select onchange="fyFilter=this.value;render()" class="px-2 py-1 text-xs border border-slate-200 rounded-lg bg-white cursor-pointer">';
+    h += '<option value=""' + (fyFilter === '' ? ' selected' : '') + '>全年度</option>';
+    fyList.forEach(function(f) {
+      h += '<option value="' + f + '"' + (fyFilter === f ? ' selected' : '') + '>' + fyLabel(parseInt(f)) + '</option>';
+    });
+    h += '</select>';
+  }
 
   // 請求月フィルター
   var allMonths = {};
@@ -729,12 +775,48 @@ function renderProjects() {
     });
   }
 
+  // 年度フィルター
+  if (fyFilter) {
+    list = list.filter(function(p) { return String(projectFY(p)) === String(fyFilter); });
+  }
+
   if (!list.length) {
     el('projects').innerHTML = '<div class="text-center py-16 text-slate-400">プロジェクトがありません</div>';
     return;
   }
 
-  if (groupMode) {
+  if (groupMode === 'fiscal') {
+    // 年度別（行政年度＝4月〜3月）。新しい年度から並べる
+    var byFy = {};
+    list.forEach(function(p) {
+      var f = projectFY(p) || 0;
+      (byFy[f] = byFy[f] || []).push(p);
+    });
+    var fyKeys = Object.keys(byFy).map(Number).sort(function(a, b){ return b - a; });
+    var fhtml = '';
+    fyKeys.forEach(function(f) {
+      var items = byFy[f];
+      var gTotal = items.reduce(function(s,p){ return s + (p.contractAmount || 0); }, 0);
+      var gVendor = items.reduce(function(s,p){ return s + (p.vendors||[]).reduce(function(s2,v){return s2+(v.amountTax||v.amount||0)},0); }, 0);
+      var actives = items.filter(function(p){ return p.status === 'active'; }).length;
+      var closed = items.filter(function(p){ return p.status === 'closed'; }).length;
+      var isCurrentFy = f === fyOf(NOW);
+      fhtml += '<div class="mb-8">';
+      fhtml += '<div class="flex flex-wrap items-center gap-3 mb-3 pb-2 border-b-2 ' + (isCurrentFy ? 'border-primary-300' : 'border-slate-200') + '">';
+      fhtml += '<h2 class="text-sm font-bold ' + (isCurrentFy ? 'text-primary-700' : 'text-slate-600') + '">' + fyLabel(f) + '</h2>';
+      if (isCurrentFy) fhtml += '<span class="px-2 py-0.5 rounded-full text-[10px] bg-primary-100 text-primary-700 font-semibold">今年度</span>';
+      fhtml += '<span class="text-xs text-slate-400">' + items.length + '件（進行中' + actives + ' / 完了' + closed + '）</span>';
+      fhtml += '<span class="text-xs text-slate-400 ml-auto">契約 ' + FMT(gTotal) + ' ／ 外注 ' + FMT(gVendor) + '</span>';
+      fhtml += '<span class="text-xs font-medium ' + (gTotal-gVendor>=0?'text-emerald-600':'text-red-600') + '">利益 ' + FMT(gTotal-gVendor) + '</span>';
+      fhtml += '</div>';
+      fhtml += items.map(function(p){ return renderProjectCard(p); }).join('');
+      fhtml += '</div>';
+    });
+    el('projects').innerHTML = fhtml;
+    return;
+  }
+
+  if (groupMode === 'client') {
     // Group by client category
     var groupOrder = [
       { label: '埼玉県庁', match: function(p){ return p.client === '埼玉県庁'; } },
@@ -790,6 +872,7 @@ function renderProjectCard(p) {
         (p.client ? '<span class="text-sm text-slate-400">' + p.client + '</span>' : '') +
         (p.billingTo && p.billingTo !== p.client ? '<span class="text-xs text-amber-500 ml-1">→ 請求先: ' + p.billingTo + '</span>' : '') +
         '<span class="px-2 py-0.5 rounded-full text-xs font-medium ' + (p.status==='active'?'bg-primary-50 text-primary-600':p.status==='proposal'?'bg-violet-50 text-violet-600':'bg-slate-100 text-slate-500') + '">' + (p.status==='active'?'進行中':p.status==='proposal'?'提案中':'完了') + '</span>' +
+        (projectFY(p) ? '<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-500">R' + (projectFY(p) - 2018) + '</span>' : '') +
         (p.recurring ? '<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-600">毎月請求</span>' : '') +
       '</div>' +
       '<div class="flex gap-1">' +
@@ -926,6 +1009,7 @@ function showProjectForm(id) {
   el('pm-recurring').checked = p ? !!p.recurring : false;
   el('pm-risks').value = p ? (p.risks||'') : '';
   el('pm-status').value = p ? (p.status||'active') : 'active';
+  el('pm-fy').value = p && p.fiscalYear ? String(p.fiscalYear) : '';
   el('pm').style.display = 'flex';
 }
 
@@ -942,6 +1026,7 @@ el('pm-form').addEventListener('submit', async function(e) {
     estimate: 0, sales: 0,
     recurring: el('pm-recurring').checked,
     risks: el('pm-risks').value, status: el('pm-status').value,
+    fiscalYear: el('pm-fy').value ? parseInt(el('pm-fy').value) : undefined,
   };
   if (id) {
     var p = D.projects.find(function(x){return x.id===id});
@@ -971,6 +1056,8 @@ async function copyProj(id) {
   copy.status = 'active';
   delete copy.closedAt;
   delete copy.billings; // 請求スケジュールは実績なのでコピーしない
+  // 年度は「翌年度の同じ案件を作る」用途が多いので +1 して提案する
+  if (copy.fiscalYear) copy.fiscalYear = copy.fiscalYear + 1;
   if ((src.vendors||[]).length > 0 && confirm('外注リスト（' + src.vendors.length + '件）もコピーしますか？\n（ステータスは「予定」にリセットされます）')) {
     copy.vendors = src.vendors.map(function(v){
       var nv = JSON.parse(JSON.stringify(v));

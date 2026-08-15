@@ -14,7 +14,9 @@
       ],
       "id": "d4tssify8hd",
       "createdAt": "2026-06-12T00:00:00.000Z",
-      "vendors": []
+      "vendors": [],
+      "fiscalYear": 2026,
+      "fiscalYearSource": "created"
     },
     {
       "name": "中山間地域 特産農産物 誘客促進",
@@ -30,7 +32,9 @@
       ],
       "id": "ika0sxpxxqr",
       "createdAt": "2026-06-12T00:00:00.000Z",
-      "vendors": []
+      "vendors": [],
+      "fiscalYear": 2026,
+      "fiscalYearSource": "schedule"
     },
     {
       "name": "ルーキーオブザイヤー",
@@ -56,7 +60,9 @@
           "note": "2026-04 請求書まとめから自動同期",
           "id": "q4bbrdw2e69"
         }
-      ]
+      ],
+      "fiscalYear": 2026,
+      "fiscalYearSource": "schedule"
     },
     {
       "name": "ワクワク（カーセブン）",
@@ -84,7 +90,9 @@
           "note": "2026-04 請求書まとめから自動同期",
           "id": "j8kcqepfwak"
         }
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "name": "TOKYO UNITE",
@@ -112,7 +120,9 @@
           "note": "2026-04 請求書まとめから自動同期",
           "id": "32n8hobt1lw"
         }
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "name": "観光客誘致・戦略的情報発信（R8）",
@@ -144,7 +154,9 @@
           "note": "2026-04 請求書まとめから自動同期",
           "id": "in1lo23e2g"
         }
-      ]
+      ],
+      "fiscalYear": 2026,
+      "fiscalYearSource": "schedule"
     },
     {
       "name": "リトデポチラシ更新",
@@ -204,7 +216,9 @@
           "id": "2ls63mrz0y"
         }
       ],
-      "closedAt": "2026-06-12"
+      "closedAt": "2026-06-12",
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "name": "リトデポ広告",
@@ -234,7 +248,9 @@
           "id": "mn00x2oqndmw"
         }
       ],
-      "closedAt": "2026-06-12"
+      "closedAt": "2026-06-12",
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmz0y85sj1yb",
@@ -319,7 +335,9 @@
         "スポツリ",
         "ちょこたびスポツリ",
         "スポツリ埼玉"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34d1958",
@@ -626,7 +644,9 @@
       "aliases": [
         "リバサポ",
         "リバサポ・各ポスター案件"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34fwqjf",
@@ -815,7 +835,9 @@
       "contractExTax": 12066340,
       "aliases": [
         "すぽったま"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34fjss7",
@@ -1055,7 +1077,9 @@
       "aliases": [
         "ぶんたま",
         "伝統文化団体PR動画"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34fdhbs",
@@ -1119,7 +1143,9 @@
         "サーキュラー",
         "資源循環課",
         "CEラボ"
-      ]
+      ],
+      "fiscalYear": 2026,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34fud9q",
@@ -1213,7 +1239,9 @@
         "いちご大學",
         "いちご大学",
         "農業ビジネス支援課"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34fboez",
@@ -1627,7 +1655,9 @@
       ],
       "contractAmount": 43599265,
       "contractExTax": 39635695,
-      "closedAt": "2026-06-12"
+      "closedAt": "2026-06-12",
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34flmwh",
@@ -1701,7 +1731,9 @@
         "マクドナルド",
         "日本マクドナルド",
         "EBIS"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34f50sm",
@@ -1834,7 +1866,9 @@
       "aliases": [
         "リトデポ",
         "JR東日本"
-      ]
+      ],
+      "fiscalYear": 2024,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34fgc5m",
@@ -1855,7 +1889,9 @@
       "billings": [],
       "billingTo": "",
       "contractAmount": 0,
-      "recurring": true
+      "recurring": true,
+      "fiscalYear": 2025,
+      "fiscalYearSource": "created"
     },
     {
       "id": "mmyzj34fsj6q",
@@ -1989,7 +2025,9 @@
       "aliases": [
         "読売新聞",
         "読売スタンプラリー"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34f7nk6",
@@ -2104,7 +2142,9 @@
       "recurring": true,
       "aliases": [
         "ヒロ建工"
-      ]
+      ],
+      "fiscalYear": 2026,
+      "fiscalYearSource": "vendor"
     },
     {
       "id": "mmyzj34f2f36",
@@ -2209,7 +2249,9 @@
       "recurring": true,
       "aliases": [
         "横瀬町"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "vendor"
     },
     {
       "id": "mmyzj34ffme8",
@@ -2256,7 +2298,9 @@
         "ウィザース",
         "ウイザース"
       ],
-      "closedAt": "2026-06-12"
+      "closedAt": "2026-06-12",
+      "fiscalYear": 2025,
+      "fiscalYearSource": "created"
     },
     {
       "id": "mmyzj34fc231",
@@ -2296,7 +2340,9 @@
       ],
       "contractAmount": 2000000,
       "billingTo": "",
-      "recurring": false
+      "recurring": false,
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34fy6w7",
@@ -2328,7 +2374,9 @@
       "billings": [],
       "contractAmount": 4000000,
       "billingTo": "",
-      "recurring": false
+      "recurring": false,
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34fy4bu",
@@ -2392,7 +2440,9 @@
       "aliases": [
         "インテグレート",
         "ston"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34f5ch2",
@@ -2410,7 +2460,9 @@
       "risks": "ヨミ段階",
       "status": "active",
       "vendors": [],
-      "billings": []
+      "billings": [],
+      "fiscalYear": 2026,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzj34f1gz0",
@@ -2428,7 +2480,9 @@
       "risks": "ヨミ段階",
       "status": "active",
       "vendors": [],
-      "billings": []
+      "billings": [],
+      "fiscalYear": 2026,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmyzq0khbbs3",
@@ -2463,7 +2517,9 @@
       "aliases": [
         "レペルティオ"
       ],
-      "closedAt": "2026-06-12"
+      "closedAt": "2026-06-12",
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmz07e4w1b3h",
@@ -2520,7 +2576,9 @@
           "note": "残金請求予定"
         }
       ],
-      "closedAt": "2026-06-12"
+      "closedAt": "2026-06-12",
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "mmz09lnsxoy8",
@@ -2569,7 +2627,9 @@
           "status": "planned",
           "note": "一括請求予定"
         }
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "name": "stonSポスター印刷",
@@ -2620,7 +2680,9 @@
         }
       ],
       "billings": [],
-      "closedAt": "2026-06-12"
+      "closedAt": "2026-06-12",
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "name": "泡盛ラベルデザイン",
@@ -2652,7 +2714,9 @@
         }
       ],
       "billings": [],
-      "closedAt": "2026-06-12"
+      "closedAt": "2026-06-12",
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     },
     {
       "id": "y6tm0fpx5wnq",
@@ -2816,7 +2880,9 @@
         "コーセー",
         "KOSE",
         "SPORTS BEAUTY"
-      ]
+      ],
+      "fiscalYear": 2025,
+      "fiscalYearSource": "schedule"
     }
   ]
 }
