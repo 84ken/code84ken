@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>案件レジストリ — SCHEMA HQ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { primary: { 50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',800:'#13318d',900:'#0e266a',950:'#07194e' } },
+  fontFamily: { sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'] }
+} } }
+</script>
+<style>
+:root { color-scheme: light; }
+.text-body { color: #3d4b5f; }
+body { font-size: 14px; line-height: 1.7; }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;padding:8px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;">
+  <a href="../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#2b70ef;font-size:13px;font-weight:600;">
+    <span style="width:24px;height:24px;background:#2b70ef;color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">S</span> HQ
+  </a>
+  <span style="color:#cbd5e1;">/</span>
+  <span style="color:#334155;font-size:13px;font-weight:600;">案件レジストリ</span>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-12">
+  <div class="mb-6">
+    <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">案件レジストリ</h1>
+    <p class="text-body mt-1 text-sm">knowledge/ の各MDと project/ の実資料を突き合わせた全案件の一覧</p>
+    <p class="text-xs text-slate-400 mt-2" id="gen"></p>
+  </div>
+
+  <div id="kpi" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8"></div>
+  <div id="alerts" class="mb-8"></div>
+
+  <div class="flex flex-wrap gap-2 mb-4">
+    <input id="q" type="search" placeholder="案件名・関係先・担当で検索" class="px-3 py-2 text-sm border border-slate-300 rounded-lg w-64" oninput="render()">
+    <select id="sort" class="px-2 py-2 text-sm border border-slate-200 rounded-lg bg-white cursor-pointer" onchange="render()">
+      <option value="no">No順</option>
+      <option value="folder">資料の更新が新しい順</option>
+      <option value="gap">ナレッジの陳腐化が大きい順</option>
+    </select>
+    <label class="flex items-center gap-1.5 text-sm text-body px-2"><input type="checkbox" id="onlyStale" onchange="render()"> 要更新のみ</label>
+  </div>
+
+  <div id="list"></div>
+</div>
+
+<script>
+let R = null;
+const el = id => document.getElementById(id);
+
+function card(p) {
+  const stale = p.knowledgeUpdated && p.folderLastModified && p.folderLastModified > p.knowledgeUpdated;
+  const stageMap = { lead:['引き合い','bg-slate-100 text-slate-600'], proposal:['提案中','bg-violet-50 text-violet-600'],
+    won:['受注','bg-emerald-50 text-emerald-700'], lost:['失注','bg-red-50 text-red-500'],
+    active:['進行中','bg-primary-50 text-primary-600'], closed:['完了','bg-slate-100 text-slate-500'] };
+  const st = p.stage && stageMap[p.stage];
+  return `
+  <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm mb-3">
+    <div class="flex flex-wrap items-center gap-2 mb-1">
+      <span class="text-xs text-slate-400 font-mono">${p.no}</span>
+      <h3 class="font-bold text-slate-900 text-sm">${p.name}</h3>
+      ${st ? `<span class="px-2 py-0.5 rounded-full text-xs font-medium ${st[1]}">${st[0]}</span>` : ''}
+      ${p.amount != null ? `<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600">¥${Number(p.amount).toLocaleString()}千</span>` : ''}
+      ${p.probability != null ? `<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700">確度${p.probability}%</span>` : ''}
+      ${stale ? '<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-red-50 text-red-600">要更新</span>' : ''}
+    </div>
+    ${p.summary ? `<p class="text-xs text-body mb-2">${p.summary}</p>` : '<p class="text-xs text-slate-300 mb-2">（ひとことで が未記入）</p>'}
+    <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-400">
+      <span>関係先: <span class="text-slate-600">${p.relation || '-'}</span></span>
+      <span>担当: <span class="text-slate-600">${p.owner || '-'}</span></span>
+      ${p.knowledgeFile ? `<span>知識: <a class="text-primary-500 hover:underline" href="${p.knowledgeFile}">${p.knowledgeFile}</a> <span class="${stale ? 'text-red-500' : ''}">(${p.knowledgeUpdated || '日付なし'})</span></span>` : ''}
+      ${p.folder ? `<span>資料: ${p.folder} <span class="text-slate-500">${p.folderFiles}件 / ${p.folderLastModified || '-'}</span></span>` : '<span class="text-slate-300">資料フォルダなし</span>'}
+      ${p.nextAction ? `<span class="text-amber-700">次: ${p.nextAction}</span>` : ''}
+    </div>
+  </div>`;
+}
+
+function render() {
+  const q = el('q').value.trim().toLowerCase();
+  const sort = el('sort').value;
+  const onlyStale = el('onlyStale').checked;
+  let list = R.projects.slice();
+  if (q) list = list.filter(p => [p.name, p.relation, p.owner, p.summary, p.folder].join(' ').toLowerCase().includes(q));
+  if (onlyStale) list = list.filter(p => p.knowledgeUpdated && p.folderLastModified && p.folderLastModified > p.knowledgeUpdated);
+  if (sort === 'folder') list.sort((a, b) => (b.folderLastModified || '').localeCompare(a.folderLastModified || ''));
+  if (sort === 'gap') list.sort((a, b) => {
+    const g = p => (p.knowledgeUpdated && p.folderLastModified && p.folderLastModified > p.knowledgeUpdated)
+      ? (new Date(p.folderLastModified) - new Date(p.knowledgeUpdated)) : -1;
+    return g(b) - g(a);
+  });
+  el('list').innerHTML = list.length ? list.map(card).join('')
+    : '<div class="text-center py-16 text-slate-400">該当なし</div>';
+}
+
+(async function () {
+  R = await fetch('project-registry.json').then(r => r.json());
+  el('gen').textContent = '生成: ' + new Date(R.generatedAt).toLocaleString('ja-JP') + '　（node knowledge/build-registry.js で更新）';
+
+  const c = R.counts;
+  el('kpi').innerHTML = [
+    ['登録案件', c.projects, 'INDEX.md 掲載数'],
+    ['資料フォルダ紐付け', c.withFolder, 'project/ と対応'],
+    ['未整理フォルダ', c.orphanFolders, 'INDEX 未掲載', c.orphanFolders > 0 ? 'amber' : ''],
+    ['ナレッジ要更新', c.staleKnowledge, '資料より古い', c.staleKnowledge > 0 ? 'red' : ''],
+  ].map(([label, val, sub, tone]) => `
+    <div class="bg-white rounded-xl border ${tone === 'red' ? 'border-red-200' : tone === 'amber' ? 'border-amber-200' : 'border-slate-200'} p-4 shadow-sm">
+      <p class="text-xs text-slate-500">${label}</p>
+      <p class="text-2xl font-bold ${tone === 'red' ? 'text-red-600' : tone === 'amber' ? 'text-amber-600' : 'text-slate-900'} mt-1">${val}<span class="text-sm font-normal text-slate-400 ml-1">件</span></p>
+      <p class="text-xs text-slate-400 mt-0.5">${sub}</p>
+    </div>`).join('');
+
+  let a = '';
+  if (R.orphanFolders.length) {
+    a += `<div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-3">
+      <p class="text-sm font-bold text-amber-800 mb-2">未整理フォルダ ${R.orphanFolders.length}件 — INDEX.md への追加とサマリMD作成が必要</p>
+      <div class="flex flex-wrap gap-2">${R.orphanFolders.map(o =>
+        `<span class="bg-white border border-amber-200 px-2 py-1 rounded text-xs text-amber-900">${o.folder}<span class="text-amber-500 ml-1">${o.fileCount}件 / ${o.lastModified || '-'}</span></span>`).join('')}</div>
+    </div>`;
+  }
+  if (R.staleKnowledge.length) {
+    a += `<div class="bg-red-50 border border-red-200 rounded-xl p-4">
+      <p class="text-sm font-bold text-red-800 mb-2">ナレッジが実資料より古い ${R.staleKnowledge.length}件 — 動いているのにサマリが追いついていない</p>
+      <div class="flex flex-wrap gap-2">${R.staleKnowledge.map(s =>
+        `<span class="bg-white border border-red-200 px-2 py-1 rounded text-xs text-red-900">${s.name}<span class="text-red-400 ml-1">${s.knowledgeUpdated} → ${s.folderLastModified}</span></span>`).join('')}</div>
+    </div>`;
+  }
+  el('alerts').innerHTML = a;
+  render();
+})();
+</script>
+</body>
+</html>
