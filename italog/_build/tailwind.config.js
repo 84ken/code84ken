@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        ink: '#0a0a0a',
         primary: {
           50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
           400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
