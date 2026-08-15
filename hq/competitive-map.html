@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>競合マップ — SCHEMA HQ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { primary: { 50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',800:'#13318d',900:'#0e266a',950:'#07194e' } },
+  fontFamily: { sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'] }
+} } }
+</script>
+<style>
+:root { color-scheme: light; }
+.text-body { color: #3d4b5f; }
+body { font-size: 14px; line-height: 1.7; }
+@media print { .no-print { display: none !important; } body { background: white; } }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<nav class="sticky top-0 z-50 bg-white border-b border-slate-200 no-print" aria-label="メインナビゲーション">
+  <div class="max-w-5xl mx-auto px-4 sm:px-8 py-2 flex items-center gap-3 text-sm">
+    <a href="index.html" class="text-primary-500 font-medium hover:underline">S HQ</a>
+    <span class="text-slate-300">/</span>
+    <span class="text-slate-700 font-medium">競合マップ</span>
+    <div class="ml-auto flex gap-4">
+      <a href="theme-strategy.html" class="text-slate-500 hover:text-slate-700">テーマ戦略</a>
+      <a href="strategy-note-2026q1.html" class="text-slate-500 hover:text-slate-700">戦略ノート</a>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-12">
+
+  <div class="mb-8">
+    <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">競合マップ — どこを見て、どこで戦うか</h1>
+    <p class="text-sm text-body mt-1">「Web制作会社の競合」ではなく、目指すポジションごとに見るべき相手は変わる</p>
+    <p class="text-xs text-slate-400 mt-2">最終更新: 2026年8月15日 ｜ CONFIDENTIAL — 役員限定</p>
+  </div>
+
+  <!-- 前提 -->
+  <section class="rounded-xl bg-primary-50 border-2 border-primary-200 p-5 sm:p-6 mb-8">
+    <h2 class="text-lg font-bold text-primary-900 mb-2">前提 — 競合は「はしごの段」ごとに違う</h2>
+    <p class="text-sm text-primary-900 leading-relaxed">
+      <a href="theme-strategy.html" class="underline">テーマ戦略</a>で整理した4段のはしご（①上流プロデュース／②商品化／③運営受託・指定管理／④自社事業）は、
+      <strong>段ごとに競合がまったく別の顔ぶれになる</strong>。「Web制作の競合」を見ていても、単価下落の話にしかならない。
+      見るべきは<strong>「自分が上がろうとしている段に、すでに立っている会社」</strong>。
+    </p>
+  </section>
+
+  <!-- 1段目 -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-6">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="w-6 h-6 rounded-full bg-emerald-500 text-white text-xs font-bold inline-flex items-center justify-center">1</span>
+      <h2 class="text-lg font-bold text-slate-900">上流プロデュース（ビジョン・構想から入る）</h2>
+    </div>
+    <p class="text-sm text-body mb-4">橋本さんが挙げた2社はここ。<strong>いずれも「Web制作会社」を名乗っていない</strong>のが本質。</p>
+
+    <div class="space-y-3 mb-4">
+      <div class="rounded-lg border border-slate-200 p-4">
+        <div class="flex flex-wrap items-baseline gap-2 mb-1">
+          <p class="font-bold text-slate-900 text-sm">NEWPEACE</p>
+          <span class="text-xs text-slate-400">newpeace.jp</span>
+          <span class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-medium">受託型・クリエイティブファーム</span>
+        </div>
+        <p class="text-sm text-body">「未来を左右する経営課題にクリエイティビティで解を出す」。<strong>VISIONING®︎</strong>という独自メソッドで企業のWHYからブランド戦略を作り、実装（グラフィック・Web・広告PR）とリサーチまで通す。自社を<strong>「広告代理店とコンサルの境界が溶けた課題解決産業」</strong>に位置づけている。実績はBASE・PKSHA・STORES等のリブランディング、自治体シティプロモーション（富山県・品川区・佐賀市）、原宿ハラカドの商業施設プロデュース。</p>
+        <p class="text-xs text-emerald-800 mt-2">▸ 学ぶ点：<strong>メソッドに名前を付けて売っている</strong>（VISIONING®︎）。スキーマはリトデポで同じことをやったが、型に名前が付いていない。</p>
+      </div>
+
+      <div class="rounded-lg border border-slate-200 p-4">
+        <div class="flex flex-wrap items-baseline gap-2 mb-1">
+          <p class="font-bold text-slate-900 text-sm">ロフトワーク</p>
+          <span class="text-xs text-slate-400">loftwork.com</span>
+          <span class="px-2 py-0.5 rounded-full text-[10px] bg-violet-100 text-violet-700 font-medium">受託＋自社の「場」を多数運営</span>
+        </div>
+        <p class="text-sm text-body">志連さんの出身元であり、<strong>スキーマは「ロフトワーク初の独立起業した卒業生」</strong>。UX/サービスデザイン、デザインリサーチ、新規事業開発、コミュニティマネジメント。領域は教育・地域・都市・サステナビリティ・伝統工芸・企業R&D。
+        重要なのは<strong>受託だけでなく「場」と「プラットフォーム」を自社で持っている</strong>こと — FabCafe（渋谷・原宿MTRL・京都・大阪・名古屋・飛騨＋海外10拠点）、MTRL（素材）、<strong>ヒダクマ（飛騨の木材・職人）</strong>、AWRD（アワード運営）。</p>
+        <p class="text-xs text-violet-800 mt-2">▸ 学ぶ点：<strong>ヒダクマ＝地域×木材×ファブ拠点は、TATELab.とほぼ同じ発想を先行実装した例</strong>。「受託会社が場を持つ」ことの成立条件を見るのに最良の教材。</p>
+      </div>
+    </div>
+
+    <div class="rounded-lg bg-slate-50 border border-slate-200 p-4 text-sm text-body">
+      <p class="font-medium text-slate-900 mb-1">この段でのスキーマの位置</p>
+      <p>NEWPEACEは<strong>都市・スタートアップ・大企業</strong>、ロフトワークは<strong>グローバル×大規模</strong>。両社とも<strong>埼玉県の行政実務を6年続けている会社ではない</strong>。
+      スキーマの差は「県の現場に居続けている」ことで、これは規模では追いつけないが<strong>代替もされにくい</strong>。正面から同じ土俵に立つより、<strong>地域行政×社会課題という縦の深さで棲み分ける</strong>のが現実的。</p>
+    </div>
+  </section>
+
+  <!-- 2段目 -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-6">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="w-6 h-6 rounded-full bg-primary-500 text-white text-xs font-bold inline-flex items-center justify-center">2</span>
+      <h2 class="text-lg font-bold text-slate-900">商品化（ものづくり・サウナ小屋）</h2>
+    </div>
+    <p class="text-sm text-body mb-4">サウナ小屋を作るなら、ここが<strong>最も直接ぶつかる領域</strong>。要確認の相手が明確にいる。</p>
+
+    <div class="rounded-lg border-2 border-amber-200 bg-amber-50/40 p-4 mb-3">
+      <p class="font-bold text-slate-900 text-sm mb-1">VUILD（ヴィルド）— 最重要チェック対象</p>
+      <p class="text-sm text-body">日本で<strong>ShopBotを普及させた会社</strong>で、デジタル木材加工サービス「EMARF」と、ShopBotで建てる住宅「まれびとの家」等を展開。
+      <strong>TATELab.と同じ機械・同じ思想で、建築スケールまで先行している</strong>。サウナ小屋＝小屋スケールの木造プロダクトは、まさにVUILDの土俵と重なる。</p>
+      <p class="text-xs text-amber-800 mt-2">▸ やること：<strong>サウナ小屋を検討する前に、VUILDの価格帯・納期・提供形態を必ず調べる</strong>。競合として避けるか、EMARFを使う側に回るかで戦略が変わる。</p>
+    </div>
+
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="font-bold text-slate-900 text-sm mb-1">サウナプロデュース系</p>
+      <p class="text-sm text-body">TTNE（プロサウナー・施設プロデュース）、ヴィレッジインク（The Sauna 等の施設運営）など、<strong>「サウナで場を作る」プレイヤーは既に確立している</strong>。
+      スキーマの差別化は<strong>サウナ単体ではなく「温浴×地域資源×行政」の掛け算</strong>にある。県の温浴観光を担う立場（温浴ツーリズム）は、この人たちが持っていないカード。</p>
+      <p class="text-xs text-slate-500 mt-2">※ 具体的な社名・価格は要調査。ここは推定を含むため、動く前にファクトを取ること。</p>
+    </div>
+  </section>
+
+  <!-- 3段目 -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-6">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="w-6 h-6 rounded-full bg-amber-500 text-white text-xs font-bold inline-flex items-center justify-center">3</span>
+      <h2 class="text-lg font-bold text-slate-900">運営受託・指定管理（地域で回す）</h2>
+    </div>
+    <p class="text-sm text-body mb-4">「銭湯・ホテル経営」の手前の段。ここは<strong>地域プロデュース会社</strong>が主戦場にしている。</p>
+
+    <div class="space-y-3">
+      <div class="rounded-lg border border-slate-200 p-4">
+        <p class="font-bold text-slate-900 text-sm mb-1">さとゆめ 型（地域伴走 → 運営まで）</p>
+        <p class="text-sm text-body">構想策定から入り、<strong>道の駅や宿泊施設の運営まで自社で担う</strong>「伴走型」地域プロデュース。行政計画づくりと事業運営の両方をやる点で、スキーマが3段目で目指す形にいちばん近い。</p>
+      </div>
+      <div class="rounded-lg border border-slate-200 p-4">
+        <p class="font-bold text-slate-900 text-sm mb-1">指定管理の実務系（大手・地場）</p>
+        <p class="text-sm text-body">温浴施設・道の駅の指定管理は、<strong>実際には運営ノウハウを持つ事業者が取る</strong>ことが多い。スキーマ単独では人員面で厳しく、<strong>運営会社とのJV前提</strong>で組む必要がある。ADDReC（Development Agency）や地元の運営事業者との座組みが現実解。</p>
+      </div>
+    </div>
+    <p class="text-xs text-body mt-3">▸ この段は<strong>「勝つ」より「組む」</strong>が正解に近い。ねんりんピック（イナズマJV）・木材調査（TIS連携）でJV経験は既にある。</p>
+  </section>
+
+  <!-- 見る観点 -->
+  <section class="bg-white rounded-xl border-2 border-primary-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-4">競合を見るときの4つの観点</h2>
+    <div class="space-y-3 text-sm text-body">
+      <div class="flex items-start gap-3">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs font-bold flex-shrink-0">1</span>
+        <div><strong>メソッドに名前が付いているか</strong> — NEWPEACEのVISIONING®︎。名前が付くと「発注する理由」になり、比較対象から外れる。<span class="text-slate-500">スキーマはリトデポで実践済みだが無名。ここは今すぐ埋められる差。</span></div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs font-bold flex-shrink-0">2</span>
+        <div><strong>自社で持っている「場」があるか</strong> — ロフトワークのFabCafe／ヒダクマ。場があると受託の信頼が変わり、収益も分散する。<span class="text-slate-500">スキーマはTATELab.を既に持っている。使い倒せているかが問い。</span></div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs font-bold flex-shrink-0">3</span>
+        <div><strong>受託以外の収益があるか</strong> — 物販・運営・プラットフォーム。ここが無いと単価下落の影響を全部受ける。<span class="text-slate-500">スキーマは現状ほぼ受託100%。第十七期の原価率51.4%はその弱さの表れ。</span></div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs font-bold flex-shrink-0">4</span>
+        <div><strong>その会社が「代替不能」な理由は何か</strong> — 規模／メソッド／場／地域との時間。<span class="text-slate-500">スキーマの答えは<strong>「埼玉県の現場に6年以上居続けている」</strong>。これは金で買えないが、言語化しないと伝わらない。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 結論 -->
+  <section class="rounded-xl bg-emerald-50 border-2 border-emerald-200 p-5 sm:p-6 mb-8">
+    <h2 class="text-lg font-bold text-emerald-900 mb-2">結論 — 競合を「Web制作会社」に置くのをやめる</h2>
+    <ul class="space-y-2 text-sm text-emerald-900 leading-relaxed">
+      <li>・<strong>NEWPEACE / ロフトワークは"競合"というより"先に行った人たち"</strong>。同じ土俵で勝ちに行くのではなく、<strong>「メソッドの名付け」「場の活用」という打ち手を学ぶ相手</strong>として見るのが実利がある</li>
+      <li>・<strong>いま最優先で調べるべきはVUILD</strong>。サウナ小屋を本気でやるなら、価格・納期・提供形態を知らずに動くのはリスク</li>
+      <li>・<strong>3段目（運営）は「勝つ」より「組む」</strong>。運営会社とのJVを前提に、スキーマは企画・ブランド・行政折衝を持つ</li>
+      <li>・<strong>スキーマの代替不能性は「埼玉県の現場に居続けた時間」</strong>。NEWPEACEもロフトワークもここは持っていない。<strong>温浴を結果に関わらず続ける判断は、この蓄積を厚くする行為</strong>なので戦略的に正しい</li>
+    </ul>
+  </section>
+
+  <footer class="text-center text-xs text-slate-400 py-8 border-t border-slate-200">
+    <p>SCHEMA HQ — 競合マップ ｜ CONFIDENTIAL</p>
+    <p class="mt-1">出典: 各社公式サイト（2026-08-15時点）／knowledge/会社プロフィール・メディア掲載.md ／ 31_litdepo.md</p>
+  </footer>
+
+</div>
+</body>
+</html>
