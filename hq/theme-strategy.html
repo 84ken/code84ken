@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>テーマ戦略 — SCHEMA HQ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { primary: { 50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',800:'#13318d',900:'#0e266a',950:'#07194e' } },
+  fontFamily: { sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'] }
+} } }
+</script>
+<style>
+:root { color-scheme: light; }
+.text-body { color: #3d4b5f; }
+body { font-size: 14px; line-height: 1.7; }
+@media print { .no-print { display: none !important; } body { background: white; } }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<nav class="sticky top-0 z-50 bg-white border-b border-slate-200 no-print" aria-label="メインナビゲーション">
+  <div class="max-w-5xl mx-auto px-4 sm:px-8 py-2 flex items-center gap-3 text-sm">
+    <a href="index.html" class="text-primary-500 font-medium hover:underline">S HQ</a>
+    <span class="text-slate-300">/</span>
+    <span class="text-slate-700 font-medium">テーマ戦略</span>
+    <div class="ml-auto flex gap-4">
+      <a href="strategy-note-2026q1.html" class="text-slate-500 hover:text-slate-700">戦略ノート</a>
+      <a href="sales/sales-dashboard.html" class="text-slate-500 hover:text-slate-700">売上</a>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-12">
+
+  <div class="mb-8">
+    <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">テーマ戦略 — 4つの軸をどう事業にするか</h1>
+    <p class="text-sm text-body mt-1">環境／サウナ・まちづくり／ウェルビーイング／TATELab. ｜ 既存資産との接続と、粗利構造から見た打ち手</p>
+    <p class="text-xs text-slate-400 mt-2">最終更新: 2026年8月15日 ｜ CONFIDENTIAL — 役員限定</p>
+  </div>
+
+  <!-- ===== 前提：判断軸 ===== -->
+  <section class="rounded-xl bg-amber-50 border-2 border-amber-200 p-5 sm:p-6 mb-8">
+    <h2 class="text-lg font-bold text-amber-900 mb-2">前提 — テーマを選ぶ判断軸は「粗利の型」</h2>
+    <p class="text-sm text-amber-900 leading-relaxed mb-3">
+      第十七期の分析で、<strong>原価率は案件の型でほぼ決まる</strong>ことが分かった（県庁運用31% / GREE年間運用30% ↔ 物産観光協会の制作一括67% / マクドナルド66%）。
+      4人＋外注という体制では、<strong>売上規模より「年間運用で積み上がるか」がテーマ選定の主軸</strong>になる。
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+      <div class="bg-white rounded-lg border border-emerald-200 p-3">
+        <p class="font-medium text-emerald-800">狙う型：年間運用・伴走</p>
+        <p class="text-xs text-body mt-1">原価率30%前後。人が増えなくても積み上がる。関係が続くほど提案の勝率も上がる</p>
+      </div>
+      <div class="bg-white rounded-lg border border-red-200 p-3">
+        <p class="font-medium text-red-800">避ける型：単発の制作一括</p>
+        <p class="text-xs text-body mt-1">原価率60%超。売上は立つが粗利が残らず、外注管理の工数だけ増える</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 1. 環境 ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-6">
+    <div class="flex items-baseline gap-3 mb-3">
+      <h2 class="text-lg font-bold text-slate-900">1. サーキュラーエコノミー／ネイチャーポジティブ</h2>
+      <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700">最有望</span>
+    </div>
+
+    <div class="rounded-lg bg-emerald-50 border border-emerald-200 p-4 mb-4 text-sm text-emerald-900">
+      <p class="font-medium mb-1">結論：4テーマで唯一「すでに受注実績と実務接点がある」軸。学びから取りに行く動きは正しい。</p>
+      <p>ただしプレイブック上は<strong>まだ「勝ち筋#9・検証中」</strong>で、会社の看板を書き換える判断はしていない。<strong>9月上旬の官民連携アドバイザーの結果</strong>が振り切るかの判断ゲートとして設定済み。</p>
+    </div>
+
+    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">手元にある資産</p>
+    <ul class="space-y-1.5 text-sm text-body mb-4">
+      <li>・<strong>サーキュラーエコノミー普及啓発（R8）¥5,483,720 受注確定</strong>（環境部）。R7はCEラボ＋ロゴで実績あり＝<strong>2年連続</strong></li>
+      <li>・<strong>リバサポ</strong>（環境部 水環境課）6年運営。原価率31%の優良運用案件で、流域＝ネイチャーポジティブの主戦場</li>
+      <li>・<strong>埼玉県ネイチャーポジティブ推進部会に入会済み</strong>（無料）。7/17の部会で香坂教授・DNP・石坂産業・日本自然保護協会・バイオームの5登壇を吸収済み</li>
+      <li>・<strong>川の国 流域アトラス</strong>構想（river.schema.tokyo）— 「自然資本と文化資本を同じ流域地図で語る」設計思想は5団体の共通結論と一致</li>
+      <li>・<strong>EPSON 環境ストーリー</strong>（DOKASEN協業）— 民間side の環境コミュニケーション実績。行政だけでなく<strong>企業のESG文脈でも使える</strong>証明になった</li>
+    </ul>
+
+    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">やること</p>
+    <ol class="space-y-2 text-sm text-body">
+      <li><strong>1. 9月上旬の判断ゲートを実行する</strong>（プレイブック#9）。官民連携アドバイザーの結果を見て、勝ち筋#9を「関心領域」から「武器」に格上げするか決める</li>
+      <li><strong>2. 10月フォーラムに登壇/参加を狙う</strong>（9/1申込開始・テーマは中小企業の事業化）。客層がリバサポ企業マッチングと重なる</li>
+      <li><strong>3. 埼玉環境賞に出す</strong>（9月締切・知事表彰）。リバサポ関係団体や企業サポーターの受賞はそのまま実績になる。石坂産業は日経ESG掲載が県との接点を生んだ実例</li>
+      <li><strong>4. EPSONを「環境ストーリーの型」として横展開する</strong>。県案件で得た知見を民間ESGに売る導線は、行政依存率を下げる筋にもなる</li>
+    </ol>
+
+    <div class="rounded-lg bg-slate-50 border border-slate-200 p-3 mt-4 text-xs text-body">
+      <strong>注意：</strong>木材/森林系は県産木材調査で失注済み。プレイブックの仮説どおり「林業・産業振興」ではなく<strong>「森林生態系サービスの経済価値化」</strong>で組み直せるかが再挑戦の条件。グリーンウォッシュ回避（植林・ホタル放流も場所により逆効果）は日本自然保護協会の指摘どおり専門家の裏取りを前提にする。
+    </div>
+  </section>
+
+  <!-- ===== 2. サウナ ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-6">
+    <div class="flex items-baseline gap-3 mb-3">
+      <h2 class="text-lg font-bold text-slate-900">2. サウナ → 温泉・銭湯 → まちづくり</h2>
+      <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-700">既に武器</span>
+    </div>
+
+    <div class="rounded-lg bg-primary-50 border border-primary-200 p-4 mb-4 text-sm text-primary-900">
+      <p class="font-medium mb-1">結論：4テーマで<strong>最も「勝ち筋」として確立している</strong>（プレイブック#3）。拡張の方向も正しい。</p>
+      <p>温浴ツーリズム（¥13,661千・結果待ち）が取れれば、<strong>「サウナの人」から「県の温浴観光を担う会社」への格上げ</strong>になる。まちづくり文脈への発展はここが起点。</p>
+    </div>
+
+    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">手元にある資産</p>
+    <ul class="space-y-1.5 text-sm text-body mb-4">
+      <li>・<strong>リトデポ</strong>（WBS特集・クリエイティブ統括・6社編成）＝遊休地×温浴×まちづくりの実例そのもの</li>
+      <li>・<strong>温浴ツーリズム観光プロモ</strong> 提案済み（観光課）。onsen.schema.tokyo の県内温浴資源の調査編集力が直結</li>
+      <li>・<strong>木青連（木材×サウナセッション）</strong>＝木材とサウナの接続点。TATELab.とも噛み合う</li>
+      <li>・GALA meets SAUNA / DANDAN / BRUTUS 等のメディア実績、電気風呂・温泉ソムリエの個人知見</li>
+    </ul>
+
+    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">ADDReC との接続について</p>
+    <div class="rounded-lg bg-slate-50 border border-slate-200 p-4 text-sm text-body mb-4">
+      <p>ADDReCは<strong>Development Agency（開発・不動産の企画）</strong>で、repertio（麻布十番ワインバー・永山祐子氏空間設計）や Native Classic のように<strong>「場をブランドごと立ち上げる」座組み</strong>を持っている。スキーマはそこでAD・ブランディングを担当する関係。</p>
+      <p class="mt-2"><strong>接続の筋は「温浴施設の企画開発」</strong>。ADDReCの不動産・建築の企画力 × スキーマの温浴ドメイン知識とブランディング、という組み方は現実味がある。ただし<strong>現状のADDReC案件は原価率24%と良好だが単発の制作寄り</strong>なので、施設案件にするなら<strong>運用・コンテンツまで取る前提</strong>で座組みを設計したい。</p>
+    </div>
+
+    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">やること</p>
+    <ol class="space-y-2 text-sm text-body">
+      <li><strong>1. 温浴ツーリズムの結果を待って旗を立てる</strong>。受注なら「県の温浴観光」実績として対外的に打ち出す</li>
+      <li><strong>2. ADDReCに温浴施設企画の相談を持ちかける</strong>。repertio型（空間＋ブランド＋運用）の温浴版が作れないか、座組みの可能性を探る</li>
+      <li><strong>3. 銭湯・温泉の「まちづくり」文脈を1本の企画書にする</strong>。リトデポの実例を型にすれば、自治体にも民間にも出せる汎用提案になる</li>
+    </ol>
+  </section>
+
+  <!-- ===== 3. ウェルビーイング ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-6">
+    <div class="flex items-baseline gap-3 mb-3">
+      <h2 class="text-lg font-bold text-slate-900">3. ウェルビーイング／健康</h2>
+      <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">柱にするには一手足りない</span>
+    </div>
+
+    <div class="rounded-lg bg-amber-50 border border-amber-200 p-4 mb-4 text-sm text-amber-900">
+      <p class="font-medium mb-1">結論：会社のミッション（健康につよいデザイン会社）と最も一致するが、<strong>売上柱になっている案件がまだ無い</strong>。</p>
+      <p>VTAS・THE PHAGE・化粧品連携はいずれも<strong>構想〜デモ段階</strong>。ここを柱にするなら「案件を待つ」ではなく<strong>プロダクトか年間運用の形に落とす</strong>必要がある。</p>
+    </div>
+
+    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">手元にある資産</p>
+    <ul class="space-y-1.5 text-sm text-body mb-4">
+      <li>・<strong>VTAS</strong>（日本バイタルサイン協会・櫻井会長）— 判定デモ作成済み、見積提示済み。北極星は<strong>エビデンス化・学会発表</strong></li>
+      <li>・<strong>THE PHAGE</strong>（志連）— 血糖AI・治療用アプリ。プレイブック勝ち筋#8の中核</li>
+      <li>・<strong>化粧品連携（BUB / Growth Plus）</strong>、あたまのいす（OMOTENASHIセレクション2025）</li>
+      <li>・サウナ／温浴の知見は<strong>そのままウェルビーイングの実践知</strong>。テーマ2と地続き</li>
+    </ul>
+
+    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">やること</p>
+    <ol class="space-y-2 text-sm text-body">
+      <li><strong>1. VTASを「エビデンス化の伴走」として年間契約に持っていけるか探る</strong>。単発のアプリ制作で終わると原価率が高い制作案件になる。学会発表までの伴走なら継続収入になりうる</li>
+      <li><strong>2. 健康×行政の入口を探す</strong>。県には健康長寿・スポーツ（すぽったま！実績あり）の系統がある。ウェルビーイングを<strong>すぽったまの延長線として県に提案</strong>する筋は、実績が効く分だけ勝率が高い</li>
+      <li><strong>3. 焦って柱にしない</strong>。テーマ1・2で粗利を確保しながら、こちらは<strong>2〜3年かけて育てる枠</strong>と位置づけるのが体制的に現実的</li>
+    </ol>
+  </section>
+
+  <!-- ===== 4. TATELab ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+    <div class="flex items-baseline gap-3 mb-3">
+      <h2 class="text-lg font-bold text-slate-900">4. TATELab. — 象徴を「接続装置」として使う</h2>
+      <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-violet-100 text-violet-700">全テーマのハブ</span>
+    </div>
+
+    <div class="rounded-lg bg-violet-50 border border-violet-200 p-4 mb-4 text-sm text-violet-900">
+      <p class="font-medium mb-1">結論：TATELab.は<strong>単体で売上を作る場所ではなく、他3テーマの信頼を担保する装置</strong>と位置づけるのが正しい。</p>
+      <p>「自社で地域資源を製品化して賞まで取っている会社」という事実が、環境・まちづくり・ウェルビーイングすべての提案で効く。</p>
+    </div>
+
+    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">各テーマへの接続</p>
+    <div class="overflow-x-auto mb-4">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">接続先</th>
+            <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">効かせ方</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-slate-100">
+            <td class="py-2 px-3 font-medium text-slate-900">環境（テーマ1）</td>
+            <td class="py-2 px-3 text-body text-xs">地域材のCNC製品化＝<strong>循環経済の実践者</strong>。嵐山「記憶の木」（廃校の大木端材）はネイチャーポジティブ×文化資本の教材そのもの</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="py-2 px-3 font-medium text-slate-900">まちづくり（テーマ2）</td>
+            <td class="py-2 px-3 text-body text-xs">横瀬町（人口8,100人）の旧JA建物リノベ＝<strong>遊休施設活用の当事者実績</strong>。木青連の木材×サウナとも直結</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="py-2 px-3 font-medium text-slate-900">ウェルビーイング（テーマ3）</td>
+            <td class="py-2 px-3 text-body text-xs">BBKK木馬（新商品AWARD大賞）・あたまのいす＝<strong>五感/ウェルネスのプロダクト実績</strong></td>
+          </tr>
+          <tr>
+            <td class="py-2 px-3 font-medium text-slate-900">提案全般</td>
+            <td class="py-2 px-3 text-body text-xs">「言うだけでなく自分でやっている」の証明。<strong>AI訴求で連敗した反省の逆側にある武器</strong>＝実績・地域性・体制がそのまま形になっている</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">やること</p>
+    <ol class="space-y-2 text-sm text-body">
+      <li><strong>1. 提案書の標準パーツにする</strong>。環境・まちづくり系の提案には必ずTATELab.の実例を1枚入れる運用にする</li>
+      <li><strong>2. 嵐山「記憶の木」を旗艦事例に仕上げる</strong>（見積¥3,388千・町申請様式記入済）。受注できればテーマ1×2×4を1本で語れる事例になる</li>
+      <li><strong>3. アワードは実績づくりと割り切る</strong>。IDA結果待ちのみで、他は選外・見送り。<strong>受賞そのものより「賞に出せる自社プロダクトがある」事実</strong>が提案で効く</li>
+    </ol>
+  </section>
+
+  <!-- ===== 全体の絵 ===== -->
+  <section class="bg-white rounded-xl border-2 border-primary-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-4">全体の絵 — 4テーマの役割分担</h2>
+    <div class="overflow-x-auto mb-4">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-slate-200 bg-gray-50">
+            <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">テーマ</th>
+            <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">いまの役割</th>
+            <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">案件の型</th>
+            <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">時間軸</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-slate-100 bg-emerald-50/40">
+            <td class="py-2 px-3 font-medium text-slate-900">環境（CE/NP）</td>
+            <td class="py-2 px-3 text-body text-xs">粗利を稼ぐ主軸候補。県との継続関係が土台</td>
+            <td class="py-2 px-3 text-xs"><span class="text-emerald-700 font-medium">年間運用型</span></td>
+            <td class="py-2 px-3 text-xs">今期〜（9月に判断）</td>
+          </tr>
+          <tr class="border-b border-slate-100 bg-primary-50/40">
+            <td class="py-2 px-3 font-medium text-slate-900">サウナ・まちづくり</td>
+            <td class="py-2 px-3 text-body text-xs">看板。対外的な独自性そのもの</td>
+            <td class="py-2 px-3 text-xs"><span class="text-amber-700 font-medium">混在</span>（施設は制作寄り・観光運用は運用型）</td>
+            <td class="py-2 px-3 text-xs">今期〜</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="py-2 px-3 font-medium text-slate-900">ウェルビーイング</td>
+            <td class="py-2 px-3 text-body text-xs">ミッションの本丸だが、まだ投資フェーズ</td>
+            <td class="py-2 px-3 text-xs"><span class="text-slate-500">未確定</span></td>
+            <td class="py-2 px-3 text-xs">2〜3年で育てる</td>
+          </tr>
+          <tr class="bg-violet-50/40">
+            <td class="py-2 px-3 font-medium text-slate-900">TATELab.</td>
+            <td class="py-2 px-3 text-body text-xs">売上ではなく信頼の担保。3テーマ全部に効く</td>
+            <td class="py-2 px-3 text-xs"><span class="text-violet-700 font-medium">非売上（資産）</span></td>
+            <td class="py-2 px-3 text-xs">常時</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rounded-lg bg-slate-50 border border-slate-200 p-4 text-sm text-body leading-relaxed">
+      <p class="font-medium text-slate-900 mb-1">4テーマを貫く一本の線</p>
+      <p><strong>「地域の資源（自然・温浴・木・人）を、健康と経済の両方に変換する会社」</strong>——環境もサウナもウェルビーイングもTATELab.も、この一文の下に収まる。ミッション「世界のしかくを開くデザイン」とも矛盾しない。
+      提案の場面では、このうち<strong>案件に一番近い1つを前面に、残りを裏付けとして添える</strong>のが効く（AI訴求を前面に出して連敗した反省の裏返し）。</p>
+    </div>
+  </section>
+
+  <!-- ===== 直近90日 ===== -->
+  <section class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-900 mb-4">直近90日でやること</h2>
+    <div class="space-y-3 text-sm text-body">
+      <div class="flex items-start gap-3">
+        <span class="inline-block w-16 flex-shrink-0 text-xs font-bold text-primary-600 pt-0.5">8月</span>
+        <span>温浴ツーリズムの結果確認（受注ならテーマ2の旗を立てる）／官民連携アドバイザー提案〆8/20／<strong>埼玉環境賞の応募検討（9月締切）</strong></span>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="inline-block w-16 flex-shrink-0 text-xs font-bold text-primary-600 pt-0.5">9月</span>
+        <span><strong>勝ち筋#9の判断ゲート</strong>（官民連携アドバイザー結果・上旬）／10月フォーラム申込（9/1開始）／嵐山の補助金申請フォロー</span>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="inline-block w-16 flex-shrink-0 text-xs font-bold text-primary-600 pt-0.5">10月</span>
+        <span>ネイチャーポジティブ10月フォーラム（登壇/参加）／ADDReCへ温浴施設企画の打診／EPSON型の環境ストーリーを民間向けメニュー化</span>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="inline-block w-16 flex-shrink-0 text-xs font-bold text-slate-400 pt-0.5">通期</span>
+        <span>提案書にTATELab.実例を標準で入れる運用に切り替え／外注費の計上漏れを塞ぎ、テーマ別の粗利を見えるようにする</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center text-xs text-slate-400 py-8 border-t border-slate-200">
+    <p>SCHEMA HQ — テーマ戦略 ｜ CONFIDENTIAL</p>
+    <p class="mt-1">出典: knowledge/提案戦略プレイブック.md ・各案件ナレッジ ・売上/外注実績 ｜ 最終更新: 2026-08-15</p>
+  </footer>
+
+</div>
+</body>
+</html>
