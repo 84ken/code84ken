@@ -14,11 +14,15 @@
       "id": "smokeifreet",
       "name": "Smoke-i-freet",
       "kana": "すもーくあいふりーと",
-      "events": ["hanyu-2026"],
+      "events": [
+        "hanyu-2026"
+      ],
       "days": "3/1",
       "summary": "醤油の製造過程で出る醤油粕をアップサイクルした燻製材。木材チップとの香りの違いを体験できました。",
       "resource": "しょうゆの搾りかす",
-      "tags": ["食品・農業"],
+      "tags": [
+        "食品・農業"
+      ],
       "photo": "/assets/img/photo/hanyu-smokeifreet.jpg",
       "photoAlt": "醤油粕スモークピースの展示パネル",
       "ceRegistered": true,
@@ -28,11 +32,15 @@
       "id": "haaya",
       "name": "スタジオはーや",
       "kana": "すたじおはーや",
-      "events": ["hanyu-2026"],
+      "events": [
+        "hanyu-2026"
+      ],
       "days": "両日",
       "summary": "もみ殻を化学技術で器に変える過程を展示。活用アイデアをその場で考えるコーナーもありました。",
       "resource": "もみ殻",
-      "tags": ["食品・農業"],
+      "tags": [
+        "食品・農業"
+      ],
       "photo": "/assets/img/photo/hanyu-haaya.jpg",
       "photoAlt": "もみ殻とその加工物を並べた展示",
       "ceRegistered": false,
@@ -42,11 +50,16 @@
       "id": "pilot",
       "name": "パイロットコーポレーション",
       "kana": "ぱいろっとこーぽれーしょん",
-      "events": ["koshigaya-2025", "hanyu-2026"],
+      "events": [
+        "koshigaya-2025",
+        "hanyu-2026"
+      ],
       "days": "越谷 10/4 ／ 羽生 両日",
       "summary": "補充式蛍光ペンの組み立てワークショップと、蛍光ペンの補充体験。使い終わった筆記具の回収も行いました。",
       "resource": "使用済みの筆記具",
-      "tags": ["プラスチック"],
+      "tags": [
+        "プラスチック"
+      ],
       "photo": "/assets/img/photo/hanyu-pilot.jpg",
       "photoAlt": "パイロットのブースでペンの組み立てに取り組む来場者",
       "ceRegistered": false,
@@ -56,11 +69,17 @@
       "id": "ntt",
       "name": "NTT東日本",
       "kana": "えぬてぃーてぃーひがしにほん",
-      "events": ["koshigaya-2025", "hanyu-2026"],
+      "events": [
+        "koshigaya-2025",
+        "hanyu-2026"
+      ],
       "days": "越谷 両日 ／ 羽生 2/28",
       "summary": "バッテリー交換式EVの展示や、小水力発電「ピコピカ」の体験。羽生ではバイオ発電の紹介とエコキャップ工作も。",
       "resource": "エネルギー・使用済みバッテリー",
-      "tags": ["エネルギー", "金属・電池"],
+      "tags": [
+        "エネルギー",
+        "金属・電池"
+      ],
       "photo": "/assets/img/photo/hanyu-ntt.jpg",
       "photoAlt": "NTT東日本のブースでモニターを使って展示を見る来場者",
       "ceRegistered": false,
@@ -70,11 +89,16 @@
       "id": "nihonsim",
       "name": "日本シーム",
       "kana": "にっぽんしーむ",
-      "events": ["koshigaya-2025", "hanyu-2026"],
+      "events": [
+        "koshigaya-2025",
+        "hanyu-2026"
+      ],
       "days": "越谷 10/5 ／ 羽生 2/28",
       "summary": "ペットボトルキャップを砕いて溶かし、その場でコマをつくる体験。できたコマは持ち帰れました。",
       "resource": "ペットボトルキャップ",
-      "tags": ["プラスチック"],
+      "tags": [
+        "プラスチック"
+      ],
       "photo": "/assets/img/photo/hanyu-nihonsim.jpg",
       "photoAlt": "色ごとに砕かれたペットボトルキャップの原料",
       "ceRegistered": false,
@@ -84,13 +108,18 @@
       "id": "kawakami",
       "name": "川上産業",
       "kana": "かわかみさんぎょう",
-      "events": ["koshigaya-2025", "hanyu-2026"],
+      "events": [
+        "koshigaya-2025",
+        "hanyu-2026"
+      ],
       "days": "越谷 10/4 ／ 羽生 2/28",
       "summary": "気泡緩衝材「プチプチ®」のループリサイクル®を紹介。1万粒にひとつの“ラッキープチ”探しやカードゲーム、ペットボトルケースづくりも。",
       "resource": "気泡緩衝材「プチプチ®」",
-      "tags": ["プラスチック"],
-      "photo": "/assets/img/photo/hanyu-kawakami.jpg",
-      "photoAlt": "ロール状に巻かれた気泡緩衝材プチプチ",
+      "tags": [
+        "プラスチック"
+      ],
+      "photo": "/assets/img/photo/hanyu-kawakami-booth.jpg",
+      "photoAlt": "川上産業のブース。プチプチ®つぶし機「ミニパク」とプチプチのロール、リサイクルBOXが並ぶ",
       "ceRegistered": true,
       "url": null
     },
@@ -98,13 +127,17 @@
       "id": "seed",
       "name": "シード",
       "kana": "しーど",
-      "events": ["hanyu-2026"],
+      "events": [
+        "hanyu-2026"
+      ],
       "days": "両日",
       "summary": "コンタクトレンズの空き箱とアルミを使った万華鏡づくり。使い終わった空ケースの回収も実施しました。",
       "resource": "コンタクトレンズの空ケース",
-      "tags": ["プラスチック"],
-      "photo": null,
-      "photoAlt": "",
+      "tags": [
+        "プラスチック"
+      ],
+      "photo": "/assets/img/photo/hanyu-seed.jpg",
+      "photoAlt": "コンタクトレンズの空ケースを使った万華鏡づくりに取り組む親子の手元",
       "ceRegistered": false,
       "url": null
     },
@@ -112,11 +145,15 @@
       "id": "arai",
       "name": "新井紙材",
       "kana": "あらいしざい",
-      "events": ["hanyu-2026"],
+      "events": [
+        "hanyu-2026"
+      ],
       "days": "3/1",
       "summary": "廃棄される予定だった特大ロール紙をキャンバスに。会場いっぱいの紙にみんなで自由に描きました。",
       "resource": "特大ロール紙",
-      "tags": ["紙"],
+      "tags": [
+        "紙"
+      ],
       "photo": "/assets/img/photo/hanyu-arai.jpg",
       "photoAlt": "床に広げた特大ロール紙に描かれた絵",
       "ceRegistered": false,
@@ -126,11 +163,15 @@
       "id": "kankyonet",
       "name": "環境ネットワーク埼玉",
       "kana": "かんきょうねっとわーくさいたま",
-      "events": ["hanyu-2026"],
+      "events": [
+        "hanyu-2026"
+      ],
       "days": "3/1",
       "summary": "親子でソーラーカーづくり。太陽光発電のミニ講座「身近な太陽光発電について学ぼう！触れてみよう！」も開催しました。",
       "resource": "太陽光エネルギー",
-      "tags": ["エネルギー"],
+      "tags": [
+        "エネルギー"
+      ],
       "photo": "/assets/img/photo/hanyu-kankyonet.jpg",
       "photoAlt": "環境ネットワーク埼玉による省エネ実践講座の案内パネル",
       "ceRegistered": false,
@@ -141,11 +182,16 @@
       "name": "CE推進センター埼玉",
       "kana": "しーいーすいしんせんたーさいたま",
       "partner": "協力：青山商事（越谷）／キムラセンイ（羽生）",
-      "events": ["koshigaya-2025", "hanyu-2026"],
+      "events": [
+        "koshigaya-2025",
+        "hanyu-2026"
+      ],
       "days": "両日",
       "summary": "再生素材を使った衣料品の展示と、端材を使ったサンリオキャラクターの塗り絵（越谷）。羽生では古着の循環利用の展示と衣料品の無料回収を行いました。",
       "resource": "衣料品・繊維",
-      "tags": ["繊維・衣料"],
+      "tags": [
+        "繊維・衣料"
+      ],
       "photo": "/assets/img/photo/hanyu-kimura.jpg",
       "photoAlt": "会場に設置された衣料品回収ボックス",
       "ceRegistered": true,
@@ -155,11 +201,16 @@
       "id": "saitama-pref",
       "name": "埼玉県 資源循環推進課",
       "kana": "さいたまけんしげんじゅんかんすいしんか",
-      "events": ["koshigaya-2025", "hanyu-2026"],
+      "events": [
+        "koshigaya-2025",
+        "hanyu-2026"
+      ],
       "days": "両日",
       "summary": "パネル展示と動画放映。リチウムイオン電池・充電式電池・モバイルバッテリーの回収も実施しました。",
       "resource": "リチウムイオン電池・充電式電池",
-      "tags": ["金属・電池"],
+      "tags": [
+        "金属・電池"
+      ],
       "photo": "/assets/img/photo/hanyu-saitama.jpg",
       "photoAlt": "充電式電池の分別回収への協力を呼びかける掲示",
       "ceRegistered": false,
@@ -169,11 +220,15 @@
       "id": "aieiplan",
       "name": "あいえいプラン",
       "kana": "あいえいぷらん",
-      "events": ["koshigaya-2025"],
+      "events": [
+        "koshigaya-2025"
+      ],
       "days": "10/5",
       "summary": "使い終わった食用油を回収し、エネルギーとして再利用する装置を映像で紹介しました。",
       "resource": "廃食用油",
-      "tags": ["エネルギー"],
+      "tags": [
+        "エネルギー"
+      ],
       "photo": "/assets/img/photo/koshigaya-aieiplan.jpg",
       "photoAlt": "あいえいプランのブースでの映像展示",
       "ceRegistered": false,
@@ -183,11 +238,15 @@
       "id": "gyxus",
       "name": "GYXUS",
       "kana": "じくさす",
-      "events": ["koshigaya-2025"],
+      "events": [
+        "koshigaya-2025"
+      ],
       "days": "両日",
       "summary": "廃石膏ボードのリサイクル体験。型抜き・お絵描き・スーパーボール発掘の3つが楽しめました。",
       "resource": "廃石膏ボード",
-      "tags": ["建材"],
+      "tags": [
+        "建材"
+      ],
       "photo": "/assets/img/photo/koshigaya-gyxus.jpg",
       "photoAlt": "GYXUSのブースで石膏の型抜きに取り組む来場者",
       "ceRegistered": false,
@@ -197,11 +256,15 @@
       "id": "saitamashizai",
       "name": "さいたま資材",
       "kana": "さいたましざい",
-      "events": ["koshigaya-2025"],
+      "events": [
+        "koshigaya-2025"
+      ],
       "days": "10/4",
       "summary": "液状化現象の実験と、建設重機のラジコン操縦体験。建設現場の資源循環を身近に感じられるブースでした。",
       "resource": "建設発生土・建設資材",
-      "tags": ["建材"],
+      "tags": [
+        "建材"
+      ],
       "photo": "/assets/img/photo/koshigaya-saitamashizai.jpg",
       "photoAlt": "さいたま資材のブースでの重機ラジコン体験",
       "ceRegistered": false,
@@ -211,11 +274,16 @@
       "id": "ihashi",
       "name": "イハシ",
       "kana": "いはし",
-      "events": ["koshigaya-2025"],
+      "events": [
+        "koshigaya-2025"
+      ],
       "days": "両日",
       "summary": "EVカーシェアの紹介と、古紙を使った輪投げ。遊びながら資源の使い方を考えられるブースでした。",
       "resource": "古紙・EV",
-      "tags": ["紙", "エネルギー"],
+      "tags": [
+        "紙",
+        "エネルギー"
+      ],
       "photo": "/assets/img/photo/koshigaya-ihashi.jpg",
       "photoAlt": "イハシのブースで古紙を使った輪投げを楽しむ来場者",
       "ceRegistered": false,

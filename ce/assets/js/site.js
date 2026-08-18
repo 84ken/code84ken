@@ -221,11 +221,13 @@
       return '<span class="font-round bg-primary-50 text-primary-800 px-3 py-1 rounded-full text-xs font-bold">' + esc(t) + '</span>';
     }).join('');
 
+    // 「彩の国サーキュラーエコノミー」登録企業は、県の公式ロゴを添えて分かりやすく
     var registered = x.ceRegistered
-      ? '<p class="mt-4 flex items-start gap-2 p-3 rounded-xl bg-primary-50 text-primary-800 text-sm leading-relaxed">' +
-          '<svg class="w-4 h-4 shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' +
-          '<span>「彩の国サーキュラーエコノミー」の登録企業です</span>' +
-        '</p>'
+      // ロゴPNGの地色が白なので、囲みも白にして馴染ませる
+      ? '<div class="mt-4 flex items-center gap-3 p-3 rounded-xl bg-white border-2 border-primary-200">' +
+          '<img src="/assets/img/brand/sainokuni-ce.png" alt="" aria-hidden="true" width="760" height="331" loading="lazy" decoding="async" class="h-8 w-auto shrink-0">' +
+          '<span class="text-[0.8125rem] text-primary-800 leading-snug font-medium">「彩の国サーキュラーエコノミー」の登録企業です</span>' +
+        '</div>'
       : '';
 
     var link = x.url
