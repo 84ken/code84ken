@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T07:12:26.396Z",
+  "generatedAt": "2026-08-19T07:24:09.489Z",
   "mainWeight": 0.6,
   "periods": [
     {
@@ -23,6 +23,53 @@
             "リトデポ",
             "リバサポ",
             "横瀬町"
+          ],
+          "detail": [
+            {
+              "project": "リバサポ",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 28718,
+              "credited": 17231,
+              "team": "橋本・大西"
+            },
+            {
+              "project": "マクドナルド",
+              "client": "マクドナルド",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 11034,
+              "credited": 6620,
+              "team": "橋本・中村"
+            },
+            {
+              "project": "横瀬町",
+              "client": "コア",
+              "role": "主",
+              "weight": 1,
+              "gross": 2448,
+              "credited": 2448,
+              "team": "橋本"
+            },
+            {
+              "project": "リトデポ",
+              "client": "JR東日本",
+              "role": "主",
+              "weight": 1,
+              "gross": 720,
+              "credited": 720,
+              "team": "橋本"
+            },
+            {
+              "project": "すぽったま",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 264,
+              "credited": 158,
+              "team": "橋本・岡永"
+            }
           ]
         },
         {
@@ -33,6 +80,17 @@
           "projectCount": 1,
           "projects": [
             "リバサポ"
+          ],
+          "detail": [
+            {
+              "project": "リバサポ",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 28718,
+              "credited": 11487,
+              "team": "橋本・大西"
+            }
           ]
         },
         {
@@ -44,6 +102,26 @@
           "projects": [
             "INTEGRATE / stons",
             "マクドナルド"
+          ],
+          "detail": [
+            {
+              "project": "マクドナルド",
+              "client": "マクドナルド",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 11034,
+              "credited": 4414,
+              "team": "橋本・中村"
+            },
+            {
+              "project": "INTEGRATE / stons",
+              "client": "INTEGRATE",
+              "role": "主",
+              "weight": 1,
+              "gross": 2790,
+              "credited": 2790,
+              "team": "中村"
+            }
           ]
         },
         {
@@ -55,6 +133,26 @@
           "projects": [
             "ウイザース",
             "ヒロ建工"
+          ],
+          "detail": [
+            {
+              "project": "ウイザース",
+              "client": "ウイザース",
+              "role": "主",
+              "weight": 1,
+              "gross": 3659,
+              "credited": 3659,
+              "team": "浅見"
+            },
+            {
+              "project": "ヒロ建工",
+              "client": "ヒロ建工",
+              "role": "主",
+              "weight": 1,
+              "gross": 2280,
+              "credited": 2280,
+              "team": "浅見"
+            }
           ]
         },
         {
@@ -66,6 +164,26 @@
           "projects": [
             "ADDReC / DA",
             "すぽったま"
+          ],
+          "detail": [
+            {
+              "project": "ADDReC / DA",
+              "client": "ADDReC",
+              "role": "主",
+              "weight": 1,
+              "gross": 1300,
+              "credited": 1300,
+              "team": "岡永"
+            },
+            {
+              "project": "すぽったま",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 264,
+              "credited": 106,
+              "team": "橋本・岡永"
+            }
           ]
         }
       ],
@@ -272,6 +390,152 @@
             "文化資源",
             "横瀬町",
             "読売新聞スタンプラリー"
+          ],
+          "detail": [
+            {
+              "project": "文化資源",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 1,
+              "gross": 16046,
+              "credited": 16046,
+              "team": "橋本"
+            },
+            {
+              "project": "LP前期",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 21622,
+              "credited": 12973,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "リトデポ",
+              "client": "JR東日本",
+              "role": "主",
+              "weight": 1,
+              "gross": 11783,
+              "credited": 11783,
+              "team": "橋本"
+            },
+            {
+              "project": "LP残り",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 18013,
+              "credited": 10808,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "マクドナルド",
+              "client": "マクドナルド",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 17674,
+              "credited": 10604,
+              "team": "橋本・中村"
+            },
+            {
+              "project": "スポーツ",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 12066,
+              "credited": 7240,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "リバサポ後半",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 7956,
+              "credited": 4774,
+              "team": "橋本・大西"
+            },
+            {
+              "project": "サーキュラーイベント",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 1,
+              "gross": 4496,
+              "credited": 4496,
+              "team": "橋本"
+            },
+            {
+              "project": "SNS残り",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 5715,
+              "credited": 3429,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "SNS前期",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 5677,
+              "credited": 3406,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "いちご大學",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 1,
+              "gross": 2271,
+              "credited": 2271,
+              "team": "橋本"
+            },
+            {
+              "project": "サーキュラーロゴ",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 1,
+              "gross": 2181,
+              "credited": 2181,
+              "team": "橋本"
+            },
+            {
+              "project": "横瀬町",
+              "client": "コア",
+              "role": "主",
+              "weight": 1,
+              "gross": 2160,
+              "credited": 2160,
+              "team": "橋本"
+            },
+            {
+              "project": "スポーツツーリズム",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 3090,
+              "credited": 1854,
+              "team": "橋本・大西"
+            },
+            {
+              "project": "読売新聞スタンプラリー",
+              "client": "読売新聞",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 3020,
+              "credited": 1812,
+              "team": "橋本・中村"
+            },
+            {
+              "project": "リトデポチラシ更新",
+              "client": "JEKI",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 2450,
+              "credited": 1470,
+              "team": "橋本・岡永"
+            }
           ]
         },
         {
@@ -289,6 +553,80 @@
             "SNS残り",
             "スポーツ",
             "リトデポチラシ更新"
+          ],
+          "detail": [
+            {
+              "project": "LP前期",
+              "client": "物産観光協会",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 21622,
+              "credited": 8649,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "LP残り",
+              "client": "物産観光協会",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 18013,
+              "credited": 7205,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "スポーツ",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 12066,
+              "credited": 4826,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "JT案件（REDD）",
+              "client": "JT案件（REDD）",
+              "role": "主",
+              "weight": 1,
+              "gross": 4490,
+              "credited": 4490,
+              "team": "岡永"
+            },
+            {
+              "project": "ADDReC / DA",
+              "client": "ADDReC",
+              "role": "主",
+              "weight": 1,
+              "gross": 4190,
+              "credited": 4190,
+              "team": "岡永"
+            },
+            {
+              "project": "SNS残り",
+              "client": "物産観光協会",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 5715,
+              "credited": 2286,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "SNS前期",
+              "client": "物産観光協会",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 5677,
+              "credited": 2271,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "リトデポチラシ更新",
+              "client": "JEKI",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 2450,
+              "credited": 980,
+              "team": "橋本・岡永"
+            }
           ]
         },
         {
@@ -301,6 +639,35 @@
             "INTEGRATE / stons",
             "マクドナルド",
             "読売新聞スタンプラリー"
+          ],
+          "detail": [
+            {
+              "project": "マクドナルド",
+              "client": "マクドナルド",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 17674,
+              "credited": 7070,
+              "team": "橋本・中村"
+            },
+            {
+              "project": "INTEGRATE / stons",
+              "client": "INTEGRATE",
+              "role": "主",
+              "weight": 1,
+              "gross": 3111,
+              "credited": 3111,
+              "team": "中村"
+            },
+            {
+              "project": "読売新聞スタンプラリー",
+              "client": "読売新聞",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 3020,
+              "credited": 1208,
+              "team": "橋本・中村"
+            }
           ]
         },
         {
@@ -312,6 +679,26 @@
           "projects": [
             "ウイザース",
             "ヒロ建工"
+          ],
+          "detail": [
+            {
+              "project": "ヒロ建工",
+              "client": "ヒロ建工",
+              "role": "主",
+              "weight": 1,
+              "gross": 3505,
+              "credited": 3505,
+              "team": "浅見"
+            },
+            {
+              "project": "ウイザース",
+              "client": "ウイザース",
+              "role": "主",
+              "weight": 1,
+              "gross": 2297,
+              "credited": 2297,
+              "team": "浅見"
+            }
           ]
         },
         {
@@ -323,6 +710,26 @@
           "projects": [
             "スポーツツーリズム",
             "リバサポ後半"
+          ],
+          "detail": [
+            {
+              "project": "リバサポ後半",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 7956,
+              "credited": 3182,
+              "team": "橋本・大西"
+            },
+            {
+              "project": "スポーツツーリズム",
+              "client": "物産観光協会",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 3090,
+              "credited": 1236,
+              "team": "橋本・大西"
+            }
           ]
         }
       ],
@@ -477,6 +884,80 @@
             "横瀬町",
             "ＬＰ前期",
             "ＬＰ後期"
+          ],
+          "detail": [
+            {
+              "project": "ＬＰ後期",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 1,
+              "gross": 20000,
+              "credited": 20000,
+              "team": "橋本"
+            },
+            {
+              "project": "ぶんたま（文化資源）",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 1,
+              "gross": 15256,
+              "credited": 15256,
+              "team": "橋本"
+            },
+            {
+              "project": "ＬＰ前期",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 1,
+              "gross": 15000,
+              "credited": 15000,
+              "team": "橋本"
+            },
+            {
+              "project": "すぽったま",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 13870,
+              "credited": 8322,
+              "team": "橋本・岡永"
+            },
+            {
+              "project": "CELAB",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 1,
+              "gross": 4985,
+              "credited": 4985,
+              "team": "橋本"
+            },
+            {
+              "project": "リバサポ",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 7956,
+              "credited": 4774,
+              "team": "橋本・大西"
+            },
+            {
+              "project": "いちご大學",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 1,
+              "gross": 4090,
+              "credited": 4090,
+              "team": "橋本"
+            },
+            {
+              "project": "横瀬町",
+              "client": "コア",
+              "role": "主",
+              "weight": 1,
+              "gross": 2160,
+              "credited": 2160,
+              "team": "橋本"
+            }
           ]
         },
         {
@@ -488,6 +969,26 @@
           "projects": [
             "ADDReC / DA",
             "すぽったま"
+          ],
+          "detail": [
+            {
+              "project": "ADDReC / DA",
+              "client": "ADDReC",
+              "role": "主",
+              "weight": 1,
+              "gross": 5600,
+              "credited": 5600,
+              "team": "岡永"
+            },
+            {
+              "project": "すぽったま",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 13870,
+              "credited": 5548,
+              "team": "橋本・岡永"
+            }
           ]
         },
         {
@@ -499,6 +1000,26 @@
           "projects": [
             "ウイザース",
             "ヒロ建工"
+          ],
+          "detail": [
+            {
+              "project": "ウイザース",
+              "client": "ウイザース",
+              "role": "主",
+              "weight": 1,
+              "gross": 4318,
+              "credited": 4318,
+              "team": "浅見"
+            },
+            {
+              "project": "ヒロ建工",
+              "client": "ヒロ建工",
+              "role": "主",
+              "weight": 1,
+              "gross": 2781,
+              "credited": 2781,
+              "team": "浅見"
+            }
           ]
         },
         {
@@ -509,6 +1030,17 @@
           "projectCount": 1,
           "projects": [
             "リバサポ"
+          ],
+          "detail": [
+            {
+              "project": "リバサポ",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 7956,
+              "credited": 3182,
+              "team": "橋本・大西"
+            }
           ]
         }
       ],
