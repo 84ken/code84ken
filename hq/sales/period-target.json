@@ -2,20 +2,29 @@
   "period": "第十八期",
   "range": "2026.7〜2027.6",
   "target": 200000,
-  "note": "単位は千円。確定契約は年間の受注額（プロポーザルダッシュボード基準）。既計上額は売上Excelから自動照合するため、ここには年間総額のみ記載する。",
+  "unit": "千円（税抜）",
+  "note": "単位は千円・税抜。売上Excelが税抜のため全て税抜に統一する。プロポーザルダッシュボードの受注額は税込なので、ここでは amountIncl（税込）と amount（税抜＝÷1.1）を併記する。yomi は売上Excelのヨミ表に実際に入力されている金額。",
   "confirmedContracts": [
-    { "name": "観光客誘致・戦略的情報発信", "client": "物産観光協会", "amount": 39600, "source": "DMO事業本部" },
-    { "name": "ぶんたま（保守運用）", "client": "埼玉県庁", "amount": 16783, "source": "県民文化部" },
-    { "name": "すぽったま（運用保守）", "client": "埼玉県庁", "amount": 15259, "source": "県民生活部" },
-    { "name": "リバサポ", "client": "埼玉県庁", "amount": 8753, "source": "環境部 水環境課" },
-    { "name": "サーキュラーエコノミー普及啓発", "client": "埼玉県庁", "amount": 5484, "source": "環境部" },
-    { "name": "いちご大學", "client": "埼玉県庁", "amount": 4490, "source": "随意契約" },
-    { "name": "すぽったま（コンテンツ）", "client": "埼玉県庁", "amount": 3527, "source": "県民生活部" }
+    { "name": "観光客誘致・戦略的情報発信", "client": "物産観光協会", "amountIncl": 39600, "amount": 36000, "yomi": 35000, "source": "DMO事業本部", "yomiLabel": "ＬＰ前期15,000＋ＬＰ後期20,000" },
+    { "name": "ぶんたま（保守運用）", "client": "埼玉県庁", "amountIncl": 16783, "amount": 15257, "yomi": 15256, "source": "県民文化部", "yomiLabel": "7,628×2（7月・3月）" },
+    { "name": "すぽったま（運用保守）", "client": "埼玉県庁", "amountIncl": 15259, "amount": 13872, "yomi": 13870, "source": "県民生活部", "yomiLabel": "6,935×2（7月・3月）" },
+    { "name": "リバサポ", "client": "埼玉県庁", "amountIncl": 8753, "amount": 7958, "yomi": 7956, "source": "環境部 水環境課", "yomiLabel": "3,978×2（7月・3月）" },
+    { "name": "サーキュラーエコノミー普及啓発", "client": "埼玉県庁", "amountIncl": 5484, "amount": 4985, "yomi": 4985, "source": "環境部", "yomiLabel": "CELAB 4,985（3月）" },
+    { "name": "いちご大學", "client": "埼玉県庁", "amountIncl": 4490, "amount": 4082, "yomi": 4090, "source": "随意契約", "yomiLabel": "4,090（3月）" },
+    { "name": "すぽったま（コンテンツ）", "client": "埼玉県庁", "amountIncl": 3527, "amount": 3206, "yomi": 0, "source": "県民生活部", "yomiLabel": "未計上" }
   ],
   "pipeline": [
-    { "name": "官民連携アドバイザー支援業務", "client": "埼玉県庁", "amount": 2081, "status": "提案予定", "detail": "申込〆8/10 → 提案〆8/20" }
+    { "name": "官民連携アドバイザー支援業務", "client": "埼玉県庁", "amountIncl": 2081, "amount": 1892, "status": "提案予定", "detail": "申込〆8/10 → 提案〆8/20" }
   ],
   "lost": [
-    { "name": "温浴ツーリズム観光プロモーション", "client": "埼玉県庁", "amount": 13661, "detail": "8/6プレゼン後 失注（8月中旬判明）" }
-  ]
+    { "name": "温浴ツーリズム観光プロモーション", "client": "埼玉県庁", "amountIncl": 13661, "amount": 12419, "detail": "8/6プレゼン後 失注（8月中旬判明）" },
+    { "name": "埼玉観光サポートサイト・SNS運営", "client": "物産観光協会", "amountIncl": 17617, "amount": 16016, "detail": "第十七期は11,392千円を計上していた継続案件。失注により第十八期はゼロ" },
+    { "name": "県産木材の新たな流通体制構築", "client": "埼玉県庁", "amountIncl": 19500, "amount": 17727, "detail": "森づくり課" },
+    { "name": "中山間地域の特産農産物を活用した誘客促進", "client": "埼玉県庁", "amountIncl": 4499, "amount": 4090, "detail": "受託は さとゆめ" }
+  ],
+  "greeAnnual": {
+    "label": "GREE 2案件（クリノッペ／ハコニワ）年間運用",
+    "amount": 16962,
+    "detail": "第十七期実績 GREE：CL 9,481＋GREE：HN 7,481。毎月ほぼ定額で立つがヨミ表は未入力"
+  }
 }

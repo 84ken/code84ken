@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T15:09:59.047Z",
+  "generatedAt": "2026-08-19T06:39:54.880Z",
   "summary": [
     {
       "period": "第二期",
@@ -297,14 +297,14 @@
       "firstHalfGrowth": 0.5682235529,
       "firstHalfCost": 0,
       "firstHalfProfit": 56936,
-      "secondHalf": 0,
-      "secondHalfGrowth": 0,
+      "secondHalf": 51956,
+      "secondHalfGrowth": 0.5490378417,
       "secondHalfCost": 0,
-      "secondHalfProfit": 0,
-      "total": 56936,
-      "totalGrowth": 0.2922327556,
+      "secondHalfProfit": 51956,
+      "total": 108892,
+      "totalGrowth": 0.5589048971,
       "totalCost": 0,
-      "totalProfit": 56936,
+      "totalProfit": 108892,
       "team": "志連・橋本・(市原)・岡永・中村"
     }
   ],
@@ -788,6 +788,300 @@
               "action": "看板",
               "yomi": 0,
               "sales": 1100,
+              "cost": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "period": "2027前期",
+      "sheetName": "2027年1-6",
+      "half": "first",
+      "clients": [
+        {
+          "name": "コア",
+          "entries": [
+            {
+              "month": "1月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "2月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "4月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "5月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "横瀬",
+              "yomi": 0,
+              "sales": 180,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "物産観光協会",
+          "entries": [
+            {
+              "month": "3月",
+              "action": "ＬＰ後期",
+              "yomi": 0,
+              "sales": 20000,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "ウイザース",
+          "entries": [
+            {
+              "month": "1月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 200,
+              "cost": 0
+            },
+            {
+              "month": "2月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 200,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 200,
+              "cost": 0
+            },
+            {
+              "month": "4月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 234,
+              "cost": 0
+            },
+            {
+              "month": "5月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 125,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "運用他",
+              "yomi": 0,
+              "sales": 200,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "ヒロ建工",
+          "entries": [
+            {
+              "month": "1月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 231,
+              "cost": 0
+            },
+            {
+              "month": "2月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 150,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 150,
+              "cost": 0
+            },
+            {
+              "month": "4月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 110,
+              "cost": 0
+            },
+            {
+              "month": "5月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 110,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 150,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "ADDReC",
+          "entries": [
+            {
+              "month": "1月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "2月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "4月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "5月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "定額",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "埼玉県庁",
+          "entries": [
+            {
+              "month": "3月",
+              "action": "すぽったま",
+              "yomi": 0,
+              "sales": 6935,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "リバサポ",
+              "yomi": 0,
+              "sales": 3978,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "ぶんたま",
+              "yomi": 0,
+              "sales": 7628,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "CELAB",
+              "yomi": 0,
+              "sales": 4985,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "いちご大学",
+              "yomi": 0,
+              "sales": 4090,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "name": "カーセブン",
+          "entries": [
+            {
+              "month": "1月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "2月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "3月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "4月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "5月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
+              "cost": 0
+            },
+            {
+              "month": "6月",
+              "action": "運用",
+              "yomi": 0,
+              "sales": 100,
               "cost": 0
             }
           ]
@@ -4167,6 +4461,709 @@
             ]
           }
         ]
+      }
+    ]
+  },
+  "periodForecast": {
+    "period": "第十八期",
+    "range": "2026.7〜2027.6",
+    "unit": "千円（税抜）",
+    "note": "売上Excelのヨミ表ベース。金額は税抜。行政＝埼玉県庁・物産観光協会の直接契約。",
+    "current": {
+      "govTotal": 81157,
+      "privTotal": 27735,
+      "total": 108892,
+      "gov": [
+        {
+          "client": "物産観光協会",
+          "action": "ＬＰ前期",
+          "month": "10月",
+          "sheet": "2026年7-12",
+          "amount": 15000
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "すぽったま",
+          "month": "7月",
+          "sheet": "2026年7-12",
+          "amount": 6935
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "リバサポ",
+          "month": "7月",
+          "sheet": "2026年7-12",
+          "amount": 3978
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "ぶんたま",
+          "month": "7月",
+          "sheet": "2026年7-12",
+          "amount": 7628
+        },
+        {
+          "client": "物産観光協会",
+          "action": "ＬＰ後期",
+          "month": "3月",
+          "sheet": "2027年1-6",
+          "amount": 20000
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "すぽったま",
+          "month": "3月",
+          "sheet": "2027年1-6",
+          "amount": 6935
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "リバサポ",
+          "month": "3月",
+          "sheet": "2027年1-6",
+          "amount": 3978
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "ぶんたま",
+          "month": "3月",
+          "sheet": "2027年1-6",
+          "amount": 7628
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "CELAB",
+          "month": "3月",
+          "sheet": "2027年1-6",
+          "amount": 4985
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "いちご大学",
+          "month": "3月",
+          "sheet": "2027年1-6",
+          "amount": 4090
+        }
+      ],
+      "priv": [
+        {
+          "name": "ADDReC",
+          "amount": 5600
+        },
+        {
+          "name": "ウイザース",
+          "amount": 4318
+        },
+        {
+          "name": "EPSON（DOKASEN）",
+          "amount": 3000
+        },
+        {
+          "name": "ヒロ建工",
+          "amount": 2781
+        },
+        {
+          "name": "KOSE（熱帯）",
+          "amount": 2400
+        },
+        {
+          "name": "コア",
+          "amount": 2160
+        },
+        {
+          "name": "Ｍｓ",
+          "amount": 2000
+        },
+        {
+          "name": "カーセブン",
+          "amount": 1200
+        },
+        {
+          "name": "SHINLOCAL",
+          "amount": 1100
+        },
+        {
+          "name": "高島屋",
+          "amount": 800
+        },
+        {
+          "name": "ウニクス",
+          "amount": 665
+        },
+        {
+          "name": "CASK＆フォレスト",
+          "amount": 500
+        },
+        {
+          "name": "やっち",
+          "amount": 500
+        },
+        {
+          "name": "あっぱれ",
+          "amount": 300
+        },
+        {
+          "name": "ヒロベース",
+          "amount": 221
+        },
+        {
+          "name": "おくりバント",
+          "amount": 100
+        },
+        {
+          "name": "ユニポテンシャル",
+          "amount": 90
+        }
+      ],
+      "monthTotals": [
+        {
+          "month": "7月",
+          "sheet": "2026年7-12",
+          "sales": 22842
+        },
+        {
+          "month": "8月",
+          "sheet": "2026年7-12",
+          "sales": 5630
+        },
+        {
+          "month": "9月",
+          "sheet": "2026年7-12",
+          "sales": 3180
+        },
+        {
+          "month": "10月",
+          "sheet": "2026年7-12",
+          "sales": 23324
+        },
+        {
+          "month": "11月",
+          "sheet": "2026年7-12",
+          "sales": 930
+        },
+        {
+          "month": "12月",
+          "sheet": "2026年7-12",
+          "sales": 1030
+        },
+        {
+          "month": "1月",
+          "sheet": "2027年1-6",
+          "sales": 811
+        },
+        {
+          "month": "2月",
+          "sheet": "2027年1-6",
+          "sales": 730
+        },
+        {
+          "month": "3月",
+          "sheet": "2027年1-6",
+          "sales": 48346
+        },
+        {
+          "month": "4月",
+          "sheet": "2027年1-6",
+          "sales": 724
+        },
+        {
+          "month": "5月",
+          "sheet": "2027年1-6",
+          "sales": 615
+        },
+        {
+          "month": "6月",
+          "sheet": "2027年1-6",
+          "sales": 730
+        }
+      ]
+    },
+    "previous": {
+      "period": "第十七期",
+      "range": "2025.7〜2026.6",
+      "govTotal": 99133,
+      "privTotal": 95450,
+      "total": 194583,
+      "gov": [
+        {
+          "client": "物産観光協会",
+          "action": "LP前期",
+          "month": "10月",
+          "sheet": "2025年7-12",
+          "amount": 21622
+        },
+        {
+          "client": "物産観光協会",
+          "action": "SNS前期",
+          "month": "10月",
+          "sheet": "2025年7-12",
+          "amount": 5677
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "スポーツ",
+          "month": "7月",
+          "sheet": "2025年7-12",
+          "amount": 6033
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "リバサポ後半",
+          "month": "8月",
+          "sheet": "2025年7-12",
+          "amount": 3978
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "文化資源",
+          "month": "8月",
+          "sheet": "2025年7-12",
+          "amount": 8023
+        },
+        {
+          "client": "物産観光協会",
+          "action": "LP残り",
+          "month": "3月",
+          "sheet": "2026年1-6",
+          "amount": 18013
+        },
+        {
+          "client": "物産観光協会",
+          "action": "SNS残り",
+          "month": "3月",
+          "sheet": "2026年1-6",
+          "amount": 5715
+        },
+        {
+          "client": "物産観光協会",
+          "action": "スポーツツーリズム",
+          "month": "3月",
+          "sheet": "2026年1-6",
+          "amount": 3090
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "スポーツ",
+          "month": "3月",
+          "sheet": "2026年1-6",
+          "amount": 6033
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "リバサポ後半",
+          "month": "3月",
+          "sheet": "2026年1-6",
+          "amount": 3978
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "文化資源",
+          "month": "3月",
+          "sheet": "2026年1-6",
+          "amount": 8023
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "いちご大學",
+          "month": "3月",
+          "sheet": "2026年1-6",
+          "amount": 2271
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "サーキュラーロゴ",
+          "month": "3月",
+          "sheet": "2026年1-6",
+          "amount": 2181
+        },
+        {
+          "client": "埼玉県庁",
+          "action": "サーキュラーイベント",
+          "month": "3月",
+          "sheet": "2026年1-6",
+          "amount": 4496
+        }
+      ],
+      "priv": [
+        {
+          "name": "マクドナルド",
+          "amount": 17674
+        },
+        {
+          "name": "JR東日本",
+          "amount": 9783
+        },
+        {
+          "name": "GREE：CL",
+          "amount": 9481
+        },
+        {
+          "name": "GREE：HN",
+          "amount": 7481
+        },
+        {
+          "name": "JT案件（REDD）",
+          "amount": 4490
+        },
+        {
+          "name": "ADDReC",
+          "amount": 4190
+        },
+        {
+          "name": "ヒロ建工",
+          "amount": 3505
+        },
+        {
+          "name": "INTEGRATE",
+          "amount": 3111
+        },
+        {
+          "name": "読売新聞",
+          "amount": 3020
+        },
+        {
+          "name": "KOSE（熱帯）",
+          "amount": 2899
+        },
+        {
+          "name": "おくりバント",
+          "amount": 2750
+        },
+        {
+          "name": "JEKI",
+          "amount": 2450
+        },
+        {
+          "name": "カーセブン",
+          "amount": 2415
+        },
+        {
+          "name": "あっぱれ",
+          "amount": 2300
+        },
+        {
+          "name": "県土整備（オカベ建設）",
+          "amount": 2300
+        },
+        {
+          "name": "ウイザース",
+          "amount": 2297
+        },
+        {
+          "name": "JR都市開発",
+          "amount": 2200
+        },
+        {
+          "name": "コア",
+          "amount": 2160
+        },
+        {
+          "name": "CASK＆フォレスト",
+          "amount": 1650
+        },
+        {
+          "name": "スリーエフ不動産",
+          "amount": 1629
+        },
+        {
+          "name": "LAD",
+          "amount": 1428
+        },
+        {
+          "name": "乃村不動産",
+          "amount": 900
+        },
+        {
+          "name": "WinC",
+          "amount": 850
+        },
+        {
+          "name": "高島屋",
+          "amount": 800
+        },
+        {
+          "name": "ウニクス",
+          "amount": 630
+        },
+        {
+          "name": "パソナＪＯＢＨＵＢ",
+          "amount": 450
+        },
+        {
+          "name": "リクルート",
+          "amount": 400
+        },
+        {
+          "name": "コアゲート",
+          "amount": 400
+        },
+        {
+          "name": "あざみっくす",
+          "amount": 332
+        },
+        {
+          "name": "ビレッジバンガード",
+          "amount": 330
+        },
+        {
+          "name": "NEC",
+          "amount": 200
+        },
+        {
+          "name": "田口木工",
+          "amount": 200
+        },
+        {
+          "name": "学研",
+          "amount": 200
+        },
+        {
+          "name": "やっち",
+          "amount": 150
+        },
+        {
+          "name": "FLEX",
+          "amount": 130
+        },
+        {
+          "name": "coedoビール",
+          "amount": 100
+        },
+        {
+          "name": "エディタウン",
+          "amount": 100
+        },
+        {
+          "name": "寄居町",
+          "amount": 30
+        },
+        {
+          "name": "チッタ",
+          "amount": 22
+        },
+        {
+          "name": "サウナマルシェ",
+          "amount": 13
+        }
+      ]
+    },
+    "missingPrivate": [
+      {
+        "name": "マクドナルド",
+        "amount": 17674
+      },
+      {
+        "name": "JR東日本",
+        "amount": 9783
+      },
+      {
+        "name": "GREE：CL",
+        "amount": 9481
+      },
+      {
+        "name": "GREE：HN",
+        "amount": 7481
+      },
+      {
+        "name": "JT案件（REDD）",
+        "amount": 4490
+      },
+      {
+        "name": "INTEGRATE",
+        "amount": 3111
+      },
+      {
+        "name": "読売新聞",
+        "amount": 3020
+      },
+      {
+        "name": "JEKI",
+        "amount": 2450
+      },
+      {
+        "name": "県土整備（オカベ建設）",
+        "amount": 2300
+      },
+      {
+        "name": "JR都市開発",
+        "amount": 2200
+      },
+      {
+        "name": "スリーエフ不動産",
+        "amount": 1629
+      },
+      {
+        "name": "LAD",
+        "amount": 1428
+      },
+      {
+        "name": "乃村不動産",
+        "amount": 900
+      },
+      {
+        "name": "WinC",
+        "amount": 850
+      },
+      {
+        "name": "パソナＪＯＢＨＵＢ",
+        "amount": 450
+      },
+      {
+        "name": "リクルート",
+        "amount": 400
+      },
+      {
+        "name": "コアゲート",
+        "amount": 400
+      },
+      {
+        "name": "あざみっくす",
+        "amount": 332
+      },
+      {
+        "name": "ビレッジバンガード",
+        "amount": 330
+      },
+      {
+        "name": "NEC",
+        "amount": 200
+      },
+      {
+        "name": "田口木工",
+        "amount": 200
+      },
+      {
+        "name": "学研",
+        "amount": 200
+      },
+      {
+        "name": "FLEX",
+        "amount": 130
+      },
+      {
+        "name": "coedoビール",
+        "amount": 100
+      },
+      {
+        "name": "エディタウン",
+        "amount": 100
+      },
+      {
+        "name": "寄居町",
+        "amount": 30
+      },
+      {
+        "name": "チッタ",
+        "amount": 22
+      },
+      {
+        "name": "サウナマルシェ",
+        "amount": 13
+      }
+    ],
+    "missingPrivateTotal": 69704,
+    "privateDelta": [
+      {
+        "name": "EPSON（DOKASEN）",
+        "now": 3000,
+        "before": 0,
+        "diff": 3000
+      },
+      {
+        "name": "ウイザース",
+        "now": 4318,
+        "before": 2297,
+        "diff": 2021
+      },
+      {
+        "name": "Ｍｓ",
+        "now": 2000,
+        "before": 0,
+        "diff": 2000
+      },
+      {
+        "name": "ADDReC",
+        "now": 5600,
+        "before": 4190,
+        "diff": 1410
+      },
+      {
+        "name": "SHINLOCAL",
+        "now": 1100,
+        "before": 0,
+        "diff": 1100
+      },
+      {
+        "name": "やっち",
+        "now": 500,
+        "before": 150,
+        "diff": 350
+      },
+      {
+        "name": "ヒロベース",
+        "now": 221,
+        "before": 0,
+        "diff": 221
+      },
+      {
+        "name": "ユニポテンシャル",
+        "now": 90,
+        "before": 0,
+        "diff": 90
+      },
+      {
+        "name": "ウニクス",
+        "now": 665,
+        "before": 630,
+        "diff": 35
+      },
+      {
+        "name": "コア",
+        "now": 2160,
+        "before": 2160,
+        "diff": 0
+      },
+      {
+        "name": "高島屋",
+        "now": 800,
+        "before": 800,
+        "diff": 0
+      },
+      {
+        "name": "KOSE（熱帯）",
+        "now": 2400,
+        "before": 2899,
+        "diff": -499
+      },
+      {
+        "name": "ヒロ建工",
+        "now": 2781,
+        "before": 3505,
+        "diff": -724
+      },
+      {
+        "name": "CASK＆フォレスト",
+        "now": 500,
+        "before": 1650,
+        "diff": -1150
+      },
+      {
+        "name": "カーセブン",
+        "now": 1200,
+        "before": 2415,
+        "diff": -1215
+      },
+      {
+        "name": "あっぱれ",
+        "now": 300,
+        "before": 2300,
+        "diff": -2000
+      },
+      {
+        "name": "おくりバント",
+        "now": 100,
+        "before": 2750,
+        "diff": -2650
       }
     ]
   }
