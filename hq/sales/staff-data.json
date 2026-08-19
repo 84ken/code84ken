@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T07:47:05.832Z",
+  "generatedAt": "2026-08-19T07:56:07.574Z",
   "mainWeight": 0.6,
   "periods": [
     {
@@ -214,13 +214,13 @@
           "name": "橋本",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 27178,
-          "mainSales": 27178,
-          "subSales": 0,
-          "profit": 16587,
-          "mainProfit": 16587,
-          "subProfit": 0,
-          "profitMargin": 0.6103165754458678,
+          "sales": 24811,
+          "mainSales": 20236,
+          "subSales": 4575,
+          "profit": 15199,
+          "mainProfit": 12517,
+          "subProfit": 2682,
+          "profitMargin": 0.6126123891611243,
           "projectCount": 5,
           "projects": [
             "すぽったま",
@@ -236,9 +236,9 @@
               "role": "主",
               "weight": 0.6,
               "gross": 28718,
-              "credited": 17231,
+              "credited": 14970,
               "grossProfit": 16836,
-              "creditedProfit": 10102,
+              "creditedProfit": 8776,
               "costRatio": 0.41375008626043736,
               "ratioSource": "実額",
               "team": "橋本(60%)・大西(40%)"
@@ -285,15 +285,15 @@
             {
               "project": "すぽったま",
               "client": "埼玉県庁",
-              "role": "主",
-              "weight": 0.6,
+              "role": "副",
+              "weight": 0.2,
               "gross": 264,
-              "credited": 158,
+              "credited": 53,
               "grossProfit": 155,
-              "creditedProfit": 93,
+              "creditedProfit": 31,
               "costRatio": 0.41375008626043736,
               "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
             }
           ]
         },
@@ -303,12 +303,12 @@
           "vendorNames": [
             "タテジマ（大西晃）"
           ],
-          "sales": 11487,
-          "mainSales": 0,
-          "subSales": 11487,
-          "profit": 6734,
-          "mainProfit": 0,
-          "subProfit": 6734,
+          "sales": 13748,
+          "mainSales": 6784,
+          "subSales": 6965,
+          "profit": 8060,
+          "mainProfit": 3977,
+          "subProfit": 4083,
           "profitMargin": 0.5862499137395627,
           "projectCount": 1,
           "projects": [
@@ -321,9 +321,9 @@
               "role": "副",
               "weight": 0.4,
               "gross": 28718,
-              "credited": 11487,
+              "credited": 13748,
               "grossProfit": 16836,
-              "creditedProfit": 6734,
+              "creditedProfit": 8060,
               "costRatio": 0.41375008626043736,
               "ratioSource": "実額",
               "team": "橋本(60%)・大西(40%)"
@@ -381,15 +381,16 @@
           "vendorNames": [
             "浅見制作所"
           ],
-          "sales": 5939,
-          "mainSales": 5939,
+          "sales": 6097,
+          "mainSales": 6097,
           "subSales": 0,
-          "profit": 3334,
-          "mainProfit": 3334,
+          "profit": 3427,
+          "mainProfit": 3427,
           "subProfit": 0,
-          "profitMargin": 0.5614276814278498,
-          "projectCount": 2,
+          "profitMargin": 0.5620725204737015,
+          "projectCount": 3,
           "projects": [
+            "すぽったま",
             "ウイザース",
             "ヒロ建工"
           ],
@@ -419,6 +420,19 @@
               "costRatio": 0.6820175438596491,
               "ratioSource": "実額",
               "team": "浅見(100%)"
+            },
+            {
+              "project": "すぽったま",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 264,
+              "credited": 158,
+              "grossProfit": 155,
+              "creditedProfit": 93,
+              "costRatio": 0.41375008626043736,
+              "ratioSource": "実額",
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
             }
           ]
         },
@@ -426,13 +440,13 @@
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 1406,
+          "sales": 1353,
           "mainSales": 1300,
-          "subSales": 106,
-          "profit": 518,
+          "subSales": 53,
+          "profit": 487,
           "mainProfit": 456,
-          "subProfit": 62,
-          "profitMargin": 0.3684817806565863,
+          "subProfit": 31,
+          "profitMargin": 0.35998225565157366,
           "projectCount": 2,
           "projects": [
             "ADDReC / DA",
@@ -456,14 +470,14 @@
               "project": "すぽったま",
               "client": "埼玉県庁",
               "role": "副",
-              "weight": 0.4,
+              "weight": 0.2,
               "gross": 264,
-              "credited": 106,
+              "credited": 53,
               "grossProfit": 155,
-              "creditedProfit": 62,
+              "creditedProfit": 31,
               "costRatio": 0.41375008626043736,
               "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
             }
           ]
         }
@@ -644,10 +658,10 @@
       "range": "2025.7〜2026.6",
       "current": false,
       "total": 194831,
-      "assignedTotal": 153813,
-      "unassignedTotal": 41018,
-      "coverage": 0.7894688216967526,
-      "assignedProfit": 75166,
+      "assignedTotal": 156712,
+      "unassignedTotal": 38119,
+      "coverage": 0.8043483839840683,
+      "assignedProfit": 76281,
       "cost": {
         "total": 92607,
         "mapped": 83262,
@@ -869,13 +883,13 @@
           "name": "橋本",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 97307,
-          "mainSales": 97307,
-          "subSales": 0,
-          "profit": 47043,
-          "mainProfit": 47043,
-          "subProfit": 0,
-          "profitMargin": 0.48344695846432717,
+          "sales": 81262,
+          "mainSales": 69248,
+          "subSales": 12014,
+          "profit": 36262,
+          "mainProfit": 28191,
+          "subProfit": 8072,
+          "profitMargin": 0.4462435684345489,
           "projectCount": 16,
           "projects": [
             "LP前期",
@@ -897,19 +911,6 @@
           ],
           "detail": [
             {
-              "project": "文化資源",
-              "client": "埼玉県庁",
-              "role": "主",
-              "weight": 1,
-              "gross": 16046,
-              "credited": 16046,
-              "grossProfit": 10781,
-              "creditedProfit": 10781,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "橋本(100%)"
-            },
-            {
               "project": "リトデポ",
               "client": "JR東日本",
               "role": "主",
@@ -923,17 +924,17 @@
               "team": "橋本(100%)"
             },
             {
-              "project": "スポーツ",
+              "project": "文化資源",
               "client": "埼玉県庁",
-              "role": "主",
-              "weight": 0.6,
-              "gross": 12066,
-              "credited": 7240,
-              "grossProfit": 8107,
-              "creditedProfit": 4864,
+              "role": "副",
+              "weight": 0.4,
+              "gross": 16046,
+              "credited": 6418,
+              "grossProfit": 10781,
+              "creditedProfit": 4312,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "team": "浅見(60%)・橋本(40%)"
             },
             {
               "project": "LP前期",
@@ -975,19 +976,6 @@
               "team": "橋本(60%)・岡永(40%)"
             },
             {
-              "project": "リバサポ後半",
-              "client": "埼玉県庁",
-              "role": "主",
-              "weight": 0.6,
-              "gross": 7956,
-              "credited": 4774,
-              "grossProfit": 5345,
-              "creditedProfit": 3207,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・大西(40%)"
-            },
-            {
               "project": "サーキュラーイベント",
               "client": "埼玉県庁",
               "role": "主",
@@ -999,6 +987,32 @@
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
               "team": "橋本(100%)"
+            },
+            {
+              "project": "リバサポ後半",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 7956,
+              "credited": 3182,
+              "grossProfit": 5345,
+              "creditedProfit": 2138,
+              "costRatio": 0.3281348853740892,
+              "ratioSource": "実額",
+              "team": "大西(60%)・橋本(40%)"
+            },
+            {
+              "project": "スポーツ",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.2,
+              "gross": 12066,
+              "credited": 2413,
+              "grossProfit": 8107,
+              "creditedProfit": 1621,
+              "costRatio": 0.3281348853740892,
+              "ratioSource": "実額",
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
             },
             {
               "project": "読売新聞スタンプラリー",
@@ -1110,13 +1124,13 @@
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 34897,
+          "sales": 32484,
           "mainSales": 8680,
-          "subSales": 26217,
-          "profit": 17120,
+          "subSales": 23804,
+          "profit": 15499,
           "mainProfit": 6840,
-          "subProfit": 10280,
-          "profitMargin": 0.4905917414581403,
+          "subProfit": 8659,
+          "profitMargin": 0.4771251454684696,
           "projectCount": 8,
           "projects": [
             "ADDReC / DA",
@@ -1141,19 +1155,6 @@
               "costRatio": 0.18485523385300667,
               "ratioSource": "実額",
               "team": "岡永(100%)"
-            },
-            {
-              "project": "スポーツ",
-              "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.4,
-              "gross": 12066,
-              "credited": 4826,
-              "grossProfit": 8107,
-              "creditedProfit": 3243,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "ADDReC / DA",
@@ -1195,6 +1196,19 @@
               "team": "橋本(60%)・岡永(40%)"
             },
             {
+              "project": "スポーツ",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.2,
+              "gross": 12066,
+              "credited": 2413,
+              "grossProfit": 8107,
+              "creditedProfit": 1621,
+              "costRatio": 0.3281348853740892,
+              "ratioSource": "実額",
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+            },
+            {
               "project": "SNS残り",
               "client": "物産観光協会",
               "role": "副",
@@ -1232,6 +1246,82 @@
               "costRatio": 0.47532172498216424,
               "ratioSource": "全社平均",
               "team": "橋本(60%)・岡永(40%)"
+            }
+          ]
+        },
+        {
+          "name": "浅見",
+          "vendorPay": 9542,
+          "vendorNames": [
+            "浅見制作所",
+            "合同会社 浅見制作所"
+          ],
+          "sales": 22669,
+          "mainSales": 22669,
+          "subSales": 0,
+          "profit": 14549,
+          "mainProfit": 14549,
+          "subProfit": 0,
+          "profitMargin": 0.6418027659299034,
+          "projectCount": 4,
+          "projects": [
+            "ウイザース",
+            "スポーツ",
+            "ヒロ建工",
+            "文化資源"
+          ],
+          "detail": [
+            {
+              "project": "文化資源",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 16046,
+              "credited": 9628,
+              "grossProfit": 10781,
+              "creditedProfit": 6468,
+              "costRatio": 0.3281348853740892,
+              "ratioSource": "実額",
+              "team": "浅見(60%)・橋本(40%)"
+            },
+            {
+              "project": "スポーツ",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 12066,
+              "credited": 7240,
+              "grossProfit": 8107,
+              "creditedProfit": 4864,
+              "costRatio": 0.3281348853740892,
+              "ratioSource": "実額",
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+            },
+            {
+              "project": "ウイザース",
+              "client": "ウイザース",
+              "role": "主",
+              "weight": 1,
+              "gross": 2297,
+              "credited": 2297,
+              "grossProfit": 1893,
+              "creditedProfit": 1893,
+              "costRatio": 0.17589116238572047,
+              "ratioSource": "実額",
+              "team": "浅見(100%)"
+            },
+            {
+              "project": "ヒロ建工",
+              "client": "ヒロ建工",
+              "role": "主",
+              "weight": 1,
+              "gross": 3505,
+              "credited": 3505,
+              "grossProfit": 1324,
+              "creditedProfit": 1324,
+              "costRatio": 0.6223412268188303,
+              "ratioSource": "実額",
+              "team": "浅見(100%)"
             }
           ]
         },
@@ -1295,54 +1385,6 @@
           ]
         },
         {
-          "name": "浅見",
-          "vendorPay": 9542,
-          "vendorNames": [
-            "浅見制作所",
-            "合同会社 浅見制作所"
-          ],
-          "sales": 5802,
-          "mainSales": 5802,
-          "subSales": 0,
-          "profit": 3217,
-          "mainProfit": 3217,
-          "subProfit": 0,
-          "profitMargin": 0.5544074457083765,
-          "projectCount": 2,
-          "projects": [
-            "ウイザース",
-            "ヒロ建工"
-          ],
-          "detail": [
-            {
-              "project": "ウイザース",
-              "client": "ウイザース",
-              "role": "主",
-              "weight": 1,
-              "gross": 2297,
-              "credited": 2297,
-              "grossProfit": 1893,
-              "creditedProfit": 1893,
-              "costRatio": 0.17589116238572047,
-              "ratioSource": "実額",
-              "team": "浅見(100%)"
-            },
-            {
-              "project": "ヒロ建工",
-              "client": "ヒロ建工",
-              "role": "主",
-              "weight": 1,
-              "gross": 3505,
-              "credited": 3505,
-              "grossProfit": 1324,
-              "creditedProfit": 1324,
-              "costRatio": 0.6223412268188303,
-              "ratioSource": "実額",
-              "team": "浅見(100%)"
-            }
-          ]
-        },
-        {
           "name": "大西",
           "vendorPay": 11961,
           "vendorNames": [
@@ -1351,15 +1393,16 @@
             "大西 晃\n（タテジマ大西）",
             "大西 晃 （タテジマ大西）"
           ],
-          "sales": 4418,
-          "mainSales": 0,
-          "subSales": 4418,
-          "profit": 2533,
-          "mainProfit": 0,
-          "subProfit": 2533,
-          "profitMargin": 0.5733242620678213,
-          "projectCount": 2,
+          "sales": 8909,
+          "mainSales": 7673,
+          "subSales": 1236,
+          "profit": 4718,
+          "mainProfit": 4323,
+          "subProfit": 395,
+          "profitMargin": 0.5296284141069542,
+          "projectCount": 3,
           "projects": [
+            "KOSE",
             "スポーツツーリズム",
             "リバサポ後半"
           ],
@@ -1367,15 +1410,28 @@
             {
               "project": "リバサポ後半",
               "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.4,
+              "role": "主",
+              "weight": 0.6,
               "gross": 7956,
-              "credited": 3182,
+              "credited": 4774,
               "grossProfit": 5345,
-              "creditedProfit": 2138,
+              "creditedProfit": 3207,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本(60%)・大西(40%)"
+              "team": "大西(60%)・橋本(40%)"
+            },
+            {
+              "project": "KOSE",
+              "client": "KOSE（熱帯）",
+              "role": "主",
+              "weight": 1,
+              "gross": 2899,
+              "credited": 2899,
+              "grossProfit": 1116,
+              "creditedProfit": 1116,
+              "costRatio": 0.615039668851328,
+              "ratioSource": "実額",
+              "team": "大西(100%)"
             },
             {
               "project": "スポーツツーリズム",
@@ -1401,10 +1457,6 @@
         {
           "name": "GREE：HN",
           "amount": 7481
-        },
-        {
-          "name": "KOSE（熱帯）",
-          "amount": 2899
         },
         {
           "name": "おくりバント",
@@ -1525,10 +1577,10 @@
       "range": "2026.7〜2027.6",
       "current": true,
       "total": 108892,
-      "assignedTotal": 96016,
-      "unassignedTotal": 12876,
-      "coverage": 0.8817543988539103,
-      "assignedProfit": 51777,
+      "assignedTotal": 98416,
+      "unassignedTotal": 10476,
+      "coverage": 0.9037945854608236,
+      "assignedProfit": 56257,
       "cost": {
         "total": 4289,
         "mapped": 2271,
@@ -1608,19 +1660,19 @@
           "name": "橋本",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 53587,
-          "mainSales": 39587,
-          "subSales": 14000,
-          "profit": 30340,
-          "mainProfit": 25866,
-          "subProfit": 4474,
-          "profitMargin": 0.5661882575279215,
+          "sales": 37294,
+          "mainSales": 11235,
+          "subSales": 26059,
+          "profit": 20506,
+          "mainProfit": 6817,
+          "subProfit": 13689,
+          "profitMargin": 0.5498553710751721,
           "projectCount": 8,
           "projects": [
             "CELAB",
             "いちご大學",
             "すぽったま",
-            "ぶんたま（文化資源）",
+            "ぶんたま",
             "リバサポ",
             "横瀬町",
             "ＬＰ前期",
@@ -1628,30 +1680,17 @@
           ],
           "detail": [
             {
-              "project": "ぶんたま（文化資源）",
+              "project": "ぶんたま",
               "client": "埼玉県庁",
-              "role": "主",
-              "weight": 1,
+              "role": "副",
+              "weight": 0.4,
               "gross": 15256,
-              "credited": 15256,
-              "grossProfit": 10250,
-              "creditedProfit": 10250,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "第十七期の実績",
-              "team": "橋本(100%)"
-            },
-            {
-              "project": "すぽったま",
-              "client": "埼玉県庁",
-              "role": "主",
-              "weight": 0.6,
-              "gross": 13870,
-              "credited": 8322,
-              "grossProfit": 9319,
-              "creditedProfit": 5591,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "第十七期の実績",
-              "team": "橋本(60%)・岡永(40%)"
+              "credited": 6102,
+              "grossProfit": 12256,
+              "creditedProfit": 4902,
+              "costRatio": 0.1966439433665443,
+              "ratioSource": "案件別の想定外注費 3,000千円",
+              "team": "浅見(60%)・橋本(40%)"
             },
             {
               "project": "CELAB",
@@ -1665,19 +1704,6 @@
               "costRatio": 0.3281348853740892,
               "ratioSource": "第十七期の実績",
               "team": "橋本(100%)"
-            },
-            {
-              "project": "リバサポ",
-              "client": "埼玉県庁",
-              "role": "主",
-              "weight": 0.6,
-              "gross": 7956,
-              "credited": 4774,
-              "grossProfit": 5345,
-              "creditedProfit": 3207,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "第十七期の実績",
-              "team": "橋本(60%)・大西(40%)"
             },
             {
               "project": "いちご大學",
@@ -1706,6 +1732,32 @@
               "team": "中村(60%)・橋本(40%)"
             },
             {
+              "project": "すぽったま",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.2,
+              "gross": 13870,
+              "credited": 2774,
+              "grossProfit": 10870,
+              "creditedProfit": 2174,
+              "costRatio": 0.21629416005767843,
+              "ratioSource": "案件別の想定外注費 3,000千円",
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+            },
+            {
+              "project": "リバサポ",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 7956,
+              "credited": 3182,
+              "grossProfit": 5345,
+              "creditedProfit": 2138,
+              "costRatio": 0.3281348853740892,
+              "ratioSource": "第十七期の実績",
+              "team": "大西(60%)・橋本(40%)"
+            },
+            {
               "project": "ＬＰ前期",
               "client": "物産観光協会",
               "role": "副",
@@ -1730,6 +1782,81 @@
               "costRatio": 0.6666666666666666,
               "ratioSource": "第十七期の実績",
               "team": "橋本(100%)"
+            }
+          ]
+        },
+        {
+          "name": "浅見",
+          "vendorPay": 901,
+          "vendorNames": [
+            "合同会社 浅見制作所"
+          ],
+          "sales": 24575,
+          "mainSales": 24575,
+          "subSales": 0,
+          "profit": 18484,
+          "mainProfit": 18484,
+          "subProfit": 0,
+          "profitMargin": 0.7521738302570657,
+          "projectCount": 4,
+          "projects": [
+            "すぽったま",
+            "ぶんたま",
+            "ウイザース",
+            "ヒロ建工"
+          ],
+          "detail": [
+            {
+              "project": "ぶんたま",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 15256,
+              "credited": 9154,
+              "grossProfit": 12256,
+              "creditedProfit": 7354,
+              "costRatio": 0.1966439433665443,
+              "ratioSource": "案件別の想定外注費 3,000千円",
+              "team": "浅見(60%)・橋本(40%)"
+            },
+            {
+              "project": "すぽったま",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 13870,
+              "credited": 8322,
+              "grossProfit": 10870,
+              "creditedProfit": 6522,
+              "costRatio": 0.21629416005767843,
+              "ratioSource": "案件別の想定外注費 3,000千円",
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+            },
+            {
+              "project": "ウイザース",
+              "client": "ウイザース",
+              "role": "主",
+              "weight": 1,
+              "gross": 4318,
+              "credited": 4318,
+              "grossProfit": 3559,
+              "creditedProfit": 3559,
+              "costRatio": 0.17589116238572047,
+              "ratioSource": "第十七期の実績",
+              "team": "浅見(100%)"
+            },
+            {
+              "project": "ヒロ建工",
+              "client": "ヒロ建工",
+              "role": "主",
+              "weight": 1,
+              "gross": 2781,
+              "credited": 2781,
+              "grossProfit": 1050,
+              "creditedProfit": 1050,
+              "costRatio": 0.6223412268188303,
+              "ratioSource": "第十七期の実績",
+              "team": "浅見(100%)"
             }
           ]
         },
@@ -1782,13 +1909,13 @@
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 11148,
+          "sales": 8374,
           "mainSales": 5600,
-          "subSales": 5548,
-          "profit": 7978,
+          "subSales": 2774,
+          "profit": 6424,
           "mainProfit": 4250,
-          "subProfit": 3728,
-          "profitMargin": 0.7156106016941871,
+          "subProfit": 2174,
+          "profitMargin": 0.7671506247602393,
           "projectCount": 2,
           "projects": [
             "ADDReC / DA",
@@ -1812,61 +1939,14 @@
               "project": "すぽったま",
               "client": "埼玉県庁",
               "role": "副",
-              "weight": 0.4,
+              "weight": 0.2,
               "gross": 13870,
-              "credited": 5548,
-              "grossProfit": 9319,
-              "creditedProfit": 3728,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "第十七期の実績",
-              "team": "橋本(60%)・岡永(40%)"
-            }
-          ]
-        },
-        {
-          "name": "浅見",
-          "vendorPay": 901,
-          "vendorNames": [
-            "合同会社 浅見制作所"
-          ],
-          "sales": 7099,
-          "mainSales": 7099,
-          "subSales": 0,
-          "profit": 4609,
-          "mainProfit": 4609,
-          "subProfit": 0,
-          "profitMargin": 0.6492141159367929,
-          "projectCount": 2,
-          "projects": [
-            "ウイザース",
-            "ヒロ建工"
-          ],
-          "detail": [
-            {
-              "project": "ウイザース",
-              "client": "ウイザース",
-              "role": "主",
-              "weight": 1,
-              "gross": 4318,
-              "credited": 4318,
-              "grossProfit": 3559,
-              "creditedProfit": 3559,
-              "costRatio": 0.17589116238572047,
-              "ratioSource": "第十七期の実績",
-              "team": "浅見(100%)"
-            },
-            {
-              "project": "ヒロ建工",
-              "client": "ヒロ建工",
-              "role": "主",
-              "weight": 1,
-              "gross": 2781,
-              "credited": 2781,
-              "grossProfit": 1050,
-              "creditedProfit": 1050,
-              "costRatio": 0.6223412268188303,
-              "ratioSource": "第十七期の実績",
-              "team": "浅見(100%)"
+              "credited": 2774,
+              "grossProfit": 10870,
+              "creditedProfit": 2174,
+              "costRatio": 0.21629416005767843,
+              "ratioSource": "案件別の想定外注費 3,000千円",
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
             }
           ]
         },
@@ -1876,30 +1956,44 @@
           "vendorNames": [
             "大西 晃\r （タテジマ大西）"
           ],
-          "sales": 3182,
-          "mainSales": 0,
-          "subSales": 3182,
-          "profit": 2138,
-          "mainProfit": 0,
-          "subProfit": 2138,
-          "profitMargin": 0.6718651146259107,
-          "projectCount": 1,
+          "sales": 7174,
+          "mainSales": 7174,
+          "subSales": 0,
+          "profit": 4131,
+          "mainProfit": 4131,
+          "subProfit": 0,
+          "profitMargin": 0.5758782349078652,
+          "projectCount": 2,
           "projects": [
+            "KOSE",
             "リバサポ"
           ],
           "detail": [
             {
               "project": "リバサポ",
               "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.4,
+              "role": "主",
+              "weight": 0.6,
               "gross": 7956,
-              "credited": 3182,
+              "credited": 4774,
               "grossProfit": 5345,
-              "creditedProfit": 2138,
+              "creditedProfit": 3207,
               "costRatio": 0.3281348853740892,
               "ratioSource": "第十七期の実績",
-              "team": "橋本(60%)・大西(40%)"
+              "team": "大西(60%)・橋本(40%)"
+            },
+            {
+              "project": "KOSE",
+              "client": "KOSE（熱帯）",
+              "role": "主",
+              "weight": 1,
+              "gross": 2400,
+              "credited": 2400,
+              "grossProfit": 924,
+              "creditedProfit": 924,
+              "costRatio": 0.615039668851328,
+              "ratioSource": "第十七期の実績",
+              "team": "大西(100%)"
             }
           ]
         }
@@ -1908,10 +2002,6 @@
         {
           "name": "EPSON（DOKASEN）",
           "amount": 3000
-        },
-        {
-          "name": "KOSE（熱帯）",
-          "amount": 2400
         },
         {
           "name": "Ｍｓ",
