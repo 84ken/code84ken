@@ -546,9 +546,10 @@ async function init() {
       <div class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
         <div class="flex items-baseline justify-between flex-wrap gap-2 mb-1">
           <h2 class="text-sm font-bold text-slate-900">担当者別の売上貢献</h2>
-          <span class="text-xs text-slate-400">主担当 ${PCT(staffData.mainWeight)} ／ 副担当で残りを均等割り</span>
+          <span class="text-xs text-slate-400">配分率は案件ごとに指定可／既定は主担当 ${PCT(staffData.mainWeight)}</span>
         </div>
-        <p class="text-xs text-body mb-4">売上Excelの明細を、<a href="vendor-memo.html" class="text-primary-500 hover:text-primary-700">プロジェクト管理</a>の「担当」欄で名寄せして配分しています。複数担当の案件は主担当に ${PCT(staffData.mainWeight)}、残りを副担当で分けています。</p>
+        <p class="text-xs text-body mb-4">売上Excelの明細を、<a href="vendor-memo.html" class="text-primary-500 hover:text-primary-700">プロジェクト管理</a>の「担当」欄で名寄せして配分しています。
+        担当欄に <code class="bg-gray-100 px-1 rounded">中村:70 / 橋本:30</code> のように数値を書くとその比率で配分し、数値が無ければ先頭を主担当として ${PCT(staffData.mainWeight)}、残りを均等割りします。</p>
 
         <p class="text-xs font-bold text-slate-700 mb-2">${curSt.period}（${curSt.range}）　割当済 売上 ${FMT(curSt.assignedTotal)} ／ 粗利 ${FMT(curSt.assignedProfit)}千円</p>
         <p class="text-xs text-body mb-3">濃い棒＝粗利（売上−外注費）、薄い棒＝外注費。<strong>売上の大きさと粗利の大きさは一致しません。</strong></p>
@@ -570,6 +571,48 @@ async function init() {
           <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-slate-300"></span>外注費</span>
           <span class="text-slate-400">％は粗利率</span>
         </div>
+
+        ${(() => {
+          const vp = sp.map(x => ({ period: x.period, rows: x.staff.filter(s => s.vendorPay) })).filter(x => x.rows.length);
+          if (!vp.length) return '';
+          const latest = vp[vp.length - 1];
+          const ref = vp.length > 1 ? vp[vp.length - 2] : null;
+          return `
+        <div class="rounded-lg bg-white border border-slate-200 p-4 mb-5">
+          <p class="text-xs font-bold text-slate-700 mb-1">担当者本人（またはその会社）への外注支払</p>
+          <p class="text-xs text-body mb-3">浅見＝浅見制作所、大西＝タテジマ大西のように、担当者が外注先でもあります。<strong>粗利貢献と支払額は別の軸</strong>で、粗利貢献は「担当として登録されている案件」だけ、支払額は「担当外の案件も含めた稼働全部」に対するものです。差額をそのまま損益として読まないでください。</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-slate-200 bg-gray-50">
+                  <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">担当</th>
+                  ${ref ? `<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500" colspan="2">${ref.period}</th>` : ''}
+                  <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500" colspan="2">${latest.period}</th>
+                  <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500 hidden lg:table-cell">請求書上の名義</th>
+                </tr>
+                <tr class="border-b border-slate-200 bg-gray-50">
+                  <th scope="col" class="py-1 px-3"></th>
+                  ${(ref ? [ref, latest] : [latest]).map(() => '<th scope="col" class="text-right py-1 px-3 text-xs font-normal text-slate-400">粗利貢献</th><th scope="col" class="text-right py-1 px-3 text-xs font-normal text-slate-400">支払額</th>').join('')}
+                  <th scope="col" class="hidden lg:table-cell"></th>
+                </tr>
+              </thead>
+              <tbody>
+                ${latest.rows.map(s => `
+                <tr class="border-b border-slate-100">
+                  <td class="py-2 px-3 font-medium text-slate-900">${s.name}</td>
+                  ${(ref ? [ref, latest] : [latest]).map(pd => {
+                    const r = pd.rows.find(x => x.name === s.name) || (pd.period === latest.period ? s : null);
+                    return `<td class="py-2 px-3 text-right text-emerald-700">${r ? FMT(r.profit) : '—'}</td>`
+                      + `<td class="py-2 px-3 text-right text-slate-600">${r && r.vendorPay ? FMT(r.vendorPay) : '—'}</td>`;
+                  }).join('')}
+                  <td class="py-2 px-3 text-xs text-slate-400 hidden lg:table-cell">${(s.vendorNames || []).join('、')}</td>
+                </tr>`).join('')}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">支払額は請求書まとめ（税抜）から vendor 名で拾っています。${curSt.period}は請求書が${PCT(curSt.cost.inputRatio)}分しか入っていないため、支払額も途中の数字です。</p>
+        </div>`;
+        })()}
 
         <div class="rounded-lg ${curSt.cost.inputRatio < 0.15 ? 'bg-amber-50 border-amber-200' : 'bg-gray-50 border-slate-200'} border p-4 mb-5">
           <p class="text-xs font-bold ${curSt.cost.inputRatio < 0.15 ? 'text-amber-800' : 'text-slate-700'} mb-1">外注費の出どころ</p>
@@ -613,7 +656,7 @@ async function init() {
         })()}
 
         <p class="text-xs font-bold text-slate-700 mb-2">算出の内訳（${curSt.period}）</p>
-        <p class="text-xs text-body mb-3">「案件売上 × 配分率 ＝ 配分額」で計算しています。名前をクリックすると開きます。</p>
+        <p class="text-xs text-body mb-3">「案件売上 ×（1−原価率）＝ 案件粗利」を出し、それに配分率を掛けています。名前をクリックすると開きます。</p>
         <div class="space-y-2 mb-5">
           ${curSt.staff.map(s => `
           <details class="rounded-lg border border-slate-200 bg-gray-50">

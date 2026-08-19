@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T07:37:42.189Z",
+  "generatedAt": "2026-08-19T07:47:05.832Z",
   "mainWeight": 0.6,
   "periods": [
     {
@@ -212,6 +212,8 @@
       "staff": [
         {
           "name": "橋本",
+          "vendorPay": null,
+          "vendorNames": null,
           "sales": 27178,
           "mainSales": 27178,
           "subSales": 0,
@@ -239,7 +241,7 @@
               "creditedProfit": 10102,
               "costRatio": 0.41375008626043736,
               "ratioSource": "実額",
-              "team": "橋本・大西"
+              "team": "橋本(60%)・大西(40%)"
             },
             {
               "project": "マクドナルド",
@@ -252,7 +254,7 @@
               "creditedProfit": 4964,
               "costRatio": 0.25023672285662496,
               "ratioSource": "実額",
-              "team": "橋本・中村"
+              "team": "橋本(60%)・中村(40%)"
             },
             {
               "project": "横瀬町",
@@ -265,7 +267,7 @@
               "creditedProfit": 908,
               "costRatio": 0.6290849673202614,
               "ratioSource": "実額",
-              "team": "橋本"
+              "team": "橋本(100%)"
             },
             {
               "project": "リトデポ",
@@ -278,7 +280,7 @@
               "creditedProfit": 521,
               "costRatio": 0.27668060994775495,
               "ratioSource": "全社平均",
-              "team": "橋本"
+              "team": "橋本(100%)"
             },
             {
               "project": "すぽったま",
@@ -291,12 +293,16 @@
               "creditedProfit": 93,
               "costRatio": 0.41375008626043736,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             }
           ]
         },
         {
           "name": "大西",
+          "vendorPay": 3838,
+          "vendorNames": [
+            "タテジマ（大西晃）"
+          ],
           "sales": 11487,
           "mainSales": 0,
           "subSales": 11487,
@@ -320,12 +326,14 @@
               "creditedProfit": 6734,
               "costRatio": 0.41375008626043736,
               "ratioSource": "実額",
-              "team": "橋本・大西"
+              "team": "橋本(60%)・大西(40%)"
             }
           ]
         },
         {
           "name": "中村",
+          "vendorPay": null,
+          "vendorNames": null,
           "sales": 7204,
           "mainSales": 2790,
           "subSales": 4414,
@@ -350,7 +358,7 @@
               "creditedProfit": 3309,
               "costRatio": 0.25023672285662496,
               "ratioSource": "実額",
-              "team": "橋本・中村"
+              "team": "橋本(60%)・中村(40%)"
             },
             {
               "project": "INTEGRATE / stons",
@@ -363,12 +371,16 @@
               "creditedProfit": 2421,
               "costRatio": 0.13209856630824374,
               "ratioSource": "実額",
-              "team": "中村"
+              "team": "中村(100%)"
             }
           ]
         },
         {
           "name": "浅見",
+          "vendorPay": 4220,
+          "vendorNames": [
+            "浅見制作所"
+          ],
           "sales": 5939,
           "mainSales": 5939,
           "subSales": 0,
@@ -393,7 +405,7 @@
               "creditedProfit": 2609,
               "costRatio": 0.2868764689805958,
               "ratioSource": "実額",
-              "team": "浅見"
+              "team": "浅見(100%)"
             },
             {
               "project": "ヒロ建工",
@@ -406,12 +418,14 @@
               "creditedProfit": 725,
               "costRatio": 0.6820175438596491,
               "ratioSource": "実額",
-              "team": "浅見"
+              "team": "浅見(100%)"
             }
           ]
         },
         {
           "name": "岡永",
+          "vendorPay": null,
+          "vendorNames": null,
           "sales": 1406,
           "mainSales": 1300,
           "subSales": 106,
@@ -436,7 +450,7 @@
               "creditedProfit": 456,
               "costRatio": 0.6492076923076924,
               "ratioSource": "実額",
-              "team": "岡永"
+              "team": "岡永(100%)"
             },
             {
               "project": "すぽったま",
@@ -449,7 +463,7 @@
               "creditedProfit": 62,
               "costRatio": 0.41375008626043736,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             }
           ]
         }
@@ -633,18 +647,14 @@
       "assignedTotal": 153813,
       "unassignedTotal": 41018,
       "coverage": 0.7894688216967526,
-      "assignedProfit": 79466,
+      "assignedProfit": 75166,
       "cost": {
         "total": 92607,
-        "mapped": 78962,
+        "mapped": 83262,
         "common": 6326,
         "inputRatio": 0.47532172498216424,
-        "mappedRatio": 0.8526581356499914,
+        "mappedRatio": 0.8990907066429358,
         "unmapped": [
-          {
-            "name": "埼玉魅力発信向上会議",
-            "amount": 4300
-          },
           {
             "name": "道の駅おがわまち",
             "amount": 605
@@ -688,15 +698,19 @@
           {
             "name": "景品",
             "amount": 55
+          },
+          {
+            "name": "独協大学",
+            "amount": 50
           }
         ],
-        "unmappedTotal": 7320,
+        "unmappedTotal": 3020,
         "byClient": [
           {
             "name": "物産観光協会",
-            "cost": 32521,
+            "cost": 36821,
             "sales": 54117,
-            "ratio": 0.6009370438124801
+            "ratio": 0.6803945155865992
           },
           {
             "name": "埼玉県庁",
@@ -853,13 +867,15 @@
       "staff": [
         {
           "name": "橋本",
+          "vendorPay": null,
+          "vendorNames": null,
           "sales": 97307,
           "mainSales": 97307,
           "subSales": 0,
-          "profit": 49623,
-          "mainProfit": 49623,
+          "profit": 47043,
+          "mainProfit": 47043,
           "subProfit": 0,
-          "profitMargin": 0.5099610355894613,
+          "profitMargin": 0.48344695846432717,
           "projectCount": 16,
           "projects": [
             "LP前期",
@@ -891,7 +907,7 @@
               "creditedProfit": 10781,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本"
+              "team": "橋本(100%)"
             },
             {
               "project": "リトデポ",
@@ -904,20 +920,7 @@
               "creditedProfit": 5223,
               "costRatio": 0.5033250536645201,
               "ratioSource": "実額",
-              "team": "橋本"
-            },
-            {
-              "project": "LP前期",
-              "client": "物産観光協会",
-              "role": "主",
-              "weight": 0.6,
-              "gross": 21622,
-              "credited": 12973,
-              "grossProfit": 8629,
-              "creditedProfit": 5177,
-              "costRatio": 0.6009370438124801,
-              "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(100%)"
             },
             {
               "project": "スポーツ",
@@ -930,20 +933,20 @@
               "creditedProfit": 4864,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
-              "project": "LP残り",
+              "project": "LP前期",
               "client": "物産観光協会",
               "role": "主",
               "weight": 0.6,
-              "gross": 18013,
-              "credited": 10808,
-              "grossProfit": 7188,
-              "creditedProfit": 4313,
-              "costRatio": 0.6009370438124801,
+              "gross": 21622,
+              "credited": 12973,
+              "grossProfit": 6911,
+              "creditedProfit": 4146,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "マクドナルド",
@@ -956,7 +959,20 @@
               "creditedProfit": 3554,
               "costRatio": 0.6648286748896685,
               "ratioSource": "実額",
-              "team": "橋本・中村"
+              "team": "橋本(60%)・中村(40%)"
+            },
+            {
+              "project": "LP残り",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 18013,
+              "credited": 10808,
+              "grossProfit": 5757,
+              "creditedProfit": 3454,
+              "costRatio": 0.6803945155865992,
+              "ratioSource": "実額",
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "リバサポ後半",
@@ -969,7 +985,7 @@
               "creditedProfit": 3207,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本・大西"
+              "team": "橋本(60%)・大西(40%)"
             },
             {
               "project": "サーキュラーイベント",
@@ -982,7 +998,7 @@
               "creditedProfit": 3021,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本"
+              "team": "橋本(100%)"
             },
             {
               "project": "読売新聞スタンプラリー",
@@ -995,7 +1011,7 @@
               "creditedProfit": 1533,
               "costRatio": 0.15397317880794703,
               "ratioSource": "実額",
-              "team": "橋本・中村"
+              "team": "橋本(60%)・中村(40%)"
             },
             {
               "project": "いちご大學",
@@ -1008,7 +1024,7 @@
               "creditedProfit": 1526,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本"
+              "team": "橋本(100%)"
             },
             {
               "project": "サーキュラーロゴ",
@@ -1021,7 +1037,7 @@
               "creditedProfit": 1465,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本"
+              "team": "橋本(100%)"
             },
             {
               "project": "SNS残り",
@@ -1030,11 +1046,11 @@
               "weight": 0.6,
               "gross": 5715,
               "credited": 3429,
-              "grossProfit": 2281,
-              "creditedProfit": 1368,
-              "costRatio": 0.6009370438124801,
+              "grossProfit": 1827,
+              "creditedProfit": 1096,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "SNS前期",
@@ -1043,11 +1059,11 @@
               "weight": 0.6,
               "gross": 5677,
               "credited": 3406,
-              "grossProfit": 2265,
-              "creditedProfit": 1359,
-              "costRatio": 0.6009370438124801,
+              "grossProfit": 1814,
+              "creditedProfit": 1089,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "リトデポチラシ更新",
@@ -1060,20 +1076,7 @@
               "creditedProfit": 771,
               "costRatio": 0.47532172498216424,
               "ratioSource": "全社平均",
-              "team": "橋本・岡永"
-            },
-            {
-              "project": "スポーツツーリズム",
-              "client": "物産観光協会",
-              "role": "主",
-              "weight": 0.6,
-              "gross": 3090,
-              "credited": 1854,
-              "grossProfit": 1233,
-              "creditedProfit": 740,
-              "costRatio": 0.6009370438124801,
-              "ratioSource": "実額",
-              "team": "橋本・大西"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "横瀬町",
@@ -1086,19 +1089,34 @@
               "creditedProfit": 720,
               "costRatio": 0.6666666666666666,
               "ratioSource": "実額",
-              "team": "橋本"
+              "team": "橋本(100%)"
+            },
+            {
+              "project": "スポーツツーリズム",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 3090,
+              "credited": 1854,
+              "grossProfit": 988,
+              "creditedProfit": 593,
+              "costRatio": 0.6803945155865992,
+              "ratioSource": "実額",
+              "team": "橋本(60%)・大西(40%)"
             }
           ]
         },
         {
           "name": "岡永",
+          "vendorPay": null,
+          "vendorNames": null,
           "sales": 34897,
           "mainSales": 8680,
           "subSales": 26217,
-          "profit": 18742,
+          "profit": 17120,
           "mainProfit": 6840,
-          "subProfit": 11902,
-          "profitMargin": 0.5370651136738823,
+          "subProfit": 10280,
+          "profitMargin": 0.4905917414581403,
           "projectCount": 8,
           "projects": [
             "ADDReC / DA",
@@ -1122,20 +1140,7 @@
               "creditedProfit": 3660,
               "costRatio": 0.18485523385300667,
               "ratioSource": "実額",
-              "team": "岡永"
-            },
-            {
-              "project": "LP前期",
-              "client": "物産観光協会",
-              "role": "副",
-              "weight": 0.4,
-              "gross": 21622,
-              "credited": 8649,
-              "grossProfit": 8629,
-              "creditedProfit": 3451,
-              "costRatio": 0.6009370438124801,
-              "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "岡永(100%)"
             },
             {
               "project": "スポーツ",
@@ -1148,7 +1153,7 @@
               "creditedProfit": 3243,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "ADDReC / DA",
@@ -1161,7 +1166,20 @@
               "creditedProfit": 3180,
               "costRatio": 0.24105011933174225,
               "ratioSource": "実額",
-              "team": "岡永"
+              "team": "岡永(100%)"
+            },
+            {
+              "project": "LP前期",
+              "client": "物産観光協会",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 21622,
+              "credited": 8649,
+              "grossProfit": 6911,
+              "creditedProfit": 2764,
+              "costRatio": 0.6803945155865992,
+              "ratioSource": "実額",
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "LP残り",
@@ -1170,11 +1188,11 @@
               "weight": 0.4,
               "gross": 18013,
               "credited": 7205,
-              "grossProfit": 7188,
-              "creditedProfit": 2875,
-              "costRatio": 0.6009370438124801,
+              "grossProfit": 5757,
+              "creditedProfit": 2303,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "SNS残り",
@@ -1183,11 +1201,11 @@
               "weight": 0.4,
               "gross": 5715,
               "credited": 2286,
-              "grossProfit": 2281,
-              "creditedProfit": 912,
-              "costRatio": 0.6009370438124801,
+              "grossProfit": 1827,
+              "creditedProfit": 731,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "SNS前期",
@@ -1196,11 +1214,11 @@
               "weight": 0.4,
               "gross": 5677,
               "credited": 2271,
-              "grossProfit": 2265,
-              "creditedProfit": 906,
-              "costRatio": 0.6009370438124801,
+              "grossProfit": 1814,
+              "creditedProfit": 726,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "実額",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "リトデポチラシ更新",
@@ -1213,12 +1231,14 @@
               "creditedProfit": 514,
               "costRatio": 0.47532172498216424,
               "ratioSource": "全社平均",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             }
           ]
         },
         {
           "name": "中村",
+          "vendorPay": null,
+          "vendorNames": null,
           "sales": 11389,
           "mainSales": 3111,
           "subSales": 8278,
@@ -1244,7 +1264,7 @@
               "creditedProfit": 2370,
               "costRatio": 0.6648286748896685,
               "ratioSource": "実額",
-              "team": "橋本・中村"
+              "team": "橋本(60%)・中村(40%)"
             },
             {
               "project": "INTEGRATE / stons",
@@ -1257,7 +1277,7 @@
               "creditedProfit": 1861,
               "costRatio": 0.4018000642880103,
               "ratioSource": "実額",
-              "team": "中村"
+              "team": "中村(100%)"
             },
             {
               "project": "読売新聞スタンプラリー",
@@ -1270,12 +1290,17 @@
               "creditedProfit": 1022,
               "costRatio": 0.15397317880794703,
               "ratioSource": "実額",
-              "team": "橋本・中村"
+              "team": "橋本(60%)・中村(40%)"
             }
           ]
         },
         {
           "name": "浅見",
+          "vendorPay": 9542,
+          "vendorNames": [
+            "浅見制作所",
+            "合同会社 浅見制作所"
+          ],
           "sales": 5802,
           "mainSales": 5802,
           "subSales": 0,
@@ -1300,7 +1325,7 @@
               "creditedProfit": 1893,
               "costRatio": 0.17589116238572047,
               "ratioSource": "実額",
-              "team": "浅見"
+              "team": "浅見(100%)"
             },
             {
               "project": "ヒロ建工",
@@ -1313,19 +1338,26 @@
               "creditedProfit": 1324,
               "costRatio": 0.6223412268188303,
               "ratioSource": "実額",
-              "team": "浅見"
+              "team": "浅見(100%)"
             }
           ]
         },
         {
           "name": "大西",
+          "vendorPay": 11961,
+          "vendorNames": [
+            "タテジマ（大西晃）",
+            "大西晃（タテジマ大西）",
+            "大西 晃\n（タテジマ大西）",
+            "大西 晃 （タテジマ大西）"
+          ],
           "sales": 4418,
           "mainSales": 0,
           "subSales": 4418,
-          "profit": 2631,
+          "profit": 2533,
           "mainProfit": 0,
-          "subProfit": 2631,
-          "profitMargin": 0.5955516373875777,
+          "subProfit": 2533,
+          "profitMargin": 0.5733242620678213,
           "projectCount": 2,
           "projects": [
             "スポーツツーリズム",
@@ -1343,7 +1375,7 @@
               "creditedProfit": 2138,
               "costRatio": 0.3281348853740892,
               "ratioSource": "実額",
-              "team": "橋本・大西"
+              "team": "橋本(60%)・大西(40%)"
             },
             {
               "project": "スポーツツーリズム",
@@ -1352,11 +1384,11 @@
               "weight": 0.4,
               "gross": 3090,
               "credited": 1236,
-              "grossProfit": 1233,
-              "creditedProfit": 493,
-              "costRatio": 0.6009370438124801,
+              "grossProfit": 988,
+              "creditedProfit": 395,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "実額",
-              "team": "橋本・大西"
+              "team": "橋本(60%)・大西(40%)"
             }
           ]
         }
@@ -1496,7 +1528,7 @@
       "assignedTotal": 96016,
       "unassignedTotal": 12876,
       "coverage": 0.8817543988539103,
-      "assignedProfit": 54558,
+      "assignedProfit": 51777,
       "cost": {
         "total": 4289,
         "mapped": 2271,
@@ -1574,13 +1606,15 @@
       "staff": [
         {
           "name": "橋本",
+          "vendorPay": null,
+          "vendorNames": null,
           "sales": 53587,
           "mainSales": 39587,
           "subSales": 14000,
-          "profit": 31453,
+          "profit": 30340,
           "mainProfit": 25866,
-          "subProfit": 5587,
-          "profitMargin": 0.5869472645341072,
+          "subProfit": 4474,
+          "profitMargin": 0.5661882575279215,
           "projectCount": 8,
           "projects": [
             "CELAB",
@@ -1604,7 +1638,7 @@
               "creditedProfit": 10250,
               "costRatio": 0.3281348853740892,
               "ratioSource": "第十七期の実績",
-              "team": "橋本"
+              "team": "橋本(100%)"
             },
             {
               "project": "すぽったま",
@@ -1617,7 +1651,7 @@
               "creditedProfit": 5591,
               "costRatio": 0.3281348853740892,
               "ratioSource": "第十七期の実績",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             },
             {
               "project": "CELAB",
@@ -1630,7 +1664,7 @@
               "creditedProfit": 3349,
               "costRatio": 0.3281348853740892,
               "ratioSource": "第十七期の実績",
-              "team": "橋本"
+              "team": "橋本(100%)"
             },
             {
               "project": "リバサポ",
@@ -1643,20 +1677,7 @@
               "creditedProfit": 3207,
               "costRatio": 0.3281348853740892,
               "ratioSource": "第十七期の実績",
-              "team": "橋本・大西"
-            },
-            {
-              "project": "ＬＰ後期",
-              "client": "物産観光協会",
-              "role": "副",
-              "weight": 0.4,
-              "gross": 20000,
-              "credited": 8000,
-              "grossProfit": 7981,
-              "creditedProfit": 3193,
-              "costRatio": 0.6009370438124801,
-              "ratioSource": "第十七期の実績",
-              "team": "中村・橋本"
+              "team": "橋本(60%)・大西(40%)"
             },
             {
               "project": "いちご大學",
@@ -1669,7 +1690,20 @@
               "creditedProfit": 2748,
               "costRatio": 0.3281348853740892,
               "ratioSource": "第十七期の実績",
-              "team": "橋本"
+              "team": "橋本(100%)"
+            },
+            {
+              "project": "ＬＰ後期",
+              "client": "物産観光協会",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 20000,
+              "credited": 8000,
+              "grossProfit": 6392,
+              "creditedProfit": 2557,
+              "costRatio": 0.6803945155865992,
+              "ratioSource": "第十七期の実績",
+              "team": "中村(60%)・橋本(40%)"
             },
             {
               "project": "ＬＰ前期",
@@ -1678,11 +1712,11 @@
               "weight": 0.4,
               "gross": 15000,
               "credited": 6000,
-              "grossProfit": 5986,
-              "creditedProfit": 2394,
-              "costRatio": 0.6009370438124801,
+              "grossProfit": 4794,
+              "creditedProfit": 1918,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "第十七期の実績",
-              "team": "中村・橋本"
+              "team": "中村(60%)・橋本(40%)"
             },
             {
               "project": "横瀬町",
@@ -1695,19 +1729,21 @@
               "creditedProfit": 720,
               "costRatio": 0.6666666666666666,
               "ratioSource": "第十七期の実績",
-              "team": "橋本"
+              "team": "橋本(100%)"
             }
           ]
         },
         {
           "name": "中村",
+          "vendorPay": null,
+          "vendorNames": null,
           "sales": 21000,
           "mainSales": 21000,
           "subSales": 0,
-          "profit": 8380,
-          "mainProfit": 8380,
+          "profit": 6712,
+          "mainProfit": 6712,
           "subProfit": 0,
-          "profitMargin": 0.3990629561875198,
+          "profitMargin": 0.31960548441340075,
           "projectCount": 2,
           "projects": [
             "ＬＰ前期",
@@ -1721,11 +1757,11 @@
               "weight": 0.6,
               "gross": 20000,
               "credited": 12000,
-              "grossProfit": 7981,
-              "creditedProfit": 4789,
-              "costRatio": 0.6009370438124801,
+              "grossProfit": 6392,
+              "creditedProfit": 3835,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "第十七期の実績",
-              "team": "中村・橋本"
+              "team": "中村(60%)・橋本(40%)"
             },
             {
               "project": "ＬＰ前期",
@@ -1734,16 +1770,18 @@
               "weight": 0.6,
               "gross": 15000,
               "credited": 9000,
-              "grossProfit": 5986,
-              "creditedProfit": 3592,
-              "costRatio": 0.6009370438124801,
+              "grossProfit": 4794,
+              "creditedProfit": 2876,
+              "costRatio": 0.6803945155865992,
               "ratioSource": "第十七期の実績",
-              "team": "中村・橋本"
+              "team": "中村(60%)・橋本(40%)"
             }
           ]
         },
         {
           "name": "岡永",
+          "vendorPay": null,
+          "vendorNames": null,
           "sales": 11148,
           "mainSales": 5600,
           "subSales": 5548,
@@ -1768,7 +1806,7 @@
               "creditedProfit": 4250,
               "costRatio": 0.24105011933174225,
               "ratioSource": "第十七期の実績",
-              "team": "岡永"
+              "team": "岡永(100%)"
             },
             {
               "project": "すぽったま",
@@ -1781,12 +1819,16 @@
               "creditedProfit": 3728,
               "costRatio": 0.3281348853740892,
               "ratioSource": "第十七期の実績",
-              "team": "橋本・岡永"
+              "team": "橋本(60%)・岡永(40%)"
             }
           ]
         },
         {
           "name": "浅見",
+          "vendorPay": 901,
+          "vendorNames": [
+            "合同会社 浅見制作所"
+          ],
           "sales": 7099,
           "mainSales": 7099,
           "subSales": 0,
@@ -1811,7 +1853,7 @@
               "creditedProfit": 3559,
               "costRatio": 0.17589116238572047,
               "ratioSource": "第十七期の実績",
-              "team": "浅見"
+              "team": "浅見(100%)"
             },
             {
               "project": "ヒロ建工",
@@ -1824,12 +1866,16 @@
               "creditedProfit": 1050,
               "costRatio": 0.6223412268188303,
               "ratioSource": "第十七期の実績",
-              "team": "浅見"
+              "team": "浅見(100%)"
             }
           ]
         },
         {
           "name": "大西",
+          "vendorPay": 250,
+          "vendorNames": [
+            "大西 晃\r （タテジマ大西）"
+          ],
           "sales": 3182,
           "mainSales": 0,
           "subSales": 3182,
@@ -1853,7 +1899,7 @@
               "creditedProfit": 2138,
               "costRatio": 0.3281348853740892,
               "ratioSource": "第十七期の実績",
-              "team": "橋本・大西"
+              "team": "橋本(60%)・大西(40%)"
             }
           ]
         }
