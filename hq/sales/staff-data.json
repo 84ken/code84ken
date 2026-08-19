@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T08:18:05.560Z",
+  "generatedAt": "2026-08-19T13:07:36.767Z",
   "mainWeight": 0.6,
   "periods": [
     {
@@ -7,10 +7,10 @@
       "range": "2024.7〜2025.6",
       "current": false,
       "total": 117715,
-      "assignedTotal": 53213,
-      "unassignedTotal": 64502,
-      "coverage": 0.45204944144756404,
-      "assignedProfit": 33083,
+      "assignedTotal": 58843,
+      "unassignedTotal": 58872,
+      "coverage": 0.49987682113579407,
+      "assignedProfit": 37483,
       "cost": {
         "total": 32569,
         "mapped": 26385,
@@ -348,19 +348,33 @@
           "name": "中村",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 7204,
-          "mainSales": 2790,
+          "sales": 12004,
+          "mainSales": 7590,
           "subSales": 4414,
-          "profit": 5731,
-          "mainProfit": 2421,
+          "profit": 9531,
+          "mainProfit": 6221,
           "subProfit": 3309,
-          "profitMargin": 0.795518934976956,
-          "projectCount": 2,
+          "profitMargin": 0.7939784897863976,
+          "projectCount": 3,
           "projects": [
             "INTEGRATE / stons",
-            "マクドナルド"
+            "マクドナルド",
+            "高島屋"
           ],
           "detail": [
+            {
+              "project": "高島屋",
+              "client": "高島屋",
+              "role": "主",
+              "weight": 1,
+              "gross": 4800,
+              "credited": 4800,
+              "grossProfit": 3800,
+              "creditedProfit": 3800,
+              "team": "中村(100%)",
+              "costRatio": 0.20833333333333337,
+              "ratioSource": "実額"
+            },
             {
               "project": "マクドナルド",
               "client": "マクドナルド",
@@ -454,19 +468,33 @@
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 1353,
-          "mainSales": 1300,
+          "sales": 2183,
+          "mainSales": 2130,
           "subSales": 53,
-          "profit": 494,
-          "mainProfit": 456,
+          "profit": 1094,
+          "mainProfit": 1056,
           "subProfit": 38,
-          "profitMargin": 0.36513750914133414,
-          "projectCount": 2,
+          "profitMargin": 0.5013345776570277,
+          "projectCount": 3,
           "projects": [
             "ADDReC / DA",
-            "すぽったま"
+            "すぽったま",
+            "やっち"
           ],
           "detail": [
+            {
+              "project": "やっち",
+              "client": "やっち",
+              "role": "主",
+              "weight": 1,
+              "gross": 830,
+              "credited": 830,
+              "grossProfit": 600,
+              "creditedProfit": 600,
+              "team": "岡永(100%)",
+              "costRatio": 0.276680609947755,
+              "ratioSource": "全社平均"
+            },
             {
               "project": "ADDReC / DA",
               "client": "ADDReC",
@@ -508,10 +536,6 @@
         {
           "name": "ファージ",
           "amount": 6000
-        },
-        {
-          "name": "高島屋",
-          "amount": 4800
         },
         {
           "name": "タテラボ関連",
@@ -564,10 +588,6 @@
         {
           "name": "ウニクス",
           "amount": 880
-        },
-        {
-          "name": "やっち",
-          "amount": 830
         },
         {
           "name": "ゲットクラブ",
@@ -672,10 +692,10 @@
       "range": "2025.7〜2026.6",
       "current": false,
       "total": 194831,
-      "assignedTotal": 156712,
-      "unassignedTotal": 38119,
-      "coverage": 0.8043483839840683,
-      "assignedProfit": 77873,
+      "assignedTotal": 162062,
+      "unassignedTotal": 32769,
+      "coverage": 0.8318080798230261,
+      "assignedProfit": 80660,
       "cost": {
         "total": 92607,
         "mapped": 83262,
@@ -1176,14 +1196,14 @@
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 32484,
-          "mainSales": 8680,
+          "sales": 32634,
+          "mainSales": 8830,
           "subSales": 23804,
-          "profit": 15712,
-          "mainProfit": 6840,
+          "profit": 15791,
+          "mainProfit": 6919,
           "subProfit": 8872,
-          "profitMargin": 0.48367806707248245,
-          "projectCount": 8,
+          "profitMargin": 0.48386652178817163,
+          "projectCount": 9,
           "projects": [
             "ADDReC / DA",
             "JT案件（REDD）",
@@ -1191,6 +1211,7 @@
             "LP残り",
             "SNS前期",
             "SNS残り",
+            "やっち",
             "スポーツ",
             "リトデポチラシ更新"
           ],
@@ -1298,6 +1319,19 @@
               "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.4753217249821642,
               "ratioSource": "全社平均"
+            },
+            {
+              "project": "やっち",
+              "client": "やっち",
+              "role": "主",
+              "weight": 1,
+              "gross": 150,
+              "credited": 150,
+              "grossProfit": 79,
+              "creditedProfit": 79,
+              "team": "岡永(100%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "全社平均"
             }
           ]
         },
@@ -1381,18 +1415,21 @@
           "name": "中村",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 11389,
-          "mainSales": 3111,
+          "sales": 16589,
+          "mainSales": 8311,
           "subSales": 8278,
-          "profit": 5253,
-          "mainProfit": 1861,
+          "profit": 7961,
+          "mainProfit": 4570,
           "subProfit": 3392,
-          "profitMargin": 0.46120924433205135,
-          "projectCount": 3,
+          "profitMargin": 0.47991464078213225,
+          "projectCount": 6,
           "projects": [
+            "CASK",
             "INTEGRATE / stons",
+            "おくりバント",
             "マクドナルド",
-            "読売新聞スタンプラリー"
+            "読売新聞スタンプラリー",
+            "高島屋"
           ],
           "detail": [
             {
@@ -1422,6 +1459,19 @@
               "ratioSource": "実額"
             },
             {
+              "project": "おくりバント",
+              "client": "おくりバント",
+              "role": "主",
+              "weight": 1,
+              "gross": 2750,
+              "credited": 2750,
+              "grossProfit": 1443,
+              "creditedProfit": 1443,
+              "team": "中村(100%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "全社平均"
+            },
+            {
               "project": "読売新聞スタンプラリー",
               "client": "読売新聞",
               "role": "副",
@@ -1432,6 +1482,32 @@
               "creditedProfit": 1022,
               "team": "橋本(60%)・中村(40%)",
               "costRatio": 0.15397317880794714,
+              "ratioSource": "実額"
+            },
+            {
+              "project": "CASK",
+              "client": "CASK＆フォレスト",
+              "role": "主",
+              "weight": 1,
+              "gross": 1650,
+              "credited": 1650,
+              "grossProfit": 866,
+              "creditedProfit": 866,
+              "team": "中村(100%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "全社平均"
+            },
+            {
+              "project": "高島屋",
+              "client": "高島屋",
+              "role": "主",
+              "weight": 1,
+              "gross": 800,
+              "credited": 800,
+              "grossProfit": 400,
+              "creditedProfit": 400,
+              "team": "中村(100%)",
+              "costRatio": 0.5,
               "ratioSource": "実額"
             }
           ]
@@ -1511,10 +1587,6 @@
           "amount": 7481
         },
         {
-          "name": "おくりバント",
-          "amount": 2750
-        },
-        {
           "name": "カーセブン",
           "amount": 2415
         },
@@ -1525,10 +1597,6 @@
         {
           "name": "県土整備（オカベ建設）",
           "amount": 2300
-        },
-        {
-          "name": "CASK＆フォレスト",
-          "amount": 1650
         },
         {
           "name": "スリーエフ不動産",
@@ -1545,10 +1613,6 @@
         {
           "name": "WinC",
           "amount": 850
-        },
-        {
-          "name": "高島屋",
-          "amount": 800
         },
         {
           "name": "ウニクス",
@@ -1595,10 +1659,6 @@
           "amount": 200
         },
         {
-          "name": "やっち",
-          "amount": 150
-        },
-        {
           "name": "FLEX",
           "amount": 130
         },
@@ -1629,10 +1689,10 @@
       "range": "2026.7〜2027.6",
       "current": true,
       "total": 108892,
-      "assignedTotal": 98416,
-      "unassignedTotal": 10476,
-      "coverage": 0.9037945854608236,
-      "assignedProfit": 44975,
+      "assignedTotal": 100406,
+      "unassignedTotal": 8486,
+      "coverage": 0.9220695735223892,
+      "assignedProfit": 45999,
       "cost": {
         "total": 4289,
         "mapped": 2271,
@@ -1936,15 +1996,19 @@
           "name": "中村",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 21000,
-          "mainSales": 21000,
+          "sales": 22490,
+          "mainSales": 22490,
           "subSales": 0,
-          "profit": 6712,
-          "mainProfit": 6712,
+          "profit": 7474,
+          "mainProfit": 7474,
           "subProfit": 0,
-          "profitMargin": 0.31960548441340075,
-          "projectCount": 2,
+          "profitMargin": 0.3323140588014105,
+          "projectCount": 6,
           "projects": [
+            "CASK",
+            "おくりバント",
+            "ユニポテンシャル",
+            "高島屋",
             "ＬＰ前期",
             "ＬＰ後期"
           ],
@@ -1974,6 +2038,58 @@
               "team": "中村(60%)・橋本(40%)",
               "costRatio": 0.6803945155865992,
               "ratioSource": "第十七期の実績"
+            },
+            {
+              "project": "高島屋",
+              "client": "高島屋",
+              "role": "主",
+              "weight": 1,
+              "gross": 800,
+              "credited": 800,
+              "grossProfit": 400,
+              "creditedProfit": 400,
+              "team": "中村(100%)",
+              "costRatio": 0.5,
+              "ratioSource": "第十七期の実績"
+            },
+            {
+              "project": "CASK",
+              "client": "CASK＆フォレスト",
+              "role": "主",
+              "weight": 1,
+              "gross": 500,
+              "credited": 500,
+              "grossProfit": 262,
+              "creditedProfit": 262,
+              "team": "中村(100%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "第十七期の全社平均"
+            },
+            {
+              "project": "おくりバント",
+              "client": "おくりバント",
+              "role": "主",
+              "weight": 1,
+              "gross": 100,
+              "credited": 100,
+              "grossProfit": 52,
+              "creditedProfit": 52,
+              "team": "中村(100%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "第十七期の全社平均"
+            },
+            {
+              "project": "ユニポテンシャル",
+              "client": "ユニポテンシャル",
+              "role": "主",
+              "weight": 1,
+              "gross": 90,
+              "credited": 90,
+              "grossProfit": 47,
+              "creditedProfit": 47,
+              "team": "中村(100%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "第十七期の全社平均"
             }
           ]
         },
@@ -1981,17 +2097,18 @@
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 8374,
-          "mainSales": 5600,
+          "sales": 8874,
+          "mainSales": 6100,
           "subSales": 2774,
-          "profit": 5824,
-          "mainProfit": 4250,
+          "profit": 6086,
+          "mainProfit": 4512,
           "subProfit": 1574,
-          "profitMargin": 0.6955002784502321,
-          "projectCount": 2,
+          "profitMargin": 0.6858754191177779,
+          "projectCount": 3,
           "projects": [
             "ADDReC / DA",
-            "すぽったま"
+            "すぽったま",
+            "やっち"
           ],
           "detail": [
             {
@@ -2019,6 +2136,19 @@
               "team": "浅見(60%)・橋本(20%)・岡永(20%)",
               "costRatio": 0.43258832011535686,
               "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
+            },
+            {
+              "project": "やっち",
+              "client": "やっち",
+              "role": "主",
+              "weight": 1,
+              "gross": 500,
+              "credited": 500,
+              "grossProfit": 262,
+              "creditedProfit": 262,
+              "team": "岡永(100%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "第十七期の全社平均"
             }
           ]
         },
@@ -2088,20 +2218,8 @@
           "amount": 1100
         },
         {
-          "name": "高島屋",
-          "amount": 800
-        },
-        {
           "name": "ウニクス",
           "amount": 665
-        },
-        {
-          "name": "CASK＆フォレスト",
-          "amount": 500
-        },
-        {
-          "name": "やっち",
-          "amount": 500
         },
         {
           "name": "あっぱれ",
@@ -2110,14 +2228,6 @@
         {
           "name": "ヒロベース",
           "amount": 221
-        },
-        {
-          "name": "おくりバント",
-          "amount": 100
-        },
-        {
-          "name": "ユニポテンシャル",
-          "amount": 90
         }
       ]
     }
