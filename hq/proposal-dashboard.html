@@ -80,19 +80,19 @@ tailwind.config = {
       <p class="text-xs text-emerald-600 font-semibold mt-1">¥93,896,080</p>
     </div>
     <div class="bg-primary-50 rounded-xl border-2 border-primary-200 p-4 sm:p-6 shadow-sm">
-      <p class="text-xs sm:text-sm text-primary-700 font-medium mb-1">結果待ち／提案予定</p>
-      <p class="text-2xl sm:text-3xl font-bold text-primary-600">2<span class="text-base sm:text-lg font-medium text-primary-400 ml-1">件</span></p>
-      <p class="text-xs text-primary-500 mt-1">温浴+官民アドバイザー</p>
+      <p class="text-xs sm:text-sm text-primary-700 font-medium mb-1">提案予定</p>
+      <p class="text-2xl sm:text-3xl font-bold text-primary-600">1<span class="text-base sm:text-lg font-medium text-primary-400 ml-1">件</span></p>
+      <p class="text-xs text-primary-500 mt-1">官民アドバイザーのみ</p>
     </div>
     <div class="bg-red-50 rounded-xl border-2 border-red-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-red-700 font-medium mb-1">失注</p>
-      <p class="text-2xl sm:text-3xl font-bold text-red-600">12<span class="text-base sm:text-lg font-medium text-red-400 ml-1">件</span></p>
-      <p class="text-xs text-red-500 mt-1">中山間・県産木材も失注</p>
+      <p class="text-2xl sm:text-3xl font-bold text-red-600">13<span class="text-base sm:text-lg font-medium text-red-400 ml-1">件</span></p>
+      <p class="text-xs text-red-500 mt-1">温浴も失注（8月）</p>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm">
       <p class="text-xs sm:text-sm text-slate-500 mb-1">受注ヨミ（全勝時）</p>
-      <p class="text-xl sm:text-2xl font-bold text-slate-900">¥109.6M</p>
-      <p class="text-xs text-slate-400 mt-1">確定+温浴+アドバイザー</p>
+      <p class="text-xl sm:text-2xl font-bold text-slate-900">¥96.0M</p>
+      <p class="text-xs text-slate-400 mt-1">確定+アドバイザー</p>
     </div>
   </div>
 
@@ -137,19 +137,19 @@ tailwind.config = {
         </div>
       </div>
       <!-- 結果待ち -->
-      <div class="rounded-lg border-2 border-primary-300 bg-primary-50 p-4 sm:p-5">
+      <div class="rounded-lg border-2 border-slate-200 bg-slate-50 p-4 sm:p-5 opacity-80">
         <div class="flex items-center gap-2 mb-4">
-          <span class="w-3 h-3 rounded-full bg-primary-500"></span>
-          <span class="text-sm font-bold text-primary-800">結果待ち</span>
-          <span class="ml-auto text-2xl font-bold text-primary-700">1件</span>
+          <span class="w-3 h-3 rounded-full bg-slate-400"></span>
+          <span class="text-sm font-bold text-slate-700">結果待ち</span>
+          <span class="ml-auto text-2xl font-bold text-slate-500">0件</span>
         </div>
         <div class="space-y-2 text-sm">
           <div>
-            <div class="flex justify-between"><span class="text-primary-800">温浴ツーリズム観光プロモーション<span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-primary-200 text-primary-900 font-semibold">NEW</span></span><span class="font-medium">¥13,661,000</span></div>
-            <p class="text-xs text-primary-600 mt-0.5">提案提出済 → 8/6プレゼン → 結果8月中旬</p>
+            <div class="flex justify-between text-slate-500 line-through"><span>温浴ツーリズム観光プロモーション</span><span>¥13,661,000</span></div>
+            <p class="text-xs text-red-600 mt-0.5">8/6プレゼン後 <strong>失注</strong>（8月中旬判明）</p>
           </div>
-          <div class="border-t border-primary-200 pt-2 mt-3 flex justify-between font-bold text-primary-900">
-            <span>小計</span><span>¥13,661,000</span>
+          <div class="border-t border-slate-200 pt-2 mt-3 flex justify-between font-bold text-slate-600">
+            <span>小計</span><span>—</span>
           </div>
         </div>
       </div>
@@ -174,11 +174,12 @@ tailwind.config = {
       <div class="rounded-lg border-2 border-slate-200 bg-slate-50 p-4 sm:p-5 opacity-70">
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 rounded-full bg-slate-400"></span>
-          <span class="text-sm font-bold text-slate-700">失注（直近12件）</span>
+          <span class="text-sm font-bold text-slate-700">失注（直近13件）</span>
           <span class="ml-auto text-2xl font-bold text-slate-500">—</span>
         </div>
         <div class="space-y-2 text-sm">
           <div class="flex justify-between text-slate-500 line-through"><span>県産木材 実行性調査</span><span>¥19,500,000</span></div>
+          <div class="flex justify-between text-slate-500 line-through"><span>温浴ツーリズム観光プロモ</span><span>¥13,661,000</span></div>
           <div class="flex justify-between text-slate-500 line-through"><span>農産物ブランド化支援</span><span>¥9,900,000</span></div>
           <div class="flex justify-between text-slate-500 line-through"><span>ねんりんピック eスポーツ（JV）</span><span>¥9,900,000</span></div>
           <div class="flex justify-between text-slate-500 line-through"><span>花プロモーション</span><span>¥7,139,000</span></div>
@@ -188,7 +189,7 @@ tailwind.config = {
           <div class="flex justify-between text-slate-500 line-through"><span>わっしょいInstagram運用</span><span>¥1,980,000</span></div>
           <div class="text-xs text-slate-400 pt-1">＋DMO3件（グルメ・サポサイ・ちょこたびSNS）・広聴広報課IG</div>
           <div class="border-t border-slate-200 pt-2 mt-3 flex justify-between font-bold text-slate-600">
-            <span>失注額合計</span><span>¥61,338,000+</span>
+            <span>失注額合計</span><span>¥74,999,000+</span>
           </div>
         </div>
       </div>
@@ -264,12 +265,13 @@ tailwind.config = {
       <div>
         <div class="flex items-center gap-2 mb-3">
           <span class="w-3 h-3 rounded-full bg-primary-500"></span>
-          <h3 class="font-bold text-slate-900">結果待ち／提案予定（2件）— 残る上振れ余地</h3>
+          <h3 class="font-bold text-slate-900">提案予定（1件）— 残る上振れ余地</h3>
         </div>
         <div class="bg-primary-50 rounded-lg p-4 space-y-3 text-sm text-body">
-          <div>
-            <p class="font-medium text-slate-900">温浴ツーリズム観光プロモーション業務委託（¥13,661,000）｜結果待ち</p>
-            <p>観光課DMO支援担当の発注。温浴×観光カード6,000枚・PR動画12本・WEB広告・特設サイト。7/30提案提出済 → <strong>8/6プレゼン（Teams）→ 結果8月中旬</strong>。観光客誘致・スポーツツーリズムの観光課実績 × onsen.schema.tokyoの県内温浴ドメイン知識 × 秩父圏ネットワークを主訴求。AI活用は前面に出さない。</p>
+          <div class="rounded-lg bg-white border border-red-200 p-3">
+            <p class="font-medium text-red-800">温浴ツーリズム観光プロモーション業務委託（¥13,661,000）｜<strong>失注</strong></p>
+            <p class="text-xs mt-1">観光課DMO支援担当の発注。7/30提案提出 → 8/6プレゼン（Teams）→ <strong>8月中旬に失注が判明</strong>。観光課実績 × onsen.schema.tokyo の温浴ドメイン知識 × 秩父圏ネットワークを主訴求に、AI活用は前面に出さない構成で臨んだが届かず。
+            <strong>観光課は観光客誘致¥39.6Mを受注している部署</strong>で、部署との関係というより案件ごとの評価軸が効いていると見るべき。要因は発注者ヒアリングで確認したい。</p>
           </div>
           <div>
             <p class="font-medium text-slate-900">官民連携アドバイザー支援業務（¥2,081,200）｜提案予定</p>
@@ -725,23 +727,17 @@ tailwind.config = {
               <td class="py-3 px-4 text-right text-emerald-600 text-xs">計画の85%</td>
               <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定7件（観光客誘致¥39.6M＋サーキュラー¥5.5M含む）</td>
             </tr>
-            <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 bg-primary-50/30">
-              <td class="py-3 px-4 font-medium text-primary-700">想定（確定＋温浴受注）</td>
-              <td class="py-3 px-4 text-right font-bold text-primary-700">¥107.6M</td>
-              <td class="py-3 px-4 text-right text-primary-600 text-xs">計画の98%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">受注確定7件（¥93.9M）+ 温浴ツーリズム（¥13.7M・8月中旬結果）</td>
-            </tr>
             <tr class="hover:bg-gray-50 transition-colors border-b border-slate-100 bg-amber-50/30">
-              <td class="py-3 px-4 font-medium text-amber-700">ベスト（温浴＋アドバイザー全勝）</td>
-              <td class="py-3 px-4 text-right font-bold text-amber-700">¥109.6M</td>
-              <td class="py-3 px-4 text-right text-amber-600 text-xs">計画の100%</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">確定＋温浴¥13.7M＋官民アドバイザー¥2.1M全勝シナリオ</td>
+              <td class="py-3 px-4 font-medium text-amber-700">ベスト（官民アドバイザー受注）</td>
+              <td class="py-3 px-4 text-right font-bold text-amber-700">¥96.0M</td>
+              <td class="py-3 px-4 text-right text-amber-600 text-xs">計画の87%</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell">確定¥93.9M＋官民アドバイザー¥2.1M。<strong>行政案件で残る上振れはこれのみ</strong></td>
             </tr>
             <tr class="hover:bg-gray-50 transition-colors">
               <td class="py-3 px-4 font-medium text-slate-500 line-through">旧ベスト</td>
-              <td class="py-3 px-4 text-right font-bold text-slate-400 line-through">¥117.9M</td>
-              <td class="py-3 px-4 text-right text-slate-400 text-xs">中山間・県産木材の失注で消失済</td>
-              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell text-slate-400">¥24.0M分（中山間¥4.5M＋県産木材¥19.5M）が消失</td>
+              <td class="py-3 px-4 text-right font-bold text-slate-400 line-through">¥109.6M</td>
+              <td class="py-3 px-4 text-right text-slate-400 text-xs">温浴の失注で消失</td>
+              <td class="py-3 px-4 text-body text-xs hidden sm:table-cell text-slate-400">温浴¥13.7Mが消失（中山間¥4.5M・県産木材¥19.5Mは既に消失済）</td>
             </tr>
           </tbody>
         </table>
@@ -760,11 +756,11 @@ tailwind.config = {
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-            <span><strong>温浴受注で ¥107.6M（計画98%）</strong>／さらに官民アドバイザーも取れれば <strong>¥109.6M</strong>（計画100%）</span>
+            <span><strong>官民アドバイザーを取れて ¥96.0M（計画87%）</strong>。<strong>行政案件で残る上振れはこれのみ</strong>で、以降は民間で積むしかない</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
-            <span><strong>失注12件</strong> — 春の提案7件（1勝6敗）に加え、中山間・県産木材も失注</span>
+            <span><strong>失注13件</strong> — 春の提案7件（1勝6敗）＋中山間・県産木材・<strong>温浴</strong>。令和8年度の提案は<strong>10件中1勝9敗</strong></span>
           </li>
         </ul>
       </div>
@@ -793,27 +789,27 @@ tailwind.config = {
     <h2 class="text-lg font-bold text-slate-900 mb-4">8月時点の総括・ネクストアクション</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
       <div>
-        <h3 class="text-sm font-bold text-slate-900 mb-3">確定事項（〜2026/08/07）</h3>
+        <h3 class="text-sm font-bold text-slate-900 mb-3">確定事項（〜2026/08/15）</h3>
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
             <span><strong>受注確定7件 ¥93.9M</strong>（観光客誘致¥39.6M＋県直4本柱＋いちご大學＋サーキュラー）。計画の85%を確保。</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-2 flex-shrink-0"></span>
-            <span><strong>温浴ツーリズム観光プロモ ¥13.661M</strong> — 7/30提案提出済 → <strong>8/6プレゼン → 結果8月中旬</strong>。観光課実績×温浴ドメイン知識で勝負。直近の最重要案件。</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
+            <span><strong>温浴ツーリズム観光プロモ ¥13.661M は失注</strong>（8/6プレゼン後・8月中旬判明）。<strong>今期の行政案件で最大の上振れ余地が消えた</strong>。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>官民連携アドバイザー支援 ¥2.081M</strong> — <strong>提案予定（申込〆8/10・提案〆8/20）</strong>。橋本の県アドバイザー継続実績で優位。</span>
+            <span><strong>官民連携アドバイザー支援 ¥2.081M</strong> — <strong>提案〆8/20</strong>。橋本の県アドバイザー継続実績で優位。<strong>行政で残る唯一の上振れ。</strong></span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
-            <span><strong>中山間¥4.5M・県産木材¥19.5M は失注</strong>。農林部チャネルは春に続き苦戦が続く。</span>
+            <span>通算で<strong>失注13件</strong>。令和8年度の提案は<strong>10件中1勝9敗</strong>（観光客誘致のみ受注）。行政の新規開拓は依然厳しい。</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
-            <span>通算で<strong>失注12件</strong>。春の1勝6敗に加え中山間・県産木材も落とし、行政の新規開拓は依然厳しい。</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 flex-shrink-0"></span>
+            <span><strong>受注7件はすべて継続・既存関係の案件</strong>。新規で獲れた行政案件はゼロという構造が、今期の実像。</span>
           </li>
         </ul>
       </div>
@@ -821,16 +817,16 @@ tailwind.config = {
         <h3 class="text-sm font-bold text-slate-900 mb-3">戦略メモ（夏〜下期）</h3>
         <ul class="space-y-2 text-sm text-body">
           <li class="flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary-400 mt-2 flex-shrink-0"></span>
-            <span><strong>8/6 温浴プレゼン</strong>が最優先。onsen.schema.tokyo（県内温浴資源の調査編集力）＋観光課での運用実績＋秩父圏ネットワークを主軸に。AI活用は前面に出さない。勝てば¥107.6M（計画98%）。</span>
-          </li>
-          <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0"></span>
-            <span><strong>8/20 官民アドバイザー提案</strong>。成果連動型（PFS）の設計に留意。継続担当の信頼を軸に、両取りで¥109.6M（計画100%）が視野。</span>
+            <span><strong>8/20 官民アドバイザー提案</strong>が最優先。成果連動型（PFS）の設計に留意。金額は¥2.1Mと小さいが<strong>公示前の場所に居られるポジション</strong>で戦略価値が高い。9月上旬の結果は<a href="theme-strategy.html" class="text-primary-500 hover:underline">勝ち筋#9（NP/CE）</a>の判断ゲートでもある。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
-            <span><strong>農林部の連敗を分析</strong>。中山間・県産木材・春の農産物3件と、農林部発注はことごとく苦戦。勝ち筋が見えない分野への投下は絞る判断も。</span>
+            <span><strong>温浴の失注要因をヒアリングする</strong>。観光課は観光客誘致¥39.6Mを受注している部署で、<strong>部署との関係ではなく案件ごとの評価軸</strong>が効いている。要因が取れれば次の観光系提案に直結する。</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0"></span>
+            <span><strong>新規案件は「実体を持つ領域か」で選別する</strong>。<a href="competitive-map.html" class="text-primary-500 hover:underline">競合マップ</a>のとおり、受注者は皆その領域の実体（調査基盤・運営基盤・データ基盤）で選ばれている。外側なら単独提案せず組む前提で設計する。</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
@@ -1029,9 +1025,9 @@ const projects = [
     id: 'onyoku', num: 19, name: '温浴ツーリズム観光プロモーション業務委託',
     sub: '温浴×観光カード6,000枚・PR動画12本・WEB広告・特設サイト',
     client: '埼玉県', clientSub: '産業労働部観光課 DMO支援・観光振興担当',
-    budget: '¥13,661,000', submitDate: '7/30', review: 'プレゼン 8/6（Teams）',
-    reviewSub: '結果 8月中旬',
-    status: '提案中', confidence: '中', staff: []
+    budget: '¥13,661,000', submitDate: '7/30', review: '8/6プレゼン後 失注',
+    reviewSub: '失注（8月中旬）',
+    status: '失注', confidence: '—', staff: [], lost: true
   },
   {
     id: 'kanmin-advisor', num: 20, name: '官民連携アドバイザー支援業務',
