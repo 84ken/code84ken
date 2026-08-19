@@ -1,0 +1,589 @@
+{
+  "generatedAt": "2026-08-19T07:00:50.640Z",
+  "mainWeight": 0.6,
+  "periods": [
+    {
+      "period": "第十六期",
+      "range": "2024.7〜2025.6",
+      "current": false,
+      "total": 117715,
+      "assignedTotal": 53213,
+      "unassignedTotal": 64502,
+      "coverage": 0.45204944144756404,
+      "staff": [
+        {
+          "name": "橋本",
+          "sales": 27178,
+          "mainSales": 27178,
+          "subSales": 0,
+          "projectCount": 5,
+          "projects": [
+            "すぽったま",
+            "マクドナルド",
+            "リトデポ",
+            "リバサポ",
+            "横瀬町"
+          ]
+        },
+        {
+          "name": "大西",
+          "sales": 11487,
+          "mainSales": 0,
+          "subSales": 11487,
+          "projectCount": 1,
+          "projects": [
+            "リバサポ"
+          ]
+        },
+        {
+          "name": "浅見",
+          "sales": 5939,
+          "mainSales": 5939,
+          "subSales": 0,
+          "projectCount": 2,
+          "projects": [
+            "ウイザース",
+            "ヒロ建工"
+          ]
+        },
+        {
+          "name": "中村",
+          "sales": 4414,
+          "mainSales": 0,
+          "subSales": 4414,
+          "projectCount": 1,
+          "projects": [
+            "マクドナルド"
+          ]
+        },
+        {
+          "name": "しんたろう",
+          "sales": 2790,
+          "mainSales": 2790,
+          "subSales": 0,
+          "projectCount": 1,
+          "projects": [
+            "INTEGRATE / stons"
+          ]
+        },
+        {
+          "name": "岡永",
+          "sales": 1406,
+          "mainSales": 1300,
+          "subSales": 106,
+          "projectCount": 2,
+          "projects": [
+            "ADDReC / DA",
+            "すぽったま"
+          ]
+        }
+      ],
+      "unassigned": [
+        {
+          "name": "GREE：CL",
+          "amount": 10866
+        },
+        {
+          "name": "GREE：HN",
+          "amount": 10416
+        },
+        {
+          "name": "ファージ",
+          "amount": 6000
+        },
+        {
+          "name": "高島屋",
+          "amount": 4800
+        },
+        {
+          "name": "タテラボ関連",
+          "amount": 3800
+        },
+        {
+          "name": "スリーエフ不動産",
+          "amount": 3721
+        },
+        {
+          "name": "グラモ",
+          "amount": 3435
+        },
+        {
+          "name": "コアゲート",
+          "amount": 2700
+        },
+        {
+          "name": "カーセブン",
+          "amount": 2205
+        },
+        {
+          "name": "ネットスター",
+          "amount": 2000
+        },
+        {
+          "name": "あざみっくす",
+          "amount": 2000
+        },
+        {
+          "name": "イロリ",
+          "amount": 1080
+        },
+        {
+          "name": "あっぱれ",
+          "amount": 1000
+        },
+        {
+          "name": "EXITFILM",
+          "amount": 1000
+        },
+        {
+          "name": "物産観光協会／おみやげ",
+          "amount": 900
+        },
+        {
+          "name": "美研",
+          "amount": 882
+        },
+        {
+          "name": "ウニクス",
+          "amount": 880
+        },
+        {
+          "name": "やっち",
+          "amount": 830
+        },
+        {
+          "name": "ゲットクラブ",
+          "amount": 700
+        },
+        {
+          "name": "西武鉄道",
+          "amount": 600
+        },
+        {
+          "name": "チッタ",
+          "amount": 580
+        },
+        {
+          "name": "LAD",
+          "amount": 570
+        },
+        {
+          "name": "しんたろう関連",
+          "amount": 500
+        },
+        {
+          "name": "リクルート",
+          "amount": 400
+        },
+        {
+          "name": "ゆめみ",
+          "amount": 350
+        },
+        {
+          "name": "ミライアプリ",
+          "amount": 300
+        },
+        {
+          "name": "スキーマ",
+          "amount": 248
+        },
+        {
+          "name": "サウナ綱",
+          "amount": 200
+        },
+        {
+          "name": "横河武蔵野",
+          "amount": 200
+        },
+        {
+          "name": "学研",
+          "amount": 200
+        },
+        {
+          "name": "NEC",
+          "amount": 164
+        },
+        {
+          "name": "リアルインサイト",
+          "amount": 150
+        },
+        {
+          "name": "ＳＵＮＤＡＹ",
+          "amount": 130
+        },
+        {
+          "name": "小山さん",
+          "amount": 100
+        },
+        {
+          "name": "TO NINE",
+          "amount": 100
+        },
+        {
+          "name": "黒富士農場",
+          "amount": 100
+        },
+        {
+          "name": "アース開発",
+          "amount": 100
+        },
+        {
+          "name": "SUNDAY",
+          "amount": 100
+        },
+        {
+          "name": "PLAY&CO",
+          "amount": 100
+        },
+        {
+          "name": "カーセブン（ハンズ）",
+          "amount": 75
+        },
+        {
+          "name": "トレイルヘッズ",
+          "amount": 15
+        },
+        {
+          "name": "KEINA",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "period": "第十七期",
+      "range": "2025.7〜2026.6",
+      "current": false,
+      "total": 194831,
+      "assignedTotal": 153813,
+      "unassignedTotal": 41018,
+      "coverage": 0.7894688216967526,
+      "staff": [
+        {
+          "name": "橋本",
+          "sales": 97307,
+          "mainSales": 97307,
+          "subSales": 0,
+          "projectCount": 16,
+          "projects": [
+            "LP前期",
+            "LP残り",
+            "SNS前期",
+            "SNS残り",
+            "いちご大學",
+            "サーキュラーイベント",
+            "サーキュラーロゴ",
+            "スポーツ",
+            "スポーツツーリズム",
+            "マクドナルド",
+            "リトデポ",
+            "リトデポチラシ更新",
+            "リバサポ後半",
+            "文化資源",
+            "横瀬町",
+            "読売新聞スタンプラリー"
+          ]
+        },
+        {
+          "name": "岡永",
+          "sales": 34897,
+          "mainSales": 8680,
+          "subSales": 26217,
+          "projectCount": 8,
+          "projects": [
+            "ADDReC / DA",
+            "JT案件（REDD）",
+            "LP前期",
+            "LP残り",
+            "SNS前期",
+            "SNS残り",
+            "スポーツ",
+            "リトデポチラシ更新"
+          ]
+        },
+        {
+          "name": "中村",
+          "sales": 8278,
+          "mainSales": 0,
+          "subSales": 8278,
+          "projectCount": 2,
+          "projects": [
+            "マクドナルド",
+            "読売新聞スタンプラリー"
+          ]
+        },
+        {
+          "name": "浅見",
+          "sales": 5802,
+          "mainSales": 5802,
+          "subSales": 0,
+          "projectCount": 2,
+          "projects": [
+            "ウイザース",
+            "ヒロ建工"
+          ]
+        },
+        {
+          "name": "大西",
+          "sales": 4418,
+          "mainSales": 0,
+          "subSales": 4418,
+          "projectCount": 2,
+          "projects": [
+            "スポーツツーリズム",
+            "リバサポ後半"
+          ]
+        },
+        {
+          "name": "しんたろう",
+          "sales": 3111,
+          "mainSales": 3111,
+          "subSales": 0,
+          "projectCount": 1,
+          "projects": [
+            "INTEGRATE / stons"
+          ]
+        }
+      ],
+      "unassigned": [
+        {
+          "name": "GREE：CL",
+          "amount": 9481
+        },
+        {
+          "name": "GREE：HN",
+          "amount": 7481
+        },
+        {
+          "name": "KOSE（熱帯）",
+          "amount": 2899
+        },
+        {
+          "name": "おくりバント",
+          "amount": 2750
+        },
+        {
+          "name": "カーセブン",
+          "amount": 2415
+        },
+        {
+          "name": "あっぱれ",
+          "amount": 2300
+        },
+        {
+          "name": "県土整備（オカベ建設）",
+          "amount": 2300
+        },
+        {
+          "name": "CASK＆フォレスト",
+          "amount": 1650
+        },
+        {
+          "name": "スリーエフ不動産",
+          "amount": 1629
+        },
+        {
+          "name": "LAD",
+          "amount": 1428
+        },
+        {
+          "name": "乃村不動産",
+          "amount": 900
+        },
+        {
+          "name": "WinC",
+          "amount": 850
+        },
+        {
+          "name": "高島屋",
+          "amount": 800
+        },
+        {
+          "name": "ウニクス",
+          "amount": 630
+        },
+        {
+          "name": "パソナＪＯＢＨＵＢ",
+          "amount": 450
+        },
+        {
+          "name": "リクルート",
+          "amount": 400
+        },
+        {
+          "name": "コアゲート",
+          "amount": 400
+        },
+        {
+          "name": "あざみっくす",
+          "amount": 332
+        },
+        {
+          "name": "ビレッジバンガード",
+          "amount": 330
+        },
+        {
+          "name": "スキーマ",
+          "amount": 248
+        },
+        {
+          "name": "NEC",
+          "amount": 200
+        },
+        {
+          "name": "田口木工",
+          "amount": 200
+        },
+        {
+          "name": "JR都市開発",
+          "amount": 200
+        },
+        {
+          "name": "学研",
+          "amount": 200
+        },
+        {
+          "name": "やっち",
+          "amount": 150
+        },
+        {
+          "name": "FLEX",
+          "amount": 130
+        },
+        {
+          "name": "coedoビール",
+          "amount": 100
+        },
+        {
+          "name": "エディタウン",
+          "amount": 100
+        },
+        {
+          "name": "寄居町",
+          "amount": 30
+        },
+        {
+          "name": "チッタ",
+          "amount": 22
+        },
+        {
+          "name": "サウナマルシェ",
+          "amount": 13
+        }
+      ]
+    },
+    {
+      "period": "第十八期",
+      "range": "2026.7〜2027.6",
+      "current": true,
+      "total": 108892,
+      "assignedTotal": 96016,
+      "unassignedTotal": 12876,
+      "coverage": 0.8817543988539103,
+      "staff": [
+        {
+          "name": "橋本",
+          "sales": 74587,
+          "mainSales": 74587,
+          "subSales": 0,
+          "projectCount": 8,
+          "projects": [
+            "CELAB",
+            "いちご大學",
+            "すぽったま",
+            "ぶんたま（文化資源）",
+            "リバサポ",
+            "横瀬町",
+            "ＬＰ前期",
+            "ＬＰ後期"
+          ]
+        },
+        {
+          "name": "岡永",
+          "sales": 11148,
+          "mainSales": 5600,
+          "subSales": 5548,
+          "projectCount": 2,
+          "projects": [
+            "ADDReC / DA",
+            "すぽったま"
+          ]
+        },
+        {
+          "name": "浅見",
+          "sales": 7099,
+          "mainSales": 7099,
+          "subSales": 0,
+          "projectCount": 2,
+          "projects": [
+            "ウイザース",
+            "ヒロ建工"
+          ]
+        },
+        {
+          "name": "大西",
+          "sales": 3182,
+          "mainSales": 0,
+          "subSales": 3182,
+          "projectCount": 1,
+          "projects": [
+            "リバサポ"
+          ]
+        }
+      ],
+      "unassigned": [
+        {
+          "name": "EPSON（DOKASEN）",
+          "amount": 3000
+        },
+        {
+          "name": "KOSE（熱帯）",
+          "amount": 2400
+        },
+        {
+          "name": "Ｍｓ",
+          "amount": 2000
+        },
+        {
+          "name": "カーセブン",
+          "amount": 1200
+        },
+        {
+          "name": "SHINLOCAL",
+          "amount": 1100
+        },
+        {
+          "name": "高島屋",
+          "amount": 800
+        },
+        {
+          "name": "ウニクス",
+          "amount": 665
+        },
+        {
+          "name": "CASK＆フォレスト",
+          "amount": 500
+        },
+        {
+          "name": "やっち",
+          "amount": 500
+        },
+        {
+          "name": "あっぱれ",
+          "amount": 300
+        },
+        {
+          "name": "ヒロベース",
+          "amount": 221
+        },
+        {
+          "name": "おくりバント",
+          "amount": 100
+        },
+        {
+          "name": "ユニポテンシャル",
+          "amount": 90
+        }
+      ]
+    }
+  ]
+}

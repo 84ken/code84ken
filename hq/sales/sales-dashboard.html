@@ -58,11 +58,12 @@ const PCT = (n) => n ? (n * 100).toFixed(1) + '%' : '-';
 const YEN = (n) => '¥' + FMT(n);
 
 async function init() {
-  const [data, memos, vendorData, periodTarget] = await Promise.all([
+  const [data, memos, vendorData, periodTarget, staffData] = await Promise.all([
     fetch('sales-data.json').then(r => r.json()),
     fetch('/api/memos').then(r => { if(!r.ok) throw new Error(); return r.json(); }).catch(() => fetch('vendor-memos.json').then(r => r.json()).catch(() => ({ projects: [] }))),
     fetch('vendor-data.json').then(r => r.json()).catch(() => ({ months: [] })),
-    fetch('period-target.json').then(r => r.json()).catch(() => null)
+    fetch('period-target.json').then(r => r.json()).catch(() => null),
+    fetch('staff-data.json').then(r => r.json()).catch(() => null)
   ]);
 
   // 外注費の実績（請求書ベース）を period → 千円 で引けるように
@@ -134,8 +135,15 @@ async function init() {
   </div>`;
 
   // ===== KPI Cards（通期ベース。単位は千円・税抜） =====
-  const yomiTotal = pf ? pf.current.total : cp.totalSales;
-  const yomiGov = pf ? pf.current.govTotal : govSales;
+  // 確定契約のうち、ヨミ表に1円も入っていないもの（＝Excel未入力）を通期ヨミに足し戻す。
+  // Excelに入力されれば yomi が埋まり自動的にゼロになるので二重計上しない。
+  const allContracts = (periodTarget && periodTarget.confirmedContracts) || [];
+  const unbookedContracts = allContracts.filter(c => !c.yomi);
+  const unbookedTotal = unbookedContracts.reduce((s, c) => s + c.amount, 0);
+
+  const excelTotal = pf ? pf.current.total : cp.totalSales;
+  const yomiTotal = excelTotal + unbookedTotal;
+  const yomiGov = (pf ? pf.current.govTotal : govSales) + unbookedTotal;
   const yomiPriv = pf ? pf.current.privTotal : privSales;
   const prevTotal = pf ? pf.previous.total : 0;
   const prevGov = pf ? pf.previous.govTotal : 0;
@@ -154,6 +162,7 @@ async function init() {
         <div class="bg-primary-500 rounded-full h-2 bar-fill" style="width:${Math.min(yomiProgress * 100, 100)}%"></div>
       </div>
       <p class="text-xs text-slate-400 mt-1">目標 ${YEN(target)}千円の <strong class="text-slate-700">${PCT(yomiProgress)}</strong></p>
+      ${unbookedTotal ? `<p class="text-xs text-emerald-600 mt-1">Excel ${FMT(excelTotal)} ＋ 未入力の確定契約 ${FMT(unbookedTotal)}</p>` : ''}
     </div>
 
     <!-- 半期別 -->
@@ -225,14 +234,15 @@ async function init() {
     const missing = (pf.missingPrivate || []).filter(m => !/^GREE/.test(m.name));
     const missingTotal = missing.reduce((s, m) => s + m.amount, 0);
 
+    // 行政比率の推移
+    const ph = pf.history || [];
+    const maxPeriodTotal = Math.max(...ph.map(p => p.total), 1);
+
     // ===== 2億円までの積み上げラダー =====
     const steps = [
-      { label: '現在のヨミ表', add: yomiTotal,
-        note: '売上Excelに入力済み（行政 ' + FMT(yomiGov) + ' ＋ 民間 ' + FMT(yomiPriv) + '）',
+      { label: '現在のヨミ', add: yomiTotal,
+        note: 'Excel入力 ' + FMT(excelTotal) + (unbookedTotal ? ' ＋ 未入力の確定契約 ' + FMT(unbookedTotal) + '（' + unbookedContracts.map(c => c.name).join('・') + '）' : '') + '。行政 ' + FMT(yomiGov) + ' ／ 民間 ' + FMT(yomiPriv),
         cls: 'bg-primary-500', chip: 'bg-primary-100 text-primary-700' },
-      { label: '行政の未計上', add: govGap,
-        note: '契約済みだがヨミ表が空。すぽったま（コンテンツ）3,206 ほか',
-        cls: 'bg-emerald-400', chip: 'bg-emerald-100 text-emerald-700' },
       { label: 'GREE 2案件', add: gree,
         note: greeInfo ? greeInfo.detail : '',
         cls: 'bg-emerald-300', chip: 'bg-emerald-100 text-emerald-700' },
@@ -364,7 +374,10 @@ async function init() {
             </tbody>
           </table>
         </div>
-        <p class="text-xs text-body mt-3">税込では <strong>${FMT(contracts.reduce((s, c) => s + (c.amountIncl || 0), 0))}千円</strong>。ヨミ表に <strong>${FMT(govGap)}千円</strong> が未入力です。</p>
+        <p class="text-xs text-body mt-3">税込では <strong>${FMT(contracts.reduce((s, c) => s + (c.amountIncl || 0), 0))}千円</strong>。
+        ヨミ表との差 ${FMT(govGap)} のうち <strong class="text-emerald-700">${FMT(unbookedTotal)}（${unbookedContracts.map(c => c.name).join('・')}）は通期ヨミに加算済み</strong>。
+        残り ${FMT(govGap - unbookedTotal)} は物産観光協会ＬＰを保守的に置いている分なので、そのままにしています。
+        <span class="text-slate-400">Excelの3月列に入力すれば、この加算は自動で解消されます。</span></p>
       </div>
 
       <div class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm">
@@ -417,6 +430,156 @@ async function init() {
       </div>
     </div>
 
+    <div class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+      <div class="flex items-baseline justify-between flex-wrap gap-2 mb-1">
+        <h2 class="text-sm font-bold text-slate-900">行政比率の推移（第十五期〜第十八期）</h2>
+        <span class="text-xs text-slate-400">行政＝埼玉県庁・物産観光協会の直接契約</span>
+      </div>
+      <p class="text-xs text-body mb-4">4期で <strong>1.7% → ${PCT((ph[ph.length - 1] || {}).govRatio)}</strong>。売上規模より先に、収益源の構成がまるごと入れ替わっています。</p>
+
+      <div class="space-y-3 mb-5">
+        ${ph.map(p => {
+          const gw = p.total ? (p.gov / p.total * 100) : 0;
+          const scale = Math.min(p.total / maxPeriodTotal * 100, 100);
+          return `
+        <div>
+          <div class="flex items-baseline justify-between mb-1">
+            <span class="text-xs font-medium text-slate-700">${p.period}${p.current ? '<span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-700 font-semibold">進行中</span>' : ''}<span class="text-slate-400 ml-2">${p.range}</span></span>
+            <span class="text-xs text-slate-500">行政 <strong class="${p.govRatio >= 0.6 ? 'text-red-600' : p.govRatio >= 0.4 ? 'text-amber-600' : 'text-slate-700'}">${PCT(p.govRatio)}</strong>　計 ${FMT(p.total)}</span>
+          </div>
+          <div class="flex h-6 rounded-md overflow-hidden bg-slate-100" style="width:${scale}%">
+            <div class="bg-primary-500 h-full flex items-center justify-end pr-1.5" style="width:${gw}%"><span class="text-[10px] text-white font-medium">${FMT(p.gov)}</span></div>
+            <div class="bg-slate-300 h-full flex items-center justify-end pr-1.5" style="width:${100 - gw}%"><span class="text-[10px] text-slate-700 font-medium">${FMT(p.priv)}</span></div>
+          </div>
+        </div>`;
+        }).join('')}
+      </div>
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs mb-5">
+        <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-primary-500"></span>行政</span>
+        <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-slate-300"></span>民間</span>
+        <span class="text-slate-400">バーの長さは売上規模に比例</span>
+      </div>
+
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-slate-200 bg-gray-50">
+              <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">期</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">行政</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">民間</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">合計</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">行政比率</th>
+              <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500 hidden md:table-cell">行政の内訳</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${ph.map(p => `
+            <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+              <td class="py-2.5 px-3 text-slate-900 font-medium">${p.period}</td>
+              <td class="py-2.5 px-3 text-right text-body">${FMT(p.gov)}</td>
+              <td class="py-2.5 px-3 text-right text-body">${FMT(p.priv)}</td>
+              <td class="py-2.5 px-3 text-right font-bold text-slate-900">${FMT(p.total)}</td>
+              <td class="py-2.5 px-3 text-right font-bold ${p.govRatio >= 0.6 ? 'text-red-600' : p.govRatio >= 0.4 ? 'text-amber-600' : 'text-slate-700'}">${PCT(p.govRatio)}</td>
+              <td class="py-2.5 px-3 text-xs text-slate-500 hidden md:table-cell">${p.govDetail.map(g => g.name + ' ' + FMT(g.amount)).join(' ／ ') || '—'}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rounded-lg bg-amber-50 border border-amber-200 p-4">
+        <p class="text-xs font-bold text-amber-800 mb-1">読み方</p>
+        <p class="text-xs text-amber-900 leading-relaxed">
+          ${ph[0].period}は民間 ${FMT(ph[0].priv)} に対し行政 ${FMT(ph[0].gov)} で、ほぼ完全な民間企業向け制作会社でした。
+          ${ph[2].period}に行政が ${FMT(ph[2].gov)} まで伸びて売上が過去最高（${FMT(ph[2].total)}）になった一方、<strong>民間は ${FMT(ph[0].priv)} → ${FMT(ph[2].priv)} と縮んでいます</strong>。
+          第十八期の行政比率 ${PCT((ph[ph.length - 1] || {}).govRatio)} は民間ヨミが未入力な分だけ高く出ていますが、
+          第十七期の民間常連が全部戻っても比率は ${PCT(yomiGov / (yomiGov + yomiPriv + (pf.missingPrivateTotal || 0)))} 程度。
+          <strong>行政依存はこの2期で構造的に定着した</strong>と見るのが妥当です。
+        </p>
+      </div>
+    </div>`;
+
+    // ===== 担当者別の売上貢献 =====
+    if (staffData && staffData.periods && staffData.periods.length) {
+      const sp = staffData.periods;
+      const curSt = sp[sp.length - 1];
+      const names = [...new Set(sp.flatMap(x => x.staff.map(s => s.name)))];
+      const nameTotal = n => sp.reduce((s, x) => s + ((x.staff.find(y => y.name === n) || {}).sales || 0), 0);
+      names.sort((a, b) => ((curSt.staff.find(s => s.name === b) || {}).sales || 0) - ((curSt.staff.find(s => s.name === a) || {}).sales || 0)
+        || nameTotal(b) - nameTotal(a));
+      const curMax = Math.max(...curSt.staff.map(s => s.sales), 1);
+
+      html += `
+      <div class="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-8">
+        <div class="flex items-baseline justify-between flex-wrap gap-2 mb-1">
+          <h2 class="text-sm font-bold text-slate-900">担当者別の売上貢献</h2>
+          <span class="text-xs text-slate-400">主担当 ${PCT(staffData.mainWeight)} ／ 副担当で残りを均等割り</span>
+        </div>
+        <p class="text-xs text-body mb-4">売上Excelの明細を、<a href="vendor-memo.html" class="text-primary-500 hover:text-primary-700">プロジェクト管理</a>の「担当」欄で名寄せして配分しています。複数担当の案件は主担当に ${PCT(staffData.mainWeight)}、残りを副担当で分けています。</p>
+
+        <p class="text-xs font-bold text-slate-700 mb-2">${curSt.period}（${curSt.range}）　割当済 ${FMT(curSt.assignedTotal)}千円</p>
+        <div class="space-y-3 mb-5">
+          ${curSt.staff.map(s => `
+          <div class="flex items-center gap-3">
+            <span class="w-16 text-xs font-medium text-slate-700 text-right shrink-0">${s.name}</span>
+            <div class="flex-1 bg-slate-100 rounded h-6 overflow-hidden flex">
+              <div class="bg-primary-500 h-6" style="width:${s.sales / curMax * 100 * (s.mainSales / (s.sales || 1))}%" title="主担当 ${FMT(s.mainSales)}"></div>
+              <div class="bg-primary-300 h-6" style="width:${s.sales / curMax * 100 * (s.subSales / (s.sales || 1))}%" title="副担当 ${FMT(s.subSales)}"></div>
+            </div>
+            <span class="w-20 text-xs text-right font-medium text-slate-900 shrink-0">${FMT(s.sales)}</span>
+            <span class="w-14 text-xs text-right text-slate-400 shrink-0">${PCT(s.sales / curSt.assignedTotal)}</span>
+            <span class="w-12 text-xs text-right text-slate-400 shrink-0 hidden sm:inline">${s.projectCount}件</span>
+          </div>`).join('')}
+        </div>
+        <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs mb-5">
+          <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-primary-500"></span>主担当</span>
+          <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-primary-300"></span>副担当</span>
+        </div>
+
+        <div class="overflow-x-auto mb-4">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 bg-gray-50">
+                <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">担当</th>
+                ${sp.map(x => `<th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">${x.period}${x.current ? '<span class="text-amber-600">*</span>' : ''}</th>`).join('')}
+                <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500 hidden lg:table-cell">${curSt.period}の担当案件</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${names.map(n => `
+              <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+                <td class="py-2.5 px-3 font-medium text-slate-900">${n}</td>
+                ${sp.map(x => {
+                  const s = x.staff.find(y => y.name === n);
+                  return `<td class="py-2.5 px-3 text-right ${s ? 'text-body' : 'text-slate-300'}">${s ? FMT(s.sales) : '—'}</td>`;
+                }).join('')}
+                <td class="py-2.5 px-3 text-xs text-slate-500 hidden lg:table-cell">${((curSt.staff.find(s => s.name === n) || {}).projects || []).join('、') || '—'}</td>
+              </tr>`).join('')}
+              <tr class="bg-gray-50">
+                <td class="py-2.5 px-3 text-xs font-bold text-slate-700">割当済</td>
+                ${sp.map(x => `<td class="py-2.5 px-3 text-right font-bold text-slate-900">${FMT(x.assignedTotal)}</td>`).join('')}
+                <td class="hidden lg:table-cell"></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-xs text-slate-500">未割当</td>
+                ${sp.map(x => `<td class="py-2.5 px-3 text-right text-xs text-red-600">${FMT(x.unassignedTotal)}<span class="text-slate-400 ml-1">(${PCT(1 - x.coverage)})</span></td>`).join('')}
+                <td class="hidden lg:table-cell"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-slate-400 mb-4">* ${curSt.period}は進行中。ヨミ表が未入力の民間案件が多いため、民間中心の担当は実力より低く出ます。</p>
+
+        <div class="rounded-lg bg-amber-50 border border-amber-200 p-4">
+          <p class="text-xs font-bold text-amber-800 mb-1">精度を上げるには：担当が未設定の ${FMT(curSt.unassignedTotal)}千円</p>
+          <p class="text-xs text-amber-900 mb-2"><a href="vendor-memo.html" class="underline">プロジェクト管理</a>で下記の案件に担当を入れると、そのまま集計に反映されます（${curSt.period}のカバー率 ${PCT(curSt.coverage)}）。</p>
+          <div class="flex flex-wrap gap-1.5">
+            ${curSt.unassigned.map(u => `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs bg-white border border-amber-300 text-amber-900">${u.name}<span class="font-bold">${FMT(u.amount)}</span></span>`).join('')}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    html += `
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
       <div class="rounded-lg bg-amber-50 border border-amber-200 p-4">
         <p class="text-xs font-bold text-amber-800 mb-1">⚠️ ヨミ表の月次は行政に極端に偏っている</p>
