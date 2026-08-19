@@ -291,7 +291,7 @@ async function init() {
         <div class="rounded-lg ${gap > 0 ? 'bg-amber-50 border-amber-300' : 'bg-emerald-50 border-emerald-300'} border-2 p-4">
           <p class="text-xs ${gap > 0 ? 'text-amber-700' : 'text-emerald-700'} font-medium">あと必要な額</p>
           <p class="text-xl font-bold ${gap > 0 ? 'text-amber-700' : 'text-emerald-700'} mt-1">${FMT(gap)}<span class="text-xs font-normal ml-1">千円</span></p>
-          <p class="text-xs ${gap > 0 ? 'text-amber-600' : 'text-emerald-600'} mt-1">提案中2件込みで ${FMT(gapAfterPipe)}</p>
+          <p class="text-xs ${gap > 0 ? 'text-amber-600' : 'text-emerald-600'} mt-1">提案中${(periodTarget.pipeline || []).length}件込みで ${FMT(gapAfterPipe)}</p>
         </div>
       </div>
 
@@ -318,6 +318,89 @@ async function init() {
             </tbody>
           </table>
           <p class="text-xs text-body mt-3">全部取れても <strong>${FMT(gapAfterPipe)}千円</strong> 不足。${periodTarget.pipeline && periodTarget.pipeline.length ? '残りは民間案件で積む必要があります。' : ''}</p>
+          ${(periodTarget.lost || []).length ? `
+          <div class="mt-3 rounded-lg bg-red-50 border border-red-200 p-3">
+            <p class="text-xs font-bold text-red-800 mb-1">今期の失注（上振れ余地が消えた分）</p>
+            ${periodTarget.lost.map(l => `<p class="text-xs text-red-700">・${l.name} <span class="line-through">${FMT(l.amount)}千円</span>　<span class="text-red-500">${l.detail || ''}</span></p>`).join('')}
+          </div>` : ''}
+        </div>
+      </div>
+    </div>`;
+
+    // ===== 通期着地予測 =====
+    // 行政は確定契約が年間額。民間は7-12月の実績と第十七期の水準から幅で見る。
+    const govClients = ['埼玉県庁', '物産観光協会'];
+    const govBooked = cp.clients.filter(c => govClients.includes(c.name)).reduce((s, c) => s + c.totalSales, 0);
+    const privBooked = cp.totalSales - govBooked;
+    const PRIV_PREV = 95450;   // 第十七期の民間売上（千円）
+
+    const scenarios = [
+      { label: '保守的', priv: privBooked * 2, note: '民間が7-12月実績のペースのまま（' + FMT(privBooked) + '×2）',
+        row: 'bg-red-50/30', chip: 'bg-red-100 text-red-700', pctCls: 'text-red-700' },
+      { label: '標準', priv: Math.round(PRIV_PREV * 0.8), note: '民間が第十七期の8割（' + FMT(PRIV_PREV) + '×0.8）',
+        row: 'bg-amber-50/30', chip: 'bg-amber-100 text-amber-700', pctCls: 'text-amber-700' },
+      { label: '第十七期並み', priv: PRIV_PREV, note: '民間が第十七期と同水準',
+        row: 'bg-emerald-50/30', chip: 'bg-emerald-100 text-emerald-700', pctCls: 'text-emerald-700' },
+    ].map(s => {
+      const total = contractTotal + s.priv;
+      const withPipe = total + pipe;
+      return { ...s, total, withPipe, pct: withPipe / target };
+    });
+
+    const need = Math.max(target - contractTotal - pipe, 0);
+
+    html += `
+    <div class="bg-white rounded-xl border-2 border-slate-300 p-5 sm:p-6 shadow-sm mb-8">
+      <div class="flex items-baseline justify-between flex-wrap gap-2 mb-1">
+        <h2 class="text-sm font-bold text-slate-900">${periodTarget.period} 通期の着地予測</h2>
+        <span class="text-xs text-slate-400">行政は確定契約が年間額／民間は幅で置く（単位：千円）</span>
+      </div>
+      <p class="text-xs text-body mb-4">行政 <strong>${FMT(contractTotal)}</strong> は年間の受注額として確定済み。振れるのは民間で、そこが通期の着地をほぼ決める。</p>
+
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-slate-200 bg-gray-50">
+              <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">シナリオ</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">行政（確定）</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">民間</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">通期</th>
+              <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">対目標</th>
+              <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500 hidden sm:table-cell">前提</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${scenarios.map(s => `
+            <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors ${s.row}">
+              <td class="py-2.5 px-3"><span class="${s.chip} px-2 py-0.5 rounded-full text-xs font-medium">${s.label}</span></td>
+              <td class="py-2.5 px-3 text-right text-body">${FMT(contractTotal)}</td>
+              <td class="py-2.5 px-3 text-right text-body">${FMT(s.priv)}</td>
+              <td class="py-2.5 px-3 text-right font-bold text-slate-900">${FMT(s.withPipe)}</td>
+              <td class="py-2.5 px-3 text-right font-medium ${s.pctCls}">${PCT(s.pct)}</td>
+              <td class="py-2.5 px-3 text-xs text-slate-500 hidden sm:table-cell">${s.note}</td>
+            </tr>`).join('')}
+            <tr class="bg-primary-50/60">
+              <td class="py-2.5 px-3"><span class="bg-primary-100 text-primary-700 px-2 py-0.5 rounded-full text-xs font-medium">目標達成</span></td>
+              <td class="py-2.5 px-3 text-right text-body">${FMT(contractTotal)}</td>
+              <td class="py-2.5 px-3 text-right font-bold text-primary-700">${FMT(need)}</td>
+              <td class="py-2.5 px-3 text-right font-bold text-primary-700">${FMT(target)}</td>
+              <td class="py-2.5 px-3 text-right font-bold text-primary-700">100.0%</td>
+              <td class="py-2.5 px-3 text-xs text-primary-700 hidden sm:table-cell">民間で <strong>${FMT(need)}</strong> ＝ 第十七期比 <strong>${PCT(need / PRIV_PREV)}</strong> が必要</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="rounded-lg bg-amber-50 border border-amber-200 p-3">
+          <p class="text-xs font-bold text-amber-800 mb-1">⚠️ 11月・12月がまだ埋まっていない</p>
+          <p class="text-xs text-amber-900">計上済みは 11月 ${FMT(cp.monthTotals['11月'] ? cp.monthTotals['11月'].sales : 0)} / 12月 ${FMT(cp.monthTotals['12月'] ? cp.monthTotals['12月'].sales : 0)}。第十七期の同月は 21,189 / 17,154 だった。
+          <strong>7-12月の ${FMT(cp.totalSales)} は確定分のみ</strong>で、Excelの入力が進めば増える。上表の「保守的」は下限として見る。</p>
+        </div>
+        <div class="rounded-lg bg-slate-50 border border-slate-200 p-3">
+          <p class="text-xs font-bold text-slate-700 mb-1">行政の請求は年度末に寄る</p>
+          <p class="text-xs text-body">第十七期は3月だけで 61,665（年間の32%）。<strong>確定契約 ${FMT(contractTotal)} のうち計上済みは ${FMT(govBooked)} だけ</strong>で、
+          残り ${FMT(Math.max(contractTotal - govBooked, 0))} は主に1-3月に立つ見込み。<strong>月次が薄い月を見て慌てないこと。</strong></p>
         </div>
       </div>
     </div>`;
