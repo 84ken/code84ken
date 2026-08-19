@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T13:17:47.810Z",
+  "generatedAt": "2026-08-19T13:23:34.440Z",
   "mainWeight": 0.6,
   "periods": [
     {
@@ -1043,7 +1043,7 @@
               "credited": 3209,
               "grossProfit": 14009,
               "creditedProfit": 2802,
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "team": "浅見(40%)・岡永(40%)・橋本(20%)",
               "costRatio": 0.12693337903527357,
               "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
             },
@@ -1196,13 +1196,13 @@
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 35843,
+          "sales": 39052,
           "mainSales": 8830,
-          "subSales": 27013,
-          "profit": 18592,
+          "subSales": 30222,
+          "profit": 21394,
           "mainProfit": 6919,
-          "subProfit": 11674,
-          "profitMargin": 0.5187133255969109,
+          "subProfit": 14475,
+          "profitMargin": 0.5478329340075179,
           "projectCount": 10,
           "projects": [
             "ADDReC / DA",
@@ -1217,6 +1217,19 @@
             "文化資源"
           ],
           "detail": [
+            {
+              "project": "文化資源",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 16046,
+              "credited": 6418,
+              "grossProfit": 14009,
+              "creditedProfit": 5604,
+              "team": "浅見(40%)・岡永(40%)・橋本(20%)",
+              "costRatio": 0.12693337903527357,
+              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
+            },
             {
               "project": "JT案件（REDD）",
               "client": "JT案件（REDD）",
@@ -1242,19 +1255,6 @@
               "team": "岡永(100%)",
               "costRatio": 0.24105011933174225,
               "ratioSource": "実額"
-            },
-            {
-              "project": "文化資源",
-              "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.2,
-              "gross": 16046,
-              "credited": 3209,
-              "grossProfit": 14009,
-              "creditedProfit": 2802,
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
-              "costRatio": 0.12693337903527357,
-              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
             },
             {
               "project": "LP前期",
@@ -1356,13 +1356,13 @@
             "浅見制作所",
             "合同会社 浅見制作所"
           ],
-          "sales": 22669,
-          "mainSales": 22669,
+          "sales": 19460,
+          "mainSales": 19460,
           "subSales": 0,
-          "profit": 17125,
-          "mainProfit": 17125,
+          "profit": 14323,
+          "mainProfit": 14323,
           "subProfit": 0,
-          "profitMargin": 0.7554231380022235,
+          "profitMargin": 0.7360222404933198,
           "projectCount": 4,
           "projects": [
             "ウイザース",
@@ -1375,12 +1375,12 @@
               "project": "文化資源",
               "client": "埼玉県庁",
               "role": "主",
-              "weight": 0.6,
+              "weight": 0.4,
               "gross": 16046,
-              "credited": 9628,
+              "credited": 6418,
               "grossProfit": 14009,
-              "creditedProfit": 8406,
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "creditedProfit": 5604,
+              "team": "浅見(40%)・岡永(40%)・橋本(20%)",
               "costRatio": 0.12693337903527357,
               "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
             },
@@ -1886,7 +1886,7 @@
               "credited": 3051,
               "grossProfit": 9256,
               "creditedProfit": 1851,
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "team": "浅見(40%)・岡永(40%)・橋本(20%)",
               "costRatio": 0.3932878867330887,
               "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
             },
@@ -1928,81 +1928,6 @@
               "team": "橋本(100%)",
               "costRatio": 0.6666666666666666,
               "ratioSource": "第十七期の実績"
-            }
-          ]
-        },
-        {
-          "name": "浅見",
-          "vendorPay": 901,
-          "vendorNames": [
-            "合同会社 浅見制作所"
-          ],
-          "sales": 24575,
-          "mainSales": 24575,
-          "subSales": 0,
-          "profit": 13313,
-          "mainProfit": 13313,
-          "subProfit": 0,
-          "profitMargin": 0.5417494239931624,
-          "projectCount": 4,
-          "projects": [
-            "すぽったま",
-            "ぶんたま",
-            "ウイザース",
-            "ヒロ建工"
-          ],
-          "detail": [
-            {
-              "project": "ぶんたま",
-              "client": "埼玉県庁",
-              "role": "主",
-              "weight": 0.6,
-              "gross": 15256,
-              "credited": 9154,
-              "grossProfit": 9256,
-              "creditedProfit": 5554,
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
-              "costRatio": 0.3932878867330887,
-              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
-            },
-            {
-              "project": "すぽったま",
-              "client": "埼玉県庁",
-              "role": "主",
-              "weight": 0.6,
-              "gross": 13870,
-              "credited": 8322,
-              "grossProfit": 7870,
-              "creditedProfit": 4722,
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
-              "costRatio": 0.43258832011535686,
-              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
-            },
-            {
-              "project": "ウイザース",
-              "client": "ウイザース",
-              "role": "主",
-              "weight": 1,
-              "gross": 4318,
-              "credited": 4318,
-              "grossProfit": 2210,
-              "creditedProfit": 2210,
-              "team": "浅見(100%)",
-              "costRatio": 0.4881231390481936,
-              "ratioSource": "第十七期の実績 ／ 原価率の直接指定（粗利15%）"
-            },
-            {
-              "project": "ヒロ建工",
-              "client": "ヒロ建工",
-              "role": "主",
-              "weight": 1,
-              "gross": 2781,
-              "credited": 2781,
-              "grossProfit": 827,
-              "creditedProfit": 827,
-              "team": "浅見(100%)",
-              "costRatio": 0.7024843188520433,
-              "ratioSource": "第十七期の実績 ／ 原価率の直接指定（粗利15%）"
             }
           ]
         },
@@ -2108,16 +2033,91 @@
           ]
         },
         {
+          "name": "浅見",
+          "vendorPay": 901,
+          "vendorNames": [
+            "合同会社 浅見制作所"
+          ],
+          "sales": 21523,
+          "mainSales": 21523,
+          "subSales": 0,
+          "profit": 11462,
+          "mainProfit": 11462,
+          "subProfit": 0,
+          "profitMargin": 0.532540183932946,
+          "projectCount": 4,
+          "projects": [
+            "すぽったま",
+            "ぶんたま",
+            "ウイザース",
+            "ヒロ建工"
+          ],
+          "detail": [
+            {
+              "project": "すぽったま",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 13870,
+              "credited": 8322,
+              "grossProfit": 7870,
+              "creditedProfit": 4722,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.43258832011535686,
+              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
+            },
+            {
+              "project": "ぶんたま",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 0.4,
+              "gross": 15256,
+              "credited": 6102,
+              "grossProfit": 9256,
+              "creditedProfit": 3702,
+              "team": "浅見(40%)・岡永(40%)・橋本(20%)",
+              "costRatio": 0.3932878867330887,
+              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
+            },
+            {
+              "project": "ウイザース",
+              "client": "ウイザース",
+              "role": "主",
+              "weight": 1,
+              "gross": 4318,
+              "credited": 4318,
+              "grossProfit": 2210,
+              "creditedProfit": 2210,
+              "team": "浅見(100%)",
+              "costRatio": 0.4881231390481936,
+              "ratioSource": "第十七期の実績 ／ 原価率の直接指定（粗利15%）"
+            },
+            {
+              "project": "ヒロ建工",
+              "client": "ヒロ建工",
+              "role": "主",
+              "weight": 1,
+              "gross": 2781,
+              "credited": 2781,
+              "grossProfit": 827,
+              "creditedProfit": 827,
+              "team": "浅見(100%)",
+              "costRatio": 0.7024843188520433,
+              "ratioSource": "第十七期の実績 ／ 原価率の直接指定（粗利15%）"
+            }
+          ]
+        },
+        {
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 14925,
+          "sales": 17976,
           "mainSales": 9100,
-          "subSales": 5825,
-          "profit": 9512,
+          "subSales": 8876,
+          "profit": 11363,
           "mainProfit": 6086,
-          "subProfit": 3425,
-          "profitMargin": 0.6372908432921952,
+          "subProfit": 5276,
+          "profitMargin": 0.6321006038085863,
           "projectCount": 5,
           "projects": [
             "ADDReC / DA",
@@ -2144,12 +2144,12 @@
               "project": "ぶんたま",
               "client": "埼玉県庁",
               "role": "副",
-              "weight": 0.2,
+              "weight": 0.4,
               "gross": 15256,
-              "credited": 3051,
+              "credited": 6102,
               "grossProfit": 9256,
-              "creditedProfit": 1851,
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "creditedProfit": 3702,
+              "team": "浅見(40%)・岡永(40%)・橋本(20%)",
               "costRatio": 0.3932878867330887,
               "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
             },
