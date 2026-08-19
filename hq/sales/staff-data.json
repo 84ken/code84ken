@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T08:05:06.306Z",
+  "generatedAt": "2026-08-19T08:18:05.560Z",
   "mainWeight": 0.6,
   "periods": [
     {
@@ -1632,7 +1632,7 @@
       "assignedTotal": 98416,
       "unassignedTotal": 10476,
       "coverage": 0.9037945854608236,
-      "assignedProfit": 51712,
+      "assignedProfit": 44975,
       "cost": {
         "total": 4289,
         "mapped": 2271,
@@ -1735,10 +1735,10 @@
           "sales": 37294,
           "mainSales": 11235,
           "subSales": 26059,
-          "profit": 18948,
+          "profit": 16788,
           "mainProfit": 6095,
-          "subProfit": 12854,
-          "profitMargin": 0.5080826006285253,
+          "subProfit": 10694,
+          "profitMargin": 0.4501682459439078,
           "projectCount": 8,
           "projects": [
             "CELAB",
@@ -1758,11 +1758,11 @@
               "weight": 0.4,
               "gross": 15256,
               "credited": 6102,
-              "grossProfit": 13320,
-              "creditedProfit": 5328,
+              "grossProfit": 9256,
+              "creditedProfit": 3702,
               "team": "浅見(60%)・橋本(40%)",
-              "costRatio": 0.12693337903527357,
-              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
+              "costRatio": 0.3932878867330887,
+              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
             },
             {
               "project": "CELAB",
@@ -1804,19 +1804,6 @@
               "ratioSource": "いちご大學の実額（第十七期 866千円）"
             },
             {
-              "project": "すぽったま",
-              "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.2,
-              "gross": 13870,
-              "credited": 2774,
-              "grossProfit": 10542,
-              "creditedProfit": 2108,
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
-              "costRatio": 0.23992623901873034,
-              "ratioSource": "すぽったまの実額（第十七期 2,895千円）"
-            },
-            {
               "project": "ＬＰ前期",
               "client": "物産観光協会",
               "role": "副",
@@ -1828,6 +1815,19 @@
               "team": "中村(60%)・橋本(40%)",
               "costRatio": 0.6803945155865992,
               "ratioSource": "第十七期の実績"
+            },
+            {
+              "project": "すぽったま",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.2,
+              "gross": 13870,
+              "credited": 2774,
+              "grossProfit": 7870,
+              "creditedProfit": 1574,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.43258832011535686,
+              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
             },
             {
               "project": "リバサポ",
@@ -1866,10 +1866,10 @@
           "sales": 24575,
           "mainSales": 24575,
           "subSales": 0,
-          "profit": 17355,
-          "mainProfit": 17355,
+          "profit": 13313,
+          "mainProfit": 13313,
           "subProfit": 0,
-          "profitMargin": 0.7062052629711658,
+          "profitMargin": 0.5417494239931624,
           "projectCount": 4,
           "projects": [
             "すぽったま",
@@ -1885,11 +1885,11 @@
               "weight": 0.6,
               "gross": 15256,
               "credited": 9154,
-              "grossProfit": 13320,
-              "creditedProfit": 7992,
+              "grossProfit": 9256,
+              "creditedProfit": 5554,
               "team": "浅見(60%)・橋本(40%)",
-              "costRatio": 0.12693337903527357,
-              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
+              "costRatio": 0.3932878867330887,
+              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
             },
             {
               "project": "すぽったま",
@@ -1898,11 +1898,11 @@
               "weight": 0.6,
               "gross": 13870,
               "credited": 8322,
-              "grossProfit": 10542,
-              "creditedProfit": 6325,
+              "grossProfit": 7870,
+              "creditedProfit": 4722,
               "team": "浅見(60%)・橋本(20%)・岡永(20%)",
-              "costRatio": 0.23992623901873034,
-              "ratioSource": "すぽったまの実額（第十七期 2,895千円）"
+              "costRatio": 0.43258832011535686,
+              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
             },
             {
               "project": "ウイザース",
@@ -1984,10 +1984,10 @@
           "sales": 8374,
           "mainSales": 5600,
           "subSales": 2774,
-          "profit": 6359,
+          "profit": 5824,
           "mainProfit": 4250,
-          "subProfit": 2108,
-          "profitMargin": 0.7593221811206456,
+          "subProfit": 1574,
+          "profitMargin": 0.6955002784502321,
           "projectCount": 2,
           "projects": [
             "ADDReC / DA",
@@ -2014,11 +2014,11 @@
               "weight": 0.2,
               "gross": 13870,
               "credited": 2774,
-              "grossProfit": 10542,
-              "creditedProfit": 2108,
+              "grossProfit": 7870,
+              "creditedProfit": 1574,
               "team": "浅見(60%)・橋本(20%)・岡永(20%)",
-              "costRatio": 0.23992623901873034,
-              "ratioSource": "すぽったまの実額（第十七期 2,895千円）"
+              "costRatio": 0.43258832011535686,
+              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
             }
           ]
         },

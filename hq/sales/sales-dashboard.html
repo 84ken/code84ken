@@ -656,11 +656,13 @@ async function init() {
           </table>
         </div>
         <div class="rounded-lg bg-amber-50 border border-amber-200 p-4 mb-5">
-          <p class="text-xs font-bold text-amber-800 mb-1">⚠️ この原価率は「請求書に入っている分」だけ</p>
+          <p class="text-xs font-bold text-amber-800 mb-1">⚠️ ${base.period}の実額は「請求書に入っている分」だけ</p>
           <p class="text-xs text-amber-900 leading-relaxed">
             すぽったま・ぶんたまは浅見制作所への支払が「年間業半金」名義で、${base.period}に計上されているのは年間の一部です。
-            開発（モスコソリューションズ等）・取材・LINE広告は拾えていますが、<strong>実際の原価率はここに出ている数字より高い可能性があります</strong>。
-            案件ごとの想定額が分かる場合は <code>cost-map.json</code> の <code>projectCosts</code> に書けば、実額集計より優先されます。
+            そのため上の表の 12.7%／24.0% は実態より低く出ています。
+            <strong>${curSt.period}は想定額（浅見製作所 3,000 ＋ コアゲート開発 3,000）を入れて 39.3%／43.3% で計算しています</strong>。
+            広告費はまだ含めていないので、実際はもう少し上がる見込みです。
+            案件ごとの想定額は <code>cost-map.json</code> の <code>projectCosts</code> に内訳つきで書けば、実額集計より優先されます。
           </p>
         </div>` : ''}
 
