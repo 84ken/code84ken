@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T13:07:36.767Z",
+  "generatedAt": "2026-08-19T13:17:47.810Z",
   "mainWeight": 0.6,
   "periods": [
     {
@@ -695,7 +695,7 @@
       "assignedTotal": 162062,
       "unassignedTotal": 32769,
       "coverage": 0.8318080798230261,
-      "assignedProfit": 80660,
+      "assignedProfit": 80659,
       "cost": {
         "total": 92607,
         "mapped": 83262,
@@ -955,13 +955,13 @@
           "name": "橋本",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 81262,
+          "sales": 78052,
           "mainSales": 69248,
-          "subSales": 12014,
-          "profit": 36424,
+          "subSales": 8805,
+          "profit": 33622,
           "mainProfit": 28043,
-          "subProfit": 8381,
-          "profitMargin": 0.44823297178261506,
+          "subProfit": 5579,
+          "profitMargin": 0.43076552495259773,
           "projectCount": 16,
           "projects": [
             "LP前期",
@@ -982,19 +982,6 @@
             "読売新聞スタンプラリー"
           ],
           "detail": [
-            {
-              "project": "文化資源",
-              "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.4,
-              "gross": 16046,
-              "credited": 6418,
-              "grossProfit": 14009,
-              "creditedProfit": 5604,
-              "team": "浅見(60%)・橋本(40%)",
-              "costRatio": 0.12693337903527357,
-              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
-            },
             {
               "project": "リトデポ",
               "client": "JR東日本",
@@ -1046,6 +1033,19 @@
               "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.6803945155865992,
               "ratioSource": "実額"
+            },
+            {
+              "project": "文化資源",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.2,
+              "gross": 16046,
+              "credited": 3209,
+              "grossProfit": 14009,
+              "creditedProfit": 2802,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.12693337903527357,
+              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
             },
             {
               "project": "サーキュラーイベント",
@@ -1196,14 +1196,14 @@
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 32634,
+          "sales": 35843,
           "mainSales": 8830,
-          "subSales": 23804,
-          "profit": 15791,
+          "subSales": 27013,
+          "profit": 18592,
           "mainProfit": 6919,
-          "subProfit": 8872,
-          "profitMargin": 0.48386652178817163,
-          "projectCount": 9,
+          "subProfit": 11674,
+          "profitMargin": 0.5187133255969109,
+          "projectCount": 10,
           "projects": [
             "ADDReC / DA",
             "JT案件（REDD）",
@@ -1213,7 +1213,8 @@
             "SNS残り",
             "やっち",
             "スポーツ",
-            "リトデポチラシ更新"
+            "リトデポチラシ更新",
+            "文化資源"
           ],
           "detail": [
             {
@@ -1241,6 +1242,19 @@
               "team": "岡永(100%)",
               "costRatio": 0.24105011933174225,
               "ratioSource": "実額"
+            },
+            {
+              "project": "文化資源",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.2,
+              "gross": 16046,
+              "credited": 3209,
+              "grossProfit": 14009,
+              "creditedProfit": 2802,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.12693337903527357,
+              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
             },
             {
               "project": "LP前期",
@@ -1366,7 +1380,7 @@
               "credited": 9628,
               "grossProfit": 14009,
               "creditedProfit": 8406,
-              "team": "浅見(60%)・橋本(40%)",
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
               "costRatio": 0.12693337903527357,
               "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
             },
@@ -1689,10 +1703,10 @@
       "range": "2026.7〜2027.6",
       "current": true,
       "total": 108892,
-      "assignedTotal": 100406,
-      "unassignedTotal": 8486,
-      "coverage": 0.9220695735223892,
-      "assignedProfit": 45999,
+      "assignedTotal": 103406,
+      "unassignedTotal": 5486,
+      "coverage": 0.9496198067810308,
+      "assignedProfit": 47574,
       "cost": {
         "total": 4289,
         "mapped": 2271,
@@ -1792,13 +1806,13 @@
           "name": "橋本",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 37294,
+          "sales": 34243,
           "mainSales": 11235,
-          "subSales": 26059,
-          "profit": 16788,
+          "subSales": 23008,
+          "profit": 14937,
           "mainProfit": 6095,
-          "subProfit": 10694,
-          "profitMargin": 0.4501682459439078,
+          "subProfit": 8843,
+          "profitMargin": 0.4362193446345461,
           "projectCount": 8,
           "projects": [
             "CELAB",
@@ -1811,19 +1825,6 @@
             "ＬＰ後期"
           ],
           "detail": [
-            {
-              "project": "ぶんたま",
-              "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.4,
-              "gross": 15256,
-              "credited": 6102,
-              "grossProfit": 9256,
-              "creditedProfit": 3702,
-              "team": "浅見(60%)・橋本(40%)",
-              "costRatio": 0.3932878867330887,
-              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
-            },
             {
               "project": "CELAB",
               "client": "埼玉県庁",
@@ -1875,6 +1876,19 @@
               "team": "中村(60%)・橋本(40%)",
               "costRatio": 0.6803945155865992,
               "ratioSource": "第十七期の実績"
+            },
+            {
+              "project": "ぶんたま",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.2,
+              "gross": 15256,
+              "credited": 3051,
+              "grossProfit": 9256,
+              "creditedProfit": 1851,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.3932878867330887,
+              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
             },
             {
               "project": "すぽったま",
@@ -1947,7 +1961,7 @@
               "credited": 9154,
               "grossProfit": 9256,
               "creditedProfit": 5554,
-              "team": "浅見(60%)・橋本(40%)",
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
               "costRatio": 0.3932878867330887,
               "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
             },
@@ -2097,17 +2111,19 @@
           "name": "岡永",
           "vendorPay": null,
           "vendorNames": null,
-          "sales": 8874,
-          "mainSales": 6100,
-          "subSales": 2774,
-          "profit": 6086,
-          "mainProfit": 4512,
-          "subProfit": 1574,
-          "profitMargin": 0.6858754191177779,
-          "projectCount": 3,
+          "sales": 14925,
+          "mainSales": 9100,
+          "subSales": 5825,
+          "profit": 9512,
+          "mainProfit": 6086,
+          "subProfit": 3425,
+          "profitMargin": 0.6372908432921952,
+          "projectCount": 5,
           "projects": [
             "ADDReC / DA",
+            "EPSON",
             "すぽったま",
+            "ぶんたま",
             "やっち"
           ],
           "detail": [
@@ -2123,6 +2139,32 @@
               "team": "岡永(100%)",
               "costRatio": 0.24105011933174247,
               "ratioSource": "第十七期の実績"
+            },
+            {
+              "project": "ぶんたま",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.2,
+              "gross": 15256,
+              "credited": 3051,
+              "grossProfit": 9256,
+              "creditedProfit": 1851,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.3932878867330887,
+              "ratioSource": "想定外注費 6,000千円（浅見製作所 3,000 ＋ コアゲート開発 3,000）"
+            },
+            {
+              "project": "EPSON",
+              "client": "EPSON（DOKASEN）",
+              "role": "主",
+              "weight": 1,
+              "gross": 3000,
+              "credited": 3000,
+              "grossProfit": 1574,
+              "creditedProfit": 1574,
+              "team": "岡永(100%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "第十七期の全社平均"
             },
             {
               "project": "すぽったま",
@@ -2201,10 +2243,6 @@
         }
       ],
       "unassigned": [
-        {
-          "name": "EPSON（DOKASEN）",
-          "amount": 3000
-        },
         {
           "name": "Ｍｓ",
           "amount": 2000
