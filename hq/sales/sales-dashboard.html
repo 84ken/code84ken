@@ -59,11 +59,11 @@ const YEN = (n) => '¥' + FMT(n);
 
 async function init() {
   const [data, memos, vendorData, periodTarget, staffData] = await Promise.all([
-    fetch('sales-data.json').then(r => r.json()),
-    fetch('/api/memos').then(r => { if(!r.ok) throw new Error(); return r.json(); }).catch(() => fetch('vendor-memos.json').then(r => r.json()).catch(() => ({ projects: [] }))),
-    fetch('vendor-data.json').then(r => r.json()).catch(() => ({ months: [] })),
-    fetch('period-target.json').then(r => r.json()).catch(() => null),
-    fetch('staff-data.json').then(r => r.json()).catch(() => null)
+    fetch('sales-data.json', { cache: 'no-cache' }).then(r => r.json()),
+    fetch('/api/memos').then(r => { if(!r.ok) throw new Error(); return r.json(); }).catch(() => fetch('vendor-memos.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => ({ projects: [] }))),
+    fetch('vendor-data.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => ({ months: [] })),
+    fetch('period-target.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => null),
+    fetch('staff-data.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => null)
   ]);
 
   // 外注費の実績（請求書ベース）を period → 千円 で引けるように
@@ -486,11 +486,45 @@ async function init() {
         </table>
       </div>
 
+      <p class="text-xs font-bold text-slate-700 mb-2 mt-6">期ごとの主要クライアント</p>
+      <p class="text-xs text-body mb-3">行政比率だけでは中身が見えないので、何で売上を作っていたかを並べます。<strong>上位10社の占有率は ${ph.map(p => PCT(p.topClients.top10Ratio)).join(' → ')}</strong>。分散していた売上が2先に集中しました。</p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+        ${ph.map(p => `
+        <div class="rounded-lg border ${p.current ? 'border-amber-300 bg-amber-50/40' : 'border-slate-200 bg-gray-50'} p-4">
+          <div class="flex items-baseline justify-between gap-2 mb-1">
+            <p class="text-sm font-bold text-slate-900">${p.period}<span class="text-xs font-normal text-slate-500 ml-2">${p.range}</span></p>
+            <span class="text-xs text-slate-500">計 ${FMT(p.total)}</span>
+          </div>
+          <p class="text-xs text-slate-500 mb-3">行政比率 <strong class="${p.govRatio >= 0.6 ? 'text-red-600' : p.govRatio >= 0.4 ? 'text-amber-600' : 'text-slate-700'}">${PCT(p.govRatio)}</strong>　取引先 ${p.topClients.clientCount}社　上位10社で ${PCT(p.topClients.top10Ratio)}</p>
+          <table class="w-full">
+            <tbody>
+              ${p.topClients.list.map(c => `
+              <tr>
+                <td class="py-1 pr-2 text-xs ${c.gov ? 'text-primary-700 font-medium' : 'text-slate-700'}">${c.gov ? '<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-500 mr-1.5 align-middle"></span>' : '<span class="inline-block w-1.5 h-1.5 rounded-full bg-slate-300 mr-1.5 align-middle"></span>'}${c.name}</td>
+                <td class="py-1 px-2 text-xs text-right text-body whitespace-nowrap">${FMT(c.amount)}</td>
+                <td class="py-1 pl-2 text-xs text-right text-slate-400 whitespace-nowrap w-12">${PCT(c.share)}</td>
+              </tr>`).join('')}
+              ${p.topClients.restCount ? `
+              <tr>
+                <td class="py-1 pr-2 text-xs text-slate-400">ほか${p.topClients.restCount}社</td>
+                <td class="py-1 px-2 text-xs text-right text-slate-400 whitespace-nowrap">${FMT(p.topClients.restAmount)}</td>
+                <td class="py-1 pl-2 text-xs text-right text-slate-400 whitespace-nowrap">${PCT(p.topClients.restAmount / p.total)}</td>
+              </tr>` : ''}
+            </tbody>
+          </table>
+          ${p.current ? '<p class="text-xs text-amber-700 mt-2">※進行中。民間のヨミが未入力のため社数・比率は暫定</p>' : ''}
+        </div>`).join('')}
+      </div>
+
       <div class="rounded-lg bg-amber-50 border border-amber-200 p-4">
         <p class="text-xs font-bold text-amber-800 mb-1">読み方</p>
         <p class="text-xs text-amber-900 leading-relaxed">
           ${ph[0].period}は民間 ${FMT(ph[0].priv)} に対し行政 ${FMT(ph[0].gov)} で、ほぼ完全な民間企業向け制作会社でした。
-          ${ph[2].period}に行政が ${FMT(ph[2].gov)} まで伸びて売上が過去最高（${FMT(ph[2].total)}）になった一方、<strong>民間は ${FMT(ph[0].priv)} → ${FMT(ph[2].priv)} と縮んでいます</strong>。
+          当時の柱は高島屋・GREE2案件・ウイーザス・ゆめみ・ヒロ建工といった<strong>企業のWeb制作と運用</strong>で、上位10社でも ${PCT(ph[0].topClients.top10Ratio)} と ${ph[0].topClients.clientCount}社に分散していました。
+          ${ph[1].period}に埼玉県庁が初めて筆頭（${FMT(ph[1].topClients.list[0].amount)}／${PCT(ph[1].topClients.list[0].share)}）になり、
+          ${ph[2].period}に行政が ${FMT(ph[2].gov)} まで伸びて売上が過去最高（${FMT(ph[2].total)}）になりました。
+          ただ<strong>民間は ${FMT(ph[0].priv)} → ${FMT(ph[2].priv)} と縮んでおり</strong>、行政が伸びた分そのまま増えたわけではありません。
+          高島屋・ゆめみ・おまつりジャパン・ウイーザスといった${ph[0].period}の柱はすでに上位から消えています。
           第十八期の行政比率 ${PCT((ph[ph.length - 1] || {}).govRatio)} は民間ヨミが未入力な分だけ高く出ていますが、
           第十七期の民間常連が全部戻っても比率は ${PCT(yomiGov / (yomiGov + yomiPriv + (pf.missingPrivateTotal || 0)))} 程度。
           <strong>行政依存はこの2期で構造的に定着した</strong>と見るのが妥当です。

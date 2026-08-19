@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T06:56:42.954Z",
+  "generatedAt": "2026-08-19T07:12:26.203Z",
   "summary": [
     {
       "period": "第二期",
@@ -7921,6 +7921,98 @@
             "gov": false
           }
         ],
+        "topClients": {
+          "clientCount": 47,
+          "top10Ratio": 0.6299393959194342,
+          "list": [
+            {
+              "name": "高島屋",
+              "amount": 11062,
+              "gov": false,
+              "share": 0.0903507195713609,
+              "actions": [
+                "おせち",
+                "動画修正",
+                "バレンタイン"
+              ]
+            },
+            {
+              "name": "GREE：HN",
+              "amount": 9883,
+              "gov": false,
+              "share": 0.08072104154074848,
+              "actions": [
+                "IP-320\n通常-586"
+              ]
+            },
+            {
+              "name": "GREE：CL",
+              "amount": 9465,
+              "gov": false,
+              "share": 0.0773069572177663,
+              "actions": []
+            },
+            {
+              "name": "ウイーザス",
+              "amount": 7782,
+              "gov": false,
+              "share": 0.06356077560154859,
+              "actions": [
+                "運用他",
+                "パンフレット",
+                "サイト改修"
+              ]
+            },
+            {
+              "name": "ゆめみ",
+              "amount": 7690,
+              "gov": false,
+              "share": 0.06280935034385873,
+              "actions": [
+                "角川",
+                "花王"
+              ]
+            },
+            {
+              "name": "ウィーザス",
+              "amount": 7300,
+              "gov": false,
+              "share": 0.059623960664521296,
+              "actions": [
+                "荻窪LP他",
+                "パンフレット関連",
+                "九段パンフ他",
+                "販促物もろもろ"
+              ]
+            },
+            {
+              "name": "ヒロ建工",
+              "amount": 6937,
+              "gov": false,
+              "share": 0.056659097962984135,
+              "actions": [
+                "運用",
+                "YOUTUBE",
+                "その他",
+                "コーポレートサイト"
+              ]
+            },
+            {
+              "name": "ADDReC",
+              "amount": 6200,
+              "gov": false,
+              "share": 0.050639528235620825,
+              "actions": [
+                "オプテージ",
+                "とうりょう",
+                "運営サポ",
+                "カソク"
+              ]
+            }
+          ],
+          "restCount": 39,
+          "restAmount": 56115
+        },
         "govDetail": [
           {
             "name": "埼玉県庁",
@@ -9258,6 +9350,89 @@
             "gov": false
           }
         ],
+        "topClients": {
+          "clientCount": 50,
+          "top10Ratio": 0.7366350932336576,
+          "list": [
+            {
+              "name": "埼玉県庁",
+              "amount": 28982,
+              "gov": true,
+              "share": 0.24620481671834515,
+              "actions": [
+                "うちわ",
+                "スポーツ",
+                "リバサポ前半",
+                "すぽったま継続"
+              ]
+            },
+            {
+              "name": "マクドナルド",
+              "amount": 11034,
+              "gov": false,
+              "share": 0.09373486811366435,
+              "actions": [
+                "アプリ",
+                "ロゴ",
+                "OTP",
+                "OTPPIN"
+              ]
+            },
+            {
+              "name": "GREE：CL",
+              "amount": 10866,
+              "gov": false,
+              "share": 0.09230769230769231,
+              "actions": []
+            },
+            {
+              "name": "GREE：HN",
+              "amount": 10416,
+              "gov": false,
+              "share": 0.08848489997026716,
+              "actions": []
+            },
+            {
+              "name": "ファージ",
+              "amount": 6000,
+              "gov": false,
+              "share": 0.05097056449900183,
+              "actions": []
+            },
+            {
+              "name": "高島屋",
+              "amount": 4800,
+              "gov": false,
+              "share": 0.040776451599201465,
+              "actions": [
+                "コスメ",
+                "おせち"
+              ]
+            },
+            {
+              "name": "タテラボ関連",
+              "amount": 3800,
+              "gov": false,
+              "share": 0.03228135751603449,
+              "actions": [
+                "サウナ小屋"
+              ]
+            },
+            {
+              "name": "スリーエフ不動産",
+              "amount": 3721,
+              "gov": false,
+              "share": 0.0316102450834643,
+              "actions": [
+                "スリーエフ不動産",
+                "更新",
+                "更新対応"
+              ]
+            }
+          ],
+          "restCount": 42,
+          "restAmount": 38096
+        },
         "govDetail": [
           {
             "name": "埼玉県庁",
@@ -10527,6 +10702,96 @@
             "gov": false
           }
         ],
+        "topClients": {
+          "clientCount": 43,
+          "top10Ratio": 0.8153117317059401,
+          "list": [
+            {
+              "name": "物産観光協会",
+              "amount": 54117,
+              "gov": true,
+              "share": 0.27776380555455754,
+              "actions": [
+                "LP前期",
+                "SNS前期",
+                "LP残り",
+                "SNS残り"
+              ]
+            },
+            {
+              "name": "埼玉県庁",
+              "amount": 45016,
+              "gov": true,
+              "share": 0.2310515267077621,
+              "actions": [
+                "スポーツ",
+                "リバサポ後半",
+                "文化資源",
+                "いちご大學"
+              ]
+            },
+            {
+              "name": "マクドナルド",
+              "amount": 17674,
+              "gov": false,
+              "share": 0.09071451668368996,
+              "actions": [
+                "ポロシャツ",
+                "運用増員",
+                "EBIS",
+                "ロゴ"
+              ]
+            },
+            {
+              "name": "JR東日本",
+              "amount": 9783,
+              "gov": false,
+              "share": 0.050212748484584076,
+              "actions": [
+                "リトデポ",
+                "リトデポグッズとマルシェ",
+                "リトデポ追加",
+                "床"
+              ]
+            },
+            {
+              "name": "GREE：CL",
+              "amount": 9481,
+              "gov": false,
+              "share": 0.04866268714937561,
+              "actions": []
+            },
+            {
+              "name": "GREE：HN",
+              "amount": 7481,
+              "gov": false,
+              "share": 0.03839738029369043,
+              "actions": []
+            },
+            {
+              "name": "JT案件（REDD）",
+              "amount": 4490,
+              "gov": false,
+              "share": 0.02304561389101324,
+              "actions": [
+                "サイトリニューアル"
+              ]
+            },
+            {
+              "name": "ADDReC",
+              "amount": 4190,
+              "gov": false,
+              "share": 0.02150581786266046,
+              "actions": [
+                "ワイン",
+                "印刷",
+                "ＤＡ"
+              ]
+            }
+          ],
+          "restCount": 35,
+          "restAmount": 42599
+        },
         "govDetail": [
           {
             "name": "物産観光協会",
@@ -11260,6 +11525,94 @@
             "gov": false
           }
         ],
+        "topClients": {
+          "clientCount": 19,
+          "top10Ratio": 0.9607317341953495,
+          "list": [
+            {
+              "name": "埼玉県庁",
+              "amount": 46157,
+              "gov": true,
+              "share": 0.4238787055063733,
+              "actions": [
+                "すぽったま",
+                "リバサポ",
+                "ぶんたま",
+                "CELAB"
+              ]
+            },
+            {
+              "name": "物産観光協会",
+              "amount": 35000,
+              "gov": true,
+              "share": 0.3214193880174852,
+              "actions": [
+                "ＬＰ前期",
+                "ＬＰ後期"
+              ]
+            },
+            {
+              "name": "ADDReC",
+              "amount": 5600,
+              "gov": false,
+              "share": 0.05142710208279763,
+              "actions": [
+                "定額",
+                "ネイティブクラシック",
+                "ＫＩＳＳＡ"
+              ]
+            },
+            {
+              "name": "ウイザース",
+              "amount": 4318,
+              "gov": false,
+              "share": 0.03965396907027146,
+              "actions": [
+                "運用他",
+                "サイトリニューアル"
+              ]
+            },
+            {
+              "name": "EPSON（DOKASEN）",
+              "amount": 3000,
+              "gov": false,
+              "share": 0.02755023325864159,
+              "actions": [
+                "提案資料"
+              ]
+            },
+            {
+              "name": "ヒロ建工",
+              "amount": 2781,
+              "gov": false,
+              "share": 0.025539066230760753,
+              "actions": [
+                "運用",
+                "採用サイト"
+              ]
+            },
+            {
+              "name": "KOSE（熱帯）",
+              "amount": 2400,
+              "gov": false,
+              "share": 0.022040186606913273,
+              "actions": [
+                "KOSE運営"
+              ]
+            },
+            {
+              "name": "コア",
+              "amount": 2160,
+              "gov": false,
+              "share": 0.019836167946221946,
+              "actions": [
+                "横瀬"
+              ]
+            }
+          ],
+          "restCount": 11,
+          "restAmount": 7476
+        },
         "govDetail": [
           {
             "name": "埼玉県庁",
@@ -12564,6 +12917,98 @@
           "gov": false
         }
       ],
+      "topClients": {
+        "clientCount": 47,
+        "top10Ratio": 0.6299393959194342,
+        "list": [
+          {
+            "name": "高島屋",
+            "amount": 11062,
+            "gov": false,
+            "share": 0.0903507195713609,
+            "actions": [
+              "おせち",
+              "動画修正",
+              "バレンタイン"
+            ]
+          },
+          {
+            "name": "GREE：HN",
+            "amount": 9883,
+            "gov": false,
+            "share": 0.08072104154074848,
+            "actions": [
+              "IP-320\n通常-586"
+            ]
+          },
+          {
+            "name": "GREE：CL",
+            "amount": 9465,
+            "gov": false,
+            "share": 0.0773069572177663,
+            "actions": []
+          },
+          {
+            "name": "ウイーザス",
+            "amount": 7782,
+            "gov": false,
+            "share": 0.06356077560154859,
+            "actions": [
+              "運用他",
+              "パンフレット",
+              "サイト改修"
+            ]
+          },
+          {
+            "name": "ゆめみ",
+            "amount": 7690,
+            "gov": false,
+            "share": 0.06280935034385873,
+            "actions": [
+              "角川",
+              "花王"
+            ]
+          },
+          {
+            "name": "ウィーザス",
+            "amount": 7300,
+            "gov": false,
+            "share": 0.059623960664521296,
+            "actions": [
+              "荻窪LP他",
+              "パンフレット関連",
+              "九段パンフ他",
+              "販促物もろもろ"
+            ]
+          },
+          {
+            "name": "ヒロ建工",
+            "amount": 6937,
+            "gov": false,
+            "share": 0.056659097962984135,
+            "actions": [
+              "運用",
+              "YOUTUBE",
+              "その他",
+              "コーポレートサイト"
+            ]
+          },
+          {
+            "name": "ADDReC",
+            "amount": 6200,
+            "gov": false,
+            "share": 0.050639528235620825,
+            "actions": [
+              "オプテージ",
+              "とうりょう",
+              "運営サポ",
+              "カソク"
+            ]
+          }
+        ],
+        "restCount": 39,
+        "restAmount": 56115
+      },
       "govDetail": [
         {
           "name": "埼玉県庁",
@@ -13901,6 +14346,89 @@
           "gov": false
         }
       ],
+      "topClients": {
+        "clientCount": 50,
+        "top10Ratio": 0.7366350932336576,
+        "list": [
+          {
+            "name": "埼玉県庁",
+            "amount": 28982,
+            "gov": true,
+            "share": 0.24620481671834515,
+            "actions": [
+              "うちわ",
+              "スポーツ",
+              "リバサポ前半",
+              "すぽったま継続"
+            ]
+          },
+          {
+            "name": "マクドナルド",
+            "amount": 11034,
+            "gov": false,
+            "share": 0.09373486811366435,
+            "actions": [
+              "アプリ",
+              "ロゴ",
+              "OTP",
+              "OTPPIN"
+            ]
+          },
+          {
+            "name": "GREE：CL",
+            "amount": 10866,
+            "gov": false,
+            "share": 0.09230769230769231,
+            "actions": []
+          },
+          {
+            "name": "GREE：HN",
+            "amount": 10416,
+            "gov": false,
+            "share": 0.08848489997026716,
+            "actions": []
+          },
+          {
+            "name": "ファージ",
+            "amount": 6000,
+            "gov": false,
+            "share": 0.05097056449900183,
+            "actions": []
+          },
+          {
+            "name": "高島屋",
+            "amount": 4800,
+            "gov": false,
+            "share": 0.040776451599201465,
+            "actions": [
+              "コスメ",
+              "おせち"
+            ]
+          },
+          {
+            "name": "タテラボ関連",
+            "amount": 3800,
+            "gov": false,
+            "share": 0.03228135751603449,
+            "actions": [
+              "サウナ小屋"
+            ]
+          },
+          {
+            "name": "スリーエフ不動産",
+            "amount": 3721,
+            "gov": false,
+            "share": 0.0316102450834643,
+            "actions": [
+              "スリーエフ不動産",
+              "更新",
+              "更新対応"
+            ]
+          }
+        ],
+        "restCount": 42,
+        "restAmount": 38096
+      },
       "govDetail": [
         {
           "name": "埼玉県庁",
@@ -15170,6 +15698,96 @@
           "gov": false
         }
       ],
+      "topClients": {
+        "clientCount": 43,
+        "top10Ratio": 0.8153117317059401,
+        "list": [
+          {
+            "name": "物産観光協会",
+            "amount": 54117,
+            "gov": true,
+            "share": 0.27776380555455754,
+            "actions": [
+              "LP前期",
+              "SNS前期",
+              "LP残り",
+              "SNS残り"
+            ]
+          },
+          {
+            "name": "埼玉県庁",
+            "amount": 45016,
+            "gov": true,
+            "share": 0.2310515267077621,
+            "actions": [
+              "スポーツ",
+              "リバサポ後半",
+              "文化資源",
+              "いちご大學"
+            ]
+          },
+          {
+            "name": "マクドナルド",
+            "amount": 17674,
+            "gov": false,
+            "share": 0.09071451668368996,
+            "actions": [
+              "ポロシャツ",
+              "運用増員",
+              "EBIS",
+              "ロゴ"
+            ]
+          },
+          {
+            "name": "JR東日本",
+            "amount": 9783,
+            "gov": false,
+            "share": 0.050212748484584076,
+            "actions": [
+              "リトデポ",
+              "リトデポグッズとマルシェ",
+              "リトデポ追加",
+              "床"
+            ]
+          },
+          {
+            "name": "GREE：CL",
+            "amount": 9481,
+            "gov": false,
+            "share": 0.04866268714937561,
+            "actions": []
+          },
+          {
+            "name": "GREE：HN",
+            "amount": 7481,
+            "gov": false,
+            "share": 0.03839738029369043,
+            "actions": []
+          },
+          {
+            "name": "JT案件（REDD）",
+            "amount": 4490,
+            "gov": false,
+            "share": 0.02304561389101324,
+            "actions": [
+              "サイトリニューアル"
+            ]
+          },
+          {
+            "name": "ADDReC",
+            "amount": 4190,
+            "gov": false,
+            "share": 0.02150581786266046,
+            "actions": [
+              "ワイン",
+              "印刷",
+              "ＤＡ"
+            ]
+          }
+        ],
+        "restCount": 35,
+        "restAmount": 42599
+      },
       "govDetail": [
         {
           "name": "物産観光協会",
@@ -15903,6 +16521,94 @@
           "gov": false
         }
       ],
+      "topClients": {
+        "clientCount": 19,
+        "top10Ratio": 0.9607317341953495,
+        "list": [
+          {
+            "name": "埼玉県庁",
+            "amount": 46157,
+            "gov": true,
+            "share": 0.4238787055063733,
+            "actions": [
+              "すぽったま",
+              "リバサポ",
+              "ぶんたま",
+              "CELAB"
+            ]
+          },
+          {
+            "name": "物産観光協会",
+            "amount": 35000,
+            "gov": true,
+            "share": 0.3214193880174852,
+            "actions": [
+              "ＬＰ前期",
+              "ＬＰ後期"
+            ]
+          },
+          {
+            "name": "ADDReC",
+            "amount": 5600,
+            "gov": false,
+            "share": 0.05142710208279763,
+            "actions": [
+              "定額",
+              "ネイティブクラシック",
+              "ＫＩＳＳＡ"
+            ]
+          },
+          {
+            "name": "ウイザース",
+            "amount": 4318,
+            "gov": false,
+            "share": 0.03965396907027146,
+            "actions": [
+              "運用他",
+              "サイトリニューアル"
+            ]
+          },
+          {
+            "name": "EPSON（DOKASEN）",
+            "amount": 3000,
+            "gov": false,
+            "share": 0.02755023325864159,
+            "actions": [
+              "提案資料"
+            ]
+          },
+          {
+            "name": "ヒロ建工",
+            "amount": 2781,
+            "gov": false,
+            "share": 0.025539066230760753,
+            "actions": [
+              "運用",
+              "採用サイト"
+            ]
+          },
+          {
+            "name": "KOSE（熱帯）",
+            "amount": 2400,
+            "gov": false,
+            "share": 0.022040186606913273,
+            "actions": [
+              "KOSE運営"
+            ]
+          },
+          {
+            "name": "コア",
+            "amount": 2160,
+            "gov": false,
+            "share": 0.019836167946221946,
+            "actions": [
+              "横瀬"
+            ]
+          }
+        ],
+        "restCount": 11,
+        "restAmount": 7476
+      },
       "govDetail": [
         {
           "name": "埼玉県庁",

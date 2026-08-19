@@ -302,7 +302,7 @@ var vendorDB = []; // { name, invoice, type, bankInfo, lastMonth, projects[] }
 
 async function loadVendorDB() {
   try {
-    var r = await (await fetch('vendor-data.json')).json();
+    var r = await (await fetch('vendor-data.json', { cache: 'no-cache' })).json();
     vendorDB = (r.vendors || []).map(function(v) {
       return {
         name: v.name,
@@ -470,7 +470,7 @@ async function load() {
     if (!resp.ok) throw new Error();
     base = await resp.json();
   } catch(e) {
-    base = await (await fetch('vendor-memos.json')).json();
+    base = await (await fetch('vendor-memos.json', { cache: 'no-cache' })).json();
   }
   base = base.projects ? base : { projects: [] };
 

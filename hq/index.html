@@ -429,8 +429,8 @@ const PCT = (n) => (n * 100).toFixed(1) + '%';
   const el = document.getElementById('summary');
   try {
     const [sales, pt] = await Promise.all([
-      fetch('sales/sales-data.json').then(r => r.json()),
-      fetch('sales/period-target.json').then(r => r.json()).catch(() => null),
+      fetch('sales/sales-data.json', { cache: 'no-cache' }).then(r => r.json()),
+      fetch('sales/period-target.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => null),
     ]);
     const cp = sales.currentPeriod;
     const target = (pt && pt.target) || 200000;

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T07:00:50.640Z",
+  "generatedAt": "2026-08-19T07:12:26.396Z",
   "mainWeight": 0.6,
   "periods": [
     {
@@ -36,6 +36,17 @@
           ]
         },
         {
+          "name": "中村",
+          "sales": 7204,
+          "mainSales": 2790,
+          "subSales": 4414,
+          "projectCount": 2,
+          "projects": [
+            "INTEGRATE / stons",
+            "マクドナルド"
+          ]
+        },
+        {
           "name": "浅見",
           "sales": 5939,
           "mainSales": 5939,
@@ -44,26 +55,6 @@
           "projects": [
             "ウイザース",
             "ヒロ建工"
-          ]
-        },
-        {
-          "name": "中村",
-          "sales": 4414,
-          "mainSales": 0,
-          "subSales": 4414,
-          "projectCount": 1,
-          "projects": [
-            "マクドナルド"
-          ]
-        },
-        {
-          "name": "しんたろう",
-          "sales": 2790,
-          "mainSales": 2790,
-          "subSales": 0,
-          "projectCount": 1,
-          "projects": [
-            "INTEGRATE / stons"
           ]
         },
         {
@@ -302,11 +293,12 @@
         },
         {
           "name": "中村",
-          "sales": 8278,
-          "mainSales": 0,
+          "sales": 11389,
+          "mainSales": 3111,
           "subSales": 8278,
-          "projectCount": 2,
+          "projectCount": 3,
           "projects": [
+            "INTEGRATE / stons",
             "マクドナルド",
             "読売新聞スタンプラリー"
           ]
@@ -331,16 +323,6 @@
           "projects": [
             "スポーツツーリズム",
             "リバサポ後半"
-          ]
-        },
-        {
-          "name": "しんたろう",
-          "sales": 3111,
-          "mainSales": 3111,
-          "subSales": 0,
-          "projectCount": 1,
-          "projects": [
-            "INTEGRATE / stons"
           ]
         }
       ],

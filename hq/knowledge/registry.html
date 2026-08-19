@@ -100,7 +100,7 @@ function render() {
 }
 
 (async function () {
-  R = await fetch('project-registry.json').then(r => r.json());
+  R = await fetch('project-registry.json', { cache: 'no-cache' }).then(r => r.json());
   el('gen').textContent = '生成: ' + new Date(R.generatedAt).toLocaleString('ja-JP') + '　（node knowledge/build-registry.js で更新）';
 
   const c = R.counts;
