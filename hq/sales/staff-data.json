@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T07:56:07.574Z",
+  "generatedAt": "2026-08-19T08:05:06.306Z",
   "mainWeight": 0.6,
   "periods": [
     {
@@ -10,7 +10,7 @@
       "assignedTotal": 53213,
       "unassignedTotal": 64502,
       "coverage": 0.45204944144756404,
-      "assignedProfit": 32904,
+      "assignedProfit": 33083,
       "cost": {
         "total": 32569,
         "mapped": 26385,
@@ -207,6 +207,20 @@
             "sales": 5,
             "ratio": 0.6
           }
+        ],
+        "byProject": [
+          {
+            "name": "リバサポ",
+            "cost": 6474,
+            "sales": 11306,
+            "ratio": 0.5726355032725983
+          },
+          {
+            "name": "すぽったま",
+            "cost": 4211,
+            "sales": 14951,
+            "ratio": 0.28166624306066484
+          }
         ]
       },
       "staff": [
@@ -217,10 +231,10 @@
           "sales": 24811,
           "mainSales": 20236,
           "subSales": 4575,
-          "profit": 15199,
-          "mainProfit": 12517,
-          "subProfit": 2682,
-          "profitMargin": 0.6126123891611243,
+          "profit": 15652,
+          "mainProfit": 13681,
+          "subProfit": 1971,
+          "profitMargin": 0.6308455722938804,
           "projectCount": 5,
           "projects": [
             "すぽったま",
@@ -237,11 +251,11 @@
               "weight": 0.6,
               "gross": 28718,
               "credited": 14970,
-              "grossProfit": 16836,
-              "creditedProfit": 8776,
-              "costRatio": 0.41375008626043736,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・大西(40%)"
+              "grossProfit": 16979,
+              "creditedProfit": 9221,
+              "team": "橋本(60%)・大西(40%)",
+              "costRatio": 0.40875123953240744,
+              "ratioSource": "実額 ／ すぽったまの実額（第十六期 4,211千円） ／ リバサポの実額（第十六期 6,474千円）"
             },
             {
               "project": "マクドナルド",
@@ -252,9 +266,9 @@
               "credited": 6620,
               "grossProfit": 8273,
               "creditedProfit": 4964,
-              "costRatio": 0.25023672285662496,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・中村(40%)"
+              "team": "橋本(60%)・中村(40%)",
+              "costRatio": 0.2502367228566249,
+              "ratioSource": "実額"
             },
             {
               "project": "横瀬町",
@@ -265,9 +279,9 @@
               "credited": 2448,
               "grossProfit": 908,
               "creditedProfit": 908,
+              "team": "橋本(100%)",
               "costRatio": 0.6290849673202614,
-              "ratioSource": "実額",
-              "team": "橋本(100%)"
+              "ratioSource": "実額"
             },
             {
               "project": "リトデポ",
@@ -278,9 +292,9 @@
               "credited": 720,
               "grossProfit": 521,
               "creditedProfit": 521,
-              "costRatio": 0.27668060994775495,
-              "ratioSource": "全社平均",
-              "team": "橋本(100%)"
+              "team": "橋本(100%)",
+              "costRatio": 0.276680609947755,
+              "ratioSource": "全社平均"
             },
             {
               "project": "すぽったま",
@@ -289,11 +303,11 @@
               "weight": 0.2,
               "gross": 264,
               "credited": 53,
-              "grossProfit": 155,
-              "creditedProfit": 31,
-              "costRatio": 0.41375008626043736,
-              "ratioSource": "実額",
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+              "grossProfit": 190,
+              "creditedProfit": 38,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.2816662430606649,
+              "ratioSource": "すぽったまの実額（第十六期 4,211千円）"
             }
           ]
         },
@@ -306,10 +320,10 @@
           "sales": 13748,
           "mainSales": 6784,
           "subSales": 6965,
-          "profit": 8060,
-          "mainProfit": 3977,
-          "subProfit": 4083,
-          "profitMargin": 0.5862499137395627,
+          "profit": 7758,
+          "mainProfit": 2899,
+          "subProfit": 4859,
+          "profitMargin": 0.5642947078382452,
           "projectCount": 1,
           "projects": [
             "リバサポ"
@@ -322,11 +336,11 @@
               "weight": 0.4,
               "gross": 28718,
               "credited": 13748,
-              "grossProfit": 16836,
-              "creditedProfit": 8060,
-              "costRatio": 0.41375008626043736,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・大西(40%)"
+              "grossProfit": 16979,
+              "creditedProfit": 7758,
+              "team": "橋本(60%)・大西(40%)",
+              "costRatio": 0.40875123953240744,
+              "ratioSource": "実額 ／ すぽったまの実額（第十六期 4,211千円） ／ リバサポの実額（第十六期 6,474千円）"
             }
           ]
         },
@@ -356,9 +370,9 @@
               "credited": 4414,
               "grossProfit": 8273,
               "creditedProfit": 3309,
-              "costRatio": 0.25023672285662496,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・中村(40%)"
+              "team": "橋本(60%)・中村(40%)",
+              "costRatio": 0.2502367228566249,
+              "ratioSource": "実額"
             },
             {
               "project": "INTEGRATE / stons",
@@ -369,9 +383,9 @@
               "credited": 2790,
               "grossProfit": 2421,
               "creditedProfit": 2421,
-              "costRatio": 0.13209856630824374,
-              "ratioSource": "実額",
-              "team": "中村(100%)"
+              "team": "中村(100%)",
+              "costRatio": 0.13209856630824368,
+              "ratioSource": "実額"
             }
           ]
         },
@@ -384,10 +398,10 @@
           "sales": 6097,
           "mainSales": 6097,
           "subSales": 0,
-          "profit": 3427,
-          "mainProfit": 3427,
+          "profit": 3448,
+          "mainProfit": 3448,
           "subProfit": 0,
-          "profitMargin": 0.5620725204737015,
+          "profitMargin": 0.5655038323054401,
           "projectCount": 3,
           "projects": [
             "すぽったま",
@@ -404,9 +418,9 @@
               "credited": 3659,
               "grossProfit": 2609,
               "creditedProfit": 2609,
-              "costRatio": 0.2868764689805958,
-              "ratioSource": "実額",
-              "team": "浅見(100%)"
+              "team": "浅見(100%)",
+              "costRatio": 0.2868764689805957,
+              "ratioSource": "実額"
             },
             {
               "project": "ヒロ建工",
@@ -417,9 +431,9 @@
               "credited": 2280,
               "grossProfit": 725,
               "creditedProfit": 725,
-              "costRatio": 0.6820175438596491,
-              "ratioSource": "実額",
-              "team": "浅見(100%)"
+              "team": "浅見(100%)",
+              "costRatio": 0.6820175438596492,
+              "ratioSource": "実額"
             },
             {
               "project": "すぽったま",
@@ -428,11 +442,11 @@
               "weight": 0.6,
               "gross": 264,
               "credited": 158,
-              "grossProfit": 155,
-              "creditedProfit": 93,
-              "costRatio": 0.41375008626043736,
-              "ratioSource": "実額",
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+              "grossProfit": 190,
+              "creditedProfit": 114,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.2816662430606649,
+              "ratioSource": "すぽったまの実額（第十六期 4,211千円）"
             }
           ]
         },
@@ -443,10 +457,10 @@
           "sales": 1353,
           "mainSales": 1300,
           "subSales": 53,
-          "profit": 487,
+          "profit": 494,
           "mainProfit": 456,
-          "subProfit": 31,
-          "profitMargin": 0.35998225565157366,
+          "subProfit": 38,
+          "profitMargin": 0.36513750914133414,
           "projectCount": 2,
           "projects": [
             "ADDReC / DA",
@@ -462,9 +476,9 @@
               "credited": 1300,
               "grossProfit": 456,
               "creditedProfit": 456,
+              "team": "岡永(100%)",
               "costRatio": 0.6492076923076924,
-              "ratioSource": "実額",
-              "team": "岡永(100%)"
+              "ratioSource": "実額"
             },
             {
               "project": "すぽったま",
@@ -473,11 +487,11 @@
               "weight": 0.2,
               "gross": 264,
               "credited": 53,
-              "grossProfit": 155,
-              "creditedProfit": 31,
-              "costRatio": 0.41375008626043736,
-              "ratioSource": "実額",
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+              "grossProfit": 190,
+              "creditedProfit": 38,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.2816662430606649,
+              "ratioSource": "すぽったまの実額（第十六期 4,211千円）"
             }
           ]
         }
@@ -661,7 +675,7 @@
       "assignedTotal": 156712,
       "unassignedTotal": 38119,
       "coverage": 0.8043483839840683,
-      "assignedProfit": 76281,
+      "assignedProfit": 77873,
       "cost": {
         "total": 92607,
         "mapped": 83262,
@@ -876,6 +890,44 @@
             "sales": 13,
             "ratio": 0.5528461538461539
           }
+        ],
+        "byProject": [
+          {
+            "name": "リバサポ",
+            "cost": 5599,
+            "sales": 7956,
+            "ratio": 0.7037140522875817
+          },
+          {
+            "name": "すぽったま",
+            "cost": 2895,
+            "sales": 12066,
+            "ratio": 0.23992623901873034
+          },
+          {
+            "name": "サーキュラーエコノミー",
+            "cost": 2867,
+            "sales": 6677,
+            "ratio": 0.4294403175078628
+          },
+          {
+            "name": "ぶんたま",
+            "cost": 2037,
+            "sales": 16046,
+            "ratio": 0.1269333790352736
+          },
+          {
+            "name": "スポーツツーリズム",
+            "cost": 1019,
+            "sales": 3090,
+            "ratio": 0.32990291262135923
+          },
+          {
+            "name": "いちご大學",
+            "cost": 866,
+            "sales": 2271,
+            "ratio": 0.3813038309114927
+          }
         ]
       },
       "staff": [
@@ -886,10 +938,10 @@
           "sales": 81262,
           "mainSales": 69248,
           "subSales": 12014,
-          "profit": 36262,
-          "mainProfit": 28191,
-          "subProfit": 8072,
-          "profitMargin": 0.4462435684345489,
+          "profit": 36424,
+          "mainProfit": 28043,
+          "subProfit": 8381,
+          "profitMargin": 0.44823297178261506,
           "projectCount": 16,
           "projects": [
             "LP前期",
@@ -911,6 +963,19 @@
           ],
           "detail": [
             {
+              "project": "文化資源",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 16046,
+              "credited": 6418,
+              "grossProfit": 14009,
+              "creditedProfit": 5604,
+              "team": "浅見(60%)・橋本(40%)",
+              "costRatio": 0.12693337903527357,
+              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
+            },
+            {
               "project": "リトデポ",
               "client": "JR東日本",
               "role": "主",
@@ -919,22 +984,9 @@
               "credited": 11783,
               "grossProfit": 5223,
               "creditedProfit": 5223,
-              "costRatio": 0.5033250536645201,
-              "ratioSource": "実額",
-              "team": "橋本(100%)"
-            },
-            {
-              "project": "文化資源",
-              "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.4,
-              "gross": 16046,
-              "credited": 6418,
-              "grossProfit": 10781,
-              "creditedProfit": 4312,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "浅見(60%)・橋本(40%)"
+              "team": "橋本(100%)",
+              "costRatio": 0.5567676004721749,
+              "ratioSource": "実額"
             },
             {
               "project": "LP前期",
@@ -945,9 +997,9 @@
               "credited": 12973,
               "grossProfit": 6911,
               "creditedProfit": 4146,
+              "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "ratioSource": "実額"
             },
             {
               "project": "マクドナルド",
@@ -958,9 +1010,9 @@
               "credited": 10604,
               "grossProfit": 5924,
               "creditedProfit": 3554,
+              "team": "橋本(60%)・中村(40%)",
               "costRatio": 0.6648286748896685,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・中村(40%)"
+              "ratioSource": "実額"
             },
             {
               "project": "LP残り",
@@ -971,9 +1023,9 @@
               "credited": 10808,
               "grossProfit": 5757,
               "creditedProfit": 3454,
+              "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "ratioSource": "実額"
             },
             {
               "project": "サーキュラーイベント",
@@ -982,24 +1034,11 @@
               "weight": 1,
               "gross": 4496,
               "credited": 4496,
-              "grossProfit": 3021,
-              "creditedProfit": 3021,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "橋本(100%)"
-            },
-            {
-              "project": "リバサポ後半",
-              "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.4,
-              "gross": 7956,
-              "credited": 3182,
-              "grossProfit": 5345,
-              "creditedProfit": 2138,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "大西(60%)・橋本(40%)"
+              "grossProfit": 2565,
+              "creditedProfit": 2565,
+              "team": "橋本(100%)",
+              "costRatio": 0.4294403175078628,
+              "ratioSource": "サーキュラーエコノミーの実額（第十七期 2,867千円）"
             },
             {
               "project": "スポーツ",
@@ -1008,11 +1047,11 @@
               "weight": 0.2,
               "gross": 12066,
               "credited": 2413,
-              "grossProfit": 8107,
-              "creditedProfit": 1621,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+              "grossProfit": 9171,
+              "creditedProfit": 1834,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.23992623901873034,
+              "ratioSource": "すぽったまの実額（第十七期 2,895千円）"
             },
             {
               "project": "読売新聞スタンプラリー",
@@ -1023,9 +1062,9 @@
               "credited": 1812,
               "grossProfit": 2555,
               "creditedProfit": 1533,
-              "costRatio": 0.15397317880794703,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・中村(40%)"
+              "team": "橋本(60%)・中村(40%)",
+              "costRatio": 0.15397317880794714,
+              "ratioSource": "実額"
             },
             {
               "project": "いちご大學",
@@ -1034,11 +1073,11 @@
               "weight": 1,
               "gross": 2271,
               "credited": 2271,
-              "grossProfit": 1526,
-              "creditedProfit": 1526,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "橋本(100%)"
+              "grossProfit": 1405,
+              "creditedProfit": 1405,
+              "team": "橋本(100%)",
+              "costRatio": 0.38130383091149267,
+              "ratioSource": "いちご大學の実額（第十七期 866千円）"
             },
             {
               "project": "サーキュラーロゴ",
@@ -1047,11 +1086,24 @@
               "weight": 1,
               "gross": 2181,
               "credited": 2181,
-              "grossProfit": 1465,
-              "creditedProfit": 1465,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "橋本(100%)"
+              "grossProfit": 1244,
+              "creditedProfit": 1244,
+              "team": "橋本(100%)",
+              "costRatio": 0.4294403175078628,
+              "ratioSource": "サーキュラーエコノミーの実額（第十七期 2,867千円）"
+            },
+            {
+              "project": "スポーツツーリズム",
+              "client": "物産観光協会",
+              "role": "主",
+              "weight": 0.6,
+              "gross": 3090,
+              "credited": 1854,
+              "grossProfit": 2071,
+              "creditedProfit": 1242,
+              "team": "橋本(60%)・大西(40%)",
+              "costRatio": 0.3299029126213593,
+              "ratioSource": "スポーツツーリズムの実額（第十七期 1,019千円）"
             },
             {
               "project": "SNS残り",
@@ -1062,9 +1114,9 @@
               "credited": 3429,
               "grossProfit": 1827,
               "creditedProfit": 1096,
+              "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "ratioSource": "実額"
             },
             {
               "project": "SNS前期",
@@ -1075,9 +1127,22 @@
               "credited": 3406,
               "grossProfit": 1814,
               "creditedProfit": 1089,
+              "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "ratioSource": "実額"
+            },
+            {
+              "project": "リバサポ後半",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 7956,
+              "credited": 3182,
+              "grossProfit": 2357,
+              "creditedProfit": 943,
+              "team": "大西(60%)・橋本(40%)",
+              "costRatio": 0.7037140522875817,
+              "ratioSource": "リバサポの実額（第十七期 5,599千円）"
             },
             {
               "project": "リトデポチラシ更新",
@@ -1088,9 +1153,9 @@
               "credited": 1470,
               "grossProfit": 1285,
               "creditedProfit": 771,
-              "costRatio": 0.47532172498216424,
-              "ratioSource": "全社平均",
-              "team": "橋本(60%)・岡永(40%)"
+              "team": "橋本(60%)・岡永(40%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "全社平均"
             },
             {
               "project": "横瀬町",
@@ -1101,22 +1166,9 @@
               "credited": 2160,
               "grossProfit": 720,
               "creditedProfit": 720,
+              "team": "橋本(100%)",
               "costRatio": 0.6666666666666666,
-              "ratioSource": "実額",
-              "team": "橋本(100%)"
-            },
-            {
-              "project": "スポーツツーリズム",
-              "client": "物産観光協会",
-              "role": "主",
-              "weight": 0.6,
-              "gross": 3090,
-              "credited": 1854,
-              "grossProfit": 988,
-              "creditedProfit": 593,
-              "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・大西(40%)"
+              "ratioSource": "実額"
             }
           ]
         },
@@ -1127,10 +1179,10 @@
           "sales": 32484,
           "mainSales": 8680,
           "subSales": 23804,
-          "profit": 15499,
+          "profit": 15712,
           "mainProfit": 6840,
-          "subProfit": 8659,
-          "profitMargin": 0.4771251454684696,
+          "subProfit": 8872,
+          "profitMargin": 0.48367806707248245,
           "projectCount": 8,
           "projects": [
             "ADDReC / DA",
@@ -1152,9 +1204,9 @@
               "credited": 4490,
               "grossProfit": 3660,
               "creditedProfit": 3660,
-              "costRatio": 0.18485523385300667,
-              "ratioSource": "実額",
-              "team": "岡永(100%)"
+              "team": "岡永(100%)",
+              "costRatio": 0.18485523385300673,
+              "ratioSource": "実額"
             },
             {
               "project": "ADDReC / DA",
@@ -1165,9 +1217,9 @@
               "credited": 4190,
               "grossProfit": 3180,
               "creditedProfit": 3180,
+              "team": "岡永(100%)",
               "costRatio": 0.24105011933174225,
-              "ratioSource": "実額",
-              "team": "岡永(100%)"
+              "ratioSource": "実額"
             },
             {
               "project": "LP前期",
@@ -1178,9 +1230,9 @@
               "credited": 8649,
               "grossProfit": 6911,
               "creditedProfit": 2764,
+              "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "ratioSource": "実額"
             },
             {
               "project": "LP残り",
@@ -1191,9 +1243,9 @@
               "credited": 7205,
               "grossProfit": 5757,
               "creditedProfit": 2303,
+              "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "ratioSource": "実額"
             },
             {
               "project": "スポーツ",
@@ -1202,11 +1254,11 @@
               "weight": 0.2,
               "gross": 12066,
               "credited": 2413,
-              "grossProfit": 8107,
-              "creditedProfit": 1621,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+              "grossProfit": 9171,
+              "creditedProfit": 1834,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.23992623901873034,
+              "ratioSource": "すぽったまの実額（第十七期 2,895千円）"
             },
             {
               "project": "SNS残り",
@@ -1217,9 +1269,9 @@
               "credited": 2286,
               "grossProfit": 1827,
               "creditedProfit": 731,
+              "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "ratioSource": "実額"
             },
             {
               "project": "SNS前期",
@@ -1230,9 +1282,9 @@
               "credited": 2271,
               "grossProfit": 1814,
               "creditedProfit": 726,
+              "team": "橋本(60%)・岡永(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・岡永(40%)"
+              "ratioSource": "実額"
             },
             {
               "project": "リトデポチラシ更新",
@@ -1243,9 +1295,9 @@
               "credited": 980,
               "grossProfit": 1285,
               "creditedProfit": 514,
-              "costRatio": 0.47532172498216424,
-              "ratioSource": "全社平均",
-              "team": "橋本(60%)・岡永(40%)"
+              "team": "橋本(60%)・岡永(40%)",
+              "costRatio": 0.4753217249821642,
+              "ratioSource": "全社平均"
             }
           ]
         },
@@ -1259,10 +1311,10 @@
           "sales": 22669,
           "mainSales": 22669,
           "subSales": 0,
-          "profit": 14549,
-          "mainProfit": 14549,
+          "profit": 17125,
+          "mainProfit": 17125,
           "subProfit": 0,
-          "profitMargin": 0.6418027659299034,
+          "profitMargin": 0.7554231380022235,
           "projectCount": 4,
           "projects": [
             "ウイザース",
@@ -1278,11 +1330,11 @@
               "weight": 0.6,
               "gross": 16046,
               "credited": 9628,
-              "grossProfit": 10781,
-              "creditedProfit": 6468,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "浅見(60%)・橋本(40%)"
+              "grossProfit": 14009,
+              "creditedProfit": 8406,
+              "team": "浅見(60%)・橋本(40%)",
+              "costRatio": 0.12693337903527357,
+              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
             },
             {
               "project": "スポーツ",
@@ -1291,11 +1343,11 @@
               "weight": 0.6,
               "gross": 12066,
               "credited": 7240,
-              "grossProfit": 8107,
-              "creditedProfit": 4864,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+              "grossProfit": 9171,
+              "creditedProfit": 5503,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.23992623901873034,
+              "ratioSource": "すぽったまの実額（第十七期 2,895千円）"
             },
             {
               "project": "ウイザース",
@@ -1306,9 +1358,9 @@
               "credited": 2297,
               "grossProfit": 1893,
               "creditedProfit": 1893,
-              "costRatio": 0.17589116238572047,
-              "ratioSource": "実額",
-              "team": "浅見(100%)"
+              "team": "浅見(100%)",
+              "costRatio": 0.17589116238572033,
+              "ratioSource": "実額"
             },
             {
               "project": "ヒロ建工",
@@ -1319,9 +1371,9 @@
               "credited": 3505,
               "grossProfit": 1324,
               "creditedProfit": 1324,
+              "team": "浅見(100%)",
               "costRatio": 0.6223412268188303,
-              "ratioSource": "実額",
-              "team": "浅見(100%)"
+              "ratioSource": "実額"
             }
           ]
         },
@@ -1352,9 +1404,9 @@
               "credited": 7070,
               "grossProfit": 5924,
               "creditedProfit": 2370,
+              "team": "橋本(60%)・中村(40%)",
               "costRatio": 0.6648286748896685,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・中村(40%)"
+              "ratioSource": "実額"
             },
             {
               "project": "INTEGRATE / stons",
@@ -1365,9 +1417,9 @@
               "credited": 3111,
               "grossProfit": 1861,
               "creditedProfit": 1861,
+              "team": "中村(100%)",
               "costRatio": 0.4018000642880103,
-              "ratioSource": "実額",
-              "team": "中村(100%)"
+              "ratioSource": "実額"
             },
             {
               "project": "読売新聞スタンプラリー",
@@ -1378,9 +1430,9 @@
               "credited": 1208,
               "grossProfit": 2555,
               "creditedProfit": 1022,
-              "costRatio": 0.15397317880794703,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・中村(40%)"
+              "team": "橋本(60%)・中村(40%)",
+              "costRatio": 0.15397317880794714,
+              "ratioSource": "実額"
             }
           ]
         },
@@ -1396,10 +1448,10 @@
           "sales": 8909,
           "mainSales": 7673,
           "subSales": 1236,
-          "profit": 4718,
-          "mainProfit": 4323,
-          "subProfit": 395,
-          "profitMargin": 0.5296284141069542,
+          "profit": 3359,
+          "mainProfit": 2530,
+          "subProfit": 828,
+          "profitMargin": 0.37700543295242805,
           "projectCount": 3,
           "projects": [
             "KOSE",
@@ -1414,11 +1466,11 @@
               "weight": 0.6,
               "gross": 7956,
               "credited": 4774,
-              "grossProfit": 5345,
-              "creditedProfit": 3207,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "実額",
-              "team": "大西(60%)・橋本(40%)"
+              "grossProfit": 2357,
+              "creditedProfit": 1414,
+              "team": "大西(60%)・橋本(40%)",
+              "costRatio": 0.7037140522875817,
+              "ratioSource": "リバサポの実額（第十七期 5,599千円）"
             },
             {
               "project": "KOSE",
@@ -1429,9 +1481,9 @@
               "credited": 2899,
               "grossProfit": 1116,
               "creditedProfit": 1116,
+              "team": "大西(100%)",
               "costRatio": 0.615039668851328,
-              "ratioSource": "実額",
-              "team": "大西(100%)"
+              "ratioSource": "実額"
             },
             {
               "project": "スポーツツーリズム",
@@ -1440,11 +1492,11 @@
               "weight": 0.4,
               "gross": 3090,
               "credited": 1236,
-              "grossProfit": 988,
-              "creditedProfit": 395,
-              "costRatio": 0.6803945155865992,
-              "ratioSource": "実額",
-              "team": "橋本(60%)・大西(40%)"
+              "grossProfit": 2071,
+              "creditedProfit": 828,
+              "team": "橋本(60%)・大西(40%)",
+              "costRatio": 0.3299029126213593,
+              "ratioSource": "スポーツツーリズムの実額（第十七期 1,019千円）"
             }
           ]
         }
@@ -1580,7 +1632,7 @@
       "assignedTotal": 98416,
       "unassignedTotal": 10476,
       "coverage": 0.9037945854608236,
-      "assignedProfit": 56257,
+      "assignedProfit": 51712,
       "cost": {
         "total": 4289,
         "mapped": 2271,
@@ -1653,6 +1705,26 @@
             "sales": 300,
             "ratio": 0.16666666666666663
           }
+        ],
+        "byProject": [
+          {
+            "name": "すぽったま",
+            "cost": 1248,
+            "sales": 13870,
+            "ratio": 0.08997837058399423
+          },
+          {
+            "name": "リバサポ",
+            "cost": 176,
+            "sales": 7956,
+            "ratio": 0.022100930115636
+          },
+          {
+            "name": "ぶんたま",
+            "cost": 57,
+            "sales": 15256,
+            "ratio": 0.003736234923964342
+          }
         ]
       },
       "staff": [
@@ -1663,10 +1735,10 @@
           "sales": 37294,
           "mainSales": 11235,
           "subSales": 26059,
-          "profit": 20506,
-          "mainProfit": 6817,
-          "subProfit": 13689,
-          "profitMargin": 0.5498553710751721,
+          "profit": 18948,
+          "mainProfit": 6095,
+          "subProfit": 12854,
+          "profitMargin": 0.5080826006285253,
           "projectCount": 8,
           "projects": [
             "CELAB",
@@ -1686,11 +1758,11 @@
               "weight": 0.4,
               "gross": 15256,
               "credited": 6102,
-              "grossProfit": 12256,
-              "creditedProfit": 4902,
-              "costRatio": 0.1966439433665443,
-              "ratioSource": "案件別の想定外注費 3,000千円",
-              "team": "浅見(60%)・橋本(40%)"
+              "grossProfit": 13320,
+              "creditedProfit": 5328,
+              "team": "浅見(60%)・橋本(40%)",
+              "costRatio": 0.12693337903527357,
+              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
             },
             {
               "project": "CELAB",
@@ -1699,24 +1771,11 @@
               "weight": 1,
               "gross": 4985,
               "credited": 4985,
-              "grossProfit": 3349,
-              "creditedProfit": 3349,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "第十七期の実績",
-              "team": "橋本(100%)"
-            },
-            {
-              "project": "いちご大學",
-              "client": "埼玉県庁",
-              "role": "主",
-              "weight": 1,
-              "gross": 4090,
-              "credited": 4090,
-              "grossProfit": 2748,
-              "creditedProfit": 2748,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "第十七期の実績",
-              "team": "橋本(100%)"
+              "grossProfit": 2844,
+              "creditedProfit": 2844,
+              "team": "橋本(100%)",
+              "costRatio": 0.4294403175078628,
+              "ratioSource": "サーキュラーエコノミーの実額（第十七期 2,867千円）"
             },
             {
               "project": "ＬＰ後期",
@@ -1727,9 +1786,22 @@
               "credited": 8000,
               "grossProfit": 6392,
               "creditedProfit": 2557,
+              "team": "中村(60%)・橋本(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "第十七期の実績",
-              "team": "中村(60%)・橋本(40%)"
+              "ratioSource": "第十七期の実績"
+            },
+            {
+              "project": "いちご大學",
+              "client": "埼玉県庁",
+              "role": "主",
+              "weight": 1,
+              "gross": 4090,
+              "credited": 4090,
+              "grossProfit": 2530,
+              "creditedProfit": 2530,
+              "team": "橋本(100%)",
+              "costRatio": 0.38130383091149267,
+              "ratioSource": "いちご大學の実額（第十七期 866千円）"
             },
             {
               "project": "すぽったま",
@@ -1738,24 +1810,11 @@
               "weight": 0.2,
               "gross": 13870,
               "credited": 2774,
-              "grossProfit": 10870,
-              "creditedProfit": 2174,
-              "costRatio": 0.21629416005767843,
-              "ratioSource": "案件別の想定外注費 3,000千円",
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
-            },
-            {
-              "project": "リバサポ",
-              "client": "埼玉県庁",
-              "role": "副",
-              "weight": 0.4,
-              "gross": 7956,
-              "credited": 3182,
-              "grossProfit": 5345,
-              "creditedProfit": 2138,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "第十七期の実績",
-              "team": "大西(60%)・橋本(40%)"
+              "grossProfit": 10542,
+              "creditedProfit": 2108,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.23992623901873034,
+              "ratioSource": "すぽったまの実額（第十七期 2,895千円）"
             },
             {
               "project": "ＬＰ前期",
@@ -1766,9 +1825,22 @@
               "credited": 6000,
               "grossProfit": 4794,
               "creditedProfit": 1918,
+              "team": "中村(60%)・橋本(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "第十七期の実績",
-              "team": "中村(60%)・橋本(40%)"
+              "ratioSource": "第十七期の実績"
+            },
+            {
+              "project": "リバサポ",
+              "client": "埼玉県庁",
+              "role": "副",
+              "weight": 0.4,
+              "gross": 7956,
+              "credited": 3182,
+              "grossProfit": 2357,
+              "creditedProfit": 943,
+              "team": "大西(60%)・橋本(40%)",
+              "costRatio": 0.7037140522875817,
+              "ratioSource": "リバサポの実額（第十七期 5,599千円）"
             },
             {
               "project": "横瀬町",
@@ -1779,9 +1851,9 @@
               "credited": 2160,
               "grossProfit": 720,
               "creditedProfit": 720,
+              "team": "橋本(100%)",
               "costRatio": 0.6666666666666666,
-              "ratioSource": "第十七期の実績",
-              "team": "橋本(100%)"
+              "ratioSource": "第十七期の実績"
             }
           ]
         },
@@ -1794,10 +1866,10 @@
           "sales": 24575,
           "mainSales": 24575,
           "subSales": 0,
-          "profit": 18484,
-          "mainProfit": 18484,
+          "profit": 17355,
+          "mainProfit": 17355,
           "subProfit": 0,
-          "profitMargin": 0.7521738302570657,
+          "profitMargin": 0.7062052629711658,
           "projectCount": 4,
           "projects": [
             "すぽったま",
@@ -1813,11 +1885,11 @@
               "weight": 0.6,
               "gross": 15256,
               "credited": 9154,
-              "grossProfit": 12256,
-              "creditedProfit": 7354,
-              "costRatio": 0.1966439433665443,
-              "ratioSource": "案件別の想定外注費 3,000千円",
-              "team": "浅見(60%)・橋本(40%)"
+              "grossProfit": 13320,
+              "creditedProfit": 7992,
+              "team": "浅見(60%)・橋本(40%)",
+              "costRatio": 0.12693337903527357,
+              "ratioSource": "ぶんたまの実額（第十七期 2,037千円）"
             },
             {
               "project": "すぽったま",
@@ -1826,11 +1898,11 @@
               "weight": 0.6,
               "gross": 13870,
               "credited": 8322,
-              "grossProfit": 10870,
-              "creditedProfit": 6522,
-              "costRatio": 0.21629416005767843,
-              "ratioSource": "案件別の想定外注費 3,000千円",
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+              "grossProfit": 10542,
+              "creditedProfit": 6325,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.23992623901873034,
+              "ratioSource": "すぽったまの実額（第十七期 2,895千円）"
             },
             {
               "project": "ウイザース",
@@ -1839,11 +1911,11 @@
               "weight": 1,
               "gross": 4318,
               "credited": 4318,
-              "grossProfit": 3559,
-              "creditedProfit": 3559,
-              "costRatio": 0.17589116238572047,
-              "ratioSource": "第十七期の実績",
-              "team": "浅見(100%)"
+              "grossProfit": 2210,
+              "creditedProfit": 2210,
+              "team": "浅見(100%)",
+              "costRatio": 0.4881231390481936,
+              "ratioSource": "第十七期の実績 ／ 原価率の直接指定（粗利15%）"
             },
             {
               "project": "ヒロ建工",
@@ -1852,11 +1924,11 @@
               "weight": 1,
               "gross": 2781,
               "credited": 2781,
-              "grossProfit": 1050,
-              "creditedProfit": 1050,
-              "costRatio": 0.6223412268188303,
-              "ratioSource": "第十七期の実績",
-              "team": "浅見(100%)"
+              "grossProfit": 827,
+              "creditedProfit": 827,
+              "team": "浅見(100%)",
+              "costRatio": 0.7024843188520433,
+              "ratioSource": "第十七期の実績 ／ 原価率の直接指定（粗利15%）"
             }
           ]
         },
@@ -1886,9 +1958,9 @@
               "credited": 12000,
               "grossProfit": 6392,
               "creditedProfit": 3835,
+              "team": "中村(60%)・橋本(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "第十七期の実績",
-              "team": "中村(60%)・橋本(40%)"
+              "ratioSource": "第十七期の実績"
             },
             {
               "project": "ＬＰ前期",
@@ -1899,9 +1971,9 @@
               "credited": 9000,
               "grossProfit": 4794,
               "creditedProfit": 2876,
+              "team": "中村(60%)・橋本(40%)",
               "costRatio": 0.6803945155865992,
-              "ratioSource": "第十七期の実績",
-              "team": "中村(60%)・橋本(40%)"
+              "ratioSource": "第十七期の実績"
             }
           ]
         },
@@ -1912,10 +1984,10 @@
           "sales": 8374,
           "mainSales": 5600,
           "subSales": 2774,
-          "profit": 6424,
+          "profit": 6359,
           "mainProfit": 4250,
-          "subProfit": 2174,
-          "profitMargin": 0.7671506247602393,
+          "subProfit": 2108,
+          "profitMargin": 0.7593221811206456,
           "projectCount": 2,
           "projects": [
             "ADDReC / DA",
@@ -1931,9 +2003,9 @@
               "credited": 5600,
               "grossProfit": 4250,
               "creditedProfit": 4250,
-              "costRatio": 0.24105011933174225,
-              "ratioSource": "第十七期の実績",
-              "team": "岡永(100%)"
+              "team": "岡永(100%)",
+              "costRatio": 0.24105011933174247,
+              "ratioSource": "第十七期の実績"
             },
             {
               "project": "すぽったま",
@@ -1942,11 +2014,11 @@
               "weight": 0.2,
               "gross": 13870,
               "credited": 2774,
-              "grossProfit": 10870,
-              "creditedProfit": 2174,
-              "costRatio": 0.21629416005767843,
-              "ratioSource": "案件別の想定外注費 3,000千円",
-              "team": "浅見(60%)・橋本(20%)・岡永(20%)"
+              "grossProfit": 10542,
+              "creditedProfit": 2108,
+              "team": "浅見(60%)・橋本(20%)・岡永(20%)",
+              "costRatio": 0.23992623901873034,
+              "ratioSource": "すぽったまの実額（第十七期 2,895千円）"
             }
           ]
         },
@@ -1959,10 +2031,10 @@
           "sales": 7174,
           "mainSales": 7174,
           "subSales": 0,
-          "profit": 4131,
-          "mainProfit": 4131,
+          "profit": 2338,
+          "mainProfit": 2338,
           "subProfit": 0,
-          "profitMargin": 0.5758782349078652,
+          "profitMargin": 0.3259528541815564,
           "projectCount": 2,
           "projects": [
             "KOSE",
@@ -1976,11 +2048,11 @@
               "weight": 0.6,
               "gross": 7956,
               "credited": 4774,
-              "grossProfit": 5345,
-              "creditedProfit": 3207,
-              "costRatio": 0.3281348853740892,
-              "ratioSource": "第十七期の実績",
-              "team": "大西(60%)・橋本(40%)"
+              "grossProfit": 2357,
+              "creditedProfit": 1414,
+              "team": "大西(60%)・橋本(40%)",
+              "costRatio": 0.7037140522875817,
+              "ratioSource": "リバサポの実額（第十七期 5,599千円）"
             },
             {
               "project": "KOSE",
@@ -1991,9 +2063,9 @@
               "credited": 2400,
               "grossProfit": 924,
               "creditedProfit": 924,
+              "team": "大西(100%)",
               "costRatio": 0.615039668851328,
-              "ratioSource": "第十七期の実績",
-              "team": "大西(100%)"
+              "ratioSource": "第十七期の実績"
             }
           ]
         }

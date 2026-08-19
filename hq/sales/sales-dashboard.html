@@ -629,7 +629,42 @@ async function init() {
           const base = [...sp].reverse().find(x => x.cost && x.cost.byClient && x.cost.byClient.length && x.cost.inputRatio >= 0.15);
           if (!base) return '';
           return `
-        <p class="text-xs font-bold text-slate-700 mb-2">クライアント別の原価率（${base.period}実績・粗利計算のもと）</p>
+        ${base.cost.byProject && base.cost.byProject.length ? `
+        <p class="text-xs font-bold text-slate-700 mb-2">案件別の原価率（${base.period}実績）</p>
+        <p class="text-xs text-body mb-3">請求書の <code>project</code> 欄で案件名が特定できるものは、クライアント平均ではなくこちらを優先して使っています。<strong>同じ埼玉県庁でも案件によって12.7%〜70.4%と大きく違います。</strong></p>
+        <div class="overflow-x-auto mb-5">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 bg-gray-50">
+                <th scope="col" class="text-left py-2 px-3 text-xs font-medium text-slate-500">案件</th>
+                <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">売上</th>
+                <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">外注費</th>
+                <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">粗利</th>
+                <th scope="col" class="text-right py-2 px-3 text-xs font-medium text-slate-500">原価率</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${base.cost.byProject.map(c => `
+              <tr class="border-b border-slate-100 hover:bg-gray-50 transition-colors">
+                <td class="py-2 px-3 text-slate-900">${c.name}</td>
+                <td class="py-2 px-3 text-right text-body">${FMT(c.sales)}</td>
+                <td class="py-2 px-3 text-right text-body">${FMT(c.cost)}</td>
+                <td class="py-2 px-3 text-right font-medium text-emerald-700">${FMT(c.sales - c.cost)}</td>
+                <td class="py-2 px-3 text-right font-bold ${c.ratio >= 0.6 ? 'text-red-600' : c.ratio >= 0.4 ? 'text-amber-600' : 'text-emerald-600'}">${PCT(c.ratio)}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+        <div class="rounded-lg bg-amber-50 border border-amber-200 p-4 mb-5">
+          <p class="text-xs font-bold text-amber-800 mb-1">⚠️ この原価率は「請求書に入っている分」だけ</p>
+          <p class="text-xs text-amber-900 leading-relaxed">
+            すぽったま・ぶんたまは浅見制作所への支払が「年間業半金」名義で、${base.period}に計上されているのは年間の一部です。
+            開発（モスコソリューションズ等）・取材・LINE広告は拾えていますが、<strong>実際の原価率はここに出ている数字より高い可能性があります</strong>。
+            案件ごとの想定額が分かる場合は <code>cost-map.json</code> の <code>projectCosts</code> に書けば、実額集計より優先されます。
+          </p>
+        </div>` : ''}
+
+        <p class="text-xs font-bold text-slate-700 mb-2">クライアント別の原価率（${base.period}実績・案件別が取れないときのもと）</p>
         <div class="overflow-x-auto mb-5">
           <table class="w-full text-sm">
             <thead>
