@@ -93,6 +93,145 @@ function statusBadge(status) {
   return '';
 }
 
+// === エリア統計（説明文の材料）===
+const AREA_STATS = (() => {
+  const m = {};
+  ALL.forEach(f => {
+    const a = (m[f.area] = m[f.area] || { total: 0, konishi: 0, sakata: 0, mizuno: 0, unknown: 0, strong: 0 });
+    a.total++;
+    const mk = f.maker || '?';
+    if (mk.includes('小西')) a.konishi++;
+    else if (mk.includes('坂田')) a.sakata++;
+    else if (mk.includes('水野')) a.mizuno++;
+    else a.unknown++;
+    if (f.power >= 4) a.strong++;
+  });
+  return m;
+})();
+
+// tags フィールドの読み解き（例: "足伸/白O8/水O"）
+function parseTags(tags) {
+  if (!tags || tags === '?') return null;
+  const [posture, plate, water] = tags.split('/');
+  const out = {};
+  if (posture && posture !== '?') {
+    if (posture.includes('足伸')) out.posture = '足を伸ばして入るタイプ';
+    else if (posture.includes('腰掛')) out.posture = '腰掛けて入るタイプ';
+    else if (posture.includes('足')) out.posture = '足元中心のタイプ';
+  }
+  if (plate && plate !== '?') {
+    if (plate.includes('白')) {
+      const num = (plate.match(/O(\d+)/) || [])[1];
+      out.plate = num ? `白い電極板（◇${num}型）` : '白い電極板';
+      out.plateHint = '白い電極板は小西電機・坂田電気工業所に多いタイプ';
+    } else if (plate.includes('黒')) {
+      out.plate = '黒い電極板';
+      out.plateHint = '黒い電極板は水野通信工業「揉兵衛」の特徴';
+    } else if (plate.includes('温')) {
+      out.plate = '温泉系の浴槽に設置';
+    }
+  }
+  if (water && water !== '?') {
+    if (water.includes('水O')) out.water = '水風呂あり';
+  }
+  return Object.keys(out).length ? out : null;
+}
+
+/**
+ * 84kenの訪問メモが無い（または極端に短い）施設向けに、
+ * その施設固有のデータから独自の紹介文を組み立てる。
+ * テンプレの丸写しにならないよう、駅・エリア統計・近隣施設・
+ * パワー・タグなど施設ごとに変わる要素だけで構成する。
+ */
+function buildAutoDescription(f, nearest) {
+  const paras = [];
+  const st = AREA_STATS[f.area] || { total: 1, konishi: 0, sakata: 0, mizuno: 0, unknown: 0, strong: 0 };
+  const isClosed = f.status === '閉店';
+  const tag = parseTags(f.tags);
+  const powerWord = powerLabel(f.power);
+
+  // --- 1段落目: 立地と基本 ---
+  const accessBits = [];
+  if (f.station) {
+    accessBits.push(`${f.station}（${f.stationLine}）${f.walkMin ? `から徒歩約${f.walkMin}分` : 'が最寄り'}`);
+  }
+  const p1 = [];
+  p1.push(`<strong>${escapeHtml(f.name)}</strong>は${escapeHtml(f.area)}${escapeHtml(f.ward)}にある電気風呂のある浴場です。`);
+  if (accessBits.length) p1.push(`${escapeHtml(accessBits[0])}。`);
+  if (f.price) p1.push(`入浴料は${f.price}円。`);
+  if (isClosed) {
+    p1.push(`<strong class="text-stamp-red">現在は閉店</strong>しており入浴はできませんが、かつてこの街にあった電気風呂の記録として掲載しています。`);
+  } else if (f.status === '閉店の可能性') {
+    p1.push(`<strong class="text-stamp-red">閉店の可能性がある</strong>ため、訪問前に営業状況の確認をおすすめします。`);
+  } else if (f.status === '休業中') {
+    p1.push(`現在は<strong>休業中</strong>との情報があります。再開情報をお持ちの方はぜひお知らせください。`);
+  }
+  paras.push(p1.join(''));
+
+  // --- 2段落目: 電気風呂そのものの話 ---
+  const p2 = [];
+  p2.push(`電気風呂のビリビリ度は<strong>パワー${f.power}／5（${powerWord}）</strong>。`);
+  if (f.power >= 5) p2.push(`全国でも最強クラスに分類される刺激で、初めての方はまず端のほうから慣らすのが安全です。`);
+  else if (f.power >= 4) p2.push(`しっかり効くタイプなので、電極板との距離で強さを調整しながら入るのがおすすめ。`);
+  else if (f.power >= 3) p2.push(`長めに浸かっていられるバランス型で、電浴の入門にも向いた強さです。`);
+  else p2.push(`やわらかい刺激なので、じっくり浸かって血行を促したいときに向いています。`);
+
+  if (f.type && f.type !== '?') {
+    p2.push(`電気風呂のタイプは<strong>「${escapeHtml(f.type)}」</strong>。`);
+  }
+  if (tag && tag.posture) p2.push(`${tag.posture}で、`);
+  if (tag && tag.plate) {
+    p2.push(`${tag.plate}が確認されています。${tag.plateHint ? `${tag.plateHint}です。` : ''}`);
+  }
+  if (tag && tag.water) p2.push(`水風呂があるので、電浴とのあたたかい・つめたいの交互浴も楽しめます。`);
+  paras.push(p2.join(''));
+
+  // --- 3段落目: メーカーとエリアの文脈 ---
+  const p3 = [];
+  if (f.maker && f.maker !== '?' && f.maker !== '不明') {
+    p3.push(`メーカーは<strong>${escapeHtml(f.maker)}</strong>。`);
+  } else {
+    // 未確認 → 電極板の色 > エリア分布 の順で推測材料を提示しつつ投稿を促す
+    p3.push(`この施設の電気風呂メーカーは<strong>まだ未確認</strong>です。`);
+    const plateHintsBlack = tag && tag.plate && tag.plate.includes('黒');
+    const plateHintsWhite = tag && tag.plate && tag.plate.includes('白');
+    if (plateHintsBlack) {
+      // 電極板の色という直接的な手がかりを優先
+      p3.push(`ただし黒い電極板という記録から、<strong>水野通信工業「揉兵衛」</strong>の可能性が考えられます。`);
+    } else if (plateHintsWhite) {
+      const wn = st.konishi >= st.sakata ? '小西電機' : '坂田電気工業所';
+      p3.push(`ただし白い電極板という記録から、<strong>${wn}</strong>など白系の電極板を使うメーカーの可能性が考えられます。`);
+    } else {
+      const known = st.konishi + st.sakata + st.mizuno;
+      if (known > 0) {
+        const top = st.konishi >= st.sakata && st.konishi >= st.mizuno ? '小西電機'
+                  : st.sakata >= st.mizuno ? '坂田電気工業所' : '水野通信工業';
+        const topN = Math.max(st.konishi, st.sakata, st.mizuno);
+        p3.push(`${escapeHtml(f.area)}でメーカーが判明している施設では<strong>${top}</strong>が${topN}件と多く、この施設も同系統の可能性があります。`);
+      }
+    }
+    p3.push(`電極板の色や形（白い◇なら小西電機、白い●なら坂田電気工業所、黒なら水野通信工業の可能性大）を確認された方は、<a href="../post.html" class="underline decoration-denki-500 decoration-2 font-bold">投稿フォーム</a>から教えていただけると助かります。`);
+  }
+  if (st.total > 1) {
+    p3.push(`ビリビリ君には${escapeHtml(f.area)}の電気風呂が現在${st.total}件登録されており、うち${st.strong}件がパワー4以上の強めタイプです。`);
+  }
+  paras.push(p3.join(''));
+
+  // --- 4段落目: 周辺のハシゴ提案（閉店施設は「近くの現役店」案内に切り替え）---
+  if (nearest && nearest.length) {
+    const near2 = nearest.slice(0, 2)
+      .map(n => `<a href="${n.id}.html" class="underline decoration-denki-500 decoration-2 font-bold">${escapeHtml(n.name)}</a>（約${n._dist < 10 ? n._dist.toFixed(1) : Math.round(n._dist)}km・${powerBolts(n.power)}）`)
+      .join('と');
+    if (isClosed) {
+      paras.push(`このエリアで現在も営業している電気風呂としては${near2}などがあります。`);
+    } else {
+      paras.push(`近くの電気風呂としては${near2}などがあり、電浴ハシゴのルートに組み込むこともできます。`);
+    }
+  }
+
+  return paras.map(p => `<p class="mb-3 last:mb-0">${p}</p>`).join('\n      ');
+}
+
 // === Template ===
 function genPage(f) {
   const nearest = findNearest(f);
@@ -100,12 +239,25 @@ function genPage(f) {
   const isClosed = f.status === '閉店';
   const isHiatus = f.status === '休業中';
   const memoSafe = escapeHtml(f.memo === '?' ? '' : (f.memo || ''));
+  const hasMemo = !!(f.memo && f.memo !== '?' && f.memo.length >= 15);
+  const autoDesc = buildAutoDescription(f, nearest);
   const makerInfo = makerExplain(f.maker);
 
   // SEO: title and description
   const title = `${f.name}｜${f.ward}の電気風呂・サウナ｜パワー${f.power}/5｜ビリビリ君`;
-  const desc = `${f.name}（${f.area}${f.ward}）の電気風呂情報。${f.station}（${f.stationLine}）${f.walkMin ? `徒歩${f.walkMin}分。` : ''}${f.maker && f.maker !== '?' ? `メーカー：${f.maker}。` : ''}パワー${powerLabel(f.power)}（${f.power}/5）。${(f.memo && f.memo !== '?' ? f.memo.replace(/\n/g, ' ').replace(/\s+/g, ' ').slice(0, 80) : '')}`;
-  const descSafe = escapeHtml(desc.slice(0, 160));
+  // meta description: 訪問メモがあればそれを、なければ施設固有の要素で構成
+  const descParts = [`${f.name}（${f.area}${f.ward}）の電気風呂情報。`];
+  if (f.station) descParts.push(`${f.station}（${f.stationLine}）${f.walkMin ? `徒歩${f.walkMin}分。` : '最寄り。'}`);
+  if (f.maker && f.maker !== '?' && f.maker !== '不明') descParts.push(`メーカー：${f.maker}。`);
+  descParts.push(`パワー${powerLabel(f.power)}（${f.power}/5）。`);
+  if (isClosed) descParts.push('※現在は閉店。');
+  if (f.memo && f.memo !== '?' && f.memo.length >= 15) {
+    descParts.push(f.memo.replace(/\n/g, ' ').replace(/\s+/g, ' ').slice(0, 70));
+  } else {
+    if (f.type && f.type !== '?') descParts.push(`タイプ「${f.type}」。`);
+    if (nearest.length) descParts.push(`近くの電気風呂は${nearest[0].name}（約${nearest[0]._dist < 10 ? nearest[0]._dist.toFixed(1) : Math.round(nearest[0]._dist)}km）。`);
+  }
+  const descSafe = escapeHtml(descParts.join('').slice(0, 160));
 
   // JSON-LD
   const jsonLd = {
@@ -129,7 +281,7 @@ function genPage(f) {
     url: `https://denki.schema.tokyo/facility/${f.id}.html`,
     isAccessibleForFree: false,
     priceRange: f.price ? `¥${f.price}` : undefined,
-    description: desc.slice(0, 300),
+    description: descParts.join('').slice(0, 300),
   };
   if (isClosed) jsonLd['@type'] = ['LocalBusiness'], jsonLd.specialOpeningHoursSpecification = [{
     '@type': 'OpeningHoursSpecification',
@@ -279,10 +431,18 @@ ${JSON.stringify(breadcrumbLd, null, 2)}
 
 <main class="max-w-5xl mx-auto px-4 md:px-8 py-8">
 
-  ${(f.memo && f.memo !== '?') ? `
-  <!-- Memo -->
+  <!-- 施設紹介（自動生成 / この施設固有のデータから構成） -->
   <section class="zine-card rounded-lg p-5 md:p-6 mb-6">
-    <h3 class="display-kana text-xl text-bath-dark mb-3">📝 体験メモ</h3>
+    <h3 class="display-kana text-xl text-bath-dark mb-3">⚡ ${escapeHtml(f.name)}の電気風呂</h3>
+    <div class="text-sm md:text-base text-bath-dark/90 leading-relaxed">
+      ${autoDesc}
+    </div>
+  </section>
+
+  ${hasMemo ? `
+  <!-- Memo -->
+  <section class="zine-card rounded-lg p-5 md:p-6 mb-6 bg-denki-50">
+    <h3 class="display-kana text-xl text-bath-dark mb-3">📝 訪問レポート</h3>
     <p class="text-sm md:text-base text-bath-dark/90 leading-relaxed whitespace-pre-line">${memoSafe}</p>
   </section>
   ` : ''}
