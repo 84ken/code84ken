@@ -95,6 +95,12 @@
     const modernBase = getBasePath();
     const topBase = getTopPath();
 
+    // The static <h1> exists for crawlers reading the raw HTML. Once we render
+    // our own <h1 class="rv-hero-title">, drop it so the page has exactly one
+    // heading rather than a display:none duplicate.
+    const staticH1 = document.querySelector('h1[data-seo="band"]');
+    if (staticH1) staticH1.remove();
+
     // Mark body as transforming and build new DOM
     document.body.className = 'transforming';
 
@@ -128,9 +134,15 @@
   // ============================================
 
   function extractBandName() {
+    // Prefer the static <h1> in the source HTML (added for crawlers), since the
+    // <title> carries an SEO suffix like " - パンクディスクレビュー | TOTAL PUNKS".
+    const staticH1 = document.querySelector('h1[data-seo="band"]');
+    if (staticH1 && staticH1.textContent.trim()) {
+      return staticH1.textContent.replace(/[\s　]+/g, ' ').trim();
+    }
     const title = document.title || '';
-    // Clean up full-width chars and trim
-    return title.replace(/[\s　]+/g, ' ').trim();
+    // Drop the SEO suffix, then clean up full-width chars and trim
+    return title.split(/\s[-|]\s/)[0].replace(/[\s　]+/g, ' ').trim();
   }
 
   function extractBio() {
