@@ -2250,7 +2250,7 @@ tailwind.config = {
               <tr><td class="py-2 px-3 font-medium text-slate-900">鳩の湯（はなのや／別邸花水木）</td><td class="no">✕</td><td class="py-2 px-3 text-xs">—</td><td class="py-2 px-3 text-xs">七湯②・<strong>宿泊者のみ</strong></td></tr>
               <tr><td class="py-2 px-3 font-medium text-slate-900">柴原温泉 <strong>かやの家</strong></td><td class="no">✕</td><td class="py-2 px-3 text-xs">1泊2食 ¥16,500〜</td><td class="py-2 px-3 text-xs">七湯③・<strong>日本秘湯を守る会／宿泊のみ</strong></td></tr>
               <tr><td class="py-2 px-3 font-medium text-slate-900">柴原温泉 柳屋</td><td class="py-2 px-3 text-center text-amber-600 font-bold">要確認</td><td class="py-2 px-3 text-xs">—</td><td class="py-2 px-3 text-xs">七湯③</td></tr>
-              <tr><td class="py-2 px-3 font-medium text-slate-900">赤谷温泉 小鹿荘</td><td class="yes">○</td><td class="py-2 px-3 text-xs">¥600 / 11:00-15:00</td><td class="py-2 px-3 text-xs">140年の歴史・囲炉裏料理／<strong>日により受付停止</strong></td></tr>
+              <tr><td class="py-2 px-3 font-medium text-slate-900">赤谷温泉 小鹿荘</td><td class="yes">○</td><td class="py-2 px-3 text-xs">¥700 / 11:00-15:00</td><td class="py-2 px-3 text-xs">明治期の祭り屋台造り・囲炉裏料理／<strong>日により受付停止</strong></td></tr>
               <tr><td class="py-2 px-3 font-medium text-slate-900">西谷津温泉 宮本の湯</td><td class="yes">○</td><td class="py-2 px-3 text-xs">¥900(600) / 11:00-15:00</td><td class="py-2 px-3 text-xs">土俵露天風呂・貸切風呂</td></tr>
               <tr><td class="py-2 px-3 font-medium text-slate-900">大滝温泉 遊湯館</td><td class="yes">○</td><td class="py-2 px-3 text-xs">10:00-20:00（12〜3月は19:00）</td><td class="py-2 px-3 text-xs">道の駅大滝温泉内・33.1℃の自家源泉</td></tr>
               <tr><td class="py-2 px-3 font-medium text-slate-900">秩父小鹿野温泉 梁山泊</td><td class="no">✕</td><td class="py-2 px-3 text-xs">—</td><td class="py-2 px-3 text-xs">2024年リブランド以降<strong>宿泊主体</strong>／食事付き日帰りは要予約</td></tr>
@@ -2760,17 +2760,54 @@ tailwind.config = {
           </div>
         </article>
 
-        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-          <p class="text-xs text-slate-500">No.17</p>
-          <h4 class="text-base font-semibold text-slate-900 mt-0.5">赤谷温泉 小鹿荘</h4>
-          <p class="text-xs text-slate-500 mt-0.5">小鹿野町三山243</p>
-          <div class="mt-2 flex flex-wrap gap-1.5">
-            <span class="chip type-単純温泉">アルカリ性冷鉱泉</span>
-            <span class="axis-tag">F・メタホウ酸・メタケイ酸</span>
+        <article class="bg-white rounded-xl border border-amber-300 p-5 shadow-sm md:col-span-2">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <p class="text-xs text-amber-700 font-medium">No.17 ／ 湯ではなく「火」で立っている宿</p>
+              <h4 class="text-base font-semibold text-slate-900 mt-0.5">赤谷温泉 小鹿荘</h4>
+              <p class="text-xs text-slate-500 mt-0.5">小鹿野町三山243 ／ 大竜寺源泉を引湯</p>
+            </div>
+            <span class="chip bg-emerald-100 text-emerald-800 text-xs flex-shrink-0">日帰り可</span>
           </div>
-          <p class="mt-3 text-sm text-body">神経痛・関節痛・筋肉痛・運動麻痺・胃腸病・婦人病</p>
-          <p class="mt-2 text-xs text-slate-500">山中地清断層北線部の中世層の層理から湧水。大龍寺源泉を引湯。</p>
-          <a href="http://www.ojikasou.co.jp/" target="_blank" class="mt-3 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="chip type-単純温泉">アルカリ性単純温泉</span>
+            <span class="axis-tag">pH 約10 ・ 18.6℃</span>
+            <span class="axis-tag">メタほう酸・メタけい酸</span>
+          </div>
+          <p class="mt-3 text-sm text-body leading-relaxed">
+            適応症は神経痛・関節痛・筋肉痛・運動麻痺・胃腸病・婦人病。山中地清断層北線部の中世層の層理から湧く水を、<strong>大竜寺源泉</strong>として引いています（梁山泊と同系＝No.25）。
+          </p>
+          <div class="mt-3 grid sm:grid-cols-3 gap-3">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">建物</p>
+              <p class="text-sm font-medium text-slate-900 mt-0.5">明治期・<strong>祭り屋台造り</strong></p>
+              <p class="text-xs text-body mt-1">秩父の祭り屋台を模した外観。公式は「150年の歴史」と記す</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">囲炉裏</p>
+              <p class="text-sm font-medium text-slate-900 mt-0.5">約<strong>130年</strong>もの</p>
+              <p class="text-xs text-body mt-1">岩魚の塩焼き・焼き餅を客が自分であぶる</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">日帰り</p>
+              <p class="text-sm font-medium text-slate-900 mt-0.5">¥700 / 11:00-15:00</p>
+              <p class="text-xs text-body mt-1">貸切露天 ¥1,500（45分・15:00-21:45）</p>
+            </div>
+          </div>
+          <div class="mt-3 p-3 bg-white border border-amber-200 rounded-lg">
+            <p class="text-sm text-body leading-relaxed">
+              <strong class="text-slate-900">注目したいのは、宿が湯の扱いを正直に開示していること。</strong>
+              公式サイトは<strong>「循環・加水・加温」</strong>と明記しています。源泉18.6℃の冷鉱泉を引湯している以上それは必然で、
+              第16章のORPの理屈でいえば<strong>鮮度は落ちる側</strong>——それを隠さず書いている宿です。
+            </p>
+            <p class="mt-2 text-sm text-body leading-relaxed">
+              そのうえで、この宿の主役は湯ではなく<strong class="text-slate-900">火</strong>です。
+              第17章でみたとおり、秩父の湯は<strong>湯力では勝てない</strong>（大源泉がない・冷たい）。
+              だから<strong>約130年の囲炉裏で「食」に振り切る</strong>——これは負けの選択ではなく、
+              <strong>湯力で戦えない土地の宿が取りうる、もっとも理にかなった戦略</strong>だと思います。
+            </p>
+          </div>
+          <a href="https://www.ojikasou.co.jp/" target="_blank" class="mt-3 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
         </article>
 
         <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
@@ -5238,7 +5275,7 @@ const CHICHIBU_ONSEN = [
   { id:14, name:"将門のかくし湯 みやこ旅館", lat:35.9605, lon:138.9823, status:"active", seven:false, type:"単純硫黄冷鉱泉",   area:"秩父市荒川白久",   note:"平将門の伝説" },
   { id:15, name:"両神温泉薬師の湯 両神荘", lat:36.0078, lon:138.9750, status:"active",  seven:false, type:"単純硫黄冷鉱泉",     ph:9.2,   area:"小鹿野町両神",     note:"小鹿野町営国民宿舎" },
   { id:16, name:"道の駅 両神温泉薬師の湯", lat:36.0051, lon:138.9713, status:"active",  seven:false, type:"薄（うすき）の湯", area:"小鹿野町両神薄",   note:"1991年 埼玉県初の日帰り温泉施設／両神荘とは別源泉／日帰り¥600 10:00-20:00 火休" },
-  { id:17, name:"赤谷温泉 小鹿荘",       lat:36.0359, lon:138.9153, status:"active",  seven:false, type:"アルカリ性単純温泉", ph:10.0, area:"小鹿野町三山243", note:"大竜寺源泉を引湯・18.6℃／明治10年代築／日帰り¥600 11:00-15:00（日により停止）" },
+  { id:17, name:"赤谷温泉 小鹿荘",       lat:36.0359, lon:138.9153, status:"active",  seven:false, type:"アルカリ性単純温泉", ph:10.0, area:"小鹿野町三山243", note:"大竜寺源泉を引湯・18.6℃／明治期の祭り屋台造り・囲炉裏は約130年もの／日帰り¥700 11:00-15:00（日により停止）／貸切露天¥1,500(45分)" },
   { id:18, name:"かおる鉱泉",            lat:36.0731, lon:138.9384, status:"active",  seven:false, type:"弱アルカリ性弱張性冷鉱泉", area:"秩父市上吉田", note:"たまご水／硫化水素臭" },
   { id:19, name:"秩父温泉 満願の湯",     lat:36.0825, lon:139.0723, status:"active",  seven:false, type:"単純硫黄冷鉱泉",       ph:9.5,   area:"皆野町日野沢",     note:"札所34番水潜寺のふところ" },
   // 平成〜令和世代（盆地を掘って生まれた湯）※座標は近似
