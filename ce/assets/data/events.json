@@ -1,5 +1,5 @@
 {
-  "_readme": "開催情報データ。配列の並び順がそのまま表示順になります。status は upcoming / past。planned:true にすると「計画中」バッジになり、詳細ページへのリンクが外れます（日程・会場が固まったら planned を消して url を入れてください）。",
+  "_readme": "開催情報データ。配列の並び順がそのまま表示順になります。status は upcoming / past。planned:true は「計画中」バッジ（リンクなし）、recruiting:true は「出展企業 募集中」バッジ。募集が終わったら recruiting を消してください。",
   "events": [
     {
       "id": "koshigaya-2026",
@@ -23,22 +23,22 @@
     {
       "id": "kawagoe-2026",
       "status": "upcoming",
-      "planned": true,
-      "title": "サーキュラーエコノミーラボ in 川越",
-      "titleNote": "計画中です",
-      "dateLabel": "2026年11月〜12月ごろ（調整中）",
-      "dateStart": null,
-      "dateEnd": null,
-      "venue": "川越市内（調整中）",
+      "title": "サーキュラーエコノミーラボ 2026 in 川越",
+      "titleNote": null,
+      "dateLabel": "2026年11月28日（土）・29日（日） 10:00〜16:00",
+      "dateStart": "2026-11-28",
+      "dateEnd": "2026-11-29",
+      "venue": "ウニクス川越 サブプラザ（屋根のある屋外）",
       "area": "川越市",
       "concurrent": null,
       "fee": "参加無料",
       "booking": "事前申込不要",
       "photo": null,
       "photoAlt": "",
-      "url": null,
+      "url": "/lab/events/kawagoe-2026/",
       "reportUrl": null,
-      "summary": "川越での開催を計画しています。日程・会場・出展企業は決まりしだい、このページでお知らせします。"
+      "summary": "川越での初開催。ただいま出展企業・団体を募集しています（出展費用無料／申込締切 9月30日17:00）。",
+      "recruiting": true
     },
     {
       "id": "hanyu-2026",

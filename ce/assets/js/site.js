@@ -152,6 +152,13 @@
         ? '<span class="font-round bg-sun text-navy px-4 py-1.5 rounded-full text-sm font-bold">次回開催</span>'
         : '<span class="font-round bg-primary-100 text-primary-800 px-4 py-1.5 rounded-full text-sm font-bold">開催終了</span>';
 
+    // 出展募集中は、日付バッジの横に並べて気づいてもらう
+    if (ev.recruiting) {
+      label += '<span class="font-round ml-2 inline-flex items-center gap-1.5 bg-tangerine text-navy px-4 py-1.5 rounded-full text-sm font-bold">' +
+        '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>' +
+        '出展企業 募集中</span>';
+    }
+
     var note = ev.titleNote
       ? '<p class="mt-1 text-sm text-soft leading-normal">※ ' + esc(ev.titleNote) + '</p>'
       : '';
