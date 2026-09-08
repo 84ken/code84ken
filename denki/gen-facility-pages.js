@@ -637,6 +637,7 @@ const baseUrls = [
   { loc: 'https://denki.schema.tokyo/science.html',  lastmod: today, changefreq: 'monthly', priority: '0.8' },
   { loc: 'https://denki.schema.tokyo/history.html',  lastmod: today, changefreq: 'monthly', priority: '0.8' },
   { loc: 'https://denki.schema.tokyo/post.html',     lastmod: today, changefreq: 'monthly', priority: '0.9' },
+  { loc: 'https://denki.schema.tokyo/special/denki-buro/', lastmod: today, changefreq: 'yearly', priority: '0.8' },
 ];
 
 const facilityUrls = ALL.map(f => ({
