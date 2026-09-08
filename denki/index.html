@@ -285,6 +285,47 @@ tailwind.config = {
   height:20px;
 }
 
+/* ===== Special content banner ===== */
+.special-banner{
+  box-shadow:5px 5px 0 0 #0c1222;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.special-banner:hover{
+  transform:translate(-3px,-3px);
+  box-shadow:8px 8px 0 0 #facc15, 8px 8px 0 2px #0c1222;
+}
+.special-banner .banner-img{
+  transition:transform .7s cubic-bezier(.2,.7,.3,1);
+  transform:scale(1.02);
+}
+.special-banner:hover .banner-img{transform:scale(1.08)}
+.special-banner .banner-arrow{
+  display:inline-block;
+  transition:transform .2s ease;
+}
+.special-banner:hover .banner-arrow{transform:translateX(4px)}
+.special-banner .banner-cta{
+  box-shadow:3px 3px 0 0 rgba(250,204,21,.35);
+  transition:box-shadow .15s ease;
+}
+.special-banner:hover .banner-cta{box-shadow:3px 3px 0 0 rgba(250,204,21,.7)}
+/* 水面のゆらぎ（控えめに、常時） */
+@keyframes banner-ripple{
+  0%,100%{opacity:.0;transform:translateY(0)}
+  50%{opacity:.28;transform:translateY(-3px)}
+}
+.special-banner::after{
+  content:"";
+  position:absolute;inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,rgba(78,211,255,.5) 78%,transparent 92%);
+  animation:banner-ripple 4.5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce){
+  .special-banner::after{animation:none}
+  .special-banner .banner-img{transition:none}
+}
+
 /* Inline kana label with furigana feel */
 .label-kana{
   font-family:'Zen Kaku Gothic New',sans-serif;
@@ -370,6 +411,46 @@ tailwind.config = {
 </section>
 
 <div class="max-w-7xl mx-auto px-4 md:px-8 py-6">
+
+  <!-- Special content banner -->
+  <a href="./special/denki-buro/" class="special-banner group block relative overflow-hidden rounded-xl border-2 border-bath-dark mb-7 no-underline">
+    <div class="grid md:grid-cols-[1.15fr_1fr] items-stretch">
+
+      <!-- Text side -->
+      <div class="relative z-10 p-5 md:p-7 order-2 md:order-1" style="background:linear-gradient(135deg,#031414 0%,#0a2626 55%,#0c1222 100%)">
+        <span class="bolt-deco text-5xl md:text-7xl" style="top:-6px;right:6%;opacity:0.13;transform:rotate(14deg)">&#9889;</span>
+
+        <div class="flex items-center gap-2 mb-3 flex-wrap relative z-10">
+          <span class="stamp text-denki-400" style="border-color:#facc15">SPECIAL CONTENT</span>
+          <span class="stamp text-soda-300" style="border-color:#4ed3ff;transform:rotate(2deg)">3D / WEBGL</span>
+        </div>
+
+        <h3 class="display-kana text-[26px] md:text-[38px] text-white leading-none mb-2 relative z-10">
+          電気に触れる、湯に浸かる、<br>
+          <span class="text-denki-400">Web に潜る。</span>
+        </h3>
+        <p class="display-eng text-soda-300 text-base md:text-xl mb-3 relative z-10">DENKI BURO &mdash; DIGITAL BATHING EXPERIENCE</p>
+        <p class="text-xs md:text-sm text-denki-100/75 leading-relaxed mb-4 relative z-10">
+          水面にふれると波紋がひろがり、電極のそばでビリッとしびれる。<br class="hidden md:inline">
+          スクロールするほど深く潜っていく、インタラクティブな3D作品。
+        </p>
+
+        <span class="inline-flex items-center gap-2 h-10 px-5 text-sm font-bold bg-denki-400 text-bath-dark rounded-lg border-2 border-bath-dark banner-cta relative z-10">
+          ♨ 入浴する <span class="banner-arrow">&rarr;</span>
+        </span>
+      </div>
+
+      <!-- Image side -->
+      <div class="relative order-1 md:order-2 min-h-[150px] md:min-h-[210px] overflow-hidden bg-[#031414]">
+        <img src="./special/denki-buro/ogp.png" alt="タイル張りの浴室に湛えられた、青緑の湯をたたえた電気風呂の3Dシーン"
+             class="banner-img absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
+        <!-- 左端を暗くしてテキスト面へ馴染ませる（PCのみ） -->
+        <div class="absolute inset-0 hidden md:block" style="background:linear-gradient(90deg,#0c1222 0%,rgba(12,18,34,0.55) 18%,transparent 55%)"></div>
+        <div class="absolute inset-0 md:hidden" style="background:linear-gradient(180deg,transparent 45%,rgba(3,20,20,0.9) 100%)"></div>
+      </div>
+
+    </div>
+  </a>
 
   <!-- Section heading -->
   <div class="flex items-baseline gap-3 mt-2 mb-3">
