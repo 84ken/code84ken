@@ -471,3 +471,12 @@ header nav{gap:22px}
 .page-sns .sns{display:inline-flex;align-items:center;gap:8px;font-size:15px;
   border-bottom:1px solid #a6a79b;padding-bottom:4px;white-space:nowrap}
 @media (max-width:620px){.page-sns{padding:18px 20px}.page-sns p{font-size:13.5px}}
+
+/* --- ダウンロード --- */
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:18px 0 10px;max-width:740px}
+.dl-item{display:block;border:1px solid #d9d7cf;background:#fff;padding:16px 18px;
+  border-left:3px solid #8a7a55;text-decoration:none}
+.dl-item b{display:block;font-size:15px;margin-bottom:4px;color:var(--ink)}
+.dl-item span{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.dl-item:hover{background:#faf9f6}
+.dl-note{font-size:13px;color:var(--muted);max-width:740px}
