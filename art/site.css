@@ -537,3 +537,4 @@ header nav{gap:22px}
 .menu-ig svg .dot{fill:currentColor;stroke:none}
 .menu-ig em{font-style:normal;opacity:.6}
 header>.nav-ig{margin-left:auto}
+.mcard .mphoto img{object-position:50% 40%}
