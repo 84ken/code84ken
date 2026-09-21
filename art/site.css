@@ -511,3 +511,22 @@ header nav{gap:22px}
 .mlink a::after{content:" ↗";font-size:.9em;color:var(--muted)}
 .mlink.blank-link{color:#6e7566;background:#f2f3ed;border:1px dashed #c6c9bb;
   padding:4px 8px;display:inline-block;font-size:12px}
+
+/* --- 公募ページ --- */
+.detail-main h3{font-size:18px;margin-top:38px;font-family:var(--serif);font-weight:400;letter-spacing:.04em}
+.lede-strong{font-family:var(--serif);font-size:clamp(20px,2.6vw,26px);letter-spacing:.05em;
+  margin:6px 0 16px;line-height:1.7}
+.compare th:first-child{width:22%}
+.compare td{width:39%}
+.compare .now{color:#8a5a12}
+.faq{margin-top:12px;max-width:740px}
+.faq details{border-bottom:1px solid #e3e1d9}
+.faq summary{cursor:pointer;padding:15px 2px;font-size:15px;list-style:none;display:flex;
+  justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"＋";color:#8a7a55;font-size:14px}
+.faq details[open] summary::after{content:"−"}
+.faq p{font-size:14px;color:#4a4b45;margin:0 0 16px;padding-left:2px;line-height:2}
+.cta-apply{margin-top:34px;border:2px solid #8a7a55;background:#faf7f0;padding:22px 24px;max-width:740px}
+.cta-apply b{display:block;font-size:17px;font-family:var(--serif);font-weight:400;letter-spacing:.04em;margin-bottom:6px}
+.cta-apply span{font-size:13px;color:var(--muted)}
