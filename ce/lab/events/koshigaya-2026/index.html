@@ -51,7 +51,7 @@ tailwind.config = {
 <link rel="stylesheet" href="/assets/css/site.css?v=f5c8b9d1">
 <script src="/assets/js/site.js?v=bc88ca07" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://ce.llschema.com/"},{"@type":"ListItem","position":2,"name":"ラボについて","item":"https://ce.llschema.com/lab/"},{"@type":"ListItem","position":3,"name":"開催情報","item":"https://ce.llschema.com/lab/events/"},{"@type":"ListItem","position":4,"name":"越谷（2026年10月）","item":"https://ce.llschema.com/lab/events/koshigaya-2026/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Event","name":"サーキュラーエコノミーラボ in 越谷","description":"子どもも大人も一緒に、未来の“めぐる暮らし”を体験するイベント。ワークショップや展示で、資源の循環利用の取組を遊びながら学べます。","startDate":"2026-10-03T11:00+09:00","endDate":"2026-10-04T17:00+09:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","inLanguage":"ja","isAccessibleForFree":true,"image":["https://ce.llschema.com/assets/img/ogp.jpg"],"url":"https://ce.llschema.com/lab/events/koshigaya-2026/","location":{"@type":"Place","name":"越谷レイクタウン kaze 1F 光の広場","address":{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"埼玉県","addressLocality":"越谷市"}},"offers":{"@type":"Offer","price":"0","priceCurrency":"JPY","availability":"https://schema.org/InStock","url":"https://ce.llschema.com/lab/events/koshigaya-2026/","validFrom":"2026-08-12"},"organizer":{"@type":"Organization","name":"埼玉県 環境部 資源循環推進課","url":"https://www.pref.saitama.lg.jp/a0507/circular/keihatsu.html"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Event","name":"サーキュラーエコノミーラボ in 越谷","description":"子どもも大人も一緒に、未来の“めぐる暮らし”を体験するイベント。ワークショップや展示で、資源の循環利用の取組を遊びながら学べます。","startDate":"2026-10-03T11:00+09:00","endDate":"2026-10-04T17:00+09:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","inLanguage":"ja","isAccessibleForFree":true,"image":["https://ce.llschema.com/assets/img/ogp.jpg"],"url":"https://ce.llschema.com/lab/events/koshigaya-2026/","location":{"@type":"Place","name":"越谷レイクタウン kaze 1F 光の広場","address":{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"埼玉県","addressLocality":"越谷市","streetAddress":"レイクタウン4丁目2番地2"}},"offers":{"@type":"Offer","price":"0","priceCurrency":"JPY","availability":"https://schema.org/InStock","url":"https://ce.llschema.com/lab/events/koshigaya-2026/","validFrom":"2026-08-12"},"organizer":{"@type":"Organization","name":"埼玉県 環境部 資源循環推進課","url":"https://www.pref.saitama.lg.jp/a0507/circular/keihatsu.html"}}</script>
 </head>
 <body class="bg-cream">
 <a href="#main" class="skip-link">本文へスキップ</a>
@@ -146,6 +146,7 @@ tailwind.config = {
           <div class="mt-6 flex flex-wrap gap-3">
             <span class="pill-outline font-round text-sm sm:text-base">事前申込不要</span>
             <span class="pill-outline font-round text-sm sm:text-base">参加費無料</span>
+            <span class="pill-outline font-round text-sm sm:text-base">屋内開催</span>
             <span class="pill-outline font-round text-sm sm:text-base">出入り自由</span>
             <span class="pill-outline font-round text-sm sm:text-base">未就学児〜大人まで</span>
           </div>
@@ -183,12 +184,13 @@ tailwind.config = {
           <div class="grid sm:grid-cols-[10rem_1fr] gap-1 sm:gap-4 p-5 lg:p-6 border-t-2 border-primary-100">
             <dt class="font-round text-sm font-bold text-soft leading-normal">会場</dt>
             <dd class="text-base text-ink leading-relaxed">
-              <strong class="font-bold">越谷レイクタウン kaze 1F 光の広場</strong>（埼玉県越谷市）
+              <strong class="font-bold">越谷レイクタウン kaze 1F 光の広場</strong>（屋内）<br>
+              埼玉県越谷市レイクタウン4丁目2番地2
             </dd>
           </div>
           <div class="grid sm:grid-cols-[10rem_1fr] gap-1 sm:gap-4 p-5 lg:p-6 border-t-2 border-primary-100">
             <dt class="font-round text-sm font-bold text-soft leading-normal">アクセス</dt>
-            <dd class="text-base text-ink leading-relaxed">JR武蔵野線「越谷レイクタウン駅」から徒歩すぐ</dd>
+            <dd class="text-base text-ink leading-relaxed">最寄り駅：JR武蔵野線「越谷レイクタウン駅」</dd>
           </div>
           <div class="grid sm:grid-cols-[10rem_1fr] gap-1 sm:gap-4 p-5 lg:p-6 border-t-2 border-primary-100">
             <dt class="font-round text-sm font-bold text-soft leading-normal">同時開催</dt>
@@ -212,6 +214,11 @@ tailwind.config = {
           </div>
         </dl>
       </div>
+      <a href="https://www.pref.saitama.lg.jp/a0507/news/page/news2026091703.html" target="_blank" rel="noopener noreferrer" class="font-round mt-6 inline-flex items-center gap-1.5 text-base font-bold text-primary-700 hover:text-primary-800 underline underline-offset-4 leading-normal">
+        埼玉県の報道発表（2026年9月17日）を見る
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+        <span class="sr-only">（新しいタブで開きます）</span>
+      </a>
     </div>
   </section>
 
@@ -435,7 +442,8 @@ tailwind.config = {
         <li class="font-round inline-flex items-center px-4 py-2 rounded-full bg-white border-2 border-primary-200 text-primary-800 text-[0.9375rem] font-bold leading-normal">使い捨てコンタクトレンズの空ケース</li>
         <li class="font-round inline-flex items-center px-4 py-2 rounded-full bg-white border-2 border-primary-200 text-primary-800 text-[0.9375rem] font-bold leading-normal">不要になった衣料品・雑貨品（「R-LOOP」回収ボックス）</li>
       </ul>
-      <p class="mt-4 text-sm text-body leading-relaxed">※ 衣料品・雑貨品は、株式会社BPLab／ブックオフコーポレーション株式会社のブースで回収します。持参なしでも体験に参加できます。</p>
+      <p class="mt-4 text-sm text-body leading-relaxed">※ 持ってこなくても、体験には参加できます。</p>
+      <p class="mt-1 text-sm text-body leading-relaxed">※ 衣料品・雑貨品は、株式会社BPLab／ブックオフコーポレーション株式会社のブースで回収します。持参なしでも体験に参加できます。</p>
     </div>
   </section>
 
@@ -507,7 +515,7 @@ tailwind.config = {
       <ul class="mt-8 grid sm:grid-cols-2 gap-4">
         <li class="bg-white rounded-2xl p-5 flex items-start gap-3 text-[0.9375rem] text-body leading-relaxed">
           <svg class="w-6 h-6 shrink-0 mt-0.5 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-          <span>荒天などにより、内容の変更や中止をする場合があります。当日の開催状況はこのページでお知らせします。</span>
+          <span>会場は屋内なので、雨の日でも予定どおり開催します。</span>
         </li>
         <li class="bg-white rounded-2xl p-5 flex items-start gap-3 text-[0.9375rem] text-body leading-relaxed">
           <svg class="w-6 h-6 shrink-0 mt-0.5 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
