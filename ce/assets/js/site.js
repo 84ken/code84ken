@@ -145,10 +145,10 @@
   var IC_PIN = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>';
   var IC_STAR = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/></svg>';
 
-  function eventCard(ev) {
+  function eventCard(ev, i) {
     var upcoming = ev.status === 'upcoming';
     var img = ev.photo
-      ? '<img src="' + esc(ev.photo) + '" alt="' + esc(ev.photoAlt || '') + '" loading="lazy" decoding="async" width="1200" height="800">'
+      ? '<img src="' + esc(ev.photo) + '" alt="' + esc(ev.photoAlt || '') + '" loading="' + (i < 2 ? 'eager' : 'lazy') + '" decoding="async" width="1200" height="800">'
       : '<span class="photo-placeholder block w-full h-full"></span>';
 
     var meta = metaRow(IC_CAL, ev.dateLabel) + metaRow(IC_PIN, ev.venue);
@@ -233,9 +233,10 @@
   var EVENT_LABEL = { 'koshigaya-2025': '越谷', 'hanyu-2026': '羽生' };
   var EVENT_YEAR  = { 'koshigaya-2025': '2025', 'hanyu-2026': '2026' };
 
-  function exhibitorCard(x) {
+  // i：一覧での順番。先頭の数枚は最初の画面に入るので遅延読み込みしない（表示速度のため）
+  function exhibitorCard(x, i) {
     var img = x.photo
-      ? '<img src="' + esc(x.photo) + '" alt="' + esc(x.photoAlt || (x.name + 'のブースの様子')) + '" loading="lazy" decoding="async" width="1200" height="800">'
+      ? '<img src="' + esc(x.photo) + '" alt="' + esc(x.photoAlt || (x.name + 'のブースの様子')) + '" loading="' + (i < 3 ? 'eager' : 'lazy') + '" decoding="async" width="1200" height="800">'
       : '<span class="photo-placeholder w-full h-full flex items-center justify-center">' +
           '<span class="font-round text-sm font-bold text-primary-800 leading-normal">写真は準備中です</span>' +
         '</span>';
