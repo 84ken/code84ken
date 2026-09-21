@@ -45,7 +45,7 @@
 <h2 id="jury">審査員</h2>
 <p>2つの公募の審査をお願いしています。芸術総合監督の野口菜美も審査に加わります。</p>
 
-<div class="mcard">
+<div class="mcard mcard-lead">
 <div class="mphoto"><img src="../media/taihei.webp" width="1045" height="1567" loading="lazy" alt="扇子を手に笑顔を見せる林家たい平さん"></div>
 <div class="mbody">
 <p class="mrole">反物デザイン公募・繭アート公募展</p>
@@ -56,7 +56,7 @@
 </div>
 </div>
 
-<div class="mcard">
+<div class="mcard mcard-lead">
 <div class="mphoto"><img src="../media/asami.webp" width="835" height="1044" loading="lazy" alt="ご自身の作品の前で話す浅見貴子さん"></div>
 <div class="mbody">
 <p class="mrole">繭アート公募展</p>
@@ -114,25 +114,51 @@
 
 <h2 id="committee">実行委員会</h2>
 <p>11名がそれぞれの専門を持ち寄って運営しています。お写真が届いた方から順に掲載します。</p>
-<div class="mcard">
+<div class="mgrid">
+<button class="mcard mopen" type="button" aria-haspopup="dialog" data-modal="mm-hashimoto">
 <div class="mphoto"><img src="../media/hashimoto.webp" width="954" height="1193" loading="lazy" alt="滝のそばで空を見上げる橋本健太郎"></div>
 <div class="mbody">
 <h3 class="mname">橋本 健太郎<span>HASHIMOTO Kentaro</span></h3>
+<p class="mtitle">株式会社スキーマ 取締役</p>
+<span class="mmore">プロフィール <i aria-hidden="true">→</i></span>
+</div>
+</button>
+
+<button class="mcard mopen" type="button" aria-haspopup="dialog" data-modal="mm-blank">
+<div class="mphoto mphoto-blank"><span>お写真<br>縦 4:5</span></div>
+<div class="mbody">
+<h3 class="mname">〔お名前〕<span>〔ふりがな〕</span></h3>
+<p class="mtitle">〔肩書・所属の正式表記／30字以内〕</p>
+<span class="mmore">プロフィール <i aria-hidden="true">→</i></span>
+</div>
+</button>
+</div>
+
+<dialog class="mmodal" id="mm-hashimoto" aria-labelledby="mm-hashimoto-name">
+<button class="mmodal-close" type="button" aria-label="閉じる">閉じる ×</button>
+<div class="mmodal-body">
+<div class="mmodal-photo"><img src="../media/hashimoto.webp" width="954" height="1193" loading="lazy" alt="滝のそばで空を見上げる橋本健太郎"></div>
+<div>
+<h3 class="mname" id="mm-hashimoto-name">橋本 健太郎<span>HASHIMOTO Kentaro</span></h3>
 <p class="mtitle">株式会社スキーマ 取締役</p>
 <p class="mbio">秩父在住。県内約700団体が参加する「SAITAMAリバーサポーターズ」の運営や「サーキュラーエコノミーラボ」の企画など、埼玉県庁の仕事を数多く手がけてきた。2020年から埼玉県 官民連携アドバイザー。Red Dot Design Award、German Design Award 受賞。</p>
 <p class="mlink"><a href="https://schema.tokyo/" target="_blank" rel="noopener">スキーマ</a><a href="https://tate-lab.com/" target="_blank" rel="noopener">たてラボ</a><a href="https://www.instagram.com/84ken" target="_blank" rel="noopener">Instagram</a><a href="https://x.com/84ken" target="_blank" rel="noopener">X</a></p>
 </div>
 </div>
+</dialog>
 
-<div class="mcard">
-<div class="mphoto mphoto-blank"><span>お写真<br>縦 4:5</span></div>
-<div class="mbody">
-<h3 class="mname">〔お名前〕<span>〔ふりがな〕</span></h3>
+<dialog class="mmodal" id="mm-blank" aria-labelledby="mm-blank-name">
+<button class="mmodal-close" type="button" aria-label="閉じる">閉じる ×</button>
+<div class="mmodal-body">
+<div class="mmodal-photo mphoto-blank"><span>お写真<br>縦 4:5</span></div>
+<div>
+<h3 class="mname" id="mm-blank-name">〔お名前〕<span>〔ふりがな〕</span></h3>
 <p class="mtitle">〔肩書・所属の正式表記／30字以内〕</p>
 <p class="mbio"><span class="blank">〔プロフィール 120字程度。どこで、どんな仕事をされてきたか。秩父との関わり。今回この芸術祭に加わった理由が一行あると、ぐっと伝わります〕</span></p>
 <p class="mlink blank-link">〔ウェブサイト・SNSのURL（任意）〕</p>
 </div>
 </div>
+</dialog>
 
 <h2 id="partners">協力</h2>
 <p>秩父の技術と場所をお借りしています。</p>
@@ -154,5 +180,27 @@
 <a class="text-link detail-back" href="../index.html">トップページへ戻る <span>&#8594;</span>
 </a>
 </main>
+<script>
+/* メンバーカード: クリックでプロフィールをポップアップ表示 */
+document.querySelectorAll('.mopen').forEach(function(b){
+  b.addEventListener('click',function(){
+    var d=document.getElementById(b.dataset.modal);
+    if(!d)return;
+    d.opener=b;
+    if(d.showModal)d.showModal(); else d.setAttribute('open','');
+  });
+});
+document.querySelectorAll('.mmodal').forEach(function(d){
+  function close(){ if(d.close)d.close(); else d.removeAttribute('open'); }
+  var c=d.querySelector('.mmodal-close');
+  if(c)c.addEventListener('click',close);
+  /* 背景（ダイアログ自身）をクリックしたら閉じる */
+  d.addEventListener('click',function(e){if(e.target===d)close()});
+  /* Escape で閉じる（ブラウザ標準に頼らず明示的に処理） */
+  d.addEventListener('keydown',function(e){if(e.key==='Escape'||e.key==='Esc'){e.preventDefault();close()}});
+  /* 閉じたら開いたカードにフォーカスを戻す */
+  d.addEventListener('close',function(){if(d.opener)d.opener.focus()});
+});
+</script>
 </body>
 </html>

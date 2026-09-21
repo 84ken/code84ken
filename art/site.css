@@ -538,3 +538,47 @@ header nav{gap:22px}
 .menu-ig em{font-style:normal;opacity:.6}
 header>.nav-ig{margin-left:auto}
 .mcard .mphoto img{object-position:50% 40%}
+
+/* --- 実行委員会: 人数が多いため2列・小型にして一覧性を優先 --- */
+.mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:26px;align-items:start}
+.mgrid .mcard{grid-template-columns:124px minmax(0,1fr);gap:20px;padding:22px;margin-top:0;height:100%}
+.mgrid .mname{font-size:19px;margin-bottom:4px}
+.mgrid .mname span{display:block;margin:5px 0 0;font-size:11px;letter-spacing:.1em}
+.mgrid .mtitle{font-size:12px;margin-bottom:11px;line-height:1.7}
+.mgrid .mbio{font-size:13px;line-height:1.85}
+.mgrid .mlink{margin-top:12px;font-size:12px;gap:6px 14px}
+.mgrid .mphoto-blank span{font-size:11px;letter-spacing:.1em;line-height:1.8}
+@media(max-width:1040px){.mgrid{grid-template-columns:1fr}}
+@media(max-width:760px){
+  .mgrid{gap:16px}
+  .mgrid .mcard{grid-template-columns:1fr;gap:16px;padding:20px}
+  .mgrid .mphoto{max-width:168px}
+}
+
+/* --- メンバーカードのボタン化とプロフィールのポップアップ --- */
+.mopen{font:inherit;color:inherit;text-align:left;width:100%;cursor:pointer;
+  background:#fff;transition:border-color .25s,transform .25s}
+.mopen:hover{border-color:#b3b0a4;transform:translateY(-2px)}
+.mopen:focus-visible{outline:2px solid #8a7a55;outline-offset:2px}
+.mmore{display:inline-flex;align-items:center;gap:7px;margin-top:12px;
+  font-size:12px;letter-spacing:.08em;color:#6f7567;border-bottom:1px solid #c6c9bb;padding-bottom:3px}
+.mopen:hover .mmore{color:var(--ink);border-color:#8a7a55}
+.mmore i{font-style:normal;transition:transform .25s}
+.mopen:hover .mmore i{transform:translateX(3px)}
+
+.mmodal{border:0;padding:0;max-width:760px;width:calc(100% - 40px);
+  background:#fff;color:var(--ink);box-shadow:0 30px 70px #00000026}
+.mmodal::backdrop{background:#2b2c2966;backdrop-filter:blur(2px)}
+.mmodal-close{position:sticky;top:0;margin-left:auto;display:block;
+  font:inherit;font-size:12px;letter-spacing:.08em;color:#6f7567;
+  background:#fff;border:0;border-bottom:1px solid #d9d7cf;padding:16px 26px;cursor:pointer}
+.mmodal-close:hover{color:var(--ink)}
+.mmodal-body{display:grid;grid-template-columns:230px minmax(0,1fr);gap:30px;
+  align-items:start;padding:8px 34px 36px}
+.mmodal-photo{width:100%;aspect-ratio:4/5;overflow:hidden;background:#e9e5df;border:1px solid #d9d7cf}
+.mmodal-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.mmodal .mbio{font-size:14.5px;line-height:1.95}
+@media(max-width:700px){
+  .mmodal-body{grid-template-columns:1fr;gap:20px;padding:6px 22px 28px}
+  .mmodal-photo{max-width:190px}
+}
