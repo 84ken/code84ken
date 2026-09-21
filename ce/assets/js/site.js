@@ -11,6 +11,7 @@
    6. フッターの年表示          …… [data-year]
    7. SNSシェア                 …… [data-share]
    8. 動画ポップアップ          …… [data-video-open]
+   9. 詳細ポップアップ          …… [data-dialog-open]（出展企業の詳細など）
 
    データは /assets/data/*.json を編集すれば反映されます。
    ========================================================= */
@@ -500,11 +501,33 @@
     });
   }
 
+  /* ---------- 詳細ポップアップ ----------
+     [data-dialog-open="dialogのid"] を押すと、ページ内の <dialog> を開く。
+     Esc・×ボタン・外側のクリックで閉じる。 */
+
+  function initDialogs() {
+    $$('[data-dialog-open]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var d = document.getElementById(btn.getAttribute('data-dialog-open'));
+        if (!d || typeof d.showModal !== 'function') return;
+        d.showModal();
+        var body = $('.ex-dialog-body', d);
+        if (body) body.scrollTop = 0;
+      });
+    });
+    $$('dialog.ex-dialog').forEach(function (d) {
+      $$('[data-dialog-close]', d).forEach(function (b) {
+        b.addEventListener('click', function () { d.close(); });
+      });
+      d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+    });
+  }
+
   /* ---------- 起動 ---------- */
 
   function boot() {
     initNav(); initNews(); initEvents(); initExhibitors();
-    initCounters(); initYear(); initShare(); initVideo();
+    initCounters(); initYear(); initShare(); initVideo(); initDialogs();
   }
 
   // ビルド（Node）でも同じ描画関数で一覧を事前描画する（検索エンジンがJSなしでも読めるように）
