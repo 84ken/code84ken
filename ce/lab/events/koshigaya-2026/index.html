@@ -48,8 +48,8 @@ tailwind.config = {
   }
 }
 </script>
-<link rel="stylesheet" href="/assets/css/site.css?v=64ddd2f8">
-<script src="/assets/js/site.js?v=5f9d6df8" defer></script>
+<link rel="stylesheet" href="/assets/css/site.css?v=f5c8b9d1">
+<script src="/assets/js/site.js?v=bc88ca07" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://ce.llschema.com/"},{"@type":"ListItem","position":2,"name":"ラボについて","item":"https://ce.llschema.com/lab/"},{"@type":"ListItem","position":3,"name":"開催情報","item":"https://ce.llschema.com/lab/events/"},{"@type":"ListItem","position":4,"name":"越谷（2026年10月）","item":"https://ce.llschema.com/lab/events/koshigaya-2026/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Event","name":"サーキュラーエコノミーラボ in 越谷","description":"子どもも大人も一緒に、未来の“めぐる暮らし”を体験するイベント。ワークショップや展示で、資源の循環利用の取組を遊びながら学べます。","startDate":"2026-10-03T11:00+09:00","endDate":"2026-10-04T17:00+09:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","inLanguage":"ja","isAccessibleForFree":true,"image":["https://ce.llschema.com/assets/img/ogp.jpg"],"url":"https://ce.llschema.com/lab/events/koshigaya-2026/","location":{"@type":"Place","name":"越谷レイクタウン kaze 1F 光の広場","address":{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"埼玉県","addressLocality":"越谷市"}},"offers":{"@type":"Offer","price":"0","priceCurrency":"JPY","availability":"https://schema.org/InStock","url":"https://ce.llschema.com/lab/events/koshigaya-2026/","validFrom":"2026-08-12"},"organizer":{"@type":"Organization","name":"埼玉県 環境部 資源循環推進課","url":"https://www.pref.saitama.lg.jp/a0507/circular/keihatsu.html"}}</script>
 </head>
@@ -192,7 +192,7 @@ tailwind.config = {
           </div>
           <div class="grid sm:grid-cols-[10rem_1fr] gap-1 sm:gap-4 p-5 lg:p-6 border-t-2 border-primary-100">
             <dt class="font-round text-sm font-bold text-soft leading-normal">同時開催</dt>
-            <dd class="text-base text-ink leading-relaxed">Lake and Peace 2026</dd>
+            <dd class="text-base text-ink leading-relaxed"><a href="https://www.lake-and-peace.jp/post/lakeandpeace2026100304" target="_blank" rel="noopener noreferrer" class="font-bold text-primary-700 underline underline-offset-4 hover:text-primary-800">Lake and Peace 2026<span class="sr-only">（新しいタブで開きます）</span></a></dd>
           </div>
           <div class="grid sm:grid-cols-[10rem_1fr] gap-1 sm:gap-4 p-5 lg:p-6 border-t-2 border-primary-100">
             <dt class="font-round text-sm font-bold text-soft leading-normal">参加費</dt>
@@ -244,114 +244,153 @@ tailwind.config = {
 
       <ul class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">プチプチ株式会社</h3>
-          <p class="mt-1 text-xs text-soft leading-normal">旧・川上産業株式会社（2026年10月1日 社名変更）</p>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">ミニパクを回してプチプチ<sup>®</sup>をつぶし、1万粒にひとつのハート型「ラッキープチ」も探そう！</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/hanyu-kawakami-booth.jpg" alt="プチプチ（旧・川上産業）のブース。プチプチ®つぶし機「ミニパク」とプチプチのロールが並ぶ（羽生会場）" loading="lazy" decoding="async" width="1080" height="1620"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">プチプチ株式会社</h3>
+            <p class="mt-1 text-xs text-soft leading-normal">旧・川上産業株式会社（2026年10月1日 社名変更）</p>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">ミニパクを回してプチプチ<sup>®</sup>をつぶし、1万粒にひとつのハート型「ラッキープチ」も探そう！</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">あいえいプラン株式会社</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">使い終わった食用油が、エネルギーに生まれ変わる地域循環の仕組みを紹介します。</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-aieiplan.jpg" alt="使い終わった天ぷら油を回収する「キッチンエナジー大作戦」のポリタンク" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">あいえいプラン株式会社</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">使い終わった食用油が、エネルギーに生まれ変わる地域循環の仕組みを紹介します。</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">石坂産業株式会社</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">廃棄物の中から、クルマの部品になるプラスチックを探し出そう！</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-ishizaka.jpg" alt="軍手をつけて、混ざった廃棄物の中からプラスチックを探し出す手元" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">石坂産業株式会社</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">廃棄物の中から、クルマの部品になるプラスチックを探し出そう！</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">埼玉県 環境部 資源循環推進課</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">資源循環に関するパネル展示と動画放映。埼玉県の取り組みを紹介します。</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/hanyu-saitama.jpg" alt="充電式電池の分別回収への協力を呼びかける掲示（羽生会場）" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">埼玉県 環境部 資源循環推進課</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">資源循環に関するパネル展示と動画放映。埼玉県の取り組みを紹介します。</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社BPLab</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">着なくなったTシャツを細く切って編み、世界にひとつのミサンガを作ろう！</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-bplab.jpg" alt="細く切ったTシャツを編んでミサンガをつくる手元" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社BPLab</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">着なくなったTシャツを細く切って編み、世界にひとつのミサンガを作ろう！</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社パイロットコーポレーション</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">回収したペンのリサイクル材でマイペン作り。蛍光ペンのインキ補充にも挑戦！</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-pilot.jpg" alt="テーブルでペンづくりに取り組む来場者" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社パイロットコーポレーション</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">回収したペンのリサイクル材でマイペン作り。蛍光ペンのインキ補充にも挑戦！</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">東武商事株式会社</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">使用済みプラスチックでキーホルダー作り。朝顔鉢を再利用した熊野筆で水書も体験！</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-tobushoji.jpg" alt="使用済みプラスチックでつくった星のパーツのキーホルダー" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">東武商事株式会社</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">使用済みプラスチックでキーホルダー作り。朝顔鉢を再利用した熊野筆で水書も体験！</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社サンゲツ</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">壁紙見本帳の分別と、剥がした壁紙サンプルを使ったフォトフレーム作りでリサイクルを学べます。</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-sangetsu.jpg" alt="壁紙サンプルを貼り合わせてつくったエコフォトフレーム" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社サンゲツ</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">壁紙見本帳の分別と、剥がした壁紙サンプルを使ったフォトフレーム作りでリサイクルを学べます。</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社ニソール</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">植物と廃材を利用して電気をつくり、LEDを光らせる科学工作体験。</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-nisole.jpg" alt="花のプランターの土に電極を差し込んで電気をつくる実験" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-sun text-navy text-sm font-bold leading-normal">10/3</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社ニソール</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">植物と廃材を利用して電気をつくり、LEDを光らせる科学工作体験。</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">有限会社河内</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">埼玉の命を未来へ。「彩の国黒豚」レザーで楽しむアップサイクル貼り絵づくり。</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-kawachi.jpg" alt="「彩の国黒豚」のレザーでつくったバッグや小物" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">有限会社河内</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">埼玉の命を未来へ。「彩の国黒豚」レザーで楽しむアップサイクル貼り絵づくり。</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">新井紙材株式会社</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">印刷工場の未使用巨大ロール紙に、寝そべってお絵描き！描いた紙は再び紙の原料になります。</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-arai.jpg" alt="床に広げた大きなロール紙に寝そべって絵を描く子どもたち" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">新井紙材株式会社</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">印刷工場の未使用巨大ロール紙に、寝そべってお絵描き！描いた紙は再び紙の原料になります。</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社シード</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">コンタクトレンズの空き箱とアルミ蓋で、きらめく万華鏡づくり！空ケース回収で資源循環も学ぼう。</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/koshigaya26-seed.jpg" alt="コンタクトレンズの空き箱でつくった万華鏡をのぞく子ども" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">株式会社シード</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">コンタクトレンズの空き箱とアルミ蓋で、きらめく万華鏡づくり！空ケース回収で資源循環も学ぼう。</p>
+          </div>
         </li>
 
-        <li class="card-y p-5 sm:p-6 flex flex-col">
-          <p class="flex flex-wrap gap-1.5">
-            <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
-          </p>
-          <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">サーキュラーエコノミー推進センター埼玉</h3>
-          <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">Tシャツがバッグに、バナナの繊維が服に！クイズでサステナブルファッションを楽しく学ぼう！</p>
-          <p class="mt-3 text-xs text-soft leading-relaxed">協力：MNインターファッション株式会社／株式会社ニィニ／Gab appcycle株式会社／Curelabo株式会社</p>
+        <li class="card-y overflow-hidden flex flex-col">
+          <div class="photo-figure aspect-[3/2] bg-primary-50"><img src="/assets/img/photo/hanyu-kimura.jpg" alt="会場に設置された衣料品回収ボックス（羽生会場）" loading="lazy" decoding="async" width="1200" height="800"></div>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <p class="flex flex-wrap gap-1.5">
+              <span class="font-round inline-flex items-center h-7 px-3 rounded-full bg-tangerine text-navy text-sm font-bold leading-normal">10/4</span>
+            </p>
+            <h3 class="font-round mt-3 text-lg font-bold text-primary-800 leading-snug">サーキュラーエコノミー推進センター埼玉</h3>
+            <p class="mt-3 text-[0.9375rem] text-body leading-relaxed">Tシャツがバッグに、バナナの繊維が服に！クイズでサステナブルファッションを楽しく学ぼう！</p>
+            <p class="mt-3 text-xs text-soft leading-relaxed">協力：MNインターファッション株式会社／株式会社ニィニ／Gab appcycle株式会社／Curelabo株式会社</p>
+          </div>
         </li>
 
       </ul>
@@ -413,8 +452,8 @@ tailwind.config = {
         「水辺からはじまる循環のカタチ」をテーマに、食・音楽・自然体験を楽しめます。
         同じ日・同じ場所で開くので、あわせてお楽しみください。
       </p>
-      <a href="https://www.lake-and-peace.jp/" target="_blank" rel="noopener noreferrer" class="font-round mt-6 inline-flex items-center gap-1.5 text-base font-bold text-sun hover:text-sun-300 leading-normal">
-        Lake and Peace 公式サイト
+      <a href="https://www.lake-and-peace.jp/post/lakeandpeace2026100304" target="_blank" rel="noopener noreferrer" class="font-round mt-6 inline-flex items-center gap-1.5 text-base font-bold text-sun hover:text-sun-300 leading-normal">
+        「Lake and Peace 2026」くわしくはこちら
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
         <span class="sr-only">（新しいタブで開きます）</span>
       </a>

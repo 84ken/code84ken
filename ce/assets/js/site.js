@@ -10,6 +10,7 @@
    5. 実績カウンターのアニメ    …… [data-count-to]
    6. フッターの年表示          …… [data-year]
    7. SNSシェア                 …… [data-share]
+   8. 動画ポップアップ          …… [data-video-open]
 
    データは /assets/data/*.json を編集すれば反映されます。
    ========================================================= */
@@ -437,11 +438,48 @@
     });
   }
 
+  /* ---------- 動画ポップアップ ----------
+     [data-video-open="YouTubeのID"] を押すと <dialog> で再生。閉じたら iframe ごと外して止める。 */
+
+  function initVideo() {
+    var openers = document.querySelectorAll('[data-video-open]');
+    if (!openers.length) return;
+
+    var dlg = document.createElement('dialog');
+    dlg.className = 'video-dialog';
+    dlg.setAttribute('aria-label', '動画');
+    dlg.innerHTML =
+      '<button type="button" class="video-dialog-close" data-video-close aria-label="動画を閉じる">' +
+        '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>' +
+      '</button>' +
+      '<div class="video-frame" data-video-host></div>';
+    document.body.appendChild(dlg);
+    var host = dlg.querySelector('[data-video-host]');
+
+    function close() { if (dlg.open) dlg.close(); }
+    dlg.addEventListener('close', function () { host.innerHTML = ''; });
+    dlg.querySelector('[data-video-close]').addEventListener('click', close);
+    // 背景（動画の外側）をクリックしても閉じる
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+
+    Array.prototype.forEach.call(openers, function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-video-open');
+        var title = btn.getAttribute('data-video-title') || '動画';
+        dlg.setAttribute('aria-label', title);
+        host.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+          '?autoplay=1&rel=0" title="' + esc(title) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        if (typeof dlg.showModal === 'function') dlg.showModal();
+        else window.open('https://www.youtube.com/watch?v=' + encodeURIComponent(id), '_blank', 'noopener');
+      });
+    });
+  }
+
   /* ---------- 起動 ---------- */
 
   function boot() {
     initNav(); initNews(); initEvents(); initExhibitors();
-    initCounters(); initYear(); initShare();
+    initCounters(); initYear(); initShare(); initVideo();
   }
 
   if (document.readyState === 'loading') {
