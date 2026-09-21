@@ -302,6 +302,7 @@ header>.text-link{gap:12px;white-space:nowrap}
 }
 
 .person[data-person="taihei"] .portrait img{transform:scale(1.18);transform-origin:50% 30%}
+.person[data-person="noguchi"] .portrait img{object-position:44% 26%}
 .material-grid .wave img{aspect-ratio:4/5;object-position:50% 20%}
 
 
@@ -434,3 +435,28 @@ header nav{gap:22px}
 .together-links span{font-size:23px}
 }
 
+
+/* --- メンバー紹介カード --- */
+.mcard{display:grid;grid-template-columns:210px minmax(0,1fr);gap:34px;align-items:start;
+  border:1px solid #d9d7cf;padding:30px;margin-top:26px;background:#fff}
+.mcard-lead{grid-template-columns:280px minmax(0,1fr)}
+.mphoto{width:100%;aspect-ratio:4/5;overflow:hidden;background:#e9e5df;border:1px solid #d9d7cf}
+.mphoto img{display:block;width:100%;height:100%;object-fit:cover;object-position:44% 26%}
+.mphoto-blank{display:grid;place-items:center;border-style:dashed}
+.mphoto-blank span{font-size:12px;color:#6e7566;letter-spacing:.14em;text-align:center;line-height:1.9}
+.mrole{font-size:11px;letter-spacing:.16em;color:#8a7a55;margin:0 0 10px}
+.mname{font-family:var(--serif);font-size:27px;font-weight:400;letter-spacing:.06em;margin:0 0 6px}
+.mname span{font-size:12px;color:var(--muted);margin-left:12px;letter-spacing:.08em}
+.mtitle{font-size:13px;color:var(--muted);margin:0 0 16px}
+.mbio{font-size:15px;line-height:2;margin:0}
+.blank{background:#f2f3ed;border:1px dashed #c6c9bb;color:#6e7566;padding:1px 6px}
+.mcount{font-size:12px;color:var(--muted);margin:12px 0 0}
+.mcharge{margin:18px 0 0;padding-top:14px;border-top:1px solid #e3e1d9;font-size:13px;color:var(--muted)}
+.mcharge b{color:var(--ink)}
+.mdeadline{font-family:var(--serif);font-size:24px;letter-spacing:.06em;margin-top:40px}
+@media (max-width:760px){
+  .mcard,.mcard-lead{grid-template-columns:1fr;gap:20px;padding:20px}
+  .mphoto{max-width:260px}
+  .mname{font-size:23px}
+  .mbio{font-size:15px}
+}
