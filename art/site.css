@@ -460,3 +460,14 @@ header nav{gap:22px}
   .mname{font-size:23px}
   .mbio{font-size:15px}
 }
+
+/* --- SNS導線 --- */
+.footer-bottom .sns{display:inline-flex;align-items:center;gap:8px}
+.sns em{font-style:normal;opacity:.72;letter-spacing:.04em}
+.sns span{font-size:1.1em}
+.page-sns{margin-top:60px;padding:22px 26px;border:1px solid #d9d7cf;background:#fff;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.page-sns p{margin:0;font-size:14px;color:var(--muted);max-width:none}
+.page-sns .sns{display:inline-flex;align-items:center;gap:8px;font-size:15px;
+  border-bottom:1px solid #a6a79b;padding-bottom:4px;white-space:nowrap}
+@media (max-width:620px){.page-sns{padding:18px 20px}.page-sns p{font-size:13.5px}}
