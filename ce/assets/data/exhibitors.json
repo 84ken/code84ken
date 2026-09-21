@@ -106,8 +106,8 @@
     },
     {
       "id": "kawakami",
-      "name": "川上産業",
-      "kana": "かわかみさんぎょう",
+      "name": "プチプチ",
+      "kana": "ぷちぷち",
       "events": [
         "koshigaya-2025",
         "hanyu-2026"
@@ -121,7 +121,8 @@
       "photo": "/assets/img/photo/hanyu-kawakami-booth.jpg",
       "photoAlt": "川上産業のブース。プチプチ®つぶし機「ミニパク」とプチプチのロール、リサイクルBOXが並ぶ",
       "ceRegistered": true,
-      "url": null
+      "url": null,
+      "formerName": "旧・川上産業株式会社（2026年10月1日 社名変更）"
     },
     {
       "id": "seed",

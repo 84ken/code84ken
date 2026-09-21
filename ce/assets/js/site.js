@@ -251,6 +251,7 @@
         '<div class="absolute right-3 top-3 flex gap-1.5">' + dayBadges + '</div>' +
         '<div class="p-5 lg:p-6 flex flex-col flex-1">' +
           '<h3 class="font-round text-lg font-bold text-primary-700">' + esc(x.name) + '</h3>' +
+          (x.formerName ? '<p class="text-xs text-soft leading-normal">' + esc(x.formerName) + '</p>' : '') +
           (x.partner ? '<p class="text-sm text-soft leading-relaxed">' + esc(x.partner) + '</p>' : '') +
           '<p class="mt-3 text-[0.9375rem] text-body leading-relaxed flex-1">' + esc(x.summary) + '</p>' +
           '<div class="mt-4 flex flex-wrap gap-2 leading-normal">' + tagBadges + '</div>' +
