@@ -506,3 +506,8 @@ header nav{gap:22px}
 .logo-slot img{max-height:74px;max-width:100%;object-fit:contain}
 .logo-item b{display:block;font-size:14px;margin-bottom:4px}
 .logo-item>span{font-size:12px;color:var(--muted);line-height:1.8}
+.mlink{margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px}
+.mlink a{border-bottom:1px solid #a6a79b;padding-bottom:2px}
+.mlink a::after{content:" ↗";font-size:.9em;color:var(--muted)}
+.mlink.blank-link{color:#6e7566;background:#f2f3ed;border:1px dashed #c6c9bb;
+  padding:4px 8px;display:inline-block;font-size:12px}
