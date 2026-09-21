@@ -582,3 +582,57 @@ header>.nav-ig{margin-left:auto}
   .mmodal-body{grid-template-columns:1fr;gap:20px;padding:6px 22px 28px}
   .mmodal-photo{max-width:190px}
 }
+
+/* =====================================================================
+   玉虫（たまむし）— 秩父銘仙の色
+   経糸と緯糸の色が違う銘仙は、見る角度で色が揺らぐ。
+   マウスオーバー＝角度が変わる瞬間に、藍・藤・金茶が差す。
+   色はサイト掲載の銘仙写真（meisen-floral / meisen-wave）から抽出。
+   ===================================================================== */
+:root{
+  --ai:#2f4a5e;        /* 藍   */
+  --fuji:#8b8fb0;      /* 藤   */
+  --kincha:#a86e2c;    /* 金茶 */
+  --tamamushi:linear-gradient(90deg,var(--ai) 0%,var(--fuji) 52%,var(--kincha) 100%);
+  --dye:cubic-bezier(.22,.61,.36,1);
+}
+
+/* --- 常時見える、ごく細い色の気配（hoverのない端末でも色が届く） --- */
+.progressbar i{background:linear-gradient(180deg,var(--ai),var(--fuji) 55%,var(--kincha)) fixed}
+.date{color:var(--ai)}
+.mrole{color:var(--kincha)}
+::selection{background:#8b8fb059;color:var(--ink)}
+
+/* --- リンク：透明度で薄れるのではなく、藍に染まる --- */
+a{transition:color .35s var(--dye),opacity .3s}
+a:hover{opacity:1;color:var(--ai)}
+.brand:hover{opacity:.82;color:inherit}
+.nav-ig:hover,.menu-ig:hover{opacity:1;color:var(--fuji)}
+.mmodal-close:hover{color:var(--ai)}
+
+/* --- 下線：灰色の線が、玉虫の糸に置き換わって左から走る --- */
+.text-link,.nav-call,.mlink a,.mmore,.chrono summary{
+  background-image:var(--tamamushi);background-repeat:no-repeat;
+  background-position:0 100%;background-size:0 1px;
+  transition:background-size .55s var(--dye),color .35s var(--dye),border-color .35s var(--dye)}
+.text-link:hover,.text-link:focus-visible,
+.mlink a:hover,.mlink a:focus-visible,
+.mopen:hover .mmore,.mopen:focus-visible .mmore,
+.chrono summary:hover{background-size:100% 1px;border-bottom-color:transparent}
+.nav-call{background-size:100% 1px;border-bottom-color:transparent}  /* 公募CTAは常時、糸の色 */
+.nav-call:hover{color:var(--ai)}
+
+/* --- 暗色ボタン：墨が藍に染まる --- */
+.dark{transition:background-color .45s var(--dye),color .35s}
+a.dark:hover,.dark:hover,.dark:focus-visible{background:var(--ai);color:#fff}
+
+/* --- メンバーカード：縁が藤に染まる --- */
+.mopen{transition:border-color .45s var(--dye),transform .3s var(--dye)}
+.mopen:hover,.mopen:focus-visible{border-color:var(--fuji)}
+.mopen:hover .mmore,.mopen:focus-visible .mmore{color:var(--ai)}
+.mopen:focus-visible{outline-color:var(--fuji)}
+
+/* --- 動きを減らす設定では、色は差すが糸は走らない --- */
+@media (prefers-reduced-motion:reduce){
+  .text-link,.nav-call,.mlink a,.mmore,.chrono summary,.dark,.mopen,a{transition-duration:.01s}
+}
