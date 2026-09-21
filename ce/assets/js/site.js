@@ -104,13 +104,16 @@
       '</li>';
   }
 
+  function newsHTML(d, limit) {
+    return '<ul class="space-y-3">' + d.news.slice(0, limit || d.news.length).map(newsItem).join('') + '</ul>';
+  }
+
   function initNews() {
     var hosts = $$('[data-news]');
     if (!hosts.length) return;
     getJSON('news.json').then(function (d) {
       hosts.forEach(function (host) {
-        var limit = parseInt(host.getAttribute('data-limit'), 10) || d.news.length;
-        host.innerHTML = '<ul class="space-y-3">' + d.news.slice(0, limit).map(newsItem).join('') + '</ul>';
+        host.innerHTML = newsHTML(d, parseInt(host.getAttribute('data-limit'), 10));
       });
     }).catch(function (e) {
       hosts.forEach(function (h) { fail(h, 'お知らせを読み込めませんでした。'); });
@@ -191,16 +194,19 @@
       : '<article class="h-full"><div class="flex flex-col h-full ' + frame + ' overflow-hidden">' + inner + '</div></article>';
   }
 
+  function eventsHTML(d, status, limit) {
+    return d.events.filter(function (e) { return !status || e.status === status; })
+      .slice(0, limit || 99).map(eventCard).join('');
+  }
+
   function initEvents() {
     var hosts = $$('[data-events]');
     if (!hosts.length) return;
     getJSON('events.json').then(function (d) {
       hosts.forEach(function (host) {
-        var status = host.getAttribute('data-status');
-        var limit = parseInt(host.getAttribute('data-limit'), 10) || 99;
-        var list = d.events.filter(function (e) { return !status || e.status === status; }).slice(0, limit);
-        if (!list.length) { fail(host, '該当する開催情報はありません。'); return; }
-        host.innerHTML = list.map(eventCard).join('');
+        var html = eventsHTML(d, host.getAttribute('data-status'), parseInt(host.getAttribute('data-limit'), 10));
+        if (!html) { fail(host, '該当する開催情報はありません。'); return; }
+        host.innerHTML = html;
       });
     }).catch(function (e) {
       hosts.forEach(function (h) { fail(h, '開催情報を読み込めませんでした。'); });
@@ -266,6 +272,10 @@
       '</article>';
   }
 
+  function exhibitorsHTML(d) {
+    return d.exhibitors.map(exhibitorCard).join('');
+  }
+
   function initExhibitors() {
     var host = $('[data-exhibitors]');
     if (!host) return;
@@ -286,7 +296,7 @@
     }
 
     getJSON('exhibitors.json').then(function (d) {
-      host.innerHTML = d.exhibitors.map(exhibitorCard).join('');
+      host.innerHTML = exhibitorsHTML(d);
 
       var state = { event: 'all', tag: 'all' };
       var ON = 'bg-primary-700 border-primary-700 text-white';
@@ -481,6 +491,12 @@
     initNav(); initNews(); initEvents(); initExhibitors();
     initCounters(); initYear(); initShare(); initVideo();
   }
+
+  // ビルド（Node）でも同じ描画関数で一覧を事前描画する（検索エンジンがJSなしでも読めるように）
+  if (typeof window !== 'undefined') {
+    window.CELabRender = { newsHTML: newsHTML, eventsHTML: eventsHTML, exhibitorsHTML: exhibitorsHTML };
+  }
+  if (typeof document === 'undefined') return;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
