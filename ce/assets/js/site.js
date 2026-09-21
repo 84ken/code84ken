@@ -44,6 +44,20 @@
     return p[0] + '.' + p[1] + '.' + p[2];
   }
 
+  // ビルド時に同じ内容を描いてあれば描き直さない（写真の再読み込みを防ぐ）。
+  // JSON だけ更新して再ビルドしていない場合は、中身が変わるので描き直す。
+  function sig(html) {
+    var h = 5381;
+    for (var i = 0; i < html.length; i++) h = ((h << 5) + h + html.charCodeAt(i)) | 0;
+    return (h >>> 0).toString(36) + '-' + html.length;
+  }
+
+  function fill(host, html) {
+    if (host.getAttribute('data-sig') === sig(html)) return;
+    host.innerHTML = html;
+    host.setAttribute('data-sig', sig(html));
+  }
+
   function fail(el, msg) {
     el.innerHTML = '<p class="text-base text-soft text-center py-12">' + esc(msg) + '</p>';
   }
@@ -113,7 +127,7 @@
     if (!hosts.length) return;
     getJSON('news.json').then(function (d) {
       hosts.forEach(function (host) {
-        host.innerHTML = newsHTML(d, parseInt(host.getAttribute('data-limit'), 10));
+        fill(host, newsHTML(d, parseInt(host.getAttribute('data-limit'), 10)));
       });
     }).catch(function (e) {
       hosts.forEach(function (h) { fail(h, 'お知らせを読み込めませんでした。'); });
@@ -206,7 +220,7 @@
       hosts.forEach(function (host) {
         var html = eventsHTML(d, host.getAttribute('data-status'), parseInt(host.getAttribute('data-limit'), 10));
         if (!html) { fail(host, '該当する開催情報はありません。'); return; }
-        host.innerHTML = html;
+        fill(host, html);
       });
     }).catch(function (e) {
       hosts.forEach(function (h) { fail(h, '開催情報を読み込めませんでした。'); });
@@ -296,7 +310,7 @@
     }
 
     getJSON('exhibitors.json').then(function (d) {
-      host.innerHTML = exhibitorsHTML(d);
+      fill(host, exhibitorsHTML(d));
 
       var state = { event: 'all', tag: 'all' };
       var ON = 'bg-primary-700 border-primary-700 text-white';
@@ -494,7 +508,7 @@
 
   // ビルド（Node）でも同じ描画関数で一覧を事前描画する（検索エンジンがJSなしでも読めるように）
   if (typeof window !== 'undefined') {
-    window.CELabRender = { newsHTML: newsHTML, eventsHTML: eventsHTML, exhibitorsHTML: exhibitorsHTML };
+    window.CELabRender = { newsHTML: newsHTML, eventsHTML: eventsHTML, exhibitorsHTML: exhibitorsHTML, sig: sig };
   }
   if (typeof document === 'undefined') return;
 
