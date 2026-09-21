@@ -649,3 +649,9 @@ a.dark:hover,.dark:hover,.dark:focus-visible{background:var(--ai);color:#fff}
 @media (prefers-reduced-motion:reduce){
   .text-link,.nav-call,.mlink a,.mmore,.chrono summary,.dark,.mopen,a{transition-duration:.01s}
 }
+
+/* モーダル：ダイアログ自身にフォーカスを置くため、そのリングは出さない。
+   閉じるボタンはキーボード操作のときだけ内側にリングを出す */
+.mmodal:focus,.mmodal:focus-visible{outline:none}
+.mmodal-close:focus{outline:none}
+.mmodal-close:focus-visible{outline:2px solid var(--ai);outline-offset:-2px}

@@ -142,7 +142,7 @@
 </button>
 </div>
 
-<dialog class="mmodal" id="mm-hashimoto" aria-labelledby="mm-hashimoto-name">
+<dialog class="mmodal" tabindex="-1" id="mm-hashimoto" aria-labelledby="mm-hashimoto-name">
 <button class="mmodal-close" type="button" aria-label="閉じる">閉じる ×</button>
 <div class="mmodal-body">
 <div class="mmodal-photo"><img src="../media/hashimoto.webp" width="954" height="1193" loading="lazy" alt="滝のそばで空を見上げる橋本健太郎"></div>
@@ -155,7 +155,7 @@
 </div>
 </dialog>
 
-<dialog class="mmodal" id="mm-blank" aria-labelledby="mm-blank-name">
+<dialog class="mmodal" tabindex="-1" id="mm-blank" aria-labelledby="mm-blank-name">
 <button class="mmodal-close" type="button" aria-label="閉じる">閉じる ×</button>
 <div class="mmodal-body">
 <div class="mmodal-photo mphoto-blank"><span>お写真<br>縦 4:5</span></div>
@@ -196,6 +196,9 @@ document.querySelectorAll('.mopen').forEach(function(b){
     if(!d)return;
     d.opener=b;
     if(d.showModal)d.showModal(); else d.setAttribute('open','');
+    /* 初期フォーカスは閉じるボタンではなくダイアログ本体へ。
+       ボタンに当たるとフォーカスリングが枠線のように見えてしまうため */
+    d.focus();
   });
 });
 document.querySelectorAll('.mmodal').forEach(function(d){
