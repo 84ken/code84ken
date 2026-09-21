@@ -25,7 +25,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: art/
-          server-dir: public_html/art.schema.tokyo/
+          server-dir: public_html/chichibu-art.jp/
           exclude: |
             **/.git*
             **/.git*/**
