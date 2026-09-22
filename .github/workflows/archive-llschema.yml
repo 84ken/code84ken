@@ -1,0 +1,69 @@
+name: Archive llschema (手動・1回だけ)
+
+# 現行の llschema.com のファイルを、同じサーバーの archive/ フォルダへ移す。
+# 削除はしない。移動するだけなので https://llschema.com/archive/ で引き続き見られる。
+#
+# 使い方：GitHubのActionsタブ → このワークフロー → Run workflow →
+#         confirm欄に archive と入力して実行。
+#
+# 実行後、新サイトを push すれば llschema.com 直下に上がる。
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: '実行するには archive と入力'
+        required: true
+        default: ''
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 入力の確認
+        run: |
+          if [ "${{ github.event.inputs.confirm }}" != "archive" ]; then
+            echo "confirm に archive と入力されていません。中止します。"
+            exit 1
+          fi
+
+      - name: lftp を入れる
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: archive/ へ移動
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -eu
+          HOST=www194.conoha.ne.jp
+          ROOT=public_html/llschema.com
+          STAMP=$(date +%Y%m%d)
+
+          run_lftp() {
+            lftp -c "
+              set ftp:ssl-force true;
+              set ssl:verify-certificate no;
+              set net:max-retries 2;
+              open -u \"\$FTP_USER\",\"\$FTP_PASSWORD\" ftps://\$HOST:21;
+              $1
+            "
+          }
+
+          echo "--- 移動前の中身 ---"
+          run_lftp "cd $ROOT; cls -1 -a"
+
+          echo "--- archive/$STAMP を作成 ---"
+          run_lftp "cd $ROOT; mkdir -p archive; mkdir -p archive/$STAMP"
+
+          echo "--- 移動 ---"
+          ENTRIES=$(run_lftp "cd $ROOT; cls -1 -a" | sed 's#/$##' | grep -vE '^\.{1,2}$' | grep -v '^archive$' || true)
+          for e in $ENTRIES; do
+            echo "  移動: $e"
+            run_lftp "cd $ROOT; mv \"$e\" \"archive/$STAMP/$e\"" || echo "  !! $e の移動に失敗"
+          done
+
+          echo "--- 移動後の中身 ---"
+          run_lftp "cd $ROOT; cls -1 -a"
+          echo "--- archive/$STAMP の中身 ---"
+          run_lftp "cd $ROOT/archive/$STAMP; cls -1 -a"
