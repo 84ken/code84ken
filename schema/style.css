@@ -184,7 +184,7 @@ body{isolation:isolate}
 .reading-diagram .frame-one{animation:none}
 .member-link{display:inline-block;font-size:13px;margin-top:12px;padding:8px 0;text-decoration:underline;text-underline-offset:5px}
 .member-intro{padding:64px 4% 72px}.member-intro h1{font-size:clamp(34px,5vw,72px);line-height:1.4;letter-spacing:0;margin:24px 0}.member-intro>p:last-child{font-size:15px;line-height:1.8;color:#666}
-.member-president{padding:0 4% 70px}.member-president h2{font-size:30px;font-weight:500;margin:18px 0}.member-president>p:last-child{font-size:14px;color:#555}
+.member-president{padding:0 4% 70px}.member-president h2{font-size:30px;font-weight:500;margin:18px 0}.member-president>p{font-size:14px;color:#555}
 .member-back{display:block;width:fit-content;margin:0 4% 70px;padding:12px 0}.member-back:hover{text-decoration:underline}
 @media(max-width:700px){.hero{padding-top:30px;padding-bottom:44px}.hero-ja.refined-copy{font-size:clamp(26px,7.8vw,52px);line-height:1.5;margin:30px 0 36px}.featured-awards .award-row{grid-template-columns:45px 1fr}.member-intro{padding:40px 6%}.member-president{padding:0 6% 45px}.member-back{margin:0 6% 45px}}
 @media(prefers-reduced-motion:reduce){.refined-copy>span{animation:none}}
@@ -360,3 +360,8 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 /* Work cards: no index number, no underline on the CTA; the arrow nudges right on hover. */
 .card-main:hover .detail-cta,.card-main:focus-visible .detail-cta{text-decoration:none}
 .grid .card-main:hover .detail-cta span,.grid .card-main:focus-visible .detail-cta span{transform:translateX(6px)}
+
+.member-bio{font-size:14px;color:#555;line-height:1.9;margin:14px 0 0;max-width:610px}
+.team-members .member-bio{margin:12px 0 16px}
+.team-members article>p:first-of-type{color:#171717}
+.profile-record .member-bio{margin:14px 0 0}
