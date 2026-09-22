@@ -44,9 +44,10 @@ jobs:
           run_lftp() {
             lftp -c "
               set ftp:ssl-force true;
+              set ftp:ssl-protect-data true;
               set ssl:verify-certificate no;
               set net:max-retries 2;
-              open --env-password -u '$FTP_USER' ftps://$HOST:21;
+              open --env-password -u '$FTP_USER' ftp://$HOST:21;
               $1
             "
           }
