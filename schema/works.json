@@ -160,7 +160,8 @@
     "detailPage": "works/buntama.html",
     "thumbnailWidth": 1002,
     "thumbnailHeight": 534,
-    "thumbnail": "assets/thumb-buntama.webp"
+    "thumbnail": "assets/thumb-buntama.webp",
+    "pressUrl": "https://prtimes.jp/main/html/rd/p/000000849.000104306.html"
   },
   {
     "title": "埼玉スポーツ応援メディアすぽったま！",
@@ -182,7 +183,8 @@
     "detailPage": "works/spottama.html",
     "thumbnailWidth": 1200,
     "thumbnailHeight": 630,
-    "thumbnail": "assets/thumb-spottama.png"
+    "thumbnail": "assets/thumb-spottama.png",
+    "pressUrl": "https://prtimes.jp/main/html/rd/p/000000494.000104306.html"
   },
   {
     "title": "SAITAMA リバーサポーターズ",
@@ -204,7 +206,8 @@
     "thumbnail": "assets/thumb-river.webp",
     "thumbnailWidth": 1440,
     "thumbnailHeight": 788,
-    "detailPage": "works/river-supporters.html"
+    "detailPage": "works/river-supporters.html",
+    "pressUrl": "https://prtimes.jp/main/html/rd/p/000000501.000104306.html"
   },
   {
     "title": "埼玉県サーキュラーエコノミープロジェクト",
@@ -226,7 +229,8 @@
     "thumbnail": "assets/thumb-circular.jpg",
     "thumbnailWidth": 1143,
     "thumbnailHeight": 638,
-    "detailPage": "works/circular-economy.html"
+    "detailPage": "works/circular-economy.html",
+    "pressUrl": "https://prtimes.jp/main/html/rd/p/000000769.000104306.html"
   },
   {
     "title": "埼玉いちご大學",
@@ -584,7 +588,8 @@
     "thumbnail": "assets/thumb-euglena.webp",
     "thumbnailWidth": 1440,
     "thumbnailHeight": 824,
-    "detailPage": "works/euglena-sauna.html"
+    "detailPage": "works/euglena-sauna.html",
+    "pressUrl": "https://prtimes.jp/main/html/rd/p/000000277.000036462.html"
   },
   {
     "title": "JOYSOUND",
@@ -790,7 +795,8 @@
       "食・農",
       "観光"
     ],
-    "detailPage": "works/cedar-x-pa.html"
+    "detailPage": "works/cedar-x-pa.html",
+    "pressUrl": "https://prtimes.jp/main/html/rd/p/000000039.000060962.html"
   },
   {
     "title": "サ山茶",
@@ -898,7 +904,8 @@
     "thumbnailWidth": 2880,
     "thumbnailHeight": 1800,
     "thumbnailScreen": true,
-    "detailPage": "works/touch-to-go.html"
+    "detailPage": "works/touch-to-go.html",
+    "pressUrl": "https://prtimes.jp/main/html/rd/p/000000077.000034286.html"
   },
   {
     "title": "HOMEBAKE",
