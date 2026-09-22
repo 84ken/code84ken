@@ -350,8 +350,9 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .case-site:hover{color:var(--cmyk-cyan-ink)}
 .case-categories a:hover{background:var(--cmyk-cyan);color:var(--cmyk-key)}
 
-/* Hover: the logo's diagonal hatch (top-left to bottom-right) drifts over the work image. */
-.grid .visual::before{content:"";position:absolute;inset:clamp(8px,3%,16px);z-index:1;pointer-events:none;opacity:0;transition:opacity .3s ease;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M-4-4 20 20M-4 12l8 8M12-4l8 8' stroke='%23fff' stroke-width='3.4'/%3E%3C/svg%3E");background-size:16px 16px}
-.grid .card-main:hover .visual::before,.grid .card-main:focus-visible .visual::before{opacity:1;animation:work-hatch-drift 1.2s linear infinite}
-@keyframes work-hatch-drift{to{background-position:16px 0}}
+/* Hover: wide page-colored bands cut across the work image, drifting slowly (logo hatch direction, steeper). */
+.grid .visual{container-type:inline-size}
+.grid .visual::before{content:"";position:absolute;top:0;bottom:0;left:-20cqw;right:-20cqw;z-index:1;pointer-events:none;opacity:0;transition:opacity .3s ease;background:repeating-linear-gradient(60deg,#fafaf8 0 6.5cqw,transparent 6.5cqw 15cqw)}
+.grid .card-main:hover .visual::before,.grid .card-main:focus-visible .visual::before{opacity:1;animation:work-hatch-drift 2.4s linear infinite}
+@keyframes work-hatch-drift{from{transform:translateX(0)}to{transform:translateX(17.3205cqw)}}
 @media (prefers-reduced-motion:reduce){.grid .card-main:hover .visual::before,.grid .card-main:focus-visible .visual::before{animation:none}}
