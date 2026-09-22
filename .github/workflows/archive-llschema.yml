@@ -33,7 +33,8 @@ jobs:
       - name: archive/ へ移動
         env:
           FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          # lftp は環境変数を展開しないので、パスワードは --env-password で LFTP_PASSWORD から渡す
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           set -eu
           HOST=www194.conoha.ne.jp
@@ -45,7 +46,7 @@ jobs:
               set ftp:ssl-force true;
               set ssl:verify-certificate no;
               set net:max-retries 2;
-              open -u \"\$FTP_USER\",\"\$FTP_PASSWORD\" ftps://\$HOST:21;
+              open --env-password -u '$FTP_USER' ftps://$HOST:21;
               $1
             "
           }
