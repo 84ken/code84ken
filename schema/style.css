@@ -367,3 +367,17 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .profile-record .member-bio{margin:14px 0 0}
 
 .team-members article a{display:block;margin-top:8px}
+
+/* Members: the director profile sits at the same weight as the team; the record list stays folded away. */
+.profile-record h2{font-size:24px}
+.profile-record{grid-template-columns:1fr;gap:20px}
+.engagement{max-width:610px}
+.engagement{margin:0}
+.engagement summary{font-size:14px;color:#555;cursor:pointer;padding:12px 0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;list-style:none;display:flex;align-items:center;gap:8px}
+.engagement summary::after{content:"＋";font-size:13px;color:#888}
+.engagement[open] summary::after{content:"−"}
+.engagement summary::-webkit-details-marker{display:none}
+.engagement[open] summary{border-bottom:0}
+.engagement .engagement-list>div{padding:16px 0}
+.engagement .engagement-list strong{font-size:14px}
+.engagement .engagement-list dt{font-size:13px}
