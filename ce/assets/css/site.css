@@ -367,6 +367,19 @@ summary:focus-visible,
 }
 .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
+/* なぞときラリー：サーキュロ所長のふきだし（下向きのしっぽ） */
+.rally-bubble { position: relative; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15); }
+.rally-bubble::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 12px solid #fff;
+}
+
 /* 出展企業の詳細ポップアップ（<dialog>）
    枠は固定し、中身だけスクロール。閉じるボタンは常に右上に見える。 */
 .ex-dialog {
