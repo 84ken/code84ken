@@ -267,10 +267,10 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .case-visual figcaption{font-size:12px;color:#666;margin-top:12px;line-height:1.8}
 
 /* One canvas, two density options, and a restrained lift on hover. */
-.grid .visual{aspect-ratio:3/2;background:#fff;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease}
+.grid .visual{aspect-ratio:3/2;background:#fff}
 .grid .visual::after{display:none!important;animation:none!important}
 .grid .card-main{outline-offset:5px}
-@media(hover:hover){.grid .card-main:hover .visual{transform:translateY(-5px);box-shadow:0 12px 25px -18px #17171766}.grid .card-main:hover .detail-cta span{transform:translateX(5px)}}
+@media(hover:hover){.grid .card-main:hover .detail-cta span{transform:translateX(5px)}}
 .detail-cta span{display:inline-block;transition:transform .3s ease}
 .work-layout{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin:0 0 16px;font-size:13px}
 .work-layout>span{margin-right:8px;color:#666}
@@ -290,7 +290,7 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .team-members{padding:40px 6% 70px}.team-members>h2{font-size:28px;margin:15px 0 30px}.team-members>div{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.team-members article{padding:24px 0;border-top:1px solid #ccc}.team-members h3{font-size:24px;line-height:1.5;margin:0 0 16px}.team-members p,.team-members a{font-size:14px;line-height:1.8}
 @media(max-width:1000px){.grid[data-columns="4"]{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.grid[data-columns]{grid-template-columns:1fr}.work-layout{display:none}.press-section{padding:0 6% 60px}.press-section .section-heading{display:block}.press-section .section-heading>a{display:inline-block;margin-top:16px}.press-list article{grid-template-columns:1fr;gap:12px}.press-list h3{font-size:18px}.team-members>div{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){.grid .card-main:hover .visual{transform:none;box-shadow:none}.grid .card-main:hover .detail-cta span{transform:none}}
+@media(prefers-reduced-motion:reduce){.grid .card-main:hover .detail-cta span{transform:none}}
 
 /* Shared screen palette: cyan, magenta, yellow, key. */
 :root{--cmyk-cyan:#b2d5fc;--cmyk-magenta:#ffb5e2;--cmyk-yellow:#eeff84;--cmyk-key:#171717;--cmyk-cyan-ink:#275d90;--cmyk-magenta-ink:#a32b73;--cmyk-yellow-ink:#586600;--link-hover:#eeeee9}
@@ -355,7 +355,7 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .grid .visual::before{content:"";position:absolute;top:0;bottom:0;left:-20cqw;right:-20cqw;z-index:1;pointer-events:none;opacity:0;transition:opacity .3s ease;background:repeating-linear-gradient(60deg,#fafaf8 0 6.5cqw,transparent 6.5cqw 15cqw)}
 .grid .card-main:hover .visual::before,.grid .card-main:focus-visible .visual::before{opacity:1;animation:work-hatch-drift 2.4s linear infinite}
 @keyframes work-hatch-drift{from{transform:translateX(0)}to{transform:translateX(17.3205cqw)}}
-@media (prefers-reduced-motion:reduce){.grid .card-main:hover .visual::before,.grid .card-main:focus-visible .visual::before{animation:none}}
+@media (prefers-reduced-motion:reduce){.grid .card-main:hover .visual::before,.grid .card-main:focus-visible .visual::before{animation:none}.grid .card-main:hover .detail-cta span,.grid .card-main:focus-visible .detail-cta span{transform:none}}
 
 /* Work cards: no index number, no underline on the CTA; the arrow nudges right on hover. */
 .card-main:hover .detail-cta,.card-main:focus-visible .detail-cta{text-decoration:none}
