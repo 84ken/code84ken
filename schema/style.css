@@ -356,3 +356,7 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .grid .card-main:hover .visual::before,.grid .card-main:focus-visible .visual::before{opacity:1;animation:work-hatch-drift 2.4s linear infinite}
 @keyframes work-hatch-drift{from{transform:translateX(0)}to{transform:translateX(17.3205cqw)}}
 @media (prefers-reduced-motion:reduce){.grid .card-main:hover .visual::before,.grid .card-main:focus-visible .visual::before{animation:none}}
+
+/* Work cards: no index number, no underline on the CTA; the arrow nudges right on hover. */
+.card-main:hover .detail-cta,.card-main:focus-visible .detail-cta{text-decoration:none}
+.grid .card-main:hover .detail-cta span,.grid .card-main:focus-visible .detail-cta span{transform:translateX(6px)}

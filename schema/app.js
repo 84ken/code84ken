@@ -32,7 +32,7 @@ Promise.resolve([{"title": "FOOD MADE GOOD アニマルウェルフェアアク�
    const article=document.createElement('article');article.className='card';
    const main=document.createElement('a');main.href=work.detailPage;main.className='card-main';main.setAttribute('aria-label',work.title+'の実績詳細を見る');
    const tags=work.topics.map(t=>`<span>${t}</span>`).join('');
-   main.innerHTML=`<div class="visual">${work.thumbnailScreen ? `<div class="thumbnail-screen" role="img" aria-label="${work.title}の制作ビジュアル" style="background-image:url(${work.thumbnail})"></div>` : `<img src="${work.thumbnail||work.img}" alt="${work.title}の制作ビジュアル" ${offset>1?'loading="lazy"':''} width="${work.thumbnailWidth||work.width}" height="${work.thumbnailHeight||work.height}">`}</div><div class="caption"><div><div class="topic-tags">${tags}</div><h3>${work.title}</h3><p>${work.client} / ${work.category}</p></div><span class="number">${String(works.indexOf(work)+1).padStart(2,'0')}</span></div><span class="detail-cta">実績詳細を見る<span aria-hidden="true">→</span></span>`;
+   main.innerHTML=`<div class="visual">${work.thumbnailScreen ? `<div class="thumbnail-screen" role="img" aria-label="${work.title}の制作ビジュアル" style="background-image:url(${work.thumbnail})"></div>` : `<img src="${work.thumbnail||work.img}" alt="${work.title}の制作ビジュアル" ${offset>1?'loading="lazy"':''} width="${work.thumbnailWidth||work.width}" height="${work.thumbnailHeight||work.height}">`}</div><div class="caption"><div><div class="topic-tags">${tags}</div><h3>${work.title}</h3><p>${work.client} / ${work.category}</p></div></div><span class="detail-cta">実績詳細を見る<span aria-hidden="true">→</span></span>`;
    article.append(main);grid.append(article);
   });
   pager.replaceChildren();pager.hidden=pages<=1;
