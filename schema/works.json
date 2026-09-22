@@ -67,7 +67,7 @@
     "detailPage": "works/little-retreat-depot.html",
     "thumbnailWidth": 1200,
     "thumbnailHeight": 800,
-    "thumbnail": "assets/thumb-lrd.svg",
+    "thumbnail": "assets/thumb-lrd.webp",
     "displayPosition": 3,
     "pressUrl": "https://prtimes.jp/main/html/rd/p/000000003.000032464.html"
   },
@@ -112,7 +112,7 @@
       "観光",
       "埼玉"
     ],
-    "thumbnail": "assets/thumb-chocotabi-promotion.png",
+    "thumbnail": "assets/thumb-chocotabi-promotion.webp",
     "thumbnailWidth": 2732,
     "thumbnailHeight": 1536,
     "detailPage": "works/chocotabi.html"
@@ -137,7 +137,7 @@
     "detailPage": "works/chocotabi-campaign.html",
     "thumbnailWidth": 800,
     "thumbnailHeight": 500,
-    "thumbnail": "assets/thumb-chocotabi-content-hq.png"
+    "thumbnail": "assets/thumb-chocotabi-content-hq.webp"
   },
   {
     "title": "埼玉の伝統文化を知る・体験するメディアぶんたま",
@@ -159,7 +159,7 @@
     "detailPage": "works/buntama.html",
     "thumbnailWidth": 1002,
     "thumbnailHeight": 534,
-    "thumbnail": "assets/thumb-buntama.png"
+    "thumbnail": "assets/thumb-buntama.webp"
   },
   {
     "title": "埼玉スポーツ応援メディアすぽったま！",
@@ -200,7 +200,7 @@
       "環境",
       "埼玉"
     ],
-    "thumbnail": "assets/thumb-river.png",
+    "thumbnail": "assets/thumb-river.webp",
     "thumbnailWidth": 1440,
     "thumbnailHeight": 788,
     "detailPage": "works/river-supporters.html"
@@ -245,7 +245,7 @@
       "観光",
       "埼玉"
     ],
-    "thumbnail": "assets/thumb-ichigo.jpg",
+    "thumbnail": "assets/thumb-ichigo.webp",
     "thumbnailWidth": 1440,
     "thumbnailHeight": 1799,
     "detailPage": "works/ichigo-university.html"
@@ -339,7 +339,7 @@
       "サウナ",
       "埼玉"
     ],
-    "thumbnail": "assets/thumb-tate.jpg",
+    "thumbnail": "assets/thumb-tate.webp",
     "thumbnailWidth": 2048,
     "thumbnailHeight": 1536,
     "detailPage": "works/tate-lab.html"
@@ -394,7 +394,7 @@
     "topics": [
       "文化"
     ],
-    "thumbnail": "assets/thumb-summer.jpg",
+    "thumbnail": "assets/thumb-summer.webp",
     "thumbnailWidth": 2480,
     "thumbnailHeight": 1200,
     "detailPage": "works/summer-sonic-2024.html"
@@ -503,7 +503,7 @@
     "detailPage": "works/gala-sauna.html",
     "thumbnailWidth": 1440,
     "thumbnailHeight": 958,
-    "thumbnail": "assets/thumb-gala-sauna.png"
+    "thumbnail": "assets/thumb-gala-sauna.webp"
   },
   {
     "title": "BRUTUS サウナ特集",
@@ -533,7 +533,7 @@
     "detailPage": "works/brutus-sauna.html",
     "thumbnailWidth": 827,
     "thumbnailHeight": 1118,
-    "thumbnail": "assets/thumb-brutus.png"
+    "thumbnail": "assets/thumb-brutus.webp"
   },
   {
     "title": "からだにユーグレナ サウナプロジェクト",
@@ -559,7 +559,7 @@
       "健康・スポーツ",
       "サウナ"
     ],
-    "thumbnail": "assets/thumb-euglena.png",
+    "thumbnail": "assets/thumb-euglena.webp",
     "thumbnailWidth": 1440,
     "thumbnailHeight": 824,
     "detailPage": "works/euglena-sauna.html"
@@ -791,7 +791,7 @@
     "detailPage": "works/coconou.html",
     "thumbnailWidth": 1200,
     "thumbnailHeight": 630,
-    "thumbnail": "assets/thumb-coconou.png"
+    "thumbnail": "assets/thumb-coconou.webp"
   },
   {
     "title": "TOUCH TO GO",
@@ -813,7 +813,7 @@
     "sourceTextHash": "11c349da0c9dabd30e417fc2f3fb2256f746810b228565ef3bb960da6c282bba",
     "sourceDocumentSha": "49e83e96a86f14cf6b2e082422483e235eabcadc2e71b810be14d99000b8cfca",
     "topics": [],
-    "thumbnail": "assets/thumb-touch.png",
+    "thumbnail": "assets/thumb-touch.webp",
     "thumbnailWidth": 2880,
     "thumbnailHeight": 1800,
     "thumbnailScreen": true,
