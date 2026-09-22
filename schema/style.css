@@ -365,3 +365,5 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .team-members .member-bio{margin:12px 0 16px}
 .team-members article>p:first-of-type{color:#171717}
 .profile-record .member-bio{margin:14px 0 0}
+
+.team-members article a{display:block;margin-top:8px}
