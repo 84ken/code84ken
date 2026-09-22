@@ -4,15 +4,21 @@ llschema.com のソース。
 
 ## 公開先
 
-- 確認用: new.llschema.com（`deploy-schema.yml` の server-dir）
-- 本番: llschema.com（切り替えるときは server-dir を `public_html/llschema.com/` に変える）
+本番 `llschema.com`（`public_html/llschema.com/`）に直接デプロイする。
 
-ConoHa側で先にサブドメインを作っておくこと。
+## 差し替え前の確認
+
+現行サイトは **Astro v4.3.4 で生成された静的サイト**。CMSではないので、HTMLを置き換えるだけで差し替えられる。ただし次の2点に注意。
+
+1. **先にバックアップを取る。** 現行サイトのファイル一式をFTPで落としておく。置き場所は `code84ken` の外にすること
+2. **古いファイルが残る。** Astroが吐いた `_astro/` などは、新サイトに同名ファイルが無ければサーバーに残り続ける。初回デプロイのあとに掃除する
+
+掃除は、FTPで手動で消すか、workflowに `dangerous-clean-slate: true` を一度だけ付けて実行する。
+後者はサーバー側のディレクトリを空にしてから上げるので、**バックアップを取ってからでないと使わない**。
 
 ## 更新のしかた
 
-このフォルダの中を直して push すると、GitHub Actions が FTPS でConoHaに上げる。
-他サイトと同じ仕組み。
+このフォルダの中を直して push すると、GitHub Actions が FTPS でConoHaに上げる。他サイトと同じ仕組み。
 
 ## メモ
 

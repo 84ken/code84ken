@@ -25,7 +25,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: schema/
-          server-dir: public_html/new.llschema.com/
+          server-dir: public_html/llschema.com/
           exclude: |
             **/.git*
             **/.git*/**
