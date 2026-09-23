@@ -401,3 +401,16 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 @media(max-width:700px){.press-featured{padding:14px 16px 0;margin:0 0 30px}}
 
 .press-list h3{word-break:auto-phrase}
+
+.case-space{max-width:1300px;margin:90px auto 0;padding:0 5%}
+.case-space .case-gallery{padding:0;margin:0 0 36px}
+.case-gallery--pair{grid-template-columns:1fr 1fr;gap:24px}
+.case-space-head{margin:0 0 28px}.case-space-head h2{font-size:28px;font-weight:500;margin:12px 0 0}
+.case-space-body{max-width:720px;margin:0 0 44px}
+.case-space-body p{font-size:15px;line-height:2;margin:0 0 18px}
+.case-space-body .case-space-info{font-size:13px;color:#666}
+.case-credits{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px;margin:0;border-top:1px solid #ccc}
+.case-credits>div{padding:16px 0;border-bottom:1px solid #ddd}
+.case-credits dt{font-size:11px;color:#666;letter-spacing:.04em;margin:0 0 6px}
+.case-credits dd{margin:0;font-size:14px;line-height:1.7}
+@media(max-width:700px){.case-space{padding:0 6%;margin-top:60px}.case-gallery--pair{grid-template-columns:1fr;gap:16px}.case-credits{grid-template-columns:1fr}}
