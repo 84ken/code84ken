@@ -24,30 +24,6 @@
     "year": 2026
   },
   {
-    "title": "黒富士AWアシスト",
-    "client": "黒富士AWアシスト",
-    "category": "平飼い養鶏・アニマルウェルフェア",
-    "role": "企画・構成 / デザイン / Web制作 / 取材・運用",
-    "img": "assets/thumb-kurofuji.svg",
-    "width": 1200,
-    "height": 800,
-    "thumbnail": "assets/thumb-kurofuji.svg",
-    "thumbnailWidth": 1200,
-    "thumbnailHeight": 800,
-    "url": "https://kurofuji-aw.com/",
-    "linkLabel": "公式サイトを見る",
-    "sourceGroup": "web",
-    "topics": [
-      "食・農",
-      "環境",
-      "たまご"
-    ],
-    "detailPage": "works/kurofuji.html",
-    "displayPosition": 2,
-    "thumbnailMedia": "assets/thumb-kurofuji-photo.webp",
-    "year": 2026
-  },
-  {
     "title": "repertio（レペルティオ）",
     "client": "株式会社ディターボ",
     "category": "ワインバーのブランドコミュニケーション",
@@ -363,6 +339,30 @@
     "detailPage": "works/cedar-x-pa.html",
     "pressUrl": "https://prtimes.jp/main/html/rd/p/000000039.000060962.html",
     "year": 2025
+  },
+  {
+    "title": "黒富士AWアシスト",
+    "client": "黒富士AWアシスト",
+    "category": "平飼い養鶏・アニマルウェルフェア",
+    "role": "企画・構成 / デザイン / Web制作 / 取材・運用",
+    "img": "assets/thumb-kurofuji.svg",
+    "width": 1200,
+    "height": 800,
+    "thumbnail": "assets/thumb-kurofuji.svg",
+    "thumbnailWidth": 1200,
+    "thumbnailHeight": 800,
+    "url": "https://kurofuji-aw.com/",
+    "linkLabel": "公式サイトを見る",
+    "sourceGroup": "web",
+    "topics": [
+      "食・農",
+      "環境",
+      "たまご"
+    ],
+    "detailPage": "works/kurofuji.html",
+    "displayPosition": 2,
+    "thumbnailMedia": "assets/thumb-kurofuji-photo.webp",
+    "year": 2024
   },
   {
     "title": "さいたまのおみやげ",
