@@ -47,6 +47,33 @@
     "year": 2026
   },
   {
+    "title": "リトルリトリートデポ",
+    "client": "JR東日本株式会社",
+    "category": "アウトドアサウナ・BBQ施設",
+    "role": "クリエイティブ統括 / コンセプト設計 / パートナー選定",
+    "img": "assets/latest-work-13.webp",
+    "width": 2200,
+    "height": 1354,
+    "sourcePage": 13,
+    "sourceMatch": "リトルリトリートデポ",
+    "url": "https://www.jreast.co.jp/lrd/",
+    "linkLabel": "公式サイトを見る",
+    "sourceGroup": "latest",
+    "topics": [
+      "観光",
+      "健康・スポーツ",
+      "サウナ",
+      "埼玉"
+    ],
+    "detailPage": "works/little-retreat-depot.html",
+    "thumbnailWidth": 1200,
+    "thumbnailHeight": 800,
+    "thumbnail": "assets/thumb-lrd.webp",
+    "displayPosition": 3,
+    "pressUrl": "https://prtimes.jp/main/html/rd/p/000000003.000032464.html",
+    "year": 2025
+  },
+  {
     "title": "ちょこたび観光プロモーション",
     "client": "埼玉県物産観光協会",
     "category": "観光プロモーション",
@@ -227,33 +254,6 @@
     "year": 2026,
     "startYear": 2024,
     "ongoing": true
-  },
-  {
-    "title": "リトルリトリートデポ",
-    "client": "JR東日本株式会社",
-    "category": "アウトドアサウナ・BBQ施設",
-    "role": "クリエイティブ統括 / コンセプト設計 / パートナー選定",
-    "img": "assets/latest-work-13.webp",
-    "width": 2200,
-    "height": 1354,
-    "sourcePage": 13,
-    "sourceMatch": "リトルリトリートデポ",
-    "url": "https://www.jreast.co.jp/lrd/",
-    "linkLabel": "公式サイトを見る",
-    "sourceGroup": "latest",
-    "topics": [
-      "観光",
-      "健康・スポーツ",
-      "サウナ",
-      "埼玉"
-    ],
-    "detailPage": "works/little-retreat-depot.html",
-    "thumbnailWidth": 1200,
-    "thumbnailHeight": 800,
-    "thumbnail": "assets/thumb-lrd.webp",
-    "displayPosition": 3,
-    "pressUrl": "https://prtimes.jp/main/html/rd/p/000000003.000032464.html",
-    "year": 2025
   },
   {
     "title": "台湾祭々 in 秩父・横瀬",

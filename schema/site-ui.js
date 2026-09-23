@@ -9,19 +9,14 @@ const gallery = document.querySelector('.office-gallery');
 if (gallery) {
   const slides = [...gallery.querySelectorAll('.office-slide')];
   const counter = gallery.querySelector('.office-count');
-  const play = gallery.querySelector('.office-play');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  let index = 0, paused = reduced.matches, visible = false, timer, pending = 0;
+  // Auto-advance while on screen; hold while the pointer or keyboard focus is inside, so a photo can be looked at.
+  let index = 0, visible = false, holding = false, timer, pending = 0;
   function schedule() {
     clearTimeout(timer);
-    if (!paused && visible && !document.hidden) timer = setTimeout(() => show(index + 1), 5000);
+    if (!reduced.matches && visible && !holding && !document.hidden) timer = setTimeout(() => show(index + 1), 5000);
   }
-  function reflectPlay() {
-    play.textContent = paused ? '自動再生' : '一時停止';
-    play.setAttribute('aria-pressed', String(paused));
-    counter.setAttribute('aria-live', paused ? 'polite' : 'off');
-  }
-  async function show(next) {
+  async function show(next, announce = false) {
     const request = ++pending;
     next = (next + slides.length) % slides.length;
     try { await slides[next].decode(); } catch { schedule(); return; }
@@ -31,15 +26,18 @@ if (gallery) {
       slide.classList.toggle('is-active',i===index);
       slide.setAttribute('aria-hidden',String(i!==index));
     });
-    counter.textContent = `${String(index+1).padStart(2,'0')} / 04`;
+    counter.setAttribute('aria-live', announce ? 'polite' : 'off');
+    counter.textContent = `${String(index+1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')}`;
     schedule();
   }
-  const manual = direction => {paused=true;reflectPlay();clearTimeout(timer);show(index+direction);};
-  gallery.querySelector('[data-office-prev]').addEventListener('click',()=>manual(-1));
-  gallery.querySelector('[data-office-next]').addEventListener('click',()=>manual(1));
-  play.addEventListener('click',()=>{paused=!paused;reflectPlay();schedule();});
+  const hold = on => {holding = on; schedule();};
+  gallery.querySelector('[data-office-prev]').addEventListener('click',()=>show(index-1,true));
+  gallery.querySelector('[data-office-next]').addEventListener('click',()=>show(index+1,true));
+  gallery.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')hold(true);});
+  gallery.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')hold(false);});
+  gallery.addEventListener('focusin',()=>hold(true));
+  gallery.addEventListener('focusout',e=>{if(!gallery.contains(e.relatedTarget))hold(false);});
   new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule();},{threshold:.25}).observe(gallery);
   document.addEventListener('visibilitychange',schedule);
-  reduced.addEventListener('change',()=>{if(reduced.matches){paused=true;reflectPlay();schedule();}});
-  reflectPlay();
+  reduced.addEventListener('change',schedule);
 }

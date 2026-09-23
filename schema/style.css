@@ -220,7 +220,7 @@ body{isolation:isolate}
 .office-section .office-slide.is-active{opacity:1}
 .office-controls{display:flex;align-items:center;gap:12px;margin-top:14px;color:#555}
 .office-controls button{min-width:44px;min-height:44px;padding:8px;border:0;background:transparent;color:inherit;cursor:pointer}
-.office-controls button:hover{color:#171717;background:#efefeb}.office-count{font-size:12px;font-variant-numeric:tabular-nums;letter-spacing:.08em}.office-controls .office-play{font-size:12px;margin-left:auto;padding:8px 12px}
+.office-controls button:hover{color:#171717;background:#efefeb}.office-count{font-size:12px;font-variant-numeric:tabular-nums;letter-spacing:.08em}
 @media(prefers-reduced-motion:reduce){.office-section .office-slide,.scroll-menu .home-header nav{transition:none;transform:none}}
 
 /* Mobile navigation emerges below the logo without reserving an empty row. */
@@ -393,12 +393,12 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .run-badge{display:inline-flex;align-items:center;gap:8px;margin:10px 0 0;padding:4px 10px;border:1px solid #171717;border-radius:999px;font-size:12px;line-height:1.6;letter-spacing:.04em}
 .run-badge span{opacity:.6}
 
-.press-featured{border:1px solid #171717;padding:18px 24px 0;margin:0 0 40px}
-.press-featured .eyebrow{margin:0;display:flex;gap:12px;align-items:baseline;color:#171717;font-size:12px}
-.press-featured .eyebrow span{font-size:11px;color:#666;letter-spacing:.04em}
-.press-featured article{border-bottom:0;padding:16px 0 24px}
-.press-latest-label{margin:0 0 4px}
-@media(max-width:700px){.press-featured{padding:14px 16px 0;margin:0 0 30px}}
+
+
+
+
+
+@media(max-width:700px){}
 
 .press-list h3{word-break:auto-phrase}
 
