@@ -381,3 +381,11 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .engagement .engagement-list>div{padding:16px 0}
 .engagement .engagement-list strong{font-size:14px}
 .engagement .engagement-list dt{font-size:13px}
+
+/* Statement on phones: keep the chapter marker in view so 02 and 03 are seen, not just 01. */
+@media(max-width:700px){
+.reading-support{position:sticky;top:0;z-index:5;background:#fafaf8;grid-template-columns:64px 1fr;gap:0 14px;padding:10px 0 11px;border-bottom:1px solid #d5d5d1}
+.reading-diagram{width:64px;height:64px}
+.reading-diagram span{width:40px;height:40px;left:12px;top:12px}
+.statement-body>section{scroll-margin-top:90px}
+}
