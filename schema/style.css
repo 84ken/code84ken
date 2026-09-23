@@ -414,3 +414,7 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .case-credits dt{font-size:11px;color:#666;letter-spacing:.04em;margin:0 0 6px}
 .case-credits dd{margin:0;font-size:14px;line-height:1.7}
 @media(max-width:700px){.case-space{padding:0 6%;margin-top:60px}.case-gallery--pair{grid-template-columns:1fr;gap:16px}.case-credits{grid-template-columns:1fr}}
+
+/* ABOUT: the focus-area paragraph follows the concept paragraph closely. */
+.about-content>p:has(+p){margin-bottom:18px}
+.about-content>p+p{margin-top:0}
