@@ -389,3 +389,6 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .reading-diagram span{width:40px;height:40px;left:12px;top:12px}
 .statement-body>section{scroll-margin-top:90px}
 }
+
+.run-badge{display:inline-flex;align-items:center;gap:8px;margin:10px 0 0;padding:4px 10px;border:1px solid #171717;border-radius:999px;font-size:12px;line-height:1.6;letter-spacing:.04em}
+.run-badge span{opacity:.6}

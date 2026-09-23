@@ -70,7 +70,9 @@
     "thumbnailHeight": 1536,
     "detailPage": "works/chocotabi.html",
     "pressUrl": "https://prtimes.jp/main/html/rd/p/000000187.000047262.html",
-    "year": 2026
+    "year": 2026,
+    "startYear": 2025,
+    "ongoing": true
   },
   {
     "title": "ちょこたび各種コンテンツ企画・運用",
@@ -93,7 +95,9 @@
     "thumbnailWidth": 800,
     "thumbnailHeight": 500,
     "thumbnail": "assets/thumb-chocotabi-content-hq.webp",
-    "year": 2026
+    "year": 2026,
+    "startYear": 2025,
+    "ongoing": true
   },
   {
     "title": "埼玉の伝統文化を知る・体験するメディアぶんたま",
@@ -117,7 +121,9 @@
     "thumbnailHeight": 534,
     "thumbnail": "assets/thumb-buntama.webp",
     "pressUrl": "https://prtimes.jp/main/html/rd/p/000000849.000104306.html",
-    "year": 2026
+    "year": 2026,
+    "startYear": 2025,
+    "ongoing": true
   },
   {
     "title": "埼玉スポーツ応援メディアすぽったま！",
@@ -141,7 +147,9 @@
     "thumbnailHeight": 630,
     "thumbnail": "assets/thumb-spottama.png",
     "pressUrl": "https://prtimes.jp/main/html/rd/p/000000494.000104306.html",
-    "year": 2026
+    "year": 2026,
+    "startYear": 2024,
+    "ongoing": true
   },
   {
     "title": "SAITAMA リバーサポーターズ",
@@ -165,7 +173,9 @@
     "thumbnailHeight": 788,
     "detailPage": "works/river-supporters.html",
     "pressUrl": "https://prtimes.jp/main/html/rd/p/000000501.000104306.html",
-    "year": 2026
+    "year": 2026,
+    "startYear": 2021,
+    "ongoing": true
   },
   {
     "title": "埼玉県サーキュラーエコノミープロジェクト",
@@ -189,7 +199,9 @@
     "thumbnailHeight": 638,
     "detailPage": "works/circular-economy.html",
     "pressUrl": "https://prtimes.jp/main/html/rd/p/000000769.000104306.html",
-    "year": 2026
+    "year": 2026,
+    "startYear": 2025,
+    "ongoing": true
   },
   {
     "title": "埼玉いちご大學",
@@ -213,7 +225,9 @@
     "thumbnailWidth": 1440,
     "thumbnailHeight": 1799,
     "detailPage": "works/ichigo-university.html",
-    "year": 2026
+    "year": 2026,
+    "startYear": 2024,
+    "ongoing": true
   },
   {
     "title": "リトルリトリートデポ",
@@ -414,7 +428,9 @@
     "thumbnailWidth": 2048,
     "thumbnailHeight": 1536,
     "detailPage": "works/tate-lab.html",
-    "year": 2023
+    "year": 2023,
+    "startYear": 2023,
+    "ongoing": true
   },
   {
     "title": "BRUTUS×COEDO『SAÚDE（サウージ）』",
