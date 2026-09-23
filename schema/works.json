@@ -264,61 +264,6 @@
     "year": 2025
   },
   {
-    "title": "TATE lab",
-    "client": "自社プロジェクト",
-    "category": "クリエイティブ制作室",
-    "role": "設計／企画＋デザイン／ブース／販促／商品開発",
-    "img": "assets/project-15-1.webp",
-    "width": 2186,
-    "height": 1258,
-    "sourcePage": 15,
-    "sourceGroup": "previous",
-    "sourcePart": 1,
-    "sourceCrop": [
-      0.003,
-      0.14,
-      0.997,
-      0.965
-    ],
-    "url": "https://tate-lab.com/",
-    "linkLabel": "公式サイトを見る",
-    "sourceTextHash": "3cca357e3645dd840c5582ad20a0fc2e4511f8dc0c952770ca8255235217dc9e",
-    "sourceDocumentSha": "49e83e96a86f14cf6b2e082422483e235eabcadc2e71b810be14d99000b8cfca",
-    "topics": [
-      "文化",
-      "健康・スポーツ",
-      "サウナ",
-      "埼玉"
-    ],
-    "thumbnail": "assets/thumb-tate.webp",
-    "thumbnailWidth": 2048,
-    "thumbnailHeight": 1536,
-    "detailPage": "works/tate-lab.html",
-    "year": 2025
-  },
-  {
-    "title": "BRUTUS×COEDO『SAÚDE（サウージ）』",
-    "client": "BRUTUS / COEDO BREWERY",
-    "category": "商品企画・ブランディング",
-    "role": "企画／設計／アートディレクション",
-    "topics": [
-      "食・農",
-      "健康・スポーツ",
-      "サウナ"
-    ],
-    "detailPage": "works/saude.html",
-    "url": "https://coedobrewery.com/products/brutus-coedo-saude",
-    "linkLabel": "商品ページを見る",
-    "img": "assets/thumb-saude.webp",
-    "thumbnail": "assets/thumb-saude.webp",
-    "width": 1000,
-    "height": 1000,
-    "thumbnailWidth": 1000,
-    "thumbnailHeight": 1000,
-    "sourceGroup": "web",
-    "year": 2025
-  },
-  {
     "title": "Cedar X PA",
     "client": "株式会社協同商事 コエドブルワリー／東武鉄道",
     "category": "ブランド・パッケージ",
@@ -439,6 +384,61 @@
     "year": 2024
   },
   {
+    "title": "TATE lab",
+    "client": "自社プロジェクト",
+    "category": "クリエイティブ制作室",
+    "role": "設計／企画＋デザイン／ブース／販促／商品開発",
+    "img": "assets/project-15-1.webp",
+    "width": 2186,
+    "height": 1258,
+    "sourcePage": 15,
+    "sourceGroup": "previous",
+    "sourcePart": 1,
+    "sourceCrop": [
+      0.003,
+      0.14,
+      0.997,
+      0.965
+    ],
+    "url": "https://tate-lab.com/",
+    "linkLabel": "公式サイトを見る",
+    "sourceTextHash": "3cca357e3645dd840c5582ad20a0fc2e4511f8dc0c952770ca8255235217dc9e",
+    "sourceDocumentSha": "49e83e96a86f14cf6b2e082422483e235eabcadc2e71b810be14d99000b8cfca",
+    "topics": [
+      "文化",
+      "健康・スポーツ",
+      "サウナ",
+      "埼玉"
+    ],
+    "thumbnail": "assets/thumb-tate.webp",
+    "thumbnailWidth": 2048,
+    "thumbnailHeight": 1536,
+    "detailPage": "works/tate-lab.html",
+    "year": 2023
+  },
+  {
+    "title": "BRUTUS×COEDO『SAÚDE（サウージ）』",
+    "client": "BRUTUS / COEDO BREWERY",
+    "category": "商品企画・ブランディング",
+    "role": "企画／設計／アートディレクション",
+    "topics": [
+      "食・農",
+      "健康・スポーツ",
+      "サウナ"
+    ],
+    "detailPage": "works/saude.html",
+    "url": "https://coedobrewery.com/products/brutus-coedo-saude",
+    "linkLabel": "商品ページを見る",
+    "img": "assets/thumb-saude.webp",
+    "thumbnail": "assets/thumb-saude.webp",
+    "width": 1000,
+    "height": 1000,
+    "thumbnailWidth": 1000,
+    "thumbnailHeight": 1000,
+    "sourceGroup": "web",
+    "year": 2023
+  },
+  {
     "title": "stons",
     "client": "BREATHER株式会社",
     "category": "広告・ビジュアル制作",
@@ -516,36 +516,6 @@
     "year": 2023
   },
   {
-    "title": "GALA meets SAUNA",
-    "client": "GALA湯沢（開催地）",
-    "category": "サウナ企画・運用",
-    "role": "サウナ企画・運用",
-    "img": "assets/project-22-1.webp",
-    "width": 2186,
-    "height": 1258,
-    "sourcePage": 22,
-    "sourceGroup": "previous",
-    "sourcePart": 1,
-    "sourceCrop": [
-      0.003,
-      0.14,
-      0.997,
-      0.965
-    ],
-    "sourceTextHash": "79e093c26777410b10f712b020afc291f39fd2c0dfc09cf109034f37bb2bfd76",
-    "sourceDocumentSha": "49e83e96a86f14cf6b2e082422483e235eabcadc2e71b810be14d99000b8cfca",
-    "topics": [
-      "観光",
-      "健康・スポーツ",
-      "サウナ"
-    ],
-    "detailPage": "works/gala-sauna.html",
-    "thumbnailWidth": 1440,
-    "thumbnailHeight": 958,
-    "thumbnail": "assets/thumb-gala-sauna.webp",
-    "year": 2023
-  },
-  {
     "title": "BRUTUS サウナ特集",
     "client": "BRUTUS",
     "category": "サウナディレクション",
@@ -619,6 +589,27 @@
       "埼玉"
     ],
     "detailPage": "works/sayamacha.html",
+    "year": 2023
+  },
+  {
+    "title": "ソトレシピ",
+    "client": "株式会社シーザスターズ",
+    "category": "フードメディア",
+    "role": "設計／企画＋デザイン＋フロントエンド",
+    "img": "assets/project-sotorecipe.webp",
+    "width": 1200,
+    "height": 630,
+    "thumbnail": "assets/project-sotorecipe.webp",
+    "thumbnailWidth": 1200,
+    "thumbnailHeight": 630,
+    "url": "https://sotorecipe.com/",
+    "linkLabel": "公式サイトを見る",
+    "sourceGroup": "web",
+    "topics": [
+      "食・農",
+      "観光"
+    ],
+    "detailPage": "works/sotorecipe.html",
     "year": 2023
   },
   {
@@ -818,6 +809,36 @@
     "detailPage": "works/saitama-vaccine.html",
     "archiveLast": true,
     "year": 2021
+  },
+  {
+    "title": "GALA meets SAUNA",
+    "client": "GALA湯沢（開催地）",
+    "category": "サウナ企画・運用",
+    "role": "サウナ企画・運用",
+    "img": "assets/project-22-1.webp",
+    "width": 2186,
+    "height": 1258,
+    "sourcePage": 22,
+    "sourceGroup": "previous",
+    "sourcePart": 1,
+    "sourceCrop": [
+      0.003,
+      0.14,
+      0.997,
+      0.965
+    ],
+    "sourceTextHash": "79e093c26777410b10f712b020afc291f39fd2c0dfc09cf109034f37bb2bfd76",
+    "sourceDocumentSha": "49e83e96a86f14cf6b2e082422483e235eabcadc2e71b810be14d99000b8cfca",
+    "topics": [
+      "観光",
+      "健康・スポーツ",
+      "サウナ"
+    ],
+    "detailPage": "works/gala-sauna.html",
+    "thumbnailWidth": 1440,
+    "thumbnailHeight": 958,
+    "thumbnail": "assets/thumb-gala-sauna.webp",
+    "year": 2020
   },
   {
     "title": "どぶろく「花咲山」",
@@ -1128,26 +1149,5 @@
     ],
     "detailPage": "works/urban-research-taiwan.html",
     "year": 2018
-  },
-  {
-    "title": "ソトレシピ",
-    "client": "株式会社シーザスターズ",
-    "category": "フードメディア",
-    "role": "設計／企画＋デザイン＋フロントエンド",
-    "img": "assets/project-sotorecipe.webp",
-    "width": 1200,
-    "height": 630,
-    "thumbnail": "assets/project-sotorecipe.webp",
-    "thumbnailWidth": 1200,
-    "thumbnailHeight": 630,
-    "url": "https://sotorecipe.com/",
-    "linkLabel": "公式サイトを見る",
-    "sourceGroup": "web",
-    "topics": [
-      "食・農",
-      "観光"
-    ],
-    "detailPage": "works/sotorecipe.html",
-    "year": 2017
   }
 ]
