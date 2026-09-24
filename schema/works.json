@@ -143,9 +143,9 @@
       "埼玉"
     ],
     "detailPage": "works/buntama.html",
-    "thumbnailWidth": 1002,
-    "thumbnailHeight": 534,
-    "thumbnail": "assets/thumb-buntama.webp",
+    "thumbnailWidth": 1200,
+    "thumbnailHeight": 675,
+    "thumbnail": "assets/thumb-buntama-card.webp",
     "pressUrl": "https://prtimes.jp/main/html/rd/p/000000849.000104306.html",
     "year": 2026,
     "startYear": 2025,
@@ -247,11 +247,10 @@
       "観光",
       "埼玉"
     ],
-    "thumbnail": "assets/thumb-ichigo.webp",
-    "thumbnailWidth": 1440,
-    "thumbnailHeight": 1799,
+    "thumbnail": "assets/thumb-ichigo-card.webp",
+    "thumbnailWidth": 1600,
+    "thumbnailHeight": 900,
     "detailPage": "works/ichigo-university.html",
-    "thumbnailFit": "contain",
     "year": 2026,
     "startYear": 2024,
     "ongoing": true
