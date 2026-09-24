@@ -655,3 +655,18 @@ a.dark:hover,.dark:hover,.dark:focus-visible{background:var(--ai);color:#fff}
 .mmodal:focus,.mmodal:focus-visible{outline:none}
 .mmodal-close:focus{outline:none}
 .mmodal-close:focus-visible{outline:2px solid var(--ai);outline-offset:-2px}
+
+/* --- MIYABI 舞台写真のスライドショー：ゆっくり重なって切り替わる --- */
+.stage-slides{position:relative;aspect-ratio:16/9;overflow:hidden;background:#090909}
+.stage-story .stage-slides img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;
+  object-fit:cover;object-position:50% 50%;opacity:0;transform:scale(1.01);
+  transition:opacity 1.8s ease,transform 7s linear}
+.stage-story .stage-slides img.is-on{opacity:1;transform:scale(1.04)}
+.motion-off .stage-slides img{transition:none}
+@media (prefers-reduced-motion:reduce){.stage-slides img{transition:none}}
+/* 写真ごとに見せたい位置へ寄せる（動きが下にある写真は足元を残す） */
+.stage-story .stage-slides img:nth-child(1){object-position:50% 85%}
+.stage-story .stage-slides img:nth-child(2){object-position:50% 60%}
+.stage-story .stage-slides img:nth-child(3){object-position:50% 35%}
+.stage-story .stage-slides img:nth-child(4){object-position:50% 75%}
+.stage-story .stage-slides img:nth-child(5){object-position:50% 30%}

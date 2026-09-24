@@ -95,3 +95,13 @@ new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){if(!held&&film
 const dyeMotion=matchMedia('(prefers-reduced-motion: reduce)');const dyeObserver=new IntersectionObserver(entries=>entries.forEach(e=>{e.target.classList.toggle('is-dyed',e.isIntersecting)}),{threshold:.35});document.querySelectorAll('.dye-image').forEach(e=>dyeObserver.observe(e));
 const videoObserver=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)e.target.pause()}),{threshold:.05});document.querySelectorAll('video').forEach(v=>videoObserver.observe(v));document.addEventListener('visibilitychange',()=>{if(document.hidden)document.querySelectorAll('video').forEach(v=>v.pause())});
 const mt=document.getElementById('menu-toggle'),mm=document.getElementById('mobile-menu');function closeMenu(){mm.hidden=true;mt.setAttribute('aria-expanded','false')}mt.onclick=()=>{mm.hidden=!mm.hidden;mt.setAttribute('aria-expanded',String(!mm.hidden))};mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();mt.focus()}});
+/* MIYABI 舞台写真: 画面に入っている間だけ、ゆっくり重ねて切り替える。
+   サイトの一時停止（body.motion-off）と「動きを減らす」設定では止める */
+const slides=document.querySelector('.stage-slides');
+if(slides){const imgs=[...slides.querySelectorAll('img')];let cur=0,timer=0,inView=false;
+const still=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||document.body.classList.contains('motion-off');
+const next=()=>{imgs[cur].classList.remove('is-on');cur=(cur+1)%imgs.length;imgs[cur].classList.add('is-on')};
+const sync=()=>{const run=inView&&!document.hidden&&!still();if(run&&!timer)timer=setInterval(next,5500);else if(!run&&timer){clearInterval(timer);timer=0}};
+new IntersectionObserver(es=>{inView=es[0].isIntersecting;if(inView)imgs.forEach(i=>i.loading='eager');sync()},{threshold:.3}).observe(slides);
+document.addEventListener('visibilitychange',sync);
+new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']})}
