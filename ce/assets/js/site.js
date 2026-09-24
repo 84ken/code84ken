@@ -12,6 +12,8 @@
    7. SNSシェア                 …… [data-share]
    8. 動画ポップアップ          …… [data-video-open]
    9. 詳細ポップアップ          …… [data-dialog-open]（出展企業の詳細など）
+  10. ロゴのCEマーク回転        …… [.logo-spin-mark]
+  11. ヘッダーの出し入れ        …… [.header-reveal]（トップのみ）
 
    データは /assets/data/*.json を編集すれば反映されます。
    ========================================================= */
@@ -523,11 +525,52 @@
     });
   }
 
+  /* ---------- トップのロゴのCEマークを回す ----------
+     読み込み時はCSSで1回転。そのあとは、触れる・押すたびにもう一度回す。 */
+
+  function initLogoSpin() {
+    var mark = $('.logo-spin-mark');
+    if (!mark) return;
+    var host = mark.parentNode;
+
+    function spin() {
+      mark.classList.remove('is-spinning');
+      void mark.offsetWidth; // いったんリセットしてアニメーションを再生し直す
+      mark.classList.add('is-spinning');
+    }
+
+    mark.addEventListener('animationend', function () {
+      mark.classList.remove('is-spinning');
+    });
+
+    host.addEventListener('mouseenter', spin);
+    host.addEventListener('click', spin);
+
+    // 読み込み直後に1回まわす
+    setTimeout(spin, 450);
+  }
+
+  /* ---------- ヘッダーの出し入れ（トップのみ） ----------
+     ヒーローのロゴと二重に見えないよう、いちばん上では隠しておく。 */
+
+  function initHeaderReveal() {
+    var header = $('.header-reveal');
+    if (!header) return;
+    var SHOW_AT = 160; // これ以上スクロールしたら出てくる
+
+    function update() {
+      header.classList.toggle('is-up', (window.scrollY || window.pageYOffset) < SHOW_AT);
+    }
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+
   /* ---------- 起動 ---------- */
 
   function boot() {
     initNav(); initNews(); initEvents(); initExhibitors();
-    initCounters(); initYear(); initShare(); initVideo(); initDialogs();
+    initCounters(); initYear(); initShare(); initVideo(); initDialogs(); initLogoSpin(); initHeaderReveal();
   }
 
   // ビルド（Node）でも同じ描画関数で一覧を事前描画する（検索エンジンがJSなしでも読めるように）

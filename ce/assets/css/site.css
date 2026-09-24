@@ -367,6 +367,26 @@ summary:focus-visible,
 }
 .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
+/* トップのヘッダー：いちばん上では隠し、スクロールすると上から出てくる */
+.header-reveal { transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.3, 1); }
+.header-reveal.is-up {
+  transform: translateY(-105%);
+  visibility: hidden; /* 隠れている間はキーボード操作の対象からも外す */
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.3, 1), visibility 0s linear 0.35s;
+}
+
+/* トップのロゴ：CEマークだけをくるっと1回転させる
+   （logotype-text.png = 文字、ce-mark.png = 黄色いマーク。
+     マークの画像は中心＝回転の中心になるよう切り出してある） */
+/* 回転は JS が is-spinning を付け外しして起こす。
+   （常時 animation を指定しておくと、クラスを付け直しても再生されないため） */
+.logo-spin-mark { transform-origin: 50% 50%; }
+.logo-spin-mark.is-spinning { animation: ce-spin 1.1s cubic-bezier(0.62, 0, 0.3, 1) both; }
+@keyframes ce-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 /* なぞときラリー：サーキュロ所長のふきだし（下向きのしっぽ） */
 .rally-bubble { position: relative; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15); }
 .rally-bubble::after {

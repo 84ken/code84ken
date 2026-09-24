@@ -506,6 +506,9 @@ video {
 .pointer-events-none {
   pointer-events: none;
 }
+.fixed {
+  position: fixed;
+}
 .absolute {
   position: absolute;
 }
@@ -517,6 +520,10 @@ video {
 }
 .inset-0 {
   inset: 0px;
+}
+.inset-x-0 {
+  left: 0px;
+  right: 0px;
 }
 .-right-5 {
   right: -1.25rem;
@@ -1161,8 +1168,8 @@ video {
 .pr-5 {
   padding-right: 1.25rem;
 }
-.pt-10 {
-  padding-top: 2.5rem;
+.pt-12 {
+  padding-top: 3rem;
 }
 .pt-4 {
   padding-top: 1rem;
@@ -1249,9 +1256,6 @@ video {
 }
 .font-medium {
   font-weight: 500;
-}
-.leading-none {
-  line-height: 1;
 }
 .leading-normal {
   line-height: 1.5;
@@ -1613,6 +1617,10 @@ video {
     padding: 2.25rem;
   }
 
+  .sm\:pt-14 {
+    padding-top: 3.5rem;
+  }
+
   .sm\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -1912,8 +1920,8 @@ video {
     padding-bottom: 5rem;
   }
 
-  .lg\:pt-14 {
-    padding-top: 3.5rem;
+  .lg\:pt-16 {
+    padding-top: 4rem;
   }
 
   .lg\:text-2xl {
