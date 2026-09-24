@@ -432,3 +432,6 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 /* Embedded films on case pages. */
 .case-video iframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000}
 .case-video figcaption{font-size:13px;color:#666;line-height:1.7;margin-top:10px}
+
+/* Labels above list-style credits on case pages. */
+.case-list-label{margin:40px 0 12px}
