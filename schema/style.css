@@ -418,3 +418,9 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 /* ABOUT: the focus-area paragraph follows the concept paragraph closely. */
 .about-content>p:has(+p){margin-bottom:18px}
 .about-content>p+p{margin-top:0}
+
+/* Work grid: 16:9 frame filled edge to edge; white-background portraits keep their whole image with white sides. */
+.grid .visual{aspect-ratio:16/9;background:#fff}
+.grid .visual img{object-fit:cover}
+.grid .visual.is-contain img{object-fit:contain}
+.grid .thumbnail-screen{top:0;height:100%;aspect-ratio:auto;transform:none}

@@ -251,6 +251,7 @@
     "thumbnailWidth": 1440,
     "thumbnailHeight": 1799,
     "detailPage": "works/ichigo-university.html",
+    "thumbnailFit": "contain",
     "year": 2026,
     "startYear": 2024,
     "ongoing": true
@@ -295,6 +296,7 @@
       "観光"
     ],
     "detailPage": "works/cedar-x-pa.html",
+    "thumbnailFit": "contain",
     "pressUrl": "https://prtimes.jp/main/html/rd/p/000000039.000060962.html",
     "year": 2025
   },
@@ -442,6 +444,7 @@
       "サウナ"
     ],
     "detailPage": "works/saude.html",
+    "thumbnailFit": "contain",
     "url": "https://coedobrewery.com/products/brutus-coedo-saude",
     "linkLabel": "商品ページを見る",
     "img": "assets/thumb-saude.webp",
@@ -503,6 +506,7 @@
       "食・農"
     ],
     "detailPage": "works/takashimaya-osechi.html",
+    "thumbnailFit": "contain",
     "year": 2023
   },
   {
@@ -528,6 +532,7 @@
       "食・農"
     ],
     "detailPage": "works/takashimaya-valentine.html",
+    "thumbnailFit": "contain",
     "year": 2023
   },
   {
