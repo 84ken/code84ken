@@ -424,3 +424,7 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 .grid .visual img{object-fit:cover}
 .grid .visual.is-contain img{object-fit:contain}
 .grid .thumbnail-screen{top:0;height:100%;aspect-ratio:auto;transform:none}
+
+/* Related projects on case pages: same 16:9 treatment as the work grid. */
+.case-related img{aspect-ratio:16/9;object-fit:cover;background:#fff}
+.case-related img.is-contain{object-fit:contain}
