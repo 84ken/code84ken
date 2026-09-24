@@ -531,7 +531,9 @@
       "食・農"
     ],
     "detailPage": "works/takashimaya-valentine.html",
-    "thumbnailFit": "contain",
+    "thumbnail": "assets/thumb-valentine-card.webp",
+    "thumbnailWidth": 1200,
+    "thumbnailHeight": 675,
     "year": 2023
   },
   {
@@ -560,6 +562,7 @@
       "サウナ"
     ],
     "detailPage": "works/brutus-sauna.html",
+    "thumbnailFit": "contain",
     "thumbnailWidth": 827,
     "thumbnailHeight": 1118,
     "thumbnail": "assets/thumb-brutus.webp",
@@ -740,9 +743,9 @@
     "topics": [
       "観光"
     ],
-    "thumbnail": "assets/thumb-takuroo.jpg",
+    "thumbnail": "assets/thumb-takuroo-card.webp",
     "thumbnailWidth": 800,
-    "thumbnailHeight": 569,
+    "thumbnailHeight": 450,
     "detailPage": "works/takuroo.html",
     "year": 2021
   },
@@ -1067,6 +1070,9 @@
       "食・農"
     ],
     "detailPage": "works/homebake.html",
+    "thumbnail": "assets/project-41-card.webp",
+    "thumbnailWidth": 1600,
+    "thumbnailHeight": 900,
     "year": 2018
   },
   {
@@ -1117,6 +1123,9 @@
       "食・農"
     ],
     "detailPage": "works/sunnygogo.html",
+    "thumbnail": "assets/project-45-card.webp",
+    "thumbnailWidth": 1600,
+    "thumbnailHeight": 900,
     "year": 2018
   },
   {
@@ -1143,6 +1152,9 @@
       "文化"
     ],
     "detailPage": "works/arc-and-art.html",
+    "thumbnail": "assets/project-51-card.webp",
+    "thumbnailWidth": 1600,
+    "thumbnailHeight": 900,
     "year": 2018
   },
   {
