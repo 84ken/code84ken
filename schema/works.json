@@ -851,6 +851,24 @@
     "year": 2021
   },
   {
+    "title": "Bonnie and Clyde hairworks",
+    "client": "Bonnie and Clyde hairworks",
+    "category": "バーバーのブランディング",
+    "role": "企画・設計・アートディレクション・構築／ロゴ・ショップカード・名刺・看板・Webサイト",
+    "img": "assets/bonnie-sign.webp",
+    "width": 1600,
+    "height": 1067,
+    "thumbnail": "assets/thumb-bonnie-card.webp",
+    "thumbnailWidth": 1600,
+    "thumbnailHeight": 900,
+    "url": "http://bonnie-and-clyde.work/",
+    "linkLabel": "公式サイトを見る",
+    "sourceGroup": "facebook",
+    "topics": [],
+    "detailPage": "works/bonnie-and-clyde.html",
+    "year": 2021
+  },
+  {
     "title": "GALA meets SAUNA",
     "client": "GALA湯沢（開催地）",
     "category": "サウナ企画・運用",
