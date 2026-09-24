@@ -274,6 +274,9 @@
       "埼玉"
     ],
     "detailPage": "works/taiwan-festival.html",
+    "thumbnail": "assets/thumb-taiwan-card.webp",
+    "thumbnailWidth": 1440,
+    "thumbnailHeight": 810,
     "year": 2025
   },
   {
@@ -340,6 +343,9 @@
       "埼玉"
     ],
     "detailPage": "works/saitama-gifts.html",
+    "thumbnail": "assets/thumb-omiyage-card.webp",
+    "thumbnailWidth": 1440,
+    "thumbnailHeight": 810,
     "year": 2024
   },
   {
@@ -505,7 +511,9 @@
       "食・農"
     ],
     "detailPage": "works/takashimaya-osechi.html",
-    "thumbnailFit": "contain",
+    "thumbnail": "assets/thumb-osechi-card.webp",
+    "thumbnailWidth": 1548,
+    "thumbnailHeight": 871,
     "year": 2023
   },
   {
@@ -532,8 +540,8 @@
     ],
     "detailPage": "works/takashimaya-valentine.html",
     "thumbnail": "assets/thumb-valentine-card.webp",
-    "thumbnailWidth": 1200,
-    "thumbnailHeight": 675,
+    "thumbnailWidth": 900,
+    "thumbnailHeight": 506,
     "year": 2023
   },
   {
@@ -611,6 +619,9 @@
       "埼玉"
     ],
     "detailPage": "works/sayamacha.html",
+    "thumbnail": "assets/thumb-sayamacha-card.webp",
+    "thumbnailWidth": 1600,
+    "thumbnailHeight": 900,
     "year": 2023
   },
   {
@@ -774,6 +785,9 @@
       "文化"
     ],
     "detailPage": "works/joysound.html",
+    "thumbnail": "assets/thumb-joysound-card.webp",
+    "thumbnailWidth": 1600,
+    "thumbnailHeight": 900,
     "year": 2021
   },
   {
@@ -830,6 +844,9 @@
       "埼玉"
     ],
     "detailPage": "works/saitama-vaccine.html",
+    "thumbnail": "assets/thumb-vaccine-card.webp",
+    "thumbnailWidth": 1330,
+    "thumbnailHeight": 748,
     "archiveLast": true,
     "year": 2021
   },
