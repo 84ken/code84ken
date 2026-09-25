@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# http → https、www → wwwなし に統一
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://schema.tokyo/$1 [R=301,L]
