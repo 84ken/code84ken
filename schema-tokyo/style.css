@@ -9,8 +9,8 @@
   --mincho:'BIZ UDPMincho','Hiragino Mincho ProN','Yu Mincho',serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:inherit;text-decoration:none}
 a:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--ink);outline-offset:6px}
 img{max-width:100%;display:block}
@@ -106,7 +106,11 @@ p{margin:0}
 .spec .cap{margin-top:10px;border-top:1px solid var(--line);padding-top:12px}
 .spec .cap .mono{display:flex;justify-content:space-between;color:var(--sub)}
 .spec h3{margin:6px 0 0;font-size:19px;letter-spacing:-.03em;line-height:1.4}
-.spec .desc{margin-top:8px;font-size:13px;line-height:1.8;color:#333}
+.spec .motive{margin-top:10px;font-size:13px;line-height:1.85;color:#333}
+.spec .motive .mono{display:block;font-size:10px;color:var(--sub);margin-bottom:2px}
+.featured .disc{border-color:var(--ink);box-shadow:0 0 0 5px var(--paper),0 0 0 6px var(--ink)}
+.featured .cap{border-top-color:var(--ink)}
+.featured .cap>.mono span:first-child{color:var(--ink)}
 .spec .open{display:inline-block;margin-top:12px}
 .spec .open span{display:inline-block;transition:transform .3s}
 .spec>a:hover .open span{transform:translateX(5px)}
@@ -153,13 +157,14 @@ footer a.co{border-bottom:1px solid}
   .intro .statement{font-size:18px}
   .sec-head,.about-body,.board{margin-left:6%;margin-right:6%}
   .about-body{grid-template-columns:1fr;gap:24px}
-  .board{gap:44px 18px}
   .spec h3{font-size:16px}
-  .spec .desc{display:none}
+  .board{grid-template-columns:1fr;gap:40px}
+  .spec>a{display:grid;grid-template-columns:38% 1fr;gap:16px;align-items:start}
+  .spec .cap{margin-top:0}
   .spec .cap .mono span:last-child{display:none}
+  .spec .motive{font-size:12.5px}
   .spec .open{word-break:break-all;font-size:10px}
   .badge{width:84px;height:84px;right:14px;bottom:14px}
-  .badge svg{transform:scale(.712);transform-origin:0 0;width:118px;height:118px}
   footer{margin:0 6%;padding-bottom:120px}
 }
 @media(prefers-reduced-motion:reduce){
