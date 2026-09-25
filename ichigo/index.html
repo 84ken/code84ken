@@ -113,6 +113,42 @@
       box-shadow: 0 20px 60px -10px rgba(0,0,0,0.35);
     }
     @media (min-width: 640px) { .hero-video-box { left: auto; right: 24px; bottom: 24px; width: 260px; } }
+
+    /* ── 合言葉：ぷにっと丸の写真（形がゆっくり揺らぎ、ふわふわ浮かぶ） ── */
+    .motto-grid { display:flex; flex-direction:column; align-items:center; gap:40px; }
+    .motto-text { max-width:56rem; }
+    .motto-side { display:flex; flex-direction:row; justify-content:center; align-items:center; gap:2vw; }
+    @media (min-width: 640px) { .motto-side { gap:32px; } .motto-side .blob { --w-now: calc(var(--mw) * 0.62); } }
+    .blob { --w-now: var(--mw); position:relative; isolation:isolate; margin:0; width:var(--w-now); animation:blob-float 7s ease-in-out var(--delay) infinite alternate; }
+    .blob::before { content:""; position:absolute; inset:0; z-index:-1; background:var(--bg); transform:translate(var(--dx), var(--dy)); border-radius:52% 48% 60% 40% / 44% 56% 44% 56%; animation:blob-morph 13s ease-in-out var(--delay) infinite alternate-reverse; }
+    .blob-shape { width:100%; aspect-ratio:1; overflow:hidden; border-radius:58% 42% 52% 48% / 46% 56% 44% 54%; animation:blob-morph 11s ease-in-out var(--delay) infinite alternate; }
+    .blob-shape img { width:100%; height:100%; object-fit:cover; object-position:var(--pos, center); display:block; }
+    @keyframes blob-morph {
+      0%   { border-radius:58% 42% 52% 48% / 46% 56% 44% 54%; }
+      50%  { border-radius:44% 56% 40% 60% / 58% 44% 56% 42%; }
+      100% { border-radius:52% 48% 62% 38% / 42% 52% 48% 58%; }
+    }
+    @keyframes blob-float { from { transform:translateY(-8px); } to { transform:translateY(8px); } }
+    /* 横幅が広い画面では文章の左右に浮かべる */
+    @media (min-width: 1280px) {
+      .motto-grid { display:grid; grid-template-columns:1fr minmax(0, 820px) 1fr; align-items:center; gap:24px; }
+      .motto-side { flex-direction:column; align-items:flex-start; gap:28px; }
+      .motto-right { align-items:flex-end; }
+      .motto-side .blob { --w-now: var(--w); }
+      .motto-left .blob-end { align-self:flex-end; }
+      .motto-right .blob-end { align-self:flex-end; }
+      .motto-right .blob:not(.blob-end) { align-self:flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) { .blob, .blob::before, .blob-shape { animation:none; } }
+
+    /* ファーストビュー：タブレット以上はイラスト＋赤帯ロゴを画面の高さにぴったり収める */
+    @media (min-width: 640px) {
+      .fv-frame { display:flex; flex-direction:column; height:100vh; height:100svh; min-height:560px; }
+      .fv-visual { flex:1 1 auto; min-height:0; display:flex; padding-bottom:12px; }
+      .fv-visual .fv-img { width:100%; height:100%; object-fit:contain; }
+      .fv-band { flex:0 0 auto; }
+      .fv-band .fv-logo { max-height:9vh; width:auto; }
+    }
     @media (min-width: 1024px) { .hero-video-box { right: 40px; bottom: 40px; width: 400px; } }
 
     /* ── いちごの種パターン（CHICHIBU ICHIGO SALT パッケージへのオマージュ） ── */
@@ -151,7 +187,7 @@
       <a href="/" class="inline-flex items-center" aria-label="埼玉いちご大學 トップへ">
         <img src="images/logo/logo-crest.png" alt="埼玉いちご大學 校章" class="h-14 sm:h-16 w-auto">
       </a>
-      <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-2">
+      <nav aria-label="メインナビゲーション" class="hidden lg:flex items-center gap-2">
         <a href="about.html" class="pill-nav">いちご大學とは</a>
         <a href="events.html" class="pill-nav">お知らせ</a>
         <a href="lab.html" class="pill-nav">いちごの研究室</a>
@@ -161,11 +197,11 @@
           ONLINE SHOP
         </a>
       </nav>
-      <button id="menu-btn" class="md:hidden w-12 h-12 inline-flex items-center justify-center bg-white border border-ink rounded-full" aria-label="メニューを開く" aria-expanded="false">
+      <button id="menu-btn" class="lg:hidden w-12 h-12 inline-flex items-center justify-center bg-white border border-ink rounded-full" aria-label="メニューを開く" aria-expanded="false">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-black/10">
+    <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-black/10">
       <div class="px-6 py-4 space-y-2">
         <a href="about.html" class="block py-3 text-base font-medium border-b border-black/5">いちご大學とは</a>
         <a href="events.html" class="block py-3 text-base font-medium border-b border-black/5">お知らせ</a>
@@ -178,9 +214,11 @@
 
   <!-- ① ファーストビュー -->
   <section class="relative bg-base">
+    <!-- ロゴ（赤帯）とキービジュアルを1画面に収める枠 -->
+    <div class="fv-frame">
     <!-- メインビジュアル + 動画フローティングボックス -->
-    <div class="relative w-full bg-white pt-28 sm:pt-28">
-      <img src="images/hero/ichigo_main.webp" alt="埼玉いちご大學 メインビジュアル（イラスト：我喜屋位瑳務）" class="w-full h-auto block max-h-[85vh] object-contain mx-auto">
+    <div class="fv-visual relative w-full bg-white pt-24 sm:pt-28">
+      <img src="images/hero/ichigo_main.webp" alt="埼玉いちご大學 メインビジュアル（イラスト：我喜屋位瑳務）" class="fv-img w-full h-auto block mx-auto" width="1800" height="1560">
 
       <!-- フローティング動画 -->
       <div class="hero-video-box">
@@ -203,10 +241,11 @@
     </div>
 
     <!-- 赤帯 -->
-    <div class="bg-ichigo seed-pattern-white py-6 sm:py-8">
+    <div class="fv-band bg-ichigo seed-pattern-white py-5 sm:py-6">
       <div class="max-w-3xl mx-auto px-6 text-center">
-        <img src="images/logo/logo-text.webp" alt="埼玉いちご大學" class="w-full max-w-md sm:max-w-lg mx-auto h-auto block">
+        <img src="images/logo/logo-text.webp" alt="埼玉いちご大學" class="fv-logo w-full max-w-xs sm:max-w-md mx-auto h-auto block" width="600" height="87">
       </div>
+    </div>
     </div>
 
     <!-- 🆕 新発売告知バナー -->
@@ -255,20 +294,47 @@
   </section>
 
   <!-- ② 合言葉 -->
-  <section class="bg-white seed-pattern-red py-28 sm:py-36">
-    <div class="max-w-4xl mx-auto px-6 text-center reveal">
+  <section class="bg-white seed-pattern-red py-20 sm:py-28 xl:py-36 overflow-hidden">
+    <div class="motto-grid max-w-[1400px] mx-auto px-6">
+
+    <!-- ぷにっと丸の写真（左） -->
+    <div class="motto-side motto-left" aria-hidden="true">
+      <figure class="blob" style="--w:min(260px,17vw);--mw:34vw;--pos:50% 38%;--bg:#FBEDED;--dx:14px;--dy:12px;--delay:0s">
+        <div class="blob-shape"><img src="images/photos/strawberry-pick.webp" alt="" loading="lazy" width="563" height="1000"></div>
+      </figure>
+      <figure class="blob blob-end" style="--w:min(200px,13vw);--mw:28vw;--pos:55% 45%;--bg:rgba(204,0,0,0.12);--dx:-12px;--dy:10px;--delay:-2.5s">
+        <div class="blob-shape"><img src="images/photos/strawberry-bite.webp" alt="" loading="lazy" width="1000" height="750"></div>
+      </figure>
+    </div>
+
+    <div class="motto-text text-center reveal">
       <p class="label-en text-ichigo mb-8">MOTTO</p>
-      <h2 class="h-display-thin text-3xl sm:text-5xl md:text-6xl text-ink mb-16">
+      <h2 class="h-display-thin text-2xl sm:text-5xl md:text-6xl text-ink mb-16">
         いちごが好き。<br>それだけで、何かが始まる。
       </h2>
       <div class="w-12 h-px bg-ink/20 mx-auto mb-16"></div>
       <p class="body-jp text-base sm:text-lg text-ink max-w-2xl mx-auto">
-        埼玉いちご大學は、「いちごが好き」という気持ちを持ち寄る場所です。<br>
-        農家さんの畑を歩き、品種の違いを味わい、<br>
-        「これ、何かに使えないかな？」を一緒に考える。<br>
-        秩父・横瀬を中心に、いちごを起点にした<br>
+        埼玉いちご大學は、「いちごが好き」という気持ちを持ち寄る場所です。<br class="hidden sm:block">
+        農家さんの畑を歩き、品種の違いを味わい、<br class="hidden sm:block">
+        「これ、何かに使えないかな？」を一緒に考える。<br class="hidden sm:block">
+        秩父・横瀬を中心に、いちごを起点にした<br class="hidden sm:block">
         人・知恵・地域のネットワークを育てています。
       </p>
+    </div>
+
+    <!-- ぷにっと丸の写真（右） -->
+    <div class="motto-side motto-right" aria-hidden="true">
+      <figure class="blob blob-end" style="--w:min(240px,16vw);--mw:30vw;--pos:72% 55%;--bg:rgba(204,0,0,0.12);--dx:-14px;--dy:12px;--delay:-1.2s">
+        <div class="blob-shape"><img src="images/photos/strawberry-vine.webp" alt="" loading="lazy" width="1000" height="750"></div>
+      </figure>
+      <figure class="blob" style="--w:min(150px,10vw);--mw:20vw;--pos:50% 50%;--bg:#FBEDED;--dx:10px;--dy:-10px;--delay:-4s">
+        <div class="blob-shape"><img src="images/photos/strawberry-house.webp" alt="" loading="lazy" width="1000" height="750"></div>
+      </figure>
+      <figure class="blob blob-end" style="--w:min(210px,14vw);--mw:26vw;--pos:50% 40%;--bg:#FBEDED;--dx:12px;--dy:12px;--delay:-3.3s">
+        <div class="blob-shape"><img src="images/photos/strawberry-smile.webp" alt="" loading="lazy" width="750" height="1000"></div>
+      </figure>
+    </div>
+
     </div>
   </section>
 
