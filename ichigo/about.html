@@ -100,7 +100,7 @@
     .variety-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px -12px rgba(204,0,0,.18); }
 
     /* 画像ホバーの統一ズーム */
-    .img-zoom { overflow:hidden; }
+    .img-zoom { overflow:hidden; isolation:isolate; }
     .img-zoom img { transition:transform 0.7s cubic-bezier(0.22,1,0.36,1); }
     .img-zoom:hover img { transform:scale(1.05); }
   </style>
@@ -289,7 +289,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 mb-20 sm:mb-24">
         <!-- 01 集まる -->
         <div>
-          <div class="aspect-[4/3] overflow-hidden bg-base mb-6">
+          <div class="aspect-[4/3] overflow-hidden bg-base rounded-2xl mb-6">
             <img src="images/events/event-2024-12-area898.jpg" alt="Area898に集まった45名" class="w-full h-full object-cover">
           </div>
           <p class="text-xs text-mute mb-5 leading-relaxed">いちご農家のハウスを見学し、栽培のこだわりに耳を傾ける参加者たち。農家さんの話を聞くところから、一日が始まりました。</p>
@@ -300,7 +300,7 @@
 
         <!-- 02 発想 -->
         <div>
-          <div class="aspect-[4/3] overflow-hidden bg-base mb-6">
+          <div class="aspect-[4/3] overflow-hidden bg-base rounded-2xl mb-6">
             <img src="images/events/event-2025-03-taiwan.jpg" alt="台湾祭々でのお披露目" class="w-full h-full object-cover">
           </div>
           <p class="text-xs text-mute mb-5 leading-relaxed">台湾祭々の会場に設けたブース。6チームの試作品を来場者に手に取ってもらい、その場で感想を集めました。</p>
@@ -311,7 +311,7 @@
 
         <!-- 03 形になる -->
         <div>
-          <div class="aspect-[4/3] overflow-hidden bg-base mb-6">
+          <div class="aspect-[4/3] overflow-hidden bg-base rounded-2xl mb-6">
             <img src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
           </div>
           <p class="text-xs text-mute mb-5 leading-relaxed">商品化した「CHICHIBU ICHIGO SALT」。持ち歩きやすい袋タイプ（10g）と、贈り物にも選ばれる瓶タイプ（50g）の2種類です。</p>
@@ -322,13 +322,13 @@
       </div>
 
       <!-- 6つのアイデア一覧 -->
-      <div class="bg-base p-8 sm:p-12">
+      <div class="bg-base rounded-3xl p-6 sm:p-12">
         <div class="text-center mb-10">
           <p class="label-en text-ichigo mb-3">6 IDEAS</p>
           <h3 class="h-display text-xl sm:text-2xl text-ink">生まれた、6つのアイデア</h3>
         </div>
-        <ul class="grid grid-cols-2 md:grid-cols-3 gap-px bg-black/10 border border-black/10">
-          <li class="bg-white">
+        <ul class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+          <li class="bg-white rounded-2xl overflow-hidden">
             <div class="aspect-[4/3] overflow-hidden bg-base">
               <img src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
             </div>
@@ -339,7 +339,7 @@
               <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-bold bg-ichigo text-white rounded-full">商品化</span>
             </div>
           </li>
-          <li class="bg-white">
+          <li class="bg-white rounded-2xl overflow-hidden">
             <div class="aspect-[4/3] overflow-hidden bg-base">
               <img src="images/ws/idea-a-card.png" alt="いちご札所カードの試作" class="w-full h-full object-contain">
             </div>
@@ -350,7 +350,7 @@
               <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full" style="background:#0A0A0A;">試作お披露目</span>
             </div>
           </li>
-          <li class="bg-white">
+          <li class="bg-white rounded-2xl overflow-hidden">
             <div class="aspect-[4/3] overflow-hidden bg-base">
               <img src="images/ws/idea-c-keyholder.png" alt="すっぱいちご愛 いちごキーホルダー" class="w-full h-full object-cover">
             </div>
@@ -361,8 +361,8 @@
               <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full" style="background:#0A0A0A;">試作お披露目</span>
             </div>
           </li>
-          <li class="bg-white">
-            <div class="aspect-[4/3] overflow-hidden bg-base flex items-center justify-center">
+          <li class="bg-white rounded-2xl overflow-hidden">
+            <div class="aspect-[4/3] overflow-hidden bg-white border-b border-dashed border-ichigo/20 flex items-center justify-center">
               <span class="label-en text-mute">PHOTO COMING</span>
             </div>
             <div class="p-5 text-center">
@@ -372,7 +372,7 @@
               <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full" style="background:#666666;">継続検討中</span>
             </div>
           </li>
-          <li class="bg-white">
+          <li class="bg-white rounded-2xl overflow-hidden">
             <div class="aspect-[4/3] overflow-hidden bg-base">
               <img src="images/ws/idea-d-sauce.png" alt="スローなイチゴ狩り 高級肉料理用いちごソース" class="w-full h-full object-cover">
             </div>
@@ -383,8 +383,8 @@
               <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-bold text-white rounded-full" style="background:#666666;">継続検討中</span>
             </div>
           </li>
-          <li class="bg-white">
-            <div class="aspect-[4/3] overflow-hidden bg-base flex items-center justify-center">
+          <li class="bg-white rounded-2xl overflow-hidden">
+            <div class="aspect-[4/3] overflow-hidden bg-white border-b border-dashed border-ichigo/20 flex items-center justify-center">
               <span class="label-en text-mute">PHOTO COMING</span>
             </div>
             <div class="p-5 text-center">
@@ -430,7 +430,7 @@
           </ol>
           <p class="text-xs text-mute mt-3 text-right">※ 全48件中の上位6件。残り123件のアイデアも可能性として継続検討中。</p>
           <!-- 実際のアイデアシート -->
-          <div class="mt-6 overflow-hidden bg-white border border-black/10">
+          <div class="mt-6 overflow-hidden bg-white border border-black/10 rounded-2xl">
             <img src="images/ws/chichibu-hs-ideas.png" alt="秩父高校生によるアイデアシート抜粋" class="w-full h-auto block">
           </div>
           <p class="text-xs text-mute mt-2 text-right">高校生が描いたアイデアシートの一部</p>
@@ -483,7 +483,7 @@
             <p class="body-jp text-sm sm:text-base text-mute">いちご農家さんとの出会いから始まり、45名が集まったWSで6つのアイデアが誕生。秩父高校175名とのアイデア出し授業も実施。</p>
           </div>
           <div class="pl-12 sm:pl-10">
-            <div class="aspect-[4/3] overflow-hidden bg-white">
+            <div class="aspect-[4/3] overflow-hidden bg-white rounded-2xl">
               <img src="images/events/event-2024-12-area898.jpg" alt="R6 第2回WS Area898での様子" class="w-full h-full object-cover">
             </div>
           </div>
@@ -498,7 +498,7 @@
             <p class="body-jp text-sm sm:text-base text-mute">いちご塩（CHICHIBU ICHIGO SALT）の商品化に成功。埼玉いちご祭りで全商品完売、売上31.6万円を達成。温泉道場、宮野園など参加者から派生プロジェクトが続々。</p>
           </div>
           <div class="pl-12 sm:pl-0 sm:pr-10 sm:order-1">
-            <div class="aspect-[4/3] overflow-hidden bg-white">
+            <div class="aspect-[4/3] overflow-hidden bg-white rounded-2xl">
               <img src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
             </div>
           </div>
@@ -516,7 +516,7 @@
             <p class="body-jp text-sm sm:text-base text-mute">個包装の量産化、EC販売開始、新商品開発を推進中。「いちごの町・秩父」の浸透を目指して活動を継続。</p>
           </div>
           <div class="pl-12 sm:pl-10">
-            <div class="aspect-[4/3] overflow-hidden bg-white">
+            <div class="aspect-[4/3] overflow-hidden bg-white rounded-2xl">
               <img src="images/events/event-2026-02-ichigo-matsuri.jpg" alt="R8 埼玉いちご祭り2026出店" class="w-full h-full object-cover">
             </div>
           </div>

@@ -77,7 +77,7 @@
     .pill-nav.active { background:#CC0000; color:#fff; border-color:#CC0000; }
     .pill-nav-shop { background:#CC0000; border:1.5px solid #CC0000; border-radius:999px; padding:8px 18px; font-weight:600; font-size:14px; color:#fff; transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
     .pill-nav-shop:hover { background:#A30000; border-color:#A30000; }
-    .news-card { background:#fff; transition:transform 0.3s ease; }
+    .news-card { background:#fff; transition:transform 0.3s ease; isolation:isolate; }
     .news-card:hover { transform:translateY(-3px); }
   </style>
 </head>
@@ -150,9 +150,9 @@
         <p class="body-jp text-sm sm:text-base text-mute">これまでに実施したワークショップ・出店の記録</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-black/10 border border-black/10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
 
-        <article class="news-card p-7 group">
+        <article class="news-card p-7 group rounded-2xl overflow-hidden border border-black/10">
           <div class="aspect-[16/10] overflow-hidden bg-base mb-5 -mx-7 -mt-7">
             <img src="images/events/event-2026-02-ichigo-matsuri.jpg" alt="埼玉いちご祭り2026出店ブースの様子" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
@@ -164,7 +164,7 @@
           <p class="text-xs text-mute leading-loose mb-3">埼玉スタジアム2002 南広場 / 2日間</p>
           <p class="text-sm text-mute leading-loose mb-4">いちご塩・いちごメレンゲ・いちごブールドネージュ・いちご綿あめ・フルーツティーを販売。</p>
           <!-- 売上ハイライト -->
-          <div class="grid grid-cols-3 gap-px bg-black/10 border border-black/10 mt-2 -mx-1">
+          <div class="grid grid-cols-3 gap-px bg-black/10 border border-black/10 rounded-xl overflow-hidden mt-2 -mx-1">
             <div class="bg-white p-3 text-center">
               <p class="label-en text-mute mb-1" style="font-size:9px;">SALES</p>
               <p class="h-display-thin text-xl text-ichigo">¥316K</p>
@@ -180,7 +180,7 @@
           </div>
         </article>
 
-        <article class="news-card p-7 group">
+        <article class="news-card p-7 group rounded-2xl overflow-hidden border border-black/10">
           <div class="aspect-[16/10] overflow-hidden bg-base mb-5 -mx-7 -mt-7">
             <img src="images/events/event-2025-10-yokoze-elementary.jpg" alt="横瀬小学校での出張授業の様子" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
@@ -197,7 +197,7 @@
           </a>
         </article>
 
-        <article class="news-card p-7 group">
+        <article class="news-card p-7 group rounded-2xl overflow-hidden border border-black/10">
           <div class="aspect-[16/10] overflow-hidden bg-base mb-5 -mx-7 -mt-7">
             <img src="images/events/event-2025-03-taiwan.jpg" alt="台湾祭々 お披露目会のブース" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
@@ -210,7 +210,7 @@
           <p class="text-sm text-mute leading-loose">いちごカード、キーホルダー、いちご塩の3チームが成果を発表。来場者からのフィードバックを収集。</p>
         </article>
 
-        <article class="news-card p-7 group">
+        <article class="news-card p-7 group rounded-2xl overflow-hidden border border-black/10">
           <div class="aspect-[16/10] overflow-hidden bg-base mb-5 -mx-7 -mt-7">
             <img src="images/events/event-2025-01-chichibu-hs.jpg" alt="秩父高校体育館でのアイデア出し授業" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
@@ -223,7 +223,7 @@
           <p class="text-sm text-mute leading-loose">地域探究「秩父のいま・これまで・これから」の授業としてアイデア出しを実施。129件のアイデアが集まった。</p>
         </article>
 
-        <article class="news-card p-7 group">
+        <article class="news-card p-7 group rounded-2xl overflow-hidden border border-black/10">
           <div class="aspect-[16/10] overflow-hidden bg-base mb-5 -mx-7 -mt-7">
             <img src="images/events/event-2024-12-area898.jpg" alt="Area898でのワークショップの様子" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
@@ -246,7 +246,7 @@
           </div>
         </article>
 
-        <article class="news-card p-7 group">
+        <article class="news-card p-7 group rounded-2xl overflow-hidden border border-black/10">
           <div class="aspect-[16/10] overflow-hidden bg-base mb-5 -mx-7 -mt-7">
             <img src="images/events/event-2024-10-farmers.png" alt="秩父農林振興センターでの意見交換会" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
           </div>
