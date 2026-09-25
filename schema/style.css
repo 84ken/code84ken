@@ -435,3 +435,5 @@ a:focus-visible,button:focus-visible{outline-color:#171717}
 
 /* Labels above list-style credits on case pages. */
 .case-list-label{margin:40px 0 12px}
+
+.lab-link{margin-left:1.2em;color:#6b6b6b}.lab-link:hover{color:#171717;text-decoration:underline;text-underline-offset:4px}
