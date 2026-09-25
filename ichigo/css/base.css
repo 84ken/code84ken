@@ -32,3 +32,18 @@ body { font-family:"Zen Maru Gothic",sans-serif; color:#43373B; background:#FDF1
 .pill-link .arrow { width:36px; height:36px; border-radius:999px; background:#C92A57; color:#fff; display:inline-flex; align-items:center; justify-content:center; transition:transform 0.25s ease; }
 .pill-link:hover { color:#C92A57; }
 .pill-link:hover .arrow { transform:translateX(4px); }
+
+/* いちごトピックス（js/topics.js が描く） */
+.topic-list { display:grid; gap:12px; list-style:none; margin:0; padding:0; }
+@media (min-width: 768px) { .topic-list { grid-template-columns:1fr 1fr; gap:16px; } }
+.topic-card { display:flex; flex-direction:column; gap:6px; height:100%; background:#fff; border-radius:20px; padding:18px 20px; text-decoration:none; color:#43373B; border:1.5px solid transparent; transition:border-color .2s ease, transform .25s ease; }
+.topic-card:hover { border-color:#F4C9D5; transform:translateY(-2px); }
+.topic-meta { display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:12px; color:#6E5E63; }
+.topic-meta time { font-family:Quicksand,"Zen Maru Gothic",sans-serif; font-weight:700; letter-spacing:.06em; }
+.topic-tag { background:#FBE3EA; color:#A8284C; font-weight:700; border-radius:999px; padding:2px 10px; }
+.topic-source { font-weight:700; }
+.topic-title { font-size:16px; font-weight:700; line-height:1.6; }
+.topic-card:hover .topic-title { color:#C92A57; }
+.topic-ext { display:inline-block; width:14px; height:14px; margin-left:6px; vertical-align:-1px; color:#C92A57; }
+.topic-note { font-size:13px; line-height:1.8; color:#6E5E63; }
+.topic-empty { font-size:14px; color:#6E5E63; text-align:center; padding:24px 0; }

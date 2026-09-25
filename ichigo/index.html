@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>埼玉いちご大學｜いちごから始まる、共創ネットワーク</title>
-  <meta name="description" content="「いちごが好き。それだけで、何かが始まる。」埼玉県産いちごを起点に、生産者・企業・高校生・クリエイターが集まる体験型研究開発のコミュニティ。秩父・横瀬発、CHICHIBU ICHIGO SALT ほか商品も展開中。">
-  <meta name="keywords" content="埼玉いちご大學,埼玉いちご,いちご塩,CHICHIBU ICHIGO SALT,秩父,横瀬,埼玉県産いちご,あまりん,地域活性化,ワークショップ">
+  <title>埼玉いちご大學｜あまりん・かおりんで秩父を元気にする、いちごのコミュニティ</title>
+  <meta name="description" content="埼玉県オリジナル品種「あまりん」「かおりん」を活かして、秩父地域を盛り上げるコミュニティ。農家・地元企業・高校生・クリエイターが集まり、いちご塩「CHICHIBU ICHIGO SALT」などの商品を生み出しています。誰でも参加できます。">
+  <meta name="keywords" content="埼玉いちご大學,あまりん,かおりん,埼玉いちご,秩父,横瀬,いちご,地域活性化,いちご塩,CHICHIBU ICHIGO SALT,ワークショップ">
   <link rel="canonical" href="https://ichigo-saitama.net/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="埼玉いちご大學｜いちごから始まる、共創ネットワーク">
-  <meta property="og:description" content="「いちごが好き。それだけで、何かが始まる。」埼玉県産いちごを起点にした、誰でも参加できる体験型研究開発のコミュニティ。">
+  <meta property="og:title" content="埼玉いちご大學｜あまりん・かおりんで秩父を元気にする、いちごのコミュニティ">
+  <meta property="og:description" content="埼玉県オリジナル品種「あまりん」「かおりん」を活かして秩父地域を盛り上げる、誰でも参加できるいちごのコミュニティ。">
   <meta property="og:image" content="https://ichigo-saitama.net/images/ogp/og-default.jpg">
   <meta property="og:image:secure_url" content="https://ichigo-saitama.net/images/ogp/og-default.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -24,8 +24,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="埼玉いちご大學｜いちごから始まる、共創ネットワーク">
-  <meta name="twitter:description" content="「いちごが好き。それだけで、何かが始まる。」埼玉県産いちごを起点にした、誰でも参加できる体験型研究開発のコミュニティ。">
+  <meta name="twitter:title" content="埼玉いちご大學｜あまりん・かおりんで秩父を元気にする、いちごのコミュニティ">
+  <meta name="twitter:description" content="埼玉県オリジナル品種「あまりん」「かおりん」を活かして秩父地域を盛り上げる、誰でも参加できるいちごのコミュニティ。">
   <meta name="twitter:image" content="https://ichigo-saitama.net/images/ogp/og-default.jpg">
 
   <!-- Favicon -->
@@ -45,7 +45,8 @@
         "alternateName": "SAITAMA ICHIGO UNIV",
         "url": "https://ichigo-saitama.net/",
         "logo": "https://ichigo-saitama.net/images/logo/logo.png",
-        "description": "埼玉県産いちごを起点に、生産者・企業・高校生・クリエイターが集まる体験型研究開発のコミュニティ。",
+        "description": "埼玉県オリジナル品種「あまりん」「かおりん」を活かして秩父地域を盛り上げる、誰でも参加できるいちごのコミュニティ。",
+        "slogan": "いちごで、秩父を元気に。",
         "areaServed": { "@type": "AdministrativeArea", "name": "埼玉県秩父・横瀬" },
         "sameAs": [
           "https://www.instagram.com/ichigosaitama/"
@@ -130,6 +131,16 @@
       .motto-right .blob:not(.blob-end) { align-self:flex-start; }
     }
     @media (prefers-reduced-motion: reduce) { .blob, .blob::before, .blob-shape { animation:none; } }
+
+    /* 建学の精神：3ステップ */
+    .concept-steps { list-style:none; margin:0 auto; padding:0; display:grid; gap:16px; max-width:64rem; }
+    @media (min-width: 768px) { .concept-steps { grid-template-columns:repeat(3, 1fr); gap:28px; } }
+    .concept-step { position:relative; background:#fff; border-radius:28px; padding:32px 26px 30px; text-align:center; }
+    .concept-icon { width:84px; height:84px; border-radius:50% 46% 52% 48% / 48% 52% 46% 54%; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; }
+    .concept-icon svg { width:48px; height:48px; }
+    @media (min-width: 768px) {
+      .concept-step:not(:last-child)::after { content:""; position:absolute; top:74px; right:-22px; width:16px; height:16px; border-top:3px solid #F4C9D5; border-right:3px solid #F4C9D5; border-radius:2px; transform:rotate(45deg); }
+    }
 
     /* ファーストビュー：タブレット以上はイラスト＋赤帯ロゴを画面の高さにぴったり収める */
     @media (min-width: 640px) {
@@ -220,7 +231,7 @@
           <span class="ml-auto text-white/70 text-[10px] tracking-wider">2:30</span>
         </div>
         <div class="video-wrap bg-black">
-          <iframe
+          <iframe id="hero-video"
             src="https://www.youtube-nocookie.com/embed/u3oM78lWknY?rel=0"
             title="埼玉いちご大學 紹介動画"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -234,6 +245,7 @@
     <div class="fv-band bg-ichigo seed-pattern-white py-5 sm:py-6">
       <div class="max-w-3xl mx-auto px-6 text-center">
         <img src="images/logo/logo-text.webp" alt="埼玉いちご大學" class="fv-logo w-full max-w-xs sm:max-w-md mx-auto h-auto block" width="600" height="87">
+        <p class="text-white text-xs sm:text-sm font-bold tracking-wider mt-2 sm:mt-3">あまりん・かおりんで、秩父を元気にするコミュニティ</p>
       </div>
     </div>
     </div>
@@ -272,15 +284,51 @@
     </div>
 
     <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background:#fff;transform:scaleX(-1)"><path d="M0 28C160 6 320 6 480 24S800 50 960 34S1280 4 1440 22V56H0Z" fill="#FDF1F3"/></svg>
-    <!-- 建学の精神 -->
-    <div class="max-w-5xl mx-auto px-6 py-24 sm:py-32 text-center">
-      <p class="label-en text-ichigo mb-6">CONCEPT</p>
-      <h1 class="h-display-thin text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ink mb-10">
-        埼玉のいちごは、<br><span class="marker">これからだ。</span>
-      </h1>
-      <p class="body-jp text-base sm:text-lg text-mute max-w-2xl mx-auto">
-        いちごをもっと推せる。<br class="sm:hidden">誰でも参加できる、体験型研究開発のコミュニティ。
-      </p>
+    <!-- 建学の精神：いちご大學が何をしているか -->
+    <div class="max-w-6xl mx-auto px-6 py-24 sm:py-32">
+      <div class="text-center">
+        <p class="label-en text-ichigo mb-6">WHAT WE DO</p>
+        <h1 class="h-display-thin text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ink mb-10">
+          いちごで、<br><span class="marker">秩父を元気に。</span>
+        </h1>
+        <p class="body-jp text-base sm:text-lg text-ink max-w-3xl mx-auto">
+          埼玉いちご大學は、埼玉県オリジナル品種の「あまりん」「かおりん」を活かして、<br class="hidden md:inline">秩父地域を盛り上げるためのコミュニティです。<br class="hidden md:inline">
+          農家さん・地元企業・高校生・クリエイターが集まり、<br class="hidden md:inline">いちごの新しい商品を一緒につくっています。
+        </p>
+      </div>
+
+      <!-- 3ステップ：いちご → みんなでつくる → 地域が盛り上がる -->
+      <ol class="concept-steps mt-16 sm:mt-20">
+        <li class="concept-step">
+          <span class="concept-icon bg-blush" aria-hidden="true">
+            <svg viewBox="0 0 100 110"><path d="M50 32C73 28 91 40 89 62C87 84 66 104 50 106C34 104 13 84 11 62C9 40 27 28 50 32Z" fill="#C92A57"/><g fill="#F7E38A"><ellipse cx="32" cy="56" rx="2.4" ry="3.6"/><ellipse cx="50" cy="52" rx="2.4" ry="3.6"/><ellipse cx="68" cy="56" rx="2.4" ry="3.6"/><ellipse cx="40" cy="72" rx="2.4" ry="3.6"/><ellipse cx="60" cy="72" rx="2.4" ry="3.6"/><ellipse cx="50" cy="90" rx="2.4" ry="3.6"/></g><path d="M50 36C42 24 28 25 21 33C31 33 39 36 45 41Z M50 36C58 24 72 25 79 33C69 33 61 36 55 41Z M50 39C45 31 45 25 50 20C55 25 55 31 50 39Z" fill="#A9CC5B"/></svg>
+          </span>
+          <p class="label-en text-ichigo mb-2">STEP 01</p>
+          <h2 class="text-xl font-bold text-ink mb-3">埼玉だけの、いちご</h2>
+          <p class="text-sm text-mute leading-loose">「あまりん」「かおりん」は、埼玉県でしか育てられないオリジナル品種。全国いちご選手権でも高く評価されています。</p>
+        </li>
+        <li class="concept-step">
+          <span class="concept-icon bg-seed-soft" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#43373B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15" r="5"/><circle cx="32" cy="15" r="5"/><path d="M7 34c0-6 4-10 9-10s9 4 9 10"/><path d="M23 34c0-6 4-10 9-10s9 4 9 10"/><path d="M24 40l2.5-4.5 4.5-1.5-4.5-1.5L24 28l-2.5 4.5-4.5 1.5 4.5 1.5z" fill="#F2CF4A" stroke="none"/></svg>
+          </span>
+          <p class="label-en text-ichigo mb-2">STEP 02</p>
+          <h2 class="text-xl font-bold text-ink mb-3">みんなで、商品に</h2>
+          <p class="text-sm text-mute leading-loose">ワークショップでアイデアを出し合い、形にしていきます。第一号は「CHICHIBU ICHIGO SALT（いちご塩）」。</p>
+        </li>
+        <li class="concept-step">
+          <span class="concept-icon bg-leaf-soft" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#43373B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 40l12-18 8 10 6-8 14 16z" fill="#A9CC5B" stroke="#43373B"/><path d="M4 40h40"/><path d="M36 8v6M31 11h10M12 6l1.5 3.5L17 11l-3.5 1.5L12 16l-1.5-3.5L7 11l3.5-1.5z"/></svg>
+          </span>
+          <p class="label-en text-ichigo mb-2">STEP 03</p>
+          <h2 class="text-xl font-bold text-ink mb-3">地域が、いちごで盛り上がる</h2>
+          <p class="text-sm text-mute leading-loose">あまりんの商品が増えるほど、いちごを目当てに人が訪れ、農家さんやお店に活気が広がります。</p>
+        </li>
+      </ol>
+
+      <div class="mt-14 text-center">
+        <p class="text-lg sm:text-xl font-bold text-ichigo mb-8">埼玉のいちごは、これからだ。</p>
+        <a href="about.html" class="btn-primary text-sm">いちご大學について、くわしく<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </div>
     </div>
   </section>
 
@@ -468,6 +516,22 @@
       <div class="mt-10 text-center sm:hidden">
         <a href="events.html" class="pill-link">すべて見る<span class="arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 6l6 6-6 6"/></svg></span></a>
       </div>
+
+      <!-- いちごトピックス（data/topics.json） -->
+      <div class="mt-20 sm:mt-24">
+        <div class="flex items-end justify-between mb-8">
+          <div>
+            <p class="label-en text-ichigo mb-3">TOPICS</p>
+            <h2 class="h-display text-2xl sm:text-3xl text-ink">埼玉いちごの、いま。</h2>
+            <p class="text-sm text-mute mt-3">県や地域のニュースから、埼玉いちごの話題をピックアップしています。</p>
+          </div>
+          <a href="events.html#topics" class="pill-link hidden sm:inline-flex">もっと見る<span class="arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 6l6 6-6 6"/></svg></span></a>
+        </div>
+        <div data-topics data-limit="4"><p class="topic-empty">読み込み中…</p></div>
+        <div class="mt-8 text-center sm:hidden">
+          <a href="events.html#topics" class="pill-link">もっと見る<span class="arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 6l6 6-6 6"/></svg></span></a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -585,6 +649,14 @@
   </footer>
 
   <script>
+    // 紹介動画：音なしで自動再生（ループ）。止める・音を出すは YouTube の操作ボタンから。
+    // 「動きを減らす」設定の端末では自動再生しない。
+    (() => {
+      const v = document.getElementById('hero-video');
+      if (!v || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      v.src = 'https://www.youtube-nocookie.com/embed/u3oM78lWknY?rel=0&autoplay=1&mute=1&playsinline=1&loop=1&playlist=u3oM78lWknY';
+    })();
+
     const btn = document.getElementById('menu-btn');
     const menu = document.getElementById('mobile-menu');
     btn.addEventListener('click', () => {
@@ -631,6 +703,8 @@
     }
   </script>
 
+  <script src="js/topics.js" defer></script>
+  <script src="js/recruit.js" defer></script>
   <script src="js/soft.js" defer></script>
 </body>
 </html>

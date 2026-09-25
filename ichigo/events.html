@@ -16,6 +16,7 @@
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="お知らせ｜活動レポート一覧｜埼玉いちご大學">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ichigo-saitama.net/events.html">
   <meta property="og:site_name" content="埼玉いちご大學">
@@ -131,6 +132,18 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- いちごトピックス（data/topics.json） -->
+  <section id="topics" class="pb-20 sm:pb-28 bg-petal scroll-mt-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <p class="label-en text-ichigo mb-3">TOPICS</p>
+        <h2 class="h-display text-3xl sm:text-4xl text-ink mb-4">埼玉いちごの、いま。</h2>
+        <p class="body-jp text-sm sm:text-base text-mute">県や地域のニュースから、埼玉いちごの話題をピックアップしています。<br class="hidden sm:inline">記事は各サイトでお読みください。</p>
+      </div>
+      <div data-topics><p class="topic-empty">読み込み中…</p></div>
     </div>
   </section>
 
@@ -299,6 +312,8 @@
     });
   </script>
 
+  <script src="js/topics.js" defer></script>
+  <script src="js/recruit.js" defer></script>
   <script src="js/soft.js" defer></script>
 </body>
 </html>
