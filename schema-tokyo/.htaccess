@@ -1,6 +1,15 @@
-RewriteEngine On
+# スキーマのAI研究所（schema.tokyo）
+#
+# 注: HTTP→HTTPS のリダイレクトは ConoHa WING の「常時SSL化」設定に任せる。
+# （ConoHa はプロキシで SSL 終端するため %{HTTPS} が常に off となり、
+#   条件を書くと無限リダイレクトになる）
 
-# http → https、www → wwwなし に統一
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} ^www\. [NC]
-RewriteRule ^(.*)$ https://schema.tokyo/$1 [R=301,L]
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # www を non-www に統一
+  RewriteCond %{HTTP_HOST} ^www\.schema\.tokyo$ [NC]
+  RewriteRule ^(.*)$ https://schema.tokyo/$1 [R=301,L]
+</IfModule>
+
+Options -Indexes
