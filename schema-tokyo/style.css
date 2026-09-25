@@ -54,6 +54,7 @@ p{margin:0}
 .fig{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 4%;padding:10px 0 0;border-top:1px solid var(--line);color:var(--sub)}
 .fig b{color:var(--ink);font-weight:700;margin-right:10px}
 .fig output{color:var(--ink);font-variant-numeric:tabular-nums}
+.fig-readout i{font-style:normal}
 .hint .on-touch{display:none}
 @media(hover:none){.hint .on-hover{display:none}.hint .on-touch{display:inline}}
 
@@ -152,7 +153,12 @@ footer a.co{border-bottom:1px solid}
   .kv-edge-l{transform:translate(64px,0)}.kv-edge-r{transform:translate(-44px,0)}
   .hint{margin:8px 6% 0}
   .fig{margin:0 6%}
-  .fig-readout{display:none}
+  .fig-readout{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;width:100%;margin-top:4px;border-top:1px dashed var(--line)}
+  .fig-readout .m{display:flex;flex-direction:column;gap:2px;padding:8px 0 0 10px;border-left:1px dashed var(--line);min-width:0}
+  .fig-readout .m:first-child{padding-left:0;border-left:0}
+  .fig-readout i{font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+  .fig-readout .v{font-size:13px;letter-spacing:0;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .fig-readout .sep,.fig-readout .eq{display:none}
   .hero-copy{grid-template-columns:1fr;gap:20px;padding:70px 0 100px}
   .hero-copy .en{text-align:left}
   .intro{margin:0 6% 120px;padding:80px 4%}

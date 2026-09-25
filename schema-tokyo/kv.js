@@ -125,10 +125,15 @@ const deactivate = (f, switching = false) => {
   setTimeout(() => { if (!active) setHead(0, 0, 0); }, 1450);
 };
 
+// タップでは pointerenter・focus・click が続けて届き、点けてすぐ消えてしまう。
+// ホバーはマウスだけ、focus はキーボード操作だけ（タッチは指を離した後に focus が来るので、
+// 押してから1秒以内の focus は無視）で反応させ、タップは click で切り替える。
+let pressedAt = -1e4;
 flows.forEach(f => {
-  f.w.addEventListener('pointerenter', () => activate(f));
+  f.w.addEventListener('pointerdown', () => { pressedAt = performance.now(); });
+  f.w.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') activate(f); });
   f.w.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') deactivate(f); });
-  f.w.addEventListener('focus', () => activate(f));
+  f.w.addEventListener('focus', () => { if (performance.now() - pressedAt > 1000) activate(f); });
   f.w.addEventListener('blur', () => deactivate(f));
   f.w.addEventListener('click', () => (active === f ? deactivate(f) : activate(f)));
   f.w.addEventListener('keydown', e => {
