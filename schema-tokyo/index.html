@@ -1,46 +1,32 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>スキーマのAI研究所 | schema.tokyo</title>
-<meta name="description" content="スキーマのAI研究所は、株式会社スキーマがAIといっしょにつくっている実験的なサイト・ツール・ゲームの置き場です。電気風呂マップ「ビリビリ君」、TOTAL PUNKS、温泉ソムリエ ノートほか。">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>スキーマのAI研究所 — SCHEMA AI LAB</title>
+<meta name="description" content="スキーマの84kenが私利私欲のまま実験している場所です。電気風呂マップ「ビリビリ君」、TOTAL PUNKS、温泉ソムリエ ノート、ITaLOG SAUNA ほか、AIといっしょにつくった実験中のサイトやツールを並べています。">
 <link rel="canonical" href="https://schema.tokyo/">
+<link rel="icon" href="favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://schema.tokyo/">
-<meta property="og:title" content="スキーマのAI研究所">
-<meta property="og:description" content="株式会社スキーマがAIといっしょにつくっている、実験的なサイト・ツール・ゲームの置き場。">
-<meta property="og:image" content="https://schema.tokyo/banners/denki.webp">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
-          400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
-          800:'#13318d',900:'#0e266a',950:'#07194e'
-        }
-      },
-      fontFamily: {
-        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif']
-      }
-    }
-  }
-}
-</script>
-<style>
-  .text-body { color: #3d4b5f; }
-  body { letter-spacing: 0.02em; }
-  h1, h2, h3 { letter-spacing: 0.01em; }
-</style>
+<meta property="og:site_name" content="スキーマのAI研究所">
+<meta property="og:title" content="スキーマのAI研究所 — SCHEMA AI LAB">
+<meta property="og:description" content="スキーマの84kenが私利私欲のまま実験している場所です。">
+<meta property="og:image" content="https://schema.tokyo/assets/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "スキーマのAI研究所",
+  "alternateName": "SCHEMA AI LAB",
   "url": "https://schema.tokyo/",
+  "description": "スキーマの84kenが私利私欲のまま実験している場所です。",
   "publisher": {
     "@type": "Organization",
     "name": "株式会社スキーマ",
@@ -50,113 +36,118 @@ tailwind.config = {
 }
 </script>
 </head>
-<body class="bg-gray-50 min-h-screen font-sans">
-  <main class="max-w-5xl mx-auto px-4 sm:px-8 py-12 sm:py-16">
-    <header class="max-w-2xl">
-      <p class="text-sm font-medium text-primary-500">SCHEMA AI LAB — schema.tokyo</p>
-      <h1 class="mt-2 text-3xl font-bold text-slate-900">スキーマのAI研究所</h1>
-      <p class="mt-4 text-base text-body leading-relaxed">株式会社スキーマが、AIといっしょに企画して、つくって、試している場所です。好きなこと、地域のこと、学びのこと。思いついたら形にしてみた、実験中のサイトやツールを並べています。</p>
-      <p class="mt-4 text-base leading-relaxed"><a href="https://llschema.com/" class="font-medium text-primary-500 hover:text-primary-700 underline underline-offset-4">運営：株式会社スキーマ（llschema.com）→</a></p>
-    </header>
+<body>
+<a class="skip" href="#experiments">実験一覧へ</a>
+<header>
+  <div class="brand">
+    <a class="logo" href="https://llschema.com/" aria-label="株式会社スキーマ（llschema.com）"><img src="assets/schema-logo.png" alt="SCHEMA" width="2000" height="326"></a>
+    <span class="brand-lab">AI LAB</span>
+  </div>
+  <nav aria-label="メインナビゲーション">
+    <a href="#experiments">Experiments</a>
+    <a class="nav-ext" href="https://llschema.com/">llschema.com <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
 
-    <section class="mt-12" aria-labelledby="projects">
-      <h2 id="projects" class="sr-only">研究・実験中のプロジェクト</h2>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <li>
-          <a href="https://denki.schema.tokyo/" class="group flex flex-col h-full bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md hover:border-slate-300 transition">
-            <img src="banners/denki.webp" alt="電気風呂マップ「ビリビリ君」のトップ画面" width="800" height="420" loading="lazy" class="w-full aspect-[40/21] object-cover object-top border-b border-slate-200">
-            <div class="flex flex-col flex-1 p-6">
-              <span class="self-start bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">マップ</span>
-              <h3 class="mt-3 text-lg font-bold text-slate-900 group-hover:text-primary-500 transition-colors">電気風呂マップ「ビリビリ君」</h3>
-              <p class="mt-2 text-sm text-body leading-relaxed">全国の電気風呂を、メーカー・最寄り駅・パワーで探せるマップ。しくみや歴史の読みものも。</p>
-              <p class="mt-auto pt-4 text-sm text-slate-500">denki.schema.tokyo</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="https://totalpunks.schema.tokyo/" class="group flex flex-col h-full bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md hover:border-slate-300 transition">
-            <img src="banners/totalpunks.webp" alt="TOTAL PUNKS のトップ画面" width="800" height="420" loading="lazy" class="w-full aspect-[40/21] object-cover object-top border-b border-slate-200">
-            <div class="flex flex-col flex-1 p-6">
-              <span class="self-start bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">カルチャー</span>
-              <h3 class="mt-3 text-lg font-bold text-slate-900 group-hover:text-primary-500 transition-colors">TOTAL PUNKS</h3>
-              <p class="mt-2 text-sm text-body leading-relaxed">77パンクからUKハードコア、Oi!、メロコアまで。パンクのディスクレビューとカルチャーガイド。</p>
-              <p class="mt-auto pt-4 text-sm text-slate-500">totalpunks.schema.tokyo</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="https://onsen.schema.tokyo/" class="group flex flex-col h-full bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md hover:border-slate-300 transition">
-            <img src="banners/onsen.webp" alt="温泉ソムリエ ノートのトップ画面" width="800" height="420" loading="lazy" class="w-full aspect-[40/21] object-cover object-top border-b border-slate-200">
-            <div class="flex flex-col flex-1 p-6">
-              <span class="self-start bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">学び</span>
-              <h3 class="mt-3 text-lg font-bold text-slate-900 group-hover:text-primary-500 transition-colors">温泉ソムリエ ノート</h3>
-              <p class="mt-2 text-sm text-body leading-relaxed">成分表で読む、自分に効く温泉。泉質・適応症・成分表の読み方をまとめた学習ノート。</p>
-              <p class="mt-auto pt-4 text-sm text-slate-500">onsen.schema.tokyo</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="https://italog.schema.tokyo/" class="group flex flex-col h-full bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md hover:border-slate-300 transition">
-            <img src="banners/italog.webp" alt="ITaLOG SAUNA のトップ画面" width="800" height="420" loading="lazy" class="w-full aspect-[40/21] object-cover object-top border-b border-slate-200">
-            <div class="flex flex-col flex-1 p-6">
-              <span class="self-start bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">プロダクト</span>
-              <h3 class="mt-3 text-lg font-bold text-slate-900 group-hover:text-primary-500 transition-colors">ITaLOG SAUNA</h3>
-              <p class="mt-2 text-sm text-body leading-relaxed">流体力学から設計した、埼玉県産木材の「常軌を逸した蒸気」のサウナ小屋。</p>
-              <p class="mt-auto pt-4 text-sm text-slate-500">italog.schema.tokyo</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="https://matsuri.schema.tokyo/" class="group flex flex-col h-full bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md hover:border-slate-300 transition">
-            <img src="banners/matsuri.webp" alt="山田の春祭り「山組1番！」のトップ画面" width="800" height="420" loading="lazy" class="w-full aspect-[40/21] object-cover object-top border-b border-slate-200">
-            <div class="flex flex-col flex-1 p-6">
-              <span class="self-start bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">地域</span>
-              <h3 class="mt-3 text-lg font-bold text-slate-900 group-hover:text-primary-500 transition-colors">山田の春祭り「山組1番！」</h3>
-              <p class="mt-2 text-sm text-body leading-relaxed">秩父路に春を告げる最初の屋台祭り、恒持神社例大祭。山組のガイドとしきたり。</p>
-              <p class="mt-auto pt-4 text-sm text-slate-500">matsuri.schema.tokyo</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="https://river.schema.tokyo/" class="group flex flex-col h-full bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md hover:border-slate-300 transition">
-            <img src="banners/river.webp" alt="川の国 流域アトラスの画面" width="800" height="420" loading="lazy" class="w-full aspect-[40/21] object-cover object-top border-b border-slate-200">
-            <div class="flex flex-col flex-1 p-6">
-              <span class="self-start bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">地域</span>
-              <h3 class="mt-3 text-lg font-bold text-slate-900 group-hover:text-primary-500 transition-colors">川の国 流域アトラス</h3>
-              <p class="mt-2 text-sm text-body leading-relaxed">埼玉の流域・源流・高低差・ダムを3D地形で俯瞰する、リバサポ新サービスのプロトタイプ。</p>
-              <p class="mt-auto pt-4 text-sm text-slate-500">river.schema.tokyo</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="https://game.schema.tokyo/" class="group flex flex-col h-full bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md hover:border-slate-300 transition">
-            <img src="banners/game.webp" alt="STUDY QUEST のスタート画面" width="800" height="420" loading="lazy" class="w-full aspect-[40/21] object-cover object-top border-b border-slate-200">
-            <div class="flex flex-col flex-1 p-6">
-              <span class="self-start bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">ゲーム</span>
-              <h3 class="mt-3 text-lg font-bold text-slate-900 group-hover:text-primary-500 transition-colors">STUDY QUEST</h3>
-              <p class="mt-2 text-sm text-body leading-relaxed">ちきゅうを すくうのは きみの しゅくだい。宿題で戦う、子ども向けの学習RPG。</p>
-              <p class="mt-auto pt-4 text-sm text-slate-500">game.schema.tokyo</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="https://childgame.schema.tokyo/" class="group flex flex-col h-full bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md hover:border-slate-300 transition">
-            <img src="banners/childgame.webp" alt="うちのこゲームミュージアムのトップ画面" width="800" height="420" loading="lazy" class="w-full aspect-[40/21] object-cover object-top border-b border-slate-200">
-            <div class="flex flex-col flex-1 p-6">
-              <span class="self-start bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">ゲーム</span>
-              <h3 class="mt-3 text-lg font-bold text-slate-900 group-hover:text-primary-500 transition-colors">うちのこゲームミュージアム</h3>
-              <p class="mt-2 text-sm text-body leading-relaxed">子どもが絵と声でアイディアを出し、AIといっしょにつくったゲームの展示室。</p>
-              <p class="mt-auto pt-4 text-sm text-slate-500">childgame.schema.tokyo</p>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </section>
+<main>
+  <section class="hero">
+    <p class="eyebrow"><span>SCHEMA AI LAB</span><span>schema.tokyo — 84ken’s experiments</span></p>
 
-    <footer class="mt-16 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
-      <p>スキーマのAI研究所 — © 株式会社スキーマ SCHEMA, Inc.</p>
-      <a href="https://llschema.com/" class="hover:text-slate-700">llschema.com</a>
-    </footer>
-  </main>
+    <div class="kv">
+      <svg class="kv-art" viewBox="0 0 1690 892" role="img" aria-labelledby="kv-title">
+        <title id="kv-title">横顔の頭から、無数の線が空へ広がっていくイラスト。線のあいだに Sensibility、Gravity、Relation、Time、Phenomenon、Territory の言葉が浮かぶ。</title>
+        <line class="kv-beam" x1="740" y1="605" x2="236" y2="515" pathLength="1"/>
+        <line class="kv-beam" x1="740" y1="624.5" x2="236" y2="724" pathLength="1"/>
+        <image href="assets/kv-head.png" x="680" y="490" width="380" height="340"/>
+        <g class="kv-fan"></g>
+        <g aria-hidden="true">
+          <g class="kv-edge-l"><text class="kv-word" text-anchor="middle" x="296" y="260" data-x="296" data-y="255" data-i="2" data-order="2">Sensibility</text></g>
+          <text class="kv-word" text-anchor="middle" x="446" y="331" data-x="446" data-y="326" data-i="5" data-order="1">Gravity</text>
+          <text class="kv-word" text-anchor="middle" x="643" y="362" data-x="643" data-y="356" data-i="9" data-order="0">Relation</text>
+          <text class="kv-word" text-anchor="middle" x="996" y="362" data-x="996" data-y="356" data-i="14" data-order="0">Time</text>
+          <text class="kv-word" text-anchor="middle" x="1192" y="331" data-x="1192" data-y="326" data-i="18" data-order="1">Phenomenon</text>
+          <g class="kv-edge-r"><text class="kv-word" text-anchor="middle" x="1368" y="260" data-x="1368" data-y="255" data-i="21" data-order="2">Territory</text></g>
+        </g>
+      </svg>
+    </div>
+
+    <h1 class="hero-ja"><span>スキーマの</span><span class="outline">AI研究所。</span></h1>
+
+    <div class="intro">
+      <p class="statement">スキーマの84kenが<br>私利私欲のまま実験している場所です。</p>
+      <div class="description">
+        <p>仕事でも、頼まれごとでもなく。好きなこと、気になっていること、地域のことを、AIといっしょに思いついたそばから形にしています。どれも実験中です。</p>
+        <a class="statement-link" href="https://llschema.com/">運営：株式会社スキーマ — llschema.com <span aria-hidden="true">↗</span></a>
+      </div>
+      <a class="down" href="#experiments" aria-label="実験一覧を見る">↓</a>
+    </div>
+  </section>
+
+  <section class="works" id="experiments" aria-labelledby="experiments-title">
+    <div class="section-heading">
+      <h2 id="experiments-title">Experiments<span>実験一覧</span></h2>
+      <p class="count">01 — 08</p>
+    </div>
+    <ul class="grid">
+      <li class="card">
+        <a href="https://denki.schema.tokyo/">
+          <div class="visual"><img src="banners/denki.webp" alt="電気風呂マップ「ビリビリ君」のトップ画面" width="800" height="420" loading="lazy"><span class="view" aria-hidden="true">↗</span></div>
+          <div class="caption"><div><p class="tags">マップ　銭湯　電気風呂</p><h3>電気風呂マップ「ビリビリ君」</h3><p class="desc">全国の電気風呂を、メーカー・最寄り駅・パワーで探せるマップ。しくみや歴史の読みものも。</p><span class="more">denki.schema.tokyo<span aria-hidden="true">→</span></span></div><span class="number">01</span></div>
+        </a>
+      </li>
+      <li class="card">
+        <a href="https://totalpunks.schema.tokyo/">
+          <div class="visual"><img src="banners/totalpunks.webp" alt="TOTAL PUNKS のトップ画面" width="800" height="420" loading="lazy"><span class="view" aria-hidden="true">↗</span></div>
+          <div class="caption"><div><p class="tags">カルチャー　音楽</p><h3>TOTAL PUNKS</h3><p class="desc">77パンクからUKハードコア、Oi!、メロコアまで。パンクのディスクレビューとカルチャーガイド。</p><span class="more">totalpunks.schema.tokyo<span aria-hidden="true">→</span></span></div><span class="number">02</span></div>
+        </a>
+      </li>
+      <li class="card">
+        <a href="https://onsen.schema.tokyo/">
+          <div class="visual"><img src="banners/onsen.webp" alt="温泉ソムリエ ノートのトップ画面" width="800" height="420" loading="lazy"><span class="view" aria-hidden="true">↗</span></div>
+          <div class="caption"><div><p class="tags">学び　温泉</p><h3>温泉ソムリエ ノート</h3><p class="desc">成分表で読む、自分に効く温泉。泉質・適応症・成分表の読み方をまとめた学習ノート。</p><span class="more">onsen.schema.tokyo<span aria-hidden="true">→</span></span></div><span class="number">03</span></div>
+        </a>
+      </li>
+      <li class="card">
+        <a href="https://italog.schema.tokyo/">
+          <div class="visual"><img src="banners/italog.webp" alt="ITaLOG SAUNA のトップ画面" width="800" height="420" loading="lazy"><span class="view" aria-hidden="true">↗</span></div>
+          <div class="caption"><div><p class="tags">プロダクト　サウナ</p><h3>ITaLOG SAUNA</h3><p class="desc">流体力学から設計した、埼玉県産木材の「常軌を逸した蒸気」のサウナ小屋。</p><span class="more">italog.schema.tokyo<span aria-hidden="true">→</span></span></div><span class="number">04</span></div>
+        </a>
+      </li>
+      <li class="card">
+        <a href="https://matsuri.schema.tokyo/">
+          <div class="visual"><img src="banners/matsuri.webp" alt="山田の春祭り「山組1番！」のトップ画面" width="800" height="420" loading="lazy"><span class="view" aria-hidden="true">↗</span></div>
+          <div class="caption"><div><p class="tags">地域　秩父</p><h3>山田の春祭り「山組1番！」</h3><p class="desc">秩父路に春を告げる最初の屋台祭り、恒持神社例大祭。山組のガイドとしきたり。</p><span class="more">matsuri.schema.tokyo<span aria-hidden="true">→</span></span></div><span class="number">05</span></div>
+        </a>
+      </li>
+      <li class="card">
+        <a href="https://river.schema.tokyo/">
+          <div class="visual"><img src="banners/river.webp" alt="川の国 流域アトラスの画面" width="800" height="420" loading="lazy"><span class="view" aria-hidden="true">↗</span></div>
+          <div class="caption"><div><p class="tags">地域　地図　プロトタイプ</p><h3>川の国 流域アトラス</h3><p class="desc">埼玉の流域・源流・高低差・ダムを3D地形で俯瞰する、リバサポ新サービスのプロトタイプ。</p><span class="more">river.schema.tokyo<span aria-hidden="true">→</span></span></div><span class="number">06</span></div>
+        </a>
+      </li>
+      <li class="card">
+        <a href="https://game.schema.tokyo/">
+          <div class="visual"><img src="banners/game.webp" alt="STUDY QUEST のスタート画面" width="800" height="420" loading="lazy"><span class="view" aria-hidden="true">↗</span></div>
+          <div class="caption"><div><p class="tags">ゲーム　学び</p><h3>STUDY QUEST</h3><p class="desc">ちきゅうを すくうのは きみの しゅくだい。宿題で戦う、子ども向けの学習RPG。</p><span class="more">game.schema.tokyo<span aria-hidden="true">→</span></span></div><span class="number">07</span></div>
+        </a>
+      </li>
+      <li class="card">
+        <a href="https://childgame.schema.tokyo/">
+          <div class="visual"><img src="banners/childgame.webp" alt="うちのこゲームミュージアムのトップ画面" width="800" height="420" loading="lazy"><span class="view" aria-hidden="true">↗</span></div>
+          <div class="caption"><div><p class="tags">ゲーム　こども</p><h3>うちのこゲームミュージアム</h3><p class="desc">子どもが絵と声でアイディアを出し、AIといっしょにつくったゲームの展示室。</p><span class="more">childgame.schema.tokyo<span aria-hidden="true">→</span></span></div><span class="number">08</span></div>
+        </a>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <a class="logo" href="https://llschema.com/" aria-label="株式会社スキーマ（llschema.com）"><img src="assets/schema-logo.png" alt="SCHEMA" width="2000" height="326"></a>
+  <a class="company-link" href="https://llschema.com/">llschema.com <span aria-hidden="true">↗</span></a>
+  <p>スキーマのAI研究所 — © SCHEMA, Inc.</p>
+  <a href="#">Back to top ↑</a>
+</footer>
+
+<script type="module" src="kv.js"></script>
 </body>
 </html>
