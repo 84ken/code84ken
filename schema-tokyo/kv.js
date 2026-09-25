@@ -1,4 +1,5 @@
 // キービジュアル：頭から立ちのぼる24本の線を、描いて、ゆらす。
+// 言葉にふれると、その色が近くの線を伝って頭の中へ流れ込む。
 // 顔と下半分の髪は画像（assets/kv-head.png）、上に広がる線と視線と単語は SVG。
 import { FAN } from './fan-data.js';
 
@@ -6,9 +7,11 @@ const NS = 'http://www.w3.org/2000/svg';
 const NECK = 490;          // 画像と線の継ぎ目（viewBox 座標）
 const svg = document.querySelector('.kv-art');
 const fanGroup = svg.querySelector('.kv-fan');
+const flowGroup = svg.querySelector('.kv-flow');
 const words = [...svg.querySelectorAll('.kv-word')];
 const beams = [...svg.querySelectorAll('.kv-beam')];
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = id => document.getElementById(id);
 
 // [x0,y0,x1,y1,...] → [[x,y],...]（首元→毛先）
 const lines = FAN.map(flat => {
@@ -30,12 +33,107 @@ const toPath = pts => {
   return d;
 };
 
-const paths = lines.map(pts => {
+const mkPath = (parent, d) => {
   const p = document.createElementNS(NS, 'path');
-  p.setAttribute('d', toPath(pts));
+  p.setAttribute('d', d);
   p.setAttribute('pathLength', '1');
-  fanGroup.appendChild(p);
+  parent.appendChild(p);
   return p;
+};
+const paths = lines.map(pts => mkPath(fanGroup, toPath(pts)));
+
+// ---------------------------------------------------------------- 色の流入
+// 各単語に近い線を5本選び、色付きの点線を重ねておく
+const flows = words.map(w => {
+  const wx = +w.dataset.x, wy = +w.dataset.y;
+  const near = lines
+    .map((pts, i) => ({ i, d: Math.min(...pts.map(([x, y]) => Math.hypot(x - wx, (y - wy) * 1.3))) }))
+    .sort((a, b) => a.d - b.d).slice(0, 5).map(o => o.i);
+  const color = w.dataset.color;
+  const overlay = near.map(i => {
+    const p = mkPath(flowGroup, toPath(lines[i]));
+    p.style.stroke = color;
+    return { i, p, anim: null };
+  });
+  return { w, color, overlay, name: w.textContent };
+});
+
+const tintColor = $('kv-tint-color'), pour = $('kv-pour-rect'), tintImg = $('kv-head-tint');
+const glow = $('kv-glow'), g0 = $('kv-glow-s0'), g1 = $('kv-glow-s1');
+const figIn = $('fig-in');
+let active = null, headTween = 0;
+
+// 小さなトゥイーン（SVG属性用）
+const tween = (from, to, ms, onStep, ease = t => 1 - Math.pow(1 - t, 3)) => {
+  const id = ++headTween, t0 = performance.now();
+  const step = now => {
+    if (id !== headTween) return;
+    const k = Math.min(1, (now - t0) / ms);
+    onStep(from + (to - from) * ease(k));
+    if (k < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+let pourH = 0, glowR = 0, tintOp = 0;
+const setHead = (h, r, op) => {
+  pourH = h; glowR = r; tintOp = op;
+  pour.setAttribute('height', h.toFixed(1));
+  glow.setAttribute('r', r.toFixed(1));
+  tintImg.setAttribute('opacity', op.toFixed(2));
+};
+
+const activate = f => {
+  if (active === f) return;
+  if (active) deactivate(active, true);
+  active = f;
+  f.w.style.fill = f.color;
+  if (figIn) figIn.value = f.name;
+  // 線：毛先から首元へ流れる（pathLength=1、パスは首元が始点なので dashoffset を増やす）
+  f.overlay.forEach((o, k) => {
+    o.p.classList.add('on');
+    if (!reduce) {
+      o.anim?.cancel();
+      o.anim = o.p.animate([{ strokeDashoffset: 0 }, { strokeDashoffset: 0.85 }],
+        { duration: 2600 + k * 180, iterations: Infinity, easing: 'linear' });
+    }
+  });
+  // 頭：上から色が満ちていき、脳のあたりがほのかに光る
+  tintColor.setAttribute('flood-color', f.color);
+  g0.setAttribute('stop-color', f.color);
+  g1.setAttribute('stop-color', f.color);
+  const h0 = pourH, r0 = glowR, op0 = tintOp;
+  if (reduce) { setHead(340, 150, .85); return; }
+  setTimeout(() => {
+    if (active !== f) return;
+    tween(0, 1, 1800, k => setHead(h0 + (340 - h0) * k, r0 + (150 - r0) * k, op0 + (.85 - op0) * Math.min(1, k * 1.6)));
+  }, 650);
+};
+
+const deactivate = (f, switching = false) => {
+  f.w.style.fill = '';
+  f.overlay.forEach(o => {
+    o.p.classList.remove('on');
+    // フェードアウトが終わってから流れを止める
+    setTimeout(() => { if (!o.p.classList.contains('on') && o.anim) { o.anim.cancel(); o.anim = null; } }, 700);
+  });
+  if (active === f) active = null;
+  if (switching) return;
+  if (figIn) figIn.value = '—';
+  const h0 = pourH, r0 = glowR, op0 = tintOp;
+  if (reduce) { setHead(0, 0, 0); return; }
+  tween(0, 1, 1400, k => setHead(h0, r0 * (1 - k), op0 * (1 - k)));
+  setTimeout(() => { if (!active) setHead(0, 0, 0); }, 1450);
+};
+
+flows.forEach(f => {
+  f.w.addEventListener('pointerenter', () => activate(f));
+  f.w.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') deactivate(f); });
+  f.w.addEventListener('focus', () => activate(f));
+  f.w.addEventListener('blur', () => deactivate(f));
+  f.w.addEventListener('click', () => (active === f ? deactivate(f) : activate(f)));
+  f.w.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); active === f ? deactivate(f) : activate(f); }
+  });
 });
 
 if (!reduce) run();
@@ -69,7 +167,6 @@ function run() {
   // ---- ゆらぎ
   let pointer = 0, pointerTarget = 0, visible = true, raf = 0;
   const t0 = performance.now();
-  const $ = id => document.getElementById(id);
   const fig = $('fig-t') && { t: $('fig-t'), a: $('fig-a'), b: $('fig-b') };
   let figAt = 0;
 
@@ -85,9 +182,10 @@ function run() {
   const frame = now => {
     const t = (now - t0) / 1000;
     pointer += (pointerTarget - pointer) * .04;
-    lines.forEach((pts, i) => {
-      paths[i].setAttribute('d', toPath(pts.map(([x, y]) => sway(x, y, i, t))));
-    });
+    const swayed = lines.map((pts, i) => toPath(pts.map(([x, y]) => sway(x, y, i, t))));
+    swayed.forEach((d, i) => paths[i].setAttribute('d', d));
+    // 色の線も同じ形に追従させる（表示中のものだけ）
+    flows.forEach(f => f.overlay.forEach(o => { if (o.p.classList.contains('on') || o.anim) o.p.setAttribute('d', swayed[o.i]); }));
     words.forEach(w => {
       const x = +w.dataset.x, y = +w.dataset.y;
       const [nx, ny] = sway(x, y, +w.dataset.i, t);

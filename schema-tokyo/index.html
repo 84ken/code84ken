@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&family=Imbue:opsz,wght@10..100,300..700&family=Montserrat:wght@400&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@700&family=IBM+Plex+Mono:wght@400&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script type="application/ld+json">
 {
@@ -39,150 +39,181 @@
 <body>
 <a class="skip" href="#experiments">実験一覧へ</a>
 <header class="site-header">
-  <a class="mark" href="#top">Schema AI Lab</a>
+  <a class="mark" href="#top">SCHEMA AI LAB<span>schema.tokyo</span></a>
   <nav aria-label="メインナビゲーション">
-    <a href="#about">研究所について</a>
-    <a href="#experiments">実験一覧</a>
-    <a href="https://llschema.com/">株式会社スキーマ ↗</a>
+    <a href="#about">About</a>
+    <a href="#experiments">Experiments</a>
+    <a href="https://llschema.com/">llschema.com ↗</a>
   </nav>
-  <a class="rails" href="#experiments" aria-label="実験一覧へ"><i></i><i></i><i></i></a>
+  <a class="atom" href="#experiments" aria-label="実験一覧へ"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="2.4"/><g class="o1"><ellipse cx="20" cy="20" rx="18" ry="6.5"/></g><g class="o2"><ellipse cx="20" cy="20" rx="18" ry="6.5" transform="rotate(60 20 20)"/></g></svg></a>
 </header>
 
 <main id="top">
   <section class="hero">
-    <div class="hero-title">
-      <h1>Schema<br>AI Lab</h1>
-      <div class="sub"><p class="sub-en">Schema AI Laboratory</p><p class="sub-ja">スキーマのAI研究所</p></div>
+    <div class="hero-top">
+      <h1>Schema<br><span class="outline">AI Lab</span></h1>
+      <div class="meta mono"><p>スキーマのAI研究所</p><p>Est. 2026 — Experiments in progress</p><p>Operated by SCHEMA, Inc.</p></div>
     </div>
-    <p class="scroll" aria-hidden="true"><span>→</span> SCROLL DOWN</p>
 
     <div class="kv">
-      <svg class="kv-art" viewBox="0 0 1690 892" role="img" aria-labelledby="kv-title">
-        <title id="kv-title">横顔の頭から、無数の線が空へ広がっていくイラスト。線のあいだに Sensibility、Gravity、Relation、Time、Phenomenon、Territory の言葉が浮かぶ。</title>
+      <svg class="kv-art" viewBox="0 0 1690 892" role="group" aria-labelledby="kv-title">
+        <title id="kv-title">横顔の頭から、無数の線が空へ広がっていくイラスト。線のあいだの言葉を選ぶと、その色が線を伝って頭の中へ流れ込む。</title>
+        <defs>
+          <filter id="kv-tint" x="0" y="0" width="1" height="1"><feFlood id="kv-tint-color" flood-color="#171717"/><feComposite in2="SourceAlpha" operator="in"/></filter>
+          <clipPath id="kv-pour"><rect id="kv-pour-rect" x="680" y="490" width="380" height="0"/></clipPath>
+          <radialGradient id="kv-glow-g"><stop id="kv-glow-s0" offset="0" stop-color="#171717" stop-opacity=".5"/><stop id="kv-glow-s1" offset="1" stop-color="#171717" stop-opacity="0"/></radialGradient>
+        </defs>
         <line class="kv-beam" x1="740" y1="605" x2="236" y2="515" pathLength="1"/>
         <line class="kv-beam" x1="740" y1="624.5" x2="236" y2="724" pathLength="1"/>
+        <circle id="kv-glow" cx="885" cy="600" r="0" fill="url(#kv-glow-g)"/>
         <image href="assets/kv-head.png" x="680" y="490" width="380" height="340"/>
+        <image id="kv-head-tint" href="assets/kv-head.png" x="680" y="490" width="380" height="340" filter="url(#kv-tint)" clip-path="url(#kv-pour)" opacity="0"/>
         <g class="kv-fan"></g>
-        <g aria-hidden="true">
-          <g class="kv-edge-l"><text class="kv-word" text-anchor="middle" x="296" y="260" data-x="296" data-y="255" data-i="2" data-order="2">Sensibility</text></g>
-          <text class="kv-word" text-anchor="middle" x="446" y="331" data-x="446" data-y="326" data-i="5" data-order="1">Gravity</text>
-          <text class="kv-word" text-anchor="middle" x="643" y="362" data-x="643" data-y="356" data-i="9" data-order="0">Relation</text>
-          <text class="kv-word" text-anchor="middle" x="996" y="362" data-x="996" data-y="356" data-i="14" data-order="0">Time</text>
-          <text class="kv-word" text-anchor="middle" x="1192" y="331" data-x="1192" data-y="326" data-i="18" data-order="1">Phenomenon</text>
-          <g class="kv-edge-r"><text class="kv-word" text-anchor="middle" x="1368" y="260" data-x="1368" data-y="255" data-i="21" data-order="2">Territory</text></g>
+        <g class="kv-flow"></g>
+        <g>
+          <g class="kv-edge-l"><text class="kv-word" text-anchor="middle" x="296" y="260" data-x="296" data-y="255" data-i="2" data-order="2" data-color="#e0457b" role="button" tabindex="0" aria-label="Sensibility の色を頭の中へ流し込む">Sensibility</text></g>
+          <text class="kv-word" text-anchor="middle" x="446" y="331" data-x="446" data-y="326" data-i="5" data-order="1" data-color="#3558e0" role="button" tabindex="0" aria-label="Gravity の色を頭の中へ流し込む">Gravity</text>
+          <text class="kv-word" text-anchor="middle" x="643" y="362" data-x="643" data-y="356" data-i="9" data-order="0" data-color="#f08a24" role="button" tabindex="0" aria-label="Relation の色を頭の中へ流し込む">Relation</text>
+          <text class="kv-word" text-anchor="middle" x="996" y="362" data-x="996" data-y="356" data-i="14" data-order="0" data-color="#11998e" role="button" tabindex="0" aria-label="Time の色を頭の中へ流し込む">Time</text>
+          <text class="kv-word" text-anchor="middle" x="1192" y="331" data-x="1192" data-y="326" data-i="18" data-order="1" data-color="#8a5cf5" role="button" tabindex="0" aria-label="Phenomenon の色を頭の中へ流し込む">Phenomenon</text>
+          <g class="kv-edge-r"><text class="kv-word" text-anchor="middle" x="1368" y="260" data-x="1368" data-y="255" data-i="21" data-order="2" data-color="#5c9e31" role="button" tabindex="0" aria-label="Territory の色を頭の中へ流し込む">Territory</text></g>
         </g>
       </svg>
     </div>
-    <p class="fig"><span><b>Fig. 1</b>Thought field — 24 strands rising from a single head.</span><span aria-hidden="true">t = <output id="fig-t">0.0</output> s ／ amplitude <output id="fig-a">0.00</output> ／ bias <output id="fig-b">+0.00</output></span></p>
+    <p class="fig mono"><span><b>Fig. 1</b>Thought field — 24 strands rising from a single head.</span><span aria-hidden="true">input <output id="fig-in">—</output> ／ t = <output id="fig-t">0.0</output> s ／ amp <output id="fig-a">0.00</output> ／ bias <output id="fig-b">+0.00</output></span></p>
+    <p class="hint mono">↑ Hover a word — its color flows into the head. 言葉にふれると、色が頭の中へ流れ込みます。</p>
 
     <div class="hero-copy">
-      <p class="en">Selfish curiosity,<br>experiments in progress.</p>
-      <p class="lead reveal"><span>私利私欲のまま、</span><br><span>実験する。</span></p>
+      <p class="lead reveal">私利私欲のまま、<span class="outline">実験する。</span></p>
+      <p class="en mono">Selfish curiosity,<br>experiments in progress.</p>
     </div>
   </section>
 
-  <section class="intro bracket reveal" aria-label="この場所について">
+  <section class="intro reveal" aria-label="この場所について">
+    <span class="orbits" aria-hidden="true"><svg viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet"><g class="spin " style="--dur:90s"><g transform="rotate(-10 500 280)"><ellipse cx="500" cy="280" rx="480" ry="150"/><circle class="e" r="4"><animateMotion dur="14s" repeatCount="indefinite" path="M20,280 a480,150 0 1,0 960,0 a480,150 0 1,0 -960,0"/></circle></g></g><g class="spin rev" style="--dur:120s"><g transform="rotate(16 500 280)"><ellipse cx="500" cy="280" rx="470" ry="120"/><circle class="e" r="4"><animateMotion dur="19s" repeatCount="indefinite" path="M30,280 a470,120 0 1,0 940,0 a470,120 0 1,0 -940,0"/></circle></g></g><g class="spin " style="--dur:160s"><g transform="rotate(0 500 280)"><ellipse cx="500" cy="280" rx="300" ry="262"/><circle class="e" r="4"><animateMotion dur="23s" repeatCount="indefinite" path="M200,280 a300,262 0 1,0 600,0 a300,262 0 1,0 -600,0"/></circle></g></g></svg></span>
     <p class="statement">スキーマの84kenが<br>私利私欲のまま実験している場所です。</p>
-    <p class="statement-en">A place where 84ken of Schema experiments, purely out of selfish curiosity.</p>
+    <p class="statement-en mono">A place where 84ken of Schema experiments, purely out of selfish curiosity.</p>
     <p class="operator">運営：株式会社スキーマ　<a href="https://llschema.com/">llschema.com ↗</a></p>
   </section>
 
   <section class="about" id="about" aria-labelledby="about-title">
-    <h2 class="vtitle reveal" id="about-title">About Lab<small>研究所について</small></h2>
-    <div class="text reveal">
-      <p><span class="dash" aria-hidden="true"></span>スキーマのAI研究所は、株式会社スキーマの84kenが、仕事でも頼まれごとでもなく、自分が知りたい・欲しい・たのしいという私利私欲のままに、AIといっしょにつくっているサイトやツールの置き場です。</p>
-      <p>電気風呂、パンク、温泉、サウナ、祭り、川、子どものゲーム。好きなことと気になることを、思いついたそばから形にしています。どれも実験中。完成していないものもあります。</p>
+    <div class="sec-head"><h2 id="about-title"><span class="no">§01</span>About<small>研究所について</small></h2><p class="mono">Lab note</p></div>
+    <div class="about-body reveal">
+      <p class="big">仕事でも、<br>頼まれごとでもなく。</p>
+      <div class="text">
+        <p>スキーマのAI研究所は、株式会社スキーマの84kenが、自分が知りたい・欲しい・たのしいという私利私欲のままに、AIといっしょにつくっているサイトやツールの置き場です。</p>
+        <p>電気風呂、パンク、温泉、サウナ、祭り、川、子どものゲーム。好きなことと気になることを、思いついたそばから形にしています。どれも実験中。完成していないものもあります。</p>
+      </div>
     </div>
   </section>
 
   <section class="experiments" id="experiments" aria-labelledby="experiments-title">
-    <h2 class="section-title reveal" id="experiments-title"><sup>Schema</sup>Experiments<small>実験一覧</small></h2>
-    <ul class="exp-list">
-      <li class="exp bracket reveal">
-        <div class="exp-body">
-          <p class="exp-no">Exp. 01</p>
-          <h3>電気風呂マップ「ビリビリ君」</h3>
-          <dl><dt>分野</dt><dd>マップ・銭湯</dd><dt>内容</dt><dd>全国の電気風呂を、メーカー・最寄り駅・パワーで探せるマップ。しくみや歴史の読みものも。</dd><dt>URL</dt><dd>denki.schema.tokyo</dd></dl>
-          <a class="pill" href="https://denki.schema.tokyo/">visit<span class="sr-only">：電気風呂マップ「ビリビリ君」</span></a>
-        </div>
-        <a class="orb" href="https://denki.schema.tokyo/" tabindex="-1" aria-hidden="true"><img src="banners/denki.webp" alt="" width="800" height="420" loading="lazy"></a>
+    <div class="sec-head"><h2 id="experiments-title"><span class="no">§02</span>Experiments<small>実験一覧</small></h2><p class="mono">08 specimens</p></div>
+    <ul class="board">
+      <li class="spec reveal">
+        <a href="https://denki.schema.tokyo/">
+          <div class="specimen"><span class="orbits" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin " style="--dur:26s"><g transform="rotate(-28 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="5s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g><g class="spin rev" style="--dur:34s"><g transform="rotate(38 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="7s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g></svg></span><span class="disc" aria-hidden="true"></span><img class="tall" src="assets/logos/denki.webp" alt="電気風呂マップ「ビリビリ君」 のロゴ" loading="lazy"></div>
+          <div class="cap">
+            <p class="mono"><span>Exp. 01</span><span>Map / Sento</span></p>
+            <h3>電気風呂マップ「ビリビリ君」</h3>
+            <p class="desc">全国の電気風呂を、メーカー・最寄り駅・パワーで探せるマップ。しくみや歴史の読みものも。</p>
+            <p class="open mono">denki.schema.tokyo <span aria-hidden="true">→</span></p>
+          </div>
+        </a>
       </li>
-      <li class="exp bracket reveal">
-        <div class="exp-body">
-          <p class="exp-no">Exp. 02</p>
-          <h3>TOTAL PUNKS</h3>
-          <dl><dt>分野</dt><dd>カルチャー・音楽</dd><dt>内容</dt><dd>77パンクからUKハードコア、Oi!、メロコアまで。パンクのディスクレビューとカルチャーガイド。</dd><dt>URL</dt><dd>totalpunks.schema.tokyo</dd></dl>
-          <a class="pill" href="https://totalpunks.schema.tokyo/">visit<span class="sr-only">：TOTAL PUNKS</span></a>
-        </div>
-        <a class="orb" href="https://totalpunks.schema.tokyo/" tabindex="-1" aria-hidden="true"><img src="banners/totalpunks.webp" alt="" width="800" height="420" loading="lazy"></a>
+      <li class="spec reveal">
+        <a href="https://totalpunks.schema.tokyo/">
+          <div class="specimen"><span class="orbits" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin " style="--dur:26s"><g transform="rotate(-17 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="6s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g><g class="spin rev" style="--dur:34s"><g transform="rotate(31 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="8s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g></svg></span><span class="disc" aria-hidden="true"></span><img class="" src="assets/logos/totalpunks.webp" alt="TOTAL PUNKS のロゴ" loading="lazy"></div>
+          <div class="cap">
+            <p class="mono"><span>Exp. 02</span><span>Culture / Music</span></p>
+            <h3>TOTAL PUNKS</h3>
+            <p class="desc">77パンクからUKハードコア、Oi!、メロコアまで。パンクのディスクレビューとカルチャーガイド。</p>
+            <p class="open mono">totalpunks.schema.tokyo <span aria-hidden="true">→</span></p>
+          </div>
+        </a>
       </li>
-      <li class="exp bracket reveal">
-        <div class="exp-body">
-          <p class="exp-no">Exp. 03</p>
-          <h3>温泉ソムリエ ノート</h3>
-          <dl><dt>分野</dt><dd>学び・温泉</dd><dt>内容</dt><dd>成分表で読む、自分に効く温泉。泉質・適応症・成分表の読み方をまとめた学習ノート。</dd><dt>URL</dt><dd>onsen.schema.tokyo</dd></dl>
-          <a class="pill" href="https://onsen.schema.tokyo/">visit<span class="sr-only">：温泉ソムリエ ノート</span></a>
-        </div>
-        <a class="orb" href="https://onsen.schema.tokyo/" tabindex="-1" aria-hidden="true"><img src="banners/onsen.webp" alt="" width="800" height="420" loading="lazy"></a>
+      <li class="spec reveal">
+        <a href="https://onsen.schema.tokyo/">
+          <div class="specimen"><span class="orbits" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin " style="--dur:26s"><g transform="rotate(-6 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="7s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g><g class="spin rev" style="--dur:34s"><g transform="rotate(24 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="7s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g></svg></span><span class="disc" aria-hidden="true"></span><img class="tall" src="assets/logos/onsen.webp" alt="温泉ソムリエ ノート のロゴ" loading="lazy"></div>
+          <div class="cap">
+            <p class="mono"><span>Exp. 03</span><span>Study / Onsen</span></p>
+            <h3>温泉ソムリエ ノート</h3>
+            <p class="desc">成分表で読む、自分に効く温泉。泉質・適応症・成分表の読み方をまとめた学習ノート。</p>
+            <p class="open mono">onsen.schema.tokyo <span aria-hidden="true">→</span></p>
+          </div>
+        </a>
       </li>
-      <li class="exp bracket reveal">
-        <div class="exp-body">
-          <p class="exp-no">Exp. 04</p>
-          <h3>ITaLOG SAUNA</h3>
-          <dl><dt>分野</dt><dd>プロダクト・サウナ</dd><dt>内容</dt><dd>流体力学から設計した、埼玉県産木材の「常軌を逸した蒸気」のサウナ小屋。</dd><dt>URL</dt><dd>italog.schema.tokyo</dd></dl>
-          <a class="pill" href="https://italog.schema.tokyo/">visit<span class="sr-only">：ITaLOG SAUNA</span></a>
-        </div>
-        <a class="orb" href="https://italog.schema.tokyo/" tabindex="-1" aria-hidden="true"><img src="banners/italog.webp" alt="" width="800" height="420" loading="lazy"></a>
+      <li class="spec reveal">
+        <a href="https://italog.schema.tokyo/">
+          <div class="specimen"><span class="orbits" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin " style="--dur:26s"><g transform="rotate(5 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="5s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g><g class="spin rev" style="--dur:34s"><g transform="rotate(17 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="8s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g></svg></span><span class="disc" aria-hidden="true"></span><img class="" src="assets/logos/italog.webp" alt="ITaLOG SAUNA のロゴ" loading="lazy"></div>
+          <div class="cap">
+            <p class="mono"><span>Exp. 04</span><span>Product / Sauna</span></p>
+            <h3>ITaLOG SAUNA</h3>
+            <p class="desc">流体力学から設計した、埼玉県産木材の「常軌を逸した蒸気」のサウナ小屋。</p>
+            <p class="open mono">italog.schema.tokyo <span aria-hidden="true">→</span></p>
+          </div>
+        </a>
       </li>
-      <li class="exp bracket reveal">
-        <div class="exp-body">
-          <p class="exp-no">Exp. 05</p>
-          <h3>山田の春祭り「山組1番！」</h3>
-          <dl><dt>分野</dt><dd>地域・秩父</dd><dt>内容</dt><dd>秩父路に春を告げる最初の屋台祭り、恒持神社例大祭。山組のガイドとしきたり。</dd><dt>URL</dt><dd>matsuri.schema.tokyo</dd></dl>
-          <a class="pill" href="https://matsuri.schema.tokyo/">visit<span class="sr-only">：山田の春祭り「山組1番！」</span></a>
-        </div>
-        <a class="orb" href="https://matsuri.schema.tokyo/" tabindex="-1" aria-hidden="true"><img src="banners/matsuri.webp" alt="" width="800" height="420" loading="lazy"></a>
+      <li class="spec reveal">
+        <a href="https://matsuri.schema.tokyo/">
+          <div class="specimen"><span class="orbits" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin " style="--dur:26s"><g transform="rotate(16 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="6s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g><g class="spin rev" style="--dur:34s"><g transform="rotate(10 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="7s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g></svg></span><span class="disc" aria-hidden="true"></span><img class="" src="assets/logos/matsuri.webp" alt="山田の春祭り「山組1番！」 のロゴ" loading="lazy"></div>
+          <div class="cap">
+            <p class="mono"><span>Exp. 05</span><span>Local / Chichibu</span></p>
+            <h3>山田の春祭り「山組1番！」</h3>
+            <p class="desc">秩父路に春を告げる最初の屋台祭り、恒持神社例大祭。山組のガイドとしきたり。</p>
+            <p class="open mono">matsuri.schema.tokyo <span aria-hidden="true">→</span></p>
+          </div>
+        </a>
       </li>
-      <li class="exp bracket reveal">
-        <div class="exp-body">
-          <p class="exp-no">Exp. 06</p>
-          <h3>川の国 流域アトラス</h3>
-          <dl><dt>分野</dt><dd>地域・地図</dd><dt>内容</dt><dd>埼玉の流域・源流・高低差・ダムを3D地形で俯瞰する、リバサポ新サービスのプロトタイプ。</dd><dt>URL</dt><dd>river.schema.tokyo</dd></dl>
-          <a class="pill" href="https://river.schema.tokyo/">visit<span class="sr-only">：川の国 流域アトラス</span></a>
-        </div>
-        <a class="orb" href="https://river.schema.tokyo/" tabindex="-1" aria-hidden="true"><img src="banners/river.webp" alt="" width="800" height="420" loading="lazy"></a>
+      <li class="spec reveal">
+        <a href="https://river.schema.tokyo/">
+          <div class="specimen"><span class="orbits" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin " style="--dur:26s"><g transform="rotate(27 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="7s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g><g class="spin rev" style="--dur:34s"><g transform="rotate(3 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="8s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g></svg></span><span class="disc" aria-hidden="true"></span><img class="" src="assets/logos/river.webp" alt="川の国 流域アトラス のロゴ" loading="lazy"></div>
+          <div class="cap">
+            <p class="mono"><span>Exp. 06</span><span>Local / Atlas</span></p>
+            <h3>川の国 流域アトラス</h3>
+            <p class="desc">埼玉の流域・源流・高低差・ダムを3D地形で俯瞰する、リバサポ新サービスのプロトタイプ。</p>
+            <p class="open mono">river.schema.tokyo <span aria-hidden="true">→</span></p>
+          </div>
+        </a>
       </li>
-      <li class="exp bracket reveal">
-        <div class="exp-body">
-          <p class="exp-no">Exp. 07</p>
-          <h3>STUDY QUEST</h3>
-          <dl><dt>分野</dt><dd>ゲーム・学び</dd><dt>内容</dt><dd>ちきゅうを すくうのは きみの しゅくだい。宿題で戦う、子ども向けの学習RPG。</dd><dt>URL</dt><dd>game.schema.tokyo</dd></dl>
-          <a class="pill" href="https://game.schema.tokyo/">visit<span class="sr-only">：STUDY QUEST</span></a>
-        </div>
-        <a class="orb" href="https://game.schema.tokyo/" tabindex="-1" aria-hidden="true"><img src="banners/game.webp" alt="" width="800" height="420" loading="lazy"></a>
+      <li class="spec reveal">
+        <a href="https://game.schema.tokyo/">
+          <div class="specimen"><span class="orbits" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin " style="--dur:26s"><g transform="rotate(38 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="5s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g><g class="spin rev" style="--dur:34s"><g transform="rotate(-4 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="7s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g></svg></span><span class="disc" aria-hidden="true"></span><img class="" src="assets/logos/game.webp" alt="STUDY QUEST のロゴ" loading="lazy"></div>
+          <div class="cap">
+            <p class="mono"><span>Exp. 07</span><span>Game / Study</span></p>
+            <h3>STUDY QUEST</h3>
+            <p class="desc">ちきゅうを すくうのは きみの しゅくだい。宿題で戦う、子ども向けの学習RPG。</p>
+            <p class="open mono">game.schema.tokyo <span aria-hidden="true">→</span></p>
+          </div>
+        </a>
       </li>
-      <li class="exp bracket reveal">
-        <div class="exp-body">
-          <p class="exp-no">Exp. 08</p>
-          <h3>うちのこゲームミュージアム</h3>
-          <dl><dt>分野</dt><dd>ゲーム・こども</dd><dt>内容</dt><dd>子どもが絵と声でアイディアを出し、AIといっしょにつくったゲームの展示室。</dd><dt>URL</dt><dd>childgame.schema.tokyo</dd></dl>
-          <a class="pill" href="https://childgame.schema.tokyo/">visit<span class="sr-only">：うちのこゲームミュージアム</span></a>
-        </div>
-        <a class="orb" href="https://childgame.schema.tokyo/" tabindex="-1" aria-hidden="true"><img src="banners/childgame.webp" alt="" width="800" height="420" loading="lazy"></a>
+      <li class="spec reveal">
+        <a href="https://childgame.schema.tokyo/">
+          <div class="specimen"><span class="orbits" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin " style="--dur:26s"><g transform="rotate(49 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="6s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g><g class="spin rev" style="--dur:34s"><g transform="rotate(-11 100 100)"><ellipse cx="100" cy="100" rx="94" ry="30"/><circle class="e" r="2.6"><animateMotion dur="8s" repeatCount="indefinite" path="M6,100 a94,30 0 1,0 188,0 a94,30 0 1,0 -188,0"/></circle></g></g></svg></span><span class="disc" aria-hidden="true"></span><img class="" src="assets/logos/childgame.webp" alt="うちのこゲームミュージアム のロゴ" loading="lazy"></div>
+          <div class="cap">
+            <p class="mono"><span>Exp. 08</span><span>Game / Kids</span></p>
+            <h3>うちのこゲームミュージアム</h3>
+            <p class="desc">子どもが絵と声でアイディアを出し、AIといっしょにつくったゲームの展示室。</p>
+            <p class="open mono">childgame.schema.tokyo <span aria-hidden="true">→</span></p>
+          </div>
+        </a>
       </li>
     </ul>
   </section>
 </main>
 
 <footer>
-  <a class="mark" href="#top">Schema AI Lab</a>
+  <a class="mark" href="#top">SCHEMA AI LAB</a>
   <p>運営：<a class="co" href="https://llschema.com/">株式会社スキーマ SCHEMA, Inc.</a><br>© SCHEMA, Inc.</p>
 </footer>
 
-<aside class="ticker" aria-label="実験中のプロジェクト">
-  <b>Now</b>
-  <div class="mask"><div class="track"><a href="https://denki.schema.tokyo/">電気風呂マップ「ビリビリ君」</a><a href="https://totalpunks.schema.tokyo/">TOTAL PUNKS</a><a href="https://onsen.schema.tokyo/">温泉ソムリエ ノート</a><a href="https://italog.schema.tokyo/">ITaLOG SAUNA</a><a href="https://matsuri.schema.tokyo/">山田の春祭り「山組1番！」</a><a href="https://river.schema.tokyo/">川の国 流域アトラス</a><a href="https://game.schema.tokyo/">STUDY QUEST</a><a href="https://childgame.schema.tokyo/">うちのこゲームミュージアム</a><a href="https://denki.schema.tokyo/" tabindex="-1" aria-hidden="true">電気風呂マップ「ビリビリ君」</a><a href="https://totalpunks.schema.tokyo/" tabindex="-1" aria-hidden="true">TOTAL PUNKS</a><a href="https://onsen.schema.tokyo/" tabindex="-1" aria-hidden="true">温泉ソムリエ ノート</a><a href="https://italog.schema.tokyo/" tabindex="-1" aria-hidden="true">ITaLOG SAUNA</a><a href="https://matsuri.schema.tokyo/" tabindex="-1" aria-hidden="true">山田の春祭り「山組1番！」</a><a href="https://river.schema.tokyo/" tabindex="-1" aria-hidden="true">川の国 流域アトラス</a><a href="https://game.schema.tokyo/" tabindex="-1" aria-hidden="true">STUDY QUEST</a><a href="https://childgame.schema.tokyo/" tabindex="-1" aria-hidden="true">うちのこゲームミュージアム</a></div></div>
-</aside>
+<a class="badge" href="#experiments" aria-label="実験一覧へ（8件の実験中）">
+  <svg viewBox="0 0 118 118" aria-hidden="true">
+    <defs><path id="badge-path" d="M59,59 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+    <g class="ring"><text><textPath href="#badge-path">NOW EXPERIMENTING · 08 PROJECTS · </textPath></text></g>
+    <text class="n" x="59" y="70" text-anchor="middle">08</text>
+  </svg>
+</a>
 
 <script src="site.js" defer></script>
 <script type="module" src="kv.js"></script>
