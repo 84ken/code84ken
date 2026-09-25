@@ -1,0 +1,34 @@
+/*
+ * 埼玉いちご大學 共通スタイル（全ページ）
+ * 色はキービジュアルから：いちご #C92A57／いちご（深）#A8284C／焦げ茶 #43373B／うすピンク #FDF1F3／種の黄 #F7E38A
+ * フォント：Zen Maru Gothic（和文）＋ Quicksand（英字・数字）
+ */
+body { font-family:"Zen Maru Gothic",sans-serif; color:#43373B; background:#FDF1F3; font-feature-settings:"palt" 1; }
+.h-display { font-weight:500; letter-spacing:0.04em; line-height:1.45; }
+.h-display-thin { font-weight:500; letter-spacing:0.04em; line-height:1.4; }
+.label-en { font-family:Quicksand,"Zen Maru Gothic",sans-serif; font-weight:700; letter-spacing:0.22em; font-size:12px; }
+.body-jp { line-height:2.0; letter-spacing:0.05em; font-weight:500; font-feature-settings: normal; }
+.text-mute { color: #6E5E63 !important; }
+.text-ink { color: #43373B !important; }
+.pill-nav { background:#fff; border:1.5px solid #F4C9D5; border-radius:999px; padding:8px 18px; font-weight:700; font-size:14px; color:#43373B; transition:all 0.2s ease; text-decoration:none; }
+.pill-nav:hover { background:#FDF1F3; border-color:#C92A57; color:#C92A57; }
+.pill-nav.active { background:#C92A57; color:#fff; border-color:#C92A57; }
+.pill-nav-shop { background:#C92A57; border:1.5px solid #C92A57; border-radius:999px; padding:8px 18px; font-weight:700; font-size:14px; color:#fff; transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+.pill-nav-shop:hover { background:#A8284C; border-color:#A8284C; }
+/* 主ボタン：白地にいちご色のふち（やわらかい影つき）／買う導線：いちご色の塗り */
+.btn-primary { background:#fff; color:#C92A57; border:2px solid #C92A57; border-radius:999px; padding:14px 32px; font-weight:700; letter-spacing:0.06em; transition:all 0.25s ease; display:inline-flex; align-items:center; justify-content:center; gap:8px; white-space:nowrap; box-shadow:0 4px 0 #F4C9D5; }
+.btn-primary:hover { background:#C92A57; color:#fff; transform:translateY(2px); box-shadow:0 2px 0 #F4C9D5; }
+.btn-ichigo { background:#C92A57; color:#fff; border:2px solid #C92A57; border-radius:999px; padding:14px 32px; font-weight:700; letter-spacing:0.06em; transition:all 0.25s ease; display:inline-flex; align-items:center; justify-content:center; gap:8px; white-space:nowrap; box-shadow:0 4px 0 #A8284C; }
+.btn-ichigo:hover { background:#A8284C; border-color:#A8284C; transform:translateY(2px); box-shadow:0 2px 0 #7E1D39; }
+/* 見出しの一部に、種の黄色のマーカー */
+.marker { background:linear-gradient(transparent 68%, #F7E38A 68%, #F7E38A 90%, transparent 90%); padding:0 0.08em; }
+/* 直線の区切りの代わりに、種の粒を3つ */
+.seed-divider { display:flex; justify-content:center; gap:14px; }
+.seed-divider i { width:9px; height:13px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; display:block; }
+/* セクションのあいだの波 */
+.wave { display:block; width:100%; height:clamp(24px, 4vw, 56px); }
+/* 「すべて見る」などの丸いリンク */
+.pill-link { display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:14px; color:#43373B; text-decoration:none; }
+.pill-link .arrow { width:36px; height:36px; border-radius:999px; background:#C92A57; color:#fff; display:inline-flex; align-items:center; justify-content:center; transition:transform 0.25s ease; }
+.pill-link:hover { color:#C92A57; }
+.pill-link:hover .arrow { transform:translateX(4px); }

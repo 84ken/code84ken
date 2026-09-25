@@ -31,7 +31,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#CC0000">
+  <meta name="theme-color" content="#C92A57">
 
   <!-- Structured Data: Organization + WebSite -->
   <script type="application/ld+json">
@@ -75,30 +75,20 @@
   <script>
     tailwind.config = {
       theme: { extend: {
-        colors: { ichigo:'#CC0000', base:'#FBEDED', ink:'#0A0A0A', mute:'#1F1F1F' },
-        fontFamily: { sans:['"Noto Sans JP"','sans-serif'], serif:['"Noto Serif JP"','serif'] }
+        /* キービジュアルから採った色：いちご・種の黄・ヘタの黄緑・スカートの青。黒の代わりにあたたかい焦げ茶 */
+        colors: {
+          ichigo:'#C92A57', 'ichigo-deep':'#A8284C', petal:'#FDF1F3', ink:'#43373B', mute:'#6E5E63',
+          blush:'#FBE3EA', seed:'#F7E38A', 'seed-soft':'#FFF7D6', leaf:'#A9CC5B', 'leaf-soft':'#EEF6DA', sky:'#6090D8', 'sky-soft':'#E6EFFB'
+        },
+        fontFamily: { sans:['"Zen Maru Gothic"','sans-serif'], en:['Quicksand','"Zen Maru Gothic"','sans-serif'] }
       }}
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
   <style>
-    body { font-family:"Noto Sans JP",sans-serif; color:#0A0A0A; background:#FBEDED; font-feature-settings:"palt" 1; }
-    .h-display { font-weight:200; letter-spacing:0.02em; line-height:1.3; }
-    .h-display-thin { font-weight:100; letter-spacing:0.04em; line-height:1.25; }
-    .label-en { font-weight:500; letter-spacing:0.3em; font-size:11px; }
-    .body-jp { line-height:2.0; letter-spacing:0.04em; font-weight:500; font-feature-settings: normal; }
-    .text-mute { color: #1F1F1F !important; }
-    .text-ink { color: #0A0A0A !important; }
-    .pill-nav { background:#fff; border:1.5px solid #0A0A0A; border-radius:999px; padding:8px 18px; font-weight:500; font-size:14px; color:#0A0A0A; transition:all 0.2s ease; text-decoration:none; }
-    .pill-nav-shop { background:#CC0000; border:1.5px solid #CC0000; border-radius:999px; padding:8px 18px; font-weight:600; font-size:14px; color:#fff; transition:all 0.2s ease; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
-    .pill-nav-shop:hover { background:#A30000; border-color:#A30000; }
-    .pill-nav:hover { background:#0A0A0A; color:#fff; }
-    .btn-primary { background:#0A0A0A; color:#fff; border:1.5px solid #0A0A0A; border-radius:999px; padding:14px 32px; font-weight:600; letter-spacing:0.04em; transition:all 0.2s ease; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
-    .btn-primary:hover { background:#fff; color:#0A0A0A; }
-    .btn-ichigo { background:#CC0000; color:#fff; border:1.5px solid #CC0000; border-radius:999px; padding:14px 32px; font-weight:600; letter-spacing:0.04em; transition:all 0.2s ease; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
-    .btn-ichigo:hover { background:#fff; color:#CC0000; }
     .video-wrap { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
     .video-wrap iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
     .news-card { background:#fff; transition:transform 0.3s ease; isolation:isolate; }
@@ -156,7 +146,7 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M14 8c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23ffffff' opacity='0.13'/%3E%3Cpath d='M42 34c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23ffffff' opacity='0.13'/%3E%3C/svg%3E");
     }
     .seed-pattern-red {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M14 8c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23CC0000' opacity='0.07'/%3E%3Cpath d='M42 34c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23CC0000' opacity='0.07'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M14 8c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23C92A57' opacity='0.08'/%3E%3Cpath d='M42 34c2.4 3 2.4 6.4 0 8.4-2.4-2-2.4-5.4 0-8.4z' fill='%23C92A57' opacity='0.08'/%3E%3C/svg%3E");
     }
 
     /* ── マーキー（流れるテキスト帯） ── */
@@ -197,23 +187,23 @@
           ONLINE SHOP
         </a>
       </nav>
-      <button id="menu-btn" class="lg:hidden w-12 h-12 inline-flex items-center justify-center bg-white border border-ink rounded-full" aria-label="メニューを開く" aria-expanded="false">
+      <button id="menu-btn" class="lg:hidden w-12 h-12 inline-flex items-center justify-center bg-white border-[1.5px] border-[#F4C9D5] text-ink rounded-full" aria-label="メニューを開く" aria-expanded="false">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
-    <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-black/10">
+    <div id="mobile-menu" class="lg:hidden hidden bg-white rounded-3xl mx-4 mt-1 shadow-[0_12px_40px_-12px_rgba(201,42,87,0.3)]">
       <div class="px-6 py-4 space-y-2">
-        <a href="about.html" class="block py-3 text-base font-medium border-b border-black/5">いちご大學とは</a>
-        <a href="events.html" class="block py-3 text-base font-medium border-b border-black/5">お知らせ</a>
-        <a href="lab.html" class="block py-3 text-base font-medium border-b border-black/5">いちごの研究室</a>
-        <a href="farms.html" class="block py-3 text-base font-medium border-b border-black/5">農家マップ</a>
+        <a href="about.html" class="block py-3 text-base font-bold border-b border-blush">いちご大學とは</a>
+        <a href="events.html" class="block py-3 text-base font-bold border-b border-blush">お知らせ</a>
+        <a href="lab.html" class="block py-3 text-base font-bold border-b border-blush">いちごの研究室</a>
+        <a href="farms.html" class="block py-3 text-base font-bold border-b border-blush">農家マップ</a>
         <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="block py-3 text-base font-bold text-ichigo">🛒 ONLINE SHOP →</a>
       </div>
     </div>
   </header>
 
   <!-- ① ファーストビュー -->
-  <section class="relative bg-base">
+  <section class="relative bg-petal">
     <!-- ロゴ（赤帯）とキービジュアルを1画面に収める枠 -->
     <div class="fv-frame">
     <!-- メインビジュアル + 動画フローティングボックス -->
@@ -222,7 +212,7 @@
 
       <!-- フローティング動画 -->
       <div class="hero-video-box">
-        <div class="bg-ink text-white px-3 py-2 flex items-center gap-2 text-xs">
+        <div class="bg-ichigo-deep text-white px-3 py-2 flex items-center gap-2 text-xs">
           <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-ichigo">
             <svg class="w-2.5 h-2.5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </span>
@@ -249,12 +239,12 @@
     </div>
 
     <!-- 🆕 新発売告知バナー -->
-    <div class="bg-white border-b border-black/5">
-      <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="block group hover:bg-base/50 transition-colors">
+    <div class="bg-white">
+      <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="block group hover:bg-petal/50 transition-colors">
         <div class="max-w-5xl mx-auto px-5 sm:px-6 py-5 sm:py-6">
           <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <!-- 商品サムネ -->
-            <div class="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 overflow-hidden bg-base rounded-2xl ring-2 ring-ichigo/10">
+            <div class="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 overflow-hidden bg-petal rounded-2xl ring-2 ring-ichigo/10">
               <img src="images/products/ichigobin.jpg" alt="CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
             </div>
             <!-- テキスト -->
@@ -271,7 +261,7 @@
             </div>
             <!-- CTAボタン -->
             <div class="flex-shrink-0">
-              <span class="inline-flex items-center gap-2 bg-ichigo text-white px-5 py-3 rounded-full text-sm font-bold group-hover:bg-ink transition-colors whitespace-nowrap">
+              <span class="inline-flex items-center gap-2 bg-ichigo text-white px-5 py-3 rounded-full text-sm font-bold group-hover:bg-ichigo-deep transition-colors whitespace-nowrap">
                 今すぐ購入
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </span>
@@ -281,11 +271,12 @@
       </a>
     </div>
 
+    <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background:#fff;transform:scaleX(-1)"><path d="M0 28C160 6 320 6 480 24S800 50 960 34S1280 4 1440 22V56H0Z" fill="#FDF1F3"/></svg>
     <!-- 建学の精神 -->
     <div class="max-w-5xl mx-auto px-6 py-24 sm:py-32 text-center">
       <p class="label-en text-ichigo mb-6">CONCEPT</p>
-      <h1 class="h-display-thin text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-ink mb-10">
-        埼玉のいちごは、<br>これからだ。
+      <h1 class="h-display-thin text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ink mb-10">
+        埼玉のいちごは、<br><span class="marker">これからだ。</span>
       </h1>
       <p class="body-jp text-base sm:text-lg text-mute max-w-2xl mx-auto">
         いちごをもっと推せる。<br class="sm:hidden">誰でも参加できる、体験型研究開発のコミュニティ。
@@ -293,6 +284,7 @@
     </div>
   </section>
 
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background:#FDF1F3"><path d="M0 28C160 6 320 6 480 24S800 50 960 34S1280 4 1440 22V56H0Z" fill="#fff"/></svg>
   <!-- ② 合言葉 -->
   <section class="bg-white seed-pattern-red py-20 sm:py-28 xl:py-36 overflow-hidden">
     <div class="motto-grid max-w-[1400px] mx-auto px-6">
@@ -309,10 +301,10 @@
 
     <div class="motto-text text-center reveal">
       <p class="label-en text-ichigo mb-8">MOTTO</p>
-      <h2 class="h-display-thin text-2xl sm:text-5xl md:text-6xl text-ink mb-16">
+      <h2 class="h-display-thin text-2xl sm:text-4xl md:text-5xl text-ink mb-12">
         いちごが好き。<br>それだけで、何かが始まる。
       </h2>
-      <div class="w-12 h-px bg-ink/20 mx-auto mb-16"></div>
+      <div class="seed-divider mb-16" aria-hidden="true"><i style="background:#C92A57"></i><i style="background:#F2CF4A"></i><i style="background:#A9CC5B"></i></div>
       <p class="body-jp text-base sm:text-lg text-ink max-w-2xl mx-auto">
         埼玉いちご大學は、「いちごが好き」という気持ちを持ち寄る場所です。<br class="hidden sm:block">
         農家さんの畑を歩き、品種の違いを味わい、<br class="hidden sm:block">
@@ -353,29 +345,29 @@
   </div>
 
   <!-- ③ STORY ティーザー（about.html への導線） -->
-  <section class="bg-white py-24 sm:py-32 border-t border-black/5">
+  <section class="bg-white py-24 sm:py-32">
     <div class="max-w-6xl mx-auto px-6">
 
       <!-- 数字パネル（社会的証明） -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-black/10 border border-black/10 mb-16 sm:mb-20 reveal">
-        <div class="bg-base p-5 sm:p-7 text-center">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 mb-16 sm:mb-20 reveal">
+        <div class="bg-blush rounded-3xl p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">PARTICIPANTS</p>
-          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1"><span data-count="220">220</span><span class="text-sm font-medium ml-1">名</span></p>
+          <p class="font-en font-bold text-4xl sm:text-5xl text-ink mb-1"><span data-count="220">220</span><span class="text-sm font-medium ml-1">名</span></p>
           <p class="text-xs text-mute leading-relaxed">これまでに集まった人</p>
         </div>
-        <div class="bg-base p-5 sm:p-7 text-center">
+        <div class="bg-seed-soft rounded-3xl p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">IDEAS</p>
-          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1"><span data-count="135">135</span><span class="text-sm font-medium ml-1">件</span></p>
+          <p class="font-en font-bold text-4xl sm:text-5xl text-ink mb-1"><span data-count="135">135</span><span class="text-sm font-medium ml-1">件</span></p>
           <p class="text-xs text-mute leading-relaxed">生まれたアイデア</p>
         </div>
-        <div class="bg-base p-5 sm:p-7 text-center">
+        <div class="bg-leaf-soft rounded-3xl p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">FARMERS</p>
-          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1"><span data-count="9">9</span><span class="text-sm font-medium ml-1">軒</span></p>
+          <p class="font-en font-bold text-4xl sm:text-5xl text-ink mb-1"><span data-count="9">9</span><span class="text-sm font-medium ml-1">軒</span></p>
           <p class="text-xs text-mute leading-relaxed">連携いちご農家</p>
         </div>
-        <div class="bg-base p-5 sm:p-7 text-center">
+        <div class="bg-sky-soft rounded-3xl p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">PARTNERS</p>
-          <p class="h-display-thin text-3xl sm:text-5xl text-ink mb-1"><span data-count="14">14</span><span class="text-sm font-medium ml-1">社</span></p>
+          <p class="font-en font-bold text-4xl sm:text-5xl text-ink mb-1"><span data-count="14">14</span><span class="text-sm font-medium ml-1">社</span></p>
           <p class="text-xs text-mute leading-relaxed">連携・コラボした企業</p>
         </div>
       </div>
@@ -395,7 +387,7 @@
       <!-- 3ステップ画像ストリップ -->
       <div class="grid grid-cols-3 gap-3 sm:gap-5 mb-12 sm:mb-16">
         <div class="reveal">
-          <div class="aspect-square img-zoom bg-base rounded-2xl mb-3 sm:mb-4">
+          <div class="aspect-square img-zoom bg-petal rounded-2xl mb-3 sm:mb-4">
             <img src="images/events/event-2024-12-area898.jpg" alt="集まる" class="w-full h-full object-cover">
           </div>
           <p class="label-en text-ichigo mb-1" style="font-size:10px;">01 / GATHER</p>
@@ -403,7 +395,7 @@
           <p class="hidden sm:block text-xs text-mute mt-1 leading-relaxed">45名がArea898に集合</p>
         </div>
         <div class="reveal reveal-d1">
-          <div class="aspect-square img-zoom bg-base rounded-2xl mb-3 sm:mb-4">
+          <div class="aspect-square img-zoom bg-petal rounded-2xl mb-3 sm:mb-4">
             <img src="images/events/event-2025-03-taiwan.jpg" alt="発想する" class="w-full h-full object-cover">
           </div>
           <p class="label-en text-ichigo mb-1" style="font-size:10px;">02 / IDEATE</p>
@@ -411,7 +403,7 @@
           <p class="hidden sm:block text-xs text-mute mt-1 leading-relaxed">6チーム×6アイデア</p>
         </div>
         <div class="reveal reveal-d2">
-          <div class="aspect-square img-zoom bg-base rounded-2xl mb-3 sm:mb-4">
+          <div class="aspect-square img-zoom bg-petal rounded-2xl mb-3 sm:mb-4">
             <img src="images/products/ichigobin.jpg" alt="形にする" class="w-full h-full object-cover">
           </div>
           <p class="label-en text-ichigo mb-1" style="font-size:10px;">03 / DELIVER</p>
@@ -431,18 +423,16 @@
     </div>
   </section>
 
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background:#fff"><path d="M0 28C160 6 320 6 480 24S800 50 960 34S1280 4 1440 22V56H0Z" fill="#FDF1F3"/></svg>
   <!-- ④ NEWS -->
-  <section class="bg-base py-24 sm:py-32">
+  <section class="bg-petal py-24 sm:py-32">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex items-end justify-between mb-14">
         <div>
           <p class="label-en text-ichigo mb-3">NEWS</p>
           <h2 class="h-display text-3xl sm:text-4xl text-ink">お知らせ</h2>
         </div>
-        <a href="events.html" class="hidden sm:inline-flex items-center gap-2 text-sm font-medium border-b border-ink pb-1 hover:text-ichigo hover:border-ichigo transition-colors">
-          すべて見る
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
+        <a href="events.html" class="pill-link hidden sm:inline-flex">すべて見る<span class="arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 6l6 6-6 6"/></svg></span></a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -476,14 +466,12 @@
       </div>
 
       <div class="mt-10 text-center sm:hidden">
-        <a href="events.html" class="inline-flex items-center gap-2 text-sm font-medium border-b border-ink pb-1">
-          すべて見る
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
+        <a href="events.html" class="pill-link">すべて見る<span class="arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 6l6 6-6 6"/></svg></span></a>
       </div>
     </div>
   </section>
 
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background:#FDF1F3;transform:scaleX(-1)"><path d="M0 28C160 6 320 6 480 24S800 50 960 34S1280 4 1440 22V56H0Z" fill="#fff"/></svg>
   <!-- ④ いちごの研究室 -->
   <section class="bg-white py-24 sm:py-32">
     <div class="max-w-6xl mx-auto px-6">
@@ -513,16 +501,16 @@
         <!-- 4枚グリッド -->
         <div class="lg:col-span-7 order-1 lg:order-2">
           <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-5">
-            <div class="aspect-square img-zoom bg-base rounded-2xl reveal">
+            <div class="aspect-square img-zoom bg-petal rounded-2xl reveal">
               <img src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
             </div>
-            <div class="aspect-square img-zoom bg-base rounded-2xl reveal reveal-d1">
+            <div class="aspect-square img-zoom bg-petal rounded-2xl reveal reveal-d1">
               <img src="images/events/event-2024-12-area898.jpg" alt="Area898でのワークショップ" class="w-full h-full object-cover">
             </div>
-            <div class="aspect-square img-zoom bg-base rounded-2xl reveal reveal-d2">
+            <div class="aspect-square img-zoom bg-petal rounded-2xl reveal reveal-d2">
               <img src="images/events/event-2025-01-chichibu-hs.jpg" alt="秩父高校でのアイデア出し" class="w-full h-full object-cover">
             </div>
-            <div class="aspect-square img-zoom bg-base rounded-2xl reveal reveal-d3">
+            <div class="aspect-square img-zoom bg-petal rounded-2xl reveal reveal-d3">
               <img src="images/events/event-2025-03-taiwan.jpg" alt="台湾祭々お披露目会" class="w-full h-full object-cover">
             </div>
           </div>
@@ -531,6 +519,7 @@
     </div>
   </section>
 
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background:#fff"><path d="M0 28C160 6 320 6 480 24S800 50 960 34S1280 4 1440 22V56H0Z" fill="#C92A57"/></svg>
   <!-- ⑤ CTA -->
   <section class="bg-ichigo seed-pattern-white text-white py-28 sm:py-40 relative overflow-hidden">
     <div class="absolute inset-0 opacity-[0.04]" aria-hidden="true">
@@ -546,7 +535,7 @@
         入学金・授業料は一切なし。<br>
         まずはLINEオープンチャットを覗いてみてください。
       </p>
-      <a href="https://line.me/ti/g2/hjGV3KSFBkkdt-RT16RJS7MCXm9znbkNzcAgkw?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold bg-white text-ichigo rounded-full hover:bg-ink hover:text-white transition-colors">
+      <a href="https://line.me/ti/g2/hjGV3KSFBkkdt-RT16RJS7MCXm9znbkNzcAgkw?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold bg-white text-ichigo rounded-full hover:bg-seed hover:text-ink transition-colors shadow-[0_4px_0_#A8284C]">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
         LINEオープンチャットに参加する
       </a>
@@ -559,8 +548,9 @@
     </div>
   </section>
 
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background:#C92A57;transform:scaleX(-1)"><path d="M0 28C160 6 320 6 480 24S800 50 960 34S1280 4 1440 22V56H0Z" fill="#A8284C"/></svg>
   <!-- フッター -->
-  <footer class="bg-ink text-white py-16">
+  <footer class="bg-ichigo-deep text-white py-16">
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
         <div>
@@ -570,20 +560,20 @@
         <div>
           <p class="label-en text-white mb-5" style="opacity: 0.55;">SITE MAP</p>
           <ul class="space-y-3 text-sm">
-            <li><a href="about.html" class="text-white hover:text-ichigo">いちご大學とは</a></li>
-            <li><a href="events.html" class="text-white hover:text-ichigo">お知らせ</a></li>
-            <li><a href="lab.html" class="text-white hover:text-ichigo">いちごの研究室</a></li>
-            <li><a href="farms.html" class="text-white hover:text-ichigo">いちご農家マップ</a></li>
-            <li><a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="text-white hover:text-ichigo font-bold">🛒 ONLINE SHOP →</a></li>
+            <li><a href="about.html" class="text-white hover:text-seed">いちご大學とは</a></li>
+            <li><a href="events.html" class="text-white hover:text-seed">お知らせ</a></li>
+            <li><a href="lab.html" class="text-white hover:text-seed">いちごの研究室</a></li>
+            <li><a href="farms.html" class="text-white hover:text-seed">いちご農家マップ</a></li>
+            <li><a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="text-white hover:text-seed font-bold">🛒 ONLINE SHOP →</a></li>
           </ul>
         </div>
         <div>
           <p class="label-en text-white mb-5" style="opacity: 0.55;">ABOUT</p>
           <p class="text-sm text-white leading-loose mb-4">
             主催：埼玉県 農林部 農業ビジネス支援課<br>
-            運営：<a href="https://llschema.com/" target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-ichigo">株式会社スキーマ</a>
+            運営：<a href="https://llschema.com/" target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-seed">株式会社スキーマ</a>
           </p>
-          <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" aria-label="Instagram" class="inline-flex w-10 h-10 items-center justify-center rounded-full border border-white/30 hover:bg-white hover:text-ink transition-colors">
+          <a href="https://www.instagram.com/ichigosaitama/" target="_blank" rel="noopener" aria-label="Instagram" class="inline-flex w-10 h-10 items-center justify-center rounded-full border border-white/30 hover:bg-white hover:text-ichigo transition-colors">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
         </div>
