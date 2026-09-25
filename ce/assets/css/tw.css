@@ -1023,6 +1023,9 @@ video {
 .border-white\/20 {
   border-color: rgb(255 255 255 / 0.2);
 }
+.border-white\/60 {
+  border-color: rgb(255 255 255 / 0.6);
+}
 .bg-cream {
   --tw-bg-opacity: 1;
   background-color: rgb(251 250 243 / var(--tw-bg-opacity, 1));
@@ -1058,6 +1061,9 @@ video {
 .bg-tangerine {
   --tw-bg-opacity: 1;
   background-color: rgb(245 169 60 / var(--tw-bg-opacity, 1));
+}
+.bg-transparent {
+  background-color: transparent;
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1420,6 +1426,10 @@ video {
 .hover\:border-sun:hover {
   --tw-border-opacity: 1;
   border-color: rgb(247 216 90 / var(--tw-border-opacity, 1));
+}
+.hover\:border-white:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 .hover\:bg-primary-50:hover {
   --tw-bg-opacity: 1;

@@ -14,6 +14,7 @@
    9. 詳細ポップアップ          …… [data-dialog-open]（出展企業の詳細など）
   10. ロゴのCEマーク回転        …… [.logo-spin-mark]
   11. ヘッダーの出し入れ        …… [.header-reveal]（トップのみ）
+  12. 出展日の絞り込み          …… [data-ex-filter]
 
    データは /assets/data/*.json を編集すれば反映されます。
    ========================================================= */
@@ -566,11 +567,46 @@
     window.addEventListener('scroll', update, { passive: true });
   }
 
+  /* ---------- 出展日で絞り込む（開催ページの出展企業一覧） ---------- */
+
+  function initExDayFilter() {
+    var ON = 'bg-sun text-navy border-sun';
+    var OFF = 'bg-transparent text-white border-white/60 hover:border-white';
+
+    $$('[data-ex-filter]').forEach(function (group) {
+      var key = group.getAttribute('data-ex-filter');
+      var list = $('[data-ex-list="' + key + '"]');
+      var count = $('[data-ex-count="' + key + '"]');
+      if (!list) return;
+
+      group.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-day]');
+        if (!btn) return;
+        var day = btn.getAttribute('data-day');
+
+        $$('[data-day]', group).forEach(function (b) {
+          var on = b === btn;
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+          b.className = b.className.replace(ON, '').replace(OFF, '').replace(/\s+/g, ' ').trim() + ' ' + (on ? ON : OFF);
+        });
+
+        var shown = 0;
+        $$('li', list).forEach(function (li) {
+          var days = (li.getAttribute('data-days') || '').split(' ');
+          var ok = day === 'all' || days.indexOf(day) !== -1;
+          li.classList.toggle('hidden', !ok);
+          if (ok) shown++;
+        });
+        if (count) count.textContent = shown + '団体を表示中';
+      });
+    });
+  }
+
   /* ---------- 起動 ---------- */
 
   function boot() {
     initNav(); initNews(); initEvents(); initExhibitors();
-    initCounters(); initYear(); initShare(); initVideo(); initDialogs(); initLogoSpin(); initHeaderReveal();
+    initCounters(); initYear(); initShare(); initVideo(); initDialogs(); initLogoSpin(); initHeaderReveal(); initExDayFilter();
   }
 
   // ビルド（Node）でも同じ描画関数で一覧を事前描画する（検索エンジンがJSなしでも読めるように）
