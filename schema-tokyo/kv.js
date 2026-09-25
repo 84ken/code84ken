@@ -69,6 +69,9 @@ function run() {
   // ---- ゆらぎ
   let pointer = 0, pointerTarget = 0, visible = true, raf = 0;
   const t0 = performance.now();
+  const $ = id => document.getElementById(id);
+  const fig = $('fig-t') && { t: $('fig-t'), a: $('fig-a'), b: $('fig-b') };
+  let figAt = 0;
 
   const sway = (x, y, i, t) => {
     const w = Math.pow(Math.max(0, NECK - y) / (NECK - TOP), 1.7); // 首元 0 → 毛先 1
@@ -90,6 +93,14 @@ function run() {
       const [nx, ny] = sway(x, y, +w.dataset.i, t);
       w.setAttribute('transform', `translate(${(nx - x).toFixed(2)} ${(ny - y).toFixed(2)})`);
     });
+    // Fig. 1 の計測値（中央の線の毛先がどれだけ振れているか）
+    if (fig && now - figAt > 120) {
+      figAt = now;
+      const tip = lines[12][lines[12].length - 1];
+      fig.t.value = t.toFixed(1);
+      fig.a.value = ((sway(tip[0], tip[1], 12, t)[0] - tip[0]) / 19).toFixed(2);
+      fig.b.value = (pointer >= 0 ? '+' : '') + pointer.toFixed(2);
+    }
     raf = visible && !document.hidden ? requestAnimationFrame(frame) : 0;
   };
   const start = () => { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame); };
