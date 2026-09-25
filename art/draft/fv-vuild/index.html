@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ファーストビュー検討案（VUILDテイスト）｜CAC 2027</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f3ef;--ink:#262523;--muted:#8a877f;--line:#d9d6ce;--ai:#2f4a5e;
+  --sans:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:400 14px/1.9 var(--sans);letter-spacing:.05em}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* 検討用の目印 */
+.draft-tag{position:fixed;left:50%;transform:translateX(-50%);top:10px;z-index:50;font-size:11px;letter-spacing:.08em;
+  padding:4px 10px;background:#fff;border:1px solid var(--line);color:var(--muted)}
+
+/* ヘッダー：ロゴと小さなナビだけ */
+header{position:absolute;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;
+  padding:30px 4.2vw;z-index:10}
+.brand img{width:92px;height:auto}
+nav{display:flex;gap:32px;font-size:12.5px;letter-spacing:.1em}
+nav a{position:relative;padding:4px 0}
+nav a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--ink);
+  transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.22,.61,.36,1)}
+nav a:hover::after{transform:scaleX(1)}
+
+/* ファーストビュー：左に言葉、右に広い写真面 */
+.fv{min-height:100svh;display:grid;grid-template-columns:minmax(300px,27%) 1fr;gap:4.5vw;
+  padding:120px 4.2vw 34px 4.2vw;position:relative}
+.copy{display:flex;flex-direction:column;justify-content:center;padding-bottom:70px}
+.label{font-size:11px;letter-spacing:.22em;color:var(--muted);margin:0 0 34px}
+h1{font:500 clamp(24px,2.15vw,32px)/1.95 var(--sans);letter-spacing:.12em;margin:0 0 30px}
+.lead{font-size:13.5px;line-height:2.1;margin:0 0 44px;color:#3d3b37}
+.when{border-top:1px solid var(--line);padding-top:18px}
+.when .d{font-size:15px;letter-spacing:.14em;margin:0}
+.when .d b{font-weight:500}
+.when .v{font-size:12px;color:var(--muted);margin:6px 0 0;line-height:1.8}
+
+.stage{position:relative;margin:0;height:calc(100svh - 154px);min-height:520px;overflow:hidden;background:#dcd9d1}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
+  transform:scale(1.02);transition:opacity 1.6s ease,transform 8s linear}
+.stage img.on{opacity:1;transform:scale(1.06)}
+.stage figcaption{position:absolute;left:0;bottom:0;right:0;display:flex;gap:22px;
+  padding:14px 18px;font-size:11.5px;letter-spacing:.1em;color:#fff;
+  background:linear-gradient(0deg,#0000004d,#0000)}
+
+/* 足もと：英語の小さなラベルと、右下の「いま見てほしいもの」カード */
+.foot{position:absolute;left:4.2vw;bottom:34px;font-size:11.5px;letter-spacing:.12em}
+.foot span{color:var(--muted);margin-right:18px}
+.feature{position:absolute;right:calc(4.2vw + 22px);bottom:58px;display:flex;align-items:center;gap:16px;
+  background:var(--bg);padding:12px 18px 12px 12px;max-width:340px;
+  transition:transform .4s cubic-bezier(.22,.61,.36,1)}
+.feature:hover{transform:translateY(-3px)}
+.feature img{width:104px;height:70px;object-fit:cover}
+.feature small{display:block;font-size:10.5px;letter-spacing:.16em;color:var(--muted)}
+.feature b{display:block;font-weight:500;font-size:13.5px;letter-spacing:.08em;margin-top:2px}
+.feature i{font-style:normal;color:var(--ai);font-size:12px}
+
+@media (max-width:860px){
+  .draft-tag{top:auto;bottom:10px;white-space:nowrap;font-size:10px}
+  header{padding:18px 5vw}
+  nav{display:none}
+  .fv{grid-template-columns:1fr;gap:34px;padding:92px 5vw 120px}
+  .copy{padding-bottom:0}
+  .label{margin-bottom:20px}
+  .stage{height:auto;aspect-ratio:4/5;min-height:0}
+  .foot{left:5vw;bottom:24px}
+  .feature{right:5vw;left:5vw;bottom:auto;top:auto;position:relative;margin-top:-54px;max-width:none}
+}
+@media (prefers-reduced-motion:reduce){.stage img{transition:none}}
+</style>
+</head>
+<body>
+<div class="draft-tag">検討案：VUILDテイスト（ファーストビューのみ）</div>
+
+<header>
+<a class="brand" href="../../index.html"><img src="../../logo.svg" alt="CAC CHICHIBU ART CREATION"></a>
+<nav aria-label="メインナビゲーション">
+<a href="../../index.html#about">この芸術祭について</a>
+<a href="../../index.html#program">参加する</a>
+<a href="../../news/index.html">お知らせ</a>
+<a href="../../team/index.html">わたしたち</a>
+<a href="https://www.instagram.com/chichibu.art/" target="_blank" rel="noopener">Instagram</a>
+</nav>
+</header>
+
+<main class="fv">
+<div class="copy">
+<p class="label">CHICHIBU ART CREATION 2027</p>
+<h1>眠れる感性が、<br>羽ばたき、<br>未来へ紡ぐ。</h1>
+<p class="lead">秩父の絹の文化から、新しい表現を。<br>まち全体が、ひとつの繭になる。</p>
+<div class="when">
+<p class="d"><b>2027.11.6</b> Sat — <b>11.7</b> Sun</p>
+<p class="v">秩父宮記念市民会館<br>秩父市歴史文化伝承館</p>
+</div>
+</div>
+
+<figure class="stage" aria-label="秩父銘仙と舞台の写真">
+<img class="on" src="../../media/meisen-floral.webp" alt="花の模様を異なる配色で織った秩父銘仙の反物">
+<img src="../../media/miyabi-03.webp" alt="赤と黒の衣装の群舞の中、踊り手が高く跳ぶ">
+<img src="../../media/meisen-wave.webp" alt="曲線模様の秩父銘仙の反物">
+<img src="../../media/miyabi-01.webp" alt="月が浮かぶ舞台で、ピアノと奏者が音を奏でる">
+<figcaption><span id="cap">秩父銘仙</span><span id="num">01 / 04</span></figcaption>
+</figure>
+
+<p class="foot"><span>Concept</span>From a thread, toward the future.</p>
+
+<a class="feature" href="../../open-call/index.html">
+<img src="../../media/meisen-wave.webp" alt="">
+<span><small>OPEN CALL</small><b>秩父銘仙 反物デザイン公募</b><i>2026.10.15 募集開始 →</i></span>
+</a>
+</main>
+
+<script>
+(function(){
+  var imgs=[].slice.call(document.querySelectorAll('.stage img')),
+      caps=['秩父銘仙','MIYABI（2018）舞台表現の参考イメージ','秩父銘仙','MIYABI（2018）舞台表現の参考イメージ'],
+      cap=document.getElementById('cap'),num=document.getElementById('num'),i=0;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  setInterval(function(){
+    if(document.hidden)return;
+    imgs[i].classList.remove('on');i=(i+1)%imgs.length;imgs[i].classList.add('on');
+    cap.textContent=caps[i];num.textContent='0'+(i+1)+' / 0'+imgs.length;
+  },6000);
+})();
+</script>
+</body>
+</html>

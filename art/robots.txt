@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /old/
+Disallow: /draft/
 
 Sitemap: https://chichibu-art.jp/sitemap.xml
