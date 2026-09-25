@@ -556,7 +556,7 @@ tailwind.config = {
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-100">
-                <tr><td class="py-2 px-3 font-medium text-slate-900">9.0</td><td class="py-2 px-3 text-sm text-body">基準（1倍）</td><td class="py-2 px-3 text-xs">新木鉱泉 9.6・満願の湯 9.5・花和楽の湯 9.9</td></tr>
+                <tr><td class="py-2 px-3 font-medium text-slate-900">9.0</td><td class="py-2 px-3 text-sm text-body">基準（1倍）</td><td class="py-2 px-3 text-xs">新木鉱泉 9.6・満願の湯 9.3・花和楽の湯 9.9</td></tr>
                 <tr><td class="py-2 px-3 font-medium text-slate-900">10.1</td><td class="py-2 px-3 text-sm text-body">約 <strong class="text-slate-900">13倍</strong></td><td class="py-2 px-3 text-xs">玉川温泉（ときがわ）</td></tr>
                 <tr class="bg-pink-50"><td class="py-2 px-3 font-medium text-slate-900">11.1</td><td class="py-2 px-3 text-sm text-body">約 <strong class="text-pink-800">126倍</strong></td><td class="py-2 px-3 text-xs">秩父湯元 武甲温泉（横瀬）</td></tr>
                 <tr class="bg-pink-50"><td class="py-2 px-3 font-medium text-slate-900">11.3</td><td class="py-2 px-3 text-sm text-body">約 <strong class="text-pink-800">200倍</strong></td><td class="py-2 px-3 text-xs">都幾川温泉 旅館とき川（ときがわ）</td></tr>
@@ -2822,7 +2822,7 @@ tailwind.config = {
             <span class="axis-tag">メタほう酸・メタけい酸</span>
           </div>
           <p class="mt-3 text-sm text-body leading-relaxed">
-            適応症は神経痛・関節痛・筋肉痛・運動麻痺・胃腸病・婦人病。山中地清断層北線部の中世層の層理から湧く水を、<strong>大竜寺源泉</strong>として引いています（梁山泊と同系＝No.25）。
+            適応症は神経痛・関節痛・筋肉痛・運動麻痺・胃腸病・婦人病。山中地溝帯北縁部の中生層の層理から湧く水を<span class="text-slate-400 text-xs">（※原典の「山中地清断層北線部の中世層」は誤記とみて修正）</span>、<strong>大竜寺源泉</strong>として引いています（梁山泊と同系＝No.25）。
           </p>
           <div class="mt-3 grid sm:grid-cols-3 gap-3">
             <div class="p-3 bg-gray-50 rounded-lg">
@@ -2872,21 +2872,59 @@ tailwind.config = {
           </div>
         </article>
 
-        <article class="bg-white rounded-xl border border-primary-200 p-5 shadow-sm">
-          <p class="text-xs text-slate-500">No.19</p>
-          <h4 class="text-base font-semibold text-slate-900 mt-0.5">秩父温泉 満願の湯</h4>
-          <p class="text-xs text-slate-500 mt-0.5">皆野町日野沢4000</p>
+        <article class="bg-white rounded-xl border border-primary-200 p-5 shadow-sm md:col-span-2">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <p class="text-xs text-primary-700 font-medium">No.19 ／ 冷たいことが、そのまま価値になる湯</p>
+              <h4 class="text-base font-semibold text-slate-900 mt-0.5">秩父温泉 満願の湯</h4>
+              <p class="text-xs text-slate-500 mt-0.5">皆野町下日野沢4000 ／ 札所34番 水潜寺のふところ</p>
+            </div>
+            <span class="chip bg-emerald-100 text-emerald-800 text-xs flex-shrink-0">日帰り可</span>
+          </div>
           <div class="mt-2 flex flex-wrap gap-1.5">
-            <span class="chip type-硫黄泉">単純硫黄冷鉱泉</span>
-            <span class="axis-tag">pH 9.5</span>
-            <span class="axis-tag">弱アルカリ性弱張性</span>
+            <span class="chip type-硫黄泉">単純硫黄泉</span>
+            <span class="axis-tag">アルカリ性・冷鉱泉</span>
+            <span class="axis-tag">pH 9.3 ・ 泉温18.3℃</span>
+            <span class="axis-tag">成分総計364mg（低張性）</span>
             <span class="axis-tag !bg-pink-50 !text-pink-700">美肌</span>
           </div>
           <p class="mt-3 text-sm text-body">神経痛・筋肉痛・運動麻痺・慢性消化器病・慢性皮膚病・慢性婦人病・糖尿病など。<strong>飲用適応症</strong>：糖尿病・痛風・便秘など</p>
-          <p class="mt-2 text-xs text-slate-500"><strong>日本百観音結願寺</strong> 秩父札所34番水潜寺のふところに開湯。「天長元年の法泉」。</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
+          <div class="mt-3 grid sm:grid-cols-3 gap-3">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">源泉</p>
+              <p class="text-sm font-medium text-slate-900 mt-0.5">18.3℃・湧出43L/分</p>
+              <p class="text-xs text-body mt-1">単純硫黄泉だが<strong>硫黄臭はほぼない</strong>。炭酸イオン28.2mg・メタけい酸を含む</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">由来</p>
+              <p class="text-sm font-medium text-slate-900 mt-0.5">天長元年（824年）</p>
+              <p class="text-xs text-body mt-1">干ばつの年、丈六尺余りの法師が杖で岩を突くと水が湧いた、と伝わる。「必ず願いが満つる」で<strong>満願</strong></p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-slate-500">源泉所</p>
+              <p class="text-sm font-medium text-slate-900 mt-0.5">温泉スタンドあり</p>
+              <p class="text-xs text-body mt-1">下日野沢3727。硬貨式で<strong>100円20L／500円100L</strong>。8:00-20:00・年中無休</p>
+            </div>
+          </div>
+          <div class="mt-3 p-3 bg-white border border-primary-200 rounded-lg">
+            <p class="text-sm text-body leading-relaxed">
+              <strong class="text-slate-900">この湯のいちばんの特徴は、水風呂です。</strong>
+              露天と内湯は源泉100%。そして<strong>水風呂も源泉をそのまま使っていて、気候によって温度が変わる</strong>と公式は書いています。
+              冷鉱泉だから、沸かさなければそのまま水風呂になる。
+            </p>
+            <p class="mt-2 text-sm text-body leading-relaxed">
+              第17章で「沸かさなければ入れない湯では、燃料代が宿の数を制限した」と書きました。冷たいことは、湯治の時代には<strong>弱み</strong>でした。
+              <strong class="text-slate-900">ところがサウナの時代には、冷たい源泉は「天然の水風呂」になる。</strong>
+              <span class="text-slate-500">秩父の冷鉱泉という構造的な弱点が、ととのいの文化の中で強みに反転する——その実例がここにあります。</span>
+            </p>
+          </div>
+          <p class="mt-2 text-xs text-slate-500">
+            施設は源泉を「山中地溝帯の地下深くで長い年月をかけて育まれた」と説明しています。
+            ※本ノートは以前 pH9.5・「弱アルカリ性弱張性」と記載していましたが、公式の表示は <strong>pH9.3・アルカリ性・冷鉱泉</strong> です（2026年9月訂正）。
+          </p>
+          <div class="mt-3 flex items-center gap-3 text-xs flex-wrap">
             <span class="text-slate-500">平日3h ¥650 / 1日 ¥800 / 土日祝3h ¥800 (10-21)</span>
-            <a href="http://www.chichibuonsen.co.jp/" target="_blank" class="text-primary-500 hover:underline">公式 →</a>
+            <a href="https://www.chichibuonsen.co.jp/furo/" target="_blank" class="text-primary-500 hover:underline">公式 →</a>
           </div>
         </article>
 
@@ -3233,7 +3271,7 @@ tailwind.config = {
           <ul class="mt-3 space-y-1 text-sm text-body">
             <li>① 池袋 → Laview → 西武秩父</li>
             <li>② 駅前「祭の湯」で北投展見学</li>
-            <li>③ タクシーで <strong>満願の湯</strong>（pH 9.5）</li>
+            <li>③ タクシーで <strong>満願の湯</strong>（pH 9.3）</li>
             <li>④ ヌルヌル系の弱アルカリを体感</li>
           </ul>
         </article>
@@ -5661,7 +5699,7 @@ const CHICHIBU_ONSEN = [
   { id:16, name:"道の駅 両神温泉薬師の湯", lat:36.0051, lon:138.9713, status:"active",  seven:false, type:"薄（うすき）の湯", area:"小鹿野町両神薄",   note:"1991年 埼玉県初の日帰り温泉施設／両神荘とは別源泉／日帰り¥600 10:00-20:00 火休" },
   { id:17, name:"赤谷温泉 小鹿荘",       lat:36.0359, lon:138.9153, status:"active",  seven:false, type:"アルカリ性単純温泉", ph:10.0, area:"小鹿野町三山243", note:"大竜寺源泉を引湯・18.6℃／明治期の祭り屋台造り・囲炉裏は約130年もの／日帰り¥700 11:00-15:00（日により停止）／貸切露天¥1,500(45分)" },
   { id:18, name:"かおる鉱泉",            lat:36.0731, lon:138.9384, status:"active",  seven:false, type:"弱アルカリ性弱張性冷鉱泉", area:"秩父市上吉田", note:"たまご水／硫化水素臭" },
-  { id:19, name:"秩父温泉 満願の湯",     lat:36.0825, lon:139.0723, status:"active",  seven:false, type:"単純硫黄冷鉱泉",       ph:9.5,   area:"皆野町日野沢",     note:"札所34番水潜寺のふところ" },
+  { id:19, name:"秩父温泉 満願の湯",     lat:36.0825, lon:139.0723, status:"active",  seven:false, type:"単純硫黄泉（アルカリ性・冷鉱泉）", ph:9.3, area:"皆野町下日野沢4000", note:"泉温18.3℃・湧出43L/分・成分総計364mg／水風呂も源泉100%／札所34番水潜寺のふところ" },
   // 平成〜令和世代（盆地を掘って生まれた湯）※座標は近似
   { id:21, name:"秩父川端温泉 梵の湯",   lat:36.0450, lon:139.0950, status:"active",  seven:false, type:"Na-塩化物・炭酸水素塩冷鉱泉", area:"秩父市小柱309-1", note:"成分総計2,569mg/kg・関東屈指の重曹泉／日帰り◯" },
   { id:22, name:"天然自家源泉 星音の湯", lat:36.0760, lon:139.0330, status:"active",  seven:false, type:"Na-塩化物・炭酸水素塩泉", area:"秩父市下吉田468", note:"秩父吉田温泉・エリア最大級の日帰り施設／岩盤浴あり" },
@@ -5745,7 +5783,7 @@ const SAITAMA_ONSEN = [
   // 秩父代表（25湯はChapter11参照）
   { name:"祭の湯（西武秩父駅前）", lat:35.9904, lon:139.0837, region:'chichibu', note:"駅前温泉。台湾北投展会場" },
   { name:"秩父湯元 武甲温泉", lat:35.9905, lon:139.1023, region:"chichibu", note:"pH11.1 強アルカリ・美肌系" },
-  { name:"満願の湯", lat:36.0825, lon:139.0723, region:'chichibu', note:"pH 9.5 アルカリ" },
+  { name:"満願の湯", lat:36.0825, lon:139.0723, region:'chichibu', note:"pH 9.3 アルカリ性・冷鉱泉18.3℃" },
   { name:"両神温泉薬師の湯", lat:36.0051, lon:139.0287, region:'chichibu', note:"国民宿舎" },
   // 飯能・名栗
   { name:"名栗温泉 大松閣", lat:35.8595, lon:139.1846, region:'hanno', note:"創業100年超の鉱泉旅館" },
