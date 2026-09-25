@@ -54,6 +54,8 @@ p{margin:0}
 .fig{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 4%;padding:10px 0 0;border-top:1px solid var(--line);color:var(--sub)}
 .fig b{color:var(--ink);font-weight:700;margin-right:10px}
 .fig output{color:var(--ink);font-variant-numeric:tabular-nums}
+.hint .on-touch{display:none}
+@media(hover:none){.hint .on-hover{display:none}.hint .on-touch{display:inline}}
 
 .hero-copy{display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;padding:110px 0 140px}
 .lead{margin:0;font-family:var(--mincho);font-weight:700;font-size:clamp(36px,5.4vw,86px);line-height:1.35;letter-spacing:-.01em}
@@ -150,6 +152,7 @@ footer a.co{border-bottom:1px solid}
   .kv-edge-l{transform:translate(64px,0)}.kv-edge-r{transform:translate(-44px,0)}
   .hint{margin:8px 6% 0}
   .fig{margin:0 6%}
+  .fig-readout{display:none}
   .hero-copy{grid-template-columns:1fr;gap:20px;padding:70px 0 100px}
   .hero-copy .en{text-align:left}
   .intro{margin:0 6% 120px;padding:80px 4%}
