@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>文字の背景・書体・メニューの検証｜CAC 2027</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#fff}
+iframe{display:block;width:100%;height:100%;border:0}
+.panel{position:fixed;right:14px;bottom:14px;z-index:10;width:318px;max-height:calc(100% - 28px);overflow:auto;background:#fff;border:1px solid #d6d4cc;
+  box-shadow:0 12px 30px #00000024;font:400 12.5px/1.6 'Zen Kaku Gothic New',sans-serif;color:#262523}
+.panel summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;padding:11px 14px;font-weight:500}
+.panel summary::after{content:'−'}
+.panel:not([open]) summary::after{content:'＋'}
+.inner{padding:2px 14px 14px}
+h4{margin:14px 0 8px;font-size:12px;font-weight:500;letter-spacing:.08em;padding-top:10px;border-top:1px solid #e6e4dd}
+h4:first-child{margin-top:0;border-top:0;padding-top:0}
+.grp{margin:0 0 9px}
+.grp>b{display:block;font-weight:400;font-size:11px;letter-spacing:.08em;color:#77756e;margin-bottom:4px}
+.opts{display:flex;flex-wrap:wrap;gap:4px}
+.opts button{font:inherit;font-size:12px;border:1px solid #d6d4cc;background:#fff;color:#262523;padding:4px 8px;cursor:pointer}
+.opts button[aria-pressed="true"]{background:#262523;color:#fff;border-color:#262523}
+.note{margin:4px 0 0;font-size:11.5px;color:#55534d;background:#f4f3ef;padding:7px 9px}
+.draftnote{position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:10;font:400 11px/1 'Zen Kaku Gothic New',sans-serif;
+  background:#fff;border:1px solid #d6d4cc;color:#77756e;padding:6px 11px;white-space:nowrap;pointer-events:none}
+@media (max-width:700px){.panel{left:8px;right:8px;width:auto;bottom:8px;max-height:50%}.draftnote{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="draftnote">検証用：いまのサイトの一部だけを差し替えています（本番は未反映）</div>
+<iframe id="site" src="../../index.html" title="ちちぶアートクリエーション2027 のサイト（検証表示）"></iframe>
+
+<details class="panel" open>
+<summary>切り替えて見比べる</summary>
+<div class="inner">
+<div class="grp"><b>ページ</b><div class="opts" data-g="page">
+<button data-v="../../index.html">トップ</button><button data-v="../../team/index.html">わたしたち</button><button data-v="../../open-call/index.html">反物公募</button>
+</div></div>
+
+<h4>1. 文字の下の白い箱</h4>
+<div class="grp"><div class="opts" data-g="bg">
+<button data-v="both">繭を奥へ＋文字に白いにじみ</button>
+<button data-v="recede">繭を奥へ下げる</button>
+<button data-v="glow">文字に白いにじみ</button>
+<button data-v="kasumi">霞（箱の輪郭をぼかす）</button>
+<button data-v="now">いまの白い箱</button>
+</div><p class="note" id="bgnote"></p></div>
+
+<h4>2. 書体</h4>
+<div class="grp"><b>見出し</b><div class="opts" data-g="head">
+<button data-v="'Shippori Mincho'">しっぽり明朝（いま）</button><button data-v="'Zen Old Mincho'">Zen Old明朝</button>
+<button data-v="'Noto Serif JP'">Noto Serif</button><button data-v="'BIZ UDPMincho'">BIZ UD明朝</button><button data-v="'Yu Mincho','YuMincho'">游明朝（前）</button>
+</div></div>
+<div class="grp"><b>本文</b><div class="opts" data-g="body">
+<button data-v="'Zen Kaku Gothic New'">Zen角ゴシック（いま）</button><button data-v="'Noto Sans JP'">Noto Sans</button>
+<button data-v="'IBM Plex Sans JP'">IBM Plex</button><button data-v="'BIZ UDPGothic'">BIZ UDゴシック</button><button data-v="'Yu Gothic','YuGothic'">游ゴシック（前）</button>
+</div></div>
+<div class="grp"><b>本文の太さ</b><div class="opts" data-g="weight"><button data-v="500">やや太い（いま）</button><button data-v="400">ふつう</button></div></div>
+<div class="grp"><b>字間</b><div class="opts" data-g="ls"><button data-v="0">なし（いま）</button><button data-v=".04em">少し</button><button data-v=".08em">広め</button></div></div>
+<div class="grp"><b>欧文・数字（日付や英語の見出し）</b><div class="opts" data-g="latin">
+<button data-v="Georgia">Georgia（いま）</button><button data-v="'Cormorant Garamond'">Cormorant</button><button data-v="'EB Garamond'">EB Garamond</button><button data-v="'Jost'">Jost</button>
+</div></div>
+
+<h4>3. メニュー</h4>
+<div class="grp"><div class="opts" data-g="menu"><button data-v="unified">そろえた案</button><button data-v="now">いま</button></div>
+<p class="note">そろえた案：どこでも同じ呼び方・同じ順番。ヘッダーは主な項目、スマホとフッターは全項目。下層ページにもヘッダーのメニューとフッターを付けます。</p></div>
+</div>
+</details>
+
+<script>
+(function(){
+  var BGNOTE={
+    both:'おすすめ。キービジュアルを過ぎたら繭を薄く奥へ下げ、文字には白いにじみだけを添えます。箱が消え、読みやすさも保てます。',
+    recede:'キービジュアルを過ぎたら、背景の繭を薄く奥へ下げます。白い箱はすべて外します。',
+    glow:'白い箱を外し、文字のまわりにだけ白いにじみを添えます。繭はいまの濃さのまま。',
+    kasumi:'白い箱は残しつつ、四角い輪郭をぼかして霞のように。',
+    now:'いまの白い半透明の箱です。'
+  };
+  var SEC='.program-section,.people-section,.news-section';
+  var BOX='.person-info,.together-links>a,.program-grid article,.timeline,.material-grid figcaption,.material-grid .process figcaption,.material-story>.note,.call-detail,.about-copy,.journey-grid,.news-grid,.material-heading,.section-label,.stage-story figcaption,.stage-intro,.hero-copy';
+  var TXT='main :is(h1,h2,h3,p,small,dt,dd,li,figcaption,span,b,time,a,em)';
+
+  /* そろえたメニュー（どのページでも同じ呼び方・同じ順番） */
+  var ITEMS=[['この芸術祭について','index.html#about'],['参加する','index.html#program'],['反物デザイン公募','open-call/index.html'],
+             ['出演者募集','join/index.html'],['お知らせ','news/index.html'],['わたしたち','team/index.html'],['協賛のご案内','support/index.html']];
+  var HEADER=['この芸術祭について','参加する','お知らせ','わたしたち','協賛のご案内'];
+  var IG='https://www.instagram.com/chichibu.art/';
+  var IGSVG='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.2" class="dot"/></svg>';
+
+  var state={page:'../../index.html',bg:'both',head:"'Shippori Mincho'",body:"'Zen Kaku Gothic New'",weight:'500',ls:'0',latin:'Georgia',menu:'unified'};
+  var frame=document.getElementById('site');
+
+  function css(){
+    var o="@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=BIZ+UDPMincho&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=EB+Garamond:ital@0;1&family=IBM+Plex+Sans+JP:wght@400;500&family=Jost:wght@400;500&family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@400;500&family=Zen+Old+Mincho:wght@400;500&display=swap');";
+    o+=":root{--serif:"+state.head+",serif}body{font-family:"+state.body+",sans-serif;font-weight:"+state.weight+";letter-spacing:"+state.ls+"}";
+    o+=".date,.hero-caption,.call-word,.large-word,.program-en,.timeline time{font-family:"+state.latin+",serif!important}";
+    var bg=state.bg;
+    if(bg!=='now'){
+      if(bg==='kasumi'){
+        o+=BOX+"{background:radial-gradient(closest-side,#ffffffe6,#ffffffb3 55%,#ffffff00 100%)!important;margin-left:-24px;padding-left:24px}";
+      }else{
+        o+=SEC+","+BOX+"{background:none!important}";
+      }
+      if(bg==='glow'||bg==='both'){
+        o+=TXT+"{text-shadow:0 0 4px #fff,0 0 10px #fff,0 0 18px #ffffffd0}";
+      }
+      if(bg==='recede'||bg==='both'){
+        o+=".visual{transition:opacity .9s ease}html.cac-reading .visual{opacity:.22!important}";
+      }
+    }
+    if(state.menu==='unified'){
+      o+="header nav{gap:26px}header nav .nav-call{margin-left:6px}"+
+         "footer .footer-nav a.sub{padding-left:14px;font-size:.92em;color:var(--muted)}";
+    }
+    return o;
+  }
+
+  function prefix(d){
+    var p=d.location.pathname.replace(/\/$/,'/index.html');
+    if(/open-call\/guide\//.test(p))return '../../';
+    if(/\/(team|news|join|support|open-call)\//.test(p))return '../';
+    return '';
+  }
+
+  function menu(d){
+    var pre=prefix(d),top=pre==='';
+    function href(h){return top&&h.indexOf('index.html#')===0?h.slice(10):pre+h;}
+    var navHTML=HEADER.map(function(t){var it=ITEMS.filter(function(i){return i[0]===t})[0];return '<a href="'+href(it[1])+'">'+t+'</a>';}).join('')+
+      '<a class="nav-call" href="'+href('open-call/index.html')+'">反物デザイン公募 <span>↗</span></a>'+
+      '<a class="nav-ig" href="'+IG+'" target="_blank" rel="noopener" aria-label="Instagram">'+IGSVG+'</a>';
+    var fullHTML=ITEMS.map(function(i){return '<a href="'+href(i[1])+'">'+i[0]+'</a>';}).join('')+
+      '<a class="menu-ig" href="'+IG+'" target="_blank" rel="noopener">'+IGSVG+'Instagram <em>@chichibu.art</em></a>';
+    var footHTML=ITEMS.map(function(i){
+      var a='<a href="'+href(i[1])+'">'+i[0]+'</a>';
+      return i[0]==='反物デザイン公募'?a+'<a class="sub" href="'+href('open-call/guide/index.html')+'">制作の手引き</a>':a;}).join('');
+
+    var header=d.querySelector('header');
+    var nav=header.querySelector('nav');
+    if(!nav){
+      /* 下層ページ：トップと同じヘッダーに置き換える */
+      var brand=header.querySelector('.brand');
+      header.innerHTML='';header.appendChild(brand);
+      nav=d.createElement('nav');nav.setAttribute('aria-label','メインナビゲーション');header.appendChild(nav);
+      var t=d.createElement('button');t.id='menu-toggle';t.setAttribute('aria-expanded','false');t.setAttribute('aria-controls','mobile-menu');t.textContent='MENU';header.appendChild(t);
+    }
+    nav.innerHTML=navHTML;
+    var mm=d.getElementById('mobile-menu');
+    if(!mm){mm=d.createElement('nav');mm.id='mobile-menu';mm.setAttribute('aria-label','モバイルナビゲーション');mm.hidden=true;header.after(mm);
+      var tg=d.getElementById('menu-toggle');tg.addEventListener('click',function(){mm.hidden=!mm.hidden;tg.setAttribute('aria-expanded',String(!mm.hidden));});}
+    mm.innerHTML=fullHTML;
+    var foot=d.querySelector('footer');
+    if(!foot){
+      foot=d.createElement('footer');
+      foot.innerHTML='<div class="footer-brand"><img src="'+pre+'logo.svg" alt="CAC CHICHIBU ART CREATION"><p>ちちぶアートクリエーション 2027<br>2027年11月6日（土）・7日（日）</p></div>'+
+        '<div class="footer-nav"></div><div class="footer-bottom"><a class="sns" href="mailto:chichibu.art@gmail.com">chichibu.art@gmail.com</a>'+
+        '<a class="sns" href="'+IG+'" target="_blank" rel="noopener">Instagram <em>@chichibu.art</em> <span>&#8599;</span></a><a href="#">TOP &#8593;</a></div>';
+      d.body.appendChild(foot);
+    }
+    foot.querySelector('.footer-nav').innerHTML=footHTML;
+  }
+
+  function recede(d){
+    if(d.getElementById('cac-recede'))return;
+    var s=d.createElement('script');s.id='cac-recede';
+    s.textContent="(function(){var h=document.getElementById('home'),r=document.documentElement;function f(){var on=!h||h.getBoundingClientRect().bottom<innerHeight*.45;r.classList.toggle('cac-reading',on);}addEventListener('scroll',f,{passive:true});f();})();";
+    d.body.appendChild(s);
+  }
+
+  function inject(){
+    var d=frame.contentDocument;if(!d||!d.head)return;
+    var st=d.getElementById('probe-style');
+    if(!st){st=d.createElement('style');st.id='probe-style';d.head.appendChild(st);}
+    st.textContent=css();
+    recede(d);
+  }
+  function mark(){
+    Object.keys(state).forEach(function(g){
+      document.querySelectorAll('[data-g="'+g+'"] button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===state[g]));});
+    });
+    document.getElementById('bgnote').textContent=BGNOTE[state.bg];
+  }
+  document.querySelectorAll('.opts').forEach(function(o){
+    o.addEventListener('click',function(e){
+      var b=e.target.closest('button');if(!b)return;
+      var g=o.dataset.g;state[g]=b.dataset.v;mark();
+      if(g==='page'||g==='menu'){frame.src=state.page;}else inject();
+    });
+  });
+  frame.addEventListener('load',function(){inject();if(state.menu==='unified')menu(frame.contentDocument);});
+  mark();
+})();
+</script>
+</body>
+</html>
