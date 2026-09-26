@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<!-- OGP template (1200x630). Rendered to assets/img/og/og-guide.jpg by make_og.mjs. Not deployed. -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Zen+Kaku+Gothic+Antique:wght@900&family=Noto+Sans+JP:wght@500;700&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  .og {
+    position: relative; width: 1200px; height: 630px; overflow: hidden; font-family: 'Noto Sans JP', sans-serif; color: #1d1915;
+    background-color: #eeeae3;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(29,25,21,.055) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, rgba(29,25,21,.055) 0 1px, transparent 1px 28px);
+  }
+  .wind { position: absolute; left: 0; top: 0; width: 1200px; height: 630px; }
+  .label {
+    position: absolute; left: 64px; top: 64px; display: flex; align-items: center; gap: 14px;
+    font-family: Unbounded, sans-serif; font-weight: 500; font-size: 19px; letter-spacing: .16em;
+  }
+  .label small { font-family: 'Noto Sans JP'; font-size: 17px; letter-spacing: .08em; font-weight: 700; }
+  h1 {
+    position: absolute; left: 60px; top: 112px; margin: 0;
+    font-family: 'Zen Kaku Gothic Antique', sans-serif; font-weight: 900; font-size: 104px; line-height: 1.12; letter-spacing: .02em;
+  }
+  .topics { position: absolute; left: 64px; top: 372px; width: 560px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .topics span { font-size: 21px; font-weight: 700; padding: 7px 18px; border: 2px solid #1d1915; border-radius: 999px; background: #f7f4ef; }
+  .brand { position: absolute; left: 64px; bottom: 56px; display: flex; align-items: center; gap: 14px; font-family: Unbounded, sans-serif; font-weight: 500; font-size: 20px; letter-spacing: .08em; }
+  .brand img { width: 44px; }
+  .photo {
+    position: absolute; right: 56px; top: 56px; width: 440px; height: 518px; border-radius: 30px; overflow: hidden;
+    border: 2px solid rgba(29,25,21,.12);
+    background: url(../../assets/img/photos/_dsc1274.jpg) 35% 50% / cover;
+  }
+  .chip { position: absolute; right: 76px; bottom: 76px; background: #1d1915; color: #f3b640; border-radius: 22px; padding: 16px 22px; }
+  .chip b { display: block; font-family: Unbounded, sans-serif; font-size: 34px; line-height: 1; }
+  .chip em { display: block; margin-top: 8px; font-style: normal; color: #eeeae3; font-size: 16px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="og">
+  <svg class="wind" viewBox="0 0 1200 630" fill="none" stroke-linecap="round">
+    <path d="M-40,300 Q300,240 640,320 T1260,300" stroke="#e8603f" stroke-width="2.2" opacity=".85" stroke-dasharray="16 11"/>
+    <path d="M-40,340 Q360,300 700,360 T1260,340" stroke="#336fae" stroke-width="1.6" opacity=".55" stroke-dasharray="16 11"/>
+  </svg>
+  <div class="label">
+    <svg width="34" height="17" viewBox="0 0 32 16" fill="none" stroke="#1d1915" stroke-width="2" stroke-linecap="round"><path d="M1 5c5-4 9 4 15 0s10-4 15 0"/><path d="M1 11c5-4 9 4 15 0s10-4 15 0" opacity=".5"/></svg>
+    GUIDE <small>/ 導入ガイド</small>
+  </div>
+  <h1>サウナ小屋<br>導入ガイド</h1>
+  <div class="topics"><span>設置条件</span><span>基礎工事</span><span>電気工事</span><span>法規</span><span>費用</span><span>メンテナンス</span></div>
+  <div class="brand"><img src="../../assets/img/logo/italog_logo_t_512.png" alt="">ITaLOG SAUNA</div>
+  <div class="photo"></div>
+  <div class="chip"><b>約300〜560円</b><em>1回あたりの電気代</em></div>
+</div>
+</body>
+</html>
