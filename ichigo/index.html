@@ -81,13 +81,16 @@
           ichigo:'#C92A57', 'ichigo-deep':'#A8284C', petal:'#FDF1F3', ink:'#43373B', mute:'#6E5E63',
           blush:'#FBE3EA', seed:'#F7E38A', 'seed-soft':'#FFF7D6', leaf:'#A9CC5B', 'leaf-soft':'#EEF6DA', sky:'#6090D8', 'sky-soft':'#E6EFFB'
         },
-        fontFamily: { sans:['"Zen Maru Gothic"','sans-serif'], en:['Quicksand','"Zen Maru Gothic"','sans-serif'] }
+        fontFamily: { sans:['YakuHanJP','"M PLUS 1p"','sans-serif'], en:['"Krona One"','"M PLUS 1p"','sans-serif'] },
+        /* 参考：道の駅ウェルネスあらお。写真・カードは大きめの角丸 */
+        borderRadius: { xl:'1rem', '2xl':'1.75rem', '3xl':'2.5rem' }
       }}
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@4.1.1/dist/css/yakuhanjp.css">
   <link rel="stylesheet" href="css/base.css">
   <style>
     .video-wrap { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
@@ -135,7 +138,7 @@
     /* 建学の精神：3ステップ */
     .concept-steps { list-style:none; margin:0 auto; padding:0; display:grid; gap:16px; max-width:64rem; }
     @media (min-width: 768px) { .concept-steps { grid-template-columns:repeat(3, 1fr); gap:28px; } }
-    .concept-step { position:relative; background:#fff; border-radius:28px; padding:32px 26px 30px; text-align:center; }
+    .concept-step { position:relative; background:#fff; border-radius:40px; padding:32px 26px 30px; text-align:center; }
     .concept-icon { width:84px; height:84px; border-radius:50% 46% 52% 48% / 48% 52% 46% 54%; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; }
     .concept-icon svg { width:48px; height:48px; }
     @media (min-width: 768px) {
@@ -406,22 +409,22 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 mb-16 sm:mb-20 reveal">
         <div class="bg-blush rounded-3xl p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">PARTICIPANTS</p>
-          <p class="font-en font-bold text-4xl sm:text-5xl text-ink mb-1"><span data-count="220">220</span><span class="text-sm font-medium ml-1">名</span></p>
+          <p class="font-en text-3xl sm:text-4xl text-ink mb-1"><span data-count="220">220</span><span class="text-sm font-medium ml-1">名</span></p>
           <p class="text-xs text-mute leading-relaxed">これまでに集まった人</p>
         </div>
         <div class="bg-seed-soft rounded-3xl p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">IDEAS</p>
-          <p class="font-en font-bold text-4xl sm:text-5xl text-ink mb-1"><span data-count="135">135</span><span class="text-sm font-medium ml-1">件</span></p>
+          <p class="font-en text-3xl sm:text-4xl text-ink mb-1"><span data-count="135">135</span><span class="text-sm font-medium ml-1">件</span></p>
           <p class="text-xs text-mute leading-relaxed">生まれたアイデア</p>
         </div>
         <div class="bg-leaf-soft rounded-3xl p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">FARMERS</p>
-          <p class="font-en font-bold text-4xl sm:text-5xl text-ink mb-1"><span data-count="9">9</span><span class="text-sm font-medium ml-1">軒</span></p>
+          <p class="font-en text-3xl sm:text-4xl text-ink mb-1"><span data-count="9">9</span><span class="text-sm font-medium ml-1">軒</span></p>
           <p class="text-xs text-mute leading-relaxed">連携いちご農家</p>
         </div>
         <div class="bg-sky-soft rounded-3xl p-5 sm:p-7 text-center">
           <p class="label-en text-ichigo mb-2">PARTNERS</p>
-          <p class="font-en font-bold text-4xl sm:text-5xl text-ink mb-1"><span data-count="14">14</span><span class="text-sm font-medium ml-1">社</span></p>
+          <p class="font-en text-3xl sm:text-4xl text-ink mb-1"><span data-count="14">14</span><span class="text-sm font-medium ml-1">社</span></p>
           <p class="text-xs text-mute leading-relaxed">連携・コラボした企業</p>
         </div>
       </div>

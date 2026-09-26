@@ -1,13 +1,14 @@
 /*
  * 埼玉いちご大學 共通スタイル（全ページ）
  * 色はキービジュアルから：いちご #C92A57／いちご（深）#A8284C／焦げ茶 #43373B／うすピンク #FDF1F3／種の黄 #F7E38A
- * フォント：Zen Maru Gothic（和文）＋ Quicksand（英字・数字）
+ * フォント：M PLUS 1p（和文・見出しは極太 800）＋ YakuHanJP（約物を詰める）＋ Krona One（英字・数字）
+ * 参考：道の駅ウェルネスあらお https://wellness-arao.com/about/
  */
-body { font-family:"Zen Maru Gothic",sans-serif; color:#43373B; background:#FDF1F3; font-feature-settings:"palt" 1; }
-.h-display { font-weight:500; letter-spacing:0.04em; line-height:1.45; }
-.h-display-thin { font-weight:500; letter-spacing:0.04em; line-height:1.4; }
-.label-en { font-family:Quicksand,"Zen Maru Gothic",sans-serif; font-weight:700; letter-spacing:0.22em; font-size:12px; }
-.body-jp { line-height:2.0; letter-spacing:0.05em; font-weight:500; font-feature-settings: normal; }
+body { font-family:YakuHanJP,"M PLUS 1p",sans-serif; line-height:1.9; color:#43373B; background:#FDF1F3; font-feature-settings:"palt" 1; }
+.h-display { font-weight:800; letter-spacing:-0.01em; line-height:1.45; }
+.h-display-thin { font-weight:800; letter-spacing:-0.01em; line-height:1.4; }
+.label-en { font-family:"Krona One","M PLUS 1p",sans-serif; font-weight:400; letter-spacing:0.08em; font-size:12px; }
+.body-jp { line-height:2.3; letter-spacing:0.02em; font-weight:500; font-feature-settings: normal; }
 .text-mute { color: #6E5E63 !important; }
 .text-ink { color: #43373B !important; }
 .pill-nav { background:#fff; border:1.5px solid #F4C9D5; border-radius:999px; padding:8px 18px; font-weight:700; font-size:14px; color:#43373B; transition:all 0.2s ease; text-decoration:none; }
@@ -36,10 +37,10 @@ body { font-family:"Zen Maru Gothic",sans-serif; color:#43373B; background:#FDF1
 /* いちごトピックス（js/topics.js が描く） */
 .topic-list { display:grid; gap:12px; list-style:none; margin:0; padding:0; }
 @media (min-width: 768px) { .topic-list { grid-template-columns:1fr 1fr; gap:16px; } }
-.topic-card { display:flex; flex-direction:column; gap:6px; height:100%; background:#fff; border-radius:20px; padding:18px 20px; text-decoration:none; color:#43373B; border:1.5px solid transparent; transition:border-color .2s ease, transform .25s ease; }
+.topic-card { display:flex; flex-direction:column; gap:6px; height:100%; background:#fff; border-radius:28px; padding:20px 24px; text-decoration:none; color:#43373B; border:1.5px solid transparent; transition:border-color .2s ease, transform .25s ease; }
 .topic-card:hover { border-color:#F4C9D5; transform:translateY(-2px); }
 .topic-meta { display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:12px; color:#6E5E63; }
-.topic-meta time { font-family:Quicksand,"Zen Maru Gothic",sans-serif; font-weight:700; letter-spacing:.06em; }
+.topic-meta time { font-family:"Krona One","M PLUS 1p",sans-serif; font-weight:400; letter-spacing:.02em; }
 .topic-tag { background:#FBE3EA; color:#A8284C; font-weight:700; border-radius:999px; padding:2px 10px; }
 .topic-source { font-weight:700; }
 .topic-title { font-size:16px; font-weight:700; line-height:1.6; }

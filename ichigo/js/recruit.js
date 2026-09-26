@@ -16,7 +16,7 @@
       opacity:0; transform:translateY(24px) scale(0.9); pointer-events:none; transition:opacity .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.34,1.56,.64,1); }
     .mascot.is-shown { opacity:1; transform:none; pointer-events:auto; }
     .mascot-link { display:flex; align-items:flex-end; gap:4px; text-decoration:none; }
-    .mascot-bubble { position:relative; margin-bottom:22px; background:#fff; color:#43373B; border:2px solid #C92A57; border-radius:18px; padding:8px 14px 9px; box-shadow:0 6px 0 #F4C9D5; font-family:"Zen Maru Gothic",sans-serif; line-height:1.35; white-space:nowrap; }
+    .mascot-bubble { position:relative; margin-bottom:22px; background:#fff; color:#43373B; border:2px solid #C92A57; border-radius:18px; padding:8px 14px 9px; box-shadow:0 6px 0 #F4C9D5; font-family:YakuHanJP,"M PLUS 1p",sans-serif; line-height:1.35; white-space:nowrap; }
     .mascot-bubble::after { content:""; position:absolute; right:-9px; bottom:14px; width:14px; height:14px; background:#fff; border-right:2px solid #C92A57; border-bottom:2px solid #C92A57; transform:rotate(-45deg); border-radius:0 0 4px 0; }
     .mascot-bubble b { display:block; font-size:15px; font-weight:700; color:#C92A57; letter-spacing:.04em; }
     .mascot-bubble span { display:block; font-size:11px; font-weight:700; color:#6E5E63; margin-top:1px; }

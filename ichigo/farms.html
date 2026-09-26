@@ -62,13 +62,16 @@
           ichigo:'#C92A57', 'ichigo-deep':'#A8284C', petal:'#FDF1F3', ink:'#43373B', mute:'#6E5E63',
           blush:'#FBE3EA', seed:'#F7E38A', 'seed-soft':'#FFF7D6', leaf:'#A9CC5B', 'leaf-soft':'#EEF6DA', sky:'#6090D8', 'sky-soft':'#E6EFFB'
         },
-        fontFamily: { sans:['"Zen Maru Gothic"','sans-serif'], en:['Quicksand','"Zen Maru Gothic"','sans-serif'] }
+        fontFamily: { sans:['YakuHanJP','"M PLUS 1p"','sans-serif'], en:['"Krona One"','"M PLUS 1p"','sans-serif'] },
+        /* 参考：道の駅ウェルネスあらお。写真・カードは大きめの角丸 */
+        borderRadius: { xl:'1rem', '2xl':'1.75rem', '3xl':'2.5rem' }
       }}
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@4.1.1/dist/css/yakuhanjp.css">
   <link rel="stylesheet" href="css/base.css">
 
   <!-- Leaflet -->
@@ -90,7 +93,7 @@
     /* ── マップ ── */
     #farm-map { height: 60vh; min-height: 420px; max-height: 640px; width: 100%; z-index: 1; }
     .leaflet-popup-content-wrapper { border-radius: 18px; box-shadow:0 10px 30px -10px rgba(169,40,76,.35); }
-    .leaflet-popup-content { font-family:"Zen Maru Gothic",sans-serif; margin:14px 18px; }
+    .leaflet-popup-content { font-family:YakuHanJP,"M PLUS 1p",sans-serif; margin:14px 18px; }
     .farm-popup .fp-name { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
     .farm-popup .fp-partner { display:inline-block; background:#C92A57; color:#fff; font-size:10px; font-weight:700; padding:1px 8px; border-radius:999px; margin-bottom:6px; }
     .farm-popup .fp-addr { font-size: 12px; color: #444; margin-bottom: 6px; }
