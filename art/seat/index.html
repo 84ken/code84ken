@@ -51,7 +51,8 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
 .mapbar{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
 .zoom{display:flex;gap:6px}
 .zoom button{width:36px;height:36px;border:1px solid var(--line);background:#fff;border-radius:4px;font-size:18px;line-height:1}
-.map{overflow:auto;border:1px solid var(--line);border-radius:4px;background:#fbfbf8;margin-top:8px;max-height:72vh;-webkit-overflow-scrolling:touch}
+.seatwrap{display:grid;gap:18px;margin-top:8px}
+.map{overflow:auto;border:1px solid var(--line);border-radius:4px;background:#fbfbf8;max-height:72vh;-webkit-overflow-scrolling:touch}
 .map svg{display:block;margin:0 auto}
 .s rect{fill:var(--seat-free);stroke:var(--seat-line);stroke-width:1;transition:fill .15s}
 .s text{font:500 9px 'Noto Sans JP',sans-serif;fill:#5b5f6b;pointer-events:none;text-anchor:middle}
@@ -84,6 +85,21 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
 .demo{position:fixed;top:10px;right:10px;background:var(--shu);color:#fff;font-size:12px;padding:2px 10px;border-radius:999px;z-index:9}
 .contact{margin-top:40px;font-size:14px;color:var(--muted)}
 [hidden]{display:none!important}
+/* 舞台の見え方（ホールが公開している撮影ポイントの写真） */
+.view{border:1px solid var(--line);border-radius:4px;padding:14px;background:#fff;align-self:start}
+.view-h{margin:0 0 8px;font-size:13px;letter-spacing:.12em;color:var(--kon);font-weight:700}
+.view-img{display:block;width:100%;aspect-ratio:3/2;border:0;padding:0;background:var(--paper);border-radius:3px;overflow:hidden;cursor:zoom-in}
+.view-img img{width:100%;height:100%;object-fit:cover;display:block}
+.view-img[disabled]{cursor:default}
+.view-cap{margin:10px 0 0;font-size:14px;line-height:1.7}
+.view-cap small{display:block;color:var(--muted);font-size:12px}
+.view-credit{margin:6px 0 0;font-size:11px;color:var(--muted)}
+.view-dlg{border:0;padding:0;max-width:min(1200px,94vw);background:#000;border-radius:4px}
+.view-dlg::backdrop{background:#000000b3}
+.view-dlg img{display:block;max-width:100%;max-height:84vh}
+.view-dlg p{margin:0;padding:10px 14px;color:#fff;font-size:13px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.view-dlg button{background:none;border:1px solid #ffffff80;color:#fff;border-radius:4px;padding:2px 12px}
+@media(min-width:1000px){.seatwrap{grid-template-columns:minmax(0,1fr) 290px}.view{position:sticky;top:16px}}
 @media(max-width:700px){main{padding-top:28px}.panel{padding:16px}.save{width:100%}.dock-sum{min-width:0;flex-basis:100%}}
 @media (prefers-reduced-motion:reduce){.s rect{transition:none}}
 </style>
@@ -126,7 +142,15 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
       <button type="button" id="zin" aria-label="拡大">＋</button>
     </div>
   </div>
-  <div class="map" id="map"></div>
+  <div class="seatwrap">
+    <div class="map" id="map"></div>
+    <aside class="view" aria-live="polite">
+      <p class="view-h">舞台の見え方</p>
+      <button type="button" class="view-img" id="view-open" disabled aria-label="写真を大きく見る"><img id="view-img" alt="" hidden></button>
+      <p class="view-cap" id="view-cap">席を選ぶと、そのあたりからの舞台の見え方が出ます。</p>
+      <p class="view-credit">写真：秩父宮記念市民会館（撮影時の舞台のようすです）</p>
+    </aside>
+  </div>
 
   <p class="contact">車椅子席のご利用、席についてのご相談は <a href="mailto:chichibu.art@gmail.com">chichibu.art@gmail.com</a> までお知らせください。</p>
 </div>
@@ -146,6 +170,8 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
     <button type="button" class="save" id="save">この席で予約する</button>
   </div>
 </div>
+
+<dialog class="view-dlg" id="view-dlg" aria-label="舞台の見え方"><img id="view-big" alt=""><p><span id="view-big-cap"></span><button type="button" id="view-close">閉じる</button></p></dialog>
 
 <script src="seats.js"></script>
 <script>
@@ -227,7 +253,7 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
       return '<button type="button" role="tab" aria-selected="'+(d===S.day)+'" data-day="'+d+'">'+DAYS[d].label+'</button>';}).join('');
     var fl=floorsOf(S.day);$('floors').hidden=fl.length<2;
     $('floors').innerHTML=fl.map(function(f){return '<button type="button" aria-pressed="'+(f===S.floor)+'" data-floor="'+f+'">'+HALL[f].name+'</button>';}).join('');
-    draw();dock();
+    draw();dock();viewSelected();
   }
 
   function draw(){
@@ -254,7 +280,7 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
     h.push('<text class="door" x="'+(L0+3*U)+'" y="'+(maxY+U)+'">'+(S.floor==='1F'?'1L・2L 扉':'3L 扉')+'</text><text class="door" x="'+(R0+7*U)+'" y="'+(maxY+U)+'">'+(S.floor==='1F'?'1R・2R 扉':'3R 扉')+'</text>');
     var H=maxY+U*1.6,map=$('map'),first=!map.firstChild;
     /* はじめの大きさ：PCは全体が見える大きさ、スマホは席を押しやすい大きさ（横にスクロール） */
-    if(!S.scale){var fit=(map.clientWidth-20)/W;S.scale=fit>=.75?Math.min(1.1,fit):.8;}
+    if(!S.scale){var fit=(map.clientWidth-20)/W;S.scale=fit>=.66?Math.min(1.1,fit):.8;}
     map.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="'+Math.round(W*S.scale)+'" height="'+Math.round(H*S.scale)+'" role="group" aria-label="'+HALL[S.floor].name+'の座席表">'+h.join('')+'</svg>';
     if(first){map.scrollLeft=(map.scrollWidth-map.clientWidth)/2;}
   }
@@ -281,7 +307,26 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
       sel.push(id);
     }
     say('');draw();dock();
+    if(i<0)view(id);else view(sel[sel.length-1]);
   }
+
+  /* ---------- 舞台の見え方：その席に一番近い撮影ポイントの写真を出す ---------- */
+  var VIEW_BASE='https://ccbhall.saitama.jp/wp-content/themes/ccbhall/images/guide/seat/';
+  var SIDE=['左','中央','右'],shown=null;
+  function viewOf(id){
+    var p=id.split('-'),v=HALL[p[0]].views,row=+p[1],n=+p[2],k=0;
+    v.rows.forEach(function(r,i){if(Math.abs(r-row)<Math.abs(v.rows[k]-row))k=i;});
+    var side=n<=10?0:n<=30?1:2;
+    return {pt:v.pts[k].charAt(side),row:v.rows[k],side:SIDE[side]};
+  }
+  function view(id){
+    if(!id){shown=null;$('view-img').hidden=true;$('view-open').disabled=true;$('view-cap').textContent='席を選ぶと、そのあたりからの舞台の見え方が出ます。';return;}
+    if(id===shown)return;shown=id;
+    var v=viewOf(id);
+    $('view-img').src=VIEW_BASE+v.pt+'.jpg';$('view-img').alt=label(id)+' あたりからの舞台の見え方';$('view-img').hidden=false;$('view-open').disabled=false;
+    $('view-cap').innerHTML=label(id)+' あたりからの見え方<small>撮影位置：'+(id.indexOf('2F')===0?'2階 ':'1階 ')+v.row+'列・'+v.side+'ブロック付近</small>';
+  }
+  function viewSelected(){var sel=S.sel[S.day]||[];view(sel.length?sel[sel.length-1]:null);}
 
   function save(){
     var day=S.day,seats=sortIds(S.sel[day]);
@@ -305,6 +350,13 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
   $('days').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;S.day=b.dataset.day;if(!quota(S.day,S.floor))S.floor=floorsOf(S.day)[0];say('');render();});
   $('floors').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;S.floor=b.dataset.floor;render();});
   $('save').addEventListener('click',save);
+  /* PCでは、席にマウスを乗せただけでも見え方を出す。外れたら選んだ席の見え方に戻す */
+  $('map').addEventListener('mouseover',function(e){var g=e.target.closest('.s:not(.wc)');if(g)view(g.dataset.id);});
+  $('map').addEventListener('mouseleave',viewSelected);
+  $('map').addEventListener('focusin',function(e){var g=e.target.closest('.s');if(g)view(g.dataset.id);});
+  $('view-open').addEventListener('click',function(){var d=$('view-dlg');$('view-big').src=$('view-img').src;$('view-big').alt=$('view-img').alt;$('view-big-cap').textContent=$('view-img').alt;d.showModal();});
+  $('view-close').addEventListener('click',function(){$('view-dlg').close();});
+  $('view-dlg').addEventListener('click',function(e){if(e.target===this)this.close();});
   function zoom(k){var m=$('map'),cx=(m.scrollLeft+m.clientWidth/2)/m.scrollWidth;S.scale=Math.max(.45,Math.min(2.2,S.scale*k));draw();m.scrollLeft=cx*m.scrollWidth-m.clientWidth/2;}
   $('zin').addEventListener('click',function(){zoom(1.25);});
   $('zout').addEventListener('click',function(){zoom(.8);});
