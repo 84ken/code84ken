@@ -35,8 +35,8 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700;900&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700;900&amp;display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700;900&amp;display=swap"></noscript>
-<link rel="stylesheet" href="/assets/css/site.css?v=e1a5bc58">
-<link rel="stylesheet" href="/assets/css/tw.css?v=ea0724f2">
+<link rel="stylesheet" href="/assets/css/site.css?v=39293d32">
+<link rel="stylesheet" href="/assets/css/tw.css?v=e9a34a10">
 <script src="/assets/js/site.js?v=c4dad567" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"サーキュラーエコノミーラボ","alternateName":"CIRCULAR ECONOMY LAB. SAITAMA","url":"https://ce.llschema.com/","inLanguage":"ja","publisher":{"@type":"Organization","name":"株式会社スキーマ","url":"https://llschema.com/"}}</script>
 </head>
@@ -92,43 +92,85 @@
       <span class="bg-primary-700" style="width:min(90vw,860px);aspect-ratio:1;right:-22%;bottom:-38%"></span>
     </div>
 
-    <div class="relative max-w-6xl mx-auto px-5 lg:px-8 pt-12 pb-10 sm:pt-14 lg:pt-16 lg:pb-14">
-      <div class="grid lg:grid-cols-[1fr_26rem] gap-8 lg:gap-14 items-center">
-        <div>
-          <h1>
-            <span class="logo-spin relative block w-full max-w-[30rem]">
-              <img src="/assets/img/brand/logotype-text.png" alt="サーキュラーエコノミーラボ" width="1200" height="487" class="w-full h-auto">
-              <!-- CEマーク：読み込み時と、触れたときに1回くるっと回る -->
-              <img src="/assets/img/brand/ce-mark.png" alt="" aria-hidden="true" width="262" height="262"
-                   class="logo-spin-mark absolute" style="left:77.708%;top:0.308%;width:21.833%">
-            </span>
-          </h1>
-          <p class="display-en mt-4 text-xl sm:text-2xl text-white">CIRCULAR ECONOMY LAB.</p>
-          <div class="mt-5 flex flex-wrap items-center gap-3">
-            <span class="pill-outline font-round text-sm sm:text-base">事前申込不要</span>
-            <span class="pill-outline font-round text-sm sm:text-base">参加費無料</span>
-            <span class="font-round text-sm sm:text-base font-bold text-white leading-normal">埼玉県のサーキュラーエコノミー普及啓発イベント</span>
-          </div>
-        </div>
+    <!-- PCは「サーキュラーエコノミーラボ」を主役に中央へ。四隅に開催のようすの写真を散らす。
+         スマホは従来どおり（コラージュは lg 以上だけ表示）。 -->
+    <div class="hero-stage relative">
 
-        <!-- 昨年のようす：写真サムネイル → 押すと動画ポップアップ -->
-        <div class="relative mt-10 lg:mt-0 mr-4 lg:mr-10">
-          <button type="button" data-video-open="OXriJio5fzE" data-video-title="サーキュラーエコノミーラボ in 越谷 ダイジェスト動画（2025年10月／1分29秒）"
-                  class="group relative block w-full rounded-[1.75rem] overflow-hidden border-4 border-sun bg-primary-900 shadow-[0_6px_0_rgba(0,0,0,0.2)] cursor-pointer text-left">
-            <span class="photo-figure block aspect-[3/2]">
-              <img src="/assets/img/photo/koshigaya-gyxus-fv.jpg" alt="" width="900" height="616" fetchpriority="high" class="transition-transform duration-300 group-hover:scale-105">
-            </span>
-            <span class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
-              <span class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-sun text-navy inline-flex items-center justify-center shadow-md transition-transform duration-200 group-hover:scale-110">
-                <svg class="w-8 h-8 sm:w-9 sm:h-9 ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14Z"/></svg>
+      <!-- ===== PCだけのフォトコラージュ ===== -->
+      <div class="hero-collage hidden lg:block">
+        <span class="hc-cloud hc-cloud-1" aria-hidden="true"></span>
+        <span class="hc-cloud hc-cloud-2" aria-hidden="true"></span>
+        <span class="hc-cloud hc-cloud-3" aria-hidden="true"></span>
+
+        <span class="hc-photo hc-p1" aria-hidden="true"><img src="/assets/img/photo/hero-seed.jpg" alt="" width="560" height="560" fetchpriority="high"></span>
+        <span class="hc-photo hc-p2" aria-hidden="true"><img src="/assets/img/photo/hero-craft.jpg" alt="" width="600" height="450"></span>
+
+        <!-- 動画の入口（昨年の越谷のダイジェスト） -->
+        <button type="button" data-video-open="OXriJio5fzE" data-video-title="サーキュラーエコノミーラボ in 越谷 ダイジェスト動画（2025年10月／1分29秒）"
+                class="hc-photo hc-p3 group">
+          <img src="/assets/img/photo/hero-stage.jpg" alt="" width="680" height="510" fetchpriority="high" class="transition-transform duration-300 group-hover:scale-105">
+          <span class="hc-play" aria-hidden="true"><span class="transition-transform duration-200 group-hover:scale-110"><svg class="w-8 h-8 ml-1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14Z"/></svg></span></span>
+          <span class="hc-label font-round">動画で見る <span class="font-medium text-primary-700">1:29</span></span>
+        </button>
+
+        <!-- 次回開催のステッカー（越谷は「控えめに、でも確実に」） -->
+        <a href="/lab/events/koshigaya-2026/" class="hc-sticker group">
+          <img src="/assets/img/mascot/circulo-o-hello.png" alt="" aria-hidden="true" width="520" height="688" class="hc-mascot circulo circulo-float">
+          <span class="display-en text-sm tracking-widest">NEXT LAB.</span>
+          <span class="font-round mt-1 text-base font-bold leading-snug">次回は越谷で開催！</span>
+          <span class="display-num mt-2 text-[2.1rem] leading-none">10.3<span class="text-xl align-middle mx-1">–</span>10.4</span>
+          <span class="mt-1 text-xs font-bold leading-normal">2026 SAT–SUN／越谷レイクタウン kaze</span>
+          <span class="font-round mt-2 inline-flex items-center gap-1 text-sm font-bold leading-normal underline underline-offset-4 decoration-2 group-hover:no-underline">くわしく見る
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </span>
+        </a>
+
+        <!-- 手描きのあしらい -->
+        <svg class="hc-doodle hc-d1" viewBox="0 0 90 40" aria-hidden="true"><path d="M3 34 17 6l12 28L43 6l12 28L69 6l14 28" fill="none" stroke="#f7d85a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="hc-doodle hc-d2" viewBox="0 0 120 60" aria-hidden="true"><path d="M4 40c14-30 44-34 42-12S16 54 30 36s46-30 56-8 22 18 30 6" fill="none" stroke="#f5a93c" stroke-width="5" stroke-linecap="round"/></svg>
+        <svg class="hc-doodle hc-d3" viewBox="0 0 70 70" aria-hidden="true"><path d="M35 6c3 13 8 19 22 22-14 3-19 9-22 22-3-13-8-19-22-22 14-3 19-9 22-22Z" fill="#f7d85a"/></svg>
+        <svg class="hc-doodle hc-d4" viewBox="0 0 110 50" aria-hidden="true"><path d="M4 26c8-16 16-16 24 0s16 16 24 0 16-16 24 0 16 16 30 0" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="5" stroke-linecap="round"/></svg>
+      </div>
+
+      <div class="hero-inner relative max-w-6xl mx-auto px-5 lg:px-8 pt-12 pb-10 sm:pt-14 lg:pt-16 lg:pb-14">
+        <div class="grid lg:flex lg:justify-center gap-8 lg:gap-0 items-center">
+          <div class="lg:flex lg:flex-col lg:items-center lg:text-center">
+            <h1>
+              <span class="logo-spin relative block w-full max-w-[30rem] lg:max-w-[min(34rem,40vw)]">
+                <img src="/assets/img/brand/logotype-text.png" alt="サーキュラーエコノミーラボ" width="1200" height="487" class="w-full h-auto">
+                <!-- CEマーク：読み込み時と、触れたときに1回くるっと回る -->
+                <img src="/assets/img/brand/ce-mark.png" alt="" aria-hidden="true" width="262" height="262"
+                     class="logo-spin-mark absolute" style="left:77.708%;top:0.308%;width:21.833%">
               </span>
-            </span>
-            <span class="font-round absolute left-3 bottom-3 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-primary-800 text-sm sm:text-base font-bold leading-normal">
-              どんなイベント？ 動画で見る<span class="text-xs sm:text-sm font-medium text-primary-700">1:29</span>
-            </span>
-          </button>
-          <img src="/assets/img/mascot/circulo-o-search.png" alt="" aria-hidden="true" width="520" height="548"
-               class="circulo circulo-float pointer-events-none absolute -right-6 -top-14 w-24 sm:w-28 lg:top-auto lg:-right-14 lg:-bottom-8 lg:w-36">
+            </h1>
+            <p class="display-en mt-4 text-xl sm:text-2xl lg:text-3xl text-white">CIRCULAR ECONOMY LAB.</p>
+            <p class="hidden lg:block font-round mt-5 text-xl xl:text-2xl font-bold text-white leading-snug">見て、ふれて、学べる！<span class="text-sun">めぐる暮らし</span>の体験イベント</p>
+            <div class="mt-5 flex flex-wrap items-center gap-3 lg:justify-center">
+              <span class="pill-outline font-round text-sm sm:text-base">事前申込不要</span>
+              <span class="pill-outline font-round text-sm sm:text-base">参加費無料</span>
+              <span class="font-round text-sm sm:text-base font-bold text-white leading-normal lg:basis-full">埼玉県のサーキュラーエコノミー普及啓発イベント</span>
+            </div>
+          </div>
+
+          <!-- 昨年のようす：写真サムネイル → 押すと動画ポップアップ（スマホ・タブレット） -->
+          <div class="relative mt-10 lg:mt-0 mr-4 lg:hidden">
+            <button type="button" data-video-open="OXriJio5fzE" data-video-title="サーキュラーエコノミーラボ in 越谷 ダイジェスト動画（2025年10月／1分29秒）"
+                    class="group relative block w-full rounded-[1.75rem] overflow-hidden border-4 border-sun bg-primary-900 shadow-[0_6px_0_rgba(0,0,0,0.2)] cursor-pointer text-left">
+              <span class="photo-figure block aspect-[3/2]">
+                <img src="/assets/img/photo/koshigaya-gyxus-fv.jpg" alt="" width="900" height="616" fetchpriority="high" class="transition-transform duration-300 group-hover:scale-105">
+              </span>
+              <span class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                <span class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-sun text-navy inline-flex items-center justify-center shadow-md transition-transform duration-200 group-hover:scale-110">
+                  <svg class="w-8 h-8 sm:w-9 sm:h-9 ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14Z"/></svg>
+                </span>
+              </span>
+              <span class="font-round absolute left-3 bottom-3 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-primary-800 text-sm sm:text-base font-bold leading-normal">
+                どんなイベント？ 動画で見る<span class="text-xs sm:text-sm font-medium text-primary-700">1:29</span>
+              </span>
+            </button>
+            <img src="/assets/img/mascot/circulo-o-search.png" alt="" aria-hidden="true" width="520" height="548"
+                 class="circulo circulo-float pointer-events-none absolute -right-6 -top-14 w-24 sm:w-28">
+          </div>
         </div>
       </div>
     </div>
