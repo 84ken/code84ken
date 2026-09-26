@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>銘仙の差し色と書体の検証｜CAC 2027</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#fff}
+iframe{display:block;width:100%;height:100%;border:0}
+.panel{position:fixed;right:14px;bottom:14px;z-index:10;width:300px;max-height:calc(100% - 28px);overflow:auto;background:#fff;
+  border:1px solid #d6d4cc;box-shadow:0 12px 30px #00000024;font:400 12.5px/1.6 'Zen Kaku Gothic New',sans-serif;color:#262523}
+.panel summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;padding:11px 14px;font-weight:500;letter-spacing:.05em}
+.panel summary::after{content:'−'}
+.panel:not([open]) summary::after{content:'＋'}
+.inner{padding:2px 14px 14px}
+.grp{margin:0 0 12px}
+.grp>b{display:block;font-weight:400;font-size:11px;letter-spacing:.1em;color:#77756e;margin-bottom:5px}
+.opts{display:flex;flex-wrap:wrap;gap:5px}
+.opts button{font:inherit;font-size:12px;border:1px solid #d6d4cc;background:#fff;color:#262523;padding:5px 9px;cursor:pointer}
+.opts button[aria-pressed="true"]{background:#262523;color:#fff;border-color:#262523}
+.sw{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
+.src{margin:6px 0 0;font-size:11.5px;color:#55534d;background:#f4f3ef;padding:7px 9px}
+.draftnote{position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:10;font:400 11px/1 'Zen Kaku Gothic New',sans-serif;
+  background:#fff;border:1px solid #d6d4cc;color:#77756e;padding:6px 11px;white-space:nowrap;pointer-events:none}
+@media (max-width:700px){.panel{left:8px;right:8px;width:auto;bottom:8px;max-height:48%}.draftnote{font-size:10px;top:auto;bottom:auto}}
+</style>
+</head>
+<body>
+<div class="draftnote">検証用：いまのサイトに差し色と書体を重ねています（本番は未反映）</div>
+<iframe id="site" src="../../index.html" title="ちちぶアートクリエーション2027 のサイト（検証表示）"></iframe>
+
+<details class="panel" open>
+<summary>差し色と書体を切り替える</summary>
+<div class="inner">
+<div class="grp"><b>差し色（すべて逸見織物さんの秩父銘仙から）</b>
+<div class="opts" data-g="acc">
+<button data-v="shu"><i class="sw" style="background:#b65a38"></i>朱</button>
+<button data-v="beni"><i class="sw" style="background:#9a2d29"></i>紅</button>
+<button data-v="koubai"><i class="sw" style="background:#b0667a"></i>紅梅</button>
+<button data-v="uguisu"><i class="sw" style="background:#7f7a3a"></i>鶯</button>
+<button data-v="kon"><i class="sw" style="background:#2e3452"></i>紺</button>
+</div>
+<p class="src" id="src"></p>
+</div>
+<div class="grp"><b>差し色の量</b>
+<div class="opts" data-g="amount">
+<button data-v="soft">控えめ</button><button data-v="strong">しっかり</button><button data-v="off">なし（いま）</button>
+</div></div>
+<div class="grp"><b>書体</b>
+<div class="opts" data-g="font">
+<button data-v="new">しっぽり明朝＋Zen角ゴシック</button><button data-v="now">いまのまま</button>
+</div></div>
+<div class="grp"><b>ページ</b>
+<div class="opts" data-g="page">
+<button data-v="../../index.html">トップ</button><button data-v="../../team/index.html">わたしたち</button><button data-v="../../open-call/index.html">反物公募</button>
+</div></div>
+</div>
+</details>
+
+<script>
+(function(){
+  var colors={
+    shu:{c:'#b65a38',src:'朱 ── 紺地に咲く薔薇の花の色。秩父銘仙の代表的な取り合わせ「紺地に朱」から。'},
+    beni:{c:'#9a2d29',src:'紅 ── 緯糸（よこいと）を染めた赤い糸の色。織ると反物全体の色味を変える糸です。'},
+    koubai:{c:'#b0667a',src:'紅梅 ── 工房の棚に並ぶ反物の、くすんだ桃色。'},
+    uguisu:{c:'#7f7a3a',src:'鶯 ── 紺地の薔薇に添えられた葉の色。'},
+    kon:{c:'#2e3452',src:'紺 ── 薔薇や椿の反物の地色。差し色というより、全体を引き締める色です。'}
+  };
+  var KON='#2e3452';
+  var state={acc:'shu',amount:'soft',font:'new',page:'../../index.html'};
+  var frame=document.getElementById('site');
+
+  function css(){
+    var a=colors[state.acc].c, out='';
+    if(state.font==='new'){
+      out+=":root{--serif:'Shippori Mincho','Yu Mincho','Hiragino Mincho ProN',serif}"+
+           "body{font-family:'Zen Kaku Gothic New','Yu Gothic',sans-serif;font-weight:500;line-height:2}";
+    }
+    if(state.amount!=='off'){
+      /* 控えめ：小さな見出しラベルと細い線、ホバーの糸だけに色を差す */
+      out+=":root{--acc:"+a+";--kon:"+KON+";--ai:"+KON+";--tamamushi:linear-gradient(90deg,"+KON+","+a+")}"+
+           ".eyebrow,.section-label,.program-en,.mrole,.deadline strong{color:var(--acc)}"+
+           ".date{color:var(--kon)}"+
+           ".progressbar i{background:linear-gradient(180deg,var(--kon),var(--acc)) fixed}"+
+           ".timeline li:before{background:var(--acc)}"+
+           "::selection{background:color-mix(in srgb,var(--acc) 28%,transparent)}";
+      if(state.amount==='strong'){
+        /* しっかり：縦書きの一行を短冊に、強調語と区切り線にも色を差す（キービジュアルには触れない） */
+        out+=".vertical-note{background:#fff;color:var(--acc);padding:16px 10px;letter-spacing:.24em}"+
+             ".call-grid em{color:var(--acc)}"+
+             ".together-links>a{border-top:2px solid var(--acc)}"+
+             ".program-grid article{border-top:2px solid var(--acc)}"+
+             ".dark{background:var(--kon)}a.dark:hover,.dark:hover{background:var(--acc)}"+
+             ".call-word{color:color-mix(in srgb,var(--acc) 26%,transparent)}"+
+             ".large-word{color:color-mix(in srgb,var(--acc) 16%,transparent)}"+
+             ".call-panel{border-top:2px solid var(--acc)}";
+      }
+    }
+    return out;
+  }
+  function inject(){
+    var d=frame.contentDocument;if(!d||!d.head)return;
+    if(!d.getElementById('probe-fonts')){
+      var l=d.createElement('link');l.id='probe-fonts';l.rel='stylesheet';
+      l.href='https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap';
+      d.head.appendChild(l);
+    }
+    var s=d.getElementById('probe-style');
+    if(!s){s=d.createElement('style');s.id='probe-style';d.head.appendChild(s);}
+    s.textContent=css();
+  }
+  function mark(){
+    Object.keys(state).forEach(function(g){
+      document.querySelectorAll('[data-g="'+g+'"] button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===state[g]));});
+    });
+    document.getElementById('src').textContent=colors[state.acc].src;
+  }
+  document.querySelectorAll('.opts').forEach(function(o){
+    o.addEventListener('click',function(e){
+      var b=e.target.closest('button');if(!b)return;
+      state[o.dataset.g]=b.dataset.v;mark();
+      if(o.dataset.g==='page'){frame.src=b.dataset.v;}else inject();
+    });
+  });
+  frame.addEventListener('load',inject);
+  mark();inject();
+})();
+</script>
+</body>
+</html>
