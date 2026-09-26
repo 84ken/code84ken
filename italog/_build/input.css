@@ -89,7 +89,29 @@
     font-feature-settings: "tnum";
     letter-spacing: -0.02em;
   }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+  /* === Top page header: hidden on the first view, slides in after a short scroll ===
+     Only hidden when JS runs (.js on <html>), so it never disappears without JS. */
+  .site-header { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .js .site-header { transform: translateY(-100%); }
+  .js .site-header.is-shown,
+  .js .site-header:focus-within { transform: translateY(0); }
+
+  /* === Hero canvases: halftone print texture + steam === */
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .hero-halftone { opacity: 0; transition: opacity 1.4s ease; }
+  .hero-halftone.is-ready { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header, .hero-halftone { transition: none; }
+  }
   details > summary { list-style: none; cursor: pointer; }
   details > summary::-webkit-details-marker { display: none; }
 
