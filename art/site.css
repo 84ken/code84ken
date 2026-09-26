@@ -270,7 +270,7 @@ header>.text-link{gap:12px;white-space:nowrap}
 .material-grid figcaption span{display:block;font-size:12px;color:#6b7164}
 .material-story>.note{display:inline-block;background:#ffffffde;padding:5px 8px;margin-top:16px}
 
-@media(max-width:700px){.visual{inset:78px -33% 8% -17%;opacity:.95}
+@media(max-width:700px){.visual{inset:78px -53% 8% 3%;opacity:.95}
 .reading-light{background:linear-gradient(90deg,#ffffffcf,#ffffff8a 40%,#ffffff00 80%)}
 .hero-copy{background:linear-gradient(90deg,#ffffffb8,#ffffff00)}
 .call-grid{width:87%}
