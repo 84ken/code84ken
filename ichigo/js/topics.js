@@ -1,6 +1,7 @@
 /*
  * いちごトピックス：data/topics.json を読み、[data-topics] の中に一覧を描く
  *   <div data-topics data-limit="4"></div>
+ *   <div data-topics data-tags="農家,秩父"></div>  … タグで絞り込み
  * データは週1回の候補集め（Claude）→ 確認 → マージで更新される。
  */
 (() => {
@@ -17,8 +18,11 @@
     .then((data) => {
       const items = (data.items || []).slice().sort((a, b) => String(b.date).localeCompare(String(a.date)));
       boxes.forEach((box) => {
-        const limit = parseInt(box.dataset.limit || '0', 10) || items.length;
-        box.innerHTML = '<ul class="topic-list">' + items.slice(0, limit).map((t) => {
+        const tags = (box.dataset.tags || '').split(',').map((x) => x.trim()).filter(Boolean);
+        const list = tags.length ? items.filter((t) => tags.includes(t.tag)) : items;
+        const limit = parseInt(box.dataset.limit || '0', 10) || list.length;
+        if (!list.length) { box.innerHTML = '<p class="topic-empty">いまは掲載できる話題がありません。</p>'; return; }
+        box.innerHTML = '<ul class="topic-list">' + list.slice(0, limit).map((t) => {
           const ext = isExternal(t.url);
           return `<li><a class="topic-card" href="${esc(t.url)}"${ext ? ' target="_blank" rel="noopener"' : ''}>
             <span class="topic-meta"><time datetime="${esc(t.date)}">${fmt(t.date)}</time>${t.tag ? `<span class="topic-tag">${esc(t.tag)}</span>` : ''}<span class="topic-source">${esc(t.source)}</span></span>

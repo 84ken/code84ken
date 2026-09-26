@@ -89,7 +89,8 @@
 
     /* ── マップ ── */
     #farm-map { height: 60vh; min-height: 420px; max-height: 640px; width: 100%; z-index: 1; }
-    .leaflet-popup-content-wrapper { border-radius: 4px; }
+    .leaflet-popup-content-wrapper { border-radius: 18px; box-shadow:0 10px 30px -10px rgba(169,40,76,.35); }
+    .leaflet-popup-content { font-family:"Zen Maru Gothic",sans-serif; margin:14px 18px; }
     .farm-popup .fp-name { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
     .farm-popup .fp-partner { display:inline-block; background:#C92A57; color:#fff; font-size:10px; font-weight:700; padding:1px 8px; border-radius:999px; margin-bottom:6px; }
     .farm-popup .fp-addr { font-size: 12px; color: #444; margin-bottom: 6px; }
@@ -99,6 +100,20 @@
     .filter-chip { background:#fff; border:1.5px solid #F4C9D5; border-radius:999px; padding:7px 18px; font-size:13px; font-weight:600; cursor:pointer; transition:all .2s ease; }
     .filter-chip:hover { border-color:#C92A57; color:#C92A57; }
     .filter-chip.active { background:#C92A57; border-color:#C92A57; color:#fff; }
+
+    /* ── いちごのピン ── */
+    .berry-pin { background:none; border:0; filter:drop-shadow(0 2px 3px rgba(67,55,59,.35)); transition:transform .2s ease; }
+    .berry-pin:hover { transform:translateY(-3px) scale(1.12); }
+    .berry-pin svg { display:block; }
+    .farm-popup .fp-links { display:flex; gap:6px; margin:4px 0 8px; }
+    /* ── 公式サイト・SNS ボタン ── */
+    .farm-links { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+    .farm-link { width:34px; height:34px; border-radius:999px; background:#FDF1F3; color:#C92A57; display:inline-flex; align-items:center; justify-content:center; transition:background .2s ease, color .2s ease; }
+    .farm-link:hover { background:#C92A57; color:#fff; }
+    .farm-link svg { width:17px; height:17px; }
+    .farm-popup .farm-link { width:28px; height:28px; }
+    .farm-popup .farm-link svg { width:14px; height:14px; }
+    .farm-badge { flex-shrink:0; font-size:10px; font-weight:700; color:#fff; background:#C92A57; border-radius:999px; padding:2px 8px; }
 
     /* ── 農家カード ── */
     .farm-card { background:#fff; transition:transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease; }
@@ -171,8 +186,9 @@
           <button class="filter-chip" data-area="横瀬町">横瀬町</button>
           <button class="filter-chip" data-area="長瀞町">長瀞町</button>
         </div>
-        <p class="text-xs text-mute flex items-center gap-2">
-          <span class="inline-block w-3 h-3 rounded-full" style="background:#C92A57;"></span>いちご大學と連携する、地域のいちご農家さんたちです
+        <p class="text-xs text-mute flex flex-wrap items-center gap-x-4 gap-y-1">
+          <span class="inline-flex items-center gap-1.5"><svg viewBox="0 0 100 110" width="14" height="15" aria-hidden="true"><path d="M50 30C75 25 95 39 93 62C91 86 68 107 50 108C32 107 9 86 7 62C5 39 25 25 50 30Z" fill="#C92A57"/></svg>いちご大學の連携農家</span>
+          <span class="inline-flex items-center gap-1.5"><svg viewBox="0 0 100 110" width="14" height="15" aria-hidden="true"><path d="M50 30C75 25 95 39 93 62C91 86 68 107 50 108C32 107 9 86 7 62C5 39 25 25 50 30Z" fill="#F4A7BB"/></svg>地域のいちご農家さん</span>
         </p>
       </div>
 
@@ -199,7 +215,20 @@
     </div>
   </section>
 
+  <!-- 農家さんのニュース（data/topics.json のタグ「農家」「秩父」） -->
+  <section id="farm-news" class="bg-petal py-20 sm:py-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <p class="label-en text-ichigo mb-3">FARM NEWS</p>
+        <h2 class="h-display text-3xl sm:text-4xl text-ink mb-4">秩父のいちご農家さん、いまこんな話題。</h2>
+        <p class="body-jp text-sm sm:text-base text-mute">受賞や開園など、農家さんが取り上げられたニュースを集めています。<br class="hidden sm:inline">記事は各サイトでお読みください。</p>
+      </div>
+      <div data-topics data-tags="農家,秩父"><p class="topic-empty">読み込み中…</p></div>
+    </div>
+  </section>
+
   <!-- CTA -->
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true" style="background:#FDF1F3"><path d="M0 28C160 6 320 6 480 24S800 50 960 34S1280 4 1440 22V56H0Z" fill="#C92A57"/></svg>
   <section class="py-20 sm:py-28 bg-ichigo seed-pattern-white text-white">
     <div class="max-w-3xl mx-auto px-6 text-center">
       <h2 class="h-display-thin text-2xl sm:text-4xl mb-6">農家さんと一緒に、いちごの可能性を。</h2>
@@ -246,31 +275,32 @@
     // ───────────────────────────────
     // 農家データ（出典: いちご大學 全体管理シート / 位置: 国土地理院ジオコーディング）
     // partner: いちご大學の活動（説明会・WS・出店）に参加いただいた連携農家
+    // links: 農家さん本人の公式サイト・SNS（2026-09 調査。本人のものと確認できたものだけ）
     // ───────────────────────────────
     const FARMS = [
-      { name: 'いちごハウスAYA', addr: '秩父市下吉田4124-1', tel: '0494-26-7411', area: '秩父市', partner: true, lat: 36.037281, lng: 139.025421 },
-      { name: 'ただかね農園', addr: '秩父市下吉田4091', tel: '0494-77-0977', area: '秩父市', partner: true, lat: 36.037281, lng: 139.025421 },
+      { name: 'いちごハウスAYA', addr: '秩父市下吉田4124-1', tel: '0494-26-7411', area: '秩父市', partner: true, lat: 36.037281, lng: 139.025421, links: [{ type: 'web', url: 'https://aya.chichibu-farm.co.jp/' }, { type: 'instagram', url: 'https://www.instagram.com/strawberry_house_aya/' }, { type: 'facebook', url: 'https://www.facebook.com/%E3%81%84%E3%81%A1%E3%81%94%E3%83%8F%E3%82%A6%E3%82%B9aya-1287971231218598/' }, { type: 'line', url: 'https://page.line.me/752gkkvt' }] },
+      { name: 'ただかね農園', addr: '秩父市下吉田4091', tel: '0494-77-0977', area: '秩父市', partner: true, lat: 36.037281, lng: 139.025421, links: [{ type: 'web', url: 'https://www.tadakanenouen.jp/' }, { type: 'instagram', url: 'https://www.instagram.com/tadakane_nouen/' }, { type: 'facebook', url: 'https://www.facebook.com/tadakanenoen/' }] },
       { name: '冨田農園', addr: '秩父市下吉田4359', tel: '0494-77-0968', area: '秩父市', partner: false, lat: 36.037281, lng: 139.025421 },
-      { name: '上の原農園', addr: '秩父郡横瀬町横瀬3460-1', tel: '0494-24-0410', area: '横瀬町', partner: false, lat: 35.982277, lng: 139.090469 },
-      { name: 'おきうね農園', addr: '秩父郡横瀬町横瀬3126', tel: '0494-23-2712', area: '横瀬町', partner: false, lat: 35.976704, lng: 139.092865 },
+      { name: '上の原農園', addr: '秩父郡横瀬町横瀬3460-1', tel: '0494-24-0410', area: '横瀬町', partner: false, lat: 35.982277, lng: 139.090469, links: [{ type: 'web', url: 'http://uenohara15.net/15/' }, { type: 'x', url: 'https://x.com/ichigo_uenohara' }, { type: 'facebook', url: 'https://www.facebook.com/uenohara1515/' }, { type: 'line', url: 'https://page.line.me/179hkizx' }] },
+      { name: 'おきうね農園', addr: '秩父郡横瀬町横瀬3126', tel: '0494-23-2712', area: '横瀬町', partner: false, lat: 35.976704, lng: 139.092865, links: [{ type: 'web', url: 'https://okiune-noen.com/' }, { type: 'facebook', url: 'https://www.facebook.com/100068734356495/' }] },
       { name: '琴平農園', addr: '秩父郡横瀬町芦ヶ久保361-2', tel: '0494-24-1497', area: '横瀬町', partner: false, lat: 35.966351, lng: 139.154968 },
-      { name: '小松沢レジャー農園', addr: '秩父郡横瀬町横瀬1408', tel: '0494-24-0412', area: '横瀬町', partner: true, lat: 35.981754, lng: 139.114243 },
+      { name: '小松沢レジャー農園', addr: '秩父郡横瀬町横瀬1408', tel: '0494-24-0412', area: '横瀬町', partner: true, lat: 35.981754, lng: 139.114243, links: [{ type: 'web', url: 'https://www.komatsuzawa.co.jp/' }, { type: 'instagram', url: 'https://www.instagram.com/komatuzawa_noen/' }, { type: 'facebook', url: 'https://www.facebook.com/komatsuzawafarm/' }] },
       { name: 'まるとみ農園', addr: '秩父郡横瀬町芦ヶ久保494', tel: '0494-24-2191', area: '横瀬町', partner: false, lat: 35.966351, lng: 139.154968 },
-      { name: '八木原農園', addr: '秩父郡横瀬町横瀬3338-2', tel: '', area: '横瀬町', partner: true, lat: 35.982735, lng: 139.092239 },
-      { name: '長瀞福島農園', addr: '秩父郡長瀞町大字中野上111', tel: '', area: '長瀞町', partner: false, lat: 36.113533, lng: 139.094559 },
-      { name: '市川いちご園', addr: '秩父市田村924', tel: '0494-23-9732', area: '秩父市', partner: true, lat: 36.002354, lng: 139.056976 },
-      { name: '内田農園', addr: '秩父市寺尾2307', tel: '0494-23-9603', area: '秩父市', partner: false, lat: 36.025261, lng: 139.085419 },
-      { name: '太田観光農園', addr: '秩父市太田2364', tel: '0494-62-0880', area: '秩父市', partner: true, lat: 36.056049, lng: 139.06572 },
-      { name: 'けや木農園', addr: '秩父市寺尾630', tel: '0494-26-6320', area: '秩父市', partner: false, lat: 36.041698, lng: 139.091812 },
-      { name: '秩父フルーツファーム', addr: '秩父市下影森877-1', tel: '0494-23-2711', area: '秩父市', partner: true, lat: 35.978172, lng: 139.07402 },
-      { name: '中蒔田・富田農園', addr: '秩父市蒔田1666', tel: '0494-23-9210', area: '秩父市', partner: false, lat: 36.035313, lng: 139.074341 },
-      { name: '福島いちご園', addr: '秩父市寺尾2145', tel: '0494-23-9054', area: '秩父市', partner: true, lat: 36.01712, lng: 139.081223 },
-      { name: '八木観光農園', addr: '秩父市寺尾3287', tel: '0494-23-9035', area: '秩父市', partner: true, lat: 36.012753, lng: 139.070923 },
-      { name: "M's BERRY", addr: '秩父市田村91-1', tel: '0494-23-9704', area: '秩父市', partner: true, lat: 36.016918, lng: 139.061996 },
-      { name: '和銅農園', addr: '秩父市黒谷457-3', tel: '0494-25-4733', area: '秩父市', partner: false, lat: 36.045376, lng: 139.103256 },
+      { name: '八木原農園', addr: '秩父郡横瀬町横瀬3338-2', tel: '', area: '横瀬町', partner: true, lat: 35.982735, lng: 139.092239, links: [{ type: 'instagram', url: 'https://www.instagram.com/yagihara_strawberry_farm/' }, { type: 'facebook', url: 'https://www.facebook.com/yagiharastrawberryfarm/' }] },
+      { name: '長瀞福島農園', addr: '秩父郡長瀞町大字中野上111', tel: '', area: '長瀞町', partner: false, lat: 36.113533, lng: 139.094559, links: [{ type: 'web', url: 'https://nagatoroichigo.com/' }, { type: 'instagram', url: 'https://www.instagram.com/nagatoro_fukushima_farm/' }, { type: 'facebook', url: 'https://www.facebook.com/nagatorofukushimafarm.sunnydayskitchen/' }, { type: 'line', url: 'https://lin.ee/8CEBwh2' }] },
+      { name: '市川いちご園', addr: '秩父市田村924', tel: '0494-23-9732', area: '秩父市', partner: true, lat: 36.002354, lng: 139.056976, links: [{ type: 'web', url: 'https://www.ichikawa-ichigoen.com/' }, { type: 'instagram', url: 'https://www.instagram.com/ichikawa.ichigoen/' }, { type: 'facebook', url: 'https://www.facebook.com/p/%E5%B8%82%E5%B7%9D%E3%81%84%E3%81%A1%E3%81%94%E5%9C%92-100063690752411/' }, { type: 'line', url: 'https://line.me/R/ti/p/%40ichikawa.ichigoen' }] },
+      { name: '内田農園', addr: '秩父市寺尾2307', tel: '0494-23-9603', area: '秩父市', partner: false, lat: 36.025261, lng: 139.085419, links: [{ type: 'web', url: 'https://uchida15farm.com/' }, { type: 'instagram', url: 'https://www.instagram.com/uchidastrawberryfarm/' }, { type: 'facebook', url: 'https://www.facebook.com/uchida15/' }] },
+      { name: '太田観光農園', addr: '秩父市太田2364', tel: '0494-62-0880', area: '秩父市', partner: true, lat: 36.056049, lng: 139.06572, links: [{ type: 'web', url: 'https://ohta-ichigo.org/' }] },
+      { name: 'けや木農園', addr: '秩父市寺尾630', tel: '0494-26-6320', area: '秩父市', partner: false, lat: 36.041698, lng: 139.091812, links: [{ type: 'web', url: 'http://www.chichibu.ne.jp/~yasuhiko/' }, { type: 'instagram', url: 'https://www.instagram.com/ccbichigo_keyakinouen/' }] },
+      { name: '秩父フルーツファーム', addr: '秩父市下影森877-1', tel: '0494-23-2711', area: '秩父市', partner: true, lat: 35.978172, lng: 139.07402, links: [{ type: 'web', url: 'https://www.fruit-farm.jp/' }, { type: 'x', url: 'https://x.com/chichibu_fruit' }] },
+      { name: '中蒔田・富田農園', addr: '秩父市蒔田1666', tel: '0494-23-9210', area: '秩父市', partner: false, lat: 36.035313, lng: 139.074341, links: [{ type: 'web', url: 'https://tomitanouen.web.fc2.com/' }, { type: 'x', url: 'https://x.com/w7JT0bpg09m037O' }] },
+      { name: '福島いちご園', addr: '秩父市寺尾2145', tel: '0494-23-9054', area: '秩父市', partner: true, lat: 36.01712, lng: 139.081223, links: [{ type: 'web', url: 'https://coro-2940.wixsite.com/fukusima-ichigo' }] },
+      { name: '八木観光農園', addr: '秩父市寺尾3287', tel: '0494-23-9035', area: '秩父市', partner: true, lat: 36.012753, lng: 139.070923, links: [{ type: 'web', url: 'https://chichibu-yaginouen.jp/' }, { type: 'instagram', url: 'https://www.instagram.com/yagitouristfarm/' }] },
+      { name: "M's BERRY", addr: '秩父市田村91-1', tel: '0494-23-9704', area: '秩父市', partner: true, lat: 36.016918, lng: 139.061996, links: [{ type: 'web', url: 'https://msberry.jp/' }, { type: 'instagram', url: 'https://www.instagram.com/ms_berry15/' }, { type: 'line', url: 'https://page.line.me/401tiuki' }] },
+      { name: '和銅農園', addr: '秩父市黒谷457-3', tel: '0494-25-4733', area: '秩父市', partner: false, lat: 36.045376, lng: 139.103256, links: [{ type: 'web', url: 'https://www.wado-nouen.jp/' }, { type: 'instagram', url: 'https://www.instagram.com/wadounouen15/' }, { type: 'x', url: 'https://x.com/wadounouen15' }] },
       { name: '石井園', addr: '秩父市荒川日野695', tel: '0494-54-1762', area: '秩父市', partner: false, lat: 35.928349, lng: 139.005371 },
-      { name: '将門園', addr: '秩父市荒川日野584', tel: '0494-54-1699', area: '秩父市', partner: false, lat: 35.928349, lng: 139.005371 },
-      { name: 'いちごの森 あかずきん', addr: '秩父市下吉田4106', tel: '', area: '秩父市', partner: false, lat: 36.037281, lng: 139.025421 }
+      { name: '将門園', addr: '秩父市荒川日野584', tel: '0494-54-1699', area: '秩父市', partner: false, lat: 35.928349, lng: 139.005371, links: [{ type: 'web', url: 'https://masakadoen.com/' }] },
+      { name: 'いちごの森 あかずきん', addr: '秩父市下吉田4106', tel: '', area: '秩父市', partner: false, lat: 36.037281, lng: 139.025421, links: [{ type: 'web', url: 'http://www.ichigonomori-akazukin.com/' }, { type: 'instagram', url: 'https://www.instagram.com/ichigonomori_akazukin/' }] }
     ];
   </script>
 
@@ -304,22 +334,46 @@
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
+    // いちご型のピン（連携農家は濃いいちご色、それ以外はうすピンク）
+    function berryIcon(partner) {
+      const body = partner ? '#C92A57' : '#F4A7BB';
+      const seed = partner ? '#F7E38A' : '#fff';
+      const svg = '<svg viewBox="0 0 100 110" width="30" height="33" aria-hidden="true">' +
+        '<path d="M50 30C75 25 95 39 93 62C91 86 68 107 50 108C32 107 9 86 7 62C5 39 25 25 50 30Z" fill="' + body + '" stroke="#fff" stroke-width="6"/>' +
+        '<g fill="' + seed + '"><ellipse cx="32" cy="56" rx="3.5" ry="5"/><ellipse cx="50" cy="52" rx="3.5" ry="5"/><ellipse cx="68" cy="56" rx="3.5" ry="5"/><ellipse cx="40" cy="74" rx="3.5" ry="5"/><ellipse cx="60" cy="74" rx="3.5" ry="5"/><ellipse cx="50" cy="92" rx="3.5" ry="5"/></g>' +
+        '<path d="M50 36C42 22 26 23 18 33C30 33 39 36 45 42Z M50 36C58 22 74 23 82 33C70 33 61 36 55 42Z M50 40C44 30 44 22 50 16C56 22 56 30 50 40Z" fill="#7DB343" stroke="#fff" stroke-width="3"/>' +
+        '</svg>';
+      return L.divIcon({ html: svg, className: 'berry-pin' + (partner ? ' is-partner' : ''), iconSize: [30, 33], iconAnchor: [15, 31], popupAnchor: [0, -28] });
+    }
+
+    // 農家さんの公式サイト・SNS へのボタン（links: [{type, url}]）
+    const LINK_META = {
+      web:       { label: 'ウェブサイト', path: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/>', stroke: true },
+      instagram: { label: 'Instagram', path: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/>', stroke: true },
+      x:         { label: 'X', path: '<path d="M4 4l16 16M20 4L4 20"/>', stroke: true },
+      facebook:  { label: 'Facebook', path: '<path d="M14 8h3V4h-3a4 4 0 00-4 4v2H7v4h3v6h4v-6h3l1-4h-4V8z"/>', stroke: true },
+      line:      { label: 'LINE', path: '<path d="M12 4C7 4 3 7.2 3 11.2c0 3.6 3.2 6.6 7.6 7.1-.2.9-.6 2.2-.7 2.5 0 .3.2.4.5.2 2.5-1.6 6.6-4.4 7.8-5.8 1.2-1.2 1.8-2.6 1.8-4C21 7.2 17 4 12 4z"/>', stroke: true },
+    };
+    function linkIcons(f, cls) {
+      if (!f.links || !f.links.length) return '';
+      return '<div class="' + cls + '">' + f.links.map(l => {
+        const m = LINK_META[l.type]; if (!m) return '';
+        return '<a href="' + l.url + '" target="_blank" rel="noopener" class="farm-link" aria-label="' + f.name + 'の' + m.label + '（新しいタブ）" title="' + m.label + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + m.path + '</svg></a>';
+      }).join('') + '</div>';
+    }
+
     // マーカー
     const markers = [];
     FARMS.forEach((f, i) => {
       const gmaps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.name + ' 埼玉県' + f.addr);
-      const m = L.circleMarker([f.lat, f.lng], {
-        radius: 9,
-        fillColor: '#C92A57',
-        color: '#ffffff',
-        weight: 2,
-        fillOpacity: 0.95
-      }).addTo(map);
+      const m = L.marker([f.lat, f.lng], { icon: berryIcon(f.partner), title: f.name, riseOnHover: true }).addTo(map);
       m.bindPopup(
         '<div class="farm-popup">' +
-        '<span class="fp-partner">いちご大學 連携農家</span><br>' +
+        (f.partner ? '<span class="fp-partner">いちご大學 連携農家</span><br>' : '') +
         '<span class="fp-name">' + f.name + '</span>' +
         '<div class="fp-addr">' + f.area + '・' + f.addr + (f.tel ? '<br>TEL: ' + f.tel : '') + '</div>' +
+        linkIcons(f, 'fp-links') +
         '<a href="' + gmaps + '" target="_blank" rel="noopener">Googleマップで見る →</a>' +
         '</div>'
       );
@@ -339,10 +393,12 @@
         card.innerHTML =
           '<div class="flex items-start justify-between gap-2 mb-2">' +
             '<h3 class="text-base font-bold text-ink leading-snug">' + f.name + '</h3>' +
+            (f.partner ? '<span class="farm-badge">連携農家</span>' : '') +
           '</div>' +
           '<p class="text-xs text-mute mb-1">' + f.area + '</p>' +
           '<p class="text-sm text-mute mb-1">' + f.addr + '</p>' +
           (f.tel ? '<p class="text-sm text-mute mb-3">TEL: <a href="tel:' + f.tel.replace(/-/g,'') + '" class="hover:text-ichigo">' + f.tel + '</a></p>' : '<p class="text-sm text-mute mb-3">&nbsp;</p>') +
+          linkIcons(f, 'farm-links') +
           '<div class="flex items-center gap-4">' +
             '<a href="' + gmaps + '" target="_blank" rel="noopener" class="text-xs font-bold text-ichigo hover:underline">Googleマップ →</a>' +
             '<button class="text-xs font-bold text-ink hover:text-ichigo focus-pin" data-i="' + FARMS.indexOf(f) + '">地図でみる ↑</button>' +
@@ -390,6 +446,7 @@
     }
   </script>
 
+  <script src="js/topics.js" defer></script>
   <script src="js/recruit.js" defer></script>
   <script src="js/soft.js" defer></script>
 </body>
