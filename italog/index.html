@@ -228,8 +228,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/style.css?v=3" />
-<link rel="preload" as="image" href="/assets/img/photos/_dsc1232_hero.webp" fetchpriority="high" />
+<link rel="stylesheet" href="/assets/css/style.css?v=4" />
+<link rel="preload" as="image" href="/assets/img/photos/img_8137_bg.webp" fetchpriority="high" />
 </head>
 <body class="bg-white text-body antialiased">
 
@@ -253,73 +253,112 @@
   </div>
 </header>
 
-<!-- ============= HERO ============= -->
+<!-- ============= HERO (2026 renewal: amber field × drafting lines) ============= -->
 <section id="top" class="relative">
-  <div class="hero-image relative min-h-[720px] lg:min-h-[820px] flex items-center overflow-hidden">
-    <!-- Ambient steam wisps (subtle background animation) -->
+  <div class="field-amber grain relative min-h-[780px] lg:min-h-[880px] overflow-hidden pb-10 lg:pb-16">
+
+    <!-- Drafting-line art: streamlines, construction circles, diagonals -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <svg viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-        <!-- Top wisp (amber, more visible) -->
-        <path class="hero-wisp" d="M-50,160 Q300,60 700,180 T1500,230"
-              stroke="#fbbf24" stroke-width="1.5" fill="none" opacity="0.40" stroke-linecap="round"/>
-        <!-- Middle wisp (white subtle) -->
-        <path class="hero-wisp-slow" d="M-50,400 Q420,360 820,440 T1500,400"
-              stroke="#fff" stroke-width="1" fill="none" opacity="0.18" stroke-linecap="round"/>
-        <!-- Lower wisp (amber, slow) -->
-        <path class="hero-wisp-slow" d="M-50,640 Q480,560 1000,660 T1500,610"
-              stroke="#fbbf24" stroke-width="1" fill="none" opacity="0.25" stroke-linecap="round"/>
-        <!-- Faint upper-left swirl arc -->
-        <path class="hero-wisp-faster" d="M-30,90 Q150,40 320,90"
-              stroke="#fbbf24" stroke-width="1.2" fill="none" opacity="0.35" stroke-linecap="round"/>
-        <!-- Pulsing vortex hint (lower-right) -->
-        <circle class="vortex" cx="1180" cy="540" r="5" fill="#fbbf24" opacity="0.5"/>
-        <circle class="vortex vortex-d2" cx="1230" cy="580" r="3.5" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity="0.4"/>
-        <circle class="vortex vortex-d4" cx="1260" cy="540" r="3" fill="none" stroke="#fbbf24" stroke-width="1.2" opacity="0.3"/>
+      <svg viewBox="0 0 1440 880" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+        <!-- construction diagonals -->
+        <line x1="0" y1="0" x2="1440" y2="880" stroke="#f6f1e8" stroke-width="1" opacity="0.10"/>
+        <line x1="1440" y1="0" x2="0" y2="880" stroke="#f6f1e8" stroke-width="1" opacity="0.08"/>
+        <line x1="720" y1="0" x2="720" y2="880" stroke="#f6f1e8" stroke-width="1" opacity="0.06"/>
+        <!-- construction circles (compass strokes) -->
+        <circle cx="1020" cy="330" r="230" fill="none" stroke="#f6f1e8" stroke-width="1.2" opacity="0.20"/>
+        <circle cx="1020" cy="330" r="150" fill="none" stroke="#f6f1e8" stroke-width="1" opacity="0.14"/>
+        <circle cx="240" cy="700" r="180" fill="none" stroke="#f6f1e8" stroke-width="1" opacity="0.12"/>
+        <!-- crosshair at circle center -->
+        <line x1="1000" y1="330" x2="1040" y2="330" stroke="#f6f1e8" stroke-width="1" opacity="0.35"/>
+        <line x1="1020" y1="310" x2="1020" y2="350" stroke="#f6f1e8" stroke-width="1" opacity="0.35"/>
+        <!-- flowing streamlines (existing animation vocabulary, drafting-thin) -->
+        <path class="hero-wisp" d="M-50,200 Q300,90 700,210 T1500,260"
+              stroke="#f6f1e8" stroke-width="1.2" fill="none" opacity="0.35" stroke-linecap="round"/>
+        <path class="hero-wisp-slow" d="M-50,460 Q420,410 820,490 T1500,450"
+              stroke="#f6f1e8" stroke-width="1" fill="none" opacity="0.22" stroke-linecap="round"/>
+        <path class="hero-wisp-slow" d="M-50,690 Q480,610 1000,710 T1500,660"
+              stroke="#f6f1e8" stroke-width="1" fill="none" opacity="0.18" stroke-linecap="round"/>
+        <!-- karman vortex chain along a streamline -->
+        <circle class="vortex" cx="1120" cy="560" r="6" fill="none" stroke="#f6f1e8" stroke-width="1.2" opacity="0.45"/>
+        <circle class="vortex vortex-d2" cx="1180" cy="590" r="4.5" fill="none" stroke="#f6f1e8" stroke-width="1" opacity="0.35"/>
+        <circle class="vortex vortex-d4" cx="1235" cy="560" r="3.5" fill="none" stroke="#f6f1e8" stroke-width="1" opacity="0.28"/>
       </svg>
     </div>
 
-    <!-- ITaLOG logo (large, top-right pamphlet style) — transparent PNG inverted to white -->
-    <img src="assets/img/logo/italog_logo_t_512.png" width="512" height="512" alt="" aria-hidden="true" class="absolute top-6 right-6 lg:top-10 lg:right-10 w-20 lg:w-32 opacity-95 drop-shadow-lg z-10" style="filter: invert(1);" />
+    <!-- Top annotation row: date/coordinates (left) + logo (right) -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-7 flex items-start justify-between">
+      <div class="annot text-white/75 leading-loose">
+        ITaLOG SAUNA<br />
+        YOKOZE, SAITAMA — 35.99°N 139.12°E
+      </div>
+      <img src="assets/img/logo/italog_logo_t_512.png" width="512" height="512" alt="" aria-hidden="true" class="w-16 lg:w-24 opacity-95 drop-shadow-lg" style="filter: invert(1);" />
+    </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white">
-      <div class="lg:flex lg:items-end lg:justify-between lg:gap-12">
-        <div class="max-w-2xl">
-          <span class="pill-label-light mb-8">SAUNA HUT / 製品情報</span>
-          <h1 class="mt-4 text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] mb-8 tracking-tight">
-            常軌を逸した<br/>蒸気の<br/>サウナ小屋
-          </h1>
-          <p class="text-base lg:text-lg leading-relaxed-jp max-w-xl text-white/90">
-            元エンジン開発エンジニアが流体力学から設計した、<br class="hidden sm:block" />
-            国産木材のサウナ小屋。<br/>
-            蒸気が身体を巡る設計で、少ないロウリュでも<br class="hidden sm:block" />
-            足元まで均一に温まる。
-          </p>
-          <div class="mt-10 flex flex-wrap gap-3">
-            <a href="#contact" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-white text-slate-900 rounded-full hover:bg-gray-100 cursor-pointer transition-colors">
-              導入のご相談
-              <svg class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a href="#science" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-transparent text-white border border-white/60 rounded-full hover:bg-white/10 cursor-pointer transition-colors">
-              技術を見る
-            </a>
+    <!-- Floating title card (bottom-left, Amita-style) -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mt-10 lg:mt-16">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-end">
+
+        <div class="lg:col-span-7">
+          <div class="bg-paper rounded-3xl p-8 lg:p-12 shadow-xl">
+            <span class="pill-label mb-6">SAUNA HUT / 製品情報</span>
+            <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-ink">
+              常軌を逸した<br class="sm:hidden" />蒸気の、<br />サウナ小屋。
+            </h1>
+            <p class="mt-7 text-base lg:text-lg leading-relaxed-jp text-body">
+              元エンジン開発エンジニアが流体力学から設計した、国産木材のサウナ小屋。
+              蒸気が身体を巡る設計で、少ないロウリュでも足元まで均一に温まる。
+            </p>
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#contact" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-ink text-white rounded-full hover:opacity-90 cursor-pointer transition-opacity">
+                導入のご相談
+                <svg class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#science" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-transparent text-ink border border-slate-400 rounded-full hover:bg-black/5 cursor-pointer transition-colors">
+                技術を見る
+              </a>
+            </div>
           </div>
         </div>
-        <!-- Right-side awards in vertical writing on desktop -->
-        <div class="mt-12 lg:mt-0 flex flex-wrap lg:flex-col gap-x-8 gap-y-4 text-sm text-white/85 lg:items-end">
-          <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-white/70"></span>
-            ウッドデザイン賞 2023・2024 受賞
-          </span>
-          <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-white/70"></span>
-            『大人の科学マガジン Special』掲載
-          </span>
+
+        <div class="lg:col-span-5 mt-6 lg:mt-0 flex flex-col gap-6">
+          <!-- Keywords card (Trending Keywords homage) -->
+          <div class="bg-ink/90 backdrop-blur-sm rounded-3xl p-6 lg:p-7 shadow-xl">
+            <p class="annot text-white/60 mb-4">Keywords</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip"># 流体力学</span>
+              <span class="chip"># カルマン渦</span>
+              <span class="chip"># スワール流</span>
+              <span class="chip"># 国産材</span>
+              <span class="chip"># 地産地消</span>
+              <span class="chip"># ロウリュ30cc</span>
+            </div>
+            <div class="mt-5 pt-5 border-t border-white/15 flex flex-col gap-2 text-sm text-white/85">
+              <span class="inline-flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-amber-400"></span>
+                ウッドデザイン賞 2023・2024 受賞
+              </span>
+              <span class="inline-flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-amber-400"></span>
+                『大人の科学マガジン Special』掲載
+              </span>
+            </div>
+          </div>
+          <!-- Interior photo card -->
+          <div class="rounded-3xl overflow-hidden shadow-xl hidden lg:block">
+            <picture class="block">
+              <source srcset="assets/img/photos/_dsc1232.webp" type="image/webp" />
+              <img src="assets/img/photos/_dsc1232.jpg" width="1800" height="1200" alt="ITaLOG SAUNA の内観 — 流体力学で設計された波形ベンチとサウナストーブ" class="w-full h-52 object-cover" fetchpriority="high" />
+            </picture>
+          </div>
         </div>
+
       </div>
     </div>
-    <!-- Bottom subtitle bar like pamphlet -->
-    <div class="absolute left-0 right-0 bottom-0 hidden lg:flex items-center justify-center pb-6 text-xs tracking-[0.5em] text-white/50">
-      ITaLOG · TATE Lab. · Yokoze, Saitama
+
+    <!-- Bottom annotation: spec dims, drafting style -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mt-8 hidden lg:flex items-center justify-between annot text-white/60">
+      <span>W1,820 × D1,820 × H1,900 mm — 4-6 PERSONS</span>
+      <span>TATE Lab. — DESIGNED WITH FLUID DYNAMICS</span>
     </div>
   </div>
 </section>
@@ -420,7 +459,7 @@
     </div>
 
     <!-- ============= DRAMATIC SOLUTION REVEAL ============= -->
-    <div class="my-16 lg:my-24 bg-ink text-white rounded-3xl p-8 lg:p-14 xl:p-16 relative overflow-hidden">
+    <div class="my-16 lg:my-24 bg-ink graph-bg text-white rounded-3xl p-8 lg:p-14 xl:p-16 relative overflow-hidden">
       <!-- subtle plywood texture overlay -->
       <div class="absolute inset-0 bg-plywood-dark opacity-40 rounded-3xl pointer-events-none"></div>
 
@@ -604,7 +643,7 @@
           </thead>
           <tbody class="divide-y divide-slate-200">
             <tr><td class="py-4 px-5 text-slate-700 font-medium">利用人数</td><td class="py-4 px-5 text-slate-900">4〜6人</td></tr>
-            <tr><td class="py-4 px-5 text-slate-700 font-medium">サウナ室サイズ</td><td class="py-4 px-5 text-slate-900">W 1,820 × D 1,820 × H 1,900 mm</td></tr>
+            <tr><td class="py-4 px-5 text-slate-700 font-medium">サウナ室サイズ</td><td class="py-4 px-5 text-slate-900 mono">W 1,820 × D 1,820 × H 1,900 mm</td></tr>
             <tr><td class="py-4 px-5 text-slate-700 font-medium">使用木材</td><td class="py-4 px-5 text-slate-900">埼玉県産 針葉樹合板（スギ・ヒノキ）</td></tr>
             <tr><td class="py-4 px-5 text-slate-700 font-medium">特徴</td><td class="py-4 px-5 text-slate-900">石油系断熱材ゼロ／無塗装／密閉性の高い合板構造</td></tr>
             <tr><td class="py-4 px-5 text-slate-700 font-medium">想定設置場所</td><td class="py-4 px-5 text-slate-900">屋内・屋外（軒下・テラス下を推奨）</td></tr>
@@ -620,11 +659,11 @@
           <div class="space-y-3">
             <div class="flex items-baseline justify-between border-b border-slate-300 pb-3">
               <span class="text-sm text-slate-700">ストーブなし</span>
-              <span class="text-2xl font-bold text-ink step-num">¥2,000,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
+              <span class="text-2xl font-bold text-ink step-num mono">¥2,000,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
             </div>
             <div class="flex items-baseline justify-between">
               <span class="text-sm text-slate-700">ストーブあり</span>
-              <span class="text-2xl font-bold text-ink step-num">¥2,500,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
+              <span class="text-2xl font-bold text-ink step-num mono">¥2,500,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
             </div>
           </div>
           <p class="mt-5 text-xs text-slate-500 leading-relaxed">
