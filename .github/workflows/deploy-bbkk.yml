@@ -1,0 +1,31 @@
+name: Deploy BBKK (bbkk.llschema.com)
+
+on:
+  push:
+    paths:
+      - 'bbkk/**'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # ConoHa WING の SSH 一時停止（CVE-2026-43499 対応）のため、他サイトと同じく FTPS でデプロイ。
+      - name: Deploy to ConoHa WING (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: www194.conoha.ne.jp
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: bbkk/
+          server-dir: public_html/bbkk.llschema.com/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/_old/**
