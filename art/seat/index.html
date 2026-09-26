@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>座席のご予約｜CAC 2027</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#292a27;--muted:#5f625a;--line:#d3d2cb;--paper:#f5f4ef;--kon:#2e3452;--shu:#b65a38;
+  --serif:'Noto Serif JP','Yu Mincho',serif;--seat-free:#fff;--seat-line:#8d92a0;--seat-taken:#dcdad3}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:500 16px/2 'Noto Sans JP','Yu Gothic',Meiryo,sans-serif}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--kon);outline-offset:3px}
+header{display:flex;align-items:center;gap:14px;padding:16px 4%;border-bottom:1px solid #eee}
+header img{width:84px;height:38px}
+header span{font:500 11px/1.6 var(--serif);letter-spacing:.12em}
+main{max-width:1180px;margin:auto;padding:40px 4% 140px}
+.eyebrow{font-size:12px;letter-spacing:.2em;color:var(--kon);margin:0}
+h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6px 0 18px}
+.lead{margin:0 0 6px}
+.note{font-size:14px;color:var(--muted);margin:0}
+.panel{margin:28px 0;padding:20px 22px;background:var(--paper);border-radius:4px}
+.tickets{display:flex;flex-wrap:wrap;gap:10px 34px;margin:0;padding:0;list-style:none;font-size:15px}
+.tickets b{font-weight:700}
+.msg{margin:22px 0;padding:14px 18px;border:1px solid;border-radius:4px;font-size:15px;line-height:1.8}
+.msg.error{border-color:#e3b9ae;background:#fbf1ee;color:#7c2f1d}
+.msg.ok{border-color:#b9c3dd;background:#f0f3fa;color:var(--kon)}
+.msg[hidden]{display:none}
+
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-top:34px;overflow-x:auto}
+.tabs button{border:0;background:none;padding:12px 18px 10px;font-size:15px;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--kon);border-bottom-color:var(--kon);font-weight:700}
+.tabs button small{display:block;font-size:12px;font-weight:500;line-height:1.4}
+.floors{display:flex;gap:8px;margin:16px 0 0}
+.floors button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 16px;font-size:14px}
+.floors button[aria-pressed="true"]{background:var(--kon);border-color:var(--kon);color:#fff}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:18px 0 10px;font-size:13px;color:var(--muted);padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend i{width:18px;height:16px;border-radius:4px 4px 2px 2px;display:inline-block;border:1px solid var(--seat-line);background:var(--seat-free)}
+.legend .l-sel{background:var(--kon);border-color:var(--kon)}
+.legend .l-taken{background:var(--seat-taken);border-color:var(--seat-taken)}
+.legend .l-wc{background:#eef0f6;border-color:#b7bccb}
+
+.mapbar{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.zoom{display:flex;gap:6px}
+.zoom button{width:36px;height:36px;border:1px solid var(--line);background:#fff;border-radius:4px;font-size:18px;line-height:1}
+.map{overflow:auto;border:1px solid var(--line);border-radius:4px;background:#fbfbf8;margin-top:8px;max-height:72vh;-webkit-overflow-scrolling:touch}
+.map svg{display:block;margin:0 auto}
+.s rect{fill:var(--seat-free);stroke:var(--seat-line);stroke-width:1;transition:fill .15s}
+.s text{font:500 9px 'Noto Sans JP',sans-serif;fill:#5b5f6b;pointer-events:none;text-anchor:middle}
+.s{cursor:pointer}
+.s:hover rect{fill:#e6e9f2}
+.s.sel rect{fill:var(--kon);stroke:var(--kon)}
+.s.sel text{fill:#fff}
+.s.taken{cursor:not-allowed}
+.s.taken rect{fill:var(--seat-taken);stroke:var(--seat-taken)}
+.s.taken text{fill:#b3b1a9}
+.s.wc{cursor:default}
+.s.wc rect{fill:#eef0f6;stroke:#b7bccb}
+.s:focus{outline:none}
+.s:focus-visible rect{stroke:var(--shu);stroke-width:2.5}
+.rowlabel{font:500 10px 'Noto Sans JP',sans-serif;fill:var(--shu);text-anchor:middle}
+.stage rect{fill:#e9e7df}
+.stage text{font:500 12px 'Noto Sans JP',sans-serif;fill:var(--muted);text-anchor:middle;letter-spacing:.4em}
+.door{font:500 10px 'Noto Sans JP',sans-serif;fill:#9a978d;text-anchor:middle}
+
+/* 画面下に固定する、選んだ席と予約ボタン */
+.dock{position:fixed;left:0;right:0;bottom:0;background:#fffffff7;border-top:1px solid var(--line);box-shadow:0 -10px 30px #0000000d;z-index:5}
+.dock-in{max-width:1180px;margin:auto;padding:12px 4%;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.dock-sum{flex:1;min-width:220px;line-height:1.6}
+.dock-sum strong{font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.chips button{border:1px solid #b9c3dd;background:#f0f3fa;color:var(--kon);border-radius:999px;padding:1px 10px;font-size:13px}
+.chips em{font-style:normal;font-size:13px;color:var(--muted)}
+.save{height:48px;padding:0 28px;border:0;border-radius:4px;background:var(--kon);color:#fff;font-weight:700;font-size:15px}
+.save:disabled{background:#b8bbc4;cursor:not-allowed}
+.demo{position:fixed;top:10px;right:10px;background:var(--shu);color:#fff;font-size:12px;padding:2px 10px;border-radius:999px;z-index:9}
+.contact{margin-top:40px;font-size:14px;color:var(--muted)}
+[hidden]{display:none!important}
+@media(max-width:700px){main{padding-top:28px}.panel{padding:16px}.save{width:100%}.dock-sum{min-width:0;flex-basis:100%}}
+@media (prefers-reduced-motion:reduce){.s rect{transition:none}}
+</style>
+</head>
+<body>
+<header>
+<a href="../index.html"><img src="../logo.svg" alt="CAC CHICHIBU ART CREATION"></a>
+<span>ちちぶアート<br>クリエーション 2027</span>
+</header>
+
+<main>
+<p class="eyebrow">SEAT RESERVATION</p>
+<h1>座席のご予約</h1>
+
+<div id="loading"><p class="note">読み込んでいます…</p></div>
+
+<div id="app" hidden>
+  <p class="lead"><span id="who"></span> 様　チケットのご購入ありがとうございます。<br>ご来場になる日ごとに、お好きな席をお選びください。</p>
+  <p class="note" id="deadline"></p>
+
+  <div class="panel">
+    <ul class="tickets" id="tickets"></ul>
+  </div>
+
+  <div class="msg" id="msg" role="status" aria-live="polite" hidden></div>
+
+  <div class="tabs" role="tablist" id="days"></div>
+  <div class="floors" id="floors" hidden></div>
+
+  <ul class="legend">
+    <li><i></i>空席</li>
+    <li><i class="l-sel"></i>選んでいる席</li>
+    <li><i class="l-taken"></i>予約済み</li>
+    <li><i class="l-wc"></i>車椅子席（お問い合わせください）</li>
+  </ul>
+  <div class="mapbar">
+    <span>席を押すと選べます。もう一度押すと外れます。</span>
+    <div class="zoom">
+      <button type="button" id="zout" aria-label="縮小">−</button>
+      <button type="button" id="zin" aria-label="拡大">＋</button>
+    </div>
+  </div>
+  <div class="map" id="map"></div>
+
+  <p class="contact">車椅子席のご利用、席についてのご相談は <a href="mailto:chichibu.art@gmail.com">chichibu.art@gmail.com</a> までお知らせください。</p>
+</div>
+
+<div id="fatal" hidden>
+  <div class="msg error" id="fatal-msg"></div>
+  <p class="contact">お心当たりのない場合は <a href="mailto:chichibu.art@gmail.com">chichibu.art@gmail.com</a> までお問い合わせください。</p>
+</div>
+</main>
+
+<div class="dock" id="dock" hidden>
+  <div class="dock-in">
+    <div class="dock-sum">
+      <strong id="dock-title"></strong>
+      <div class="chips" id="chips"></div>
+    </div>
+    <button type="button" class="save" id="save">この席で予約する</button>
+  </div>
+</div>
+
+<script src="seats.js"></script>
+<script>
+(function(){
+  /* ここに Apps Script の「ウェブアプリのURL」を入れる。空のあいだは試用（デモ）で動く */
+  var API='';
+
+  var DAYS={sat:{label:'11月6日（土）'},sun:{label:'11月7日（日）'}};
+  var HALL=window.CAC_HALL,U=24;
+  var q=new URLSearchParams(location.search),CODE=(q.get('c')||'').trim().toUpperCase();
+  var DEMO=!API||q.has('demo');
+  var S={state:null,day:null,floor:'1F',sel:{},scale:0,busy:false};
+  var $=function(id){return document.getElementById(id);};
+
+  /* ---------- 通信（デモのときはこの端末の中だけで動かす） ---------- */
+  function api(method,body){
+    if(DEMO)return demo(method,body);
+    var url=API+'?a=state&c='+encodeURIComponent(CODE);
+    var opt=method==='GET'?{}:{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)};
+    return fetch(method==='GET'?url:API,opt).then(function(r){return r.json();});
+  }
+  function demo(method,body){
+    var key='cac-seat-demo',d;
+    try{d=JSON.parse(localStorage.getItem(key)||'null');}catch(e){}
+    if(!d){
+      d={mine:{sat:[],sun:[]},taken:{sat:[],sun:[]}};
+      var seed=7;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647;}
+      ['sat','sun'].forEach(function(day){all('1F').forEach(function(id){
+        var row=+id.split('-')[1];if(rnd()<(row<9?.62:row<15?.4:.18))d.taken[day].push(id);});});
+    }
+    if(method==='POST'){
+      var clash=body.seats.filter(function(id){return d.taken[body.day].indexOf(id)>=0;});
+      if(clash.length)return Promise.resolve({ok:false,error:'taken',seats:clash,state:st()});
+      d.mine[body.day]=body.seats.slice();
+    }
+    try{localStorage.setItem(key,JSON.stringify(d));}catch(e){}
+    function st(){return {ok:true,name:'秩父 はなこ（試用）',deadline:'2027年11月3日（水・祝）',closed:false,
+      quota:{sat:{'1F':2,'2F':0},sun:{'1F':2,'2F':0}},mine:d.mine,taken:d.taken};}
+    return new Promise(function(r){setTimeout(function(){r(st());},250);});
+  }
+  function all(floor){
+    var out=[];HALL[floor].rows.forEach(function(r){
+      [r[1],r[2],r[3]].forEach(function(b){if(!b)return;for(var n=b[0];n<=b[1];n++)if(!(r[4]&&r[4].indexOf(n)>=0))out.push(floor+'-'+r[0]+'-'+n);});});
+    return out;
+  }
+  function label(id){var p=id.split('-');return (p[0]==='2F'?'2階 ':'')+p[1]+'列 '+p[2]+'番';}
+  function sortIds(a){return a.slice().sort(function(x,y){var p=x.split('-'),q=y.split('-');return p[0].localeCompare(q[0])||p[1]-q[1]||p[2]-q[2];});}
+
+  /* ---------- 画面 ---------- */
+  function fatal(t){$('loading').hidden=true;$('app').hidden=true;$('dock').hidden=true;$('fatal').hidden=false;$('fatal-msg').textContent=t;}
+  function say(t,kind){var m=$('msg');m.hidden=!t;m.textContent=t||'';m.className='msg '+(kind||'ok');}
+  function quota(day,floor){var qd=S.state.quota[day]||{};return floor?(qd[floor]||0):(qd['1F']||0)+(qd['2F']||0);}
+  function floorsOf(day){return ['1F','2F'].filter(function(f){return quota(day,f)>0;});}
+
+  function load(keepSel){
+    return api('GET').then(function(s){
+      if(!s.ok){fatal(s.message||'このリンクは使えません。');return;}
+      S.state=s;
+      Object.keys(DAYS).forEach(function(d){if(!keepSel||!S.sel[d])S.sel[d]=(s.mine[d]||[]).slice();});
+      if(!S.day||!quota(S.day))S.day=Object.keys(DAYS).filter(function(d){return quota(d)>0;})[0];
+      if(!S.day){fatal('ご予約いただける席がありません。お手数ですがお問い合わせください。');return;}
+      if(!quota(S.day,S.floor))S.floor=floorsOf(S.day)[0];
+      $('loading').hidden=true;$('app').hidden=false;$('dock').hidden=false;
+      render();
+    }).catch(function(){fatal('通信できませんでした。時間をおいて、もう一度開いてください。');});
+  }
+
+  function render(){
+    var s=S.state;
+    $('who').textContent=s.name;
+    $('deadline').textContent=s.closed?'座席の変更の受付は終了しました。ご予約の席は下のとおりです。':
+      '席の変更は '+s.deadline+' まで、このページから何度でもできます。';
+    $('tickets').innerHTML=Object.keys(DAYS).filter(function(d){return quota(d)>0;}).map(function(d){
+      var mine=s.mine[d]||[],n=quota(d);
+      return '<li><b>'+DAYS[d].label+'</b>　'+floorsOf(d).map(function(f){return HALL[f].name+' '+quota(d,f)+'枚';}).join('・')+
+        '　<span class="note">'+(mine.length?'予約済み：'+sortIds(mine).map(label).join('、'):'まだ席を選んでいません')+'</span></li>';
+    }).join('');
+    $('days').innerHTML=Object.keys(DAYS).filter(function(d){return quota(d)>0;}).map(function(d){
+      return '<button type="button" role="tab" aria-selected="'+(d===S.day)+'" data-day="'+d+'">'+DAYS[d].label+'</button>';}).join('');
+    var fl=floorsOf(S.day);$('floors').hidden=fl.length<2;
+    $('floors').innerHTML=fl.map(function(f){return '<button type="button" aria-pressed="'+(f===S.floor)+'" data-floor="'+f+'">'+HALL[f].name+'</button>';}).join('');
+    draw();dock();
+  }
+
+  function draw(){
+    var F=HALL[S.floor],rows=F.rows,taken=S.state.taken[S.day]||[],sel=S.sel[S.day];
+    /* 列番号はホールの座席表と同じく、ブロックの間の通路に置く */
+    var P=U*.6,A=U*1.7,L0=P,C0=L0+10*U+A,R0=C0+20*U+A,W=R0+10*U+P,xl=L0+10*U+A/2,xr=C0+20*U+A/2,top=U*3.2,rh=U*1.18,gap=U*.9;
+    var h=['<g class="stage"><rect x="'+(C0)+'" y="'+(U*.6)+'" width="'+(20*U)+'" height="'+(U*1.4)+'" rx="3"/><text x="'+(C0+10*U)+'" y="'+(U*1.55)+'">ステージ</text></g>'];
+    var y=top,maxY=0;
+    rows.forEach(function(r,i){
+      if(i>0&&rows[i-1][0]===F.aisleAfter)y+=gap;
+      h.push('<text class="rowlabel" x="'+xl+'" y="'+(y+U*.62)+'">'+r[0]+'列</text><text class="rowlabel" x="'+xr+'" y="'+(y+U*.62)+'">'+r[0]+'列</text>');
+      [[r[1],L0,1],[r[2],C0,11],[r[3],R0,31]].forEach(function(b){
+        if(!b[0])return;var off=(b[2]===11&&b[0][1]-b[0][0]===18)?U/2:0;
+        for(var n=b[0][0];n<=b[0][1];n++){
+          var x=b[1]+(n-b[2])*U+off,id=S.floor+'-'+r[0]+'-'+n,wc=r[4]&&r[4].indexOf(n)>=0;
+          var isSel=sel.indexOf(id)>=0,isTaken=!isSel&&taken.indexOf(id)>=0;
+          var cls='s'+(wc?' wc':isSel?' sel':isTaken?' taken':''),st=wc?'車椅子席':isSel?'選択中':isTaken?'予約済み':'空席';
+          h.push('<g class="'+cls+'" data-id="'+id+'"'+(wc||isTaken||S.state.closed?' aria-disabled="true"':' tabindex="0"')+' role="checkbox" aria-checked="'+isSel+'" aria-label="'+r[0]+'列 '+n+'番 '+st+'">'+
+            '<rect x="'+(x+2)+'" y="'+(y+2)+'" width="'+(U-4)+'" height="'+(U-5)+'" rx="4"/><text x="'+(x+U/2)+'" y="'+(y+U*.6)+'">'+(wc?'♿':n)+'</text></g>');
+        }
+      });
+      y+=rh;maxY=y;
+    });
+    h.push('<text class="door" x="'+(L0+3*U)+'" y="'+(maxY+U)+'">'+(S.floor==='1F'?'1L・2L 扉':'3L 扉')+'</text><text class="door" x="'+(R0+7*U)+'" y="'+(maxY+U)+'">'+(S.floor==='1F'?'1R・2R 扉':'3R 扉')+'</text>');
+    var H=maxY+U*1.6,map=$('map'),first=!map.firstChild;
+    /* はじめの大きさ：PCは全体が見える大きさ、スマホは席を押しやすい大きさ（横にスクロール） */
+    if(!S.scale){var fit=(map.clientWidth-20)/W;S.scale=fit>=.75?Math.min(1.1,fit):.8;}
+    map.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="'+Math.round(W*S.scale)+'" height="'+Math.round(H*S.scale)+'" role="group" aria-label="'+HALL[S.floor].name+'の座席表">'+h.join('')+'</svg>';
+    if(first){map.scrollLeft=(map.scrollWidth-map.clientWidth)/2;}
+  }
+
+  function dock(){
+    var sel=sortIds(S.sel[S.day]),n=quota(S.day),saved=sortIds(S.state.mine[S.day]||[]);
+    $('dock-title').textContent=DAYS[S.day].label+'　'+sel.length+' / '+n+' 席';
+    $('chips').innerHTML=sel.length?sel.map(function(id){return '<button type="button" data-id="'+id+'" aria-label="'+label(id)+'を外す">'+label(id)+' ×</button>';}).join(''):'<em>座席表から '+n+' 席お選びください</em>';
+    var same=sel.join()===saved.join();
+    $('save').disabled=S.busy||S.state.closed||sel.length!==n||same;
+    $('save').textContent=S.state.closed?'受付は終了しました':same&&saved.length?'この席で予約済みです':saved.length?'この席に変更する':'この席で予約する';
+  }
+
+  function toggle(id){
+    if(S.state.closed)return;
+    var sel=S.sel[S.day],i=sel.indexOf(id),f=id.split('-')[0];
+    if(i>=0){sel.splice(i,1);}
+    else{
+      var n=quota(S.day,f),inFloor=sel.filter(function(x){return x.split('-')[0]===f;});
+      if(inFloor.length>=n){
+        if(n===1){sel.splice(sel.indexOf(inFloor[0]),1);}
+        else{say('この日に選べるのは '+HALL[f].name+' '+n+' 席までです。ほかの席を外してから選んでください。','error');return;}
+      }
+      sel.push(id);
+    }
+    say('');draw();dock();
+  }
+
+  function save(){
+    var day=S.day,seats=sortIds(S.sel[day]);
+    S.busy=true;dock();$('save').textContent='予約しています…';
+    api('POST',{a:'save',c:CODE,day:day,seats:seats}).then(function(r){
+      S.busy=false;
+      if(r.state)S.state=r.state;
+      if(r.ok){S.state=r.state||r;say(DAYS[day].label+' の席を予約しました：'+seats.map(label).join('、')+(DEMO?'':'　確認のメールをお送りしました。'),'ok');}
+      else if(r.error==='taken'){
+        S.sel[day]=seats.filter(function(id){return r.seats.indexOf(id)<0;});
+        say('選んだ席のうち、'+r.seats.map(label).join('、')+' はほかの方が先に予約されました。別の席をお選びください。','error');
+      }else{say(r.message||'予約できませんでした。時間をおいて、もう一度お試しください。','error');}
+      render();
+    }).catch(function(){S.busy=false;dock();say('通信できませんでした。予約はまだ完了していません。もう一度お試しください。','error');});
+  }
+
+  /* ---------- 操作 ---------- */
+  $('map').addEventListener('click',function(e){var g=e.target.closest('.s');if(g&&!g.hasAttribute('aria-disabled'))toggle(g.dataset.id);});
+  $('map').addEventListener('keydown',function(e){var g=e.target.closest('.s');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();if(!g.hasAttribute('aria-disabled')){toggle(g.dataset.id);var n=$('map').querySelector('[data-id="'+g.dataset.id+'"]');n&&n.focus();}}});
+  $('chips').addEventListener('click',function(e){var b=e.target.closest('button');if(b)toggle(b.dataset.id);});
+  $('days').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;S.day=b.dataset.day;if(!quota(S.day,S.floor))S.floor=floorsOf(S.day)[0];say('');render();});
+  $('floors').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;S.floor=b.dataset.floor;render();});
+  $('save').addEventListener('click',save);
+  function zoom(k){var m=$('map'),cx=(m.scrollLeft+m.clientWidth/2)/m.scrollWidth;S.scale=Math.max(.45,Math.min(2.2,S.scale*k));draw();m.scrollLeft=cx*m.scrollWidth-m.clientWidth/2;}
+  $('zin').addEventListener('click',function(){zoom(1.25);});
+  $('zout').addEventListener('click',function(){zoom(.8);});
+  /* ほかの方の予約を反映するため、画面に戻ってきたときに読み直す（選びかけの席は残す） */
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&S.state&&!S.busy)load(true);});
+
+  if(DEMO){var d=document.createElement('div');d.className='demo';d.textContent='試用版';document.body.appendChild(d);}
+  if(!DEMO&&!CODE){fatal('このページは、チケットをご購入いただいた方にお送りしたリンクから開いてください。');return;}
+  load();
+})();
+</script>
+</body>
+</html>
