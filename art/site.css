@@ -819,3 +819,6 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 @media (prefers-reduced-motion:reduce){
   header nav a,#mobile-menu a,.footer-nav a,.footer-bottom a{transition-duration:.01s}
 }
+
+/* ロゴ横・フッターの名称：ロゴのセリフ体に合わせて明朝にする */
+.brand span,.footer-brand p{font-family:var(--serif);font-weight:500;letter-spacing:.12em}
