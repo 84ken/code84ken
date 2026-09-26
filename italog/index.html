@@ -228,7 +228,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Zen+Kaku+Gothic+Antique:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/style.css?v=7" />
+<link rel="stylesheet" href="/assets/css/style.css?v=8" />
 <link rel="preload" as="image" href="/assets/img/photos/_dsc1232_hero.webp" fetchpriority="high" />
 <script>document.documentElement.classList.add('js');</script>
 <script src="/assets/js/site.js?v=1" defer></script>
@@ -258,9 +258,12 @@
   </div>
 </header>
 
+<!-- First view = hero photo + the coral band, together filling exactly one screen -->
+<div class="fv flex flex-col min-h-[max(600px,100svh)]">
+
 <!-- ============= HERO (photo + wind lines drawn in on load) ============= -->
-<section id="top" class="relative">
-  <div class="hero-image relative min-h-[max(640px,100svh)] flex items-center overflow-hidden">
+<section id="top" class="relative flex-1 flex flex-col">
+  <div class="hero-image relative flex-1 flex items-center overflow-hidden py-16">
     <svg class="wind wind--hero absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <path class="hero-wisp" d="M-50,160 Q300,60 700,180 T1500,230" stroke="#fbbf24" stroke-width="1.5" fill="none" opacity="0.45" stroke-linecap="round"/>
       <path class="hero-wisp-slow" d="M-50,400 Q420,360 820,440 T1500,400" stroke="#fff" stroke-width="1" fill="none" opacity="0.22" stroke-linecap="round"/>
@@ -286,7 +289,7 @@
             蒸気が身体を巡る設計で、少ないロウリュでも<br class="hidden sm:block" />
             足元まで均一に温まる。
           </p>
-          <div class="mt-10 flex flex-wrap gap-3">
+          <div class="fv-cta mt-10 flex flex-wrap gap-3">
             <a href="#contact" class="group inline-flex items-center gap-3 h-14 pl-6 pr-2 text-[1rem] font-medium bg-paper text-ink rounded-full hover:bg-white transition-colors">
               導入のご相談
               <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -296,7 +299,7 @@
             </a>
           </div>
         </div>
-        <div class="mt-12 lg:mt-0 flex flex-wrap lg:flex-col gap-x-8 gap-y-4 text-sm text-white/90 lg:items-end">
+        <div class="fv-meta mt-12 lg:mt-0 flex flex-wrap lg:flex-col gap-x-8 gap-y-4 text-sm text-white/90 lg:items-end">
           <span class="inline-flex items-center gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-wind"></span>
             ウッドデザイン賞 2023・2024 受賞
@@ -329,6 +332,9 @@
     <span class="marquee-item">LOCAL WOOD</span><span class="marquee-sep"></span>
   </div>
 </div>
+
+</div>
+<!-- /First view -->
 
 <!-- ============= CONCEPT ============= -->
 <section id="concept" class="relative bg-paper py-24 lg:py-32 overflow-hidden">
@@ -732,7 +738,7 @@
         <div class="p-8 lg:p-12 flex flex-col justify-center">
           <p class="font-latin text-xs tracking-[0.12em] text-ink mb-4 inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-heat"></span>CASE 01 — 宿泊施設</p>
           <h3 class="text-2xl lg:text-3xl font-black text-ink mb-4 leading-tight">
-            ocomori sauna<br />
+            <a href="https://ocomori.jp/sauna/" target="_blank" rel="noopener" class="hover:text-heat transition-colors">ocomori sauna</a><br />
             <span class="font-sans text-base lg:text-lg font-medium text-body">埼玉県秩父郡横瀬町</span>
           </h3>
           <p class="text-base leading-relaxed-jp mb-6">
@@ -759,6 +765,11 @@
               <dd class="mt-1 text-ink font-medium">2023年</dd>
             </div>
           </dl>
+          <a href="https://ocomori.jp/sauna/" target="_blank" rel="noopener" class="group mt-7 self-start inline-flex items-center gap-2 h-11 pl-5 pr-1.5 text-sm font-medium text-ink border border-ink/25 rounded-full hover:border-ink transition-colors">
+            ocomori sauna 公式サイト
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-3.5 h-3.5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="sr-only">（新しいタブで開く）</span>
+          </a>
         </div>
       </div>
       <div class="grid grid-cols-3 gap-2 p-2 border-t border-ink/10">
@@ -899,6 +910,78 @@
         地域での導入を相談する
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-paper transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============= ATELIER (TATE Lab., where it's made) ============= -->
+<section id="atelier" class="relative bg-paper-2 graph-bg-light py-24 lg:py-32 overflow-hidden">
+  <svg class="wind absolute top-6 inset-x-0 w-full h-12 pointer-events-none" data-draw viewBox="0 0 1440 48" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="hero-wisp" d="M-20,22 Q360,0 720,20 T1460,18" stroke="#e8603f" stroke-width="1.4" fill="none" opacity="0.8" stroke-linecap="round"/>
+    <path class="hero-wisp-slow" d="M-20,36 Q420,16 820,36 T1460,30" stroke="#336fae" stroke-width="1" fill="none" opacity="0.45" stroke-linecap="round"/>
+  </svg>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 lg:items-end mb-12">
+      <div class="lg:col-span-6">
+        <span class="pill-label">ATELIER</span>
+        <h2 class="mt-6 text-3xl lg:text-5xl font-black text-ink leading-[1.25]">
+          データで削り、<br />工房で形にする。
+        </h2>
+      </div>
+      <p class="lg:col-span-6 text-base lg:text-lg leading-relaxed-jp text-body">
+        ITaLOG SAUNA は、埼玉県横瀬町の制作室
+        <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="text-ink font-medium underline decoration-ink/30 underline-offset-2 hover:decoration-ink transition-colors">TATE&nbsp;Lab.</a>
+        でつくられています。流体解析から導いた曲線をデジタル木材加工機で切り出し、家具職人のアトリエと同じ場所で、一台ずつ形にしていきます。
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 lg:grid-rows-2 gap-3 lg:gap-4">
+      <figure class="relative lg:col-span-3 lg:row-span-2 overflow-hidden rounded-[1.25rem] border border-ink/10">
+        <picture class="block">
+          <source srcset="assets/img/photos/atelier_space.webp" type="image/webp" />
+          <img src="assets/img/photos/atelier_space.jpg" width="1600" height="1200" alt="埼玉県横瀬町の制作室 TATE Lab. — 西日の差し込む交流スペースとバーカウンター" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        </picture>
+        <figcaption class="absolute left-3 bottom-3 inline-flex items-center gap-2 bg-paper-2/90 backdrop-blur text-ink font-mono text-[0.7rem] tracking-[0.12em] px-3 py-1.5 rounded-full">
+          FIG.01 — TATE Lab., YOKOZE
+        </figcaption>
+      </figure>
+      <figure class="relative lg:col-span-2 overflow-hidden rounded-[1.25rem] border border-ink/10 aspect-[3/2] lg:aspect-auto">
+        <picture class="block h-full">
+          <source srcset="assets/img/photos/atelier_cnc_a.webp" type="image/webp" />
+          <img src="assets/img/photos/atelier_cnc_a.jpg" width="1600" height="1067" alt="デジタル木材加工機で合板から曲線を切り出している様子" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        </picture>
+        <figcaption class="absolute left-3 bottom-3 inline-flex items-center gap-2 bg-paper-2/90 backdrop-blur text-ink font-mono text-[0.7rem] tracking-[0.12em] px-3 py-1.5 rounded-full">
+          FIG.02 — CUT THE CURVE
+        </figcaption>
+      </figure>
+      <figure class="relative lg:col-span-2 overflow-hidden rounded-[1.25rem] border border-ink/10 aspect-[3/2] lg:aspect-auto">
+        <picture class="block h-full">
+          <source srcset="assets/img/photos/atelier_cnc_b.webp" type="image/webp" />
+          <img src="assets/img/photos/atelier_cnc_b.jpg" width="1600" height="1067" alt="木材加工機のヘッドのクローズアップ" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        </picture>
+        <figcaption class="absolute left-3 bottom-3 inline-flex items-center gap-2 bg-paper-2/90 backdrop-blur text-ink font-mono text-[0.7rem] tracking-[0.12em] px-3 py-1.5 rounded-full">
+          FIG.03 — DIGITAL FABRICATION
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-8 md:gap-6">
+      <div class="border-t-[1.5px] border-ink pt-5">
+        <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink mb-3">01 — DIGITAL</p>
+        <h3 class="text-lg font-black text-ink mb-2">設計データから、正確に</h3>
+        <p class="text-sm leading-relaxed text-body">流体解析で導いた曲線を、デジタル木材加工機で切り出します。手作業では難しい曲面も、設計どおりに再現できます。</p>
+      </div>
+      <div class="border-t-[1.5px] border-ink pt-5">
+        <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink mb-3">02 — CRAFT</p>
+        <h3 class="text-lg font-black text-ink mb-2">木を知る工房で、一台ずつ</h3>
+        <p class="text-sm leading-relaxed text-body">工房には横瀬町の家具職人のアトリエが同居。肌に触れる木の仕上がりまで、家具づくりと同じ場所で形にします。</p>
+      </div>
+      <div class="border-t-[1.5px] border-ink pt-5">
+        <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink mb-3">03 — COMMONS</p>
+        <h3 class="text-lg font-black text-ink mb-2">人が集まる制作室</h3>
+        <p class="text-sm leading-relaxed text-body">バーカウンターのある交流スペースを併設。同じ建物には「Area898」「LivingAnywhere Commons 横瀬」も入り、地域の人やクリエイターが行き交います。</p>
+      </div>
     </div>
   </div>
 </section>
