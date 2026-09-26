@@ -670,3 +670,71 @@ a.dark:hover,.dark:hover,.dark:focus-visible{background:var(--ai);color:#fff}
 .stage-story .stage-slides img:nth-child(3){object-position:50% 35%}
 .stage-story .stage-slides img:nth-child(4){object-position:50% 75%}
 .stage-story .stage-slides img:nth-child(5){object-position:50% 30%}
+
+/* =====================================================================
+   経糸と緯糸 ── 秩父銘仙の色（逸見織物さんの反物・糸の写真から）
+   経糸（変わらない）: 紺。見出しラベル・日付・ボタン。
+   緯糸（通るたびに変わる）: トップはスクロールでセクションごとに、
+   下層ページはページごとに1色。強調語・罫線・短冊・白い地の色になる。
+   ===================================================================== */
+@property --weft{syntax:'<color>';inherits:true;initial-value:#2e3452}
+:root{
+  --kon:#2e3452;      /* 紺  反物の地色 */
+  --shu:#b65a38;      /* 朱  紺地の薔薇 */
+  --koubai:#b0667a;   /* 紅梅 棚の反物 */
+  --beni:#9a2d29;     /* 紅  染めた緯糸 */
+  --uguisu:#7f7a3a;   /* 鶯  薔薇の葉 */
+  --weft:var(--kon);
+  --ai:var(--kon);
+  --tamamushi:linear-gradient(90deg,var(--kon),var(--weft));
+  --serif:'Shippori Mincho','Yu Mincho','Hiragino Mincho ProN',serif;
+  transition:--weft 1.1s ease;
+}
+html[data-weft="shu"]{--weft:var(--shu)}
+html[data-weft="koubai"]{--weft:var(--koubai)}
+html[data-weft="beni"]{--weft:var(--beni)}
+html[data-weft="uguisu"]{--weft:var(--uguisu)}
+
+/* 書体：見出しはしっぽり明朝、本文はZen角ゴシックをやや太く、行間は文字の2倍 */
+body{font-family:'Zen Kaku Gothic New','Yu Gothic',Meiryo,sans-serif;font-weight:500;line-height:2}
+
+/* 経糸：紺 */
+.eyebrow,.section-label,.program-en,.mrole,.deadline strong,.date{color:var(--kon)}
+.dark{background:var(--kon)}
+a.dark:hover,.dark:hover,.dark:focus-visible{background:var(--weft)}
+
+/* 緯糸：強調語・短冊・点・選択色 */
+.call-grid em{color:var(--weft);transition:color .6s}
+.vertical-note{background:#fff;color:var(--weft);padding:16px 10px;letter-spacing:.24em;transition:color .6s}
+.timeline li:before{background:var(--weft)}
+.section-label>span:first-child,.section-label:not(:has(span)){border-left:3px solid var(--weft);padding-left:10px;transition:border-color .6s}
+.call-word{color:color-mix(in srgb,var(--weft) 30%,transparent)}
+.large-word{color:color-mix(in srgb,var(--weft) 20%,transparent)}
+.cta-apply{border-color:var(--weft)}
+::selection{background:color-mix(in srgb,var(--weft) 28%,transparent);color:var(--ink)}
+
+/* 罫線：緯糸が通るように、画面に入ると左から右へ走る */
+.call-panel,.program-grid article,.together-links>a,.detail-main h2{position:relative;border-top-color:transparent}
+.detail-main h2{padding-top:26px}
+.call-panel::before,.program-grid article::before,.together-links>a::before,.detail-main h2::before{
+  content:'';position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--weft);
+  transform:scaleX(0);transform-origin:left center;transition:transform .9s cubic-bezier(.65,0,.2,1),background-color .6s}
+.detail-main h2::before{top:0;right:auto;width:64px}
+.is-woven::before{transform:scaleX(1)!important}
+.program-grid article:nth-child(2)::before{transition-delay:.12s}
+.program-grid article:nth-child(3)::before{transition-delay:.24s}
+.together-links>a:nth-child(2)::before{transition-delay:.12s}
+
+/* 白く残した部分に緯糸の色が出る（乗算で白だけに乗り、墨色は染まらない） */
+#weft-ground{position:fixed;inset:0;pointer-events:none;z-index:40;mix-blend-mode:multiply;
+  background:var(--weft);opacity:var(--ground-op,0);transition:opacity 1.1s ease}
+
+/* 左端の進捗バー＝織り上がった布。通ってきた緯糸の色が縞になって重なる */
+.progressbar{width:4px}
+.progressbar i{background:var(--loom,var(--kon)) no-repeat;background-size:100% 100vh}
+
+@media (prefers-reduced-motion:reduce){
+  :root{transition:none}
+  .call-panel::before,.program-grid article::before,.together-links>a::before,.detail-main h2::before{transition:none;transform:scaleX(1)}
+  #weft-ground{transition:none}
+}
