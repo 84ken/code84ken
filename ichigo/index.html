@@ -142,6 +142,15 @@
       .concept-step:not(:last-child)::after { content:""; position:absolute; top:74px; right:-22px; width:16px; height:16px; border-top:3px solid #F4C9D5; border-right:3px solid #F4C9D5; border-radius:2px; transform:rotate(45deg); }
     }
 
+    /* ファーストビュー（スマホ）：イラスト＋赤帯ロゴを1画面に。イラストは中央を大きく、動画は赤帯の下へ */
+    @media (max-width: 639px) {
+      .fv-frame { display:flex; flex-direction:column; height:100vh; height:min(100svh, calc(96px + 125vw + 112px)); min-height:520px; }
+      .fv-visual { flex:1 1 auto; min-height:0; display:flex; }
+      .fv-visual .fv-img { width:100%; height:100%; object-fit:cover; object-position:56% 62%; }
+      .fv-band { flex:0 0 auto; }
+      #mv-slot-sp .hero-video-box { position:static; width:auto; box-shadow:0 12px 30px -12px rgba(169,40,76,.35); }
+    }
+
     /* ファーストビュー：タブレット以上はイラスト＋赤帯ロゴを画面の高さにぴったり収める */
     @media (min-width: 640px) {
       .fv-frame { display:flex; flex-direction:column; height:100vh; height:100svh; min-height:560px; }
@@ -249,6 +258,8 @@
       </div>
     </div>
     </div>
+    <!-- スマホでは動画をここ（赤帯の下）に移す -->
+    <div id="mv-slot-sp" class="sm:hidden bg-white px-4 pt-6"></div>
 
     <!-- 🆕 新発売告知バナー -->
     <div class="bg-white">
@@ -655,6 +666,18 @@
       const v = document.getElementById('hero-video');
       if (!v || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       v.src = 'https://www.youtube-nocookie.com/embed/u3oM78lWknY?rel=0&autoplay=1&mute=1&playsinline=1&loop=1&playlist=u3oM78lWknY';
+    })();
+
+    // スマホでは動画ボックスを赤帯の下へ（タブレット以上はイラストの右下に重ねる）
+    (() => {
+      const box = document.querySelector('.hero-video-box');
+      const home = box && box.parentElement;
+      const slot = document.getElementById('mv-slot-sp');
+      if (!box || !slot) return;
+      const mq = window.matchMedia('(max-width: 639px)');
+      const place = () => { const target = mq.matches ? slot : home; if (box.parentElement !== target) target.appendChild(box); };
+      place();
+      mq.addEventListener ? mq.addEventListener('change', place) : mq.addListener(place);
     })();
 
     const btn = document.getElementById('menu-btn');
