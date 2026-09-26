@@ -10,7 +10,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: '#0a0a0a',
+        // 温と冷の設計図 — sauna hot/cold palette
+        paper: '#eeeae3',     // warm light grey ground
+        'paper-2': '#f7f4ef', // card surface on paper
+        ink: '#1d1915',       // warm charcoal
+        heat: '#e8603f',      // löyly heat (hot-air red from the pamphlet diagrams)
+        cool: '#336fae',      // cold plunge blue (cold-air blue from the diagrams)
+        plywood: '#d8b98c',   // plywood face
+        wind: '#f3b640',      // wind / steam lines on photos and dark fields
         primary: {
           50:'#f0f5ff',100:'#dde8ff',200:'#c0d4ff',300:'#95b6ff',
           400:'#6492ff',500:'#2b70ef',600:'#2250df',700:'#1a40b5',
@@ -23,8 +30,10 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter','"Noto Sans JP"','"Hiragino Sans"','"Hiragino Kaku Gothic ProN"','sans-serif'],
-        serif: ['"Noto Serif JP"','"Hiragino Mincho ProN"','serif']
+        sans: ['"Noto Sans JP"','"Hiragino Sans"','"Hiragino Kaku Gothic ProN"','sans-serif'],
+        display: ['"Zen Kaku Gothic Antique"','"Noto Sans JP"','sans-serif'],
+        latin: ['Unbounded','"Noto Sans JP"','sans-serif'],
+        mono: ['ui-monospace','"SF Mono"','Menlo','Consolas','monospace'],
       }
     }
   },

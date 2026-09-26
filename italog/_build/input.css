@@ -2,93 +2,199 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== ITaLOG SAUNA custom styles ===== */
-  :root { --body: #3d4b5f; --ink: #0a0a0a; }
-  body { font-family: 'Inter','Noto Sans JP','Hiragino Sans',sans-serif; -webkit-font-smoothing: antialiased; }
+/* ===== ITaLOG SAUNA — 温と冷の設計図 ===== */
+  :root {
+    --paper: #eeeae3;
+    --paper-2: #f7f4ef;
+    --ink: #1d1915;
+    --body: #4a4238;
+    --heat: #e8603f;
+    --cool: #336fae;
+    --wind: #f3b640;
+    --line: rgba(29, 25, 21, 0.14);
+  }
+  body {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--paper);
+    color: var(--body);
+  }
+  h1, h2, h3, h4 {
+    font-family: "Zen Kaku Gothic Antique", "Noto Sans JP", sans-serif;
+    letter-spacing: 0.02em;
+    text-wrap: balance;
+  }
   .text-body { color: var(--body); }
   .text-ink { color: var(--ink); }
   .leading-relaxed-jp { line-height: 2.0; }
 
-  /* === Pamphlet aesthetic === */
-  /* Wood texture backgrounds (using actual plywood photo) */
+  /* === Wood texture backgrounds (actual plywood photo) === */
   .bg-plywood {
     background-image: url('/assets/img/photos/img_8137_bg.webp');
     background-size: cover;
     background-position: center;
   }
   .bg-plywood-dark {
-    background-image: linear-gradient(rgba(20,14,8,0.78), rgba(10,6,3,0.92)), url('/assets/img/photos/img_8137_bg.webp');
+    background-image: linear-gradient(rgba(29,25,21,0.82), rgba(20,16,12,0.94)), url('/assets/img/photos/img_8137_bg.webp');
     background-size: cover;
     background-position: center;
   }
   .bg-plywood-warm {
-    background-image: linear-gradient(rgba(255,251,243,0.82), rgba(255,251,243,0.92)), url('/assets/img/photos/img_8137_bg.webp');
+    background-image: linear-gradient(rgba(238,234,227,0.80), rgba(238,234,227,0.90)), url('/assets/img/photos/img_8137_bg.webp');
     background-size: cover;
     background-position: center;
   }
-  /* Pill label — black with white text, like pamphlet section titles */
-  .pill-label {
-    display: inline-flex;
-    align-items: center;
-    background: var(--ink);
-    color: #fff;
-    border-radius: 9999px;
-    padding: 0.55rem 1.5rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-  }
+
+  /* === Section label: Latin caps led by a small "wind" mark ===
+     (.pill-label keeps its name so the guide page picks up the new look too) */
+  .pill-label,
   .pill-label-light {
     display: inline-flex;
     align-items: center;
-    background: #fff;
-    color: var(--ink);
-    border-radius: 9999px;
-    padding: 0.55rem 1.5rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
+    gap: 0.7rem;
+    font-family: Unbounded, "Noto Sans JP", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.4;
   }
-  /* Pamphlet-style framed card */
+  .pill-label { color: var(--ink); }
+  .pill-label-light { color: var(--paper); }
+  .pill-label::before,
+  .pill-label-light::before {
+    content: "";
+    flex-shrink: 0;
+    width: 2rem;
+    height: 1rem;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 16'%3E%3Cpath d='M1 5c5-4 9 4 15 0s10-4 15 0' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M1 11c5-4 9 4 15 0s10-4 15 0' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E") center / contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 16'%3E%3Cpath d='M1 5c5-4 9 4 15 0s10-4 15 0' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M1 11c5-4 9 4 15 0s10-4 15 0' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  /* === Cards === */
   .pamphlet-frame {
-    background: #fff;
-    border: 2px solid var(--ink);
-    border-radius: 1.75rem;
-    box-shadow: 0 0 0 6px #fff, 0 0 0 7px rgba(10,10,10,0.06);
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 1.5rem;
   }
   .pamphlet-frame-dark {
     background: var(--ink);
-    color: #fff;
-    border: 2px solid #fff;
-    border-radius: 1.75rem;
-    box-shadow: 0 0 0 6px var(--ink), 0 0 0 7px rgba(255,255,255,0.15);
+    color: var(--paper);
+    border: 1px solid rgba(238,234,227,0.14);
+    border-radius: 1.5rem;
   }
-  /* Hero overlay */
+
+  /* === Hero photo === */
   .hero-image {
     background-image: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.65) 100%), url('/assets/img/photos/_dsc1232_hero.webp');
     background-size: cover;
     background-position: center;
   }
-  /* Vertical Japanese writing for desktop */
+
+  /* === Vertical Japanese in boxes (soine-style), horizontal on small screens === */
+  .vt-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .vt-stack > span {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    background: var(--paper-2);
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .vt-stack > span.is-heat { background: var(--heat); color: var(--ink); }
   @media (min-width: 1024px) {
-    .vert-jp-lg {
+    .vt-stack { flex-direction: row-reverse; align-items: flex-start; gap: 0.9rem; }
+    .vt-stack > span {
       writing-mode: vertical-rl;
       text-orientation: mixed;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.12em;
+      padding: 1rem 0.55rem;
     }
+    .vt-stack > span + span { margin-top: 3.5rem; }
   }
   .vert-jp-sm {
     writing-mode: vertical-rl;
     text-orientation: mixed;
     letter-spacing: 0.15em;
   }
+
   .marker-line {
-    background: linear-gradient(transparent 60%, rgba(10,10,10,0.12) 60%);
+    background: linear-gradient(transparent 62%, rgba(232,96,63,0.38) 62%);
   }
-  .step-num {
+  .step-num,
+  .tnum {
     font-feature-settings: "tnum";
-    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
   }
+
+  /* === Geometry: engineering graph paper for dark fields === */
+  .graph-bg {
+    background-image:
+      repeating-linear-gradient(0deg, rgba(238,234,227,0.045) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, rgba(238,234,227,0.045) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(0deg, rgba(238,234,227,0.08) 0 1px, transparent 1px 140px),
+      repeating-linear-gradient(90deg, rgba(238,234,227,0.08) 0 1px, transparent 1px 140px);
+  }
+  .graph-bg-light {
+    background-image:
+      repeating-linear-gradient(0deg, rgba(29,25,21,0.05) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, rgba(29,25,21,0.05) 0 1px, transparent 1px 28px);
+  }
+
+  /* === Stat circles (numbers inside compass circles) === */
+  .stat-circle {
+    width: 11rem;
+    height: 11rem;
+    border-radius: 9999px;
+    border: 1.5px solid var(--ink);
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
+    color: var(--ink);
+  }
+
+  /* === Marquee band: science words flowing left → right, like the wind === */
+  .marquee { overflow: hidden; white-space: nowrap; }
+  .marquee-track {
+    display: inline-flex;
+    align-items: center;
+    animation: marquee 42s linear infinite;
+    will-change: transform;
+  }
+  @keyframes marquee {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+  .marquee-item {
+    font-family: Unbounded, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5.6vw, 5.25rem);
+    line-height: 1.3;
+    padding-inline: 0.4em;
+    letter-spacing: 0.01em;
+  }
+  .marquee-sep {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    width: 0.9em;
+    height: 0.9em;
+    font-size: clamp(1.25rem, 3vw, 2.5rem);
+    border: 2px solid currentColor;
+    border-radius: 9999px;
+    margin-inline: 0.4em;
+  }
+  .marquee-sep::before,
+  .marquee-sep::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+  }
+  .marquee-sep::before { left: 50%; top: -30%; width: 2px; height: 160%; transform: translateX(-50%); }
+  .marquee-sep::after  { top: 50%; left: -30%; height: 2px; width: 160%; transform: translateY(-50%); }
+
   html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
   /* === Top page header: hidden on the first view, slides in after a short scroll ===
@@ -98,24 +204,52 @@
   .js .site-header.is-shown,
   .js .site-header:focus-within { transform: translateY(0); }
 
-  /* === Hero canvases: halftone print texture + steam === */
-  .hero-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+  /* === Wind lines: drawn in from left to right ===
+     Visible by default (no JS). With JS, [data-draw] waits until scrolled into view.
+     The hero draws itself on load with CSS alone. */
+  .wind {
+    -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 60%);
+            mask-image: linear-gradient(90deg, #000 40%, transparent 60%);
+    -webkit-mask-size: 250% 100%;
+            mask-size: 250% 100%;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: 0 0;
+            mask-position: 0 0;
   }
-  .hero-halftone { opacity: 0; transition: opacity 1.4s ease; }
-  .hero-halftone.is-ready { opacity: 1; }
+  .js .wind[data-draw] {
+    -webkit-mask-position: 100% 0;
+            mask-position: 100% 0;
+  }
+  .js .wind[data-draw].is-drawn {
+    animation: wind-in 2.2s cubic-bezier(.35,0,.25,1) forwards;
+  }
+  .wind--hero {
+    -webkit-mask-position: 100% 0;
+            mask-position: 100% 0;
+    animation: wind-in 2.6s .3s cubic-bezier(.35,0,.25,1) forwards;
+  }
+  @keyframes wind-in {
+    to {
+      -webkit-mask-position: 0 0;
+              mask-position: 0 0;
+    }
+  }
 
-  @media (prefers-reduced-motion: reduce) {
-    .site-header, .hero-halftone { transition: none; }
-  }
   details > summary { list-style: none; cursor: pointer; }
   details > summary::-webkit-details-marker { display: none; }
+  .faq-icon { transition: transform .25s ease; }
+  details[open] .faq-icon { transform: rotate(45deg); }
 
-  /* === Steam flow animations === */
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--heat);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* === Steam flow animations (diagrams) === */
   @keyframes flow-dash {
     to { stroke-dashoffset: -28; }
   }
@@ -129,14 +263,12 @@
     stroke-dashoffset: 0;
     animation: flow-dash 3.5s linear infinite;
   }
-  /* For paths originally drawn with stroke-dasharray="3,2" — keep their dash but animate offset */
   @keyframes flow-dash-short {
     to { stroke-dashoffset: -10; }
   }
   .flow-line-short {
     animation: flow-dash-short 1.2s linear infinite;
   }
-  /* Karman vortex circles — gentle pulse */
   @keyframes vortex-pulse {
     0%, 100% { transform: scale(1); opacity: 0.9; }
     50% { transform: scale(1.15); opacity: 1; }
@@ -146,17 +278,12 @@
     transform-origin: center;
     animation: vortex-pulse 2.4s ease-in-out infinite;
   }
-  /* Slight rotation on the central karman cylinder for "spinning vortex" feeling */
-  @keyframes vortex-spin {
-    to { transform: rotate(360deg); }
-  }
-  /* Stagger delays so vortices feel like a chain */
   .vortex-d1 { animation-delay: 0.3s; }
   .vortex-d2 { animation-delay: 0.6s; }
   .vortex-d3 { animation-delay: 0.9s; }
   .vortex-d4 { animation-delay: 1.2s; }
 
-  /* === Hero ambient steam wisps === */
+  /* === Wind lines: continuous flow after they're drawn === */
   @keyframes hero-wisp {
     to { stroke-dashoffset: -80; }
   }
@@ -174,6 +301,13 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .site-header, .faq-icon { transition: none; }
     .flow-line, .flow-line-slow, .flow-line-short, .vortex,
-    .hero-wisp, .hero-wisp-slow, .hero-wisp-faster { animation: none; }
+    .hero-wisp, .hero-wisp-slow, .hero-wisp-faster,
+    .marquee-track { animation: none; }
+    .wind, .wind--hero, .js .wind[data-draw], .js .wind[data-draw].is-drawn {
+      animation: none;
+      -webkit-mask: none;
+              mask: none;
+    }
   }

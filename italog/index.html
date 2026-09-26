@@ -226,49 +226,58 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Zen+Kaku+Gothic+Antique:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/style.css?v=6" />
+<link rel="stylesheet" href="/assets/css/style.css?v=7" />
 <link rel="preload" as="image" href="/assets/img/photos/_dsc1232_hero.webp" fetchpriority="high" />
 <script>document.documentElement.classList.add('js');</script>
-<script src="/assets/js/hero.js?v=2" defer></script>
+<script src="/assets/js/site.js?v=1" defer></script>
 </head>
-<body class="bg-white text-body antialiased">
+<body class="bg-paper text-body antialiased">
 
 <!-- ============= HEADER ============= -->
-<header id="site-header" class="site-header fixed top-0 inset-x-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200">
+<header id="site-header" class="site-header fixed top-0 inset-x-0 z-30 bg-paper/90 backdrop-blur border-b border-ink/10">
   <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-3">
-      <img src="assets/img/logo/italog_logo.png" width="512" height="512" alt="ITaLOG" class="h-8 w-auto" />
-      <span class="text-sm font-semibold tracking-wider text-slate-900">ITaLOG SAUNA</span>
+      <img src="assets/img/logo/italog_logo_t_512.png" width="512" height="512" alt="ITaLOG" class="h-8 w-auto" />
+      <span class="font-latin text-[0.78rem] font-medium tracking-[0.08em] text-ink">ITaLOG SAUNA</span>
     </a>
-    <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-8 text-sm font-medium text-body">
-      <a href="#concept" class="hover:text-slate-900 transition-colors">コンセプト</a>
-      <a href="#science" class="hover:text-slate-900 transition-colors">技術</a>
-      <a href="#spec" class="hover:text-slate-900 transition-colors">仕様</a>
-      <a href="#cases" class="hover:text-slate-900 transition-colors">導入事例</a>
-      <a href="#process" class="hover:text-slate-900 transition-colors">導入の流れ</a>
-      <a href="/guide/" class="hover:text-slate-900 transition-colors">導入ガイド</a>
-      <a href="#contact" class="ml-2 inline-flex items-center justify-center h-9 px-4 text-sm font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">お問い合わせ</a>
+    <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-6 lg:gap-7 text-sm font-medium text-ink/75">
+      <a href="#concept" class="hover:text-ink transition-colors">コンセプト</a>
+      <a href="#science" class="hover:text-ink transition-colors">技術</a>
+      <a href="#spec" class="hover:text-ink transition-colors">仕様</a>
+      <a href="#cases" class="hover:text-ink transition-colors">導入事例</a>
+      <a href="#process" class="hover:text-ink transition-colors">導入の流れ</a>
+      <a href="/guide/" class="hover:text-ink transition-colors">導入ガイド</a>
+      <a href="#contact" class="group ml-1 inline-flex items-center gap-2 h-10 pl-4 pr-1.5 text-sm font-medium bg-ink text-paper rounded-full hover:bg-ink/85 transition-colors">
+        お問い合わせ
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-3.5 h-3.5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
     </nav>
-    <a href="#contact" class="md:hidden inline-flex items-center justify-center h-9 px-3 text-sm font-medium bg-slate-900 text-white rounded-lg cursor-pointer">お問い合わせ</a>
+    <a href="#contact" class="md:hidden inline-flex items-center justify-center h-10 px-4 text-sm font-medium bg-ink text-paper rounded-full">お問い合わせ</a>
   </div>
 </header>
 
-<!-- ============= HERO ============= -->
+<!-- ============= HERO (photo + wind lines drawn in on load) ============= -->
 <section id="top" class="relative">
-  <div class="hero-image relative min-h-[max(640px,100svh)] flex items-center overflow-hidden" data-hero>
-    <canvas class="hero-canvas hero-halftone" aria-hidden="true"></canvas>
-    <canvas class="hero-canvas hero-steam" aria-hidden="true"></canvas>
+  <div class="hero-image relative min-h-[max(640px,100svh)] flex items-center overflow-hidden">
+    <svg class="wind wind--hero absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path class="hero-wisp" d="M-50,160 Q300,60 700,180 T1500,230" stroke="#fbbf24" stroke-width="1.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+      <path class="hero-wisp-slow" d="M-50,400 Q420,360 820,440 T1500,400" stroke="#fff" stroke-width="1" fill="none" opacity="0.22" stroke-linecap="round"/>
+      <path class="hero-wisp-slow" d="M-50,640 Q480,560 1000,660 T1500,610" stroke="#fbbf24" stroke-width="1" fill="none" opacity="0.3" stroke-linecap="round"/>
+      <path class="hero-wisp-faster" d="M-30,90 Q150,40 320,90" stroke="#fbbf24" stroke-width="1.2" fill="none" opacity="0.4" stroke-linecap="round"/>
+      <circle class="vortex" cx="1180" cy="540" r="5" fill="#fbbf24" opacity="0.5"/>
+      <circle class="vortex vortex-d2" cx="1230" cy="580" r="3.5" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity="0.4"/>
+      <circle class="vortex vortex-d4" cx="1260" cy="540" r="3" fill="none" stroke="#fbbf24" stroke-width="1.2" opacity="0.3"/>
+    </svg>
 
-    <!-- ITaLOG logo (large, top-right pamphlet style) — transparent PNG inverted to white -->
     <img src="assets/img/logo/italog_logo_t_512.png" width="512" height="512" alt="" aria-hidden="true" class="absolute top-6 right-6 lg:top-10 lg:right-10 w-20 lg:w-32 opacity-95 drop-shadow-lg z-10" style="filter: invert(1);" />
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white">
       <div class="lg:flex lg:items-end lg:justify-between lg:gap-12">
         <div class="max-w-2xl">
-          <span class="pill-label-light mb-8">SAUNA HUT / 製品情報</span>
-          <h1 class="mt-4 text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] mb-8 tracking-tight">
+          <span class="pill-label-light">SAUNA HUT / 製品情報</span>
+          <h1 class="mt-7 text-[2.6rem] sm:text-5xl lg:text-7xl font-black leading-[1.12] mb-8">
             常軌を逸した<br/>蒸気の<br/>サウナ小屋
           </h1>
           <p class="text-base lg:text-lg leading-relaxed-jp max-w-xl text-white/90">
@@ -278,93 +287,134 @@
             足元まで均一に温まる。
           </p>
           <div class="mt-10 flex flex-wrap gap-3">
-            <a href="#contact" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-white text-slate-900 rounded-full hover:bg-gray-100 cursor-pointer transition-colors">
+            <a href="#contact" class="group inline-flex items-center gap-3 h-14 pl-6 pr-2 text-[1rem] font-medium bg-paper text-ink rounded-full hover:bg-white transition-colors">
               導入のご相談
-              <svg class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </a>
-            <a href="#science" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-transparent text-white border border-white/60 rounded-full hover:bg-white/10 cursor-pointer transition-colors">
+            <a href="#science" class="inline-flex items-center h-14 px-6 text-[1rem] font-medium text-white border border-white/60 rounded-full hover:bg-white/10 transition-colors">
               技術を見る
             </a>
           </div>
         </div>
-        <!-- Right-side awards in vertical writing on desktop -->
-        <div class="mt-12 lg:mt-0 flex flex-wrap lg:flex-col gap-x-8 gap-y-4 text-sm text-white/85 lg:items-end">
+        <div class="mt-12 lg:mt-0 flex flex-wrap lg:flex-col gap-x-8 gap-y-4 text-sm text-white/90 lg:items-end">
           <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-white/70"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-wind"></span>
             ウッドデザイン賞 2023・2024 受賞
           </span>
           <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-white/70"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-wind"></span>
             『大人の科学マガジン Special』掲載
           </span>
         </div>
       </div>
     </div>
-    <!-- Bottom subtitle bar like pamphlet -->
-    <div class="absolute left-0 right-0 bottom-0 hidden lg:flex items-center justify-center pb-6 text-xs tracking-[0.5em] text-white/50">
-      ITaLOG · TATE Lab. · Yokoze, Saitama
+    <div class="absolute left-0 right-0 bottom-0 hidden lg:flex items-center justify-center pb-6 font-mono text-[0.7rem] tracking-[0.3em] text-white/55">
+      ITaLOG · TATE Lab. · YOKOZE, SAITAMA — 35.99°N 139.12°E
     </div>
   </div>
 </section>
+
+<!-- ============= MARQUEE: science words flow left → right ============= -->
+<div class="marquee bg-heat text-ink py-3 lg:py-4" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">VENTURI EFFECT</span><span class="marquee-sep"></span>
+    <span class="marquee-item">KÁRMÁN VORTEX</span><span class="marquee-sep"></span>
+    <span class="marquee-item">SWIRL FLOW</span><span class="marquee-sep"></span>
+    <span class="marquee-item">LÖYLY 30cc</span><span class="marquee-sep"></span>
+    <span class="marquee-item">LOCAL WOOD</span><span class="marquee-sep"></span>
+    <span class="marquee-item">VENTURI EFFECT</span><span class="marquee-sep"></span>
+    <span class="marquee-item">KÁRMÁN VORTEX</span><span class="marquee-sep"></span>
+    <span class="marquee-item">SWIRL FLOW</span><span class="marquee-sep"></span>
+    <span class="marquee-item">LÖYLY 30cc</span><span class="marquee-sep"></span>
+    <span class="marquee-item">LOCAL WOOD</span><span class="marquee-sep"></span>
+  </div>
+</div>
 
 <!-- ============= CONCEPT ============= -->
-<section id="concept" class="py-20 lg:py-28">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <span class="pill-label mb-6">CONCEPT</span>
-    <h2 class="text-3xl lg:text-5xl font-bold text-ink mb-8 leading-tight tracking-tight">
-      蒸気を、<span class="marker-line">巡らせる。</span>
-    </h2>
-    <div class="space-y-6 text-base lg:text-lg leading-relaxed-jp">
-      <p>
-        サウナの蒸気は、本来であれば天井に昇り、壁を伝って降りてくる。
-        足元まで届く頃には冷め、身体は思うように温まらない。<br />
-        だから「もっとロウリュ」を繰り返し、ストーブの温度は下がり、
-        サウナ室全体が冷えていく――そんな悪循環がいくつも起こっている。
-      </p>
-      <p>
-        ITaLOG SAUNA は、流体力学のアプローチでこの悪循環を断ち切ったサウナ小屋です。
-        蒸気の流れそのものを設計し、<strong class="text-slate-900">大さじ2杯（約30cc）の水でも</strong>
-        身体が芯から温まる。<br />
-        <strong class="text-slate-900">「常軌を逸した蒸気」</strong>と呼ばれるゆえんが、ここにあります。
-      </p>
+<section id="concept" class="relative bg-paper py-24 lg:py-32 overflow-hidden">
+  <svg class="absolute -right-44 -top-28 w-[640px] h-[640px] text-ink/10 pointer-events-none hidden lg:block" viewBox="0 0 640 640" fill="none" stroke="currentColor" aria-hidden="true">
+    <circle cx="320" cy="320" r="300"/>
+    <circle cx="320" cy="320" r="210" stroke-dasharray="2 6"/>
+    <circle cx="320" cy="320" r="120"/>
+    <line x1="0" y1="320" x2="640" y2="320"/>
+    <line x1="320" y1="0" x2="320" y2="640"/>
+  </svg>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-10 items-start">
+      <div class="lg:col-span-4 lg:order-2 lg:flex lg:justify-center">
+        <h2 class="vt-stack text-4xl lg:text-5xl font-black text-ink">
+          <span>蒸気を、</span>
+          <span class="is-heat">巡らせる。</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-8 lg:order-1">
+        <span class="pill-label">CONCEPT</span>
+        <div class="mt-8 space-y-6 text-base lg:text-lg leading-relaxed-jp max-w-2xl">
+          <p>
+            サウナの蒸気は、本来であれば天井に昇り、壁を伝って降りてくる。
+            足元まで届く頃には冷め、身体は思うように温まらない。<br />
+            だから「もっとロウリュ」を繰り返し、ストーブの温度は下がり、
+            サウナ室全体が冷えていく――そんな悪循環がいくつも起こっている。
+          </p>
+          <p>
+            ITaLOG SAUNA は、流体力学のアプローチでこの悪循環を断ち切ったサウナ小屋です。
+            蒸気の流れそのものを設計し、<strong class="text-ink">大さじ2杯（約30cc）の水でも</strong>
+            身体が芯から温まる。<br />
+            <strong class="text-ink">「常軌を逸した蒸気」</strong>と呼ばれるゆえんが、ここにあります。
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div class="mt-14 grid sm:grid-cols-3 gap-6">
-      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-        <p class="text-3xl font-bold text-slate-900 step-num">30<span class="text-base font-medium text-body ml-1">cc</span></p>
-        <p class="mt-2 text-sm text-body">大さじ2杯の少量ロウリュで充分に温まる設計</p>
-      </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-        <p class="text-3xl font-bold text-slate-900 step-num">100<span class="text-base font-medium text-body ml-1">%</span></p>
-        <p class="mt-2 text-sm text-body">国産木材を使用、石油系断熱材ゼロの有機サウナ</p>
-      </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-        <p class="text-3xl font-bold text-slate-900 step-num">4<span class="text-base font-medium text-body">–</span>6<span class="text-base font-medium text-body ml-1">人</span></p>
-        <p class="mt-2 text-sm text-body">ご家族・小規模グループに最適な利用人数</p>
-      </div>
+    <!-- Numbers inside compass circles, threaded by a wind line -->
+    <div class="relative mt-20 lg:mt-24">
+      <svg class="wind absolute inset-x-0 top-[4.25rem] w-full h-10 hidden sm:block" data-draw viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+        <path class="hero-wisp" d="M0,20 Q150,2 300,20 T600,20 T900,20 T1200,20" stroke="#e8603f" stroke-width="1.6" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        <path class="hero-wisp-slow" d="M0,28 Q150,12 300,28 T600,28 T900,28 T1200,28" stroke="#1d1915" stroke-width="1" fill="none" opacity="0.35" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <ul class="relative grid sm:grid-cols-3 gap-12 sm:gap-6">
+        <li class="text-center">
+          <div class="stat-circle"><span class="inline-flex items-baseline"><span class="font-latin text-5xl font-bold tnum">30</span><span class="font-latin text-lg ml-1">cc</span></span></div>
+          <p class="mt-5 text-sm text-body max-w-[16rem] mx-auto">大さじ2杯の少量ロウリュで充分に温まる設計</p>
+        </li>
+        <li class="text-center">
+          <div class="stat-circle"><span class="inline-flex items-baseline"><span class="font-latin text-5xl font-bold tnum">100</span><span class="font-latin text-lg ml-1">%</span></span></div>
+          <p class="mt-5 text-sm text-body max-w-[16rem] mx-auto">国産木材を使用、石油系断熱材ゼロの有機サウナ</p>
+        </li>
+        <li class="text-center">
+          <div class="stat-circle"><span class="inline-flex items-baseline"><span class="font-latin text-5xl font-bold tnum">4–6</span><span class="text-lg font-bold ml-1">人</span></span></div>
+          <p class="mt-5 text-sm text-body max-w-[16rem] mx-auto">ご家族・小規模グループに最適な利用人数</p>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ============= SCIENCE ============= -->
-<section id="science" class="py-20 lg:py-28 bg-gray-50 border-t border-b border-slate-200">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+<!-- ============= SCIENCE (ink field + engineering graph paper) ============= -->
+<section id="science" class="relative bg-ink graph-bg text-paper py-24 lg:py-32 overflow-hidden">
+  <svg class="wind absolute top-6 inset-x-0 w-full h-12 pointer-events-none" data-draw viewBox="0 0 1440 48" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="hero-wisp" d="M-20,22 Q360,0 720,20 T1460,18" stroke="#fbbf24" stroke-width="1.4" fill="none" opacity="0.6" stroke-linecap="round"/>
+    <path class="hero-wisp-slow" d="M-20,36 Q420,16 820,36 T1460,30" stroke="#eeeae3" stroke-width="1" fill="none" opacity="0.25" stroke-linecap="round"/>
+  </svg>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
     <div class="max-w-3xl mb-16">
-      <span class="pill-label mb-6">SCIENCE</span>
-      <h2 class="text-3xl lg:text-5xl font-bold text-ink mb-6 leading-tight tracking-tight">
+      <span class="pill-label-light">SCIENCE</span>
+      <h2 class="mt-6 text-3xl lg:text-5xl font-black leading-[1.25] text-paper">
         流体力学が設計した、<br class="hidden sm:block" />蒸気の道筋。
       </h2>
-      <p class="text-base lg:text-lg leading-relaxed-jp text-body">
+      <p class="mt-6 text-base lg:text-lg leading-relaxed-jp text-paper/80">
         ITaLOG SAUNA を設計したのは、本田技研工業でエンジンの吸排気を研究してきた伊藤淳。
         流体解析の知見をサウナ室の中に持ち込み、蒸気の流れそのものを作り直しました。
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-20">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
       <div>
-        <p class="text-sm font-semibold text-slate-500 mb-3">問題</p>
-        <h3 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-5 leading-tight">天井に溜まり、足元には届かない蒸気。</h3>
-        <p class="text-base leading-relaxed-jp">
+        <p class="font-latin text-xs tracking-[0.14em] text-paper/70 mb-3">PROBLEM / 問題</p>
+        <h3 class="text-2xl lg:text-3xl font-black text-paper mb-5 leading-tight">天井に溜まり、足元には届かない蒸気。</h3>
+        <p class="text-base leading-relaxed-jp text-paper/80">
           熱い空気は軽く、上に昇る性質があります。
           一般的なサウナでは、ロウリュで生まれた蒸気が天井に沿って広がり、
           反対側の壁で冷えながら降りてくる――この縦方向の流れを「タンブル流」と呼びます。<br />
@@ -373,191 +423,163 @@
           ストーブの温度低下を招く悪循環が生まれます。
         </p>
       </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-8 shadow-sm">
-        <!-- Tumble flow illustration (SVG) -->
-        <svg viewBox="0 0 400 280" class="w-full h-auto" aria-label="タンブル流の図">
+      <div class="bg-white/[0.04] border border-white/10 rounded-[1.5rem] p-6 lg:p-8">
+        <svg viewBox="0 0 400 280" class="w-full h-auto" role="img" aria-label="タンブル流の図">
           <defs>
             <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-              <path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/>
+              <path d="M0,0 L10,5 L0,10 z" fill="#e8603f"/>
             </marker>
           </defs>
-          <!-- Sauna room outline -->
-          <rect x="40" y="30" width="320" height="220" fill="none" stroke="#cbd5e1" stroke-width="2" rx="4"/>
-          <!-- Stove -->
-          <rect x="60" y="180" width="40" height="50" fill="#475569" rx="2"/>
-          <text x="80" y="245" text-anchor="middle" font-size="10" fill="#475569">ストーブ</text>
-          <!-- Steam flow lines (tumble) -->
-          <path class="flow-line" d="M80,180 Q80,60 200,55 Q340,55 340,180 Q340,230 320,230" stroke="#ef4444" stroke-width="2" fill="none" marker-end="url(#arrow-red)"/>
-          <path class="flow-line-slow" d="M80,170 Q80,80 200,75 Q330,75 330,170 Q330,210 310,210" stroke="#ef4444" stroke-width="1.5" fill="none" opacity="0.6"/>
-          <!-- People bench -->
-          <line x1="120" y1="170" x2="320" y2="170" stroke="#92400e" stroke-width="3"/>
-          <!-- Cold zone -->
-          <rect x="120" y="170" width="200" height="70" fill="#3b82f6" opacity="0.08"/>
-          <text x="220" y="215" text-anchor="middle" font-size="11" fill="#1e40af">温度・湿度の低い空気</text>
-          <!-- Hot zone -->
-          <rect x="40" y="30" width="320" height="40" fill="#ef4444" opacity="0.08"/>
-          <text x="200" y="55" text-anchor="middle" font-size="11" fill="#991b1b">温度・湿度の高い空気</text>
+          <rect x="40" y="30" width="320" height="220" fill="none" stroke="rgba(238,234,227,0.35)" stroke-width="1.5" rx="4"/>
+          <rect x="40" y="30" width="320" height="40" fill="#e8603f" opacity="0.22"/>
+          <text x="200" y="55" text-anchor="middle" font-size="11" fill="#f4a58f">温度・湿度の高い空気</text>
+          <rect x="120" y="170" width="200" height="70" fill="#336fae" opacity="0.35"/>
+          <text x="220" y="215" text-anchor="middle" font-size="11" fill="#b9d3ee">温度・湿度の低い空気</text>
+          <rect x="60" y="180" width="40" height="50" fill="rgba(238,234,227,0.55)" rx="2"/>
+          <text x="80" y="245" text-anchor="middle" font-size="10" fill="rgba(238,234,227,0.75)">ストーブ</text>
+          <path class="flow-line" d="M80,180 Q80,60 200,55 Q340,55 340,180 Q340,230 320,230" stroke="#e8603f" stroke-width="2" fill="none" marker-end="url(#arrow-red)"/>
+          <path class="flow-line-slow" d="M80,170 Q80,80 200,75 Q330,75 330,170 Q330,210 310,210" stroke="#e8603f" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <line x1="120" y1="170" x2="320" y2="170" stroke="#d8b98c" stroke-width="3"/>
         </svg>
-        <p class="mt-4 text-xs text-slate-500 text-center">通常のサウナで起こる「タンブル流」</p>
+        <p class="mt-4 text-xs text-paper/70 text-center">通常のサウナで起こる「タンブル流」</p>
       </div>
     </div>
 
-    <!-- ============= DRAMATIC SOLUTION REVEAL ============= -->
-    <div class="my-16 lg:my-24 bg-ink text-white rounded-3xl p-8 lg:p-14 xl:p-16 relative overflow-hidden">
-      <!-- subtle plywood texture overlay -->
-      <div class="absolute inset-0 bg-plywood-dark opacity-40 rounded-3xl pointer-events-none"></div>
-
+    <!-- ITaLOG's answer — heat field -->
+    <div class="my-20 lg:my-28 rounded-[2rem] bg-heat text-ink p-8 lg:p-14 relative overflow-hidden">
       <div class="relative grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         <div class="lg:col-span-6">
-          <span class="pill-label-light mb-6">ITaLOG&apos;S ANSWER</span>
-          <h3 class="mt-6 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
+          <span class="pill-label">ITaLOG&apos;S ANSWER</span>
+          <h3 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.12]">
             蒸気の流れを、<br />
-            <span class="text-amber-300">縦から横へ。</span>
+            <span class="text-paper-2">縦から横へ。</span>
           </h3>
-          <p class="mt-8 text-base lg:text-lg leading-relaxed-jp text-white/85 max-w-xl">
-            ITaLOG SAUNAは、流体力学を駆使して<strong class="text-white">蒸気の流れそのもの</strong>を再設計。
+          <p class="mt-8 text-base lg:text-lg leading-relaxed-jp text-ink max-w-xl">
+            ITaLOG SAUNAは、流体力学を駆使して<strong>蒸気の流れそのもの</strong>を再設計。
             天井に逃げていた高温高湿の空気を、座面のまわりで大きく旋回させ、
             身体を包み込みます。
           </p>
-          <div class="mt-8 flex items-baseline gap-3 text-amber-300">
-            <span class="step-num text-3xl lg:text-4xl font-bold tracking-tight">SWIRL</span>
-            <span class="text-white/70 text-sm">— スワール流（旋回流）</span>
+          <div class="mt-8 flex items-baseline gap-3">
+            <span class="font-latin text-3xl lg:text-4xl font-bold">SWIRL</span>
+            <span class="text-ink text-sm">— スワール流（旋回流）</span>
           </div>
         </div>
-
         <div class="lg:col-span-6">
-          <div class="bg-white/[0.04] border border-white/15 rounded-2xl p-5 lg:p-10 backdrop-blur-sm">
-            <svg viewBox="0 0 360 240" class="w-full h-auto" aria-hidden="true">
-              <defs>
-                <radialGradient id="swirl-glow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.28"/>
-                  <stop offset="55%" stop-color="#fbbf24" stop-opacity="0.06"/>
-                  <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
-                </radialGradient>
-              </defs>
-
-              <!-- Soft warmth glow underneath -->
-              <ellipse cx="180" cy="120" rx="170" ry="105" fill="url(#swirl-glow)"/>
-
-              <g transform="translate(180,120)">
-                <!-- Outermost orbit -->
-                <ellipse class="flow-line" cx="0" cy="0" rx="148" ry="88" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linecap="round" opacity="0.95" transform="rotate(-4)"/>
-                <!-- Middle orbit -->
-                <ellipse class="flow-line-slow" cx="0" cy="0" rx="108" ry="62" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" opacity="0.7" transform="rotate(8)"/>
-                <!-- Inner orbit -->
-                <ellipse class="flow-line" cx="0" cy="0" rx="68" ry="38" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.55" transform="rotate(-12)"/>
-                <!-- Innermost orbit -->
-                <ellipse class="flow-line-slow" cx="0" cy="0" rx="32" ry="17" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round" opacity="0.45" transform="rotate(18)"/>
-                <!-- Pulsing core -->
-                <circle class="vortex" cx="0" cy="0" r="6" fill="#fbbf24" opacity="0.9"/>
-              </g>
-            </svg>
-          </div>
+          <svg viewBox="0 0 360 240" class="w-full h-auto" aria-hidden="true">
+            <g fill="none" stroke="#1d1915" stroke-width="1" opacity="0.28">
+              <line x1="0" y1="120" x2="360" y2="120"/>
+              <line x1="180" y1="0" x2="180" y2="240"/>
+              <circle cx="180" cy="120" r="112" stroke-dasharray="2 5"/>
+            </g>
+            <g transform="translate(180,120)">
+              <ellipse class="flow-line" cx="0" cy="0" rx="148" ry="88" fill="none" stroke="#1d1915" stroke-width="2.6" stroke-linecap="round" transform="rotate(-4)"/>
+              <ellipse class="flow-line-slow" cx="0" cy="0" rx="108" ry="62" fill="none" stroke="#1d1915" stroke-width="2.2" stroke-linecap="round" opacity="0.8" transform="rotate(8)"/>
+              <ellipse class="flow-line" cx="0" cy="0" rx="68" ry="38" fill="none" stroke="#1d1915" stroke-width="1.8" stroke-linecap="round" opacity="0.65" transform="rotate(-12)"/>
+              <ellipse class="flow-line-slow" cx="0" cy="0" rx="32" ry="17" fill="none" stroke="#1d1915" stroke-width="1.6" stroke-linecap="round" opacity="0.5" transform="rotate(18)"/>
+              <circle class="vortex" cx="0" cy="0" r="6" fill="#1d1915"/>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
 
-    <!-- 3-card section header -->
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <p class="text-xs font-semibold text-ink mb-3 tracking-[0.3em]">— HOW IT WORKS —</p>
-      <h3 class="text-2xl lg:text-3xl font-bold text-slate-900 leading-tight tracking-tight">
-        その答えを支える、<span class="marker-line">3つの仕掛け。</span>
-      </h3>
+    <div class="max-w-3xl mb-12">
+      <span class="pill-label-light">HOW IT WORKS</span>
+      <h3 class="mt-5 text-2xl lg:text-3xl font-black text-paper leading-tight">その答えを支える、3つの仕掛け。</h3>
     </div>
 
-    <!-- 3 step cards -->
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
+      <div class="bg-white/[0.04] border border-white/10 rounded-[1.25rem] p-7">
         <div class="flex items-baseline gap-3 mb-4">
-          <span class="step-num text-2xl font-bold text-ink">01</span>
-          <span class="text-xs tracking-wider font-semibold text-slate-500">VENTURI EFFECT</span>
+          <span class="font-latin text-2xl font-bold text-heat tnum">01</span>
+          <span class="font-latin text-[0.7rem] tracking-[0.12em] text-paper/70">VENTURI EFFECT</span>
         </div>
-        <h4 class="text-lg font-bold text-slate-900 mb-3">蒸気を、絞って加速する</h4>
-        <p class="text-sm leading-relaxed text-body mb-4">
+        <h4 class="text-lg font-black text-paper mb-3">蒸気を、絞って加速する</h4>
+        <p class="text-sm leading-relaxed text-paper/75 mb-4">
           流れの通り道を狭くすると速度が上がる――これが「ベンチュリー効果」。
           ITaLOG では蒸気の通路を意図的に絞り、勢いをつけて壁の上端に当てます。
         </p>
         <svg viewBox="0 0 200 100" class="w-full h-auto mt-2" aria-hidden="true">
-          <path d="M10,30 L70,30 Q90,30 95,45 L105,45 Q110,30 130,30 L190,30 L190,70 L130,70 Q110,70 105,55 L95,55 Q90,70 70,70 L10,70 Z" fill="#dde8ff" stroke="#2b70ef" stroke-width="1.5"/>
-          <text x="40" y="55" font-size="10" fill="#1a40b5" text-anchor="middle">遅い</text>
-          <text x="100" y="52" font-size="10" fill="#1a40b5" text-anchor="middle">速い</text>
-          <text x="160" y="55" font-size="10" fill="#1a40b5" text-anchor="middle">遅い</text>
-          <line class="flow-line-slow" x1="20" y1="20" x2="60" y2="20" stroke="#2b70ef" stroke-width="1.5" marker-end="url(#sm-arrow)"/>
-          <line class="flow-line" x1="100" y1="20" x2="120" y2="20" stroke="#2b70ef" stroke-width="2" marker-end="url(#sm-arrow)"/>
-          <line class="flow-line-slow" x1="140" y1="20" x2="180" y2="20" stroke="#2b70ef" stroke-width="1.5" marker-end="url(#sm-arrow)"/>
           <defs>
             <marker id="sm-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 z" fill="#2b70ef"/>
+              <path d="M0,0 L10,5 L0,10 z" fill="#7aa7d9"/>
             </marker>
           </defs>
+          <path d="M10,30 L70,30 Q90,30 95,45 L105,45 Q110,30 130,30 L190,30 L190,70 L130,70 Q110,70 105,55 L95,55 Q90,70 70,70 L10,70 Z" fill="#336fae" fill-opacity="0.3" stroke="#7aa7d9" stroke-width="1.5"/>
+          <text x="40" y="55" font-size="10" fill="#eeeae3" text-anchor="middle">遅い</text>
+          <text x="100" y="52" font-size="10" fill="#eeeae3" text-anchor="middle">速い</text>
+          <text x="160" y="55" font-size="10" fill="#eeeae3" text-anchor="middle">遅い</text>
+          <line class="flow-line-slow" x1="20" y1="20" x2="60" y2="20" stroke="#7aa7d9" stroke-width="1.5" marker-end="url(#sm-arrow)"/>
+          <line class="flow-line" x1="100" y1="20" x2="120" y2="20" stroke="#7aa7d9" stroke-width="2" marker-end="url(#sm-arrow)"/>
+          <line class="flow-line-slow" x1="140" y1="20" x2="180" y2="20" stroke="#7aa7d9" stroke-width="1.5" marker-end="url(#sm-arrow)"/>
         </svg>
       </div>
 
-      <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
+      <div class="bg-white/[0.04] border border-white/10 rounded-[1.25rem] p-7">
         <div class="flex items-baseline gap-3 mb-4">
-          <span class="step-num text-2xl font-bold text-ink">02</span>
-          <span class="text-xs tracking-wider font-semibold text-slate-500">DOWNFLOW</span>
+          <span class="font-latin text-2xl font-bold text-heat tnum">02</span>
+          <span class="font-latin text-[0.7rem] tracking-[0.12em] text-paper/70">DOWNFLOW</span>
         </div>
-        <h4 class="text-lg font-bold text-slate-900 mb-3">天井から、吹き下ろす</h4>
-        <p class="text-sm leading-relaxed text-body mb-4">
+        <h4 class="text-lg font-black text-paper mb-3">天井から、吹き下ろす</h4>
+        <p class="text-sm leading-relaxed text-paper/75 mb-4">
           加速した蒸気を天井と壁の角に当て、向きを変えて吹き下ろす流れに。
           高温・高湿の層を、座面付近まで押し下げます。
         </p>
         <svg viewBox="0 0 200 100" class="w-full h-auto mt-2" aria-hidden="true">
-          <rect x="20" y="15" width="160" height="70" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
-          <path class="flow-line" d="M40,70 Q40,30 80,25 L160,25" stroke="#ef4444" stroke-width="1.8" fill="none" marker-end="url(#sm-arrow-r)"/>
-          <path class="flow-line-short" d="M160,30 L160,80" stroke="#ef4444" stroke-width="1.8" fill="none" marker-end="url(#sm-arrow-r)" stroke-dasharray="3,2"/>
-          <path class="flow-line-short" d="M155,30 L120,80" stroke="#ef4444" stroke-width="1.5" fill="none" stroke-dasharray="3,2" opacity="0.7" style="animation-delay:.2s;"/>
-          <path class="flow-line-short" d="M150,30 L90,80" stroke="#ef4444" stroke-width="1.3" fill="none" stroke-dasharray="3,2" opacity="0.5" style="animation-delay:.4s;"/>
           <defs>
             <marker id="sm-arrow-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/>
+              <path d="M0,0 L10,5 L0,10 z" fill="#e8603f"/>
             </marker>
           </defs>
+          <rect x="20" y="15" width="160" height="70" fill="none" stroke="rgba(238,234,227,0.35)" stroke-width="1.5"/>
+          <path class="flow-line" d="M40,70 Q40,30 80,25 L160,25" stroke="#e8603f" stroke-width="1.8" fill="none" marker-end="url(#sm-arrow-r)"/>
+          <path class="flow-line-short" d="M160,30 L160,80" stroke="#e8603f" stroke-width="1.8" fill="none" marker-end="url(#sm-arrow-r)" stroke-dasharray="3,2"/>
+          <path class="flow-line-short" d="M155,30 L120,80" stroke="#e8603f" stroke-width="1.5" fill="none" stroke-dasharray="3,2" opacity="0.7" style="animation-delay:.2s;"/>
+          <path class="flow-line-short" d="M150,30 L90,80" stroke="#e8603f" stroke-width="1.3" fill="none" stroke-dasharray="3,2" opacity="0.5" style="animation-delay:.4s;"/>
         </svg>
       </div>
 
-      <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
+      <div class="bg-white/[0.04] border border-white/10 rounded-[1.25rem] p-7">
         <div class="flex items-baseline gap-3 mb-4">
-          <span class="step-num text-2xl font-bold text-ink">03</span>
-          <span class="text-xs tracking-wider font-semibold text-slate-500">KARMAN VORTEX</span>
+          <span class="font-latin text-2xl font-bold text-heat tnum">03</span>
+          <span class="font-latin text-[0.7rem] tracking-[0.12em] text-paper/70">KARMAN VORTEX</span>
         </div>
-        <h4 class="text-lg font-bold text-slate-900 mb-3">渦で、横に攪拌する</h4>
-        <p class="text-sm leading-relaxed text-body mb-4">
+        <h4 class="text-lg font-black text-paper mb-3">渦で、横に攪拌する</h4>
+        <p class="text-sm leading-relaxed text-paper/75 mb-4">
           流れの中に円柱を置くと、後方に「カルマン渦」と呼ばれる渦が生まれる。
           蒸気はかき混ぜられ、大きな横回転（スワール流）として室内を満たします。
         </p>
         <svg viewBox="0 0 200 100" class="w-full h-auto mt-2" aria-hidden="true">
-          <line class="flow-line" x1="20" y1="50" x2="80" y2="50" stroke="#2b70ef" stroke-width="1.5" marker-end="url(#sm-arrow-b)"/>
-          <line class="flow-line-slow" x1="20" y1="35" x2="80" y2="35" stroke="#2b70ef" stroke-width="1.2" marker-end="url(#sm-arrow-b)"/>
-          <line class="flow-line-slow" x1="20" y1="65" x2="80" y2="65" stroke="#2b70ef" stroke-width="1.2" marker-end="url(#sm-arrow-b)"/>
-          <circle cx="100" cy="50" r="10" fill="#2b70ef"/>
-          <circle class="vortex vortex-d1" cx="125" cy="40" r="6" fill="none" stroke="#2b70ef" stroke-width="1.5"/>
-          <circle class="vortex vortex-d2" cx="140" cy="60" r="6" fill="none" stroke="#2b70ef" stroke-width="1.5"/>
-          <circle class="vortex vortex-d3" cx="155" cy="40" r="6" fill="none" stroke="#2b70ef" stroke-width="1.5"/>
-          <circle class="vortex vortex-d4" cx="170" cy="60" r="6" fill="none" stroke="#2b70ef" stroke-width="1.5"/>
           <defs>
             <marker id="sm-arrow-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 z" fill="#2b70ef"/>
+              <path d="M0,0 L10,5 L0,10 z" fill="#7aa7d9"/>
             </marker>
           </defs>
+          <line class="flow-line" x1="20" y1="50" x2="80" y2="50" stroke="#7aa7d9" stroke-width="1.5" marker-end="url(#sm-arrow-b)"/>
+          <line class="flow-line-slow" x1="20" y1="35" x2="80" y2="35" stroke="#7aa7d9" stroke-width="1.2" marker-end="url(#sm-arrow-b)"/>
+          <line class="flow-line-slow" x1="20" y1="65" x2="80" y2="65" stroke="#7aa7d9" stroke-width="1.2" marker-end="url(#sm-arrow-b)"/>
+          <circle cx="100" cy="50" r="10" fill="#7aa7d9"/>
+          <circle class="vortex vortex-d1" cx="125" cy="40" r="6" fill="none" stroke="#7aa7d9" stroke-width="1.5"/>
+          <circle class="vortex vortex-d2" cx="140" cy="60" r="6" fill="none" stroke="#7aa7d9" stroke-width="1.5"/>
+          <circle class="vortex vortex-d3" cx="155" cy="40" r="6" fill="none" stroke="#7aa7d9" stroke-width="1.5"/>
+          <circle class="vortex vortex-d4" cx="170" cy="60" r="6" fill="none" stroke="#7aa7d9" stroke-width="1.5"/>
         </svg>
       </div>
     </div>
 
     <!-- Result -->
-    <div class="mt-16 bg-slate-900 text-white rounded-2xl p-8 lg:p-12 grid lg:grid-cols-2 gap-10 items-center">
+    <div class="mt-20 lg:mt-24 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
       <div>
-        <p class="text-sm font-semibold tracking-[0.3em] text-white/60 mb-3">RESULT</p>
-        <h3 class="text-2xl lg:text-3xl font-bold mb-5 leading-tight">少ないロウリュで、足元まで温まる。</h3>
-        <p class="text-base leading-relaxed-jp text-white/85">
+        <span class="pill-label-light">RESULT</span>
+        <h3 class="mt-5 text-2xl lg:text-4xl font-black leading-[1.3] text-paper">少ないロウリュで、足元まで温まる。</h3>
+        <p class="mt-6 text-base leading-relaxed-jp text-paper/80">
           蒸気が室内全体を回転しながら満たすため、座面より上は熱気の比重差が小さくなり、
           暖かい空気が足元まで届きます。<br />
           ストーブの温度低下も最小限に抑えられ、室温は安定。<br />
           身体は芯から、ゆっくり、深く温まっていきます。
         </p>
       </div>
-      <div class="rounded-xl overflow-hidden border border-white/10">
+      <div class="rounded-[1.5rem] overflow-hidden">
         <picture class="block">
           <source srcset="assets/img/photos/_dsc1245.webp" type="image/webp" />
           <img src="assets/img/photos/_dsc1245.jpg" width="1800" height="1200" alt="ITaLOG SAUNA 内観 — 流体力学で設計された波形ベンチとフィンランド製サウナストーブ。埼玉県産針葉樹合板を使用した国産フィンランド式サウナ小屋。" class="w-full h-auto" loading="lazy" />
@@ -567,57 +589,115 @@
   </div>
 </section>
 
-<!-- ============= SPEC ============= -->
-<section id="spec" class="py-20 lg:py-28 bg-plywood-warm">
+<!-- ============= SPEC (plywood field + drawing) ============= -->
+<section id="spec" class="relative bg-plywood-warm py-24 lg:py-32">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="max-w-3xl mb-12">
-      <span class="pill-label mb-6">SPEC / PRICE</span>
-      <h2 class="text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight">仕様と価格</h2>
+      <span class="pill-label">SPEC / PRICE</span>
+      <h2 class="mt-6 text-3xl lg:text-5xl font-black text-ink leading-[1.25]">仕様と価格</h2>
     </div>
 
-    <div class="grid lg:grid-cols-5 gap-10">
-      <div class="lg:col-span-3 pamphlet-frame overflow-hidden">
-        <div class="px-5 pt-5 pb-2"><span class="pill-label text-xs">FEATURES</span></div>
+    <div class="grid lg:grid-cols-12 gap-6 lg:gap-8">
+      <!-- Axonometric drawing with dimension lines; the swirl inside is the steam -->
+      <figure class="lg:col-span-5 lg:row-span-2 pamphlet-frame graph-bg-light p-6 lg:p-8 flex flex-col">
+        <span class="pill-label">DRAWING</span>
+        <svg viewBox="0 0 400 360" class="mt-6 w-full h-auto flex-1" role="img" aria-label="サウナ室の立体図。内寸 幅1,820mm・奥行1,820mm・高さ1,900mm">
+          <!-- hidden edges -->
+          <g stroke="#1d1915" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.45">
+            <line x1="70" y1="240" x2="196" y2="167.2"/>
+            <line x1="196" y1="167.2" x2="322" y2="240"/>
+            <line x1="196" y1="167.2" x2="196" y2="15.2"/>
+          </g>
+          <!-- swirl flow inside the room -->
+          <g transform="translate(196,176)">
+            <ellipse class="flow-line" rx="84" ry="48" fill="none" stroke="#e8603f" stroke-width="2" stroke-linecap="round"/>
+            <ellipse class="flow-line-slow" rx="52" ry="30" fill="none" stroke="#e8603f" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
+            <circle class="vortex" r="3.5" fill="#e8603f"/>
+          </g>
+          <!-- visible edges -->
+          <g stroke="#1d1915" stroke-width="1.6" fill="none" stroke-linejoin="round">
+            <polygon points="70,240 196,312.8 196,160.8 70,88"/>
+            <polygon points="196,312.8 322,240 322,88 196,160.8"/>
+            <polygon points="70,88 196,160.8 322,88 196,15.2"/>
+            <!-- door -->
+            <polygon points="115.4,266.2 150.6,286.6 150.6,168 115.4,147.6" stroke-width="1.2"/>
+          </g>
+          <!-- dimension: width -->
+          <g stroke="#1d1915" stroke-width="1" fill="none">
+            <line x1="70" y1="240" x2="51" y2="251"/>
+            <line x1="196" y1="312.8" x2="177" y2="323.8"/>
+            <line x1="54.4" y1="249" x2="180.4" y2="321.8"/>
+            <line x1="50.4" y1="253" x2="58.4" y2="245"/>
+            <line x1="176.4" y1="325.8" x2="184.4" y2="317.8"/>
+          </g>
+          <text x="104" y="298" font-size="11" font-family="ui-monospace, Consolas, monospace" fill="#1d1915" transform="rotate(30 104 298)">W 1,820</text>
+          <!-- dimension: depth -->
+          <g stroke="#1d1915" stroke-width="1" fill="none">
+            <line x1="196" y1="312.8" x2="215" y2="323.8"/>
+            <line x1="322" y1="240" x2="341" y2="251"/>
+            <line x1="211.6" y1="321.8" x2="337.6" y2="249"/>
+            <line x1="207.6" y1="317.8" x2="215.6" y2="325.8"/>
+            <line x1="333.6" y1="245" x2="341.6" y2="253"/>
+          </g>
+          <text x="258" y="306" font-size="11" font-family="ui-monospace, Consolas, monospace" fill="#1d1915" transform="rotate(-30 258 306)">D 1,820</text>
+          <!-- dimension: height -->
+          <g stroke="#1d1915" stroke-width="1" fill="none">
+            <line x1="322" y1="240" x2="366" y2="240"/>
+            <line x1="322" y1="88" x2="366" y2="88"/>
+            <line x1="358" y1="240" x2="358" y2="88"/>
+            <line x1="354" y1="244" x2="362" y2="236"/>
+            <line x1="354" y1="92" x2="362" y2="84"/>
+          </g>
+          <text x="376" y="186" font-size="11" font-family="ui-monospace, Consolas, monospace" fill="#1d1915" transform="rotate(-90 376 186)">H 1,900</text>
+        </svg>
+        <figcaption class="mt-4 text-xs leading-relaxed text-body">サウナ室 内寸（単位 mm）。内側の線は、室内を旋回する蒸気（スワール流）のイメージです。</figcaption>
+      </figure>
+
+      <div class="lg:col-span-7 pamphlet-frame overflow-hidden">
+        <div class="px-6 pt-6 pb-3"><span class="pill-label">FEATURES</span></div>
         <table class="w-full text-sm">
           <thead>
-            <tr class="border-b border-slate-200 bg-gray-50">
-              <th scope="col" class="text-left py-3 px-5 text-xs font-medium text-slate-500 uppercase tracking-wider w-1/3">項目</th>
-              <th scope="col" class="text-left py-3 px-5 text-xs font-medium text-slate-500 uppercase tracking-wider">内容</th>
+            <tr class="border-b border-ink/10">
+              <th scope="col" class="text-left py-3 px-6 text-xs font-medium text-body w-1/3">項目</th>
+              <th scope="col" class="text-left py-3 px-6 text-xs font-medium text-body">内容</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-200">
-            <tr><td class="py-4 px-5 text-slate-700 font-medium">利用人数</td><td class="py-4 px-5 text-slate-900">4〜6人</td></tr>
-            <tr><td class="py-4 px-5 text-slate-700 font-medium">サウナ室サイズ</td><td class="py-4 px-5 text-slate-900">W 1,820 × D 1,820 × H 1,900 mm</td></tr>
-            <tr><td class="py-4 px-5 text-slate-700 font-medium">使用木材</td><td class="py-4 px-5 text-slate-900">埼玉県産 針葉樹合板（スギ・ヒノキ）</td></tr>
-            <tr><td class="py-4 px-5 text-slate-700 font-medium">特徴</td><td class="py-4 px-5 text-slate-900">石油系断熱材ゼロ／無塗装／密閉性の高い合板構造</td></tr>
-            <tr><td class="py-4 px-5 text-slate-700 font-medium">想定設置場所</td><td class="py-4 px-5 text-slate-900">屋内・屋外（軒下・テラス下を推奨）</td></tr>
-            <tr><td class="py-4 px-5 text-slate-700 font-medium">受賞・掲載</td><td class="py-4 px-5 text-slate-900">ウッドデザイン賞 2023・2024（2年連続受賞）／『大人の科学マガジン Special』</td></tr>
+          <tbody class="divide-y divide-ink/10">
+            <tr><td class="py-4 px-6 text-body font-medium">利用人数</td><td class="py-4 px-6 text-ink">4〜6人</td></tr>
+            <tr><td class="py-4 px-6 text-body font-medium">サウナ室サイズ</td><td class="py-4 px-6 text-ink tnum">W 1,820 × D 1,820 × H 1,900 mm</td></tr>
+            <tr><td class="py-4 px-6 text-body font-medium">使用木材</td><td class="py-4 px-6 text-ink">埼玉県産 針葉樹合板（スギ・ヒノキ）</td></tr>
+            <tr><td class="py-4 px-6 text-body font-medium">特徴</td><td class="py-4 px-6 text-ink">石油系断熱材ゼロ／無塗装／密閉性の高い合板構造</td></tr>
+            <tr><td class="py-4 px-6 text-body font-medium">想定設置場所</td><td class="py-4 px-6 text-ink">屋内・屋外（軒下・テラス下を推奨）</td></tr>
+            <tr><td class="py-4 px-6 text-body font-medium">受賞・掲載</td><td class="py-4 px-6 text-ink">ウッドデザイン賞 2023・2024（2年連続受賞）／『大人の科学マガジン Special』</td></tr>
           </tbody>
         </table>
       </div>
 
-      <div class="lg:col-span-2 space-y-6">
-        <div class="pamphlet-frame p-7 lg:p-8">
-          <span class="pill-label text-xs mb-5">PRICE</span>
+      <div class="lg:col-span-7 grid sm:grid-cols-5 gap-6">
+        <div class="sm:col-span-3 pamphlet-frame p-7 lg:p-8">
+          <span class="pill-label">PRICE</span>
           <p class="mt-4 text-sm text-body mb-5">仕様はオーダーに合わせて変更可能です。</p>
           <div class="space-y-3">
-            <div class="flex items-baseline justify-between border-b border-slate-300 pb-3">
-              <span class="text-sm text-slate-700">ストーブなし</span>
-              <span class="text-2xl font-bold text-ink step-num">¥2,000,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
+            <div class="flex items-baseline justify-between gap-3 border-b border-ink/15 pb-3">
+              <span class="text-sm text-body">ストーブなし</span>
+              <span class="font-latin text-xl lg:text-2xl font-bold text-ink tnum">¥2,000,000<span class="font-sans text-sm font-medium text-body ml-1">〜</span></span>
             </div>
-            <div class="flex items-baseline justify-between">
-              <span class="text-sm text-slate-700">ストーブあり</span>
-              <span class="text-2xl font-bold text-ink step-num">¥2,500,000<span class="text-sm font-medium text-body ml-1">〜</span></span>
+            <div class="flex items-baseline justify-between gap-3">
+              <span class="text-sm text-body">ストーブあり</span>
+              <span class="font-latin text-xl lg:text-2xl font-bold text-ink tnum">¥2,500,000<span class="font-sans text-sm font-medium text-body ml-1">〜</span></span>
             </div>
           </div>
-          <p class="mt-5 text-xs text-slate-500 leading-relaxed">
+          <p class="mt-5 text-xs text-body leading-relaxed">
             ※ 上記は本体価格。設置場所への運搬・組立・基礎工事・電気工事は別途お見積りいたします。<br />
             ※ ご使用環境（屋内／屋外、寒冷地等）に応じて最適な仕様をご提案します。
           </p>
         </div>
-        <a href="#contact" class="block bg-ink text-white rounded-2xl p-6 hover:opacity-90 transition-opacity cursor-pointer">
-          <p class="text-sm text-white/70 mb-1">詳細仕様書をご希望の方は</p>
-          <p class="text-base font-medium inline-flex items-center gap-2">お問い合わせください<svg class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        <a href="#contact" class="group sm:col-span-2 flex flex-col justify-between gap-6 bg-ink text-paper rounded-[1.5rem] p-7 hover:bg-ink/90 transition-colors">
+          <p class="text-sm text-paper/75">詳細仕様書をご希望の方は</p>
+          <p class="flex items-center justify-between gap-3 text-base font-medium">
+            お問い合わせください
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-heat text-ink flex-shrink-0 transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </p>
         </a>
       </div>
     </div>
@@ -625,18 +705,23 @@
 </section>
 
 <!-- ============= CASES ============= -->
-<section id="cases" class="py-20 lg:py-28 bg-gray-50 border-t border-b border-slate-200">
+<section id="cases" class="relative bg-paper py-24 lg:py-32">
+  <svg class="wind absolute top-6 inset-x-0 w-full h-12 pointer-events-none" data-draw viewBox="0 0 1440 48" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="hero-wisp" d="M-20,22 Q360,0 720,20 T1460,18" stroke="#e8603f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path class="hero-wisp-slow" d="M-20,36 Q420,16 820,36 T1460,30" stroke="#1d1915" stroke-width="1" fill="none" opacity="0.3" stroke-linecap="round"/>
+  </svg>
+
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="max-w-3xl mb-14">
-      <span class="pill-label mb-6">CASES</span>
-      <h2 class="text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight">導入事例</h2>
+      <span class="pill-label">CASES</span>
+      <h2 class="mt-6 text-3xl lg:text-5xl font-black text-ink leading-[1.25]">導入事例</h2>
       <p class="mt-5 text-base lg:text-lg leading-relaxed-jp text-body">
         宿泊施設、個人邸宅、ウェルネス事業者など、さまざまな場所で ITaLOG SAUNA が稼働しています。
       </p>
     </div>
 
     <!-- Case 1: ocomori sauna -->
-    <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm mb-10">
+    <article class="bg-paper-2 rounded-[1.75rem] border border-ink/10 overflow-hidden mb-10">
       <div class="grid lg:grid-cols-2">
         <div class="aspect-[4/3] lg:aspect-auto">
           <picture class="block w-full h-full">
@@ -645,76 +730,75 @@
           </picture>
         </div>
         <div class="p-8 lg:p-12 flex flex-col justify-center">
-          <p class="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase mb-3">Case 01 — 宿泊施設</p>
-          <h3 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-4 leading-tight">
+          <p class="font-latin text-xs tracking-[0.12em] text-ink mb-4 inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-heat"></span>CASE 01 — 宿泊施設</p>
+          <h3 class="text-2xl lg:text-3xl font-black text-ink mb-4 leading-tight">
             ocomori sauna<br />
-            <span class="text-base lg:text-lg font-medium text-body">埼玉県秩父郡横瀬町</span>
+            <span class="font-sans text-base lg:text-lg font-medium text-body">埼玉県秩父郡横瀬町</span>
           </h3>
-          <p class="text-base leading-relaxed-jp mb-5">
+          <p class="text-base leading-relaxed-jp mb-6">
             空き家を改装した1棟貸しのテレワーク・宿泊施設「ocomori」のテラス下に設置された、
             ITaLOG SAUNA のフラッグシップ事例。フィンランド製 9kW ストーブを搭載。<br />
             波打つベンチは流体解析で導かれた気流を可視化したもので、
             「鼻血が一筋垂れた」と表現されるほどの蒸気体験を提供します。
           </p>
-          <dl class="grid grid-cols-2 gap-4 text-sm border-t border-slate-200 pt-5">
+          <dl class="grid grid-cols-2 gap-4 text-sm border-t border-ink/10 pt-5">
             <div>
-              <dt class="text-slate-500">設置形態</dt>
-              <dd class="mt-1 text-slate-900 font-medium">屋外・テラス下</dd>
+              <dt class="text-body">設置形態</dt>
+              <dd class="mt-1 text-ink font-medium">屋外・テラス下</dd>
             </div>
             <div>
-              <dt class="text-slate-500">運用</dt>
-              <dd class="mt-1 text-slate-900 font-medium">宿泊・日帰り利用</dd>
+              <dt class="text-body">運用</dt>
+              <dd class="mt-1 text-ink font-medium">宿泊・日帰り利用</dd>
             </div>
             <div>
-              <dt class="text-slate-500">ストーブ</dt>
-              <dd class="mt-1 text-slate-900 font-medium">フィンランド製 9kW</dd>
+              <dt class="text-body">ストーブ</dt>
+              <dd class="mt-1 text-ink font-medium">フィンランド製 9kW</dd>
             </div>
             <div>
-              <dt class="text-slate-500">完成年</dt>
-              <dd class="mt-1 text-slate-900 font-medium">2023年</dd>
+              <dt class="text-body">完成年</dt>
+              <dd class="mt-1 text-ink font-medium">2023年</dd>
             </div>
           </dl>
         </div>
       </div>
-      <!-- Sub gallery -->
-      <div class="grid grid-cols-3 gap-1 bg-white p-1 border-t border-slate-200">
+      <div class="grid grid-cols-3 gap-2 p-2 border-t border-ink/10">
         <picture class="block">
           <source srcset="assets/img/photos/_dsc1245.webp" type="image/webp" />
-          <img src="assets/img/photos/_dsc1245.jpg" width="1800" height="1200" alt="ocomori sauna 内観の別アングル — 流体力学で設計されたサウナ小屋" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+          <img src="assets/img/photos/_dsc1245.jpg" width="1800" height="1200" alt="ocomori sauna 内観の別アングル — 流体力学で設計されたサウナ小屋" class="w-full aspect-[4/3] object-cover rounded-[0.9rem]" loading="lazy" />
         </picture>
         <picture class="block">
           <source srcset="assets/img/photos/_dsc1274.webp" type="image/webp" />
-          <img src="assets/img/photos/_dsc1274.jpg" width="1800" height="1200" alt="ocomori sauna 入口外観 — 横瀬町の宿泊施設" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+          <img src="assets/img/photos/_dsc1274.jpg" width="1800" height="1200" alt="ocomori sauna 入口外観 — 横瀬町の宿泊施設" class="w-full aspect-[4/3] object-cover rounded-[0.9rem]" loading="lazy" />
         </picture>
         <picture class="block">
           <source srcset="assets/img/photos/_dsc0600.webp" type="image/webp" />
-          <img src="assets/img/photos/_dsc0600.jpg" width="1800" height="1200" alt="ocomori 宿泊施設全景 — テラス下にITaLOG SAUNAを設置" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+          <img src="assets/img/photos/_dsc0600.jpg" width="1800" height="1200" alt="ocomori 宿泊施設全景 — テラス下にITaLOG SAUNAを設置" class="w-full aspect-[4/3] object-cover rounded-[0.9rem]" loading="lazy" />
         </picture>
       </div>
     </article>
 
     <!-- Case 2 -->
-    <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+    <article class="bg-paper-2 rounded-[1.75rem] border border-ink/10 overflow-hidden">
       <div class="grid lg:grid-cols-2">
         <div class="p-8 lg:p-12 flex flex-col justify-center order-2 lg:order-1">
-          <p class="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase mb-3">Case 02 — 個人邸宅</p>
-          <h3 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-4 leading-tight">
+          <p class="font-latin text-xs tracking-[0.12em] text-ink mb-4 inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cool"></span>CASE 02 — 個人邸宅</p>
+          <h3 class="text-2xl lg:text-3xl font-black text-ink mb-4 leading-tight">
             個人邸宅への導入<br />
-            <span class="text-base lg:text-lg font-medium text-body">プライベートサウナ</span>
+            <span class="font-sans text-base lg:text-lg font-medium text-body">プライベートサウナ</span>
           </h3>
-          <p class="text-base leading-relaxed-jp mb-5">
+          <p class="text-base leading-relaxed-jp mb-6">
             日常の延長線上に、本格的なフィンランド式サウナを。<br />
             乗用車に積めるサイズに分割可能な部材で、敷地への搬入も柔軟に対応。
             ご自宅の屋外スペース・ガレージ・ベランダにフィットする仕様で設計します。
           </p>
-          <dl class="grid grid-cols-2 gap-4 text-sm border-t border-slate-200 pt-5">
+          <dl class="grid grid-cols-2 gap-4 text-sm border-t border-ink/10 pt-5">
             <div>
-              <dt class="text-slate-500">設置形態</dt>
-              <dd class="mt-1 text-slate-900 font-medium">屋外プライベート</dd>
+              <dt class="text-body">設置形態</dt>
+              <dd class="mt-1 text-ink font-medium">屋外プライベート</dd>
             </div>
             <div>
-              <dt class="text-slate-500">推奨利用</dt>
-              <dd class="mt-1 text-slate-900 font-medium">家族・少人数</dd>
+              <dt class="text-body">推奨利用</dt>
+              <dd class="mt-1 text-ink font-medium">家族・少人数</dd>
             </div>
           </dl>
         </div>
@@ -725,18 +809,18 @@
           </picture>
         </div>
       </div>
-      <div class="grid grid-cols-3 gap-1 bg-white p-1 border-t border-slate-200">
+      <div class="grid grid-cols-3 gap-2 p-2 border-t border-ink/10">
         <picture class="block">
           <source srcset="assets/img/photos/img_4380.webp" type="image/webp" />
-          <img src="assets/img/photos/img_4380.jpg" width="1800" height="2400" alt="ITaLOG SAUNA のドア — 国産ヒノキ無垢材のサウナ室入口" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+          <img src="assets/img/photos/img_4380.jpg" width="1800" height="2400" alt="ITaLOG SAUNA のドア — 国産ヒノキ無垢材のサウナ室入口" class="w-full aspect-[4/3] object-cover rounded-[0.9rem]" loading="lazy" />
         </picture>
         <picture class="block">
           <source srcset="assets/img/photos/img_4382.webp" type="image/webp" />
-          <img src="assets/img/photos/img_4382.jpg" width="1800" height="2400" alt="ITaLOG SAUNA のサウナストーブとロウリュ用桶" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+          <img src="assets/img/photos/img_4382.jpg" width="1800" height="2400" alt="ITaLOG SAUNA のサウナストーブとロウリュ用桶" class="w-full aspect-[4/3] object-cover rounded-[0.9rem]" loading="lazy" />
         </picture>
         <picture class="block">
           <source srcset="assets/img/photos/img_8094.webp" type="image/webp" />
-          <img src="assets/img/photos/img_8094.jpg" width="1800" height="1350" alt="ITaLOG SAUNA の内装 — 国産スギ・ヒノキの無塗装仕上げ、有機サウナ" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+          <img src="assets/img/photos/img_8094.jpg" width="1800" height="1350" alt="ITaLOG SAUNA の内装 — 国産スギ・ヒノキの無塗装仕上げ、有機サウナ" class="w-full aspect-[4/3] object-cover rounded-[0.9rem]" loading="lazy" />
         </picture>
       </div>
     </article>
@@ -745,51 +829,64 @@
       その他、ウェルネス事業者・宿泊施設・地域施設への導入事例を順次公開予定。
     </p>
     <div class="mt-8 text-center">
-      <a href="/guide/" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-white text-slate-900 border border-slate-300 rounded-full hover:bg-gray-50 cursor-pointer transition-colors">
+      <a href="/guide/" class="group inline-flex items-center gap-3 h-14 pl-6 pr-2 text-[1rem] font-medium text-ink border border-ink rounded-full hover:bg-ink hover:text-paper transition-colors">
         設置条件・費用・法規を詳しく見る（導入ガイド）
-        <svg class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-paper transition-transform group-hover:translate-x-0.5 group-hover:bg-heat group-hover:text-ink"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============= LOCAL WOOD ============= -->
-<section id="localwood" class="py-20 lg:py-28 bg-plywood-warm border-t border-slate-200">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+<!-- ============= LOCAL WOOD (cool field) ============= -->
+<section id="localwood" class="relative bg-cool text-white py-24 lg:py-32 overflow-hidden">
+  <!-- contour rings: land and wind at once -->
+  <svg class="absolute -right-32 -bottom-40 w-[720px] h-[720px] pointer-events-none" viewBox="0 0 720 720" fill="none" stroke="#ffffff" aria-hidden="true">
+    <ellipse cx="360" cy="360" rx="330" ry="250" transform="rotate(-18 360 360)" opacity="0.14"/>
+    <ellipse cx="370" cy="370" rx="260" ry="190" transform="rotate(-10 360 360)" opacity="0.14"/>
+    <ellipse cx="380" cy="380" rx="190" ry="136" transform="rotate(-2 360 360)" opacity="0.16"/>
+    <ellipse cx="388" cy="388" rx="122" ry="86" transform="rotate(8 360 360)" opacity="0.18"/>
+    <ellipse cx="394" cy="394" rx="58" ry="40" transform="rotate(16 360 360)" opacity="0.22"/>
+  </svg>
+  <svg class="wind absolute top-6 inset-x-0 w-full h-12 pointer-events-none" data-draw viewBox="0 0 1440 48" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="hero-wisp" d="M-20,22 Q360,0 720,20 T1460,18" stroke="#ffffff" stroke-width="1.4" fill="none" opacity="0.7" stroke-linecap="round"/>
+    <path class="hero-wisp-slow" d="M-20,36 Q420,16 820,36 T1460,30" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.35" stroke-linecap="round"/>
+  </svg>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
     <div class="max-w-3xl mb-14">
-      <span class="pill-label mb-6">LOCAL WOOD</span>
-      <h2 class="text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight">
+      <span class="pill-label-light">LOCAL WOOD</span>
+      <h2 class="mt-6 text-3xl lg:text-5xl font-black leading-[1.25] text-white">
         地域の木で、<br class="sm:hidden" />地域の風をつくる。
       </h2>
-      <p class="mt-6 text-base lg:text-lg leading-relaxed-jp text-body">
+      <p class="mt-6 text-base lg:text-lg leading-relaxed-jp text-white">
         ITaLOG SAUNA の工法は、産地を選びません。<br />
-        埼玉県産材で作った最初の一棟は、<strong class="text-ink">あなたの町の木でも同じように作れます</strong>。
+        埼玉県産材で作った最初の一棟は、<strong>あなたの町の木でも同じように作れます</strong>。
       </p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
-        <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-4">ANY REGION</p>
-        <h3 class="text-lg font-bold text-slate-900 mb-3">どの地域の木でも、同じ精度で</h3>
-        <p class="text-sm leading-relaxed text-body">
+      <div class="bg-white/[0.08] border border-white/20 rounded-[1.25rem] p-7">
+        <p class="font-latin text-[0.7rem] tracking-[0.14em] text-white mb-4">ANY REGION</p>
+        <h3 class="text-lg font-black text-white mb-3">どの地域の木でも、同じ精度で</h3>
+        <p class="text-sm leading-relaxed text-white/90">
           加工データは木材の産地を選びません。設置する地域の針葉樹合板を使えば、
           遠くから運ばない分だけ環境負荷は下がり、材料費はその土地の林業へ還ります。
           「◯◯町の木のサウナ」が、地域の看板になる。
         </p>
       </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
-        <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-4">LOCAL STEAM</p>
-        <h3 class="text-lg font-bold text-slate-900 mb-3">地産地消がつくる「風」</h3>
-        <p class="text-sm leading-relaxed text-body">
+      <div class="bg-white/[0.08] border border-white/20 rounded-[1.25rem] p-7">
+        <p class="font-latin text-[0.7rem] tracking-[0.14em] text-white mb-4">LOCAL STEAM</p>
+        <h3 class="text-lg font-black text-white mb-3">地産地消がつくる「風」</h3>
+        <p class="text-sm leading-relaxed text-white/90">
           サウナ室を巡る蒸気の風と、その土地の風土。
           地元の山の木の香りに包まれてととのう体験は、輸入品を置くだけでは生まれません。
           ITaLOG は地域の資源から、その土地だけの体験を立ち上げます。
         </p>
       </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm">
-        <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-4">WORKSHOP</p>
-        <h3 class="text-lg font-bold text-slate-900 mb-3">組み立てを、ワークショップに</h3>
-        <p class="text-sm leading-relaxed text-body">
+      <div class="bg-white/[0.08] border border-white/20 rounded-[1.25rem] p-7">
+        <p class="font-latin text-[0.7rem] tracking-[0.14em] text-white mb-4">WORKSHOP</p>
+        <h3 class="text-lg font-black text-white mb-3">組み立てを、ワークショップに</h3>
+        <p class="text-sm leading-relaxed text-white/90">
           部材はすべて人の手で運べる大きさ。だから、住民や利用者と一緒に組み上げる
           「建てる体験」から始めることもできます。
           まちづくり・教育・企業研修との組み合わせもご相談ください。
@@ -797,83 +894,78 @@
       </div>
     </div>
 
-    <div class="mt-10 text-center">
-      <a href="#contact" class="inline-flex items-center justify-center gap-2 h-12 px-6 text-[1rem] font-medium bg-ink text-white rounded-full hover:opacity-90 cursor-pointer transition-opacity">
+    <div class="mt-12 text-center">
+      <a href="#contact" class="group inline-flex items-center gap-3 h-14 pl-6 pr-2 text-[1rem] font-medium bg-paper text-ink rounded-full hover:bg-white transition-colors">
         地域での導入を相談する
-        <svg class="w-4 h-4" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-paper transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============= PROCESS ============= -->
-<section id="process" class="py-20 lg:py-28">
+<!-- ============= PROCESS (steps threaded by a wind line) ============= -->
+<section id="process" class="relative bg-paper py-24 lg:py-32">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="max-w-3xl mb-14">
-      <span class="pill-label mb-6">PROCESS</span>
-      <h2 class="text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight">導入の流れ</h2>
+      <span class="pill-label">PROCESS</span>
+      <h2 class="mt-6 text-3xl lg:text-5xl font-black text-ink leading-[1.25]">導入の流れ</h2>
       <p class="mt-5 text-base lg:text-lg leading-relaxed-jp text-body">
         ご相談から設置まで、お客様の用途・設置環境に合わせて柔軟にご提案します。
       </p>
     </div>
 
-    <ol class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-      <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-ink">STEP 01</span>
-        </div>
-        <h3 class="text-base font-bold text-slate-900 mb-2">お問い合わせ</h3>
-        <p class="text-sm leading-relaxed text-body">用途・設置場所の概要をお知らせください。個人・法人どちらでもご相談いただけます。</p>
-      </li>
-      <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-ink">STEP 02</span>
-        </div>
-        <h3 class="text-base font-bold text-slate-900 mb-2">ヒアリング・現地確認</h3>
-        <p class="text-sm leading-relaxed text-body">設置場所・搬入経路・電源環境などを確認し、最適な仕様をご提案します。</p>
-      </li>
-      <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-ink">STEP 03</span>
-        </div>
-        <h3 class="text-base font-bold text-slate-900 mb-2">お見積り・ご契約</h3>
-        <p class="text-sm leading-relaxed text-body">本体・設置・電気工事を含む詳細見積りを提示。仕様確定後にご契約・着手金のお支払い。</p>
-      </li>
-      <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-ink">STEP 04</span>
-        </div>
-        <h3 class="text-base font-bold text-slate-900 mb-2">製作・搬入・組立</h3>
-        <p class="text-sm leading-relaxed text-body">埼玉県横瀬町の工房 <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="underline decoration-slate-300 underline-offset-2 hover:text-slate-900 hover:decoration-slate-500 transition-colors">TATE&nbsp;Lab.</a> で製作し、現地で組み立て。部材は乗用車に積めるサイズに分割されます。</p>
-      </li>
-      <li class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-baseline gap-3 mb-3">
-          <span class="step-num text-sm font-bold text-ink">STEP 05</span>
-        </div>
-        <h3 class="text-base font-bold text-slate-900 mb-2">引渡し・運用開始</h3>
-        <p class="text-sm leading-relaxed text-body">使用方法・メンテナンスのご説明後、運用開始。導入後のフォローも行います。</p>
-      </li>
-    </ol>
+    <div class="relative">
+      <svg class="wind absolute inset-x-0 top-4 w-full h-6 hidden lg:block" data-draw viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true">
+        <path class="hero-wisp" d="M0,12 Q120,2 240,12 T480,12 T720,12 T960,12 T1200,12" stroke="#e8603f" stroke-width="1.6" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <ol class="relative grid md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-6">
+        <li>
+          <span class="flex items-center justify-center w-14 h-14 rounded-full bg-paper border-[1.5px] border-ink font-latin text-base font-bold text-ink tnum" aria-hidden="true">01</span>
+          <h3 class="mt-5 text-lg font-black text-ink">お問い合わせ</h3>
+          <p class="mt-2 text-sm leading-relaxed text-body">用途・設置場所の概要をお知らせください。個人・法人どちらでもご相談いただけます。</p>
+        </li>
+        <li>
+          <span class="flex items-center justify-center w-14 h-14 rounded-full bg-paper border-[1.5px] border-ink font-latin text-base font-bold text-ink tnum" aria-hidden="true">02</span>
+          <h3 class="mt-5 text-lg font-black text-ink">ヒアリング・現地確認</h3>
+          <p class="mt-2 text-sm leading-relaxed text-body">設置場所・搬入経路・電源環境などを確認し、最適な仕様をご提案します。</p>
+        </li>
+        <li>
+          <span class="flex items-center justify-center w-14 h-14 rounded-full bg-paper border-[1.5px] border-ink font-latin text-base font-bold text-ink tnum" aria-hidden="true">03</span>
+          <h3 class="mt-5 text-lg font-black text-ink">お見積り・ご契約</h3>
+          <p class="mt-2 text-sm leading-relaxed text-body">本体・設置・電気工事を含む詳細見積りを提示。仕様確定後にご契約・着手金のお支払い。</p>
+        </li>
+        <li>
+          <span class="flex items-center justify-center w-14 h-14 rounded-full bg-paper border-[1.5px] border-ink font-latin text-base font-bold text-ink tnum" aria-hidden="true">04</span>
+          <h3 class="mt-5 text-lg font-black text-ink">製作・搬入・組立</h3>
+          <p class="mt-2 text-sm leading-relaxed text-body">埼玉県横瀬町の工房 <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="underline decoration-ink/30 underline-offset-2 hover:text-ink hover:decoration-ink transition-colors">TATE&nbsp;Lab.</a> で製作し、現地で組み立て。部材は乗用車に積めるサイズに分割されます。</p>
+        </li>
+        <li>
+          <span class="flex items-center justify-center w-14 h-14 rounded-full bg-heat border-[1.5px] border-ink font-latin text-base font-bold text-ink tnum" aria-hidden="true">05</span>
+          <h3 class="mt-5 text-lg font-black text-ink">引渡し・運用開始</h3>
+          <p class="mt-2 text-sm leading-relaxed text-body">使用方法・メンテナンスのご説明後、運用開始。導入後のフォローも行います。</p>
+        </li>
+      </ol>
+    </div>
 
-    <div class="mt-12 grid md:grid-cols-2 gap-6">
-      <div class="bg-gray-50 rounded-xl border border-slate-200 p-7">
+    <div class="mt-16 grid md:grid-cols-2 gap-6">
+      <div class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-7">
         <div class="flex items-center gap-3 mb-3">
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-ink">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-heat text-ink">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
           </span>
-          <h3 class="text-lg font-bold text-slate-900">個人のお客様</h3>
+          <h3 class="text-lg font-black text-ink">個人のお客様</h3>
         </div>
         <p class="text-sm leading-relaxed text-body">
           別荘・自邸の屋外スペース・ベランダ等への設置。
           搬入経路や電源環境のヒアリングから始め、ご家族の使用人数・好みに合わせて仕様を調整します。
         </p>
       </div>
-      <div class="bg-gray-50 rounded-xl border border-slate-200 p-7">
+      <div class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-7">
         <div class="flex items-center gap-3 mb-3">
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-ink">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-cool text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
           </span>
-          <h3 class="text-lg font-bold text-slate-900">法人のお客様</h3>
+          <h3 class="text-lg font-black text-ink">法人のお客様</h3>
         </div>
         <p class="text-sm leading-relaxed text-body">
           宿泊施設・サウナ事業・ウェルネス施設・福利厚生施設など、商用利用にも対応。
@@ -885,29 +977,35 @@
 </section>
 
 <!-- ============= AWARDS / PRESS ============= -->
-<section id="awards" class="py-20 lg:py-24 bg-plywood-dark text-white">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+<section id="awards" class="relative bg-ink graph-bg text-paper py-24 lg:py-28 overflow-hidden">
+  <svg class="absolute -left-40 top-1/2 -translate-y-1/2 w-[520px] h-[520px] pointer-events-none hidden lg:block" viewBox="0 0 520 520" fill="none" stroke="#eeeae3" aria-hidden="true">
+    <circle cx="260" cy="260" r="240" opacity="0.10"/>
+    <circle cx="260" cy="260" r="180" opacity="0.10" stroke-dasharray="2 6"/>
+    <circle cx="260" cy="260" r="120" opacity="0.12"/>
+    <circle cx="260" cy="260" r="60" opacity="0.14"/>
+  </svg>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid lg:grid-cols-12 gap-10 items-center">
       <div class="lg:col-span-4">
-        <span class="pill-label-light mb-6">AWARDS &amp; PRESS</span>
-        <h2 class="mt-4 text-3xl lg:text-5xl font-bold leading-tight tracking-tight">受賞・掲載</h2>
+        <span class="pill-label-light">AWARDS &amp; PRESS</span>
+        <h2 class="mt-6 text-3xl lg:text-5xl font-black leading-[1.25] text-paper">受賞・掲載</h2>
       </div>
       <div class="lg:col-span-8 grid sm:grid-cols-2 gap-5">
-        <div class="bg-white/[0.06] backdrop-blur-sm border border-white/15 rounded-2xl p-7 flex items-center gap-5">
+        <div class="bg-white/[0.05] border border-white/15 rounded-[1.25rem] p-7 flex items-center gap-5">
           <picture class="block flex-shrink-0">
             <source srcset="assets/img/wooddesign-2024_sm.webp" type="image/webp" />
-            <img src="assets/img/wooddesign-2024_sm.jpg" width="400" height="353" alt="ウッドデザイン賞 2024 受賞マーク" class="w-20 h-auto rounded bg-white p-1" loading="lazy" />
+            <img src="assets/img/wooddesign-2024_sm.jpg" width="400" height="353" alt="ウッドデザイン賞 2024 受賞マーク" class="w-20 h-auto rounded-[0.6rem] bg-white p-1.5" loading="lazy" />
           </picture>
           <div>
-            <p class="text-xs font-semibold tracking-[0.2em] text-white/60 mb-2">AWARD · 2年連続受賞</p>
-            <p class="text-lg lg:text-xl font-bold mb-2 leading-tight">ウッドデザイン賞<br />2023・2024</p>
-            <p class="text-sm text-white/75 leading-relaxed">合板を使ったログ材によるサウナ小屋製作が2年連続で評価。</p>
+            <p class="font-latin text-[0.7rem] tracking-[0.12em] text-paper/75 mb-2">AWARD · 2年連続受賞</p>
+            <p class="text-lg lg:text-xl font-bold mb-2 leading-tight text-paper">ウッドデザイン賞<br />2023・2024</p>
+            <p class="text-sm text-paper/75 leading-relaxed">合板を使ったログ材によるサウナ小屋製作が2年連続で評価。</p>
           </div>
         </div>
-        <div class="bg-white/[0.06] backdrop-blur-sm border border-white/15 rounded-2xl p-7">
-          <p class="text-xs font-semibold tracking-[0.2em] text-white/60 mb-3">PRESS</p>
-          <p class="text-lg lg:text-xl font-bold mb-2">大人の科学マガジン Special</p>
-          <p class="text-sm text-white/75 leading-relaxed">「流体力学から考えた ocomori sauna」として特集掲載。</p>
+        <div class="bg-white/[0.05] border border-white/15 rounded-[1.25rem] p-7">
+          <p class="font-latin text-[0.7rem] tracking-[0.12em] text-paper/75 mb-3">PRESS</p>
+          <p class="text-lg lg:text-xl font-bold mb-2 text-paper">大人の科学マガジン Special</p>
+          <p class="text-sm text-paper/75 leading-relaxed">「流体力学から考えた ocomori sauna」として特集掲載。</p>
         </div>
       </div>
     </div>
@@ -915,92 +1013,92 @@
 </section>
 
 <!-- ============= FAQ ============= -->
-<section id="faq" class="py-20 lg:py-28 bg-gray-50 border-t border-b border-slate-200">
+<section id="faq" class="relative bg-paper py-24 lg:py-32">
   <div class="max-w-4xl mx-auto px-6 lg:px-8">
     <div class="mb-12">
-      <span class="pill-label mb-6">FAQ</span>
-      <h2 class="text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight">よくあるご質問</h2>
+      <span class="pill-label">FAQ</span>
+      <h2 class="mt-6 text-3xl lg:text-5xl font-black text-ink leading-[1.25]">よくあるご質問</h2>
       <p class="mt-5 text-base lg:text-lg leading-relaxed-jp text-body">
         ITaLOG SAUNAの価格・仕様・導入に関するよくあるご質問にお答えします。
       </p>
     </div>
     <div class="space-y-3">
-      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+      <details class="bg-paper-2 rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>ITaLOG SAUNAの価格はいくらですか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           ストーブなしモデルが¥2,000,000〜、ストーブありモデルが¥2,500,000〜（本体価格）。仕様はオーダーに合わせて変更可能です。設置場所への運搬・組立・基礎工事・電気工事は別途お見積りいたします。
         </div>
       </details>
 
-      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+      <details class="bg-paper-2 rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>何人で利用できますか？サイズはどのくらいですか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           標準仕様で4〜6人での利用を想定したフィンランド式サウナ小屋です。サウナ室サイズは W1,820 × D1,820 × H1,900 mm。サイズはオーダーに合わせて変更可能です。
         </div>
       </details>
 
-      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+      <details class="bg-paper-2 rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>個人宅にもサウナ小屋を設置できますか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           はい、個人邸宅・別荘の屋外スペース等への設置に対応しています。部材は乗用車に積めるサイズに分割可能なため、搬入経路の制約も柔軟に解決できます。プライベートサウナとして自宅・別荘でお楽しみいただけます。
         </div>
       </details>
 
-      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+      <details class="bg-paper-2 rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>商用利用（宿泊施設・サウナ事業）にも対応していますか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           宿泊施設・サウナ事業・ウェルネス施設・福利厚生施設など、商用利用にも対応しています。実例である「ocomori sauna」は埼玉県横瀬町の宿泊施設に導入されています。保健所への届出が必要な業態の場合、設計段階からサポートいたします。
         </div>
       </details>
 
-      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+      <details class="bg-paper-2 rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>「常軌を逸した蒸気」とはどういう意味ですか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           元エンジン開発エンジニアが流体力学を駆使して設計した、独自の蒸気循環構造のことです。ベンチュリー効果で蒸気を加速し、カルマン渦で攪拌、スワール流（旋回流）として室内を満たします。これにより、少量のロウリュ（30cc・大さじ2杯程度）でも蒸気が身体を包み込み、足元まで均一に温まります。
         </div>
       </details>
 
-      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+      <details class="bg-paper-2 rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>どこで製作されていますか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
-          埼玉県秩父郡横瀬町の工房「<a href="https://tate-lab.com/" target="_blank" rel="noopener" class="underline decoration-slate-400 hover:text-slate-900">TATE Lab.</a>」で製作しています。地域材の埼玉県産針葉樹合板（スギ・ヒノキ）を使った独自工法で、職人による手作業で組み立てます。
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
+          埼玉県秩父郡横瀬町の工房「<a href="https://tate-lab.com/" target="_blank" rel="noopener" class="underline decoration-ink/30 hover:text-ink">TATE Lab.</a>」で製作しています。地域材の埼玉県産針葉樹合板（スギ・ヒノキ）を使った独自工法で、職人による手作業で組み立てます。
         </div>
       </details>
 
-      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+      <details class="bg-paper-2 rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>どのような実績や受賞がありますか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
-          <strong>ウッドデザイン賞 2023</strong> および <strong>ウッドデザイン賞 2024</strong> を2年連続で受賞しました。また、学研『大人の科学マガジン Special』に「流体力学から考えた ocomori sauna」として特集掲載されています。
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
+          <strong class="text-ink">ウッドデザイン賞 2023</strong> および <strong class="text-ink">ウッドデザイン賞 2024</strong> を2年連続で受賞しました。また、学研『大人の科学マガジン Special』に「流体力学から考えた ocomori sauna」として特集掲載されています。
         </div>
       </details>
 
-      <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-gray-50 transition-colors">
+      <details class="bg-paper-2 rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>埼玉県以外の地域の木材でも製作できますか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           はい。ITaLOGの工法は産地を選ばないため、設置する地域の木材（針葉樹合板）を使った製作が可能です。地産地消により輸送距離を抑え、材料費をその土地の林業へ還元できます。部材は人の手で運べる大きさのため、住民参加のワークショップ形式での組み立てにも対応できます。自治体・地域事業者からのご相談も歓迎します。
         </div>
       </details>
@@ -1008,35 +1106,40 @@
   </div>
 </section>
 
-<!-- ============= CONTACT ============= -->
-<section id="contact" class="py-20 lg:py-28">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-    <span class="pill-label mb-6">CONTACT / お問い合せ</span>
-    <h2 class="text-3xl lg:text-6xl font-bold text-ink mb-6 leading-tight tracking-tight">
+<!-- ============= CONTACT (heat field, wind lines in ink) ============= -->
+<section id="contact" class="relative bg-heat text-ink py-24 lg:py-32 overflow-hidden">
+  <svg class="wind absolute inset-0 w-full h-full pointer-events-none" data-draw viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="hero-wisp" d="M-50,120 Q320,40 720,130 T1500,150" stroke="#1d1915" stroke-width="1.4" fill="none" opacity="0.35" stroke-linecap="round"/>
+    <path class="hero-wisp-slow" d="M-50,330 Q420,280 820,350 T1500,320" stroke="#1d1915" stroke-width="1" fill="none" opacity="0.22" stroke-linecap="round"/>
+    <path class="hero-wisp-slow" d="M-50,520 Q480,450 1000,540 T1500,500" stroke="#1d1915" stroke-width="1" fill="none" opacity="0.18" stroke-linecap="round"/>
+  </svg>
+  <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+    <span class="pill-label">CONTACT / お問い合せ</span>
+    <h2 class="mt-6 text-3xl sm:text-4xl lg:text-6xl font-black leading-[1.2] mb-6">
       あなたの場所にも、<br />常軌を逸した蒸気を。
     </h2>
-    <p class="text-base lg:text-lg leading-relaxed-jp text-body max-w-2xl mx-auto mb-10">
+    <p class="text-base lg:text-lg leading-relaxed-jp text-ink max-w-2xl mx-auto mb-10">
       設置のご相談、仕様のお問い合わせは下記のメールアドレスまで。
       設置場所の概要・想定用途・ご予算感をお知らせいただけるとスムーズです。
     </p>
-    <a href="mailto:info@tate-lab.com?subject=ITaLOG%20SAUNA%20%E5%B0%8E%E5%85%A5%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="inline-flex items-center justify-center gap-2 h-14 px-8 text-lg font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
+    <a href="mailto:info@tate-lab.com?subject=ITaLOG%20SAUNA%20%E5%B0%8E%E5%85%A5%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="group inline-flex items-center gap-4 h-16 pl-8 pr-2 text-lg font-medium bg-ink text-paper rounded-full hover:bg-ink/90 transition-colors">
       info@tate-lab.com
-      <svg class="w-5 h-5" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-paper text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-5 h-5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     </a>
-    <div class="mt-12 pt-10 border-t border-slate-200">
-      <p class="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase text-center mb-5">Related</p>
-      <div class="flex flex-col sm:flex-row items-center justify-center flex-wrap gap-4 sm:gap-x-8 sm:gap-y-4 text-sm text-body">
-        <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-slate-900 transition-colors">
+    <div class="mt-14 pt-10 border-t border-ink/20">
+      <p class="font-latin text-xs tracking-[0.14em] text-ink text-center mb-5">RELATED</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center flex-wrap gap-4 sm:gap-x-8 sm:gap-y-4 text-sm text-ink">
+        <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
           製作: TATE Lab.（埼玉県横瀬町）
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5h5v5M19 5l-9 9M5 7v12h12"/></svg>
         </a>
-        <span class="hidden sm:inline-block w-px h-5 bg-slate-300"></span>
-        <a href="https://sauna.llschema.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-slate-900 transition-colors">
+        <span class="hidden sm:inline-block w-px h-5 bg-ink/30"></span>
+        <a href="https://sauna.llschema.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
           サウナプロジェクト: SAUNAFULLNESS
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5h5v5M19 5l-9 9M5 7v12h12"/></svg>
         </a>
-        <span class="hidden sm:inline-block w-px h-5 bg-slate-300"></span>
-        <a href="https://www.instagram.com/wood_dream_deck/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-slate-900 transition-colors">
+        <span class="hidden sm:inline-block w-px h-5 bg-ink/30"></span>
+        <a href="https://www.instagram.com/wood_dream_deck/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           @wood_dream_deck
         </a>
@@ -1046,15 +1149,15 @@
 </section>
 
 <!-- ============= FOOTER ============= -->
-<footer class="border-t border-slate-200 py-10">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+<footer class="bg-ink text-paper/75 py-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
     <div class="flex items-center gap-3">
-      <img src="assets/img/logo/italog_logo.png" width="512" height="512" alt="ITaLOG" class="h-6 w-auto opacity-70" />
-      <span>ITaLOG SAUNA</span>
+      <img src="assets/img/logo/italog_logo_t_512.png" width="512" height="512" alt="ITaLOG" class="h-7 w-auto opacity-90" style="filter: invert(1);" />
+      <span class="font-latin text-xs tracking-[0.1em] text-paper">ITaLOG SAUNA</span>
     </div>
     <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-      <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="hover:text-slate-900 transition-colors">tate-lab.com</a>
-      <span class="hidden sm:inline-block w-px h-4 bg-slate-300"></span>
+      <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="hover:text-paper transition-colors">tate-lab.com</a>
+      <span class="hidden sm:inline-block w-px h-4 bg-paper/25"></span>
       <p>&copy; 2026 TATE Lab. All Rights Reserved.</p>
     </div>
   </div>
