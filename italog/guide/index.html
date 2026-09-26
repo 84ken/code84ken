@@ -525,7 +525,7 @@
 </section>
 
 <!-- ============= 03. ELECTRIC (ink field) ============= -->
-<section id="electric" class="relative py-20 lg:py-28 bg-ink graph-bg text-paper overflow-hidden">
+<section id="electric" class="relative py-20 lg:py-28 bg-ink graph-bg text-paper">
   <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
     <header class="lg:col-span-4">
       <div class="lg:sticky lg:top-28">
@@ -630,7 +630,8 @@
 </section>
 
 <!-- ============= 04. WATER (cool field) ============= -->
-<section id="water" class="relative py-20 lg:py-28 bg-cool text-white overflow-hidden">
+<!-- overflow: clip (not hidden) so the sticky chapter header keeps working; hidden is the fallback -->
+<section id="water" class="relative py-20 lg:py-28 bg-cool text-white overflow-hidden supports-[overflow:clip]:overflow-clip">
   <svg class="absolute -right-40 -top-40 w-[640px] h-[640px] pointer-events-none" viewBox="0 0 720 720" fill="none" stroke="#ffffff" aria-hidden="true">
     <circle cx="360" cy="360" r="330" opacity="0.10"/>
     <circle cx="360" cy="360" r="250" opacity="0.12"/>
