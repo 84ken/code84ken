@@ -142,12 +142,8 @@
       .concept-step:not(:last-child)::after { content:""; position:absolute; top:74px; right:-22px; width:16px; height:16px; border-top:3px solid #F4C9D5; border-right:3px solid #F4C9D5; border-radius:2px; transform:rotate(45deg); }
     }
 
-    /* ファーストビュー（スマホ）：イラスト＋赤帯ロゴを1画面に。イラストは中央を大きく、動画は赤帯の下へ */
+    /* ファーストビュー（スマホ）：動画はイラストに重ねず、赤帯の下に置く */
     @media (max-width: 639px) {
-      .fv-frame { display:flex; flex-direction:column; height:100vh; height:min(100svh, calc(96px + 125vw + 112px)); min-height:520px; }
-      .fv-visual { flex:1 1 auto; min-height:0; display:flex; }
-      .fv-visual .fv-img { width:100%; height:100%; object-fit:cover; object-position:56% 62%; }
-      .fv-band { flex:0 0 auto; }
       #mv-slot-sp .hero-video-box { position:static; width:auto; box-shadow:0 12px 30px -12px rgba(169,40,76,.35); }
     }
 
@@ -277,10 +273,9 @@
                 <span class="label-en text-ichigo" style="font-size:10px;">JUST RELEASED</span>
               </div>
               <p class="text-base sm:text-lg font-semibold text-ink leading-snug mb-1">
-                <span class="sm:hidden">CHICHIBU ICHIGO SALT、</span>
-                <span class="hidden sm:inline">CHICHIBU ICHIGO SALT（いちご塩）、</span>オンライン販売スタート
+                <span class="block sm:inline">CHICHIBU ICHIGO SALT<span class="hidden sm:inline">（いちご塩）、</span></span><span class="block sm:inline"><span class="sm:hidden">いちご塩の</span>オンライン販売スタート</span>
               </p>
-              <p class="text-xs sm:text-sm text-mute">秩父のいちごをぎゅっと凝縮した、新感覚の調味料。10g ¥400 / 50g ¥1,800</p>
+              <p class="text-xs sm:text-sm text-mute">秩父のいちごをぎゅっと凝縮した、新感覚の調味料。<span class="block sm:inline">10g ¥400 / 50g ¥1,800</span></p>
             </div>
             <!-- CTAボタン -->
             <div class="flex-shrink-0">

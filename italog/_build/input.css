@@ -3,17 +3,8 @@
 @tailwind utilities;
 
 /* ===== ITaLOG SAUNA custom styles ===== */
-  :root {
-    --body: #4a4238;
-    --ink: #141008;
-    --steam: #e8a020;
-    --paper: #f6f1e8;
-    --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Roboto Mono", monospace;
-  }
+  :root { --body: #3d4b5f; --ink: #0a0a0a; }
   body { font-family: 'Inter','Noto Sans JP','Hiragino Sans',sans-serif; -webkit-font-smoothing: antialiased; }
-  .mono { font-family: var(--mono); font-feature-settings: "tnum"; }
-  .text-steam { color: var(--steam); }
-  .bg-paper { background-color: var(--paper); }
   .text-body { color: var(--body); }
   .text-ink { color: var(--ink); }
   .leading-relaxed-jp { line-height: 2.0; }
@@ -35,32 +26,28 @@
     background-size: cover;
     background-position: center;
   }
-  /* === Tech label — engineering index style (2026 renewal) === */
-  /* .pill-label keeps its name for cross-page compatibility; look is now a
-     monospace drafting label with an amber square marker. */
-  .pill-label,
+  /* Pill label — black with white text, like pamphlet section titles */
+  .pill-label {
+    display: inline-flex;
+    align-items: center;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 9999px;
+    padding: 0.55rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+  }
   .pill-label-light {
     display: inline-flex;
     align-items: center;
-    gap: 0.65rem;
-    background: transparent;
-    border-radius: 0;
-    padding: 0;
-    font-family: var(--mono);
-    font-size: 0.72rem;
+    background: #fff;
+    color: var(--ink);
+    border-radius: 9999px;
+    padding: 0.55rem 1.5rem;
+    font-size: 0.8125rem;
     font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-  }
-  .pill-label { color: var(--ink); }
-  .pill-label-light { color: #f6f1e8; }
-  .pill-label::before,
-  .pill-label-light::before {
-    content: "";
-    width: 0.55rem;
-    height: 0.55rem;
-    background: var(--steam);
-    flex-shrink: 0;
+    letter-spacing: 0.22em;
   }
   /* Pamphlet-style framed card */
   .pamphlet-frame {
@@ -76,53 +63,11 @@
     border-radius: 1.75rem;
     box-shadow: 0 0 0 6px var(--ink), 0 0 0 7px rgba(255,255,255,0.15);
   }
-  /* === Amber wood field — the "textured color field" of the 2026 renewal === */
-  .field-amber {
-    position: relative;
-    background-image:
-      linear-gradient(160deg, rgba(178,102,28,0.86) 0%, rgba(140,74,18,0.90) 55%, rgba(96,50,12,0.94) 100%),
-      url('/assets/img/photos/img_8137_bg.webp');
+  /* Hero overlay */
+  .hero-image {
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.65) 100%), url('/assets/img/photos/_dsc1232_hero.webp');
     background-size: cover;
     background-position: center;
-    isolation: isolate;
-  }
-  /* film grain over the field */
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.5;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-  }
-  /* engineering graph paper for dark tech sections */
-  .graph-bg {
-    background-image:
-      repeating-linear-gradient(0deg, rgba(246,241,232,0.05) 0 1px, transparent 1px 28px),
-      repeating-linear-gradient(90deg, rgba(246,241,232,0.05) 0 1px, transparent 1px 28px),
-      repeating-linear-gradient(0deg, rgba(246,241,232,0.09) 0 1px, transparent 1px 140px),
-      repeating-linear-gradient(90deg, rgba(246,241,232,0.09) 0 1px, transparent 1px 140px);
-  }
-  /* keyword chip — mono tag on dark surface */
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.35rem 0.85rem;
-    border: 1px solid rgba(246,241,232,0.28);
-    border-radius: 9999px;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    color: rgba(246,241,232,0.92);
-    white-space: nowrap;
-  }
-  /* small drafting annotation (coordinates, dates) */
-  .annot {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
   }
   /* Vertical Japanese writing for desktop */
   @media (min-width: 1024px) {
