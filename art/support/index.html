@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="../site.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <meta name="description" content="秩父ではじまる芸術祭を、ともに立ち上げてくださる企業・団体・個人サポーターを募集しています。">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
@@ -39,14 +39,31 @@
 </head>
 <body>
 <header>
-<a class="brand" href="../index.html">
-<img src="../logo.svg" alt="CAC トップページ">
+<a class="brand" href="../index.html" aria-label="ちちぶアートクリエーション2027 トップ">
+<img src="../logo.svg" alt="CAC CHICHIBU ART CREATION">
 <span>ちちぶアート<br>クリエーション 2027</span>
 </a>
+<nav aria-label="メインナビゲーション">
+<a href="../index.html#about">この芸術祭について</a>
+<a href="../index.html#program">参加する</a>
+<a href="../news/index.html">お知らせ</a>
+<a href="../team/index.html">わたしたち</a>
+<a href="../support/index.html" aria-current="page">協賛のご案内</a>
+<a class="nav-call" href="../open-call/index.html">反物デザイン公募 <span>↗</span></a>
 <a class="nav-ig" href="https://www.instagram.com/chichibu.art/" target="_blank" rel="noopener" aria-label="Instagram @chichibu.art（新しいタブで開きます）" title="Instagram @chichibu.art"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.2" class="dot"/></svg></a>
-<a class="text-link" href="../index.html">トップへ <span>↗</span>
-</a>
+</nav>
+<button id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu">MENU</button>
 </header>
+<nav id="mobile-menu" aria-label="モバイルナビゲーション" hidden>
+<a href="../index.html#about">この芸術祭について</a>
+<a href="../index.html#program">参加する</a>
+<a href="../open-call/index.html">反物デザイン公募</a>
+<a href="../join/index.html">出演者募集</a>
+<a href="../news/index.html">お知らせ</a>
+<a href="../team/index.html">わたしたち</a>
+<a href="../support/index.html" aria-current="page">協賛のご案内</a>
+<a class="menu-ig" href="https://www.instagram.com/chichibu.art/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.2" class="dot"/></svg>Instagram <em>@chichibu.art</em></a>
+</nav>
 <main class="detail-main">
 <p class="eyebrow">PARTNERSHIP</p>
 <h1>次の世代へ、<br>創造の場をつなぐ。</h1>
@@ -66,6 +83,28 @@
 <a class="text-link detail-back" href="../index.html">トップページへ戻る <span>→</span>
 </a>
 </main>
+<footer>
+<div class="footer-brand">
+<img src="../logo.svg" alt="CAC CHICHIBU ART CREATION">
+<p>ちちぶアートクリエーション 2027<br>2027年11月6日（土）・7日（日）</p>
+</div>
+<div class="footer-nav">
+<a href="../index.html#about">この芸術祭について</a>
+<a href="../index.html#program">参加する</a>
+<a href="../open-call/index.html">反物デザイン公募</a>
+<a class="sub" href="../open-call/guide/index.html">制作の手引き</a>
+<a href="../join/index.html">出演者募集</a>
+<a href="../news/index.html">お知らせ</a>
+<a href="../team/index.html">わたしたち</a>
+<a href="../support/index.html">協賛のご案内</a>
+</div>
+<div class="footer-bottom">
+<a class="sns" href="mailto:chichibu.art@gmail.com">chichibu.art@gmail.com</a>
+<a class="sns" href="https://www.instagram.com/chichibu.art/" target="_blank" rel="noopener">Instagram <em>@chichibu.art</em> <span>&#8599;</span></a>
+<a href="#">TOP &#8593;</a>
+</div>
+</footer>
+<script src="../scripts/nav.js" defer></script>
 <script src="../scripts/weave.js" defer></script>
 </body>
 </html>
