@@ -503,6 +503,23 @@ summary:focus-visible,
   .hc-sticker .display-num { font-size: 1.75rem; }
 }
 
+/* 背景の丸はヒーローの下端で切る（下の「次回開催」の帯にはみ出さない） */
+.hc-bg { position: absolute; inset: 0; overflow: hidden; }
+
+/* 湖の水色の丸（中央の白い文字の後ろには置かない） */
+.hc-lake {
+  position: absolute;
+  border-radius: 50%;
+  background: #6ec6e6;
+  /* 内側にうっすら白い輪＝水面のさざ波 */
+  box-shadow:
+    inset 0 0 0 clamp(8px, 0.9vw, 14px) rgba(255, 255, 255, 0.16),
+    inset 0 0 0 clamp(18px, 2vw, 30px) rgba(255, 255, 255, 0.08);
+}
+.hc-lake-1 { width: clamp(18rem, 30vw, 30rem); aspect-ratio: 1; right: -7%; top: -12%; }
+.hc-lake-2 { width: clamp(14rem, 22vw, 22rem); aspect-ratio: 1; left: -6%; bottom: -14%; }
+.hc-lake-3 { width: clamp(3.5rem, 5vw, 5.5rem); aspect-ratio: 1; left: 27%; bottom: 17%; }
+
 /* 写真のうしろの明るい雲 */
 .hc-cloud {
   position: absolute;

@@ -35,7 +35,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700;900&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700;900&amp;display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700;900&amp;display=swap"></noscript>
-<link rel="stylesheet" href="/assets/css/site.css?v=8c13bfa5">
+<link rel="stylesheet" href="/assets/css/site.css?v=f96b3613">
 <link rel="stylesheet" href="/assets/css/tw.css?v=e9a34a10">
 <script src="/assets/js/site.js?v=c4dad567" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"サーキュラーエコノミーラボ","alternateName":"CIRCULAR ECONOMY LAB. SAITAMA","url":"https://ce.llschema.com/","inLanguage":"ja","publisher":{"@type":"Organization","name":"株式会社スキーマ","url":"https://llschema.com/"}}</script>
@@ -98,9 +98,16 @@
 
       <!-- ===== PCだけのフォトコラージュ ===== -->
       <div class="hero-collage hidden lg:block">
-        <span class="hc-cloud hc-cloud-1" aria-hidden="true"></span>
-        <span class="hc-cloud hc-cloud-2" aria-hidden="true"></span>
-        <span class="hc-cloud hc-cloud-3" aria-hidden="true"></span>
+        <!-- 背景の丸（ヒーローの下端で切る） -->
+        <div class="hc-bg" aria-hidden="true">
+          <!-- 湖（越谷レイクタウンの水辺）をイメージした水色の丸 -->
+          <span class="hc-lake hc-lake-1" aria-hidden="true"></span>
+          <span class="hc-lake hc-lake-2" aria-hidden="true"></span>
+          <span class="hc-lake hc-lake-3" aria-hidden="true"></span>
+          <span class="hc-cloud hc-cloud-1" aria-hidden="true"></span>
+          <span class="hc-cloud hc-cloud-2" aria-hidden="true"></span>
+          <span class="hc-cloud hc-cloud-3" aria-hidden="true"></span>
+        </div>
 
         <span class="hc-photo hc-p1" aria-hidden="true"><img src="/assets/img/photo/hero-seed.jpg" alt="" width="560" height="560" fetchpriority="high"></span>
         <span class="hc-photo hc-p2" aria-hidden="true"><img src="/assets/img/photo/hero-craft.jpg" alt="" width="600" height="450"></span>
