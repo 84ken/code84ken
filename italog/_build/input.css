@@ -211,6 +211,59 @@
     .fv h1 { font-size: 3.75rem; }
   }
 
+  /* === Arrow buttons: on hover the arrow slips out to the right, stretching,
+         then slithers back in from the left (にょろっ) === */
+  .nyoro { overflow: hidden; }
+  .group:hover .nyoro > svg,
+  .group:focus-visible .nyoro > svg {
+    animation: nyoro .75s cubic-bezier(.3,.7,.25,1);
+  }
+  .group:hover .nyoro--diag > svg,
+  .group:focus-visible .nyoro--diag > svg {
+    animation-name: nyoro-diag;
+  }
+  @keyframes nyoro {
+    0%     { transform: translateX(0) scaleX(1); }
+    32%    { transform: translateX(190%) scaleX(1.7); }
+    32.01% { transform: translateX(-190%) scaleX(1.7); }
+    72%    { transform: translateX(12%) scaleX(.85); }
+    86%    { transform: translateX(-4%) scaleX(1.05); }
+    100%   { transform: translateX(0) scaleX(1); }
+  }
+  @keyframes nyoro-diag {
+    0%     { transform: translate(0, 0); }
+    32%    { transform: translate(170%, -170%); }
+    32.01% { transform: translate(-170%, 170%); }
+    72%    { transform: translate(10%, -10%); }
+    100%   { transform: translate(0, 0); }
+  }
+
+  /* === Curved section boundaries, mixed in with the straight ones ===
+     <div class="arc" style="--from:…;--to:…">   : the next section rises in an arc
+     <div class="arc arc--down" …>               : the previous section sags into the next */
+  .arc {
+    position: relative;
+    height: clamp(36px, 6vw, 88px);
+    background: var(--from);
+    margin-bottom: -1px;
+  }
+  .arc::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--to);
+    clip-path: ellipse(62% 100% at 50% 100%);
+  }
+  .arc--down {
+    background: var(--to);
+    margin-bottom: 0;
+    margin-top: -1px;
+  }
+  .arc--down::after {
+    background: var(--from);
+    clip-path: ellipse(62% 100% at 50% 0%);
+  }
+
   /* === Guide page: big outlined chapter numbers === */
   .guide-num {
     font-family: Unbounded, sans-serif;
@@ -333,6 +386,7 @@
     .flow-line, .flow-line-slow, .flow-line-short, .vortex,
     .hero-wisp, .hero-wisp-slow, .hero-wisp-faster,
     .marquee-track { animation: none; }
+    .group:hover .nyoro > svg, .group:focus-visible .nyoro > svg { animation: none; }
     .wind, .wind--hero, .js .wind[data-draw], .js .wind[data-draw].is-drawn {
       animation: none;
       -webkit-mask: none;

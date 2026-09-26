@@ -107,7 +107,6 @@
         "addressCountry": "JP"
       },
       "sameAs": [
-        "https://www.instagram.com/wood_dream_deck/",
         "https://tate-lab.com/"
       ]
     },
@@ -228,7 +227,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Zen+Kaku+Gothic+Antique:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/style.css?v=10" />
+<link rel="stylesheet" href="/assets/css/style.css?v=11" />
 <link rel="preload" as="image" href="/assets/img/photos/_dsc1232_hero.webp" fetchpriority="high" />
 <script>document.documentElement.classList.add('js');</script>
 <script src="/assets/js/site.js?v=1" defer></script>
@@ -251,7 +250,7 @@
       <a href="/guide/" class="hover:text-ink transition-colors">導入ガイド</a>
       <a href="#contact" class="group ml-1 inline-flex items-center gap-2 h-10 pl-4 pr-1.5 text-sm font-medium bg-ink text-paper rounded-full hover:bg-ink/85 transition-colors">
         お問い合わせ
-        <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-3.5 h-3.5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-heat text-ink nyoro"><svg class="w-3.5 h-3.5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </nav>
     <a href="#contact" class="md:hidden inline-flex items-center justify-center h-10 px-4 text-sm font-medium bg-ink text-paper rounded-full">お問い合わせ</a>
@@ -292,7 +291,7 @@
           <div class="fv-cta mt-10 flex flex-wrap gap-3">
             <a href="#contact" class="group inline-flex items-center gap-3 h-14 pl-6 pr-2 text-[1rem] font-medium bg-paper text-ink rounded-full hover:bg-white transition-colors">
               導入のご相談
-              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-heat text-ink nyoro"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </a>
             <a href="#science" class="inline-flex items-center h-14 px-6 text-[1rem] font-medium text-white border border-white/60 rounded-full hover:bg-white/10 transition-colors">
               技術を見る
@@ -397,23 +396,36 @@
   </div>
 </section>
 
+<div class="arc" style="--from:var(--paper);--to:var(--ink)" aria-hidden="true"></div>
+
 <!-- ============= SCIENCE (ink field + engineering graph paper) ============= -->
-<section id="science" class="relative bg-ink graph-bg text-paper py-24 lg:py-32 overflow-hidden">
+<section id="science" class="relative bg-ink graph-bg text-paper pt-16 lg:pt-20 pb-24 lg:pb-32 overflow-hidden">
   <svg class="wind absolute top-6 inset-x-0 w-full h-12 pointer-events-none" data-draw viewBox="0 0 1440 48" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <path class="hero-wisp" d="M-20,22 Q360,0 720,20 T1460,18" stroke="#fbbf24" stroke-width="1.4" fill="none" opacity="0.6" stroke-linecap="round"/>
     <path class="hero-wisp-slow" d="M-20,36 Q420,16 820,36 T1460,30" stroke="#eeeae3" stroke-width="1" fill="none" opacity="0.25" stroke-linecap="round"/>
   </svg>
 
   <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="max-w-3xl mb-16">
-      <span class="pill-label-light">SCIENCE</span>
-      <h2 class="mt-6 text-3xl lg:text-5xl font-black leading-[1.25] text-paper">
-        流体力学が設計した、<br class="hidden sm:block" />蒸気の道筋。
-      </h2>
-      <p class="mt-6 text-base lg:text-lg leading-relaxed-jp text-paper/80">
-        ITaLOG SAUNA を設計したのは、本田技研工業でエンジンの吸排気を研究してきた伊藤淳。
-        流体解析の知見をサウナ室の中に持ち込み、蒸気の流れそのものを作り直しました。
-      </p>
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 lg:items-end mb-16">
+      <div class="lg:col-span-7">
+        <span class="pill-label-light">SCIENCE</span>
+        <h2 class="mt-6 text-3xl lg:text-5xl font-black leading-[1.25] text-paper">
+          流体力学が設計した、<br class="hidden sm:block" />蒸気の道筋。
+        </h2>
+        <p class="mt-6 text-base lg:text-lg leading-relaxed-jp text-paper/80">
+          ITaLOG SAUNA を設計したのは、本田技研工業でエンジンの吸排気を研究してきた伊藤淳。
+          流体解析の知見をサウナ室の中に持ち込み、蒸気の流れそのものを作り直しました。
+        </p>
+      </div>
+      <!-- Designer -->
+      <figure class="lg:col-span-5 flex items-center gap-5 bg-white/[0.05] border border-white/15 rounded-[1.5rem] p-4 pr-6">
+        <img src="assets/img/photos/designer_ito.jpg" width="720" height="540" alt="設計者の伊藤淳。渓流で水の流れに身を任せている" class="flex-shrink-0 w-32 sm:w-40 aspect-[4/3] object-cover rounded-[1rem]" loading="lazy" />
+        <figcaption>
+          <p class="font-latin text-[0.7rem] tracking-[0.14em] text-wind">DESIGNER</p>
+          <p class="mt-1 text-xl font-black text-paper">伊藤 淳</p>
+          <p class="mt-2 text-xs sm:text-sm leading-relaxed text-paper/75">元・本田技研工業のエンジン吸排気エンジニア。流れを読むのは、空気も蒸気も、川の水も。</p>
+        </figcaption>
+      </figure>
     </div>
 
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -702,7 +714,7 @@
           <p class="text-sm text-paper/75">詳細仕様書をご希望の方は</p>
           <p class="flex items-center justify-between gap-3 text-base font-medium">
             お問い合わせください
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-heat text-ink flex-shrink-0 transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-heat text-ink flex-shrink-0 nyoro"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </p>
         </a>
       </div>
@@ -767,7 +779,7 @@
           </dl>
           <a href="https://ocomori.jp/sauna/" target="_blank" rel="noopener" class="group mt-7 self-start inline-flex items-center gap-2 h-11 pl-5 pr-1.5 text-sm font-medium text-ink border border-ink/25 rounded-full hover:border-ink transition-colors">
             ocomori sauna 公式サイト
-            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-3.5 h-3.5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-heat text-ink nyoro nyoro--diag"><svg class="w-3.5 h-3.5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span class="sr-only">（新しいタブで開く）</span>
           </a>
         </div>
@@ -842,14 +854,16 @@
     <div class="mt-8 text-center">
       <a href="/guide/" class="group inline-flex items-center gap-3 h-14 pl-6 pr-2 text-[1rem] font-medium text-ink border border-ink rounded-full hover:bg-ink hover:text-paper transition-colors">
         設置条件・費用・法規を詳しく見る（導入ガイド）
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-paper transition-transform group-hover:translate-x-0.5 group-hover:bg-heat group-hover:text-ink"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-paper nyoro transition-colors group-hover:bg-heat group-hover:text-ink"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </div>
   </div>
 </section>
 
+<div class="arc" style="--from:var(--paper);--to:var(--cool)" aria-hidden="true"></div>
+
 <!-- ============= LOCAL WOOD (cool field) ============= -->
-<section id="localwood" class="relative bg-cool text-white py-24 lg:py-32 overflow-hidden">
+<section id="localwood" class="relative bg-cool text-white pt-16 lg:pt-20 pb-24 lg:pb-32 overflow-hidden">
   <!-- contour rings: land and wind at once -->
   <svg class="absolute -right-32 -bottom-40 w-[720px] h-[720px] pointer-events-none" viewBox="0 0 720 720" fill="none" stroke="#ffffff" aria-hidden="true">
     <ellipse cx="360" cy="360" rx="330" ry="250" transform="rotate(-18 360 360)" opacity="0.14"/>
@@ -908,14 +922,16 @@
     <div class="mt-12 text-center">
       <a href="#contact" class="group inline-flex items-center gap-3 h-14 pl-6 pr-2 text-[1rem] font-medium bg-paper text-ink rounded-full hover:bg-white transition-colors">
         地域での導入を相談する
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-paper transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-paper nyoro"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </div>
   </div>
 </section>
 
+<div class="arc arc--down" style="--from:var(--cool);--to:var(--paper-2)" aria-hidden="true"></div>
+
 <!-- ============= ATELIER (TATE Lab., where it's made) ============= -->
-<section id="atelier" class="relative bg-paper-2 graph-bg-light py-24 lg:py-32 overflow-hidden">
+<section id="atelier" class="relative bg-paper-2 graph-bg-light pt-16 lg:pt-20 pb-24 lg:pb-32 overflow-hidden">
   <svg class="wind absolute top-6 inset-x-0 w-full h-12 pointer-events-none" data-draw viewBox="0 0 1440 48" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <path class="hero-wisp" d="M-20,22 Q360,0 720,20 T1460,18" stroke="#e8603f" stroke-width="1.4" fill="none" opacity="0.8" stroke-linecap="round"/>
     <path class="hero-wisp-slow" d="M-20,36 Q420,16 820,36 T1460,30" stroke="#336fae" stroke-width="1" fill="none" opacity="0.45" stroke-linecap="round"/>
@@ -940,7 +956,7 @@
       <figure class="relative lg:col-span-3 lg:row-span-2 overflow-hidden rounded-[1.25rem] border border-ink/10">
         <picture class="block">
           <source srcset="assets/img/photos/atelier_space.webp" type="image/webp" />
-          <img src="assets/img/photos/atelier_space.jpg" width="1600" height="1200" alt="埼玉県横瀬町の制作室 TATE Lab. — 西日の差し込む交流スペースとバーカウンター" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+          <img src="assets/img/photos/atelier_space.jpg" width="1600" height="1200" alt="埼玉県横瀬町の制作室 TATE Lab. — 西日の差し込む制作・交流スペース" class="w-full aspect-[4/3] object-cover" loading="lazy" />
         </picture>
         <figcaption class="absolute left-3 bottom-3 inline-flex items-center gap-2 bg-paper-2/90 backdrop-blur text-ink font-mono text-[0.7rem] tracking-[0.12em] px-3 py-1.5 rounded-full">
           FIG.01 — TATE Lab., YOKOZE
@@ -980,7 +996,7 @@
       <div class="border-t-[1.5px] border-ink pt-5">
         <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink mb-3">03 — COMMONS</p>
         <h3 class="text-lg font-black text-ink mb-2">人が集まる制作室</h3>
-        <p class="text-sm leading-relaxed text-body">バーカウンターのある交流スペースを併設。同じ建物には「Area898」「LivingAnywhere Commons 横瀬」も入り、地域の人やクリエイターが行き交います。</p>
+        <p class="text-sm leading-relaxed text-body">ものづくりの場であると同時に、人が集まる場所でもあります。同じ建物には「Area898」「LAB横瀬」も入り、地域の人やクリエイターが行き交います。</p>
       </div>
     </div>
   </div>
@@ -1085,10 +1101,16 @@
             <p class="text-sm text-paper/75 leading-relaxed">合板を使ったログ材によるサウナ小屋製作が2年連続で評価。</p>
           </div>
         </div>
-        <div class="bg-white/[0.05] border border-white/15 rounded-[1.25rem] p-7">
-          <p class="font-latin text-[0.7rem] tracking-[0.12em] text-paper/75 mb-3">PRESS</p>
-          <p class="text-lg lg:text-xl font-bold mb-2 text-paper">大人の科学マガジン Special</p>
-          <p class="text-sm text-paper/75 leading-relaxed">「流体力学から考えた ocomori sauna」として特集掲載。</p>
+        <div class="bg-white/[0.05] border border-white/15 rounded-[1.25rem] p-7 flex items-center gap-5">
+          <picture class="block flex-shrink-0">
+            <source srcset="assets/img/press/otona_kagaku_sp.webp" type="image/webp" />
+            <img src="assets/img/press/otona_kagaku_sp.jpg" width="191" height="259" alt="学研『大人の科学マガジン Special』表紙" class="w-20 h-auto rounded-[0.35rem] shadow-md rotate-[-3deg]" loading="lazy" />
+          </picture>
+          <div>
+            <p class="font-latin text-[0.7rem] tracking-[0.12em] text-paper/75 mb-2">PRESS · 学研</p>
+            <p class="text-lg lg:text-xl font-bold mb-2 leading-tight text-paper">大人の科学マガジン<br />Special</p>
+            <p class="text-sm text-paper/75 leading-relaxed">「流体力学から考えた ocomori sauna」として特集掲載。</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1189,8 +1211,10 @@
   </div>
 </section>
 
+<div class="arc" style="--from:var(--paper);--to:var(--heat)" aria-hidden="true"></div>
+
 <!-- ============= CONTACT (heat field, wind lines in ink) ============= -->
-<section id="contact" class="relative bg-heat text-ink py-24 lg:py-32 overflow-hidden">
+<section id="contact" class="relative bg-heat text-ink pt-16 lg:pt-20 pb-24 lg:pb-32 overflow-hidden">
   <svg class="wind absolute inset-0 w-full h-full pointer-events-none" data-draw viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <path class="hero-wisp" d="M-50,120 Q320,40 720,130 T1500,150" stroke="#1d1915" stroke-width="1.4" fill="none" opacity="0.35" stroke-linecap="round"/>
     <path class="hero-wisp-slow" d="M-50,330 Q420,280 820,350 T1500,320" stroke="#1d1915" stroke-width="1" fill="none" opacity="0.22" stroke-linecap="round"/>
@@ -1207,7 +1231,7 @@
     </p>
     <a href="mailto:info@tate-lab.com?subject=ITaLOG%20SAUNA%20%E5%B0%8E%E5%85%A5%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="group inline-flex items-center gap-4 h-16 pl-8 pr-2 text-lg font-medium bg-ink text-paper rounded-full hover:bg-ink/90 transition-colors">
       info@tate-lab.com
-      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-paper text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-5 h-5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-paper text-ink nyoro"><svg class="w-5 h-5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     </a>
     <div class="mt-14 pt-10 border-t border-ink/20">
       <p class="font-latin text-xs tracking-[0.14em] text-ink text-center mb-5">RELATED</p>
@@ -1222,9 +1246,9 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5h5v5M19 5l-9 9M5 7v12h12"/></svg>
         </a>
         <span class="hidden sm:inline-block w-px h-5 bg-ink/30"></span>
-        <a href="https://www.instagram.com/wood_dream_deck/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
+        <a href="https://www.instagram.com/sauna_fulness/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          @wood_dream_deck
+          @sauna_fulness
         </a>
       </div>
     </div>

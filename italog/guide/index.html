@@ -152,7 +152,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Zen+Kaku+Gothic+Antique:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/style.css?v=10" />
+<link rel="stylesheet" href="/assets/css/style.css?v=11" />
 <script>document.documentElement.classList.add('js');</script>
 <script src="/assets/js/site.js?v=1" defer></script>
 </head>
@@ -173,7 +173,7 @@
       <a href="/guide/" class="text-ink font-bold underline decoration-heat decoration-2 underline-offset-[6px]" aria-current="page">導入ガイド</a>
       <a href="#contact" class="group ml-1 inline-flex items-center gap-2 h-10 pl-4 pr-1.5 text-sm font-medium bg-ink text-paper rounded-full hover:bg-ink/85 transition-colors">
         お問い合わせ
-        <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-3.5 h-3.5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-heat text-ink nyoro"><svg class="w-3.5 h-3.5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </nav>
     <a href="#contact" class="md:hidden inline-flex items-center justify-center h-10 px-4 text-sm font-medium bg-ink text-paper rounded-full">お問い合わせ</a>
@@ -416,7 +416,7 @@
 </section>
 
 <!-- ============= 02. FOUNDATION ============= -->
-<section id="foundation" class="py-20 lg:py-28 bg-paper-2 border-y border-ink/10">
+<section id="foundation" class="py-20 lg:py-28 bg-paper-2 border-t border-ink/10">
   <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
     <header class="lg:col-span-4">
       <div class="lg:sticky lg:top-28 text-ink">
@@ -524,8 +524,10 @@
   </div>
 </section>
 
+<div class="arc" style="--from:var(--paper-2);--to:var(--ink)" aria-hidden="true"></div>
+
 <!-- ============= 03. ELECTRIC (ink field) ============= -->
-<section id="electric" class="relative py-20 lg:py-28 bg-ink graph-bg text-paper">
+<section id="electric" class="relative pt-12 lg:pt-16 pb-20 lg:pb-28 bg-ink graph-bg text-paper">
   <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
     <header class="lg:col-span-4">
       <div class="lg:sticky lg:top-28">
@@ -725,8 +727,10 @@
   </div>
 </section>
 
+<div class="arc arc--down" style="--from:var(--cool);--to:var(--paper)" aria-hidden="true"></div>
+
 <!-- ============= 05. LAW ============= -->
-<section id="law" class="py-20 lg:py-28">
+<section id="law" class="pt-14 lg:pt-20 pb-20 lg:pb-28">
   <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
     <header class="lg:col-span-4">
       <div class="lg:sticky lg:top-28 text-ink">
@@ -1177,7 +1181,7 @@
           </li>
           <li>
             <a href="#contact" class="group flex flex-col justify-between h-full bg-ink text-paper rounded-[1.25rem] p-5 hover:bg-ink/90 transition-colors">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-heat text-ink nyoro"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               <span class="mt-3">
                 <span class="block font-bold text-sm">そのほかの業態も</span>
                 <span class="block mt-1.5 text-xs leading-relaxed text-paper/80">まずはご相談ください</span>
@@ -1265,8 +1269,10 @@
   </div>
 </section>
 
+<div class="arc" style="--from:var(--paper-2);--to:var(--heat)" aria-hidden="true"></div>
+
 <!-- ============= CONTACT (heat field, wind lines in ink) ============= -->
-<section id="contact" class="relative bg-heat text-ink py-20 lg:py-28 overflow-hidden">
+<section id="contact" class="relative bg-heat text-ink pt-12 lg:pt-16 pb-20 lg:pb-28 overflow-hidden">
   <svg class="wind absolute inset-0 w-full h-full pointer-events-none" data-draw viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <path class="hero-wisp" d="M-50,120 Q320,40 720,130 T1500,150" stroke="#1d1915" stroke-width="1.4" fill="none" opacity="0.35" stroke-linecap="round"/>
     <path class="hero-wisp-slow" d="M-50,330 Q420,280 820,350 T1500,320" stroke="#1d1915" stroke-width="1" fill="none" opacity="0.22" stroke-linecap="round"/>
@@ -1284,7 +1290,7 @@
     </p>
     <a href="mailto:info@tate-lab.com?subject=ITaLOG%20SAUNA%20%E5%B0%8E%E5%85%A5%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="group inline-flex items-center gap-4 h-16 pl-8 pr-2 text-lg font-medium bg-ink text-paper rounded-full hover:bg-ink/90 transition-colors">
       info@tate-lab.com
-      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-paper text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-5 h-5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-paper text-ink nyoro"><svg class="w-5 h-5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     </a>
     <p class="mt-10">
       <a href="/" class="inline-flex items-center gap-2 text-sm text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
