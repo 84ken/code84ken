@@ -151,7 +151,7 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
 <script>
 (function(){
   /* ここに Apps Script の「ウェブアプリのURL」を入れる。空のあいだは試用（デモ）で動く */
-  var API='';
+  var API='https://script.google.com/macros/s/AKfycbw9WCYQk6BNrbjVlcT-9jxBvWDdmqhugxVZJqTBSaISpNGsdu79TE-OjBCBB0YY-cff/exec';
 
   var DAYS={sat:{label:'11月6日（土）'},sun:{label:'11月7日（日）'}};
   var HALL=window.CAC_HALL,U=24;
@@ -163,7 +163,7 @@ h1{font:400 clamp(28px,4vw,40px)/1.6 var(--serif);letter-spacing:.06em;margin:6p
   /* ---------- 通信（デモのときはこの端末の中だけで動かす） ---------- */
   function api(method,body){
     if(DEMO)return demo(method,body);
-    var url=API+'?a=state&c='+encodeURIComponent(CODE);
+    var url=API+'?a=state&code='+encodeURIComponent(CODE);
     var opt=method==='GET'?{}:{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)};
     return fetch(method==='GET'?url:API,opt).then(function(r){return r.json();});
   }
