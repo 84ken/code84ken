@@ -738,3 +738,35 @@ a.dark:hover,.dark:hover,.dark:focus-visible{background:var(--weft)}
   .call-panel::before,.program-grid article::before,.together-links>a::before,.detail-main h2::before{transition:none;transform:scaleX(1)}
   #weft-ground{transition:none}
 }
+
+/* --- 01〜08 のセクションごとに、それぞれの緯糸の線を通す --- */
+:root{
+  --fuji:#7c86a8;     /* 藤  棚の反物 */
+  --asagi:#3a8193;    /* 浅葱 染めた糸の見本 */
+  --hanada:#2f5d8b;   /* 縹  染めた糸の見本 */
+}
+html[data-weft="fuji"]{--weft:var(--fuji)}
+html[data-weft="asagi"]{--weft:var(--asagi)}
+html[data-weft="hanada"]{--weft:var(--hanada)}
+section[data-weft]{--thread:var(--kon)}
+section[data-weft="shu"]{--thread:var(--shu)}
+section[data-weft="koubai"]{--thread:var(--koubai)}
+section[data-weft="beni"]{--thread:var(--beni)}
+section[data-weft="fuji"]{--thread:var(--fuji)}
+section[data-weft="uguisu"]{--thread:var(--uguisu)}
+section[data-weft="asagi"]{--thread:var(--asagi)}
+section[data-weft="hanada"]{--thread:var(--hanada)}
+
+/* セクション内の罫線とラベルの縦線は、そのセクション自身の色 */
+section[data-weft] .section-label>span:first-child,
+section[data-weft] .section-label:not(:has(span)){border-left-color:var(--thread)}
+section[data-weft] .call-panel::before,
+section[data-weft] .program-grid article::before,
+section[data-weft] .together-links>a::before{background:var(--thread)}
+
+/* 見出しラベルの上を、左から右へ走る一本の緯糸 */
+section[data-weft]>.section-label{position:relative}
+section[data-weft]>.section-label::before{content:'';position:absolute;left:0;right:0;top:-22px;height:2px;background:var(--thread);
+  transform:scaleX(0);transform-origin:left center;transition:transform 1s cubic-bezier(.65,0,.2,1)}
+section[data-weft]>.section-label.is-woven::before{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){section[data-weft]>.section-label::before{transition:none;transform:scaleX(1)}}
