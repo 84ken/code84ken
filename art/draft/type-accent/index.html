@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>文字組みと差し色の検証｜CAC 2027</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,400;125,500&family=Cormorant+Garamond:ital,wght@1,500&family=IBM+Plex+Sans+JP:wght@400;500&family=Noto+Sans+JP:wght@400;500&family=Shippori+Mincho:wght@500&family=Zen+Kaku+Gothic+New:wght@400;500&family=Zen+Old+Mincho:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#262523;--muted:#77756e;--paper:#efeee9;--line:#d6d4cc;
+  /* 切り替えパネルで書き換える値（初期値＝おすすめ案） */
+  --head:'Shippori Mincho',serif;
+  --body:'Zen Kaku Gothic New',sans-serif;
+  --weight:500;--lh:2;--size:16px;
+  --latin:'Archivo',sans-serif;--latin-stretch:125%;--latin-style:normal;--latin-weight:500;
+  --accent:#b01726;--band:#d0606b;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink)}
+body{font:var(--weight) var(--size)/var(--lh) var(--body)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ===== 1. 演出 ===== */
+.hero{position:relative;min-height:100svh;overflow:hidden;background:var(--paper)}
+.hero header{position:absolute;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:30px 4.5vw;z-index:5}
+.hero header img{width:96px}
+.hero nav{display:flex;gap:30px;font-size:14px}
+.hero nav a{padding:4px 0;border-bottom:1px solid transparent;transition:border-color .3s,color .3s}
+.hero nav a:hover{color:var(--accent);border-color:var(--accent)}
+.hero .cta{background:var(--ink);color:#fff;padding:10px 18px;font-size:13.5px}
+.hero .cta:hover{background:var(--accent);color:#fff;border-color:transparent}
+
+/* 網点の楕円写真 */
+.ellipse{position:absolute;left:28%;top:21%;width:50vw;max-width:780px;aspect-ratio:1.36;transform:rotate(-17deg);
+  clip-path:ellipse(50% 50%);z-index:1}
+.ellipse img{position:absolute;inset:-12%;width:124%;height:124%;max-width:none;object-fit:cover;transform:rotate(17deg)}
+
+/* 差し色の縦書き短冊（右から読む） */
+.tanzaku{position:absolute;right:8vw;top:26%;display:flex;flex-direction:row-reverse;gap:14px;z-index:3}
+.tanzaku span{writing-mode:vertical-rl;background:#fff;color:var(--accent);font:500 clamp(17px,1.35vw,21px)/1 var(--head);
+  letter-spacing:.14em;padding:16px 11px}
+.tanzaku span:nth-child(2){margin-top:34px}
+.tanzaku span:nth-child(3){margin-top:68px}
+
+/* 左下の小さな導入文と会期 */
+.intro{position:absolute;left:4.5vw;bottom:calc(9vw + 60px);max-width:300px;z-index:3}
+.intro p{margin:0 0 18px;font-size:14px;line-height:1.9}
+.intro .en{font-family:var(--latin);font-stretch:var(--latin-stretch);font-style:var(--latin-style);font-weight:400;font-size:13px;letter-spacing:.02em;color:var(--muted)}
+.intro .date{font-size:13.5px;letter-spacing:.06em;border-top:1px solid var(--line);padding-top:12px}
+.intro .date b{color:var(--accent);font-weight:500}
+
+/* 下を流れる大きな英文と、色の帯 */
+.band{position:absolute;left:0;right:0;bottom:0;height:calc(5.2vw + 44px);background:var(--band);z-index:0}
+.marquee{position:absolute;left:0;right:0;bottom:calc(-1.2vw + 30px);white-space:nowrap;z-index:2;pointer-events:none}
+.marquee div{display:inline-block;animation:flow 48s linear infinite;
+  font-family:var(--latin);font-stretch:var(--latin-stretch);font-style:var(--latin-style);font-weight:var(--latin-weight);
+  font-size:10.5vw;line-height:1;letter-spacing:-.01em;color:var(--ink)}
+@keyframes flow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== 2. 文字組みの比較 ===== */
+.compare{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.col{padding:80px 6vw 90px}
+.col+.col{border-left:1px solid var(--line)}
+.tag{display:inline-block;font:500 12px/1 'Zen Kaku Gothic New',sans-serif;letter-spacing:.14em;padding:7px 12px;margin-bottom:44px;border:1px solid var(--line);color:var(--muted)}
+.col.now .tag{background:#f4f4f1}
+.col.new .tag{border-color:var(--accent);color:var(--accent)}
+.col .eyebrow{font-size:12px;letter-spacing:.18em;margin:0 0 22px}
+.col dl{margin:34px 0 0;padding-top:20px;border-top:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:6px 22px;font-size:14px}
+.col dt{color:var(--muted)}
+.col dd{margin:0}
+
+/* いまの設定（サイトの値をそのまま再現） */
+.now{font:400 16px/1.9 'Yu Gothic','YuGothic',Meiryo,sans-serif;color:#292a27}
+.now h2{font:400 clamp(30px,3.1vw,44px)/1.7 'Yu Mincho','YuMincho','Hiragino Mincho ProN',serif;letter-spacing:.04em;margin:0 0 30px}
+.now p{line-height:2.2;margin:0 0 23px}
+
+/* 調整案（パネルで切り替え） */
+.new h2{font:500 clamp(28px,2.8vw,40px)/1.9 var(--head);letter-spacing:.06em;margin:0 0 30px}
+.new h2 em{font-style:normal;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--accent) 22%,transparent) 62%)}
+.new p{margin:0 0 1.2em}
+.new .eyebrow{color:var(--accent)}
+
+/* ===== 切り替えパネル ===== */
+.panel{position:fixed;right:16px;bottom:16px;z-index:50;background:#fff;border:1px solid var(--line);
+  box-shadow:0 12px 30px #0000001a;font:400 12.5px/1.6 'Zen Kaku Gothic New',sans-serif;width:292px;max-height:calc(100svh - 32px);overflow:auto}
+.panel summary{cursor:pointer;padding:12px 16px;font-weight:500;letter-spacing:.06em;list-style:none;display:flex;justify-content:space-between}
+.panel summary::after{content:'−'}
+.panel:not([open]) summary::after{content:'＋'}
+.panel .inner{padding:4px 16px 16px}
+.panel fieldset{border:0;padding:0;margin:0 0 12px}
+.panel legend{font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:5px;padding:0}
+.opts{display:flex;flex-wrap:wrap;gap:5px}
+.opts button{font:inherit;font-size:12px;border:1px solid var(--line);background:#fff;padding:5px 9px;cursor:pointer;color:var(--ink)}
+.opts button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.opts button .sw{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
+.panel .reset{width:100%;margin-top:4px;font:inherit;font-size:12px;padding:8px;border:1px solid var(--accent);color:var(--accent);background:#fff;cursor:pointer}
+.draftnote{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:50;font:400 11px/1 'Zen Kaku Gothic New',sans-serif;
+  letter-spacing:.08em;background:#fff;border:1px solid var(--line);color:var(--muted);padding:6px 11px;white-space:nowrap}
+
+@media (max-width:860px){
+  .hero{min-height:760px}
+  .hero nav{display:none}
+  .ellipse{left:-8%;top:15%;width:96vw}
+  .tanzaku{right:5vw;top:13%}
+  .tanzaku span{font-size:16px;padding:13px 9px}
+  .intro{left:6vw;bottom:calc(9vw + 52px);max-width:86vw}
+  .marquee div{font-size:17vw}
+  .band{height:calc(9vw + 40px)}
+  .compare{grid-template-columns:1fr}
+  .col+.col{border-left:0;border-top:1px solid var(--line)}
+  .col{padding:56px 7vw 64px}
+  .panel{left:10px;right:10px;width:auto;bottom:10px}
+  .draftnote{top:auto;bottom:auto;top:6px;font-size:10px}
+}
+@media (prefers-reduced-motion:reduce){.marquee div{animation:none}}
+</style>
+</head>
+<body>
+<div class="draftnote">検証用ページ（本番には反映していません）</div>
+
+<section class="hero" aria-label="演出の検証">
+<header>
+<a href="../../index.html"><img src="../../logo.svg" alt="CAC CHICHIBU ART CREATION"></a>
+<nav aria-label="メインナビゲーション">
+<a href="../../index.html#about">この芸術祭について</a>
+<a href="../../news/index.html">お知らせ</a>
+<a href="../../team/index.html">わたしたち</a>
+<a class="cta" href="../../open-call/index.html">反物デザイン公募</a>
+</nav>
+</header>
+
+<div class="ellipse"><img id="ht" src="ht-stage.webp" alt="平昌2018「MIYABI」の舞台写真を網点で表現したもの"></div>
+
+<p class="tanzaku" aria-label="眠れる感性が、羽ばたき、未来へ紡ぐ。"><span>眠れる感性が、</span><span>羽ばたき、</span><span>未来へ紡ぐ。</span></p>
+
+<div class="intro">
+<p class="en">From Chichibu’s silk culture, new forms of expression.</p>
+<p>秩父の絹の文化から、新しい表現を。<br>まち全体が、ひとつの繭になる。</p>
+<p class="date"><b>2027.11.6 — 11.7</b>　秩父宮記念市民会館</p>
+</div>
+
+<div class="band" aria-hidden="true"></div>
+<div class="marquee" aria-hidden="true"><div>From a thread, toward the future.&ensp;From a thread, toward the future.&ensp;From a thread, toward the future.&ensp;From a thread, toward the future.&ensp;</div></div>
+</section>
+
+<section class="compare" aria-label="文字組みの比較">
+<div class="col now">
+<span class="tag">いま</span>
+<p class="eyebrow">02 — ABOUT</p>
+<h2>まち全体が、<br>ひとつの繭になる。</h2>
+<p>秩父は、かつて養蚕と織物のまちでした。<br>繭から糸を引き、秩父銘仙を織ってきた土地です。</p>
+<p>その「繭」をテーマに、全国から作品を募り、<br>秩父で舞台をつくります。</p>
+<p>観る人も、つくる人も、舞台に立つ人も。<br>出会いのなかで感性を育み、<br>次の世代へ、表現の糸をつないでいきます。</p>
+<dl><dt>会期</dt><dd>2027年11月6日（土）・7日（日）</dd><dt>会場</dt><dd>秩父宮記念市民会館／秩父市歴史文化伝承館</dd></dl>
+</div>
+<div class="col new">
+<span class="tag">調整案</span>
+<p class="eyebrow">02 — ABOUT</p>
+<h2>まち全体が、<br><em>ひとつの繭になる。</em></h2>
+<p>秩父は、かつて養蚕と織物のまちでした。<br>繭から糸を引き、秩父銘仙を織ってきた土地です。</p>
+<p>その「繭」をテーマに、全国から作品を募り、<br>秩父で舞台をつくります。</p>
+<p>観る人も、つくる人も、舞台に立つ人も。<br>出会いのなかで感性を育み、<br>次の世代へ、表現の糸をつないでいきます。</p>
+<dl><dt>会期</dt><dd>2027年11月6日（土）・7日（日）</dd><dt>会場</dt><dd>秩父宮記念市民会館／秩父市歴史文化伝承館</dd></dl>
+</div>
+</section>
+
+<details class="panel">
+<summary>切り替えて見比べる</summary>
+<div class="inner">
+<fieldset><legend>差し色</legend><div class="opts" data-group="accent">
+<button data-v="#b01726|#d0606b"><i class="sw" style="background:#b01726"></i>紅（舞台）</button>
+<button data-v="#44318a|#8a7bc2"><i class="sw" style="background:#44318a"></i>菫（銘仙）</button>
+<button data-v="#274658|#6f8ea3"><i class="sw" style="background:#274658"></i>藍</button>
+<button data-v="#8f5119|#c99a5e"><i class="sw" style="background:#8f5119"></i>金茶</button>
+</div></fieldset>
+<fieldset><legend>網点の写真</legend><div class="opts" data-group="photo">
+<button data-v="ht-stage.webp">舞台</button>
+<button data-v="ht-meisen.webp">銘仙</button>
+</div></fieldset>
+<fieldset><legend>見出しの書体</legend><div class="opts" data-group="head">
+<button data-v="'Shippori Mincho',serif">しっぽり明朝</button>
+<button data-v="'Zen Old Mincho',serif">Zen Old明朝</button>
+<button data-v="'Yu Mincho','YuMincho',serif">游明朝（いま）</button>
+<button data-v="'Zen Kaku Gothic New',sans-serif">ゴシック</button>
+</div></fieldset>
+<fieldset><legend>本文の書体</legend><div class="opts" data-group="body">
+<button data-v="'Zen Kaku Gothic New',sans-serif">Zen角ゴシック</button>
+<button data-v="'Noto Sans JP',sans-serif">Noto Sans</button>
+<button data-v="'IBM Plex Sans JP',sans-serif">IBM Plex</button>
+<button data-v="'Yu Gothic','YuGothic',sans-serif">游ゴシック（いま）</button>
+</div></fieldset>
+<fieldset><legend>本文の太さ</legend><div class="opts" data-group="weight">
+<button data-v="500">ミディアム</button><button data-v="400">レギュラー（いま）</button>
+</div></fieldset>
+<fieldset><legend>行間（文字サイズの何倍か）</legend><div class="opts" data-group="lh">
+<button data-v="1.9">1.9（いま）</button><button data-v="2">2.0</button><button data-v="2.2">2.2</button>
+</div></fieldset>
+<fieldset><legend>本文の大きさ</legend><div class="opts" data-group="size">
+<button data-v="15px">15</button><button data-v="16px">16（いま）</button><button data-v="17px">17</button>
+</div></fieldset>
+<fieldset><legend>流れる英文の書体</legend><div class="opts" data-group="latin">
+<button data-v="grotesk">太めのゴシック</button><button data-v="serif">斜体のセリフ</button>
+</div></fieldset>
+<button class="reset" type="button">おすすめ案に戻す</button>
+</div>
+</details>
+
+<script>
+(function(){
+  var root=document.documentElement.style;
+  var preset={accent:'#b01726|#d0606b',photo:'ht-stage.webp',head:"'Shippori Mincho',serif",body:"'Zen Kaku Gothic New',sans-serif",weight:'500',lh:'2',size:'16px',latin:'grotesk'};
+  function apply(g,v){
+    if(g==='accent'){var p=v.split('|');root.setProperty('--accent',p[0]);root.setProperty('--band',p[1]);}
+    else if(g==='photo'){document.getElementById('ht').src=v;}
+    else if(g==='latin'){
+      if(v==='serif'){root.setProperty('--latin',"'Cormorant Garamond',serif");root.setProperty('--latin-stretch','100%');root.setProperty('--latin-style','italic');root.setProperty('--latin-weight','500');}
+      else{root.setProperty('--latin',"'Archivo',sans-serif");root.setProperty('--latin-stretch','125%');root.setProperty('--latin-style','normal');root.setProperty('--latin-weight','500');}
+    }
+    else root.setProperty('--'+g,v);
+    document.querySelectorAll('[data-group="'+g+'"] button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});
+  }
+  document.querySelectorAll('.opts').forEach(function(o){
+    o.addEventListener('click',function(e){var b=e.target.closest('button');if(b)apply(o.dataset.group,b.dataset.v);});
+  });
+  function reset(){Object.keys(preset).forEach(function(g){apply(g,preset[g]);});}
+  document.querySelector('.reset').addEventListener('click',reset);
+  reset();
+})();
+</script>
+</body>
+</html>
