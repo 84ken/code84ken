@@ -51,7 +51,7 @@
       "description": "自宅や施設にサウナ小屋を設置するための実務ガイド。必要なスペース、基礎工事、電源容量と電気工事、給排水、建築基準法・確認申請の考え方、初期費用とランニングコスト、メンテナンスまでを解説。",
       "image": "https://italog.schema.tokyo/assets/img/og-image.jpg",
       "datePublished": "2026-08-13",
-      "dateModified": "2026-08-13",
+      "dateModified": "2026-09-26",
       "inLanguage": "ja-JP",
       "author": {
         "@type": "Organization",
@@ -152,7 +152,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Zen+Kaku+Gothic+Antique:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/style.css?v=8" />
+<link rel="stylesheet" href="/assets/css/style.css?v=9" />
+<script>document.documentElement.classList.add('js');</script>
+<script src="/assets/js/site.js?v=1" defer></script>
 </head>
 <body class="bg-paper text-body antialiased">
 
@@ -161,310 +163,586 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
     <a href="/" class="flex items-center gap-3">
       <img src="/assets/img/logo/italog_logo_t_512.png" width="512" height="512" alt="ITaLOG" class="h-8 w-auto" />
-      <span class="text-sm font-semibold tracking-wider text-slate-900">ITaLOG SAUNA</span>
+      <span class="font-latin text-[0.78rem] font-medium tracking-[0.08em] text-ink">ITaLOG SAUNA</span>
     </a>
-    <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-8 text-sm font-medium text-body">
-      <a href="/#concept" class="hover:text-slate-900 transition-colors">コンセプト</a>
-      <a href="/#science" class="hover:text-slate-900 transition-colors">技術</a>
-      <a href="/#spec" class="hover:text-slate-900 transition-colors">仕様</a>
-      <a href="/#cases" class="hover:text-slate-900 transition-colors">導入事例</a>
-      <a href="/guide/" class="text-slate-900 font-semibold" aria-current="page">導入ガイド</a>
-      <a href="/#contact" class="ml-2 inline-flex items-center justify-center h-9 px-4 text-sm font-medium bg-ink text-paper rounded-full hover:bg-ink/85 cursor-pointer transition-colors">お問い合わせ</a>
+    <nav aria-label="メインナビゲーション" class="hidden md:flex items-center gap-6 lg:gap-7 text-sm font-medium text-ink/75">
+      <a href="/#concept" class="hover:text-ink transition-colors">コンセプト</a>
+      <a href="/#science" class="hover:text-ink transition-colors">技術</a>
+      <a href="/#spec" class="hover:text-ink transition-colors">仕様</a>
+      <a href="/#cases" class="hover:text-ink transition-colors">導入事例</a>
+      <a href="/guide/" class="text-ink font-bold underline decoration-heat decoration-2 underline-offset-[6px]" aria-current="page">導入ガイド</a>
+      <a href="#contact" class="group ml-1 inline-flex items-center gap-2 h-10 pl-4 pr-1.5 text-sm font-medium bg-ink text-paper rounded-full hover:bg-ink/85 transition-colors">
+        お問い合わせ
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-3.5 h-3.5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
     </nav>
-    <a href="/#contact" class="md:hidden inline-flex items-center justify-center h-9 px-3 text-sm font-medium bg-ink text-paper rounded-full cursor-pointer">お問い合わせ</a>
+    <a href="#contact" class="md:hidden inline-flex items-center justify-center h-10 px-4 text-sm font-medium bg-ink text-paper rounded-full">お問い合わせ</a>
   </div>
 </header>
 
-<!-- ============= BREADCRUMB ============= -->
-<nav aria-label="パンくずリスト" class="max-w-4xl mx-auto px-6 lg:px-8 pt-8">
-  <ol class="flex items-center gap-2 text-sm text-slate-500">
-    <li><a href="/" class="hover:text-slate-700 transition-colors">ITaLOG SAUNA</a></li>
-    <li aria-hidden="true">/</li>
-    <li class="text-slate-900 font-medium">サウナ小屋 導入ガイド</li>
-  </ol>
-</nav>
-
 <!-- ============= HERO ============= -->
-<section class="py-12 lg:py-16">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <span class="pill-label mb-6">GUIDE</span>
-    <h1 class="mt-6 text-3xl lg:text-5xl font-bold text-ink leading-tight tracking-tight mb-8">
-      サウナ小屋 導入ガイド
-    </h1>
-    <p class="text-base lg:text-lg leading-relaxed-jp text-body">
-      自宅の庭に、別荘の一角に、宿泊施設のテラスに。<br />
-      サウナ小屋を設置したいと考えたとき、実際に何を確認し、
-      どんな工事が必要で、いくらかかるのか。<br />
-      このページでは、導入を検討する段階で知っておきたい実務的な情報をまとめました。
-    </p>
-    <p class="mt-6 text-sm text-slate-500 leading-relaxed">
-      最終更新: 2026年8月13日 ／ 監修: <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="underline decoration-slate-300 underline-offset-2 hover:text-slate-900">TATE Lab.</a>（埼玉県横瀬町）
-    </p>
+<section class="relative overflow-hidden">
+  <svg class="wind wind--hero absolute inset-x-0 top-24 w-full h-40 pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="hero-wisp" d="M-40,60 Q360,10 760,70 T1480,60" stroke="#e8603f" stroke-width="1.4" fill="none" opacity="0.7" stroke-linecap="round"/>
+    <path class="hero-wisp-slow" d="M-40,110 Q420,70 860,120 T1480,100" stroke="#336fae" stroke-width="1" fill="none" opacity="0.45" stroke-linecap="round"/>
+  </svg>
+
+  <div class="relative max-w-6xl mx-auto px-6 lg:px-8 pt-8 pb-16 lg:pb-24">
+    <nav aria-label="パンくずリスト">
+      <ol class="flex items-center gap-2 text-sm text-body">
+        <li><a href="/" class="hover:text-ink transition-colors">ITaLOG SAUNA</a></li>
+        <li aria-hidden="true" class="text-ink/30">/</li>
+        <li class="text-ink font-medium" aria-current="page">サウナ小屋 導入ガイド</li>
+      </ol>
+    </nav>
+
+    <div class="mt-12 lg:mt-16 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <div class="lg:col-span-7">
+        <span class="pill-label">GUIDE / 導入ガイド</span>
+        <h1 class="mt-7 text-[2.6rem] sm:text-5xl lg:text-7xl font-black text-ink leading-[1.15]">
+          サウナ小屋<br />導入ガイド
+        </h1>
+        <p class="mt-8 text-base lg:text-lg leading-relaxed-jp text-body max-w-xl">
+          自宅の庭に、別荘の一角に、宿泊施設のテラスに。<br class="hidden sm:block" />
+          サウナ小屋を設置したいと考えたとき、実際に何を確認し、どんな工事が必要で、いくらかかるのか。
+          導入を検討する段階で知っておきたい実務的な情報を、10のテーマにまとめました。
+        </p>
+        <p class="mt-6 font-mono text-xs text-body leading-relaxed">
+          最終更新 2026.09.26 ／ 監修 <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="text-ink underline decoration-ink/30 underline-offset-2 hover:decoration-ink">TATE Lab.</a>（埼玉県横瀬町）
+        </p>
+      </div>
+      <figure class="relative lg:col-span-5">
+        <picture class="block">
+          <source srcset="/assets/img/photos/_dsc1245.webp" type="image/webp" />
+          <img src="/assets/img/photos/_dsc1245.jpg" width="1800" height="1200" alt="ITaLOG SAUNA の内観 — ocomori sauna" class="w-full aspect-[4/3] lg:aspect-[4/5] object-cover rounded-[1.5rem] border border-ink/10" fetchpriority="high" />
+        </picture>
+        <figcaption class="absolute left-3 bottom-3 bg-paper-2/90 backdrop-blur text-ink font-mono text-[0.7rem] tracking-[0.12em] px-3 py-1.5 rounded-full">
+          FIG. — ocomori sauna, YOKOZE
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- At a glance: the four numbers people ask first -->
+    <div class="mt-14 lg:mt-20">
+      <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink mb-4">AT A GLANCE — まず押さえたい4つの数字</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+        <a href="#space" class="group bg-paper-2 rounded-[1.25rem] border border-ink/10 p-5 lg:p-6 hover:border-ink transition-colors">
+          <p class="font-latin font-bold text-ink text-[1.6rem] sm:text-3xl lg:text-4xl leading-none tnum">3.3<span class="text-base lg:text-lg ml-0.5">㎡</span></p>
+          <p class="mt-3 text-sm text-body leading-snug">本体の床面積（約2畳）</p>
+          <p class="mt-3 font-mono text-[0.7rem] text-ink/60 group-hover:text-ink transition-colors">→ 01 設置場所</p>
+        </a>
+        <a href="#electric" class="group bg-paper-2 rounded-[1.25rem] border border-ink/10 p-5 lg:p-6 hover:border-ink transition-colors">
+          <p class="font-latin font-bold text-ink text-[1.6rem] sm:text-3xl lg:text-4xl leading-none tnum">6〜9<span class="text-base lg:text-lg ml-0.5">kW</span></p>
+          <p class="mt-3 text-sm text-body leading-snug">ストーブ出力の目安</p>
+          <p class="mt-3 font-mono text-[0.7rem] text-ink/60 group-hover:text-ink transition-colors">→ 03 電気工事</p>
+        </a>
+        <a href="#law" class="group bg-paper-2 rounded-[1.25rem] border border-ink/10 p-5 lg:p-6 hover:border-ink transition-colors">
+          <p class="font-latin font-bold text-ink text-[1.6rem] sm:text-3xl lg:text-4xl leading-none tnum">10<span class="text-base lg:text-lg ml-0.5">㎡</span></p>
+          <p class="mt-3 text-sm text-body leading-snug">確認申請が不要になる面積の目安（防火・準防火地域以外）</p>
+          <p class="mt-3 font-mono text-[0.7rem] text-ink/60 group-hover:text-ink transition-colors">→ 05 法規</p>
+        </a>
+        <a href="#running" class="group bg-ink rounded-[1.25rem] border border-ink p-5 lg:p-6 hover:bg-ink/90 transition-colors">
+          <p class="font-latin font-bold text-wind text-[1.6rem] sm:text-3xl lg:text-4xl leading-none tnum"><span class="text-sm lg:text-base mr-0.5">約</span>300〜560<span class="text-base lg:text-lg ml-0.5">円</span></p>
+          <p class="mt-3 text-sm text-paper/80 leading-snug">1回あたりの電気代</p>
+          <p class="mt-3 font-mono text-[0.7rem] text-paper/60 group-hover:text-paper transition-colors">→ 07 ランニングコスト</p>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ============= TOC ============= -->
-<section class="pb-12">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <nav aria-label="目次" class="pamphlet-frame p-7 lg:p-8">
-      <p class="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase mb-5">CONTENTS</p>
-      <ol class="space-y-3 text-sm lg:text-base">
-        <li><a href="#space" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">1. 設置場所の条件を確認する</a></li>
-        <li><a href="#foundation" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">2. 基礎工事の考え方</a></li>
-        <li><a href="#electric" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">3. 電源容量と電気工事</a></li>
-        <li><a href="#water" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">4. 水風呂・シャワーをどうするか</a></li>
-        <li><a href="#law" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">5. 建築基準法と確認申請</a></li>
-        <li><a href="#cost" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">6. 費用の全体像</a></li>
-        <li><a href="#running" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">7. ランニングコスト</a></li>
-        <li><a href="#maintenance" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">8. メンテナンスと寿命</a></li>
-        <li><a href="#commercial" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">9. 商用利用の場合に必要なこと</a></li>
-        <li><a href="#faq" class="text-slate-700 hover:text-slate-900 underline decoration-slate-300 underline-offset-4 transition-colors">10. よくあるご質問</a></li>
+<section class="bg-paper-2 graph-bg-light border-y border-ink/10 py-14 lg:py-16">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <nav aria-label="目次">
+      <p class="pill-label mb-6">CONTENTS</p>
+      <ol class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        <li><a href="#space" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">01</span><span class="mt-3 text-sm font-bold text-ink leading-snug">設置場所の条件</span></a></li>
+        <li><a href="#foundation" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">02</span><span class="mt-3 text-sm font-bold text-ink leading-snug">基礎工事</span></a></li>
+        <li><a href="#electric" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">03</span><span class="mt-3 text-sm font-bold text-ink leading-snug">電源容量と電気工事</span></a></li>
+        <li><a href="#water" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">04</span><span class="mt-3 text-sm font-bold text-ink leading-snug">水風呂・シャワー</span></a></li>
+        <li><a href="#law" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">05</span><span class="mt-3 text-sm font-bold text-ink leading-snug">建築基準法と確認申請</span></a></li>
+        <li><a href="#cost" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">06</span><span class="mt-3 text-sm font-bold text-ink leading-snug">費用の全体像</span></a></li>
+        <li><a href="#running" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">07</span><span class="mt-3 text-sm font-bold text-ink leading-snug">ランニングコスト</span></a></li>
+        <li><a href="#maintenance" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">08</span><span class="mt-3 text-sm font-bold text-ink leading-snug">メンテナンスと寿命</span></a></li>
+        <li><a href="#commercial" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">09</span><span class="mt-3 text-sm font-bold text-ink leading-snug">商用利用の場合</span></a></li>
+        <li><a href="#faq" class="group flex flex-col justify-between h-full min-h-[7rem] p-4 lg:p-5 bg-paper rounded-[1rem] border border-ink/10 hover:border-ink transition-colors"><span class="font-latin text-xs font-bold text-ink tnum">10</span><span class="mt-3 text-sm font-bold text-ink leading-snug">よくあるご質問</span></a></li>
       </ol>
     </nav>
   </div>
 </section>
 
-<!-- ============= 1. SPACE ============= -->
-<section id="space" class="py-14 lg:py-20 bg-paper-2 border-t border-slate-200">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">01</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">設置場所の条件を確認する</h2>
-
-    <div class="space-y-6 text-base leading-relaxed-jp">
-      <p>
-        最初に決めるべきは「どこに置くか」です。サウナ室本体のサイズだけで考えると、
-        導入後に「扉が開けきらない」「メンテナンスで機器に手が届かない」といった問題が起こります。
-      </p>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">必要なスペースの目安</h3>
-      <p>
-        ITaLOG SAUNA の標準仕様（4〜6人用）はサウナ室が <strong class="text-slate-900">W1,820 × D1,820 × H1,900 mm</strong>、
-        床面積にしておよそ 3.3㎡（約2畳）です。これに加えて次のスペースを見込んでください。
-      </p>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">扉の開閉スペース</strong>：外開きの扉が全開できる奥行き。安全上、サウナ室の扉は外開きが基本です。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">周囲のクリアランス</strong>：点検・清掃・将来の部材交換のため、可能であれば背面と側面に人が入れる幅を確保。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">外気浴スペース</strong>：ととのうための椅子やベンチを置く場所。サウナ体験の質を決める重要な要素です。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">水風呂・シャワーの動線</strong>：サウナ室から濡れたまま移動できる距離と床材。</span></li>
-      </ul>
-      <p>
-        全体としては、<strong class="text-slate-900">本体面積の1.5〜2倍程度</strong>を目安に計画すると余裕が生まれます。
-      </p>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">屋外に置く場合に確認すること</h3>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">屋根の有無</strong>：木製サウナは雨ざらしを避けたほうが長持ちします。軒下・テラス下・ガレージ内が理想的です。ocomori sauna の事例では宿泊施設のテラス下に設置しています。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">地盤の状態</strong>：軟弱地盤や傾斜地では基礎の設計が変わります。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">隣家との距離</strong>：薪ストーブを使う場合は特に煙の方向に配慮が必要です。電気ストーブなら煙の問題は生じません。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">搬入経路</strong>：後述しますが、ITaLOG SAUNA は部材を分割して運べるため、大型クレーンが入らない場所にも設置できます。</span></li>
-      </ul>
-
-      <div class="pamphlet-frame p-6 lg:p-7 mt-8">
-        <p class="text-sm font-semibold text-slate-900 mb-2">搬入経路が狭くても諦めなくて大丈夫です</p>
-        <p class="text-sm leading-relaxed text-body">
-          ITaLOG SAUNA は工場で完成品を作って運ぶのではなく、加工した部材を現地で組み立てる方式です。
-          一つひとつの部材は乗用車に積める大きさに分割できるため、
-          「大型トラックが入らない」「クレーンが使えない」といった条件の敷地にも設置できます。
-          住宅密集地や山間部での実績もあります。
+<!-- ============= 01. SPACE ============= -->
+<section id="space" class="py-20 lg:py-28">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28 text-ink">
+        <p class="guide-num" aria-hidden="true">01</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em]">SPACE</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35]">設置場所の条件を確認する</h2>
+        <p class="mt-5 text-sm lg:text-base leading-relaxed-jp text-body">
+          最初に決めるべきは「どこに置くか」です。サウナ室本体のサイズだけで考えると、
+          導入後に「扉が開けきらない」「メンテナンスで機器に手が届かない」といった問題が起こります。
         </p>
       </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!-- ============= 2. FOUNDATION ============= -->
-<section id="foundation" class="py-14 lg:py-20">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">02</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">基礎工事の考え方</h2>
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-16">
+      <!-- Required space -->
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">必要なスペースの目安</h3>
+        <p class="mt-4 text-base leading-relaxed-jp">
+          ITaLOG SAUNA の標準仕様（4〜6人用）はサウナ室が <strong class="text-ink">W1,820 × D1,820 × H1,900 mm</strong>、
+          床面積にしておよそ 3.3㎡（約2畳）です。これに加えて次のスペースを見込んでください。
+        </p>
 
-    <div class="space-y-6 text-base leading-relaxed-jp">
-      <p>
-        サウナ小屋は木造の構造物なので、地面に直接置くことはできません。
-        湿気による腐朽を防ぎ、建物の水平を保つために基礎が必要です。
-      </p>
+        <figure class="mt-6 bg-paper-2 rounded-[1.25rem] border border-ink/10 p-4 lg:p-6">
+          <div class="overflow-x-auto">
+            <svg viewBox="0 0 560 320" class="w-full min-w-[480px] h-auto" font-family="'Noto Sans JP', sans-serif" role="img" aria-labelledby="fig-space-title">
+              <title id="fig-space-title">設置スペースの考え方：サウナ室本体の周囲に、扉の開閉・クリアランス・外気浴・水風呂への動線を確保する</title>
+              <defs>
+                <marker id="arrow-heat" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8603f"/></marker>
+              </defs>
+              <rect x="12" y="12" width="536" height="296" rx="14" fill="none" stroke="#1d1915" stroke-opacity=".35" stroke-dasharray="6 6"/>
+              <text x="30" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#1d1915" fill-opacity=".75" letter-spacing="1">PLANNING AREA ≒ 本体の1.5〜2倍</text>
+              <!-- ② clearance -->
+              <rect x="48" y="56" width="212" height="212" rx="8" fill="#336fae" fill-opacity=".06" stroke="#336fae" stroke-dasharray="3 5"/>
+              <text x="154" y="76" text-anchor="middle" font-size="12" font-weight="700" fill="#336fae">② クリアランス</text>
+              <!-- sauna -->
+              <rect x="78" y="86" width="152" height="152" fill="#d8b98c" fill-opacity=".55" stroke="#1d1915" stroke-width="1.6"/>
+              <text x="154" y="158" text-anchor="middle" font-family="Unbounded, sans-serif" font-weight="700" font-size="16" fill="#1d1915">SAUNA</text>
+              <text x="154" y="178" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#1d1915">W1,820 × D1,820</text>
+              <!-- ① door (opens outward) -->
+              <line x1="230" y1="182" x2="230" y2="225" stroke="#f7f4ef" stroke-width="3"/>
+              <path d="M230,226 L230,180 A46,46 0 0 1 276,226 Z" fill="#e8603f" fill-opacity=".14"/>
+              <path d="M230,180 A46,46 0 0 1 276,226" fill="none" stroke="#e8603f" stroke-width="1.4" stroke-dasharray="4 4"/>
+              <line x1="230" y1="226" x2="276" y2="226" stroke="#1d1915" stroke-width="2.4" stroke-linecap="round"/>
+              <text x="282" y="258" font-size="12" font-weight="700" fill="#1d1915">① 扉の開閉</text>
+              <!-- ③ rest -->
+              <rect x="360" y="44" width="164" height="112" rx="12" fill="#f3b640" fill-opacity=".22" stroke="#1d1915" stroke-opacity=".35"/>
+              <text x="442" y="88" text-anchor="middle" font-size="12" font-weight="700" fill="#1d1915">③ 外気浴</text>
+              <rect x="398" y="108" width="30" height="22" rx="5" fill="none" stroke="#1d1915" stroke-opacity=".55"/>
+              <rect x="456" y="108" width="30" height="22" rx="5" fill="none" stroke="#1d1915" stroke-opacity=".55"/>
+              <!-- ④ water -->
+              <rect x="360" y="172" width="164" height="112" rx="12" fill="#336fae" fill-opacity=".14" stroke="#336fae" stroke-opacity=".6"/>
+              <text x="442" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="#1d1915">④ 水風呂・シャワー</text>
+              <ellipse cx="442" cy="244" rx="46" ry="20" fill="#336fae" fill-opacity=".22" stroke="#336fae"/>
+              <!-- circulation -->
+              <path class="hero-wisp" d="M286,206 C322,200 318,110 354,106" fill="none" stroke="#e8603f" stroke-width="1.6" marker-end="url(#arrow-heat)"/>
+              <path class="hero-wisp" d="M286,216 C322,218 320,240 354,240" fill="none" stroke="#e8603f" stroke-width="1.6" marker-end="url(#arrow-heat)"/>
+              <!-- dimension -->
+              <g stroke="#1d1915" stroke-width="1">
+                <line x1="78" y1="290" x2="230" y2="290"/>
+                <line x1="78" y1="284" x2="78" y2="296"/>
+                <line x1="230" y1="284" x2="230" y2="296"/>
+              </g>
+              <text x="154" y="284" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#1d1915">1,820</text>
+            </svg>
+          </div>
+          <figcaption class="mt-3 font-mono text-[0.7rem] text-body">FIG.01 — 設置スペースの考え方（平面イメージ）</figcaption>
+        </figure>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">主な基礎の選択肢</h3>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
-          <thead>
-            <tr class="bg-paper-2 border-b border-slate-200">
-              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">工法</th>
-              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">適する条件</th>
-              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">備考</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-200">
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">束石（つかいし）</td>
-              <td class="py-4 px-4 text-body">地盤が安定した平坦地</td>
-              <td class="py-4 px-4 text-body">最も一般的。床下に通気が確保でき木部が乾きやすい</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">コンクリート平板</td>
-              <td class="py-4 px-4 text-body">既存のテラス・土間がある場合</td>
-              <td class="py-4 px-4 text-body">水平が出ていれば流用可能。排水勾配の確認を</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">ベタ基礎・布基礎</td>
-              <td class="py-4 px-4 text-body">軟弱地盤／恒久設置</td>
-              <td class="py-4 px-4 text-body">費用は上がるが最も安定。建築確認が必要な規模では要検討</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">デッキ上設置</td>
-              <td class="py-4 px-4 text-body">既存ウッドデッキがある場合</td>
-              <td class="py-4 px-4 text-body">デッキの耐荷重を必ず構造的に確認すること</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">重要なのは「水平」と「乾燥」</h3>
-      <p>
-        どの工法を選ぶにしても、押さえるべきは2点です。
-      </p>
-      <p>
-        ひとつは<strong class="text-slate-900">水平精度</strong>。ITaLOG SAUNA はミリ単位で部材が噛み合う構造のため、
-        基礎の水平が出ていないと組み上がりに影響します。
-      </p>
-      <p>
-        もうひとつは<strong class="text-slate-900">床下の通気</strong>。木造建築で最も避けたいのは、
-        水分が抜けない状態が続くことです。地面から数センチでも浮かせて空気が通る状態にしておくと、
-        建物の寿命が大きく変わります。
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ============= 3. ELECTRIC ============= -->
-<section id="electric" class="py-14 lg:py-20 bg-paper-2 border-t border-b border-slate-200">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">03</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">電源容量と電気工事</h2>
-
-    <div class="space-y-6 text-base leading-relaxed-jp">
-      <p>
-        導入検討で最も見落とされやすく、かつ費用に影響しやすいのが電気です。
-        「本体は買えたが電源が足りなかった」という事態を避けるため、早い段階で確認しておきましょう。
-      </p>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">必要なストーブ出力の目安</h3>
-      <p>
-        サウナストーブの出力は、サウナ室の容積に対して選定します。
-        一般に <strong class="text-slate-900">室容積1立方メートルあたり約1kW</strong> が目安とされます。
-      </p>
-      <p>
-        ITaLOG SAUNA の標準仕様（1,820 × 1,820 × 1,900 mm ＝ 約6.3立方メートル）では、
-        <strong class="text-slate-900">6〜9kW クラス</strong>の電気ストーブが該当します。
-        ocomori sauna の事例ではフィンランドから輸入した 9kW のストーブを採用しています。
-      </p>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">電源工事で確認すべきこと</h3>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">分電盤の空き容量</strong>：9kW クラスは専用回路が必要です。既存分電盤に空きがなければ増設が必要になります。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">契約容量</strong>：住宅の契約アンペアによっては変更が必要な場合があります。他の家電との同時使用も考慮してください。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">引込線からの距離</strong>：母屋から離れた場所に設置する場合、配線距離に応じたケーブルサイズの選定と埋設・架空配線の工事が必要です。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">漏電遮断器</strong>：水を扱う環境のため必須です。</span></li>
-      </ul>
-
-      <div class="pamphlet-frame p-6 lg:p-7 mt-8">
-        <p class="text-sm font-semibold text-slate-900 mb-2">電気工事は必ず有資格者へ</p>
-        <p class="text-sm leading-relaxed text-body">
-          サウナストーブの電源工事は、電気工事士の資格を持つ事業者による施工が法律で義務づけられています。
-          DIY での配線は違法であるだけでなく、火災や感電の重大なリスクがあります。
-          ITaLOG SAUNA の導入では、地域の電気工事事業者との連携も含めてご相談いただけます。
+        <ul class="mt-6 grid sm:grid-cols-2 gap-3">
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-5">
+            <p class="font-bold text-ink inline-flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-heat" aria-hidden="true"></span>① 扉の開閉スペース</p>
+            <p class="mt-2 text-sm leading-relaxed">外開きの扉が全開できる奥行き。安全上、サウナ室の扉は外開きが基本です。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-5">
+            <p class="font-bold text-ink inline-flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full border-2 border-dashed border-cool" aria-hidden="true"></span>② 周囲のクリアランス</p>
+            <p class="mt-2 text-sm leading-relaxed">点検・清掃・将来の部材交換のため、可能であれば背面と側面に人が入れる幅を確保。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-5">
+            <p class="font-bold text-ink inline-flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-wind" aria-hidden="true"></span>③ 外気浴スペース</p>
+            <p class="mt-2 text-sm leading-relaxed">ととのうための椅子やベンチを置く場所。サウナ体験の質を決める重要な要素です。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-5">
+            <p class="font-bold text-ink inline-flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-cool" aria-hidden="true"></span>④ 水風呂・シャワーの動線</p>
+            <p class="mt-2 text-sm leading-relaxed">サウナ室から濡れたまま移動できる距離と床材。</p>
+          </li>
+        </ul>
+        <p class="mt-6 flex items-baseline gap-3 text-base text-ink">
+          <span class="flex-shrink-0 inline-block w-6 h-px bg-heat translate-y-[-0.3em]" aria-hidden="true"></span>
+          <span>全体としては、<strong>本体面積の1.5〜2倍程度</strong>を目安に計画すると余裕が生まれます。</span>
         </p>
       </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">薪ストーブという選択肢</h3>
-      <p>
-        電源の確保が難しい場所や、より原始的な体験を求める場合は薪ストーブも選択できます。
-        電気工事が不要になる一方で、次の点を検討する必要があります。
-      </p>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span>煙突の設置と、周囲の可燃物からの離隔距離の確保</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span>近隣への煙・臭いの配慮（住宅密集地では現実的でない場合があります）</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span>薪の調達と保管場所、火の管理という手間</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ============= 4. WATER ============= -->
-<section id="water" class="py-14 lg:py-20">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">04</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">水風呂・シャワーをどうするか</h2>
-
-    <div class="space-y-6 text-base leading-relaxed-jp">
-      <p>
-        サウナ体験は「温める・冷やす・休む」のサイクルで成立します。
-        サウナ室だけを設置しても、冷却の手段がなければ体験は完結しません。
-        導入計画では冷却設備をセットで考えてください。
-      </p>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">冷却手段の選択肢</h3>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
-          <thead>
-            <tr class="bg-paper-2 border-b border-slate-200">
-              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">方式</th>
-              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">必要な設備</th>
-              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">特徴</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-200">
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">水風呂（浴槽設置）</td>
-              <td class="py-4 px-4 text-body">給排水配管・浴槽</td>
-              <td class="py-4 px-4 text-body">本格的。夏場は冷却装置（チラー）が必要になることも</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">シャワー</td>
-              <td class="py-4 px-4 text-body">給排水配管</td>
-              <td class="py-4 px-4 text-body">最も簡易。水温は季節に左右される</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">屋外設置の水風呂タンク</td>
-              <td class="py-4 px-4 text-body">給水・排水経路</td>
-              <td class="py-4 px-4 text-body">工事を抑えられる。バスタブや樽を活用する例も</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">自然の水（川・湖）</td>
-              <td class="py-4 px-4 text-body">—</td>
-              <td class="py-4 px-4 text-body">立地限定。水利権・安全管理の確認が必要</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Outdoor -->
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">屋外に置く場合に確認すること</h3>
+        <div class="mt-6 grid md:grid-cols-5 gap-6">
+          <figure class="md:col-span-2">
+            <picture class="block">
+              <source srcset="/assets/img/photos/_dsc0600.webp" type="image/webp" />
+              <img src="/assets/img/photos/_dsc0600.jpg" width="1800" height="1200" alt="ocomori sauna — 宿泊施設のテラス下にサウナ小屋を設置した外観" class="w-full aspect-[4/3] md:aspect-[3/4] object-cover rounded-[1.25rem] border border-ink/10" loading="lazy" />
+            </picture>
+            <figcaption class="mt-2 font-mono text-[0.7rem] text-body">ocomori sauna：宿泊施設のテラス下に設置</figcaption>
+          </figure>
+          <ul class="md:col-span-3 divide-y divide-ink/10 border-y border-ink/10">
+            <li class="flex gap-4 py-4">
+              <span class="flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-paper-2 border border-ink/15 text-ink"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7M5 10v10h14V10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><p class="font-bold text-ink">屋根の有無</p><p class="mt-1 text-sm leading-relaxed">木製サウナは雨ざらしを避けたほうが長持ちします。軒下・テラス下・ガレージ内が理想的です。ocomori sauna の事例では宿泊施設のテラス下に設置しています。</p></div>
+            </li>
+            <li class="flex gap-4 py-4">
+              <span class="flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-paper-2 border border-ink/15 text-ink"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17.5l9 5 9-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><p class="font-bold text-ink">地盤の状態</p><p class="mt-1 text-sm leading-relaxed">軟弱地盤や傾斜地では基礎の設計が変わります。</p></div>
+            </li>
+            <li class="flex gap-4 py-4">
+              <span class="flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-paper-2 border border-ink/15 text-ink"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 20v-8l5-4 5 4v8M13 20v-6l4-3 4 3v6M1 20h22" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><p class="font-bold text-ink">隣家との距離</p><p class="mt-1 text-sm leading-relaxed">薪ストーブを使う場合は特に煙の方向に配慮が必要です。電気ストーブなら煙の問題は生じません。</p></div>
+            </li>
+            <li class="flex gap-4 py-4">
+              <span class="flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-paper-2 border border-ink/15 text-ink"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7" stroke-linejoin="round"/><circle cx="5.5" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg></span>
+              <div><p class="font-bold text-ink">搬入経路</p><p class="mt-1 text-sm leading-relaxed">後述しますが、ITaLOG SAUNA は部材を分割して運べるため、大型クレーンが入らない場所にも設置できます。</p></div>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">排水の扱いに注意</h3>
-      <p>
-        見落とされがちなのが排水です。屋外に設置する場合でも、
-        使用した水を敷地内で適切に処理できるか、自治体の下水道条例に照らして確認が必要です。
-        既存の排水設備に接続できるか、浸透枡で処理するかによって工事内容が変わります。
-      </p>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">外気浴のスペースを忘れずに</h3>
-      <p>
-        実は「ととのう」体験の質を最も左右するのが、この外気浴の時間です。
-        風が通り、視界が開けていて、落ち着いて座れる場所。
-        椅子ひとつ分のスペースでも構いませんが、この場所の設計を後回しにすると、
-        せっかくのサウナが十分に活きません。
-      </p>
+      <!-- Callout -->
+      <div class="flex flex-col sm:flex-row gap-5 sm:items-start bg-ink text-paper rounded-[1.5rem] p-7 lg:p-9">
+        <span class="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-full bg-heat text-ink"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7" stroke-linejoin="round"/><circle cx="5.5" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg></span>
+        <div>
+          <p class="text-lg lg:text-xl font-black">搬入経路が狭くても、諦めなくて大丈夫です。</p>
+          <p class="mt-3 text-sm leading-relaxed text-paper/80">
+            ITaLOG SAUNA は工場で完成品を作って運ぶのではなく、加工した部材を現地で組み立てる方式です。
+            一つひとつの部材は乗用車に積める大きさに分割できるため、
+            「大型トラックが入らない」「クレーンが使えない」といった条件の敷地にも設置できます。
+            住宅密集地や山間部での実績もあります。
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============= 5. LAW ============= -->
-<section id="law" class="py-14 lg:py-20 bg-paper-2 border-t border-b border-slate-200">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">05</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">建築基準法と確認申請</h2>
+<!-- ============= 02. FOUNDATION ============= -->
+<section id="foundation" class="py-20 lg:py-28 bg-paper-2 border-y border-ink/10">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28 text-ink">
+        <p class="guide-num" aria-hidden="true">02</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em]">FOUNDATION</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35]">基礎工事の考え方</h2>
+        <p class="mt-5 text-sm lg:text-base leading-relaxed-jp text-body">
+          サウナ小屋は木造の構造物なので、地面に直接置くことはできません。
+          湿気による腐朽を防ぎ、建物の水平を保つために基礎が必要です。
+        </p>
+      </div>
+    </header>
 
-    <div class="space-y-6 text-base leading-relaxed-jp">
-      <div class="bg-amber-50 border border-amber-200 rounded-xl p-6">
-        <p class="text-sm leading-relaxed text-amber-900">
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-16">
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">主な基礎の選択肢</h3>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <!-- 束石 -->
+          <div class="bg-paper rounded-[1.25rem] border border-ink/10 p-6">
+            <svg class="w-full h-20" viewBox="0 0 160 80" aria-hidden="true">
+              <path d="M12,60l-6,8M24,60l-6,8M36,60l-6,8M48,60l-6,8M60,60l-6,8M72,60l-6,8M84,60l-6,8M96,60l-6,8M108,60l-6,8M120,60l-6,8M132,60l-6,8M144,60l-6,8M156,60l-6,8" stroke="#1d1915" stroke-opacity=".3"/>
+              <line x1="4" y1="60" x2="156" y2="60" stroke="#1d1915" stroke-width="1.2"/>
+              <rect x="34" y="14" width="92" height="34" fill="#d8b98c" fill-opacity=".6" stroke="#1d1915" stroke-width="1.2"/>
+              <rect x="38" y="48" width="14" height="12" fill="#1d1915" fill-opacity=".75"/>
+              <rect x="73" y="48" width="14" height="12" fill="#1d1915" fill-opacity=".75"/>
+              <rect x="108" y="48" width="14" height="12" fill="#1d1915" fill-opacity=".75"/>
+              <path class="hero-wisp" d="M8,54 Q40,50 80,54 T152,54" fill="none" stroke="#336fae" stroke-width="1.2"/>
+            </svg>
+            <p class="mt-4 font-bold text-ink">束石 <span class="text-sm font-normal text-body">（つかいし）</span></p>
+            <dl class="mt-3 text-sm leading-relaxed space-y-1.5">
+              <div class="flex gap-3"><dt class="flex-shrink-0 font-mono text-[0.7rem] text-ink/60 pt-0.5 w-12">条件</dt><dd>地盤が安定した平坦地</dd></div>
+              <div class="flex gap-3"><dt class="flex-shrink-0 font-mono text-[0.7rem] text-ink/60 pt-0.5 w-12">備考</dt><dd>最も一般的。床下に通気が確保でき木部が乾きやすい</dd></div>
+            </dl>
+          </div>
+          <!-- コンクリート平板 -->
+          <div class="bg-paper rounded-[1.25rem] border border-ink/10 p-6">
+            <svg class="w-full h-20" viewBox="0 0 160 80" aria-hidden="true">
+              <path d="M12,60l-6,8M24,60l-6,8M36,60l-6,8M48,60l-6,8M60,60l-6,8M72,60l-6,8M84,60l-6,8M96,60l-6,8M108,60l-6,8M120,60l-6,8M132,60l-6,8M144,60l-6,8M156,60l-6,8" stroke="#1d1915" stroke-opacity=".3"/>
+              <line x1="4" y1="60" x2="156" y2="60" stroke="#1d1915" stroke-width="1.2"/>
+              <rect x="34" y="16" width="92" height="34" fill="#d8b98c" fill-opacity=".6" stroke="#1d1915" stroke-width="1.2"/>
+              <rect x="20" y="50" width="120" height="10" fill="#1d1915" fill-opacity=".18" stroke="#1d1915" stroke-opacity=".6"/>
+            </svg>
+            <p class="mt-4 font-bold text-ink">コンクリート平板</p>
+            <dl class="mt-3 text-sm leading-relaxed space-y-1.5">
+              <div class="flex gap-3"><dt class="flex-shrink-0 font-mono text-[0.7rem] text-ink/60 pt-0.5 w-12">条件</dt><dd>既存のテラス・土間がある場合</dd></div>
+              <div class="flex gap-3"><dt class="flex-shrink-0 font-mono text-[0.7rem] text-ink/60 pt-0.5 w-12">備考</dt><dd>水平が出ていれば流用可能。排水勾配の確認を</dd></div>
+            </dl>
+          </div>
+          <!-- ベタ基礎・布基礎 -->
+          <div class="bg-paper rounded-[1.25rem] border border-ink/10 p-6">
+            <svg class="w-full h-20" viewBox="0 0 160 80" aria-hidden="true">
+              <path d="M12,60l-6,8M24,60l-6,8M36,60l-6,8M48,60l-6,8M60,60l-6,8M72,60l-6,8M84,60l-6,8M96,60l-6,8M108,60l-6,8M120,60l-6,8M132,60l-6,8M144,60l-6,8M156,60l-6,8" stroke="#1d1915" stroke-opacity=".3"/>
+              <rect x="26" y="42" width="108" height="28" fill="#e9e4dc" stroke="#1d1915" stroke-opacity=".6"/>
+              <line x1="4" y1="60" x2="26" y2="60" stroke="#1d1915" stroke-width="1.2"/>
+              <line x1="134" y1="60" x2="156" y2="60" stroke="#1d1915" stroke-width="1.2"/>
+              <rect x="34" y="10" width="92" height="32" fill="#d8b98c" fill-opacity=".6" stroke="#1d1915" stroke-width="1.2"/>
+            </svg>
+            <p class="mt-4 font-bold text-ink">ベタ基礎・布基礎</p>
+            <dl class="mt-3 text-sm leading-relaxed space-y-1.5">
+              <div class="flex gap-3"><dt class="flex-shrink-0 font-mono text-[0.7rem] text-ink/60 pt-0.5 w-12">条件</dt><dd>軟弱地盤／恒久設置</dd></div>
+              <div class="flex gap-3"><dt class="flex-shrink-0 font-mono text-[0.7rem] text-ink/60 pt-0.5 w-12">備考</dt><dd>費用は上がるが最も安定。建築確認が必要な規模では要検討</dd></div>
+            </dl>
+          </div>
+          <!-- デッキ上 -->
+          <div class="bg-paper rounded-[1.25rem] border border-ink/10 p-6">
+            <svg class="w-full h-20" viewBox="0 0 160 80" aria-hidden="true">
+              <path d="M12,60l-6,8M24,60l-6,8M36,60l-6,8M48,60l-6,8M60,60l-6,8M72,60l-6,8M84,60l-6,8M96,60l-6,8M108,60l-6,8M120,60l-6,8M132,60l-6,8M144,60l-6,8M156,60l-6,8" stroke="#1d1915" stroke-opacity=".3"/>
+              <line x1="4" y1="60" x2="156" y2="60" stroke="#1d1915" stroke-width="1.2"/>
+              <g stroke="#1d1915" stroke-width="2"><line x1="22" y1="40" x2="22" y2="60"/><line x1="80" y1="40" x2="80" y2="60"/><line x1="138" y1="40" x2="138" y2="60"/></g>
+              <rect x="14" y="34" width="132" height="6" fill="#d8b98c" stroke="#1d1915"/>
+              <rect x="44" y="6" width="72" height="28" fill="#d8b98c" fill-opacity=".6" stroke="#1d1915" stroke-width="1.2"/>
+            </svg>
+            <p class="mt-4 font-bold text-ink">デッキ上設置</p>
+            <dl class="mt-3 text-sm leading-relaxed space-y-1.5">
+              <div class="flex gap-3"><dt class="flex-shrink-0 font-mono text-[0.7rem] text-ink/60 pt-0.5 w-12">条件</dt><dd>既存ウッドデッキがある場合</dd></div>
+              <div class="flex gap-3"><dt class="flex-shrink-0 font-mono text-[0.7rem] text-ink/60 pt-0.5 w-12">備考</dt><dd>デッキの耐荷重を必ず構造的に確認すること</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">重要なのは「水平」と「乾燥」</h3>
+        <p class="mt-4 text-base leading-relaxed-jp">どの工法を選ぶにしても、押さえるべきは2点です。</p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-paper rounded-[1.25rem] border border-ink/10 p-7">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-heat text-ink"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="2"/><path d="M9 8v8M15 8v8"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span>
+              <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink">LEVEL</p>
+            </div>
+            <p class="mt-4 text-lg font-black text-ink">水平精度</p>
+            <p class="mt-2 text-sm leading-relaxed">ITaLOG SAUNA はミリ単位で部材が噛み合う構造のため、基礎の水平が出ていないと組み上がりに影響します。</p>
+          </div>
+          <div class="bg-paper rounded-[1.25rem] border border-ink/10 p-7">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-cool text-white"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2M9.6 4.6A2 2 0 1 1 11 8H2M12.6 19.4A2 2 0 1 0 14 16H2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink">AIRFLOW</p>
+            </div>
+            <p class="mt-4 text-lg font-black text-ink">床下の通気</p>
+            <p class="mt-2 text-sm leading-relaxed">木造建築で最も避けたいのは、水分が抜けない状態が続くことです。地面から数センチでも浮かせて空気が通る状態にしておくと、建物の寿命が大きく変わります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= 03. ELECTRIC (ink field) ============= -->
+<section id="electric" class="relative py-20 lg:py-28 bg-ink graph-bg text-paper overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28">
+        <p class="guide-num text-paper" aria-hidden="true">03</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em] text-wind">ELECTRIC</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35] text-paper">電源容量と電気工事</h2>
+        <p class="mt-5 text-sm lg:text-base leading-relaxed-jp text-paper/80">
+          導入検討で最も見落とされやすく、かつ費用に影響しやすいのが電気です。
+          「本体は買えたが電源が足りなかった」という事態を避けるため、早い段階で確認しておきましょう。
+        </p>
+      </div>
+    </header>
+
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-16">
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-paper">必要なストーブ出力の目安</h3>
+        <p class="mt-4 text-base leading-relaxed-jp text-paper/85">
+          サウナストーブの出力は、サウナ室の容積に対して選定します。
+          一般に <strong class="text-paper">室容積1立方メートルあたり約1kW</strong> が目安とされます。
+        </p>
+        <!-- formula strip -->
+        <div class="mt-6 grid sm:grid-cols-[1fr_auto_1fr_auto_1fr] items-stretch gap-3">
+          <div class="rounded-[1.25rem] border border-paper/15 bg-paper/[0.05] p-5">
+            <p class="font-mono text-[0.7rem] text-paper/60">RULE</p>
+            <p class="mt-2 font-latin font-bold text-2xl lg:text-3xl text-paper leading-none">1㎥<span class="text-paper/50 mx-1">≒</span>1kW</p>
+            <p class="mt-3 text-xs text-paper/70 leading-relaxed">室容積あたりの目安</p>
+          </div>
+          <div class="hidden sm:flex items-center text-wind" aria-hidden="true"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="rounded-[1.25rem] border border-paper/15 bg-paper/[0.05] p-5">
+            <p class="font-mono text-[0.7rem] text-paper/60">ITaLOG STANDARD</p>
+            <p class="mt-2 font-latin font-bold text-2xl lg:text-3xl text-paper leading-none"><span class="text-base mr-0.5">約</span>6.3㎥</p>
+            <p class="mt-3 text-xs text-paper/70 leading-relaxed">1,820 × 1,820 × 1,900 mm</p>
+          </div>
+          <div class="hidden sm:flex items-center text-wind" aria-hidden="true"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="rounded-[1.25rem] bg-wind text-ink p-5">
+            <p class="font-mono text-[0.7rem] text-ink/70">STOVE</p>
+            <p class="mt-2 font-latin font-bold text-2xl lg:text-3xl leading-none">6〜9kW</p>
+            <p class="mt-3 text-xs text-ink/80 leading-relaxed">該当する電気ストーブのクラス</p>
+          </div>
+        </div>
+        <p class="mt-5 text-sm leading-relaxed text-paper/75">
+          ITaLOG SAUNA の標準仕様（1,820 × 1,820 × 1,900 mm ＝ 約6.3立方メートル）では、6〜9kW クラスの電気ストーブが該当します。
+          ocomori sauna の事例ではフィンランドから輸入した 9kW のストーブを採用しています。
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-paper">電源工事で確認すべきこと</h3>
+        <ul class="mt-6 grid sm:grid-cols-2 gap-3">
+          <li class="rounded-[1.25rem] border border-paper/15 bg-paper/[0.05] p-6">
+            <p class="font-mono text-[0.7rem] text-wind">CHECK 01</p>
+            <p class="mt-2 font-bold text-paper">分電盤の空き容量</p>
+            <p class="mt-2 text-sm leading-relaxed text-paper/75">9kW クラスは専用回路が必要です。既存分電盤に空きがなければ増設が必要になります。</p>
+          </li>
+          <li class="rounded-[1.25rem] border border-paper/15 bg-paper/[0.05] p-6">
+            <p class="font-mono text-[0.7rem] text-wind">CHECK 02</p>
+            <p class="mt-2 font-bold text-paper">契約容量</p>
+            <p class="mt-2 text-sm leading-relaxed text-paper/75">住宅の契約アンペアによっては変更が必要な場合があります。他の家電との同時使用も考慮してください。</p>
+          </li>
+          <li class="rounded-[1.25rem] border border-paper/15 bg-paper/[0.05] p-6">
+            <p class="font-mono text-[0.7rem] text-wind">CHECK 03</p>
+            <p class="mt-2 font-bold text-paper">引込線からの距離</p>
+            <p class="mt-2 text-sm leading-relaxed text-paper/75">母屋から離れた場所に設置する場合、配線距離に応じたケーブルサイズの選定と埋設・架空配線の工事が必要です。</p>
+          </li>
+          <li class="rounded-[1.25rem] border border-paper/15 bg-paper/[0.05] p-6">
+            <p class="font-mono text-[0.7rem] text-wind">CHECK 04</p>
+            <p class="mt-2 font-bold text-paper">漏電遮断器</p>
+            <p class="mt-2 text-sm leading-relaxed text-paper/75">水を扱う環境のため必須です。</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-5 sm:items-start bg-heat text-ink rounded-[1.5rem] p-7 lg:p-9">
+        <span class="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-full bg-ink text-wind"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke-linejoin="round"/></svg></span>
+        <div>
+          <p class="text-lg lg:text-xl font-black">電気工事は、必ず有資格者へ。</p>
+          <p class="mt-3 text-sm leading-relaxed">
+            サウナストーブの電源工事は、電気工事士の資格を持つ事業者による施工が法律で義務づけられています。
+            DIY での配線は違法であるだけでなく、火災や感電の重大なリスクがあります。
+            ITaLOG SAUNA の導入では、地域の電気工事事業者との連携も含めてご相談いただけます。
+          </p>
+        </div>
+      </div>
+
+      <div class="rounded-[1.25rem] border border-paper/15 bg-paper/[0.05] p-7 lg:p-8">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full border border-paper/30 text-heat"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4 0 7-3 7-7 0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-2 2-5 5-5 8 0 4 3 7 7 7z" stroke-linejoin="round"/></svg></span>
+          <h3 class="text-lg lg:text-xl font-black text-paper">薪ストーブという選択肢</h3>
+        </div>
+        <p class="mt-4 text-sm leading-relaxed text-paper/80">
+          電源の確保が難しい場所や、より原始的な体験を求める場合は薪ストーブも選択できます。
+          電気工事が不要になる一方で、次の点を検討する必要があります。
+        </p>
+        <ul class="mt-4 space-y-2 text-sm text-paper/80">
+          <li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-heat flex-shrink-0" aria-hidden="true"></span><span>煙突の設置と、周囲の可燃物からの離隔距離の確保</span></li>
+          <li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-heat flex-shrink-0" aria-hidden="true"></span><span>近隣への煙・臭いの配慮（住宅密集地では現実的でない場合があります）</span></li>
+          <li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-heat flex-shrink-0" aria-hidden="true"></span><span>薪の調達と保管場所、火の管理という手間</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= 04. WATER (cool field) ============= -->
+<section id="water" class="relative py-20 lg:py-28 bg-cool text-white overflow-hidden">
+  <svg class="absolute -right-40 -top-40 w-[640px] h-[640px] pointer-events-none" viewBox="0 0 720 720" fill="none" stroke="#ffffff" aria-hidden="true">
+    <circle cx="360" cy="360" r="330" opacity="0.10"/>
+    <circle cx="360" cy="360" r="250" opacity="0.12"/>
+    <circle cx="360" cy="360" r="170" opacity="0.14"/>
+    <circle cx="360" cy="360" r="90" opacity="0.18"/>
+  </svg>
+  <div class="relative max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28">
+        <p class="guide-num text-white" aria-hidden="true">04</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em] text-white">WATER</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35] text-white">水風呂・シャワーをどうするか</h2>
+        <p class="mt-5 text-sm lg:text-base leading-relaxed-jp text-white/90">
+          サウナ体験は「温める・冷やす・休む」のサイクルで成立します。
+          サウナ室だけを設置しても、冷却の手段がなければ体験は完結しません。
+        </p>
+      </div>
+    </header>
+
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-16">
+      <!-- cycle -->
+      <div>
+        <div class="flex items-center justify-between gap-2 sm:gap-4 max-w-xl">
+          <div class="flex-shrink-0 w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-heat text-ink flex flex-col items-center justify-center">
+            <span class="font-latin text-[0.6rem] sm:text-[0.65rem] tracking-[0.14em]">HEAT</span>
+            <span class="mt-1 font-display font-black text-lg sm:text-2xl">温める</span>
+          </div>
+          <svg class="flex-1 h-4 text-white min-w-[1.5rem]" viewBox="0 0 60 16" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path class="hero-wisp" d="M2,8 H56" vector-effect="non-scaling-stroke"/></svg>
+          <div class="flex-shrink-0 w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-white text-cool flex flex-col items-center justify-center">
+            <span class="font-latin text-[0.6rem] sm:text-[0.65rem] tracking-[0.14em]">COOL</span>
+            <span class="mt-1 font-display font-black text-lg sm:text-2xl">冷やす</span>
+          </div>
+          <svg class="flex-1 h-4 text-white min-w-[1.5rem]" viewBox="0 0 60 16" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path class="hero-wisp" d="M2,8 H56" vector-effect="non-scaling-stroke"/></svg>
+          <div class="flex-shrink-0 w-20 h-20 sm:w-32 sm:h-32 rounded-full border-2 border-white text-white flex flex-col items-center justify-center">
+            <span class="font-latin text-[0.6rem] sm:text-[0.65rem] tracking-[0.14em]">REST</span>
+            <span class="mt-1 font-display font-black text-lg sm:text-2xl">休む</span>
+          </div>
+        </div>
+        <p class="mt-4 max-w-xl text-center font-mono text-xs text-white/80">↻ このサイクルをくり返す</p>
+        <p class="mt-8 text-base leading-relaxed-jp text-white">導入計画では、冷却設備を<strong>セットで</strong>考えてください。</p>
+      </div>
+
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-white">冷却手段の選択肢</h3>
+        <ul class="mt-6 grid sm:grid-cols-2 gap-3">
+          <li class="rounded-[1.25rem] border border-white/20 bg-white/[0.08] p-6">
+            <p class="font-bold text-white">水風呂（浴槽設置）</p>
+            <p class="mt-2 inline-flex text-xs font-medium bg-white/15 text-white rounded-full px-3 py-1">必要な設備：給排水配管・浴槽</p>
+            <p class="mt-3 text-sm leading-relaxed text-white/90">本格的。夏場は冷却装置（チラー）が必要になることも。</p>
+          </li>
+          <li class="rounded-[1.25rem] border border-white/20 bg-white/[0.08] p-6">
+            <p class="font-bold text-white">シャワー</p>
+            <p class="mt-2 inline-flex text-xs font-medium bg-white/15 text-white rounded-full px-3 py-1">必要な設備：給排水配管</p>
+            <p class="mt-3 text-sm leading-relaxed text-white/90">最も簡易。水温は季節に左右される。</p>
+          </li>
+          <li class="rounded-[1.25rem] border border-white/20 bg-white/[0.08] p-6">
+            <p class="font-bold text-white">屋外設置の水風呂タンク</p>
+            <p class="mt-2 inline-flex text-xs font-medium bg-white/15 text-white rounded-full px-3 py-1">必要な設備：給水・排水経路</p>
+            <p class="mt-3 text-sm leading-relaxed text-white/90">工事を抑えられる。バスタブや樽を活用する例も。</p>
+          </li>
+          <li class="rounded-[1.25rem] border border-white/20 bg-white/[0.08] p-6">
+            <p class="font-bold text-white">自然の水（川・湖）</p>
+            <p class="mt-2 inline-flex text-xs font-medium bg-white/15 text-white rounded-full px-3 py-1">必要な設備：—</p>
+            <p class="mt-3 text-sm leading-relaxed text-white/90">立地限定。水利権・安全管理の確認が必要。</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-[1.25rem] bg-white text-body p-7">
+          <p class="font-latin text-[0.7rem] tracking-[0.14em] text-cool">DRAINAGE</p>
+          <h3 class="mt-2 text-lg font-black text-ink">排水の扱いに注意</h3>
+          <p class="mt-3 text-sm leading-relaxed">
+            見落とされがちなのが排水です。屋外に設置する場合でも、
+            使用した水を敷地内で適切に処理できるか、自治体の下水道条例に照らして確認が必要です。
+            既存の排水設備に接続できるか、浸透枡で処理するかによって工事内容が変わります。
+          </p>
+        </div>
+        <div class="rounded-[1.25rem] bg-white text-body p-7">
+          <p class="font-latin text-[0.7rem] tracking-[0.14em] text-cool">REST SPACE</p>
+          <h3 class="mt-2 text-lg font-black text-ink">外気浴のスペースを忘れずに</h3>
+          <p class="mt-3 text-sm leading-relaxed">
+            実は「ととのう」体験の質を最も左右するのが、この外気浴の時間です。
+            風が通り、視界が開けていて、落ち着いて座れる場所。
+            椅子ひとつ分のスペースでも構いませんが、この場所の設計を後回しにすると、
+            せっかくのサウナが十分に活きません。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= 05. LAW ============= -->
+<section id="law" class="py-20 lg:py-28">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28 text-ink">
+        <p class="guide-num" aria-hidden="true">05</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em]">LAW</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35]">建築基準法と確認申請</h2>
+        <p class="mt-5 text-sm lg:text-base leading-relaxed-jp text-body">
+          面積が小さくても、建築基準法そのものがなくなるわけではありません。
+          「確認申請が要るかどうか」と「守るべき規定」を分けて考えましょう。
+        </p>
+      </div>
+    </header>
+
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-16">
+      <div class="flex items-start gap-3 p-5 lg:p-6 bg-amber-50 border border-amber-200 text-amber-900 rounded-[1.1rem]">
+        <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2L12 3zM12 10v5M12 18h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="text-sm leading-relaxed">
           <strong>はじめにお読みください。</strong>
           以下は一般的な考え方の整理であり、個別の可否を保証するものではありません。
           法令の適用は、設置予定地の用途地域・防火指定・敷地条件・既存建物との関係、
@@ -473,332 +751,512 @@
         </p>
       </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">10㎡という基準</h3>
-      <p>
-        建築基準法第6条第2項では、防火地域および準防火地域<strong class="text-slate-900">以外</strong>の区域において、
-        床面積の合計が <strong class="text-slate-900">10㎡以内</strong>の増築・改築・移転については
-        建築確認申請が不要とされています。
-      </p>
-      <p>
-        ITaLOG SAUNA の標準仕様は約3.3㎡ですので、この面積基準には収まります。
-        ただし、これは「確認申請が不要になる場合がある」という話であって、
-        <strong class="text-slate-900">建築基準法そのものが適用されなくなるわけではありません</strong>。
-        建蔽率・容積率・斜線制限・隣地との距離といった規定は引き続き守る必要があります。
-      </p>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">確認が必要になりやすいケース</h3>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">防火地域・準防火地域</strong>に指定されている：面積にかかわらず確認申請が必要です。都市部では該当することが多くあります。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">母屋と接続する</strong>形で設置する：独立した工作物ではなく増築とみなされ、扱いが変わります。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">市街化調整区域</strong>に設置する：都市計画法上の制限がかかります。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">商用利用</strong>する：用途が変わることで適用される規定が増えます。</span></li>
-      </ul>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">相談するときに準備しておくと早い情報</h3>
-      <p>
-        自治体の窓口へ相談する際、次の情報があると話が進みやすくなります。
-      </p>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span>設置予定地の住所と、用途地域・防火指定（自治体の都市計画図で確認できます）</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span>敷地図と、既存建物および設置予定位置の関係がわかる簡単な配置図</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span>サウナ小屋の寸法と構造（木造・床面積・高さ）</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span>基礎の形式（据置か、固定か）</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span>利用形態（自家用か、商用か）</span></li>
-      </ul>
-      <p>
-        ITaLOG SAUNA では、これらの資料作成についてもご相談いただけます。
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ============= 6. COST ============= -->
-<section id="cost" class="py-14 lg:py-20">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">06</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">費用の全体像</h2>
-
-    <div class="space-y-6 text-base leading-relaxed-jp">
-      <p>
-        サウナ小屋の導入費用は「本体価格」だけでは決まりません。
-        設置環境によって工事費が大きく変動するため、全体像を把握しておくことが重要です。
-      </p>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">費用の内訳</h3>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
-          <thead>
-            <tr class="bg-paper-2 border-b border-slate-200">
-              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">項目</th>
-              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">内容</th>
-              <th scope="col" class="text-left py-3 px-4 text-xs font-medium text-slate-500 uppercase tracking-wider">備考</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-200">
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">本体（ストーブなし）</td>
-              <td class="py-4 px-4 text-slate-900 font-semibold">¥2,000,000〜</td>
-              <td class="py-4 px-4 text-body">サウナ室一式。仕様変更可</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">本体（ストーブあり）</td>
-              <td class="py-4 px-4 text-slate-900 font-semibold">¥2,500,000〜</td>
-              <td class="py-4 px-4 text-body">サウナストーブを含む</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">運搬費</td>
-              <td class="py-4 px-4 text-body">要見積</td>
-              <td class="py-4 px-4 text-body">横瀬町の工房からの距離による</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">基礎工事</td>
-              <td class="py-4 px-4 text-body">要見積</td>
-              <td class="py-4 px-4 text-body">工法・地盤条件による</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">組立費</td>
-              <td class="py-4 px-4 text-body">要見積</td>
-              <td class="py-4 px-4 text-body">現地での組み立て作業</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">電気工事</td>
-              <td class="py-4 px-4 text-body">要見積</td>
-              <td class="py-4 px-4 text-body">分電盤からの距離・容量増設の要否による</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">給排水工事</td>
-              <td class="py-4 px-4 text-body">要見積</td>
-              <td class="py-4 px-4 text-body">水風呂・シャワーを設ける場合</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 text-slate-900 font-medium">上屋（屋根）</td>
-              <td class="py-4 px-4 text-body">要見積</td>
-              <td class="py-4 px-4 text-body">屋外で軒下がない場合に推奨</td>
-            </tr>
-          </tbody>
-        </table>
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">10㎡という基準</h3>
+        <!-- area bar -->
+        <div class="mt-6 bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6 lg:p-8">
+          <p class="font-mono text-[0.7rem] text-ink/60">FLOOR AREA</p>
+          <div class="relative mt-4 h-12 rounded-full bg-paper border border-ink/15 overflow-hidden" role="img" aria-label="10㎡の基準に対して、ITaLOG SAUNA 標準仕様の床面積は約3.3㎡">
+            <div class="absolute inset-y-0 left-0 w-[33%] bg-heat rounded-full"></div>
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 font-latin text-sm font-bold text-ink">3.3㎡</span>
+            <span class="absolute right-4 top-1/2 -translate-y-1/2 font-latin text-sm font-bold text-ink">10㎡</span>
+          </div>
+          <div class="mt-3 flex justify-between font-mono text-[0.7rem] text-ink/60 tnum" aria-hidden="true">
+            <span>0</span><span>2.5</span><span>5.0</span><span>7.5</span><span>10㎡</span>
+          </div>
+          <dl class="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="flex items-start gap-2"><dt class="mt-1.5 w-3 h-3 rounded-full bg-heat flex-shrink-0"><span class="sr-only">オレンジ</span></dt><dd><strong class="text-ink">ITaLOG SAUNA 標準仕様</strong>：約3.3㎡</dd></div>
+            <div class="flex items-start gap-2"><dt class="mt-1.5 w-3 h-3 rounded-full border border-ink/40 flex-shrink-0"><span class="sr-only">枠</span></dt><dd><strong class="text-ink">10㎡以内</strong>：確認申請が不要とされる面積（防火・準防火地域以外の増築等）</dd></div>
+          </dl>
+        </div>
+        <div class="mt-6 space-y-5 text-base leading-relaxed-jp">
+          <p>
+            建築基準法第6条第2項では、防火地域および準防火地域<strong class="text-ink">以外</strong>の区域において、
+            床面積の合計が <strong class="text-ink">10㎡以内</strong>の増築・改築・移転については
+            建築確認申請が不要とされています。
+          </p>
+          <p>
+            ITaLOG SAUNA の標準仕様は約3.3㎡ですので、この面積基準には収まります。
+            ただし、これは「確認申請が不要になる場合がある」という話であって、
+            <strong class="text-ink">建築基準法そのものが適用されなくなるわけではありません</strong>。
+            建蔽率・容積率・斜線制限・隣地との距離といった規定は引き続き守る必要があります。
+          </p>
+        </div>
       </div>
 
-      <p class="text-sm text-slate-500 leading-relaxed">
-        ※ 上記の本体価格は税別・オーダー内容により変動します。工事費は設置環境により大きく異なるため、
-        現地確認のうえ個別にお見積りいたします。
-      </p>
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">確認が必要になりやすいケース</h3>
+        <ul class="mt-6 grid sm:grid-cols-2 gap-3">
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-mono text-[0.7rem] text-ink inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-heat" aria-hidden="true"></span>CASE A</p>
+            <p class="mt-2 font-bold text-ink">防火地域・準防火地域に指定されている</p>
+            <p class="mt-2 text-sm leading-relaxed">面積にかかわらず確認申請が必要です。都市部では該当することが多くあります。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-mono text-[0.7rem] text-ink inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-heat" aria-hidden="true"></span>CASE B</p>
+            <p class="mt-2 font-bold text-ink">母屋と接続する形で設置する</p>
+            <p class="mt-2 text-sm leading-relaxed">独立した工作物ではなく増築とみなされ、扱いが変わります。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-mono text-[0.7rem] text-ink inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-heat" aria-hidden="true"></span>CASE C</p>
+            <p class="mt-2 font-bold text-ink">市街化調整区域に設置する</p>
+            <p class="mt-2 text-sm leading-relaxed">都市計画法上の制限がかかります。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-mono text-[0.7rem] text-ink inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-heat" aria-hidden="true"></span>CASE D</p>
+            <p class="mt-2 font-bold text-ink">商用利用する</p>
+            <p class="mt-2 text-sm leading-relaxed">用途が変わることで適用される規定が増えます。</p>
+          </li>
+        </ul>
+      </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">費用を抑えるポイント</h3>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">既存の軒下・ガレージを活用する</strong>：上屋の新設費用が不要になり、木部の耐久性も向上します。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">分電盤に近い場所を選ぶ</strong>：配線距離が短いほど電気工事費は下がります。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">水風呂は段階的に</strong>：まずシャワーで始めて、後から水風呂を追加する進め方も可能です。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">既存の平坦な土間を活かす</strong>：水平が出ていれば基礎工事を簡略化できる場合があります。</span></li>
-      </ul>
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">相談するときに準備しておくと早い情報</h3>
+        <p class="mt-4 text-base leading-relaxed-jp">自治体の窓口へ相談する際、次の情報があると話が進みやすくなります。</p>
+        <div class="mt-6 bg-paper-2 graph-bg-light rounded-[1.25rem] border border-ink/10 p-6 lg:p-8">
+          <p class="font-mono text-[0.7rem] text-ink/60 mb-4">CHECKLIST</p>
+          <ul class="space-y-3 text-sm lg:text-base">
+            <li class="flex gap-3"><span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-[0.3rem] border-[1.5px] border-ink" aria-hidden="true"></span><span>設置予定地の住所と、用途地域・防火指定（自治体の都市計画図で確認できます）</span></li>
+            <li class="flex gap-3"><span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-[0.3rem] border-[1.5px] border-ink" aria-hidden="true"></span><span>敷地図と、既存建物および設置予定位置の関係がわかる簡単な配置図</span></li>
+            <li class="flex gap-3"><span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-[0.3rem] border-[1.5px] border-ink" aria-hidden="true"></span><span>サウナ小屋の寸法と構造（木造・床面積・高さ）</span></li>
+            <li class="flex gap-3"><span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-[0.3rem] border-[1.5px] border-ink" aria-hidden="true"></span><span>基礎の形式（据置か、固定か）</span></li>
+            <li class="flex gap-3"><span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-[0.3rem] border-[1.5px] border-ink" aria-hidden="true"></span><span>利用形態（自家用か、商用か）</span></li>
+          </ul>
+          <p class="mt-6 pt-5 border-t border-ink/10 text-sm text-ink">ITaLOG SAUNA では、これらの資料作成についてもご相談いただけます。</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============= 7. RUNNING COST ============= -->
-<section id="running" class="py-14 lg:py-20 bg-paper-2 border-t border-b border-slate-200">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">07</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">ランニングコスト</h2>
-
-    <div class="space-y-6 text-base leading-relaxed-jp">
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-2">電気代の目安</h3>
-      <p>
-        電気ストーブの場合、消費電力量は「昇温にかかる時間」と「温度維持のための断続通電」の合計です。
-        9kW クラスのストーブでは、常温から90℃前後まで昇温するのにおよそ40〜60分かかります。
-      </p>
-      <p>
-        1回の利用を2〜3時間とすると、消費電力量はおおむね
-        <strong class="text-slate-900">10〜18kWh</strong> 程度が目安になります。
-        電力量単価を 1kWh あたり31円として計算すると、
-        <strong class="text-slate-900">1回あたり約300〜560円</strong>という水準です。
-      </p>
-      <p class="text-sm text-slate-500 leading-relaxed">
-        ※ 外気温、断熱性能、扉の開閉頻度、設定温度、契約している電力プランによって大きく変動します。
-        あくまで検討時の概算としてお考えください。
-      </p>
-
-      <div class="pamphlet-frame p-6 lg:p-7 mt-8">
-        <p class="text-sm font-semibold text-slate-900 mb-2">ITaLOG SAUNA の設計がランニングコストに効く理由</p>
-        <p class="text-sm leading-relaxed text-body mb-3">
-          一般的なサウナ室では、ロウリュで発生した蒸気が天井に溜まり足元まで届きません。
-          そのため「もっとロウリュ」を繰り返すことになり、
-          そのたびにサウナストーンとストーブの温度が下がって再加熱が必要になります。
+<!-- ============= 06. COST ============= -->
+<section id="cost" class="py-20 lg:py-28 bg-plywood-warm border-y border-ink/10">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28 text-ink">
+        <p class="guide-num" aria-hidden="true">06</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em]">COST</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35]">費用の全体像</h2>
+        <p class="mt-5 text-sm lg:text-base leading-relaxed-jp text-body">
+          サウナ小屋の導入費用は「本体価格」だけでは決まりません。
+          設置環境によって工事費が大きく変動するため、全体像を把握しておくことが重要です。
         </p>
-        <p class="text-sm leading-relaxed text-body">
-          ITaLOG SAUNA は流体力学に基づいて蒸気の流れを設計し、
-          <strong class="text-slate-900">大さじ2杯（約30cc）程度の少量のロウリュ</strong>でも
-          蒸気が身体を巡るようにしています。ストーブの温度低下が抑えられるため室温が安定し、
-          結果として再加熱にかかる電力を減らせます。
-          <a href="/#science" class="underline decoration-slate-300 underline-offset-2 hover:text-slate-900">技術の詳細はトップページの SCIENCE セクション</a>をご覧ください。
+      </div>
+    </header>
+
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-16">
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">費用の内訳</h3>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-paper-2 rounded-[1.5rem] border border-ink/10 p-7">
+            <p class="font-mono text-[0.7rem] text-ink/60">BODY — WITHOUT STOVE</p>
+            <p class="mt-2 font-bold text-ink">本体（ストーブなし）</p>
+            <p class="mt-4 font-latin font-bold text-3xl lg:text-4xl text-ink tnum leading-none">¥2,000,000<span class="text-lg">〜</span></p>
+            <p class="mt-4 text-sm">サウナ室一式。仕様変更可</p>
+          </div>
+          <div class="bg-ink text-paper rounded-[1.5rem] p-7">
+            <p class="font-mono text-[0.7rem] text-paper/60">BODY — WITH STOVE</p>
+            <p class="mt-2 font-bold">本体（ストーブあり）</p>
+            <p class="mt-4 font-latin font-bold text-3xl lg:text-4xl text-wind tnum leading-none">¥2,500,000<span class="text-lg">〜</span></p>
+            <p class="mt-4 text-sm text-paper/80">サウナストーブを含む</p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex items-center gap-4" aria-hidden="true">
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-heat text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+          <span class="flex-1 h-px bg-ink/20"></span>
+        </div>
+        <p class="mt-4 text-sm font-bold text-ink">設置環境に応じて、次の費用が加わります（いずれも要見積）</p>
+        <ul class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3">
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-4"><p class="font-bold text-ink text-sm">運搬費</p><p class="mt-1.5 text-xs leading-relaxed">横瀬町の工房からの距離による</p></li>
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-4"><p class="font-bold text-ink text-sm">基礎工事</p><p class="mt-1.5 text-xs leading-relaxed">工法・地盤条件による</p></li>
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-4"><p class="font-bold text-ink text-sm">組立費</p><p class="mt-1.5 text-xs leading-relaxed">現地での組み立て作業</p></li>
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-4"><p class="font-bold text-ink text-sm">電気工事</p><p class="mt-1.5 text-xs leading-relaxed">分電盤からの距離・容量増設の要否による</p></li>
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-4"><p class="font-bold text-ink text-sm">給排水工事</p><p class="mt-1.5 text-xs leading-relaxed">水風呂・シャワーを設ける場合</p></li>
+          <li class="bg-paper-2 rounded-[1rem] border border-ink/10 p-4"><p class="font-bold text-ink text-sm">上屋（屋根）</p><p class="mt-1.5 text-xs leading-relaxed">屋外で軒下がない場合に推奨</p></li>
+        </ul>
+        <p class="mt-5 text-xs leading-relaxed text-body">
+          ※ 上記の本体価格は税別・オーダー内容により変動します。工事費は設置環境により大きく異なるため、
+          現地確認のうえ個別にお見積りいたします。
         </p>
       </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">その他の維持費</h3>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">サウナストーンの交換</strong>：使用頻度によりますが、数年に一度の交換が目安です。割れたり崩れたりすると蒸気の出方が変わります。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">水道代</strong>：水風呂を設ける場合は入れ替えの頻度に応じて発生します。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">ストーブの寿命</strong>：電気ストーブのヒーターエレメントは消耗品です。使用状況によりますが10年程度で交換を検討する時期になります。</span></li>
-      </ul>
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">費用を抑えるポイント</h3>
+        <ul class="mt-6 grid sm:grid-cols-2 gap-3">
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-mono text-[0.7rem] text-ink/60">TIP 01</p>
+            <p class="mt-2 font-bold text-ink">既存の軒下・ガレージを活用する</p>
+            <p class="mt-2 text-sm leading-relaxed">上屋の新設費用が不要になり、木部の耐久性も向上します。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-mono text-[0.7rem] text-ink/60">TIP 02</p>
+            <p class="mt-2 font-bold text-ink">分電盤に近い場所を選ぶ</p>
+            <p class="mt-2 text-sm leading-relaxed">配線距離が短いほど電気工事費は下がります。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-mono text-[0.7rem] text-ink/60">TIP 03</p>
+            <p class="mt-2 font-bold text-ink">水風呂は段階的に</p>
+            <p class="mt-2 text-sm leading-relaxed">まずシャワーで始めて、後から水風呂を追加する進め方も可能です。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-mono text-[0.7rem] text-ink/60">TIP 04</p>
+            <p class="mt-2 font-bold text-ink">既存の平坦な土間を活かす</p>
+            <p class="mt-2 text-sm leading-relaxed">水平が出ていれば基礎工事を簡略化できる場合があります。</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============= 8. MAINTENANCE ============= -->
-<section id="maintenance" class="py-14 lg:py-20">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">08</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">メンテナンスと寿命</h2>
+<!-- ============= 07. RUNNING COST ============= -->
+<section id="running" class="py-20 lg:py-28">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28 text-ink">
+        <p class="guide-num" aria-hidden="true">07</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em]">RUNNING COST</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35]">ランニングコスト</h2>
+        <p class="mt-5 text-sm lg:text-base leading-relaxed-jp text-body">
+          電気ストーブの電気代は、「昇温にかかる時間」と「温度維持のための断続通電」の合計で決まります。
+        </p>
+      </div>
+    </header>
 
-    <div class="space-y-6 text-base leading-relaxed-jp">
-      <p>
-        木造サウナを長持ちさせるうえで最も重要なのは、
-        <strong class="text-slate-900">使用後に確実に乾燥させること</strong>、これに尽きます。
-      </p>
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-16">
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">電気代の目安</h3>
+        <div class="mt-6 bg-ink graph-bg text-paper rounded-[1.5rem] p-7 lg:p-10">
+          <p class="font-mono text-[0.7rem] text-paper/60">ELECTRICITY — 1回あたり（9kW クラス・2〜3時間利用）</p>
+          <p class="mt-4 font-latin font-bold text-wind leading-none tnum text-[2.6rem] sm:text-6xl lg:text-7xl">
+            <span class="text-lg lg:text-2xl mr-1">約</span>300〜560<span class="text-xl lg:text-3xl ml-1">円</span>
+          </p>
+          <div class="mt-8 grid grid-cols-3 gap-3 border-t border-paper/15 pt-6">
+            <div>
+              <p class="font-mono text-[0.65rem] text-paper/60">昇温時間</p>
+              <p class="mt-1 font-latin font-bold text-base sm:text-xl text-paper tnum">40〜60<span class="text-xs sm:text-sm ml-0.5">分</span></p>
+            </div>
+            <div>
+              <p class="font-mono text-[0.65rem] text-paper/60">消費電力量</p>
+              <p class="mt-1 font-latin font-bold text-base sm:text-xl text-paper tnum">10〜18<span class="text-xs sm:text-sm ml-0.5">kWh</span></p>
+            </div>
+            <div>
+              <p class="font-mono text-[0.65rem] text-paper/60">電力量単価</p>
+              <p class="mt-1 font-latin font-bold text-base sm:text-xl text-paper tnum">31<span class="text-xs sm:text-sm ml-0.5">円/kWh</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 space-y-5 text-base leading-relaxed-jp">
+          <p>
+            9kW クラスのストーブでは、常温から90℃前後まで昇温するのにおよそ40〜60分かかります。
+            1回の利用を2〜3時間とすると、消費電力量はおおむね
+            <strong class="text-ink">10〜18kWh</strong> 程度が目安になります。
+            電力量単価を 1kWh あたり31円として計算すると、
+            <strong class="text-ink">1回あたり約300〜560円</strong>という水準です。
+          </p>
+          <p class="text-xs leading-relaxed text-body">
+            ※ 外気温、断熱性能、扉の開閉頻度、設定温度、契約している電力プランによって大きく変動します。
+            あくまで検討時の概算としてお考えください。
+          </p>
+        </div>
+      </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">日常のお手入れ</h3>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">使用後の換気</strong>：扉を開け、換気口を開放して室内の湿気を抜きます。この一手間の有無で木部の寿命が大きく変わります。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">座面の清掃</strong>：汗が染み込むため、使用後に拭き取ります。サウナマットを敷くと座面の汚れを大幅に減らせます。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">床の水切り</strong>：ロウリュの水や汗が床に溜まらないようにします。</span></li>
-      </ul>
+      <div class="grid sm:grid-cols-[auto_1fr] gap-6 lg:gap-8 items-center bg-paper-2 rounded-[1.5rem] border border-ink/10 p-7 lg:p-9">
+        <div class="w-32 h-32 lg:w-36 lg:h-36 rounded-full border-[1.5px] border-ink bg-paper flex flex-col items-center justify-center text-ink mx-auto sm:mx-0">
+          <span class="font-latin font-bold text-3xl lg:text-4xl leading-none">30<span class="text-base">cc</span></span>
+          <span class="mt-2 text-xs">大さじ2杯のロウリュ</span>
+        </div>
+        <div>
+          <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink">WHY ITaLOG</p>
+          <h3 class="mt-2 text-lg lg:text-xl font-black text-ink">ITaLOG SAUNA の設計がランニングコストに効く理由</h3>
+          <p class="mt-3 text-sm leading-relaxed">
+            一般的なサウナ室では、ロウリュで発生した蒸気が天井に溜まり足元まで届きません。
+            そのため「もっとロウリュ」を繰り返すことになり、
+            そのたびにサウナストーンとストーブの温度が下がって再加熱が必要になります。
+          </p>
+          <p class="mt-3 text-sm leading-relaxed">
+            ITaLOG SAUNA は流体力学に基づいて蒸気の流れを設計し、
+            <strong class="text-ink">大さじ2杯（約30cc）程度の少量のロウリュ</strong>でも
+            蒸気が身体を巡るようにしています。ストーブの温度低下が抑えられるため室温が安定し、
+            結果として再加熱にかかる電力を減らせます。
+          </p>
+          <a href="/#science" class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
+            技術の詳細はトップページの SCIENCE へ
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">定期的な点検</h3>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">サウナストーンの状態</strong>：割れや粉化がないか確認し、必要に応じて交換します。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">ストーブ周辺</strong>：異音・異臭・発熱の偏りがないか。異常があれば使用を止めて点検を依頼してください。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">木部の状態</strong>：黒ずみ、カビ、腐朽の兆候がないか。特に床際と扉まわりは湿気が溜まりやすい箇所です。</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">基礎と接地部</strong>：沈下や傾きがないか、床下に水が溜まっていないか。</span></li>
-      </ul>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">塗装について</h3>
-      <p>
-        ITaLOG SAUNA は<strong class="text-slate-900">サウナ室内を無塗装</strong>で仕上げています。
-        塗料の成分が高温で揮発することを避け、国産スギ・ヒノキの香りをそのまま楽しめるようにするためです。
-        石油系の断熱材も使用していません。
-      </p>
-      <p>
-        一方、屋外に露出する外壁面については、設置環境に応じて保護塗装をご提案する場合があります。
-        軒下やテラス下など雨がかからない場所に設置できれば、外部の塗装頻度も抑えられます。
-      </p>
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">その他の維持費</h3>
+        <ul class="mt-6 grid md:grid-cols-3 gap-3">
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-bold text-ink">サウナストーンの交換</p>
+            <p class="mt-2 text-sm leading-relaxed">使用頻度によりますが、数年に一度の交換が目安です。割れたり崩れたりすると蒸気の出方が変わります。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-bold text-ink">水道代</p>
+            <p class="mt-2 text-sm leading-relaxed">水風呂を設ける場合は入れ替えの頻度に応じて発生します。</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-6">
+            <p class="font-bold text-ink">ストーブの寿命</p>
+            <p class="mt-2 text-sm leading-relaxed">電気ストーブのヒーターエレメントは消耗品です。使用状況によりますが10年程度で交換を検討する時期になります。</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============= 9. COMMERCIAL ============= -->
-<section id="commercial" class="py-14 lg:py-20 bg-paper-2 border-t border-b border-slate-200">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">09</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">商用利用の場合に必要なこと</h2>
+<!-- ============= 08. MAINTENANCE ============= -->
+<section id="maintenance" class="py-20 lg:py-28 bg-paper-2 border-y border-ink/10">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28 text-ink">
+        <p class="guide-num" aria-hidden="true">08</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em]">MAINTENANCE</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35]">メンテナンスと寿命</h2>
+      </div>
+    </header>
 
-    <div class="space-y-6 text-base leading-relaxed-jp">
-      <div class="bg-amber-50 border border-amber-200 rounded-xl p-6">
-        <p class="text-sm leading-relaxed text-amber-900">
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-16">
+      <div class="relative">
+        <p class="font-display font-black text-ink text-3xl lg:text-5xl leading-[1.35]">
+          使用後に、<br /><span class="marker-line">確実に乾燥させる。</span>
+        </p>
+        <p class="mt-5 text-base leading-relaxed-jp">
+          木造サウナを長持ちさせるうえで最も重要なのは、
+          <strong class="text-ink">使用後に確実に乾燥させること</strong>、これに尽きます。
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-paper rounded-[1.25rem] border border-ink/10 p-7">
+          <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink">DAILY</p>
+          <h3 class="mt-2 text-lg lg:text-xl font-black text-ink">日常のお手入れ</h3>
+          <ul class="mt-5 space-y-4">
+            <li class="flex gap-3"><span class="mt-1 flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-heat text-ink"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="font-bold text-ink text-sm">使用後の換気</p><p class="mt-1 text-sm leading-relaxed">扉を開け、換気口を開放して室内の湿気を抜きます。この一手間の有無で木部の寿命が大きく変わります。</p></div></li>
+            <li class="flex gap-3"><span class="mt-1 flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-heat text-ink"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="font-bold text-ink text-sm">座面の清掃</p><p class="mt-1 text-sm leading-relaxed">汗が染み込むため、使用後に拭き取ります。サウナマットを敷くと座面の汚れを大幅に減らせます。</p></div></li>
+            <li class="flex gap-3"><span class="mt-1 flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-heat text-ink"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="font-bold text-ink text-sm">床の水切り</p><p class="mt-1 text-sm leading-relaxed">ロウリュの水や汗が床に溜まらないようにします。</p></div></li>
+          </ul>
+        </div>
+        <div class="bg-paper rounded-[1.25rem] border border-ink/10 p-7">
+          <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink">REGULAR CHECK</p>
+          <h3 class="mt-2 text-lg lg:text-xl font-black text-ink">定期的な点検</h3>
+          <ul class="mt-5 space-y-4">
+            <li class="flex gap-3"><span class="mt-1 flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-cool text-white"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="font-bold text-ink text-sm">サウナストーンの状態</p><p class="mt-1 text-sm leading-relaxed">割れや粉化がないか確認し、必要に応じて交換します。</p></div></li>
+            <li class="flex gap-3"><span class="mt-1 flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-cool text-white"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="font-bold text-ink text-sm">ストーブ周辺</p><p class="mt-1 text-sm leading-relaxed">異音・異臭・発熱の偏りがないか。異常があれば使用を止めて点検を依頼してください。</p></div></li>
+            <li class="flex gap-3"><span class="mt-1 flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-cool text-white"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="font-bold text-ink text-sm">木部の状態</p><p class="mt-1 text-sm leading-relaxed">黒ずみ、カビ、腐朽の兆候がないか。特に床際と扉まわりは湿気が溜まりやすい箇所です。</p></div></li>
+            <li class="flex gap-3"><span class="mt-1 flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-cool text-white"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="font-bold text-ink text-sm">基礎と接地部</p><p class="mt-1 text-sm leading-relaxed">沈下や傾きがないか、床下に水が溜まっていないか。</p></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-[auto_1fr] gap-6 items-start">
+        <div class="inline-flex flex-col items-start gap-2">
+          <span class="inline-flex items-center gap-2 h-9 px-4 rounded-full bg-ink text-paper text-sm font-bold">室内 無塗装</span>
+          <span class="inline-flex items-center gap-2 h-9 px-4 rounded-full border border-ink/25 text-ink text-sm font-medium">石油系断熱材 不使用</span>
+        </div>
+        <div>
+          <h3 class="text-lg lg:text-xl font-black text-ink">塗装について</h3>
+          <p class="mt-3 text-sm leading-relaxed">
+            ITaLOG SAUNA は<strong class="text-ink">サウナ室内を無塗装</strong>で仕上げています。
+            塗料の成分が高温で揮発することを避け、国産スギ・ヒノキの香りをそのまま楽しめるようにするためです。
+            石油系の断熱材も使用していません。
+          </p>
+          <p class="mt-3 text-sm leading-relaxed">
+            一方、屋外に露出する外壁面については、設置環境に応じて保護塗装をご提案する場合があります。
+            軒下やテラス下など雨がかからない場所に設置できれば、外部の塗装頻度も抑えられます。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= 09. COMMERCIAL ============= -->
+<section id="commercial" class="py-20 lg:py-28">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28 text-ink">
+        <p class="guide-num" aria-hidden="true">09</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em]">COMMERCIAL</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35]">商用利用の場合に必要なこと</h2>
+        <p class="mt-5 text-sm lg:text-base leading-relaxed-jp text-body">
+          日帰り利用を受け入れるのか、宿泊者限定にするのか、貸切制にするのか。
+          運用形態の違いによって必要な手続きが変わります。
+        </p>
+      </div>
+    </header>
+
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-16">
+      <div class="flex items-start gap-3 p-5 lg:p-6 bg-amber-50 border border-amber-200 text-amber-900 rounded-[1.1rem]">
+        <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2L12 3zM12 10v5M12 18h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="text-sm leading-relaxed">
           商用利用に関する法令の適用は、運用形態や地域によって解釈が分かれます。
           以下は一般的な整理であり、<strong>必ず事業計画の段階で管轄の保健所へご相談ください。</strong>
         </p>
       </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">公衆浴場法と旅館業法</h3>
-      <p>
-        不特定多数の方に入浴を提供する場合、<strong class="text-slate-900">公衆浴場法</strong>に基づく許可が
-        必要になることがあります。一方、宿泊施設の宿泊者専用として提供する場合は、
-        <strong class="text-slate-900">旅館業法</strong>の範囲で扱われるのが一般的です。
-      </p>
-      <p>
-        日帰り利用を受け入れるのか、宿泊者限定にするのか、貸切制にするのか。
-        この運用形態の違いによって必要な手続きが変わります。
-        構造や設備に関する要件（換気、給排水、脱衣所の設置など）も自治体ごとに基準が定められています。
-      </p>
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">公衆浴場法と旅館業法</h3>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-7">
+            <p class="font-mono text-[0.7rem] text-ink/60">不特定多数に入浴を提供する場合</p>
+            <p class="mt-3 text-2xl font-black text-ink">公衆浴場法</p>
+            <p class="mt-3 text-sm leading-relaxed">不特定多数の方に入浴を提供する場合、公衆浴場法に基づく許可が必要になることがあります。</p>
+          </div>
+          <div class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-7">
+            <p class="font-mono text-[0.7rem] text-ink/60">宿泊者専用として提供する場合</p>
+            <p class="mt-3 text-2xl font-black text-ink">旅館業法</p>
+            <p class="mt-3 text-sm leading-relaxed">宿泊施設の宿泊者専用として提供する場合は、旅館業法の範囲で扱われるのが一般的です。</p>
+          </div>
+        </div>
+        <p class="mt-6 text-base leading-relaxed-jp">
+          構造や設備に関する要件（換気、給排水、脱衣所の設置など）も自治体ごとに基準が定められています。
+        </p>
+      </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">設計段階からの相談を推奨します</h3>
-      <p>
-        商用利用で最も避けたいのは、建ててから要件を満たしていないことが判明することです。
-        保健所の求める基準は事前に確認でき、それに合わせた設計変更は着工前であれば柔軟に対応できます。
-      </p>
-      <p>
-        ITaLOG SAUNA のフラッグシップ事例である
-        <a href="/#cases" class="underline decoration-slate-300 underline-offset-2 hover:text-slate-900">ocomori sauna</a>
-        では、保健所の指導を受けて目隠し壁を設置しています。
-        この壁も ITaLOG の切り出した合板を枠として使い、
-        法令要件を満たしながら意匠の一貫性を保つ形で解決しました。
-      </p>
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">設計段階からの相談を推奨します</h3>
+        <p class="mt-4 text-base leading-relaxed-jp">
+          商用利用で最も避けたいのは、建ててから要件を満たしていないことが判明することです。
+          保健所の求める基準は事前に確認でき、それに合わせた設計変更は着工前であれば柔軟に対応できます。
+        </p>
+        <div class="mt-6 grid md:grid-cols-5 bg-paper-2 rounded-[1.5rem] border border-ink/10 overflow-hidden">
+          <picture class="block md:col-span-2">
+            <source srcset="/assets/img/photos/_dsc1274.webp" type="image/webp" />
+            <img src="/assets/img/photos/_dsc1274.jpg" width="1800" height="1200" alt="ocomori sauna の入口 — 合板の枠を使った目隠し壁" class="w-full h-full aspect-[4/3] md:aspect-auto object-cover" loading="lazy" />
+          </picture>
+          <div class="md:col-span-3 p-7 lg:p-8">
+            <p class="font-latin text-[0.7rem] tracking-[0.14em] text-ink inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-heat"></span>CASE — ocomori sauna</p>
+            <p class="mt-3 text-sm leading-relaxed">
+              ITaLOG SAUNA のフラッグシップ事例である
+              <a href="https://ocomori.jp/sauna/" target="_blank" rel="noopener" class="text-ink font-medium underline decoration-ink/30 underline-offset-2 hover:decoration-ink">ocomori sauna</a>
+              では、保健所の指導を受けて目隠し壁を設置しています。
+              この壁も ITaLOG の切り出した合板を枠として使い、
+              法令要件を満たしながら意匠の一貫性を保つ形で解決しました。
+            </p>
+            <a href="/#cases" class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
+              導入事例を見る
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
 
-      <h3 class="text-xl lg:text-2xl font-bold text-slate-900 pt-4">想定される事業形態</h3>
-      <ul class="space-y-3 pl-1">
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">宿泊施設への併設</strong>：1棟貸しの宿、グランピング施設、旅館の離れなど</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">貸切サウナ事業</strong>：時間貸しのプライベートサウナ</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">ウェルネス施設</strong>：フィットネス、リトリート施設への導入</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">福利厚生施設</strong>：企業の保養所、研修施設</span></li>
-        <li class="flex gap-3"><span class="text-slate-400 flex-shrink-0">—</span><span><strong class="text-slate-900">地域施設</strong>：道の駅、キャンプ場、公共の交流施設</span></li>
-      </ul>
+      <div>
+        <h3 class="text-xl lg:text-2xl font-black text-ink">想定される事業形態</h3>
+        <ul class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-5">
+            <svg class="w-6 h-6 text-heat" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 18V6M2 14h20v4M22 14v-3a3 3 0 00-3-3h-8v6M6.5 11a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="mt-3 font-bold text-ink text-sm">宿泊施設への併設</p>
+            <p class="mt-1.5 text-xs leading-relaxed">1棟貸しの宿、グランピング施設、旅館の離れなど</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-5">
+            <svg class="w-6 h-6 text-heat" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="mt-3 font-bold text-ink text-sm">貸切サウナ事業</p>
+            <p class="mt-1.5 text-xs leading-relaxed">時間貸しのプライベートサウナ</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-5">
+            <svg class="w-6 h-6 text-heat" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z" stroke-linejoin="round"/></svg>
+            <p class="mt-3 font-bold text-ink text-sm">ウェルネス施設</p>
+            <p class="mt-1.5 text-xs leading-relaxed">フィットネス、リトリート施設への導入</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-5">
+            <svg class="w-6 h-6 text-heat" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V4h11v17M15 9h5v12M2 21h20M8 8h3M8 12h3M8 16h3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="mt-3 font-bold text-ink text-sm">福利厚生施設</p>
+            <p class="mt-1.5 text-xs leading-relaxed">企業の保養所、研修施設</p>
+          </li>
+          <li class="bg-paper-2 rounded-[1.25rem] border border-ink/10 p-5">
+            <svg class="w-6 h-6 text-heat" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l5 8h-3l4 6h-5v6h-2v-6H6l4-6H7l5-8z" stroke-linejoin="round"/></svg>
+            <p class="mt-3 font-bold text-ink text-sm">地域施設</p>
+            <p class="mt-1.5 text-xs leading-relaxed">道の駅、キャンプ場、公共の交流施設</p>
+          </li>
+          <li>
+            <a href="#contact" class="group flex flex-col justify-between h-full bg-ink text-paper rounded-[1.25rem] p-5 hover:bg-ink/90 transition-colors">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-heat text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-4 h-4" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="mt-3">
+                <span class="block font-bold text-sm">そのほかの業態も</span>
+                <span class="block mt-1.5 text-xs leading-relaxed text-paper/80">まずはご相談ください</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============= 10. FAQ ============= -->
-<section id="faq" class="py-14 lg:py-20">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8">
-    <p class="text-xs font-semibold tracking-[0.25em] text-slate-500 mb-3">10</p>
-    <h2 class="text-2xl lg:text-4xl font-bold text-ink leading-tight tracking-tight mb-8">よくあるご質問</h2>
+<section id="faq" class="py-20 lg:py-28 bg-paper-2 border-t border-ink/10">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-12">
+    <header class="lg:col-span-4">
+      <div class="lg:sticky lg:top-28 text-ink">
+        <p class="guide-num" aria-hidden="true">10</p>
+        <p class="mt-6 font-latin text-[0.7rem] tracking-[0.14em]">FAQ</p>
+        <h2 class="mt-2 text-2xl lg:text-[2.1rem] font-black leading-[1.35]">よくあるご質問</h2>
+      </div>
+    </header>
 
-    <div class="space-y-3">
-      <details class="bg-paper-2 rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-paper-2 transition-colors">
+    <div class="lg:col-span-8 mt-12 lg:mt-0 space-y-3">
+      <details class="bg-paper rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>サウナ小屋の設置に必要な広さはどのくらいですか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           4〜6人用のサウナ室本体で W1,820 × D1,820 mm（約3.3㎡）が目安です。実際にはこれに加えて、扉の開閉スペース、外気浴のためのベンチスペース、メンテナンス時に機器へアクセスするための周囲のクリアランスが必要になります。設置場所全体としては、最低でも本体の1.5〜2倍程度の面積を見込んでおくと余裕を持って計画できます。
         </div>
       </details>
 
-      <details class="bg-paper-2 rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-paper-2 transition-colors">
+      <details class="bg-paper rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>サウナ小屋の設置に建築確認申請は必要ですか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           建築基準法では、防火地域・準防火地域以外において床面積10㎡以内の増築は確認申請が不要とされています。4〜6人用サウナ室は約3.3㎡のため、この条件に収まるケースが多くなります。ただし、防火地域の指定、用途地域、既存建物との接続方法、自治体独自の条例によって扱いが変わります。必ず設置予定地の自治体の建築指導課へ事前にご相談ください。
         </div>
       </details>
 
-      <details class="bg-paper-2 rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-paper-2 transition-colors">
+      <details class="bg-paper rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>サウナストーブにはどのくらいの電源容量が必要ですか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           4〜6人用サウナ室では6〜9kW程度の電気ストーブが一般的です。9kWクラスでは単相200Vで専用回路と相応のブレーカー容量が必要になり、既存の分電盤の空き容量によっては契約アンペアの変更や幹線の増強が必要になる場合があります。電気工事は電気工事士の資格を持つ事業者による施工が必須です。薪ストーブを選択する場合は電源が不要になる一方、煙突の設置と防火上の離隔距離の確保が必要です。
         </div>
       </details>
 
-      <details class="bg-paper-2 rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-paper-2 transition-colors">
-          <span>ランニングコスト（電気代）はどのくらいですか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <details class="bg-paper rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
+          <span>サウナ小屋のランニングコスト（電気代）はどのくらいですか？</span>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           9kWの電気ストーブを使用する場合、昇温に約40〜60分、その後は温度維持のため断続的に通電します。1回2〜3時間の利用で消費電力量はおおむね10〜18kWh程度が目安となり、電力量単価を1kWhあたり31円とすると1回あたり約300〜560円の計算になります。ただし外気温、断熱性能、扉の開閉頻度、設定温度によって大きく変動します。ITaLOG SAUNAは石油系断熱材を使わずミリ単位で組み上げた合板構造により保温性が高く、少量のロウリュで温まる設計のため、同クラスのサウナ室と比べてストーブの再加熱頻度を抑えられます。
         </div>
       </details>
 
-      <details class="bg-paper-2 rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-paper-2 transition-colors">
-          <span>設置費用には本体価格のほかに何がかかりますか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <details class="bg-paper rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
+          <span>サウナ小屋の設置費用には本体価格のほかに何がかかりますか？</span>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           本体価格（ITaLOG SAUNAの場合ストーブなし200万円〜、ストーブあり250万円〜）に加えて、設置場所までの運搬費、基礎工事費、組立費、電気工事費が必要です。さらに水風呂やシャワーを設ける場合は給排水工事、屋外設置で屋根がない場合は上屋の設置費用が加わります。総額は設置環境によって大きく変わるため、現地確認のうえ個別にお見積りいたします。
         </div>
       </details>
 
-      <details class="bg-paper-2 rounded-xl border border-slate-200 overflow-hidden group">
-        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-slate-900 cursor-pointer hover:bg-paper-2 transition-colors">
+      <details class="bg-paper rounded-[1.1rem] border border-ink/10 overflow-hidden">
+        <summary class="w-full flex items-center justify-between px-6 py-5 text-left text-base font-medium text-ink cursor-pointer">
           <span>宿泊施設やサウナ事業として商用利用する場合、許可は必要ですか？</span>
-          <svg class="w-5 h-5 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="faq-icon flex-shrink-0 ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-ink/30 text-ink"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </summary>
-        <div class="px-6 pb-5 text-sm leading-relaxed text-body">
+        <div class="px-6 pb-6 text-sm leading-relaxed text-body">
           不特定多数の方に入浴を提供する場合、公衆浴場法に基づく許可が必要になることがあります。宿泊施設の宿泊者専用として提供する場合は旅館業法の範囲で扱われるなど、運用形態によって適用される法令が異なります。判断は保健所の解釈にもよるため、事業計画の段階で管轄の保健所へご相談ください。ITaLOG SAUNAでは、届出が必要な業態の場合、設計段階から要件に合わせたご提案を行っています。
         </div>
       </details>
@@ -806,25 +1264,30 @@
   </div>
 </section>
 
-<!-- ============= CTA ============= -->
-<section class="py-16 lg:py-24 bg-plywood-dark text-white">
-  <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-    <span class="pill-label-light mb-6">CONTACT</span>
-    <h2 class="mt-6 text-2xl lg:text-4xl font-bold leading-tight tracking-tight mb-6">
+<!-- ============= CONTACT (heat field, wind lines in ink) ============= -->
+<section id="contact" class="relative bg-heat text-ink py-20 lg:py-28 overflow-hidden">
+  <svg class="wind absolute inset-0 w-full h-full pointer-events-none" data-draw viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="hero-wisp" d="M-50,120 Q320,40 720,130 T1500,150" stroke="#1d1915" stroke-width="1.4" fill="none" opacity="0.35" stroke-linecap="round"/>
+    <path class="hero-wisp-slow" d="M-50,330 Q420,280 820,350 T1500,320" stroke="#1d1915" stroke-width="1" fill="none" opacity="0.22" stroke-linecap="round"/>
+    <path class="hero-wisp-slow" d="M-50,520 Q480,450 1000,540 T1500,500" stroke="#1d1915" stroke-width="1" fill="none" opacity="0.18" stroke-linecap="round"/>
+  </svg>
+  <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+    <span class="pill-label">CONTACT / ご相談</span>
+    <h2 class="mt-6 text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.25] mb-6">
       設置できるかどうか、<br />まずはご相談ください。
     </h2>
-    <p class="text-base leading-relaxed-jp text-white/85 max-w-2xl mx-auto mb-10">
+    <p class="text-base lg:text-lg leading-relaxed-jp text-ink max-w-2xl mx-auto mb-10">
       設置場所の写真と、おおよその広さ・電源環境をお知らせいただければ、
-      実現可能性と概算のお見積りをご案内します。<br />
+      実現可能性と概算のお見積りをご案内します。
       個人邸宅・法人施設どちらもご相談いただけます。
     </p>
-    <a href="mailto:info@tate-lab.com?subject=ITaLOG%20SAUNA%20%E5%B0%8E%E5%85%A5%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="inline-flex items-center justify-center gap-2 h-14 px-8 text-lg font-medium bg-white text-slate-900 rounded-full hover:bg-gray-100 cursor-pointer transition-colors">
+    <a href="mailto:info@tate-lab.com?subject=ITaLOG%20SAUNA%20%E5%B0%8E%E5%85%A5%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="group inline-flex items-center gap-4 h-16 pl-8 pr-2 text-lg font-medium bg-ink text-paper rounded-full hover:bg-ink/90 transition-colors">
       info@tate-lab.com
-      <svg class="w-5 h-5" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-paper text-ink transition-transform group-hover:translate-x-0.5"><svg class="w-5 h-5" stroke="currentColor" stroke-width="2.2" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     </a>
     <p class="mt-10">
-      <a href="/" class="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a href="/" class="inline-flex items-center gap-2 text-sm text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         ITaLOG SAUNA トップページへ
       </a>
     </p>
@@ -832,15 +1295,15 @@
 </section>
 
 <!-- ============= FOOTER ============= -->
-<footer class="border-t border-slate-200 py-10">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+<footer class="bg-ink text-paper/75 py-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
     <div class="flex items-center gap-3">
-      <img src="/assets/img/logo/italog_logo_t_512.png" width="512" height="512" alt="ITaLOG" class="h-6 w-auto opacity-70" />
-      <span>ITaLOG SAUNA</span>
+      <img src="/assets/img/logo/italog_logo_t_512.png" width="512" height="512" alt="ITaLOG" class="h-7 w-auto opacity-90" style="filter: invert(1);" />
+      <span class="font-latin text-xs tracking-[0.1em] text-paper">ITaLOG SAUNA</span>
     </div>
     <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-      <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="hover:text-slate-900 transition-colors">tate-lab.com</a>
-      <span class="hidden sm:inline-block w-px h-4 bg-slate-300"></span>
+      <a href="https://tate-lab.com/" target="_blank" rel="noopener" class="hover:text-paper transition-colors">tate-lab.com</a>
+      <span class="hidden sm:inline-block w-px h-4 bg-paper/25"></span>
       <p>&copy; 2026 TATE Lab. All Rights Reserved.</p>
     </div>
   </div>

@@ -23,6 +23,7 @@
     font-family: "Zen Kaku Gothic Antique", "Noto Sans JP", sans-serif;
     letter-spacing: 0.02em;
     text-wrap: balance;
+    word-break: auto-phrase; /* break Japanese at phrase boundaries where supported (Chrome/Edge) */
   }
   .text-body { color: var(--body); }
   .text-ink { color: var(--ink); }
@@ -208,6 +209,18 @@
   }
   @media (max-height: 780px) and (min-width: 1024px) {
     .fv h1 { font-size: 3.75rem; }
+  }
+
+  /* === Guide page: big outlined chapter numbers === */
+  .guide-num {
+    font-family: Unbounded, sans-serif;
+    font-weight: 700;
+    font-size: clamp(3.25rem, 7vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    /* fill-color (not color) goes transparent, so the stroke's currentColor keeps the section's text color */
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px currentColor;
   }
 
   html { scroll-behavior: smooth; scroll-padding-top: 72px; }
