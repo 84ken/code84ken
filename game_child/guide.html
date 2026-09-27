@@ -4,13 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>おうちゲームづくりガイド | うちのこゲームミュージアム</title>
-<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
-    font-family:'Yusei Magic', 'Hiragino Maru Gothic ProN', sans-serif;
-    background:#fdfbf5; color:#1a1a1a; line-height:1.9;
+    font-family:'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif; font-weight:500;
+    background-color:#fdfbf5; color:#1a1a1a; line-height:1.9; letter-spacing:.02em;
+    background-image:radial-gradient(rgba(26,26,26,.08) 1px, transparent 1.4px);
+    background-size:22px 22px;
   }
+  h1, h2, h3, .step-num, .cta a, .back, .prompt-box {
+    font-family:'Yusei Magic', 'Hiragino Maru Gothic ProN', sans-serif; font-weight:400;
+  }
+  b { font-weight:700; }
+  :focus-visible { outline:3px solid #2b70ef; outline-offset:3px; border-radius:8px; }
   .container { max-width:760px; margin:0 auto; padding:0 20px; }
 
   /* ===== ヘッダー ===== */
@@ -54,7 +63,7 @@
   .item:nth-child(3){ transform:rotate(-0.4deg); }
   .item .icon { font-size:38px; }
   .item h3 { font-size:16px; margin-top:6px; }
-  .item p { font-size:12.5px; color:#666; margin-top:4px; }
+  .item p { font-size:13.5px; color:#4a453c; margin-top:4px; }
 
   /* ===== ステップ ===== */
   .step-card {
@@ -76,10 +85,10 @@
   .step-card:nth-child(5) .step-num { background:#ffe5b4; }
   .step-card h3 { font-size:19px; }
   .step-card h3 .em { font-size:22px; margin-right:6px; }
-  .step-card p { font-size:14px; color:#444; margin-top:8px; }
+  .step-card p { font-size:15px; color:#4a453c; margin-top:8px; }
   .tips {
-    margin-top:12px; background:#fdfbf5; border:2px dashed #999;
-    border-radius:12px; padding:12px 16px; font-size:13px; color:#555;
+    margin-top:12px; background:#fdfbf5; border:2px dashed rgba(26,26,26,.3);
+    border-radius:12px; padding:12px 16px; font-size:14px; color:#4a453c;
   }
   .tips b { color:#1a1a1a; }
   .tips ul { margin:4px 0 0 18px; }
@@ -110,7 +119,7 @@
   .kotsu-card:nth-child(odd){ transform:rotate(-0.6deg); }
   .kotsu-card:nth-child(even){ transform:rotate(0.5deg); }
   .kotsu-card h3 { font-size:15px; }
-  .kotsu-card p { font-size:12.5px; color:#666; margin-top:4px; }
+  .kotsu-card p { font-size:13.5px; color:#4a453c; margin-top:4px; }
 
   /* ===== フッター ===== */
   .cta { text-align:center; margin-top:56px; }
@@ -122,7 +131,7 @@
     transition:transform .15s ease;
   }
   .cta a:hover { transform:rotate(0deg) translateY(-3px); }
-  footer { text-align:center; padding:56px 20px 40px; font-size:13px; color:#999; }
+  footer { text-align:center; padding:56px 20px 40px; font-size:13px; font-weight:700; color:#6b6457; }
 </style>
 </head>
 <body>

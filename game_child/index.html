@@ -4,399 +4,600 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>うちのこゲームミュージアム</title>
-<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+<meta name="description" content="子どもの絵をあつめる時代から、子どもがつくったゲームをあつめる時代へ。子どもが描いた絵とアイディアから生まれたゲームの思い出アルバム。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --paper:#fdfbf5; --paper-deep:#f4eedf; --card:#ffffff;
+    --ink:#1a1a1a; --ink-sub:#4a453c; --ink-mute:#6b6457;
+    --pink:#ffd6e0; --yellow:#fff3b0; --blue:#cde8ff; --green:#d8f3dc;
+    --heart:#d63a6e; --focus:#2b70ef;
+    --tape:rgba(255,224,120,.75);
+    --line:3px solid var(--ink);
+    --wobble:22px 18px 24px 16px / 18px 24px 16px 22px;
+    --wobble-2:18px 22px 16px 24px / 22px 16px 24px 18px;
+    --pop:4px 4px 0 var(--ink);
+    --pop-sm:3px 3px 0 var(--ink);
+    --font-display:'Yusei Magic','Hiragino Maru Gothic ProN',sans-serif;
+    --font-body:'Zen Maru Gothic','Hiragino Maru Gothic ProN','BIZ UDPGothic',sans-serif;
+    --ease:cubic-bezier(.2,.8,.2,1);
+  }
   * { margin:0; padding:0; box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
   body {
-    font-family:'Yusei Magic', 'Hiragino Maru Gothic ProN', sans-serif;
-    background:#fdfbf5; color:#1a1a1a;
-    line-height:1.8;
+    font-family:var(--font-body); font-weight:500; color:var(--ink);
+    background-color:var(--paper);
+    background-image:radial-gradient(rgba(26,26,26,.08) 1px, transparent 1.4px);
+    background-size:22px 22px;
+    line-height:1.8; letter-spacing:.02em;
   }
-  .container { max-width:960px; margin:0 auto; padding:0 20px; }
+  body.locked { overflow:hidden; }
+  img { display:block; max-width:100%; }
+  button { font-family:inherit; color:inherit; cursor:pointer; background:none; border:0; }
+  a { color:inherit; }
+  :focus-visible { outline:3px solid var(--focus); outline-offset:3px; border-radius:10px; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+  .display { font-family:var(--font-display); font-weight:400; }
+  .mark { background:linear-gradient(transparent 56%, var(--yellow) 56% 94%, transparent 94%); padding:0 .06em; }
+  .mark-pink { background:linear-gradient(transparent 56%, var(--pink) 56% 94%, transparent 94%); padding:0 .06em; }
+  .mark-blue { background:linear-gradient(transparent 56%, var(--blue) 56% 94%, transparent 94%); padding:0 .06em; }
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 
-  /* ===== ヘッダー ===== */
-  header { text-align:center; padding:56px 20px 28px; }
-  .site-title {
-    font-size:clamp(30px, 6vw, 46px); letter-spacing:2px;
-    transform:rotate(-1deg); display:inline-block;
+  /* ===== トップナビ ===== */
+  .topnav { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:18px; }
+  .brand { display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-family:var(--font-display); font-size:15px; }
+  .nav-links { display:flex; gap:8px; }
+  .nav-links a {
+    display:inline-flex; align-items:center; height:36px; padding:0 14px;
+    font-size:13px; font-weight:700; text-decoration:none;
+    border:2px solid var(--ink); border-radius:999px; background:var(--card);
+    transition:background .15s ease;
   }
-  .site-title .tilt { display:inline-block; transform:rotate(2deg); }
-  .tagline {
-    margin-top:14px; font-size:clamp(13px, 2.6vw, 16px); color:#555;
-    transform:rotate(-0.4deg);
-  }
-  .crayon-line {
-    width:180px; height:6px; margin:22px auto 0; border-radius:3px;
-    background:linear-gradient(90deg,#ffd6e0 0 33%,#fff3b0 33% 66%,#cde8ff 66%);
-    transform:rotate(-0.6deg);
-  }
+  .nav-links a:hover { background:var(--yellow); }
 
-  /* ===== 統計 ===== */
-  .stats { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; padding:10px 0 8px; }
+  /* ===== ヒーロー ===== */
+  .hero { padding:36px 0 20px; }
+  .hero-inner { display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center; }
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:12px; font-weight:700; color:var(--ink-sub);
+    border:2px solid var(--ink); border-radius:999px; background:var(--card);
+    padding:2px 14px; transform:rotate(-1.5deg);
+  }
+  .hero-title {
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(44px, 7.4vw, 80px); line-height:1.12; letter-spacing:.04em;
+    margin-top:20px;
+  }
+  .hero-title > span { display:block; }
+  .hero-title .l2 { transform:rotate(-2deg); transform-origin:left center; margin:4px 0 6px; }
+  .hero-title .l3 { font-size:.82em; }
+  .tagline { margin-top:22px; font-size:clamp(15px, 2vw, 18px); font-weight:700; color:var(--ink-sub); line-height:1.9; }
+  .stats { display:flex; gap:12px; margin-top:26px; flex-wrap:wrap; }
   .stat {
-    background:#fff; border:3px solid #1a1a1a; padding:10px 22px;
-    border-radius:18px 22px 16px 24px / 22px 16px 24px 18px;
-    text-align:center; transform:rotate(-1deg);
+    min-width:104px; padding:8px 18px 10px;
+    background:var(--card); border:var(--line); border-radius:var(--wobble-2);
+    box-shadow:var(--pop-sm); transform:rotate(-1deg);
   }
-  .stat:nth-child(2){ transform:rotate(0.8deg); }
-  .stat:nth-child(3){ transform:rotate(-0.5deg); }
-  .stat b { font-size:26px; display:block; line-height:1.3; }
-  .stat span { font-size:12px; color:#666; }
+  .stat:nth-child(2) { transform:rotate(.8deg); }
+  .stat:nth-child(3) { transform:rotate(-.4deg); }
+  .stat b { display:block; font-family:var(--font-display); font-weight:400; font-size:30px; line-height:1.25; }
+  .stat span { font-size:12px; font-weight:700; color:var(--ink-mute); }
 
-  /* ===== フィルターチップ ===== */
-  .filters { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:18px; }
+  /* 原画コラージュ */
+  .collage { position:relative; width:100%; max-width:500px; aspect-ratio:1 / 1.06; justify-self:center; margin-bottom:12px; }
+  .polaroid {
+    position:absolute; width:54%;
+    background:var(--card); border:var(--line); padding:10px 10px 6px;
+    box-shadow:var(--pop); transition:transform .25s var(--ease);
+  }
+  .polaroid img { width:100%; aspect-ratio:1; object-fit:cover; object-position:50% 28%; border:2px solid var(--ink); background:var(--paper-deep); }
+  .polaroid .pol-cap { display:block; margin-top:6px; text-align:center; font-family:var(--font-display); font-size:14px; line-height:1.5; }
+  .polaroid::before {
+    content:""; position:absolute; top:-13px; left:50%; width:74px; height:24px;
+    background:var(--tape); transform:translateX(-50%) rotate(-4deg);
+  }
+  .polaroid.p0 { left:0; top:6%; transform:rotate(-6deg); z-index:2; }
+  .polaroid.p1 { right:0; top:0; transform:rotate(5deg); z-index:1; }
+  .polaroid.p2 { left:23%; top:35%; transform:rotate(-1.5deg); z-index:3; }
+  .polaroid:hover { transform:rotate(0) scale(1.04); z-index:5; }
+
+  /* ===== セクション見出し ===== */
+  .section-head { margin-top:56px; }
+  .section-head.center { text-align:center; }
+  .section-title { font-family:var(--font-display); font-weight:400; font-size:clamp(26px, 3.6vw, 34px); line-height:1.4; }
+  .section-sub { margin-top:6px; font-size:14px; font-weight:700; color:var(--ink-mute); }
+
+  /* ===== フィルター ===== */
+  .filters { display:flex; gap:10px; flex-wrap:wrap; margin-top:18px; }
   .chip {
-    font-family:inherit; font-size:14px; cursor:pointer;
-    padding:6px 20px; background:#fff; color:#1a1a1a;
-    border:3px solid #1a1a1a; border-radius:30px;
-    transform:rotate(-0.8deg); transition:transform .12s ease;
+    display:inline-flex; align-items:center; gap:8px; height:42px; padding:0 8px 0 18px;
+    font-size:15px; font-weight:700;
+    background:var(--card); border:var(--line); border-radius:999px;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
   }
-  .chip:nth-child(2){ transform:rotate(0.6deg); }
-  .chip:nth-child(3){ transform:rotate(-0.4deg); }
-  .chip:hover { transform:rotate(0deg) translateY(-2px); }
-  .chip.on { background:#fff3b0; box-shadow:3px 3px 0 rgba(26,26,26,.18); }
+  .chip:hover { transform:translateY(-2px); }
+  .chip .cnt {
+    min-width:26px; height:26px; padding:0 8px; border-radius:999px;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:12px; background:var(--paper-deep);
+  }
+  .chip[aria-pressed="true"] { box-shadow:var(--pop-sm); }
+  .chip[aria-pressed="true"] .cnt { background:var(--ink); color:var(--paper); }
 
-  /* ===== 年グループ ===== */
-  .year-block { margin-top:44px; }
-  .year-label {
-    display:inline-flex; align-items:baseline; gap:8px;
-    font-size:24px; padding:4px 20px;
-    background:#fff3b0; border:3px solid #1a1a1a;
-    border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
-    transform:rotate(-1.2deg);
-  }
-  .year-label small { font-size:13px; color:#666; }
+  /* ===== てんじしつ（月ごと） ===== */
+  .room { margin-top:36px; }
+  .room-label { display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-weight:400; font-size:22px; }
+  .room-label small { font-family:var(--font-body); font-size:13px; font-weight:700; color:var(--ink-mute); }
+  .room-label::after { content:""; flex:1; border-top:3px dashed rgba(26,26,26,.22); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:30px; margin-top:20px; }
+  .empty { text-align:center; padding:64px 0; color:var(--ink-mute); font-weight:700; }
 
-  /* ===== カードグリッド ===== */
-  .grid {
-    display:grid; grid-template-columns:repeat(auto-fill, minmax(270px, 1fr));
-    gap:26px; margin-top:24px;
-  }
+  /* ===== カード ===== */
   .card {
-    background:#fff; border:3px solid #1a1a1a;
-    border-radius:22px 18px 24px 16px / 18px 24px 16px 22px;
-    overflow:hidden; cursor:pointer;
-    transition:transform .18s ease, box-shadow .18s ease;
-    display:flex; flex-direction:column;
+    position:relative; display:flex; flex-direction:column;
+    background:var(--card); border:var(--line); border-radius:var(--wobble);
+    box-shadow:var(--pop);
+    transition:transform .2s var(--ease), box-shadow .2s var(--ease);
   }
-  .card:nth-child(3n+1){ transform:rotate(-0.7deg); }
-  .card:nth-child(3n+2){ transform:rotate(0.6deg); }
-  .card:nth-child(3n)  { transform:rotate(-0.3deg); }
-  .card:hover { transform:rotate(0deg) translateY(-5px); box-shadow:0 10px 0 rgba(26,26,26,.12); }
+  .card:nth-child(3n+1) { transform:rotate(-.6deg); }
+  .card:nth-child(3n+2) { transform:rotate(.5deg); }
+  .card:nth-child(3n)   { transform:rotate(-.2deg); }
+  .card:hover { transform:translateY(-4px) rotate(0); box-shadow:6px 8px 0 var(--ink); }
+  .card:has(.card-open:focus-visible) { outline:3px solid var(--focus); outline-offset:4px; }
+  .card-cover {
+    position:relative; aspect-ratio:5 / 4; overflow:hidden;
+    border-bottom:var(--line); border-radius:19px 15px 0 0 / 15px 21px 0 0;
+    background:var(--paper-deep);
+  }
+  .card-cover img { width:100%; height:100%; object-fit:cover; object-position:50% 28%; transition:transform .3s var(--ease); }
+  .card:hover .card-cover img { transform:scale(1.04); }
+  .cover-emoji { display:flex; align-items:center; justify-content:center; height:100%; font-size:72px; }
+  .card-no {
+    position:absolute; top:12px; right:12px;
+    font-family:var(--font-display); font-size:13px; line-height:1.9;
+    background:var(--ink); color:var(--paper); border-radius:999px; padding:0 12px;
+  }
+  .cover-tag {
+    position:absolute; left:12px; bottom:12px;
+    font-size:12px; font-weight:700; line-height:1.9;
+    background:var(--card); border:2px solid var(--ink); border-radius:999px; padding:0 12px;
+  }
+  .card-body { display:flex; flex-direction:column; gap:8px; flex:1; padding:16px 18px 18px; }
+  .meta-row { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+  .maker, .age {
+    display:inline-flex; align-items:center; gap:4px;
+    font-size:13px; font-weight:700; line-height:1.8;
+    border:2px solid var(--ink); border-radius:999px; padding:0 12px;
+  }
+  .age { background:var(--yellow); }
+  .date { margin-left:auto; font-size:12px; font-weight:700; color:var(--ink-mute); }
+  .card-title { font-family:var(--font-display); font-weight:400; font-size:20px; line-height:1.45; }
+  .card-open { text-align:left; font:inherit; line-height:inherit; }
+  .card-open::after { content:""; position:absolute; inset:0; border-radius:inherit; }
+  .card-open:focus-visible { outline:none; }
+  .memo {
+    font-size:14px; color:var(--ink-sub); line-height:1.8;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .card-actions { display:flex; align-items:center; gap:8px; margin-top:auto; padding-top:6px; }
 
-  /* サムネイル：ミニプレビュー */
-  .thumb {
-    position:relative; height:190px; overflow:hidden;
-    background:#fdfbf5; border-bottom:3px solid #1a1a1a;
+  /* ===== ボタン ===== */
+  .btn-play {
+    position:relative; z-index:2;
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    height:42px; padding:0 20px;
+    font-family:var(--font-display); font-size:16px;
+    background:var(--yellow); border:var(--line); border-radius:999px; box-shadow:var(--pop-sm);
+    transition:transform .15s ease, box-shadow .15s ease;
   }
-  .thumb .fallback {
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    font-size:64px;
+  .btn-play:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink); }
+  .btn-play:active { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+  .react {
+    position:relative; z-index:2;
+    display:inline-flex; align-items:center; gap:6px; height:42px; padding:0 14px;
+    font-size:14px; font-weight:700;
+    background:var(--card); border:2px solid var(--ink); border-radius:999px;
+    transition:background .15s ease, transform .15s ease;
   }
-  .thumb iframe {
-    position:absolute; top:0; left:50%;
-    width:480px; height:760px;
-    transform:translateX(-50%) scale(0.4); transform-origin:top center;
-    border:0; pointer-events:none; background:#fdfbf5;
-  }
-  .thumb .play-hint {
-    position:absolute; right:10px; bottom:10px;
-    background:#1a1a1a; color:#fff; font-size:13px;
-    padding:4px 14px; border-radius:20px; opacity:.85;
-  }
+  .react:hover { background:var(--paper-deep); }
+  .react:active { transform:scale(.94); }
+  .react .heart { font-size:16px; line-height:1; }
+  .react.on { background:var(--pink); }
+  .react.on .heart { color:var(--heart); }
+  .react.pop .heart { animation:beat .3s ease; }
+  @keyframes beat { 40% { transform:scale(1.5); } }
 
-  .card-body { padding:16px 18px 18px; display:flex; flex-direction:column; gap:8px; flex:1; }
-  .card-title { font-size:18px; line-height:1.5; }
-  .meta { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
-  .badge {
-    font-size:12px; padding:2px 12px;
-    border:2px solid #1a1a1a; border-radius:20px; background:#fff;
-  }
-  .badge.maker { font-weight:bold; }
-  .badge.age { background:#fff3b0; }
-  .memo { font-size:13.5px; color:#555; flex:1; }
-  .date-line { font-size:12px; color:#999; }
-
-  /* いいね・コメントボタン */
-  .card-foot { display:flex; align-items:center; gap:8px; margin-top:4px; }
-  .card-foot .date-line { margin-left:auto; }
-  .react-btn {
-    font-family:inherit; font-size:13px; cursor:pointer;
-    display:inline-flex; align-items:center; gap:5px;
-    padding:4px 14px; background:#fff; color:#1a1a1a;
-    border:2px solid #1a1a1a; border-radius:20px;
-    transition:transform .12s ease;
-  }
-  .react-btn:hover { transform:translateY(-2px); }
-  .react-btn:active { transform:scale(.92); }
-  .like-btn.liked { background:#ffd6e0; }
-  .like-btn .heart { font-size:14px; }
-  .like-btn.liked .heart { animation:beat .4s ease; }
-  @keyframes beat { 0%{transform:scale(1);} 40%{transform:scale(1.5);} 100%{transform:scale(1);} }
-
-  /* 原画ポラロイド */
-  .sketch-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
-  .sketch {
-    background:#fff; border:2px solid #1a1a1a;
-    padding:5px 5px 4px; transform:rotate(1.5deg);
-    cursor:zoom-in; transition:transform .15s ease;
-  }
-  .sketch:nth-child(2){ transform:rotate(-1.2deg); }
-  .sketch:nth-child(3){ transform:rotate(0.8deg); }
-  .sketch:hover { transform:rotate(0deg) scale(1.06); }
-  .sketch img { width:82px; height:82px; object-fit:cover; display:block; }
-  .sketch figcaption {
-    font-size:9px; text-align:center; color:#888;
-    max-width:82px; line-height:1.4; padding-top:3px;
-  }
-
-  /* ===== つくりかたセクション ===== */
-  .howto { margin-top:70px; text-align:center; }
-  .howto h2 {
-    display:inline-block; font-size:22px; padding:4px 24px;
-    background:#cde8ff; border:3px solid #1a1a1a;
-    border-radius:15px 225px 15px 255px / 225px 15px 255px 15px;
-    transform:rotate(0.8deg);
-  }
-  .steps { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:26px; }
+  /* ===== つくりかた ===== */
+  .steps { list-style:none; display:grid; grid-template-columns:repeat(3, 1fr); gap:36px; margin-top:28px; counter-reset:step; }
   .step {
-    width:200px; background:#fff; border:3px solid #1a1a1a;
-    border-radius:20px 16px 22px 18px / 16px 22px 18px 20px;
-    padding:20px 16px; transform:rotate(-1deg);
+    position:relative; text-align:center; padding:26px 20px 22px;
+    background:var(--card); border:var(--line); border-radius:var(--wobble); box-shadow:var(--pop-sm);
   }
-  .step:nth-child(2){ transform:rotate(1deg); }
-  .step:nth-child(3){ transform:rotate(-0.5deg); }
-  .step .num {
-    width:34px; height:34px; margin:0 auto 10px;
-    border:3px solid #1a1a1a; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-size:16px; background:#ffd6e0;
+  .step:nth-child(1) { transform:rotate(-1deg); }
+  .step:nth-child(2) { transform:rotate(.8deg); }
+  .step:nth-child(3) { transform:rotate(-.5deg); }
+  .step:not(:last-child)::after {
+    content:"→"; position:absolute; right:-30px; top:50%; transform:translateY(-50%);
+    font-size:24px; font-weight:700; color:var(--ink-mute);
   }
-  .step:nth-child(2) .num { background:#fff3b0; }
-  .step:nth-child(3) .num { background:#cde8ff; }
-  .step .icon { font-size:36px; }
-  .step h3 { font-size:15px; margin-top:6px; }
-  .step p { font-size:12px; color:#666; margin-top:4px; line-height:1.6; }
-  .arrow { align-self:center; font-size:24px; color:#aaa; }
-  .guide-link {
-    display:inline-block; margin-top:28px; font-size:17px; color:#1a1a1a;
-    background:#ffd6e0; border:3px solid #1a1a1a; padding:12px 28px;
-    border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
-    text-decoration:none; transform:rotate(-0.8deg);
-    transition:transform .15s ease;
+  .step-no {
+    position:absolute; top:-18px; left:50%; transform:translateX(-50%);
+    width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:17px;
+    border:var(--line); border-radius:50%; background:var(--pink);
   }
-  .guide-link:hover { transform:rotate(0deg) translateY(-3px); }
+  .step:nth-child(2) .step-no { background:var(--yellow); }
+  .step:nth-child(3) .step-no { background:var(--blue); }
+  .step-art { font-size:40px; line-height:1.4; }
+  .step h3 { font-family:var(--font-display); font-weight:400; font-size:18px; margin-top:4px; }
+  .step p { font-size:13px; color:var(--ink-sub); margin-top:4px; line-height:1.8; }
+  .center { text-align:center; }
+  .btn-guide {
+    display:inline-flex; align-items:center; gap:8px; height:52px; padding:0 28px; margin-top:32px;
+    font-family:var(--font-display); font-size:17px; text-decoration:none;
+    background:var(--pink); border:var(--line); border-radius:999px; box-shadow:var(--pop-sm);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-guide:hover { transform:translate(-1px,-1px); box-shadow:var(--pop); }
 
-  footer { text-align:center; padding:60px 20px 40px; font-size:13px; color:#999; }
+  /* ===== フッター ===== */
+  .foot { margin-top:80px; border-top:var(--line); background:var(--card); }
+  .foot-inner { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding-top:22px; padding-bottom:26px; }
+  .foot-logo { font-family:var(--font-display); font-size:16px; }
+  .foot nav { display:flex; gap:16px; font-size:13px; font-weight:700; }
+  .foot nav a { text-decoration:none; border-bottom:2px solid transparent; }
+  .foot nav a:hover { border-bottom-color:var(--ink); }
+  .foot-copy { width:100%; font-size:12px; color:var(--ink-mute); font-weight:700; }
 
-  /* ===== プレイヤーモーダル ===== */
-  #player {
+  /* ===== オーバーレイ共通 ===== */
+  .overlay {
     position:fixed; inset:0; z-index:100; display:none;
-    background:rgba(26,26,26,.72);
     align-items:center; justify-content:center; padding:16px;
+    background:rgba(26,26,26,.62);
   }
-  #player.open { display:flex; }
-  .player-frame {
-    position:relative; width:min(480px, 100%); height:min(820px, 96vh);
-    background:#fdfbf5; border:4px solid #1a1a1a;
-    border-radius:24px; overflow:hidden;
-    box-shadow:0 14px 0 rgba(0,0,0,.3);
-    display:flex; flex-direction:column;
+  .overlay.open { display:flex; animation:fade .2s ease; }
+  #player { z-index:110; }
+  #lightbox { z-index:120; background:rgba(26,26,26,.8); }
+  @keyframes fade { from { opacity:0; } }
+  @keyframes rise { from { transform:translateY(16px); opacity:0; } }
+  .bar {
+    display:flex; align-items:center; gap:8px; flex-shrink:0;
+    padding:10px 12px 10px 18px; background:var(--card); border-bottom:var(--line);
   }
-  .player-bar {
-    display:flex; align-items:center; gap:8px;
-    padding:8px 12px; border-bottom:3px solid #1a1a1a; background:#fff;
+  .bar-title { flex:1; min-width:0; font-family:var(--font-display); font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bar-btn {
+    display:inline-flex; align-items:center; gap:4px; height:36px; padding:0 14px; flex-shrink:0;
+    font-size:13px; font-weight:700; text-decoration:none;
+    background:var(--card); border:2px solid var(--ink); border-radius:999px;
   }
-  .player-bar .p-title { flex:1; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .player-bar a, .player-bar button {
-    font-family:inherit; font-size:13px; cursor:pointer;
-    border:2px solid #1a1a1a; border-radius:14px; background:#fff;
-    padding:3px 12px; color:#1a1a1a; text-decoration:none; line-height:1.6;
-  }
-  .player-bar button.close { background:#ffd6e0; }
-  #playerFrame { flex:1; width:100%; border:0; }
+  .bar-btn:hover { background:var(--paper-deep); }
+  .bar-btn.close { background:var(--pink); }
 
-  /* ===== 原画ライトボックス ===== */
-  #lightbox {
-    position:fixed; inset:0; z-index:120; display:none;
-    background:rgba(26,26,26,.78);
-    align-items:center; justify-content:center; padding:20px;
+  /* ===== さくひんページ ===== */
+  .sheet {
+    width:min(1000px, 100%); height:min(880px, 100%);
+    display:flex; flex-direction:column; overflow:hidden;
+    background:var(--paper); border:4px solid var(--ink); border-radius:26px;
+    box-shadow:0 12px 0 rgba(0,0,0,.25); animation:rise .25s var(--ease);
   }
-  #lightbox.open { display:flex; }
-  .lb-frame {
-    background:#fff; border:4px solid #1a1a1a; border-radius:6px;
-    padding:12px 12px 14px; max-width:min(680px, 94vw);
-    box-shadow:0 14px 0 rgba(0,0,0,.3); transform:rotate(-0.6deg);
-    display:flex; flex-direction:column; gap:8px;
+  .sheet-scroll { flex:1; overflow-y:auto; overscroll-behavior:contain; }
+  .d-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:32px; padding:28px; }
+  .d-gallery { min-width:0; }
+  .d-main {
+    position:relative; display:block; width:100%; cursor:zoom-in;
+    background:var(--card); border:var(--line); padding:10px 10px 8px;
+    box-shadow:var(--pop); transform:rotate(-.8deg);
   }
-  .lb-frame img {
-    max-width:100%; max-height:min(70vh, 640px);
-    object-fit:contain; display:block; border:2px solid #1a1a1a;
+  .d-main img { width:100%; aspect-ratio:1; object-fit:contain; background:var(--paper-deep); border:2px solid var(--ink); }
+  .d-main .cover-emoji { aspect-ratio:1; height:auto; background:var(--paper-deep); border:2px solid var(--ink); }
+  .d-main-cap { display:block; margin-top:6px; text-align:center; font-family:var(--font-display); font-size:15px; }
+  .zoom-hint {
+    position:absolute; top:20px; right:20px;
+    font-size:12px; font-weight:700; line-height:1.9; color:#fff;
+    background:rgba(26,26,26,.78); border-radius:999px; padding:0 12px;
   }
-  .lb-foot { display:flex; align-items:center; gap:10px; }
-  .lb-foot .lb-cap { flex:1; font-size:14px; color:#555; }
-  .lb-foot button {
-    font-family:inherit; font-size:13px; cursor:pointer;
-    border:2px solid #1a1a1a; border-radius:14px; background:#ffd6e0;
-    padding:4px 16px;
+  .d-thumbs { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+  .d-thumb {
+    width:76px; padding:4px; background:var(--card); border:2px solid var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
   }
+  .d-thumb img { width:100%; aspect-ratio:1; object-fit:cover; }
+  .d-thumb[aria-pressed="true"] { background:var(--yellow); box-shadow:var(--pop-sm); transform:translateY(-2px); }
+  .d-hint { margin-top:10px; font-size:12px; font-weight:700; color:var(--ink-mute); }
 
-  /* ===== コメントモーダル ===== */
-  #cmtModal {
-    position:fixed; inset:0; z-index:110; display:none;
-    background:rgba(26,26,26,.72);
-    align-items:center; justify-content:center; padding:16px;
+  .plaque { position:relative; background:var(--card); border:var(--line); border-radius:8px; padding:20px 22px; }
+  .plaque::before {
+    content:""; position:absolute; top:-12px; left:28px; width:64px; height:22px;
+    background:var(--tape); transform:rotate(-3deg);
   }
-  #cmtModal.open { display:flex; }
-  .cmt-frame {
-    width:min(480px, 100%); max-height:92vh;
-    background:#fdfbf5; border:4px solid #1a1a1a; border-radius:24px;
-    overflow:hidden; box-shadow:0 14px 0 rgba(0,0,0,.3);
-    display:flex; flex-direction:column;
-  }
+  .plaque-no { font-size:12px; font-weight:700; color:var(--ink-mute); letter-spacing:.08em; }
+  .plaque h2 { font-family:var(--font-display); font-weight:400; font-size:clamp(22px, 3vw, 28px); line-height:1.4; margin-top:2px; }
+  .plaque .meta-row { margin-top:12px; }
+  .plaque-memo { margin-top:14px; font-size:15px; color:var(--ink-sub); line-height:1.95; }
+  .d-cta { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .d-cta .btn-play { flex:1; min-width:200px; height:54px; font-size:19px; }
+  .d-cta .react { height:54px; padding:0 20px; font-size:15px; }
+
+  .d-comments { margin-top:30px; scroll-margin-top:16px; }
+  .d-comments h3 { display:flex; align-items:center; gap:8px; font-family:var(--font-display); font-weight:400; font-size:20px; }
+  .count-pill { font-family:var(--font-body); font-size:12px; font-weight:700; line-height:1.9; background:var(--ink); color:var(--paper); border-radius:999px; padding:0 10px; }
   .cmt-note {
-    margin:12px 14px 0; padding:10px 14px; font-size:12.5px; color:#7a5b00;
-    background:#fff3b0; border:2px dashed #d5b100; border-radius:12px;
+    display:flex; gap:10px; align-items:flex-start; margin-top:10px; padding:12px 14px;
+    font-size:13px; font-weight:700; color:#5c4400; line-height:1.8;
+    background:var(--yellow); border:2px solid #e2c200; border-radius:12px;
   }
-  #cmtList { flex:1; overflow-y:auto; padding:12px 14px; display:flex; flex-direction:column; gap:10px; }
-  .cmt-item {
-    background:#fff; border:2px solid #1a1a1a;
-    border-radius:16px 18px 14px 20px / 18px 14px 20px 16px;
-    padding:10px 14px; transform:rotate(-0.4deg);
-  }
-  .cmt-item:nth-child(even){ transform:rotate(0.4deg); }
-  .cmt-item .cmt-head { display:flex; gap:8px; align-items:baseline; }
-  .cmt-item .cmt-name { font-size:13px; font-weight:bold; }
-  .cmt-item .cmt-date { font-size:10px; color:#aaa; }
-  .cmt-item .cmt-body { font-size:14px; margin-top:2px; white-space:pre-wrap; word-break:break-word; }
-  .cmt-empty { text-align:center; color:#999; font-size:13px; padding:20px 0; }
-  #cmtForm { border-top:3px solid #1a1a1a; background:#fff; padding:10px 14px 14px; }
-  .stamp-row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
+  .cmt-list { display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+  .cmt { background:var(--card); border:2px solid var(--ink); border-radius:18px 18px 18px 4px; padding:10px 14px; }
+  .cmt:nth-child(even) { border-radius:18px 18px 4px 18px; background:#fffdf6; }
+  .cmt-head { display:flex; align-items:baseline; gap:8px; }
+  .cmt-name { font-size:14px; font-weight:700; }
+  .cmt-date { font-size:11px; font-weight:700; color:var(--ink-mute); }
+  .cmt-body { font-size:15px; line-height:1.8; white-space:pre-wrap; word-break:break-word; }
+  .cmt-empty { padding:18px 12px; text-align:center; font-size:14px; font-weight:700; color:var(--ink-mute); border:2px dashed rgba(26,26,26,.25); border-radius:14px; }
+  .cmt-form { margin-top:16px; padding:16px; background:var(--card); border:var(--line); border-radius:var(--wobble-2); }
+  .stamps { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
   .stamp {
-    font-family:inherit; font-size:12px; cursor:pointer;
-    border:2px solid #1a1a1a; border-radius:16px; background:#fdfbf5;
-    padding:3px 12px;
+    height:36px; padding:0 12px; font-size:13px; font-weight:700;
+    background:var(--paper); border:2px solid var(--ink); border-radius:999px;
+    transition:background .15s ease, transform .15s ease;
   }
-  .stamp:hover { background:#fff3b0; }
-  #cmtForm input, #cmtForm textarea {
-    font-family:inherit; font-size:14px; width:100%;
-    border:2px solid #1a1a1a; border-radius:10px; padding:7px 10px;
-    background:#fdfbf5; margin-bottom:8px;
+  .stamp:hover { background:var(--yellow); }
+  .stamp:active { transform:scale(.94); }
+  .field { display:block; margin-bottom:10px; line-height:1.5; }
+  .field > span { display:block; margin-bottom:4px; font-size:12px; font-weight:700; color:var(--ink-sub); }
+  .field input, .field textarea {
+    width:100%; font:inherit; font-size:16px; line-height:1.6;
+    padding:8px 12px; background:var(--paper); border:2px solid var(--ink); border-radius:10px;
   }
-  #cmtForm textarea { height:64px; resize:none; }
-  .cmt-send-row { display:flex; align-items:center; gap:10px; }
-  #cmtError { flex:1; font-size:12px; color:#c0392b; }
-  #cmtSend {
-    font-family:inherit; font-size:15px; cursor:pointer;
-    border:3px solid #1a1a1a; border-radius:20px; background:#ffd6e0;
-    padding:7px 26px; box-shadow:3px 3px 0 #1a1a1a;
+  .field textarea { height:84px; resize:vertical; }
+  .field input:focus, .field textarea:focus { outline:3px solid var(--focus); outline-offset:1px; }
+  .send-row { display:flex; align-items:center; gap:10px; }
+  .cmt-error { flex:1; font-size:13px; font-weight:700; color:#b42318; }
+  .btn-send {
+    height:46px; padding:0 26px; font-family:var(--font-display); font-size:17px;
+    background:var(--pink); border:var(--line); border-radius:999px; box-shadow:var(--pop-sm);
+    transition:transform .15s ease, box-shadow .15s ease;
   }
-  #cmtSend:active { transform:translate(2px,2px); box-shadow:1px 1px 0 #1a1a1a; }
-  #cmtSend:disabled { opacity:.5; cursor:default; }
+  .btn-send:active { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+  .btn-send:disabled { opacity:.5; cursor:default; }
+
+  /* ===== プレイヤー ===== */
+  .player-box {
+    width:min(480px, 100%); height:min(860px, 100%);
+    display:flex; flex-direction:column; overflow:hidden;
+    background:var(--paper); border:4px solid var(--ink); border-radius:26px;
+    box-shadow:0 12px 0 rgba(0,0,0,.25); animation:rise .25s var(--ease);
+  }
+  #playerFrame { flex:1; width:100%; border:0; background:var(--paper); }
+
+  /* ===== ライトボックス ===== */
+  .lb-frame {
+    display:flex; flex-direction:column; gap:8px;
+    max-width:min(760px, 100%); padding:12px 12px 10px;
+    background:var(--card); border:4px solid var(--ink); border-radius:6px;
+    box-shadow:0 12px 0 rgba(0,0,0,.3); transform:rotate(-.6deg);
+  }
+  .lb-frame img { max-width:100%; max-height:min(74vh, 720px); object-fit:contain; border:2px solid var(--ink); }
+  .lb-foot { display:flex; align-items:center; gap:10px; }
+  .lb-cap { flex:1; font-family:var(--font-display); font-size:15px; }
+
+  /* ===== トースト ===== */
+  .toast {
+    position:fixed; left:50%; bottom:28px; z-index:200;
+    transform:translate(-50%, 16px); opacity:0; pointer-events:none;
+    padding:10px 22px; font-size:14px; font-weight:700;
+    background:var(--ink); color:var(--paper); border-radius:999px;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .toast.show { opacity:1; transform:translate(-50%, 0); }
+
+  /* ===== レスポンシブ ===== */
+  @media (max-width:860px) {
+    .hero-inner { grid-template-columns:1fr; gap:28px; }
+    .collage { max-width:420px; }
+  }
+  @media (max-width:780px) {
+    .d-grid { grid-template-columns:1fr; gap:24px; padding:18px 16px 24px; }
+    .steps { grid-template-columns:1fr; gap:40px; max-width:420px; margin-left:auto; margin-right:auto; }
+    .step:not(:last-child)::after { content:"↓"; right:auto; left:50%; top:auto; bottom:-36px; transform:translateX(-50%); }
+  }
+  @media (max-width:560px) {
+    .wrap { padding:0 16px; }
+    .brand { font-size:22px; }
+    .brand-name { display:none; }
+    .stats { gap:10px; }
+    .stat { flex:1; min-width:0; padding:6px 12px 8px; }
+    .stat b { font-size:26px; }
+    .stat span { font-size:11px; }
+    .overlay { padding:8px; }
+    .sheet, .player-box { border-radius:20px; }
+    .bar-btn .lbl { display:none; }
+    .grid { gap:24px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  }
 </style>
 </head>
 <body>
 
-<header class="container">
-  <h1 class="site-title" id="siteTitle"></h1>
-  <p class="tagline" id="tagline"></p>
-  <div class="crayon-line"></div>
+<nav class="topnav wrap" aria-label="メインナビゲーション">
+  <a class="brand" href="./" aria-label="うちのこゲームミュージアム トップ"><span aria-hidden="true">🏛️</span><span class="brand-name">うちのこゲームミュージアム</span></a>
+  <div class="nav-links">
+    <a href="#rooms">てんじしつ</a>
+    <a href="guide.html">つくりかた</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">🖍️ かぞくの さくひんしゅう</p>
+      <h1 class="hero-title">
+        <span class="l1">うちのこ</span>
+        <span class="l2"><span class="mark">ゲーム</span></span>
+        <span class="l3">ミュージアム</span>
+      </h1>
+      <p class="tagline" id="tagline"></p>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="collage" id="collage" aria-label="さいきんの げんが"></div>
+  </div>
 </header>
 
-<div class="container">
-  <div class="stats" id="stats"></div>
-  <div class="filters" id="filters" role="group" aria-label="つくった人でしぼりこむ"></div>
-  <main id="timeline"></main>
+<main>
+  <section id="rooms" class="wrap" aria-labelledby="roomsTitle">
+    <div class="section-head">
+      <h2 id="roomsTitle" class="section-title"><span class="mark-blue">てんじしつ</span></h2>
+      <p class="section-sub">カードを タップすると、げんがと さくひんの おはなしが みられるよ</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="つくった人で しぼりこむ"></div>
+    <div id="timeline"></div>
+  </section>
 
-  <section class="howto">
-    <h2>ゲームのつくりかた</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <div class="icon">🖍️</div>
-        <h3>えをかく</h3>
-        <p>あたまのなかのアイディアを、えや ずにかきおこす</p>
-      </div>
-      <div class="arrow">→</div>
-      <div class="step">
-        <div class="num">2</div>
-        <div class="icon">🎤</div>
-        <h3>こえでせつめい</h3>
-        <p>どんなゲームか、ボイスメモにふきこむ</p>
-      </div>
-      <div class="arrow">→</div>
-      <div class="step">
-        <div class="num">3</div>
-        <div class="icon">🤖</div>
-        <h3>Claudeとつくる</h3>
-        <p>えとこえをもとに、AIといっしょにゲームをつくる</p>
+  <section class="wrap" aria-labelledby="howtoTitle">
+    <div class="section-head center">
+      <h2 id="howtoTitle" class="section-title"><span class="mark-pink">ゲームの つくりかた</span></h2>
+      <p class="section-sub">えと おしゃべりが できれば、なんさいでも ゲームは つくれる</p>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-no">1</span>
+        <div class="step-art" aria-hidden="true">🖍️</div>
+        <h3>えを かく</h3>
+        <p>あたまの なかの アイディアを、えや ずに かきおこす</p>
+      </li>
+      <li class="step">
+        <span class="step-no">2</span>
+        <div class="step-art" aria-hidden="true">🎤</div>
+        <h3>こえで せつめい</h3>
+        <p>どんな ゲームか、ボイスメモに ふきこむ</p>
+      </li>
+      <li class="step">
+        <span class="step-no">3</span>
+        <div class="step-art" aria-hidden="true">🤖</div>
+        <h3>Claudeと つくる</h3>
+        <p>えと こえを もとに、AIと いっしょに ゲームに する</p>
+      </li>
+    </ol>
+    <div class="center"><a class="btn-guide" href="guide.html">📖 くわしい つくりかたガイド</a></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <p class="foot-logo">🏛️ <span id="footTitle"></span></p>
+    <nav aria-label="フッター">
+      <a href="#rooms">てんじしつ</a>
+      <a href="guide.html">つくりかたガイド</a>
+    </nav>
+    <p class="foot-copy">かぞくの さくひんしゅう ・ since 2026</p>
+  </div>
+</footer>
+
+<!-- さくひんページ -->
+<div class="overlay" id="detail" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+  <div class="sheet">
+    <div class="bar">
+      <span class="bar-title" id="dBarTitle"></span>
+      <button class="bar-btn" id="dShare"><span aria-hidden="true">🔗</span><span class="lbl">リンクを おくる</span><span class="sr-only">このさくひんの リンクを おくる</span></button>
+      <button class="bar-btn close" id="dClose" data-close>とじる ×</button>
+    </div>
+    <div class="sheet-scroll" id="dScroll">
+      <div class="d-grid">
+        <section class="d-gallery" aria-label="げんが">
+          <button class="d-main" id="dMain" aria-label="げんがを おおきく みる"></button>
+          <div class="d-thumbs" id="dThumbs"></div>
+          <p class="d-hint" id="dHint"></p>
+        </section>
+        <section class="d-info">
+          <div class="plaque">
+            <p class="plaque-no" id="dNo"></p>
+            <h2 id="dTitle"></h2>
+            <div class="meta-row" id="dMakers"></div>
+            <p class="plaque-memo" id="dMemo"></p>
+          </div>
+          <div class="d-cta">
+            <button class="btn-play" id="dPlay">▶ このゲームで あそぶ</button>
+            <button class="react" id="dLike" data-like=""><span class="heart" aria-hidden="true">♡</span><span>いいね</span><span class="n">0</span></button>
+          </div>
+
+          <section class="d-comments" id="dComments" aria-labelledby="dCmtTitle">
+            <h3 id="dCmtTitle">おうえん メッセージ <span class="count-pill" id="dCmtCount">0</span></h3>
+            <p class="cmt-note"><span aria-hidden="true">🌟</span><span>ここは <b>いいところを つたえる ばしょ</b>だよ。「すごい！」「かわいい！」を どんどん おくって、つぎの さくひんの パワーにしよう。</span></p>
+            <div class="cmt-list" id="dCmtList" aria-live="polite"></div>
+            <form class="cmt-form" id="cmtForm" novalidate>
+              <div class="stamps" id="stampRow" role="group" aria-label="おうえんスタンプ">
+                <button type="button" class="stamp">🌟 すごい！</button>
+                <button type="button" class="stamp">🥰 かわいい！</button>
+                <button type="button" class="stamp">😆 おもしろい！</button>
+                <button type="button" class="stamp">🎮 またあそぶ！</button>
+              </div>
+              <label class="field">
+                <span>なまえ（パパ・ママ・おばあちゃん など）</span>
+                <input id="cmtName" type="text" maxlength="20" autocomplete="nickname">
+              </label>
+              <label class="field">
+                <span>メッセージ（すごいと おもったところを おしえてあげよう）</span>
+                <textarea id="cmtBody" maxlength="300"></textarea>
+              </label>
+              <div class="send-row">
+                <span class="cmt-error" id="cmtError" role="alert"></span>
+                <button type="submit" class="btn-send" id="cmtSend">おくる 💌</button>
+              </div>
+            </form>
+          </section>
+        </section>
       </div>
     </div>
-    <a class="guide-link" href="guide.html">📖 くわしいつくりかたガイドを見る →</a>
-  </section>
+  </div>
 </div>
 
-<footer id="footer"></footer>
+<!-- プレイヤー -->
+<div class="overlay" id="player" role="dialog" aria-modal="true" aria-label="ゲームプレイヤー">
+  <div class="player-box">
+    <div class="bar">
+      <span class="bar-title" id="playerTitle"></span>
+      <a class="bar-btn" id="playerNewTab" href="#" target="_blank" rel="noopener">べつタブで</a>
+      <button class="bar-btn close" id="playerClose" data-close>とじる ×</button>
+    </div>
+    <iframe id="playerFrame" src="about:blank" title="ゲーム" allow="autoplay"></iframe>
+  </div>
+</div>
 
 <!-- 原画ライトボックス -->
-<div id="lightbox" role="dialog" aria-modal="true" aria-label="原画かくだい表示">
+<div class="overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="げんが かくだい">
   <figure class="lb-frame">
     <img id="lbImg" src="" alt="">
     <div class="lb-foot">
       <figcaption class="lb-cap" id="lbCap"></figcaption>
-      <button id="lbClose">とじる ×</button>
+      <button class="bar-btn close" id="lbClose" data-close>とじる ×</button>
     </div>
   </figure>
 </div>
 
-<!-- コメントモーダル -->
-<div id="cmtModal" role="dialog" aria-modal="true" aria-label="おうえんコメント">
-  <div class="cmt-frame">
-    <div class="player-bar">
-      <span class="p-title" id="cmtTitle"></span>
-      <button class="close" id="cmtClose">とじる ×</button>
-    </div>
-    <div class="cmt-note">🌟 ここは <b>いいところを つたえる ばしょ</b>だよ。「すごい！」「かわいい！」を どんどん おくって、つぎの さくひんの パワーにしよう😊</div>
-    <div id="cmtList"></div>
-    <form id="cmtForm">
-      <div class="stamp-row" id="stampRow">
-        <button type="button" class="stamp">🌟 すごい！</button>
-        <button type="button" class="stamp">🥰 かわいい！</button>
-        <button type="button" class="stamp">😆 おもしろい！</button>
-        <button type="button" class="stamp">🎮 またあそぶ！</button>
-      </div>
-      <input id="cmtName" type="text" maxlength="20" placeholder="なまえ（パパ・ママ・おばあちゃん など）">
-      <textarea id="cmtBody" maxlength="300" placeholder="すごいと おもったところを おしえてあげよう！"></textarea>
-      <div class="cmt-send-row">
-        <span id="cmtError"></span>
-        <button type="submit" id="cmtSend">おくる 💌</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- プレイヤーモーダル -->
-<div id="player" role="dialog" aria-modal="true" aria-label="ゲームプレイヤー">
-  <div class="player-frame">
-    <div class="player-bar">
-      <span class="p-title" id="playerTitle"></span>
-      <a id="playerNewTab" href="#" target="_blank" rel="noopener">べつタブで</a>
-      <button class="close" id="playerClose">とじる ×</button>
-    </div>
-    <iframe id="playerFrame" src="about:blank" allow="autoplay"></iframe>
-  </div>
-</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="games.js"></script>
 <script>
 (function () {
+  "use strict";
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
   /* ---------- ユーティリティ ---------- */
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c =>
+      ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+  }
   function parseDate(s) {
     if (!s) return null;
     if (s.length === 7) s += "-01";   // "YYYY-MM" 形式に対応
     return new Date(s + "T00:00:00");
   }
-
   function calcAge(birthdayStr, dateStr) {
     if (!birthdayStr || !dateStr) return null;
     const b = parseDate(birthdayStr), d = parseDate(dateStr);
@@ -405,7 +606,6 @@
         (d.getMonth() === b.getMonth() && d.getDate() < b.getDate())) age--;
     return age;
   }
-
   /* ゲームの age 欄を優先し、なければ誕生日から自動計算 */
   function ageFor(g, m) {
     if (g.age != null) {
@@ -414,209 +614,318 @@
     }
     return calcAge(m.birthday, g.date);
   }
-
   function fmtDate(s) {
     const d = parseDate(s);
     if (!d) return "日付ふめい";
-    const ymd = d.getFullYear() + "年" + (d.getMonth() + 1) + "月";
-    return s.length === 7 ? ymd : ymd + d.getDate() + "日";
+    const ym = d.getFullYear() + "年" + (d.getMonth() + 1) + "月";
+    return s.length === 7 ? ym : ym + d.getDate() + "日";
   }
-
+  function fmtShort(s) {
+    const d = parseDate(s);
+    if (!d) return "";
+    return d.getFullYear() + "." + (d.getMonth() + 1) + (s.length === 7 ? "" : "." + d.getDate());
+  }
   function makers(g) {
     if (!g.maker) return [];
     return (Array.isArray(g.maker) ? g.maker : [g.maker])
       .map(k => ({ key: k, ...FAMILY[k] }))
       .filter(m => m.name);
   }
+  /* 原画（文字列1枚 or {src,label}の配列） */
+  function sketchesOf(g) {
+    if (!g.sketch) return [];
+    return (Array.isArray(g.sketch) ? g.sketch : [g.sketch])
+      .map(s => typeof s === "string" ? { src: s, label: "げんが" } : { label: "げんが", ...s });
+  }
+  const coverOf = g => g.cover || (sketchesOf(g)[0] || {}).src || null;
+  const gameId = g => g.file.replace(/\.html?$/i, "");
+  const numberOf = g => String(GAMES.indexOf(g) + 1).padStart(2, "0");
+  const byId = id => GAMES.find(g => gameId(g) === id);
 
-  /* ---------- ヘッダー・統計 ---------- */
-  document.title = SITE.title;
-  const t = SITE.title;
-  const half = Math.ceil(t.length / 2);
-  document.getElementById("siteTitle").innerHTML =
-    escapeHtml(t.slice(0, half)) + '<span class="tilt">' + escapeHtml(t.slice(half)) + "</span>";
-  document.getElementById("tagline").textContent = SITE.tagline;
-  document.getElementById("footer").textContent =
-    SITE.title + " — かぞくの さくひんしゅう";
-
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c =>
-      ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+  function makerBadges(g) {
+    return makers(g).map(m => {
+      const age = ageFor(g, m);
+      return `<span class="maker" style="background:${m.color}">${m.emoji} ${escapeHtml(m.name)}</span>` +
+             `<span class="age">${age == null ? "？" : age}さい</span>`;
+    }).join("");
   }
 
-  const sorted = GAMES.slice().sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-  const statsEl = document.getElementById("stats");
-  statsEl.innerHTML = [
-    [sorted.length, "さくひん"],
-    [new Set(sorted.map(g => (g.date || "").slice(0, 4)).filter(Boolean)).size, "ねんかん"],
-  ].map(([v, l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+  /* 日付が新しい順。同じ月なら後から追加したものが先 */
+  const sorted = GAMES.slice().sort((a, b) =>
+    (b.date || "").localeCompare(a.date || "") || GAMES.indexOf(b) - GAMES.indexOf(a));
 
-  /* ---------- フィルターチップ ---------- */
-  const filtersEl = document.getElementById("filters");
+  /* ---------- ヘッダー ---------- */
+  document.title = SITE.title;
+  $("#footTitle").textContent = SITE.title;
+  $("#tagline").innerHTML = escapeHtml(SITE.tagline).replace("、", "、<br>");
+
+  const sketchTotal = GAMES.reduce((n, g) => n + sketchesOf(g).length, 0);
+  $("#stats").innerHTML = [
+    [GAMES.length, "さくひん", ""],
+    [sketchTotal, "まいの げんが", ""],
+    ["0", "こ の ♥", "statLikes"],
+  ].map(([v, l, id]) => `<div class="stat"><b${id ? ` id="${id}"` : ""}>${v}</b><span>${l}</span></div>`).join("");
+
+  $("#collage").innerHTML = sorted.filter(coverOf).slice(0, 3).map((g, i) => {
+    const m = makers(g)[0];
+    const cap = m ? `${m.emoji} ${escapeHtml(m.name)} ${ageFor(g, m) ?? "？"}さい` : escapeHtml(g.title);
+    return `<button class="polaroid p${i}" data-open="${gameId(g)}" aria-label="「${escapeHtml(g.title)}」の さくひんページ">
+        <img src="${encodeURI(coverOf(g))}" alt="" decoding="async">
+        <span class="pol-cap">${cap}</span>
+      </button>`;
+  }).join("");
+
+  /* ---------- フィルター ---------- */
+  const filtersEl = $("#filters");
   const makerKeys = Object.keys(FAMILY).filter(k =>
-    sorted.some(g => makers(g).some(m => m.key === k)));
+    GAMES.some(g => makers(g).some(m => m.key === k)));
   let currentFilter = "all";
 
   function renderChips() {
-    const chips = [{ key: "all", label: "ぜんぶ" }].concat(
-      makerKeys.map(k => ({ key: k, label: FAMILY[k].emoji + " " + FAMILY[k].name, color: FAMILY[k].color })));
-    filtersEl.innerHTML = chips.map(c => `
-      <button class="chip${c.key === currentFilter ? " on" : ""}"
-              data-key="${c.key}" aria-pressed="${c.key === currentFilter}"
-              ${c.key === currentFilter && c.color ? `style="background:${c.color}"` : ""}>
-        ${c.label}
-      </button>`).join("");
-    filtersEl.querySelectorAll(".chip").forEach(btn =>
-      btn.addEventListener("click", () => {
-        currentFilter = btn.dataset.key;
-        renderChips();
-        renderTimeline();
-      }));
+    const chips = [{ key: "all", label: "ぜんぶ", color: "var(--yellow)", n: GAMES.length }].concat(
+      makerKeys.map(k => ({
+        key: k, label: FAMILY[k].emoji + " " + FAMILY[k].name, color: FAMILY[k].color,
+        n: GAMES.filter(g => makers(g).some(m => m.key === k)).length,
+      })));
+    filtersEl.innerHTML = chips.map(c => {
+      const on = c.key === currentFilter;
+      return `<button class="chip" data-key="${c.key}" aria-pressed="${on}"${on ? ` style="background:${c.color}"` : ""}>
+          ${escapeHtml(c.label)}<span class="cnt">${c.n}</span></button>`;
+    }).join("");
   }
+  filtersEl.addEventListener("click", e => {
+    const btn = e.target.closest(".chip");
+    if (!btn) return;
+    currentFilter = btn.dataset.key;
+    renderChips();
+    renderTimeline();
+  });
 
-  /* ---------- タイムライン ---------- */
-  const timeline = document.getElementById("timeline");
+  /* ---------- てんじしつ ---------- */
+  const timeline = $("#timeline");
+
+  function cardHtml(g) {
+    const id = gameId(g), cover = coverOf(g), sk = sketchesOf(g), t = escapeHtml(g.title);
+    return `
+      <article class="card">
+        <div class="card-cover">
+          ${cover ? `<img src="${encodeURI(cover)}" alt="" decoding="async">`
+                  : `<div class="cover-emoji" aria-hidden="true">${g.emoji || "🎮"}</div>`}
+          <span class="card-no">No.${numberOf(g)}</span>
+          ${sk.length ? `<span class="cover-tag">🖍️ げんが ${sk.length}まい</span>` : ""}
+        </div>
+        <div class="card-body">
+          <div class="meta-row">${makerBadges(g)}<span class="date">${fmtShort(g.date)}</span></div>
+          <h3 class="card-title"><button class="card-open" data-open="${id}">${t}</button></h3>
+          <p class="memo">${escapeHtml(g.memo || "")}</p>
+          <div class="card-actions">
+            <button class="btn-play" data-play="${id}" aria-label="「${t}」で あそぶ">▶ あそぶ</button>
+            <button class="react" data-like="${id}" aria-pressed="false"><span class="heart" aria-hidden="true">♡</span><span class="n">0</span></button>
+            <button class="react" data-cmt="${id}" aria-label="「${t}」への おうえんメッセージ"><span aria-hidden="true">💬</span><span class="n">0</span></button>
+          </div>
+        </div>
+      </article>`;
+  }
 
   function renderTimeline() {
     const list = currentFilter === "all"
       ? sorted
       : sorted.filter(g => makers(g).some(m => m.key === currentFilter));
-
-    timeline.innerHTML = "";
     if (!list.length) {
-      timeline.innerHTML = '<p style="text-align:center;padding:60px 0;color:#999;">まだ さくひんが ないよ</p>';
+      timeline.innerHTML = '<p class="empty">まだ さくひんが ないよ</p>';
       return;
     }
-    const byYear = {};
+    const rooms = new Map();
     list.forEach(g => {
-      const y = g.date ? g.date.slice(0, 4) : "？？？？";
-      (byYear[y] = byYear[y] || []).push(g);
+      const k = g.date ? g.date.slice(0, 7) : "";
+      if (!rooms.has(k)) rooms.set(k, []);
+      rooms.get(k).push(g);
     });
-    Object.keys(byYear).sort().reverse().forEach(year => {
-      const block = document.createElement("section");
-      block.className = "year-block";
-      block.innerHTML =
-        `<h2 class="year-label">${year}ねん <small>${byYear[year].length}さくひん</small></h2>`;
-      const grid = document.createElement("div");
-      grid.className = "grid";
-      byYear[year].forEach(g => grid.appendChild(buildCard(g)));
-      block.appendChild(grid);
-      timeline.appendChild(block);
-    });
+    timeline.innerHTML = [...rooms].map(([k, gs]) => {
+      const d = parseDate(k);
+      const label = d ? `${d.getFullYear()}ねん ${d.getMonth() + 1}がつ` : "いつかの さくひん";
+      return `<section class="room">
+          <h3 class="room-label">${label} <small>${gs.length}さくひん</small></h3>
+          <div class="grid">${gs.map(cardHtml).join("")}</div>
+        </section>`;
+    }).join("");
     refreshCounts();
   }
 
-  /* 原画（文字列1枚 or {src,label}の配列） */
-  function sketchRow(g) {
-    if (!g.sketch) return "";
-    const list = (Array.isArray(g.sketch) ? g.sketch : [g.sketch])
-      .map(s => typeof s === "string" ? { src: s, label: "げんが" } : s);
-    return `<div class="sketch-row">` + list.map(s => `
-      <figure class="sketch" data-src="${encodeURI(s.src)}">
-        <img src="${encodeURI(s.src)}"
-             alt="${escapeHtml(g.title)} の原画：${escapeHtml(s.label || "げんが")}">
-        <figcaption>${escapeHtml(s.label || "げんが")}</figcaption>
-      </figure>`).join("") + `</div>`;
+  document.addEventListener("click", e => {
+    const t = e.target.closest("[data-play],[data-like],[data-cmt],[data-open]");
+    if (!t) return;
+    const id = t.dataset.play || t.dataset.like || t.dataset.cmt || t.dataset.open;
+    const g = byId(id);
+    if (!g) return;
+    if (t.dataset.play) openPlayer(g);
+    else if (t.dataset.like) { toggleLike(g); t.classList.remove("pop"); void t.offsetWidth; t.classList.add("pop"); }
+    else if (t.dataset.cmt) openDetail(g, { comments: true });
+    else openDetail(g);
+  });
+
+  /* ---------- オーバーレイ管理（開いた順に重なる・Escは手前から） ---------- */
+  const stack = [];
+  const closers = new Map();
+
+  function showOverlay(el) {
+    if (!stack.some(s => s.el === el)) stack.push({ el, returnTo: document.activeElement });
+    el.classList.add("open");
+    document.body.classList.add("locked");
+    const f = el.querySelector("[data-close]");
+    if (f) f.focus({ preventScroll: true });
   }
+  function hideOverlay(el) {
+    const i = stack.findIndex(s => s.el === el);
+    if (i < 0) return;
+    const { returnTo } = stack.splice(i, 1)[0];
+    el.classList.remove("open");
+    if (!stack.length) document.body.classList.remove("locked");
+    if (returnTo && returnTo !== document.body && document.contains(returnTo)) returnTo.focus({ preventScroll: true });
+    else if (el.contains(document.activeElement)) document.activeElement.blur();
+  }
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape" || !stack.length) return;
+    closers.get(stack[stack.length - 1].el)();
+  });
+  $$(".overlay").forEach(el => el.addEventListener("click", e => {
+    if (e.target === el) closers.get(el)();
+  }));
 
-  function buildCard(g) {
-    const card = document.createElement("article");
-    card.className = "card";
-    card.setAttribute("role", "button");
-    card.setAttribute("tabindex", "0");
-    card.setAttribute("aria-label", g.title + " をあそぶ");
-
-    const ms = makers(g);
-    const badges = ms.map(m =>
-      `<span class="badge maker" style="background:${m.color}">${m.emoji} ${escapeHtml(m.name)}</span>`
-    );
-    ms.forEach(m => {
-      const age = ageFor(g, m);
-      const ageText = (age === null ? "？" : age) + "さい";
-      badges.push(`<span class="badge age">つくったとき ${ms.length > 1 ? m.emoji + " " : ""}${ageText}</span>`);
-    });
-
-    card.innerHTML = `
-      <div class="thumb">
-        <div class="fallback">${g.emoji || "🎮"}</div>
-        <iframe src="${encodeURI(g.file)}" loading="lazy" tabindex="-1"
-                scrolling="no" title="${escapeHtml(g.title)} プレビュー"></iframe>
-        <span class="play-hint">▶ あそぶ</span>
-      </div>
-      <div class="card-body">
-        <h3 class="card-title">${escapeHtml(g.title)}</h3>
-        <div class="meta">${badges.join("")}</div>
-        <p class="memo">${escapeHtml(g.memo || "")}</p>
-        ${sketchRow(g)}
-        <div class="card-foot">
-          <button class="react-btn like-btn" data-file="${encodeURI(g.file)}"
-                  aria-label="${escapeHtml(g.title)} にいいね">
-            <span class="heart">♥</span><span class="lk">0</span></button>
-          <button class="react-btn cmt-btn" data-file="${encodeURI(g.file)}"
-                  aria-label="${escapeHtml(g.title)} におうえんコメント">
-            💬 <span class="ck">0</span></button>
-          <span class="date-line">📅 ${fmtDate(g.date)}</span>
-        </div>
-      </div>`;
-
-    card.querySelectorAll(".sketch").forEach(fig => {
-      const label = fig.querySelector("figcaption").textContent;
-      fig.addEventListener("click", e => {
-        e.stopPropagation();
-        openLightbox(fig.dataset.src, g.title + " ── " + label);
-      });
-    });
-    card.querySelector(".like-btn").addEventListener("click", e => {
-      e.stopPropagation();
-      toggleLike(g.file);
-    });
-    card.querySelector(".cmt-btn").addEventListener("click", e => {
-      e.stopPropagation();
-      openComments(g);
-    });
-
-    const open = () => openPlayer(g);
-    card.addEventListener("click", open);
-    card.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
-    });
-    return card;
+  /* ---------- トースト ---------- */
+  let toastTimer;
+  function toast(msg) {
+    const el = $("#toast");
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
   }
 
   /* ---------- プレイヤー ---------- */
-  const player = document.getElementById("player");
-  const frame = document.getElementById("playerFrame");
-
+  const player = $("#player"), frame = $("#playerFrame");
   function openPlayer(g) {
-    document.getElementById("playerTitle").textContent = g.title;
-    document.getElementById("playerNewTab").href = g.file;
+    $("#playerTitle").textContent = g.title;
+    $("#playerNewTab").href = g.file;
+    frame.title = g.title;
     frame.src = g.file;
-    player.classList.add("open");
-    document.body.style.overflow = "hidden";
+    showOverlay(player);
   }
   function closePlayer() {
-    player.classList.remove("open");
     frame.src = "about:blank";
-    document.body.style.overflow = "";
+    hideOverlay(player);
   }
-  document.getElementById("playerClose").addEventListener("click", closePlayer);
-  player.addEventListener("click", e => { if (e.target === player) closePlayer(); });
+  closers.set(player, closePlayer);
+  $("#playerClose").addEventListener("click", closePlayer);
 
-  /* ---------- 原画ライトボックス ---------- */
-  const lightbox = document.getElementById("lightbox");
-
+  /* ---------- ライトボックス ---------- */
+  const lightbox = $("#lightbox");
   function openLightbox(src, caption) {
-    document.getElementById("lbImg").src = src;
-    document.getElementById("lbImg").alt = caption;
-    document.getElementById("lbCap").textContent = caption;
-    lightbox.classList.add("open");
+    $("#lbImg").src = src;
+    $("#lbImg").alt = caption;
+    $("#lbCap").textContent = caption;
+    showOverlay(lightbox);
   }
   function closeLightbox() {
-    lightbox.classList.remove("open");
-    document.getElementById("lbImg").src = "";
+    hideOverlay(lightbox);
+    $("#lbImg").src = "";
   }
-  document.getElementById("lbClose").addEventListener("click", closeLightbox);
-  lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+  closers.set(lightbox, closeLightbox);
+  $("#lbClose").addEventListener("click", closeLightbox);
+
+  /* ---------- さくひんページ ---------- */
+  const detail = $("#detail");
+  let current = null, currentSketch = 0;
+
+  function renderGallery() {
+    const sk = sketchesOf(current);
+    const main = $("#dMain");
+    if (!sk.length) {
+      main.innerHTML = `<div class="cover-emoji" aria-hidden="true">${current.emoji || "🎮"}</div>
+        <span class="d-main-cap">げんがは まだ ないよ</span>`;
+      main.disabled = true;
+      $("#dThumbs").innerHTML = "";
+      $("#dHint").textContent = "";
+      return;
+    }
+    const s = sk[currentSketch];
+    main.disabled = false;
+    main.innerHTML = `<img src="${encodeURI(s.src)}" alt="${escapeHtml(current.title)} の げんが：${escapeHtml(s.label)}">
+      <span class="zoom-hint" aria-hidden="true">🔍 おおきく</span>
+      <span class="d-main-cap">${escapeHtml(s.label)}</span>`;
+    $("#dThumbs").innerHTML = sk.length > 1 ? sk.map((x, i) => `
+      <button class="d-thumb" data-i="${i}" aria-pressed="${i === currentSketch}" aria-label="${escapeHtml(x.label)}">
+        <img src="${encodeURI(x.src)}" alt="">
+      </button>`).join("") : "";
+    $("#dHint").textContent = sk.length > 1 ? `げんが ${currentSketch + 1} / ${sk.length}まい` : "";
+  }
+  $("#dThumbs").addEventListener("click", e => {
+    const b = e.target.closest(".d-thumb");
+    if (!b) return;
+    currentSketch = +b.dataset.i;
+    renderGallery();
+    $(`.d-thumb[data-i="${currentSketch}"]`).focus({ preventScroll: true });
+  });
+  $("#dMain").addEventListener("click", () => {
+    const s = sketchesOf(current)[currentSketch];
+    if (s) openLightbox(s.src, current.title + " ── " + s.label);
+  });
+
+  function openDetail(g, opts = {}) {
+    current = g;
+    currentSketch = 0;
+    $("#dBarTitle").textContent = "No." + numberOf(g) + "　" + g.title;
+    $("#dNo").textContent = "No." + numberOf(g) + " ・ " + fmtDate(g.date);
+    $("#dTitle").textContent = g.title;
+    $("#dMakers").innerHTML = makerBadges(g);
+    $("#dMemo").textContent = g.memo || "";
+    $("#dLike").dataset.like = gameId(g);
+    $("#cmtName").value = storeGet("albumName") || "";
+    $("#cmtError").textContent = "";
+    renderGallery();
+    renderComments();
+    refreshCounts();
+    showOverlay(detail);
+    const scroller = $("#dScroll");
+    if (opts.comments) $("#dComments").scrollIntoView({ block: "start" });
+    else scroller.scrollTop = 0;
+    history.replaceState(null, "", "#g=" + encodeURIComponent(gameId(g)));
+  }
+  function closeDetail() {
+    hideOverlay(detail);
+    current = null;
+    history.replaceState(null, "", location.pathname + location.search);
+  }
+  closers.set(detail, closeDetail);
+  $("#dClose").addEventListener("click", closeDetail);
+  $("#dPlay").addEventListener("click", () => current && openPlayer(current));
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+  function legacyCopy(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.cssText = "position:fixed;opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    ta.remove();
+  }
+  $("#dShare").addEventListener("click", async () => {
+    if (!current) return;
+    const url = location.origin + location.pathname + "#g=" + encodeURIComponent(gameId(current));
+    const title = current.title + "｜" + SITE.title;
+    if (navigator.share && matchMedia("(pointer:coarse)").matches) {
+      try { await navigator.share({ title, url }); return; }
+      catch (e) { if (e.name === "AbortError") return; }
+    }
+    await copyText(url);
+    toast("リンクを コピーしたよ！ LINEなどで おくってね");
+  });
 
   /* ---------- いいね・コメント データ層 ----------
      album-api.php（サーバー保存・家族で共有）が使えないときは
@@ -625,11 +934,10 @@
   let album = {};
   let serverMode = true;
 
-  function localLoad() {
-    try { return JSON.parse(localStorage.getItem("albumLocal") || "{}"); }
-    catch (e) { return {}; }
-  }
-  function localSave() { localStorage.setItem("albumLocal", JSON.stringify(album)); }
+  function storeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function storeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function localLoad() { try { return JSON.parse(storeGet("albumLocal") || "{}"); } catch (e) { return {}; } }
+  function localSave() { storeSet("albumLocal", JSON.stringify(album)); }
 
   function entryOf(file) {
     if (!album[file]) album[file] = { likes: 0, likedByMe: false, comments: [] };
@@ -637,14 +945,24 @@
   }
 
   function refreshCounts() {
-    document.querySelectorAll(".like-btn").forEach(b => {
-      const en = entryOf(decodeURI(b.dataset.file));
-      b.querySelector(".lk").textContent = en.likes;
-      b.classList.toggle("liked", !!en.likedByMe);
+    $$("[data-like]").forEach(b => {
+      const g = byId(b.dataset.like);
+      if (!g) return;
+      const en = entryOf(g.file);
+      b.querySelector(".n").textContent = en.likes;
+      b.querySelector(".heart").textContent = en.likedByMe ? "♥" : "♡";
+      b.classList.toggle("on", !!en.likedByMe);
+      b.setAttribute("aria-pressed", String(!!en.likedByMe));
+      b.setAttribute("aria-label", `「${g.title}」に いいね（いま ${en.likes}こ）`);
     });
-    document.querySelectorAll(".cmt-btn").forEach(b => {
-      b.querySelector(".ck").textContent = entryOf(decodeURI(b.dataset.file)).comments.length;
+    $$("[data-cmt]").forEach(b => {
+      const g = byId(b.dataset.cmt);
+      if (g) b.querySelector(".n").textContent = entryOf(g.file).comments.length;
     });
+    const total = GAMES.reduce((n, g) => n + entryOf(g.file).likes, 0);
+    const st = $("#statLikes");
+    if (st) st.textContent = total;
+    if (current) $("#dCmtCount").textContent = entryOf(current.file).comments.length;
   }
 
   async function loadAlbum() {
@@ -660,10 +978,11 @@
       album = localLoad();
     }
     refreshCounts();
+    if (current) renderComments();
   }
 
-  async function toggleLike(file) {
-    const en = entryOf(file);
+  async function toggleLike(g) {
+    const en = entryOf(g.file);
     en.likedByMe = !en.likedByMe;                 // 先に見た目を更新
     en.likes = Math.max(0, en.likes + (en.likedByMe ? 1 : -1));
     refreshCounts();
@@ -672,7 +991,7 @@
         const r = await fetch(API + "?action=like", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ game: file }),
+          body: JSON.stringify({ game: g.file }),
         });
         const j = await r.json();
         en.likes = j.count; en.likedByMe = j.liked;
@@ -683,61 +1002,42 @@
     refreshCounts();
   }
 
-  /* ---------- コメントモーダル ---------- */
-  const cmtModal = document.getElementById("cmtModal");
-  const cmtBody = document.getElementById("cmtBody");
-  const cmtName = document.getElementById("cmtName");
-  const cmtError = document.getElementById("cmtError");
-  let cmtGame = null;
-
-  function fmtCmtDate(s) { return s ? s.slice(0, 16).replace(/-/g, "/") : ""; }
+  /* ---------- おうえんコメント ---------- */
+  const cmtBody = $("#cmtBody"), cmtName = $("#cmtName"), cmtError = $("#cmtError");
+  const fmtCmtDate = s => s ? s.slice(0, 16).replace(/-/g, "/") : "";
 
   function renderComments() {
-    const list = entryOf(cmtGame).comments;
-    const el = document.getElementById("cmtList");
-    el.innerHTML = list.length
+    if (!current) return;
+    const list = entryOf(current.file).comments;
+    $("#dCmtList").innerHTML = list.length
       ? list.map(c => `
-          <div class="cmt-item">
+          <div class="cmt">
             <div class="cmt-head">
               <span class="cmt-name">${escapeHtml(c.nickname)}</span>
               <span class="cmt-date">${escapeHtml(fmtCmtDate(c.created_at))}</span>
             </div>
             <div class="cmt-body">${escapeHtml(c.body)}</div>
           </div>`).join("")
-      : '<div class="cmt-empty">まだ おうえんが ないよ。いちばんのりで おくろう！</div>';
-    el.scrollTop = el.scrollHeight;
+      : '<p class="cmt-empty">まだ おうえんが ないよ。いちばんのりで おくろう！</p>';
+    $("#dCmtCount").textContent = list.length;
   }
 
-  function openComments(g) {
-    cmtGame = g.file;
-    document.getElementById("cmtTitle").textContent = g.title + " への おうえん";
-    cmtName.value = localStorage.getItem("albumName") || "";
-    cmtError.textContent = "";
-    renderComments();
-    cmtModal.classList.add("open");
-    document.body.style.overflow = "hidden";
-  }
-  function closeComments() {
-    cmtModal.classList.remove("open");
-    document.body.style.overflow = "";
-  }
-  document.getElementById("cmtClose").addEventListener("click", closeComments);
-  cmtModal.addEventListener("click", e => { if (e.target === cmtModal) closeComments(); });
-
-  document.getElementById("stampRow").addEventListener("click", e => {
+  $("#stampRow").addEventListener("click", e => {
     const btn = e.target.closest(".stamp");
     if (!btn) return;
     cmtBody.value = (cmtBody.value ? cmtBody.value + " " : "") + btn.textContent.trim();
+    cmtError.textContent = "";
     cmtBody.focus();
   });
 
-  document.getElementById("cmtForm").addEventListener("submit", async e => {
+  $("#cmtForm").addEventListener("submit", async e => {
     e.preventDefault();
+    if (!current) return;
     const body = cmtBody.value.trim();
-    if (!body) { cmtError.textContent = "メッセージをかいてね"; return; }
+    if (!body) { cmtError.textContent = "メッセージを かいてね"; cmtBody.focus(); return; }
     const nickname = cmtName.value.trim();
-    if (nickname) localStorage.setItem("albumName", nickname);
-    const sendBtn = document.getElementById("cmtSend");
+    if (nickname) storeSet("albumName", nickname);
+    const sendBtn = $("#cmtSend"), game = current;
     sendBtn.disabled = true;
     cmtError.textContent = "";
     try {
@@ -746,7 +1046,7 @@
         const r = await fetch(API, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ game: cmtGame, nickname, body }),
+          body: JSON.stringify({ game: game.file, nickname, body }),
         });
         const j = await r.json();
         if (!r.ok) throw new Error(j.error || "おくれなかった…もういちど ためしてね");
@@ -759,11 +1059,12 @@
           created_at: new Date().toISOString().slice(0, 19).replace("T", " "),
         };
       }
-      entryOf(cmtGame).comments.push(comment);
+      entryOf(game.file).comments.push(comment);
       if (!serverMode) localSave();
       cmtBody.value = "";
       renderComments();
       refreshCounts();
+      toast("おうえんを おくったよ！ 💌");
     } catch (err) {
       cmtError.textContent = err.message || "おくれなかった…もういちど ためしてね";
     } finally {
@@ -771,18 +1072,18 @@
     }
   });
 
-  /* ---------- Escで閉じる（手前のものから） ---------- */
-  document.addEventListener("keydown", e => {
-    if (e.key !== "Escape") return;
-    if (lightbox.classList.contains("open")) closeLightbox();
-    else if (cmtModal.classList.contains("open")) closeComments();
-    else if (player.classList.contains("open")) closePlayer();
-  });
-
   /* ---------- 初期化（全定義のあとで実行） ---------- */
+  function openFromHash() {
+    const m = location.hash.match(/^#g=(.+)$/);
+    const g = m && byId(decodeURIComponent(m[1]));
+    if (g && current !== g) openDetail(g);
+  }
+  window.addEventListener("hashchange", openFromHash);
+
   renderChips();
   renderTimeline();
   loadAlbum();
+  openFromHash();
 })();
 </script>
 </body>
