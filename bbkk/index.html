@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BBKK 木馬椅子 | ブーバキキ効果のウェルネスチェア | TATELab.</title>
-  <meta name="description" content="ブーバ／キキ効果から着想した、音と形のあいだの木馬椅子「BBKK」。まるいBOUBAと、とがったKIKI。アート作品として、知育の道具として、ウェルネスツールとして。埼玉県産の杉・檜合板をCNCで削り出し、横瀬の工房で仕上げています。第6回 埼玉県新商品AWARD 2025 工芸・雑貨部門 大賞。" />
+  <meta name="description" content="ブーバ／キキ効果から着想した木馬椅子「BBKK」。まるいBOUBAと、とがったKIKI。アート作品・知育・ウェルネスに。埼玉県産の杉・檜合板を横瀬の工房で仕上げています。第6回 埼玉県新商品AWARD 2025 大賞。" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="author" content="TATELab. / 株式会社スキーマ" />
   <meta name="theme-color" content="#F1ECE7" />
@@ -17,6 +17,7 @@
   <meta property="og:type" content="product" />
   <meta property="og:site_name" content="BBKK 木馬椅子 — TATELab." />
   <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:url" content="https://bbkk.llschema.com/" />
   <meta property="og:title" content="BBKK 木馬椅子 | 音と形のあいだの木馬椅子" />
   <meta property="og:description" content="まるいBOUBAと、とがったKIKI。ブーバ／キキ効果を体で感じる木馬椅子。第6回 埼玉県新商品AWARD 2025 大賞。" />
@@ -53,6 +54,7 @@
           "url": "https://tate-lab.com/product/bbkk/",
           "price": "80000",
           "priceCurrency": "JPY",
+          "itemCondition": "https://schema.org/NewCondition",
           "priceSpecification": { "@type": "PriceSpecification", "price": "80000", "priceCurrency": "JPY", "valueAddedTaxIncluded": true },
           "seller": { "@id": "https://bbkk.llschema.com/#org" }
         }
@@ -64,6 +66,7 @@
         "alternateName": ["たてラボ", "株式会社スキーマ"],
         "url": "https://tate-lab.com/",
         "email": "info@tate-lab.com",
+        "sameAs": ["https://tate-lab.com/", "https://www.instagram.com/tate.lab/"],
         "address": { "@type": "PostalAddress", "postalCode": "368-0072", "addressRegion": "埼玉県", "addressLocality": "秩父郡横瀬町", "streetAddress": "横瀬1926", "addressCountry": "JP" }
       }
     ]
@@ -72,7 +75,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- web fonts load without blocking first paint; the system Japanese gothic shows until they arrive -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" /></noscript>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -136,7 +141,7 @@
     .logo-sub { font-family: var(--en); font-size: 11px; letter-spacing: 0.1em; color: var(--ink-2); align-self: flex-end; padding-bottom: 3px; }
 
     .contents { display: flex; gap: 28px; align-items: flex-start; }
-    .contents-label { font-family: var(--en); font-size: 11px; color: var(--stone); letter-spacing: 0.08em; line-height: 1; padding-top: 4px; }
+    .contents-label { font-family: var(--en); font-size: 11px; color: var(--ink-2); letter-spacing: 0.08em; line-height: 1; padding-top: 4px; }
     .contents ul { list-style: none; display: grid; grid-template-rows: repeat(4, auto); grid-auto-flow: column; column-gap: 28px; row-gap: 6px; }
     .contents a {
       display: inline-flex; align-items: center; gap: 8px;
@@ -185,7 +190,7 @@
     .menu.open { opacity: 1; visibility: visible; }
     .menu ul { list-style: none; display: grid; gap: 4px; text-align: center; }
     .menu a { font-size: 20px; font-weight: 500; color: var(--kuro); letter-spacing: 0.06em; }
-    .menu a span { display: block; font-family: var(--en); font-size: 11px; color: var(--stone); letter-spacing: 0.12em; line-height: 1.2; margin-bottom: 10px; }
+    .menu a span { display: block; font-family: var(--en); font-size: 11px; color: var(--ink-2); letter-spacing: 0.12em; line-height: 1.2; margin-bottom: 10px; }
 
     /* ================= HERO ================= */
     .hero {
@@ -249,7 +254,7 @@
     }
     .hero-award .star { width: 26px; height: 26px; border-radius: 50%; background: var(--kuro); color: #E7C77E; display: grid; place-items: center; font-size: 12px; }
     .hero-title { font-weight: 500; color: var(--kuro); line-height: 1.35; letter-spacing: -0.01em; }
-    .hero-name { display: block; font-family: var(--en); font-weight: 600; font-size: 13px; letter-spacing: 0.3em; color: var(--sugi); margin-bottom: 14px; line-height: 1; }
+    .hero-name { display: block; font-family: var(--en); font-weight: 600; font-size: 13px; letter-spacing: 0.3em; color: var(--sugi-deep); margin-bottom: 14px; line-height: 1; }
     .hero-lead { display: block; font-size: clamp(15px, 1.5vw, 19px); letter-spacing: 0.08em; line-height: 1.6; margin-bottom: 10px; }
     .hero-copy { display: block; font-size: clamp(34px, 4.4vw, 62px); }
 
@@ -283,7 +288,7 @@
       user-select: none;
     }
     .p-title { font-size: clamp(24px, 2.6vw, 32px); font-weight: 500; color: var(--kuro); line-height: 1.4; letter-spacing: 0.02em; margin-top: -0.9em; position: relative; }
-    .p-en { display: block; font-family: var(--en); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; color: var(--sugi); margin-top: 6px; }
+    .p-en { display: block; font-family: var(--en); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; color: var(--sugi-deep); margin-top: 6px; }
     .p-lead { font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; color: var(--kuro); line-height: 1.8; margin-bottom: 16px; }
     .on-dark .p-title, .on-dark .p-lead { color: var(--shiro); }
     .on-dark .p-en { color: var(--sugi-lt); }
@@ -380,7 +385,7 @@
     .qr-photo img { width: 100%; }
     .qr-photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 24px 18px; background: linear-gradient(transparent, rgba(26,24,24,.55)); color: var(--shiro); font-size: 14px; font-weight: 500; }
     .ptag { position: absolute; top: 18px; font-family: var(--en); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; line-height: 1; padding: 8px 14px; }
-    .ptag.b { left: 18px; background: var(--shiro); color: var(--sugi); border-radius: 999px; }
+    .ptag.b { left: 18px; background: var(--shiro); color: var(--sugi-deep); border-radius: 999px; }
     .ptag.k { right: 18px; background: var(--kuro); color: var(--shiro); clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
 
     /* ================= 02 CONCEPT ================= */
@@ -420,7 +425,7 @@
     @keyframes thumbRock { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-7deg); } 75% { transform: rotate(7deg); } }
     .note-card h3 { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; color: var(--kuro); line-height: 1.5; }
     .note-card h3 b { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--kuro); color: var(--shiro); font-family: var(--en); font-size: 11px; display: grid; place-items: center; }
-    .note-card h3 small { display: block; font-family: var(--en); font-size: 10px; font-weight: 500; color: var(--sugi); letter-spacing: 0.12em; line-height: 1.4; }
+    .note-card h3 small { display: block; font-family: var(--en); font-size: 10px; font-weight: 500; color: var(--sugi-deep); letter-spacing: 0.12em; line-height: 1.4; }
     .note-card p { font-size: 14px; line-height: 1.85; margin-top: 4px; }
 
     /* ================= 03 TWO FORMS ================= */
@@ -428,9 +433,9 @@
     .forms-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
     .forms-head .p-head { margin-bottom: 0; }
     .forms-head p { max-width: 440px; font-size: 15px; }
-    .forms-head p em { display: block; font-style: normal; font-family: var(--en); font-size: 12px; letter-spacing: 0.1em; color: var(--sugi); margin-bottom: 4px; }
+    .forms-head p em { display: block; font-style: normal; font-family: var(--en); font-size: 12px; letter-spacing: 0.1em; color: var(--sugi-deep); margin-bottom: 4px; }
     .forms-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: stretch; margin-top: 48px; }
-    .vs { align-self: center; font-family: var(--en); font-size: 14px; color: var(--stone); letter-spacing: 0.1em; }
+    .vs { align-self: center; font-family: var(--en); font-size: 14px; color: var(--ink-2); letter-spacing: 0.1em; }
     .form-card { position: relative; padding: 20px 20px 32px; display: flex; flex-direction: column; }
     .form-card.bb { background: var(--shiro); border-radius: 40px; }
     .form-card.kk { background: var(--kuro); color: rgba(250,250,248,.82); clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 40px 100%, 0 calc(100% - 40px)); }
@@ -491,7 +496,7 @@
     .form-card.riding .rb-icon { animation-duration: .9s; }
     .form-card.kk.riding .rb-icon { animation-duration: .5s; }
     .forms-foot { text-align: center; margin-top: 36px; font-size: 15px; font-weight: 500; color: var(--kuro); }
-    .forms-foot span { font-family: var(--en); font-size: 12px; color: var(--sugi); letter-spacing: 0.1em; display: block; }
+    .forms-foot span { font-family: var(--en); font-size: 12px; color: var(--sugi-deep); letter-spacing: 0.1em; display: block; }
 
     /* ================= GALLERY (loop slider) ================= */
     .gallery { position: relative; padding: 96px 0 80px; overflow: hidden; }
@@ -564,7 +569,7 @@
     .craft-row:hover .craft-photo img { transform: scale(1.04); }
     .craft-num { font-family: var(--en); font-weight: 600; font-size: 13px; letter-spacing: 0.14em; }
     .craft-row:nth-child(odd) .craft-num { color: var(--sugi-lt); }
-    .craft-row:nth-child(even) .craft-num { color: var(--sugi); }
+    .craft-row:nth-child(even) .craft-num { color: var(--sugi-deep); }
     .craft-card h3 { font-size: 21px; font-weight: 500; line-height: 1.6; margin: 8px 0 12px; }
     .craft-row:nth-child(odd) h3 { color: var(--shiro); }
     .craft-row:nth-child(even) h3 { color: var(--kuro); }
@@ -583,9 +588,9 @@
     .spec-figure img { width: 100%; }
     .spec-list { list-style: none; display: grid; gap: 12px; }
     .spec-item { display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: center; background: var(--warm); border-radius: 26px; padding: 18px 22px; }
-    .spec-item dt { font-size: 12px; font-weight: 500; color: var(--ink-2); line-height: 1.4; letter-spacing: 0.08em; }
-    .spec-item dd { font-size: 17px; font-weight: 500; color: var(--kuro); line-height: 1.6; letter-spacing: 0.02em; }
-    .spec-item dd small { font-size: 12px; color: var(--ink-2); font-weight: 400; }
+    .spec-k { display: block; font-size: 12px; font-weight: 500; color: var(--ink-2); line-height: 1.4; letter-spacing: 0.08em; }
+    .spec-v { display: block; font-size: 17px; font-weight: 500; color: var(--kuro); line-height: 1.6; letter-spacing: 0.02em; }
+    .spec-v small { font-size: 12px; color: var(--ink-2); font-weight: 400; }
     .spec-note { font-size: 12px; color: var(--ink-2); margin-top: 12px; line-height: 1.8; }
 
     .flow { margin-top: 64px; background: var(--warm); border-radius: 30px; padding: 40px 36px 36px; }
@@ -643,13 +648,24 @@
     .contact-inner::before { left: 0; background: linear-gradient(to top right, transparent 49.8%, rgba(26,24,24,.05) 50%, transparent 50.2%); }
     .contact-inner::after { right: 0; background: linear-gradient(to top left, transparent 49.8%, rgba(26,24,24,.05) 50%, transparent 50.2%); }
     .contact h2 { position: relative; font-size: clamp(24px, 2.8vw, 32px); font-weight: 700; color: var(--kuro); line-height: 1.4; }
-    .contact h2 span { display: block; font-family: var(--en); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; color: var(--sugi); margin-top: 6px; }
+    .contact h2 span { display: block; font-family: var(--en); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; color: var(--sugi-deep); margin-top: 6px; }
     .contact-text { position: relative; max-width: 620px; margin: 24px auto 0; font-size: 15px; }
     .contact-mail { position: relative; display: inline-flex; align-items: center; gap: 12px; margin-top: 28px; font-family: var(--en); font-weight: 500; font-size: clamp(22px, 3.4vw, 40px); color: var(--kuro); letter-spacing: 0.02em; line-height: 1.2; transition: color .3s var(--ease-hover); }
     .contact-mail:hover { color: var(--sugi); }
     .contact-mail svg { width: .9em; height: .9em; fill: none; stroke: currentColor; stroke-width: 1.6; }
     .contact-sub { position: relative; font-size: 12px; color: var(--ink-2); margin-top: 6px; }
     .cta-row { position: relative; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+    .ig-row { position: relative; margin-top: 40px; padding-top: 32px; border-top: 1px dashed rgba(26,24,24,.2); }
+    .ig-lead { font-size: 14px; font-weight: 500; color: var(--kuro); }
+    .btn.ig {
+      margin-top: 14px; border-radius: 999px; color: #fff; height: 60px; padding: 0 32px; font-size: 16px; font-weight: 700;
+      background: linear-gradient(115deg, #F58529 0%, #DD2A7B 35%, #8134AF 70%, #515BD4 100%); background-size: 200% 100%; background-position: 0% 50%;
+      box-shadow: 0 14px 30px -16px rgba(129,52,175,.7);
+      transition: background-position .6s var(--ease-hover), transform .3s var(--ease-hover);
+    }
+    .btn.ig:hover { background-position: 100% 50%; }
+    .btn.ig svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .ig-handle { font-family: var(--en); font-size: 12px; color: var(--ink-2); margin-top: 10px; letter-spacing: .06em; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 56px; padding: 0 30px; font-size: 15px; font-weight: 500; letter-spacing: 0.04em; transition: background .3s var(--ease-hover), color .3s var(--ease-hover), transform .3s var(--ease-hover); }
     .btn:hover { transform: translateY(-3px); }
     .btn.round { border-radius: 999px; background: var(--sugi-deep); color: var(--shiro); }
@@ -723,7 +739,7 @@
       .flow-steps { grid-template-columns: 1fr 1fr; }
       .flow-step::after { display: none; }
       .flow { padding: 28px 20px; }
-      .award-logo { max-width: 260px; }
+      .award-logo { max-width: 260px; margin: 0 auto; }
       .q-bubble { font-size: 14px; }
       .contact-inner { padding: 56px 20px 44px; border-radius: 30px; }
       .contact { border-radius: 38px; padding: 6px; }
@@ -1159,18 +1175,18 @@
           <div class="spec-grid">
             <figure class="spec-figure rv"><img src="img/spec-figure.jpg" width="950" height="860" alt="BOUBAの寸法図。幅880mm、高さ900mm、奥行240mm" loading="lazy" /></figure>
             <div class="rv d1">
-              <dl class="spec-list">
-                <div class="spec-item"><span class="icon b" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 16.5L16.5 3.5l4 4-13 13z"/><path d="M8 12l1.6 1.6M11 9l1.6 1.6M14 6l1.6 1.6"/></svg></span><div><dt>サイズ</dt><dd>W880 × H900 × D240 mm</dd></div></div>
-                <div class="spec-item"><span class="icon k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9h12l2 11H4z"/><circle cx="12" cy="5.5" r="2"/></svg></span><div><dt>重量</dt><dd>15 kg</dd></div></div>
-                <div class="spec-item"><span class="icon b" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4l8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 16l8 4 8-4"/></svg></span><div><dt>素材</dt><dd>埼玉県産 針葉樹合板（杉・檜）24mm</dd></div></div>
-                <div class="spec-item"><span class="icon k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4l5 7 5-7"/><path d="M12 11v9"/><path d="M8 13.5h8M8 17h8"/></svg></span><div><dt>価格</dt><dd>¥80,000 <small>（税込）／1台</small></dd></div></div>
-              </dl>
+              <ul class="spec-list">
+                <li class="spec-item"><span class="icon b" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 16.5L16.5 3.5l4 4-13 13z"/><path d="M8 12l1.6 1.6M11 9l1.6 1.6M14 6l1.6 1.6"/></svg></span><div><span class="spec-k">サイズ</span><span class="spec-v">W880 × H900 × D240 mm</span></div></li>
+                <li class="spec-item"><span class="icon k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9h12l2 11H4z"/><circle cx="12" cy="5.5" r="2"/></svg></span><div><span class="spec-k">重量</span><span class="spec-v">15 kg</span></div></li>
+                <li class="spec-item"><span class="icon b" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4l8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 16l8 4 8-4"/></svg></span><div><span class="spec-k">素材</span><span class="spec-v">埼玉県産 針葉樹合板（杉・檜）24mm</span></div></li>
+                <li class="spec-item"><span class="icon k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4l5 7 5-7"/><path d="M12 11v9"/><path d="M8 13.5h8M8 17h8"/></svg></span><div><span class="spec-k">価格</span><span class="spec-v">¥80,000 <small>（税込）／1台</small></span></div></li>
+              </ul>
               <p class="spec-note">※ 写真・寸法はBOUBAです。KIKIの仕様、複数台のご注文はお問い合わせください。</p>
             </div>
           </div>
 
           <div class="flow rv">
-            <p class="flow-title"><span class="icon k" aria-hidden="true" style="width:36px;height:36px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>導入までの流れ</p>
+            <h3 class="flow-title"><span class="icon k" aria-hidden="true" style="width:36px;height:36px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>導入までの流れ</h3>
             <ol class="flow-steps">
               <li class="flow-step"><h4><b>01</b>お問い合わせ</h4><p>メールで、用途・設置場所・台数などをお知らせください。</p></li>
               <li class="flow-step"><h4><b>02</b>ご相談</h4><p>展示・施設・イベントなど、使う場面に合わせてご提案します。</p></li>
@@ -1254,6 +1270,14 @@
             <a class="btn cut" href="https://tate-lab.com/product/bbkk/" target="_blank" rel="noopener">オンラインショップ<span class="arr" aria-hidden="true">↗</span></a>
             <a class="btn line" href="https://tate-lab.com/" target="_blank" rel="noopener">TATELab. 公式サイト<span class="arr" aria-hidden="true">↗</span></a>
           </div>
+          <div class="ig-row">
+            <p class="ig-lead">メールだと、ちょっと構えてしまう…？ そんな時は</p>
+            <a class="btn ig" href="https://www.instagram.com/tate.lab/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+              InstagramのDMで気軽に相談<span class="arr" aria-hidden="true">↗</span>
+            </a>
+            <p class="ig-handle">@tate.lab</p>
+          </div>
         </div>
       </section>
 
@@ -1286,6 +1310,7 @@
           <li><a href="#faq">よくある質問</a></li>
           <li><a href="#contact">お問い合わせ</a></li>
           <li><a href="https://tate-lab.com/product/bbkk/" target="_blank" rel="noopener">ショップ</a></li>
+          <li><a href="https://www.instagram.com/tate.lab/" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="en.html" hreflang="en" lang="en">English</a></li>
         </ul>
       </nav>
