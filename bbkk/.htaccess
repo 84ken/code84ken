@@ -1,0 +1,4 @@
+# www.bbkk.llschema.com は bbkk.llschema.com に一本化（重複URL対策）
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.bbkk\.llschema\.com$ [NC]
+RewriteRule ^(.*)$ https://bbkk.llschema.com/$1 [R=301,L]
