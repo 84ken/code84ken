@@ -73,6 +73,7 @@
   }
   </script>
 
+  <link rel="preload" as="image" href="img/pair-cream.jpg" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- web fonts load without blocking first paint; the system Japanese gothic shows until they arrive -->
@@ -220,9 +221,11 @@
     .hero-photo {
       position: absolute; right: 2vw; top: 9%;
       width: min(60vw, 940px);
-      opacity: 0; transform: translateY(30px);
-      animation: appear 1.3s var(--ease-appear) .5s forwards;
+      /* transform-only entrance: fading from opacity 0 would delay LCP on this, the page's largest image */
+      transform: translateY(24px);
+      animation: rise 1.3s var(--ease-appear) .1s forwards;
     }
+    @keyframes rise { to { transform: none; } }
     .hero-photo img {
       width: 100%;
       /* thin edge fades only: the photo backdrop already matches --page, so the chairs read as standing on the page */
