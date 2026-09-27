@@ -1,3 +1,8 @@
+# 検索エンジンに載せない（HTML・PDF・画像すべて対象）
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow, noarchive"
+</IfModule>
+
 # members.html / docs.html のみBasic認証
 <FilesMatch "^(members|docs)\.html$">
   AuthType Basic
