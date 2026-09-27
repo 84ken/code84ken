@@ -4,26 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>エリアマップ | 中山田青少年育成会</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
-            forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
-          },
-          fontFamily: {
-            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="assets/site.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
@@ -66,7 +47,7 @@
           <h3 class="text-sm font-bold text-slate-900">4区西</h3>
           <span class="ml-auto text-xs text-slate-500">98戸 ・ 18口</span>
         </div>
-        <div class="text-xs text-slate-600 space-y-1">
+        <div class="text-sm text-slate-600 space-y-1">
           <p><span class="font-medium text-slate-700">組割り:</span> ①1・2・3・10組　②4・5・6組　③7・8・9組</p>
           <p><span class="font-medium text-slate-700">廃品回収:</span> 4区公会堂（恒持会館）に集積</p>
         </div>
@@ -78,7 +59,7 @@
           <h3 class="text-sm font-bold text-slate-900">4区東</h3>
           <span class="ml-auto text-xs text-slate-500">103戸 ・ 34口</span>
         </div>
-        <div class="text-xs text-slate-600 space-y-1">
+        <div class="text-sm text-slate-600 space-y-1">
           <p><span class="font-medium text-slate-700">組割り:</span> ①1・2組　②3・4組　③5・6・7組　④8・10組　⑤9・11組</p>
           <p><span class="font-medium text-slate-700">廃品回収:</span> 高篠小学校付近に集積</p>
         </div>
@@ -90,7 +71,7 @@
           <h3 class="text-sm font-bold text-slate-900">5区</h3>
           <span class="ml-auto text-xs text-slate-500">53戸 ・ 7口</span>
         </div>
-        <div class="text-xs text-slate-600 space-y-1">
+        <div class="text-sm text-slate-600 space-y-1">
           <p><span class="font-medium text-slate-700">組割り:</span> ①1・2・3組　②4・5・6組</p>
           <p><span class="font-medium text-slate-700">廃品回収:</span> 5区集積所</p>
         </div>
@@ -102,7 +83,7 @@
           <h3 class="text-sm font-bold text-slate-900">6区</h3>
           <span class="ml-auto text-xs text-slate-500">27戸 ・ 2口</span>
         </div>
-        <div class="text-xs text-slate-600 space-y-1">
+        <div class="text-sm text-slate-600 space-y-1">
           <p><span class="font-medium text-slate-700">組割り:</span> 上・中・下1・下2</p>
           <p><span class="font-medium text-slate-700">廃品回収:</span> 6区集積所</p>
         </div>

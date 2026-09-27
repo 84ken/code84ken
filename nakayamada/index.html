@@ -4,26 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>中山田青少年育成会 | 令和8年度</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
-            forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
-          },
-          fontFamily: {
-            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="assets/site.css">
   <style>
     .card-hover { transition: transform 0.15s, box-shadow 0.15s; }
     .card-hover:active { transform: scale(0.98); }
@@ -235,7 +216,7 @@
     <section class="mb-6">
       <div class="bg-[#06C755] rounded-2xl p-5 text-white shadow-sm">
         <div class="flex items-center gap-4">
-          <img src="line-qr.jpg" alt="LINEグループQRコード" class="w-20 h-20 rounded-xl object-cover flex-shrink-0 border-2 border-white/30">
+          <img loading="lazy" decoding="async" src="line-qr.jpg" alt="LINEグループQRコード" class="w-20 h-20 rounded-xl object-cover flex-shrink-0 border-2 border-white/30">
           <div class="flex-1">
             <p class="text-xs font-bold opacity-80 mb-0.5">育成会グループ</p>
             <h3 class="text-base font-bold mb-1">LINEグループに参加する</h3>

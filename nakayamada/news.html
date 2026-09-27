@@ -4,26 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>育成会だより | 中山田青少年育成会</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
-            forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
-          },
-          fontFamily: {
-            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body class="bg-warm-bg min-h-screen">
 
@@ -65,13 +46,13 @@
 
         <!-- チラシ画像 -->
         <div class="mb-3">
-          <img src="images/akimatsuri_2026.jpg" alt="山田秋祭りチラシ" class="w-full rounded-lg border border-warm-border">
+          <img loading="lazy" decoding="async" src="images/akimatsuri_2026.jpg" alt="山田秋祭りチラシ" class="w-full rounded-lg border border-warm-border">
         </div>
 
         <!-- 当日の流れ -->
         <div class="bg-sky-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-sky-700">当日の流れ（9/20 日）</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">●</span><span><strong>9:00〜</strong>　笠鉾曳行（花輪建築 出発）</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">●</span><span><strong>13:00〜</strong>　笠鉾曳行（恒持神社 出発）</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">●</span><span><strong class="text-sky-700">15:30〜17:30　恒持神社で出店多数</strong>（食券が使えるのはこの時間です）</span></li>
@@ -81,7 +62,7 @@
         <!-- 食券情報 -->
         <div class="bg-amber-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-amber-700">前売食券のご案内</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">●</span><span>前売食券：<strong>1,500円</strong>（当日券は2,000円・数に限りあり）</span></li>
             <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">●</span><span><strong>こども券</strong>：やきそば／フランクフルト／フライドポテト／チュロス／かき氷／ジュース</span></li>
             <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">●</span><span><strong>おとな券</strong>：やきそば／フランクフルト／フライドポテト／チュロス／生ビール</span></li>
@@ -92,7 +73,7 @@
         <!-- 申込方法 -->
         <div class="bg-forest-50 rounded-lg p-3 space-y-2 mb-3">
           <p class="text-xs font-bold text-forest-700">お申し込み・チケットの受け取り</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-forest-500 flex-shrink-0">●</span><span><strong class="text-forest-700">9/16（水）まで</strong>に、①代表者氏名 ②連絡先 ③購入枚数（こども・おとな）を橋本までご連絡ください</span></li>
             <li class="flex gap-2"><span class="text-forest-500 flex-shrink-0">●</span><span>チケットは<strong>当日、恒持会館1階の受付</strong>で現金と引き換えでお渡しとなります（事前のお支払いは不要）</span></li>
           </ul>
@@ -102,9 +83,9 @@
         <details class="bg-slate-50 rounded-lg p-3">
           <summary class="text-xs font-bold text-slate-700 cursor-pointer">笠鉾の曳行表・曳行図を見る</summary>
           <div class="mt-3 space-y-3">
-            <img src="images/akimatsuri_schedule_2026.jpg" alt="山田秋祭り 笠鉾曳行表" class="w-full rounded-lg border border-warm-border">
-            <img src="images/akimatsuri_route_2026.jpg" alt="山田秋祭り 笠鉾曳行図" class="w-full rounded-lg border border-warm-border">
-            <img src="images/akimatsuri_ticket_2026.jpg" alt="山田秋祭り 前売食券の内容" class="w-full rounded-lg border border-warm-border">
+            <img loading="lazy" decoding="async" src="images/akimatsuri_schedule_2026.jpg" alt="山田秋祭り 笠鉾曳行表" class="w-full rounded-lg border border-warm-border">
+            <img loading="lazy" decoding="async" src="images/akimatsuri_route_2026.jpg" alt="山田秋祭り 笠鉾曳行図" class="w-full rounded-lg border border-warm-border">
+            <img loading="lazy" decoding="async" src="images/akimatsuri_ticket_2026.jpg" alt="山田秋祭り 前売食券の内容" class="w-full rounded-lg border border-warm-border">
           </div>
         </details>
       </article>
@@ -128,13 +109,13 @@
 
         <!-- チラシ画像 -->
         <div class="mb-3">
-          <img src="images/noryo_2026.jpg" alt="上山田納涼祭チラシ" class="w-full rounded-lg border border-warm-border">
+          <img loading="lazy" decoding="async" src="images/noryo_2026.jpg" alt="上山田納涼祭チラシ" class="w-full rounded-lg border border-warm-border">
         </div>
 
         <!-- イベント詳細 -->
         <div class="bg-sky-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-sky-700">イベント詳細</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">●</span><span>日時：<strong>8/29（土）17:00〜21:00</strong></span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">●</span><span>場所：恒持神社境内</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">●</span><span>内容：ステージ（屋台囃子・ダンス・カラオケ）、キッチンカー、焼きそば、フランクフルト、ゲームコーナー、抽選会（19:30〜）など</span></li>
@@ -144,7 +125,7 @@
         <!-- チケット情報 -->
         <div class="bg-amber-50 rounded-lg p-3 space-y-2">
           <p class="text-xs font-bold text-amber-700">チケット情報</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">●</span><span>前売り券：大人・子供とも <strong>1,000円</strong>（7/31まで）</span></li>
             <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">●</span><span>当日券：大人・子供とも <strong>1,500円</strong></span></li>
             <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">●</span><span>前売り券ご希望の方は、<strong>橋本までお名前をご連絡ください</strong></span></li>
@@ -154,7 +135,7 @@
         <!-- チケット交換 -->
         <div class="bg-forest-50 rounded-lg p-3 space-y-2 mt-2">
           <p class="text-xs font-bold text-forest-700">チケット交換</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-forest-500 flex-shrink-0">●</span><span><strong>8/9（日）17:00〜19:00</strong> @恒持神社</span></li>
             <li class="flex gap-2"><span class="text-forest-500 flex-shrink-0">●</span><span>※飲食の引換は当日20:30まで</span></li>
           </ul>
@@ -162,7 +143,7 @@
 
         <!-- チケット画像 -->
         <div class="mt-3">
-          <img src="images/noryo_ticket_2026.jpg" alt="上山田納涼祭チケット" class="w-full rounded-lg border border-warm-border">
+          <img loading="lazy" decoding="async" src="images/noryo_ticket_2026.jpg" alt="上山田納涼祭チケット" class="w-full rounded-lg border border-warm-border">
         </div>
       </article>
 
@@ -180,7 +161,7 @@
         <!-- スポーツ日程 -->
         <div class="bg-forest-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-forest-700">スポーツ大会の日程</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-forest-500 flex-shrink-0">●</span><span>フットベース秩父市長杯 → <strong class="text-forest-700">高篠2位</strong>！</span></li>
             <li class="flex gap-2"><span class="text-forest-500 flex-shrink-0">●</span><span>バレー影森練習試合：8/6（木）</span></li>
             <li class="flex gap-2"><span class="text-forest-500 flex-shrink-0">●</span><span>バレー大会（9/5）：参加費2,000円/人＋お弁当代、8/18までに参加可否決定</span></li>
@@ -193,7 +174,7 @@
         <!-- 夏の活動 -->
         <div class="bg-slate-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-slate-700">夏休みの活動</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">●</span><span>下山田ラジオ体操（7/27〜8/2 6:30〜高篠小）：中山田の子も参加OK。お菓子と飲み物は全員にプレゼント</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">●</span><span>パトロール（8/9）：18:30高篠小集合、車で巡回</span></li>
           </ul>
@@ -202,7 +183,7 @@
         <!-- 日程変更 -->
         <div class="bg-amber-50 rounded-lg p-3 space-y-2">
           <p class="text-xs font-bold text-amber-700">日程変更のお知らせ</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">●</span><span>高篠大会：フットのみ実施。仮で12/6（日）に変更検討中</span></li>
             <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">●</span><span>クリスマス会：12/13 → <strong>12/20</strong> に変更</span></li>
           </ul>
@@ -265,13 +246,13 @@
         <!-- 前年比較 -->
         <div class="bg-amber-50 rounded-lg p-3 mb-3">
           <p class="text-xs font-bold text-amber-700 mb-1">前年（R7前期）との比較</p>
-          <p class="text-xs text-slate-600">アルミ缶の回収量が前年の2倍（10kg→20kg）になりました。1.8ℓビンも増加（15個→22個）。皆さんの分別への協力のおかげです。</p>
+          <p class="text-sm text-slate-600">アルミ缶の回収量が前年の2倍（10kg→20kg）になりました。1.8ℓビンも増加（15個→22個）。皆さんの分別への協力のおかげです。</p>
         </div>
 
         <!-- お願い -->
         <div class="bg-red-50 rounded-lg p-3">
           <p class="text-xs font-bold text-red-700 mb-1">次回へのお願い</p>
-          <p class="text-xs text-slate-600">布類（40kg）が出されていましたが、R8年度から<strong>回収不可</strong>です。またスチール缶・中身入りのビン・大型金属容器も対象外ですのでご注意ください。</p>
+          <p class="text-sm text-slate-600">布類（40kg）が出されていましたが、R8年度から<strong>回収不可</strong>です。またスチール缶・中身入りのビン・大型金属容器も対象外ですのでご注意ください。</p>
         </div>
       </article>
 
@@ -287,7 +268,7 @@
         </p>
         <div class="bg-red-50 rounded-lg p-3 mb-3">
           <p class="text-xs font-bold text-red-700 mb-1.5">参加される方への注意事項</p>
-          <ul class="text-xs text-slate-700 space-y-1">
+          <ul class="text-sm text-slate-700 space-y-1">
             <li class="flex gap-2"><span class="text-red-500 font-bold">●</span>サンダルNG（運動靴で参加してください）</li>
             <li class="flex gap-2"><span class="text-red-500 font-bold">●</span>神輿を担がない人は歩道を歩く</li>
             <li class="flex gap-2"><span class="text-red-500 font-bold">●</span>緊急時に必ず連絡がつくようにしておく</li>
@@ -295,8 +276,8 @@
         </div>
         <div class="bg-amber-50 rounded-lg p-3 mb-3">
           <p class="text-xs font-bold text-amber-700 mb-1.5">開催概要</p>
-          <p class="text-xs text-slate-700">日時：<strong>令和8年7月12日（日）10:00〜</strong>（神社帰着 17:30頃）</p>
-          <p class="text-xs text-slate-700">場所：木戸原八坂神社（下山田育成会主催）</p>
+          <p class="text-sm text-slate-700">日時：<strong>令和8年7月12日（日）10:00〜</strong>（神社帰着 17:30頃）</p>
+          <p class="text-sm text-slate-700">場所：木戸原八坂神社（下山田育成会主催）</p>
         </div>
         <a href="docs/mikoshi/kodomo_mikoshi_2026.pdf" class="mt-3 inline-flex items-center gap-1.5 text-xs text-sky-600 font-medium hover:text-sky-700 transition-colors" download>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -316,7 +297,7 @@
         </p>
         <div class="bg-slate-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-slate-700">📝 研修のポイント</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>栃木県の闇バイト事件を題材に、SNS時代の子どもの危険について考えました。「想像力を育むこと」が大切というメッセージでした</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>デジタル社会では子どもがアプリに依存しやすく、ゲーム課金やAIへの相談など親の目が届きにくい問題があります</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>部活動の地域展開について：今年12月で土日の部活が終了し、来年1月から休日は地域クラブ等に参加する形になります</span></li>
@@ -335,13 +316,13 @@
           <span class="text-xs text-slate-400">2026.05.08</span>
         </div>
         <h3 class="text-sm font-bold text-slate-900 mb-1">青育協総会に出席しました（5/8）</h3>
-        <img src="images/soukai_2026.jpg" alt="秩父市青少年育成協議会総会の会場" class="w-full rounded-lg mb-3">
+        <img loading="lazy" decoding="async" src="images/soukai_2026.jpg" alt="秩父市青少年育成協議会総会の会場" class="w-full rounded-lg mb-3">
         <p class="text-sm text-slate-600 leading-relaxed mb-3">
           5月8日に歴史文化伝承館にて、秩父市青少年育成協議会の総会が開催され、会長が出席しました。中山田に関係するポイントをお伝えします。
         </p>
         <div class="bg-slate-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-slate-700">📋 主な決定事項</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>指導者研修会が6/6（土）に歴史文化伝承館で開催されます。各育成会から2名以上の参加が必要です</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>子ども会球技大会が暑さ対策のため、8月から秋（10/31〜11/1）に変更になりました</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>青育協の役員体制に大きな変更はなく、荒船会長が続投となりました</span></li>
@@ -363,7 +344,7 @@
         <!-- 廃品回収＋クリーン美化 -->
         <div class="bg-slate-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-slate-700">📦 廃品回収＋クリーン美化</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>6/14以降で日程調整中。クリーン美化と同日開催</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>車の手配や当日の運搬など人手が必要です。ご協力をお願いします</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>回収NGのものは回覧板でお知らせ＋当日張り紙を準備します</span></li>
@@ -374,25 +355,25 @@
         <!-- 会費 -->
         <div class="bg-slate-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-slate-700">💰 会費</p>
-          <p class="text-xs text-slate-600">今年度、子供分の会費はひとまず集めません。世帯分のみ集金します。ただしイベントの関係で不足が発生しそうな場合は、後日回収をお願いする可能性があります。</p>
+          <p class="text-sm text-slate-600">今年度、子供分の会費はひとまず集めません。世帯分のみ集金します。ただしイベントの関係で不足が発生しそうな場合は、後日回収をお願いする可能性があります。</p>
         </div>
 
         <!-- 繰越金の活用 -->
         <div class="bg-slate-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-slate-700">🎉 繰越金の活用</p>
-          <p class="text-xs text-slate-600">まつりイベントや光明寺イベントなど、既存イベントを活用する形で検討中です。保護者さんの負荷はなるべくかけずに、子供が喜ぶ企画を模索します。</p>
+          <p class="text-sm text-slate-600">まつりイベントや光明寺イベントなど、既存イベントを活用する形で検討中です。保護者さんの負荷はなるべくかけずに、子供が喜ぶ企画を模索します。</p>
         </div>
 
         <!-- 連絡方法 -->
         <div class="bg-slate-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-slate-700">📱 連絡方法</p>
-          <p class="text-xs text-slate-600">紙の連絡網は廃止し、LINEで代用します。</p>
+          <p class="text-sm text-slate-600">紙の連絡網は廃止し、LINEで代用します。</p>
         </div>
 
         <!-- 今年度の行事 -->
         <div class="bg-slate-50 rounded-lg p-3 space-y-2 mb-2">
           <p class="text-xs font-bold text-slate-700">🏐 今年度の行事</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>バレーボール大会 — 9/5（中学生対象）</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>高篠地区子供会親善球技大会 — 10/31</span></li>
             <li class="flex gap-2"><span class="text-slate-400 flex-shrink-0">•</span><span class="line-through text-slate-400">納涼大会・ラジオ体操 → 今年度も見合わせ</span></li>
@@ -402,7 +383,7 @@
         <!-- その他 -->
         <div class="bg-slate-50 rounded-lg p-3 space-y-2">
           <p class="text-xs font-bold text-slate-700">📋 その他</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>ソフトボールの人数不足（新規メンバー募集中。女子も大歓迎、道具はグローブがあればOK）</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>全役員・全児童の安全保険加入済み</span></li>
             <li class="flex gap-2"><span class="text-sky-500 flex-shrink-0">•</span><span>次回理事会は未定。連絡はLINEで対応します</span></li>
@@ -422,7 +403,7 @@
         </p>
         <div class="bg-slate-50 rounded-lg p-3 space-y-2">
           <p class="text-xs font-bold text-slate-700">お金の3階層</p>
-          <div class="text-xs text-slate-600 space-y-1.5">
+          <div class="text-sm text-slate-600 space-y-1.5">
             <div class="flex items-start gap-2">
               <span class="bg-sky-100 text-sky-700 font-bold px-1.5 py-0.5 rounded flex-shrink-0">市</span>
               <span>青育協（秩父市） ← 育成会から会費 2,000円/年を納入</span>
@@ -439,7 +420,7 @@
         </div>
         <div class="bg-amber-50 rounded-lg p-3 mt-2">
           <p class="text-xs font-bold text-amber-700 mb-1">区費・町会費と育成会費の違い</p>
-          <p class="text-xs text-slate-600">区費や町会費は区・町会の運営費で、育成会費とは別です。育成会への町会助成金（90,000円）は町会費の中から交付されています。集金の仕組みは区ごとに異なります。</p>
+          <p class="text-sm text-slate-600">区費や町会費は区・町会の運営費で、育成会費とは別です。育成会への町会助成金（90,000円）は町会費の中から交付されています。集金の仕組みは区ごとに異なります。</p>
         </div>
         <p class="text-xs text-slate-400 mt-3">詳しくは<a href="finance.html" class="text-sky-500 underline">収支報告ページ</a>をご覧ください</p>
       </article>
@@ -455,9 +436,9 @@
           「サッカーや野球は少年団なのに、なぜこの3つだけ育成会？」と思ったことはありませんか？実はフットベースボールは1957年に子ども会のために作られた、子ども会専用スポーツなんです。
         </p>
         <div class="bg-purple-50 rounded-lg p-3 space-y-1.5">
-          <p class="text-xs text-slate-600"><span class="font-bold text-purple-700">フットベース</span> — 1957年、広島県福山市で子ども会の大会用に考案。子ども会の外にはほぼ存在しない競技</p>
-          <p class="text-xs text-slate-600"><span class="font-bold text-purple-700">ソフトボール・バレー</span> — 学校体育から子ども会に自然に定着。道具が安価で誰でも参加しやすい</p>
-          <p class="text-xs text-slate-600"><span class="font-bold text-purple-700">サッカー・野球</span> — 1962年にスポーツ少年団が別組織として誕生。競技志向が強く、育成会とは別系譜に</p>
+          <p class="text-sm text-slate-600"><span class="font-bold text-purple-700">フットベース</span> — 1957年、広島県福山市で子ども会の大会用に考案。子ども会の外にはほぼ存在しない競技</p>
+          <p class="text-sm text-slate-600"><span class="font-bold text-purple-700">ソフトボール・バレー</span> — 学校体育から子ども会に自然に定着。道具が安価で誰でも参加しやすい</p>
+          <p class="text-sm text-slate-600"><span class="font-bold text-purple-700">サッカー・野球</span> — 1962年にスポーツ少年団が別組織として誕生。競技志向が強く、育成会とは別系譜に</p>
         </div>
       </article>
 
@@ -473,7 +454,7 @@
         </p>
         <div class="bg-slate-50 rounded-lg p-3 space-y-2">
           <p class="text-xs font-bold text-slate-700">中山田への影響ポイント</p>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-none">
+          <ul class="text-sm text-slate-600 space-y-1.5 list-none">
             <li class="flex gap-2"><span class="text-sky-500 font-bold flex-shrink-0">1.</span><span>栃谷本育成会がR8年度より解散。連合は4育成会体制に（児童数 307名→264名）</span></li>
             <li class="flex gap-2"><span class="text-sky-500 font-bold flex-shrink-0">2.</span><span>中山田の連合負担金は運営負担金＋クラブ負担金で約10万円規模</span></li>
             <li class="flex gap-2"><span class="text-sky-500 font-bold flex-shrink-0">3.</span><span>R9年度は中山田会長が連合の会計を担当予定（持ち回り）</span></li>

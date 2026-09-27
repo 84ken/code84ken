@@ -4,26 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>育成会とは | 中山田青少年育成会</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            sky: { 500: '#2D9CDB', 600: '#2588C2', 700: '#1B6FA3', 50: '#EBF5FB', 100: '#D6EBF8' },
-            forest: { 500: '#27AE60', 600: '#219A52', 700: '#1B8244', 50: '#E8F5E9', 100: '#C8E6C9' },
-            warm: { bg: '#FBF8F3', surface: '#FFFFFF', border: '#EDE5D8', ink: '#3E3A33', sub: '#8A8071' }
-          },
-          fontFamily: {
-            sans: ['Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="assets/site.css">
   <style>
     .org-line-v { position: absolute; left: 50%; width: 2px; background: #CBD5E1; }
     .org-line-h { position: absolute; height: 2px; background: #CBD5E1; }
@@ -62,7 +43,7 @@
           <div class="flex items-start gap-3">
             <div class="flex-1">
               <p class="text-xs font-semibold text-sky-700 mb-1">「子ども会」と「育成会」の違い</p>
-              <p class="text-xs text-slate-600 leading-relaxed">
+              <p class="text-sm text-slate-600 leading-relaxed">
                 <strong>子ども会</strong>は子ども自身の集団活動の場。<strong>育成会</strong>はそれを支える大人の支援組織です。子どもたちが安全に、のびのびと活動できるよう、企画・運営・見守りを行います。
               </p>
             </div>
@@ -130,7 +111,7 @@
 
           <!-- 県 -->
           <div class="bg-white border-2 border-slate-400 text-xs font-medium px-3 py-2 rounded-lg text-center flex flex-col items-center gap-1.5 min-w-[180px]">
-            <img src="saitama-kodomo-logo.png" alt="一般社団法人 埼玉県子ども会連合会" class="h-7 object-contain">
+            <img loading="lazy" decoding="async" src="saitama-kodomo-logo.png" alt="一般社団法人 埼玉県子ども会連合会" class="h-7 object-contain">
             <span class="text-slate-600 text-[10px]">埼玉県子ども会連合会</span>
           </div>
           <div class="w-0.5 h-4 bg-slate-300"></div>
@@ -279,7 +260,7 @@
             </div>
             <div>
               <p class="text-sm font-bold text-slate-900 mb-1">活動のスリム化</p>
-              <p class="text-xs text-slate-600 leading-relaxed">本当に必要な活動に絞り込み、<strong class="text-sky-600">年間行事9件・理事会年3回</strong> を基本として運営します。保護者の負担を最小限にしながら、地域とのつながりは大切にします。</p>
+              <p class="text-sm text-slate-600 leading-relaxed">本当に必要な活動に絞り込み、<strong class="text-sky-600">年間行事9件・理事会年3回</strong> を基本として運営します。保護者の負担を最小限にしながら、地域とのつながりは大切にします。</p>
             </div>
           </div>
         </div>
@@ -292,17 +273,17 @@
             </div>
             <div class="flex-1">
               <p class="text-sm font-bold text-slate-900 mb-1">繰越金の有効活用</p>
-              <p class="text-xs text-slate-600 leading-relaxed mb-2">繰越金が <strong class="text-forest-600">128万円（年間支出の約4年分）</strong> に達しています。3年計画で段階的に地域・子どもへ還元します。</p>
+              <p class="text-sm text-slate-600 leading-relaxed mb-2">繰越金が <strong class="text-forest-600">128万円（年間支出の約4年分）</strong> に達しています。3年計画で段階的に地域・子どもへ還元します。</p>
               <ul class="space-y-1.5">
-                <li class="flex items-start gap-2 text-xs text-slate-600">
+                <li class="flex items-start gap-2 text-sm text-slate-600">
                   <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-forest-50 text-forest-600 font-bold flex-shrink-0 mt-0.5 text-[10px]">①</span>
                   <span><strong class="text-slate-800">図書カードの増額</strong> — R7実績を拡充。全児童に公平に還元</span>
                 </li>
-                <li class="flex items-start gap-2 text-xs text-slate-600">
+                <li class="flex items-start gap-2 text-sm text-slate-600">
                   <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-forest-50 text-forest-600 font-bold flex-shrink-0 mt-0.5 text-[10px]">②</span>
                   <span><strong class="text-slate-800">地域文化支援</strong> — お祭り保存会への寄付で伝統文化の継承を支援</span>
                 </li>
-                <li class="flex items-start gap-2 text-xs text-slate-600">
+                <li class="flex items-start gap-2 text-sm text-slate-600">
                   <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-forest-50 text-forest-600 font-bold flex-shrink-0 mt-0.5 text-[10px]">③</span>
                   <span><strong class="text-slate-800">光明寺イベント支援</strong> — お寺主催イベントに予算支援＋子どもにチケット配布</span>
                 </li>
@@ -320,7 +301,7 @@
             </div>
             <div>
               <p class="text-sm font-bold text-slate-900 mb-1">運営の効率化</p>
-              <p class="text-xs text-slate-600 leading-relaxed">LINEグループの導入、書類のテンプレート化、役割分散により、特定の人に負担が集中しない仕組みをつくります。</p>
+              <p class="text-sm text-slate-600 leading-relaxed">LINEグループの導入、書類のテンプレート化、役割分散により、特定の人に負担が集中しない仕組みをつくります。</p>
             </div>
           </div>
         </div>
