@@ -145,6 +145,11 @@
       .concept-step:not(:last-child)::after { content:""; position:absolute; top:74px; right:-22px; width:16px; height:16px; border-top:3px solid #F4C9D5; border-right:3px solid #F4C9D5; border-radius:2px; transform:rotate(45deg); }
     }
 
+    /* イラストのまばたき */
+    .fv-art { position:relative; width:100%; }
+    .fv-art .fv-blink { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; pointer-events:none; }
+    .fv-art .fv-blink.is-blink { opacity:1; }
+
     /* ファーストビュー（スマホ）：動画はイラストに重ねず、赤帯の下に置く */
     @media (max-width: 639px) {
       #mv-slot-sp .hero-video-box { position:static; width:auto; box-shadow:0 12px 30px -12px rgba(169,40,76,.35); }
@@ -154,6 +159,7 @@
     @media (min-width: 640px) {
       .fv-frame { display:flex; flex-direction:column; height:100vh; height:100svh; min-height:560px; }
       .fv-visual { flex:1 1 auto; min-height:0; display:flex; padding-bottom:12px; }
+      .fv-visual .fv-art { flex:1 1 auto; min-height:0; height:100%; }
       .fv-visual .fv-img { width:100%; height:100%; object-fit:contain; }
       .fv-band { flex:0 0 auto; }
       .fv-band .fv-logo { max-height:9vh; width:auto; }
@@ -227,7 +233,11 @@
     <div class="fv-frame">
     <!-- メインビジュアル + 動画フローティングボックス -->
     <div class="fv-visual relative w-full bg-white pt-24 sm:pt-28">
-      <img src="images/hero/ichigo_main.webp" alt="埼玉いちご大學 メインビジュアル（イラスト：我喜屋位瑳務）" class="fv-img w-full h-auto block mx-auto" width="1800" height="1560">
+      <div class="fv-art">
+        <img src="images/hero/ichigo_main.webp" alt="埼玉いちご大學 メインビジュアル（イラスト：我喜屋位瑳務）" class="fv-img w-full h-auto block mx-auto" width="1800" height="1563">
+        <!-- まばたき：目を閉じた部分だけの透明画像を、ときどき一瞬だけ重ねる -->
+        <img src="images/hero/ichigo_main_blink.webp" alt="" aria-hidden="true" class="fv-img fv-blink" width="1800" height="1563">
+      </div>
 
       <!-- フローティング動画 -->
       <div class="hero-video-box">
@@ -676,6 +686,21 @@
       const place = () => { const target = mq.matches ? slot : home; if (box.parentElement !== target) target.appendChild(box); };
       place();
       mq.addEventListener ? mq.addEventListener('change', place) : mq.addListener(place);
+    })();
+
+    // イラストのまばたき：5〜10秒に一度、0.13秒だけ目を閉じる（ときどき2回）。動きを減らす設定では止める
+    (() => {
+      const lid = document.querySelector('.fv-blink');
+      if (!lid || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const blinkOnce = (done) => { lid.classList.add('is-blink'); setTimeout(() => { lid.classList.remove('is-blink'); if (done) done(); }, 130); };
+      const loop = () => {
+        const wait = 5000 + Math.random() * 5000;
+        setTimeout(() => {
+          if (document.hidden || window.scrollY > window.innerHeight) return loop();
+          blinkOnce(() => { if (Math.random() < 0.25) setTimeout(() => blinkOnce(loop), 180); else loop(); });
+        }, wait);
+      };
+      loop();
     })();
 
     const btn = document.getElementById('menu-btn');
