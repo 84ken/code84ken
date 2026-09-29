@@ -236,6 +236,7 @@ tailwind.config = {
       <a href="#nozawa"    class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">16. 野沢温泉フィールドノート</a>
       <a href="#towns"     class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">17. 全国温泉街くらべ</a>
       <a href="#sento"     class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">18. 埼玉銭湯</a>
+      <a href="#stand"     class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg text-body hover:bg-gray-50">19. 埼玉の温泉スタンド</a>
     </nav>
     <div class="px-5 py-4 border-t border-slate-200 text-xs text-slate-500">
       <p>出典: 温泉ソムリエ認定講座テキスト</p>
@@ -2884,11 +2885,16 @@ tailwind.config = {
           <div class="mt-2 flex flex-wrap gap-1.5">
             <span class="chip type-硫黄泉">単純硫黄泉</span>
             <span class="axis-tag">アルカリ性・冷鉱泉</span>
-            <span class="axis-tag">pH 9.3 ・ 泉温18.3℃</span>
+            <span class="axis-tag">pH 9.3（公式）／9.1（現地看板）</span>
+            <span class="axis-tag">泉温18.3℃</span>
             <span class="axis-tag">成分総計364mg（低張性）</span>
             <span class="axis-tag !bg-pink-50 !text-pink-700">美肌</span>
           </div>
-          <p class="mt-3 text-sm text-body">神経痛・筋肉痛・運動麻痺・慢性消化器病・慢性皮膚病・慢性婦人病・糖尿病など。<strong>飲用適応症</strong>：糖尿病・痛風・便秘など</p>
+          <p class="mt-3 text-sm text-body">神経痛・筋肉痛・運動麻痺・慢性消化器病・慢性皮膚病・慢性婦人病・糖尿病など（旧資料による）。</p>
+          <p class="mt-1 text-xs text-slate-500">
+            ※ 令和元年の温泉分析書（甲第3723号）の別表には禁忌症と入浴上の注意だけが載り、<strong>適応症の記載は見当たりません</strong>。
+            また源泉所の看板には<strong>「この源泉は飲用の許可は受けておりません」</strong>とあるため、本ノートが以前載せていた飲用適応症は削除しました。適応症の扱いは要確認です（第19章）。
+          </p>
           <div class="mt-3 grid sm:grid-cols-3 gap-3">
             <div class="p-3 bg-gray-50 rounded-lg">
               <p class="text-xs text-slate-500">源泉</p>
@@ -2901,9 +2907,9 @@ tailwind.config = {
               <p class="text-xs text-body mt-1">干ばつの年、丈六尺余りの法師が杖で岩を突くと水が湧いた、と伝わる。「必ず願いが満つる」で<strong>満願</strong></p>
             </div>
             <div class="p-3 bg-gray-50 rounded-lg">
-              <p class="text-xs text-slate-500">源泉所</p>
+              <p class="text-xs text-slate-500">源泉所（→ 第19章）</p>
               <p class="text-sm font-medium text-slate-900 mt-0.5">温泉スタンドあり</p>
-              <p class="text-xs text-body mt-1">下日野沢3727。硬貨式で<strong>100円20L／500円100L</strong>。8:00-20:00・年中無休</p>
+              <p class="text-xs text-body mt-1">下日野沢3727。運営は<strong>サン・グリーン株式会社</strong>。100円で20L／<strong>500円玉で90L</strong>（現地看板）。8:00-20:00・年中無休</p>
             </div>
           </div>
           <div class="mt-3 p-3 bg-white border border-primary-200 rounded-lg">
@@ -2920,7 +2926,9 @@ tailwind.config = {
           </div>
           <p class="mt-2 text-xs text-slate-500">
             施設は源泉を「山中地溝帯の地下深くで長い年月をかけて育まれた」と説明しています。
-            ※本ノートは以前 pH9.5・「弱アルカリ性弱張性」と記載していましたが、公式の表示は <strong>pH9.3・アルカリ性・冷鉱泉</strong> です（2026年9月訂正）。
+            ※本ノートは以前 pH9.5・「弱アルカリ性弱張性」と記載していましたが、公式サイトの表示は <strong>pH9.3・アルカリ性・冷鉱泉</strong> です（2026年9月訂正）。
+            ただし源泉所の現地看板は <strong>「PH9.1」</strong> と表示しており、分析書の写真にはpHの記載が写っていないため、<strong>両方を併記して要確認</strong>としています。
+            またスタンドの料金は以前「500円100L」と書いていましたが、現地看板は<strong>「500円玉で90ℓ」</strong>でした。
           </p>
           <div class="mt-3 flex items-center gap-3 text-xs flex-wrap">
             <span class="text-slate-500">平日3h ¥650 / 1日 ¥800 / 土日祝3h ¥800 (10-21)</span>
@@ -2939,8 +2947,9 @@ tailwind.config = {
           </div>
           <p class="mt-3 text-sm text-body">神経痛・腰痛・リウマチ・皮膚病。とろみのある「シルクの湯ざわり」。</p>
           <p class="mt-2 text-xs text-slate-500">
-            江戸期から知られた<strong>小鹿野大竜寺源泉</strong>を引く。源泉は19℃前後の冷鉱泉。
+<strong>小鹿野大竜寺源泉</strong>を引く。源泉は19℃前後の冷鉱泉。
             <strong>2024年に全室露天風呂付きへリブランド</strong>し、以降は<strong>宿泊主体（日帰り入浴は休止）</strong>。
+            <span class="block mt-1">※宿の紹介文は「江戸時代から秩父を代表する良湯」と記しますが、源泉を管理する側の説明では、いまの大竜寺源泉は<strong>1988〜89年のふるさと創生事業をきっかけに掘削</strong>されたものです（第19章）。</span>
           </p>
           <a href="https://chichibu-resort.com/ryozanpaku/" target="_blank" class="mt-3 inline-block text-xs text-primary-500 hover:underline">公式 →</a>
         </article>
@@ -2995,7 +3004,7 @@ tailwind.config = {
         <ul class="mt-3 space-y-2.5 text-sm text-body leading-relaxed">
           <li>
             ① <strong class="text-slate-900">一本の源泉が複数の宿を養う「大竜寺源泉」</strong> —
-            梁山泊と赤谷温泉 小鹿荘はどちらも同じ源泉を引いている。秩父では<strong>一宿一源泉</strong>が普通なので、これは珍しい配湯型。
+            梁山泊・赤谷温泉 小鹿荘・須崎旅館の<strong>3軒</strong>が同じ源泉を引いていて、湯は<strong>タンクローリーで運ばれています</strong>（第19章）。秩父では<strong>一宿一源泉</strong>が普通なので、これは珍しい配湯型。
             しかも<strong>pH約10・18〜20℃</strong>と強アルカリの冷鉱泉なのに、効き成分は硫黄ではなく<strong>メタほう酸・メタけい酸</strong>。
             山の湯でも硫黄とは限らない、という反例です。
           </li>
@@ -4978,9 +4987,7 @@ tailwind.config = {
       </div>
       <p class="mt-3 text-xs text-slate-500">
         出典：温泉ソムリエ認定テキスト「ORP法による温泉水の評価」（法政大学名誉教授・工学博士 大河内正一）および
-        「誤解されやすい温泉用語」（（公財）中央温泉研究所 甘露寺泰雄）を本ノートが要約。
-        <span class="text-slate-400">※（公財）中央温泉研究所は、第11章でふれた秩父・鹿の湯の温泉分析書（昭和52年）を発行した機関でもあります。</span>
-      </p>
+        「誤解されやすい温泉用語」（（公財）中央温泉研究所 甘露寺泰雄）を本ノートが要約。      </p>
 
       <!-- ② 野沢組 -->
       <h3 class="mt-12 text-xl font-semibold text-slate-900">② 野沢組 — 湯を「所有」しない運営モデル</h3>
@@ -5600,6 +5607,375 @@ tailwind.config = {
         <a href="https://www.pref.saitama.lg.jp/a0706/news/page/news2026022401.html" target="_blank" class="underline hover:text-primary-500">埼玉県「公衆浴場入浴料金の統制額の改定について」</a> /
         <a href="https://www.mhlw.go.jp/content/10900000/yokujou_housaku.pdf" target="_blank" class="underline hover:text-primary-500">厚労省「公衆浴場業（一般公衆浴場）の実態と経営改善の方策」</a> /
         <a href="https://tokyosento.com/archive/national/2947/" target="_blank" class="underline hover:text-primary-500">東京銭湯（喜楽湯）</a> / 各施設情報は2026年時点の公開情報より
+      </p>
+    </section>
+
+    <!-- ====================== 19. 埼玉の温泉スタンド ====================== -->
+    <section id="stand" class="anchor mt-16">
+      <p class="chapter-stamp">CHAPTER 19 — STAND</p>
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">埼玉の温泉スタンド — 湯を「持ち帰る」文化</h2>
+      <p class="mt-4 text-body leading-relaxed">
+        温泉は「行って入る」もの——と思っていると見落とす施設があります。<strong class="text-slate-900">温泉スタンド</strong>。
+        源泉を自動販売機で量り売りし、ポリタンクで家まで持ち帰る仕組みです。
+        第14章で埼玉を<strong>「通う温泉」の県</strong>と書きましたが、スタンドはその先——<strong class="text-slate-900">湯を家の風呂まで連れて帰る</strong>形です。
+        2026年9月、秩父・皆野町の満願の湯源泉所を現地取材し、県内のスタンドを洗い出しました。
+      </p>
+
+      <!-- stats -->
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">県リスト掲載のスタンド</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">6<span class="text-base font-normal text-slate-500 ml-1">か所</span></p>
+          <p class="text-sm text-body mt-1">西部・北部のみ。県央・南部・東部はゼロ</p>
+        </div>
+        <div class="bg-white rounded-xl border border-emerald-200 p-5 shadow-sm">
+          <p class="text-xs text-emerald-700">いま汲めるスタンド</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">約4<span class="text-base font-normal text-slate-500 ml-1">か所</span></p>
+          <p class="text-sm text-body mt-1">うち3か所が秩父・小鹿野（玉川は要確認）</p>
+        </div>
+        <div class="bg-white rounded-xl border border-primary-200 p-5 shadow-sm">
+          <p class="text-xs text-primary-700">満願の湯 源泉所</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">90<span class="text-base font-normal text-slate-500 ml-1">L</span></p>
+          <p class="text-sm text-body mt-1">500円玉1枚で（現地看板）</p>
+        </div>
+        <div class="bg-white rounded-xl border border-amber-200 p-5 shadow-sm">
+          <p class="text-xs text-amber-700">止まったスタンド</p>
+          <p class="text-3xl font-bold text-slate-900 mt-1">2<span class="text-base font-normal text-slate-500 ml-1">か所</span></p>
+          <p class="text-sm text-body mt-1">大滝は休止中、ときがわ町は閉鎖。どちらも機械の故障</p>
+        </div>
+      </div>
+
+      <!-- ① とは -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">① 温泉スタンドとは — ガソリンスタンドと同じセルフ式</h3>
+      <div class="mt-4 grid md:grid-cols-3 gap-4">
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">仕組み</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">源泉を量り売りする自販機</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            硬貨を入れ、ノズルをポリタンクに差してスイッチを押すと、決まった量の源泉が出てくる。<strong>無人で動く</strong>のが基本です。
+          </p>
+        </article>
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">用途</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">基本は「浴用」</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            満願の湯の看板も「<strong>浴用・温泉利用</strong>」「<strong>この源泉は飲用の許可は受けておりません</strong>」と明記しています。
+            温泉を飲むには保健所の飲用許可が要ります（第4章）。
+          </p>
+        </article>
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">分布</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">温泉の多い県に偏る</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            全国的には群馬・長野・山梨・岐阜・山陰などに多く、首都圏近郊は少ない。千葉では営業ゼロの時期が約10年続き、
+            <strong>コロナ禍の「家で温泉」需要</strong>で近年また増えています。
+          </p>
+        </article>
+      </div>
+
+      <!-- ② 一覧 -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">② 埼玉県内のスタンド一覧 — 秩父が県内の密集地</h3>
+      <p class="mt-2 text-sm text-body leading-relaxed">
+        埼玉県が公開している「温泉利用施設」の一覧（北部・西部・県央南部・東部の4地区）をすべて確認しました。
+        <strong class="text-slate-900">スタンドは西部と北部にしかなく、県央・南部と東部はゼロ</strong>です。
+      </p>
+      <div class="mt-4 bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm matrix">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">施設</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">所在地</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">源泉・泉質</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">料金</th>
+                <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">状況</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr>
+                <td class="py-2 px-3 font-medium text-slate-900">満願の湯 源泉所</td>
+                <td class="py-2 px-3 text-xs">皆野町下日野沢3727</td>
+                <td class="py-2 px-3 text-xs">満願の湯（冷鉱泉・18.3℃）</td>
+                <td class="py-2 px-3 text-xs">100円で20L／500円玉で90L</td>
+                <td class="py-2 px-3 text-xs"><strong class="text-emerald-700">営業中</strong>（8:00〜20:00）</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-medium text-slate-900">大竜寺源泉 源泉地温泉スタンド</td>
+                <td class="py-2 px-3 text-xs">小鹿野町飯田2264-7（札所三十一番 観音院への途中）</td>
+                <td class="py-2 px-3 text-xs">大竜寺源泉（メタほう酸含有・pH約10）</td>
+                <td class="py-2 px-3 text-xs">100円で40L</td>
+                <td class="py-2 px-3 text-xs"><strong class="text-emerald-700">営業中</strong>（とみられる）</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-medium text-slate-900">大竜寺源泉 第2温泉スタンド</td>
+                <td class="py-2 px-3 text-xs">小鹿野町飯田（国道299号沿い・三田川郵便局の前）</td>
+                <td class="py-2 px-3 text-xs">同上</td>
+                <td class="py-2 px-3 text-xs">100円で40L</td>
+                <td class="py-2 px-3 text-xs"><strong class="text-emerald-700">営業中</strong>（24時間・年中無休）</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 font-medium text-slate-900">玉川温泉スタンド</td>
+                <td class="py-2 px-3 text-xs">ときがわ町玉川3700</td>
+                <td class="py-2 px-3 text-xs">アルカリ性単純温泉</td>
+                <td class="py-2 px-3 text-xs">—</td>
+                <td class="py-2 px-3 text-xs"><strong class="text-amber-700">要確認</strong>（県リストへの掲載は2022年）</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="py-2 px-3 font-medium text-slate-900">大滝温泉スタンド</td>
+                <td class="py-2 px-3 text-xs">秩父市大滝1800</td>
+                <td class="py-2 px-3 text-xs">三峰神の湯（Na-塩化物温泉）</td>
+                <td class="py-2 px-3 text-xs">—</td>
+                <td class="py-2 px-3 text-xs"><strong class="text-red-700">休止中</strong>（2025年5月11日から機器故障）</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="py-2 px-3 font-medium text-slate-900">ときがわ町温泉スタンド（都幾の湯）</td>
+                <td class="py-2 px-3 text-xs">ときがわ町大附870-3</td>
+                <td class="py-2 px-3 text-xs">Na-塩化物冷鉱泉</td>
+                <td class="py-2 px-3 text-xs">—</td>
+                <td class="py-2 px-3 text-xs"><strong class="text-red-700">閉鎖</strong>（2026年3月4日。源泉ポンプの故障、修繕しない方針）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="mt-3 text-sm text-body leading-relaxed">
+        いま汲めるのは <strong>満願の湯・大竜寺源泉の2か所・玉川（要確認）＝実質4か所程度</strong>。
+        そのうち3か所が秩父・小鹿野に集まっていて、<strong class="text-slate-900">秩父は県内のスタンド密集地</strong>です。
+        <span class="text-slate-500">1Lあたりに直すと、満願の湯が約5〜5.6円、大竜寺源泉が約2.5円。同じ秩父の冷鉱泉でも倍ほど違います。</span>
+      </p>
+
+      <!-- ③ 満願の湯 源泉所 -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">③ 満願の湯 源泉所 — 現地取材（2026年9月）</h3>
+      <div class="mt-4 grid sm:grid-cols-2 gap-4">
+        <figure class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+          <img src="img/stand/manganyu_stand_zenkei.jpg" width="1200" height="1600" loading="lazy" class="w-full h-auto"
+            alt="満願の湯源泉所の温泉スタンド全景。屋根の下の壁に500円玉専用の自動販売機が2基並び、それぞれにホースが掛かっている">
+          <figcaption class="p-3 text-xs text-body">スタンド全景。屋根の下に <strong>500円玉専用機が2基</strong> 並ぶ。ホースを容器に差して汲む</figcaption>
+        </figure>
+        <figure class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+          <img src="img/stand/manganyu_stand_kanban.jpg" width="1200" height="1600" loading="lazy" class="w-full h-auto"
+            alt="スタンドの看板のアップ。満願の湯の由来文、PH9.1の表示、温泉自動販売機 浴用・温泉利用 500円玉で90リットル、この源泉は飲用の許可は受けておりませんの表示">
+          <figcaption class="p-3 text-xs text-body">看板のアップ。「<strong>PH9.1</strong>」「<strong>500円玉で90ℓ</strong>」「<strong>この源泉は飲用の許可は受けておりません</strong>」</figcaption>
+        </figure>
+      </div>
+      <p class="mt-2 text-xs text-slate-500">2026年9月 現地撮影</p>
+
+      <div class="mt-5 grid md:grid-cols-2 gap-4">
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">基本情報</p>
+          <ul class="mt-2 space-y-1.5 text-sm text-body">
+            <li>・運営：<strong>サン・グリーン株式会社</strong>（TEL 0494-62-5026）</li>
+            <li>・営業：スタンド 8:00〜20:00／売店 9:00〜17:00。年末年始も営業。2024年5月以降、事務所は無人の時間が増えた</li>
+            <li>・機械：100円硬貨専用2基＋500円硬貨専用2基。100円で20L、<strong>500円玉で90L</strong></li>
+            <li>・容器は持ち込み可、<strong>ペットボトルは禁止</strong>。売店で容器も販売（10L 770円／20L 1,030円）</li>
+            <li>・2025年4〜6月は源泉汲み上げポンプの入替工事で休業し、6月17日に再開</li>
+          </ul>
+        </article>
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">掲示から読めること</p>
+          <ul class="mt-2 space-y-1.5 text-sm text-body">
+            <li>・注意書き：お車1台で2機の同時使用禁止／<strong>5分放置でリセット</strong>／冬はホースが凍結する</li>
+            <li>・「温泉水について」：「当温泉は『単純硫黄冷鉱泉』です。硫黄臭がする事がありますが…通常2〜3日でにおいが消えます」</li>
+            <li>・由来文：浅間・富士火山からなる<strong>山中地溝帯線の石英閃緑岩の裂け目</strong>に沿って、地中数百メートルで育まれた湯。秩父札所三十四番（日本百番結願寺）の近く</li>
+          </ul>
+        </article>
+      </div>
+
+      <h4 class="mt-8 text-base font-semibold text-slate-900">温泉分析書（甲第3723号）を読む</h4>
+      <div class="mt-3 grid md:grid-cols-2 gap-4 items-start">
+        <figure class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+          <img src="img/stand/manganyu_bunsekisho.jpg" width="1400" height="1867" loading="lazy" class="w-full h-auto"
+            alt="源泉所に掲示された温泉分析書 甲第3723号と温泉分析書別表。陽イオン・陰イオン・遊離成分の分析値表と、禁忌症・入浴上の注意、掲示内容の表">
+          <figcaption class="p-3 text-xs text-body">源泉所に掲示された分析書と別表（2026年9月 現地撮影）</figcaption>
+        </figure>
+        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm matrix">
+              <thead>
+                <tr class="border-b border-slate-200">
+                  <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">項目</th>
+                  <th scope="col" class="text-left py-2 px-3 uppercase tracking-wider">記載</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr><td class="py-2 px-3 font-medium text-slate-900">源泉名</td><td class="py-2 px-3 text-xs">秩父温泉 満願の湯（湧出地・採水場所：皆野町大字下日野沢3727）</td></tr>
+                <tr><td class="py-2 px-3 font-medium text-slate-900">分析</td><td class="py-2 px-3 text-xs">令和元年7月3日・公益財団法人<strong>中央温泉研究所</strong>（第16章の甘露寺泰雄氏の所属機関）</td></tr>
+                <tr><td class="py-2 px-3 font-medium text-slate-900">温度</td><td class="py-2 px-3 text-xs">源泉・利用場所とも <strong>18.3℃</strong></td></tr>
+                <tr><td class="py-2 px-3 font-medium text-slate-900">陽イオン</td><td class="py-2 px-3 text-xs">Na⁺ 102.5mg（<strong>95.71 mval%</strong>）。ほぼナトリウムだけ</td></tr>
+                <tr><td class="py-2 px-3 font-medium text-slate-900">陰イオン</td><td class="py-2 px-3 text-xs">HCO₃⁻ 186.7mg（63.22%）／CO₃²⁻ 28.2mg（19.42%）／F⁻ 7.1mg（7.64%）／メタほう酸イオン 9.5mg／HS⁻ 1.4mg／S₂O₃²⁻ 0.1mg</td></tr>
+                <tr><td class="py-2 px-3 font-medium text-slate-900">非解離成分</td><td class="py-2 px-3 text-xs">メタけい酸 15.4mg。遊離CO₂・遊離H₂S はともに0.1mg未満</td></tr>
+                <tr><td class="py-2 px-3 font-medium text-slate-900">溶存物質計</td><td class="py-2 px-3 text-xs"><strong>0.364 g/kg</strong>（成分総計も同じ）＝とても薄い、低張性</td></tr>
+                <tr><td class="py-2 px-3 font-medium text-slate-900">別表の掲示</td><td class="py-2 px-3 text-xs">加水なし／加温なし／循環なし（汲み上げ時に小石から機器を守るため繊維でろ過）／入浴剤なし／消毒なし</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 p-5 bg-gradient-to-br from-amber-50 to-white border border-amber-300 rounded-xl shadow-sm">
+        <p class="text-xs font-medium text-amber-800 tracking-wider">湯を、読む</p>
+        <h5 class="font-serif text-lg font-bold text-slate-900 mt-1">看板の「単純硫黄冷鉱泉」と、分析書の数字</h5>
+        <p class="mt-2 text-sm text-body leading-relaxed">
+          分析書の数字を第1章の基準に当てはめてみると、ひとつ引っかかる点があります。
+        </p>
+        <ul class="mt-3 space-y-1.5 text-sm text-body">
+          <li>・硫黄分は HS⁻ 1.4mg と S₂O₃²⁻ 0.1mg。硫黄に換算して足すと<strong>総硫黄は約1.4mg/kg</strong>（イオンの重さのまま足すと1.5mg）</li>
+          <li>・温泉法の「温泉」の基準は<strong>総硫黄1mg以上</strong> → <strong class="text-emerald-700">満たす</strong>。ふっ素イオン（7.1mg／基準2mg）とメタほう酸（9.5mg／基準5mg）でも満たす</li>
+          <li>・療養泉の「硫黄泉」の基準は<strong>総硫黄2mg以上</strong> → <strong class="text-red-700">届かない</strong>。泉温18.3℃（25℃未満）・溶存物質0.364g（1g未満）なので、ほかの療養泉の条件も満たさない</li>
+          <li>・別表には一般的な禁忌症と入浴上の注意だけが載り、<strong>適応症の記載が見当たらない</strong>。療養泉なら適応症を掲示できるので、この構成は「療養泉ではない温泉」の分析書と整合する</li>
+        </ul>
+        <p class="mt-3 text-sm text-body leading-relaxed">
+          つまり令和元年の分析値からは、<strong class="text-slate-900">「温泉法上の温泉ではあるが、療養泉の単純硫黄泉には届かない」</strong>と読めます。
+          看板や公式サイトの「単純硫黄（冷鉱）泉」という呼び方は、1988年の掘削当時の分析に由来するのかもしれません。
+          <span class="text-slate-500">ただし分析書の1枚目（泉質名とpHを書く欄）は写真に写っておらず、断定はできません。<strong>要確認</strong>です。
+          pHも公式サイトは9.3、現地看板は9.1と食い違っています。</span>
+        </p>
+        <p class="mt-3 text-sm text-body leading-relaxed">
+          <strong class="text-slate-900">看板の名前と分析書の数字は、ときどき食い違う。</strong>だから分析書は、掲示されていたら読む価値があります。
+        </p>
+      </div>
+
+      <!-- ④ サン・グリーン -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">④ サン・グリーン株式会社 — 一本の源泉を、浴用・飲用・宿泊へ</h3>
+      <div class="mt-4 grid md:grid-cols-2 gap-4">
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">沿革</p>
+          <ul class="mt-2 space-y-1.5 text-sm text-body">
+            <li>・<strong>1987年</strong> 設立（皆野町大字下日野沢3727）</li>
+            <li>・<strong>1988年</strong> 満願の湯をボーリング → 源泉水「満願」の販売を開始</li>
+            <li>・<strong>2000年</strong> 温泉スタンドの営業を開始</li>
+            <li>・<strong>2002年</strong> 満願ビレッジオートキャンプ場を開設</li>
+          </ul>
+        </article>
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">事業</p>
+          <ul class="mt-2 space-y-1.5 text-sm text-body">
+            <li>・<strong>温泉スタンド</strong>（浴用）</li>
+            <li>・ミネラルウォーター「<strong>秩父命水 満願</strong>」（飲料として製造・通販）</li>
+            <li>・浴用の温泉パック</li>
+            <li>・キャンプ場：満願ビレッジ、ウォーターパーク長瀞、山梨・鳴沢村の富士満願ビレッジ</li>
+          </ul>
+          <p class="mt-3 text-xs text-slate-500">日帰り施設「秩父温泉 満願の湯」（下日野沢4000）は関連企業の運営で、別会社です。</p>
+        </article>
+      </div>
+      <div class="mt-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+        <p class="text-sm text-body leading-relaxed">
+          <strong class="text-slate-900">ひとつの源泉を「浴用・飲用・宿泊」に展開した地元企業</strong>として読めます。
+          面白いのは飲み水の扱いで、スタンドの源泉は温泉としての<strong>飲用許可を受けていない</strong>一方、
+          同じ源泉からの飲料は<strong>ミネラルウォーターという食品</strong>として別に製造・販売されています。
+          <span class="text-slate-500">同じ水でも、温泉として扱うか、食品として扱うかで、飲めるかどうかの扱いが変わる——制度が水を二つに分けています。</span>
+        </p>
+      </div>
+
+      <!-- ⑤ 大竜寺源泉 -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">⑤ 大竜寺源泉（小鹿野町） — ふるさと創生から生まれた、配る源泉</h3>
+      <div class="mt-4 bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <p class="text-sm text-body leading-relaxed">
+          源泉を管理しているのは<strong>猪野操さん</strong>。掘ったのはお父さんで、きっかけは竹下内閣の<strong>ふるさと創生事業（1988〜89年）</strong>でした。
+          全国で地域おこしの温泉掘削が行われていることを知り、「必ず成功させる、小鹿野町を活性化させたい」と<strong>自己投資で掘削を決意</strong>。
+          京都大学や青森県の温泉掘削の専門家に調査を依頼し、秩父の山全体を調べて場所を決めたといいます。掘り当てたのは約35年前です。
+        </p>
+        <ul class="mt-3 space-y-1.5 text-sm text-body">
+          <li>・泉質：メタけい酸・メタほう酸を多く含むアルカリ性、<strong>pH約10</strong>、18〜20℃の冷鉱泉</li>
+          <li>・スタンドは2か所。<strong>100円で40L・24時間</strong></li>
+          <li>・<strong>タンクローリーで宿に配湯</strong>：須崎旅館・梁山泊・赤谷温泉 小鹿荘（第11章 No.17・No.25）</li>
+          <li>・アトピーに悩む子どものために、飯能から汲みに来ていた人もいたそうです</li>
+        </ul>
+      </div>
+      <p class="mt-3 text-xs text-slate-500">
+        ※ 梁山泊の紹介文は「江戸時代から秩父を代表する良湯」と記していますが、いまの大竜寺源泉そのものはこの1988〜89年の掘削によるものです。
+      </p>
+
+      <!-- ⑥ 使い方 -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">⑥ 持ち帰った湯の使い方</h3>
+      <div class="mt-4 grid md:grid-cols-2 gap-4">
+        <article class="bg-white rounded-xl border border-red-200 p-5 shadow-sm">
+          <p class="text-xs text-red-700 font-medium">飲まない</p>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            温泉を飲むには保健所の飲用許可が必要です。満願の湯のスタンドは許可を受けていません。
+            飲みたい場合は、同じ源泉から別に製造されているミネラルウォーターのほうを。
+          </p>
+        </article>
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">沸かすより「足す」</p>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            熱めに張ったお湯に混ぜるのが一般的です。ときがわ町の案内の目安は<strong>「浴槽の7割（約200L）に温泉20L」</strong>。
+          </p>
+        </article>
+        <article class="bg-white rounded-xl border border-amber-200 p-5 shadow-sm">
+          <p class="text-xs text-amber-700 font-medium">追い焚きに注意</p>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            硫黄を含む湯は給湯器の配管を傷めることがあります。使う前に給湯器メーカーの説明書を確認してください。
+          </p>
+        </article>
+        <article class="bg-white rounded-xl border border-primary-200 p-5 shadow-sm">
+          <p class="text-xs text-primary-700 font-medium">ロウリュは「体験」として</p>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            成分が薄いのでストーブへの害は比較的小さいものの、アルカリや炭酸で石に白い成分が残りやすくなります。
+            蒸気はほぼ水なので体感はほとんど変わりません。価値は<strong>「秩父の源泉でロウリュ」というストーリー</strong>のほう。
+            <span class="text-slate-500">第11章の「満願の湯＝天然の水風呂」と対になる使い方です。</span>
+          </p>
+        </article>
+      </div>
+
+      <!-- ⑦ 読み -->
+      <h3 class="mt-12 text-xl font-semibold text-slate-900">⑦ このノートの読み — スタンドが教えてくれる4つのこと</h3>
+      <div class="mt-4 grid md:grid-cols-2 gap-4">
+        <article class="bg-white rounded-xl border border-amber-300 p-5 shadow-sm">
+          <p class="text-xs text-amber-800 font-medium">読み ①</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">スタンドは、ポンプが壊れると終わる</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            第11章で「<strong>宿が消えても湯は残る</strong>」と書きました。スタンドはその逆です。
+            ときがわ町は源泉ポンプの故障で閉鎖、大滝は機器の故障で休止、満願の湯もポンプの入替で2か月休業。
+            <strong class="text-slate-900">無人の自販機は、機械の寿命がそのまま湯の寿命になる。</strong>
+          </p>
+        </article>
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">読み ②</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">同じ時代に掘られた湯</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            満願の湯（1988年掘削）と大竜寺源泉（ふるさと創生がきっかけ）は、どちらも<strong>昭和の終わりから平成の初め</strong>の湯。
+            第14章の「平成の大深度掘削」より少し前の、<strong>地域振興のための掘削の波</strong>です。
+          </p>
+        </article>
+        <article class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <p class="text-xs text-slate-500">読み ③</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">一本の源泉を「配る」型</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            第11章で秩父は「<strong>一宿一源泉</strong>」と書きました。スタンドとタンクローリーは、その逆の<strong>湯を運んで配る</strong>仕組みです。
+            大竜寺源泉は3軒の宿と家庭に、満願の湯は日帰り施設と家庭と飲料に、湯を配っています。
+          </p>
+        </article>
+        <article class="bg-white rounded-xl border border-primary-200 p-5 shadow-sm">
+          <p class="text-xs text-primary-700 font-medium">読み ④</p>
+          <h4 class="text-base font-semibold text-slate-900 mt-0.5">「通う温泉」の先にある「持ち帰る温泉」</h4>
+          <p class="mt-2 text-sm text-body leading-relaxed">
+            第14章で埼玉は<strong>「通う温泉」の県</strong>だと書きました。宿に泊まらず、施設に通う。
+            スタンドはそのさらに先で、<strong class="text-slate-900">湯を家の風呂まで連れて帰る</strong>形です。
+          </p>
+        </article>
+      </div>
+
+      <div class="mt-6 p-5 bg-white border border-slate-200 rounded-xl shadow-sm">
+        <h3 class="text-base font-semibold text-slate-900">泊まる → 通う → 持ち帰る</h3>
+        <p class="mt-3 text-sm text-body leading-relaxed">
+          第15章でみた「湯治21日 → 1泊2日 → 数時間」という滞在の短縮は、スタンドでとうとう<strong>ゼロ時間</strong>になります。
+          湯のある場所に人が行くのではなく、<strong>湯のほうが人の家へ行く</strong>。
+          温泉街を持たなかった県で、湯の楽しみ方がいちばん遠くまで進んだ形がこれかもしれません。
+          <span class="text-slate-500">ただしその湯は、ポンプひとつが止まれば汲めなくなる。いちばん身近な温泉は、いちばん壊れやすい温泉でもあります。</span>
+        </p>
+      </div>
+
+      <p class="mt-5 text-xs text-slate-500 leading-relaxed">
+        出典：現地掲示・温泉分析書 甲第3723号（2026年9月 撮影）／
+        埼玉県「温泉利用施設」<a href="https://www.pref.saitama.lg.jp/a0707/onsen-hokubu.html" target="_blank" class="underline hover:text-primary-500">北部</a>・<a href="https://www.pref.saitama.lg.jp/a0707/onsen-seibu.html" target="_blank" class="underline hover:text-primary-500">西部</a>・<a href="https://www.pref.saitama.lg.jp/a0707/onsen-nanbu.html" target="_blank" class="underline hover:text-primary-500">県央・南部</a>・<a href="https://www.pref.saitama.lg.jp/a0707/onsen-toubu.html" target="_blank" class="underline hover:text-primary-500">東部</a>／
+        <a href="https://mangan.jp/" target="_blank" class="underline hover:text-primary-500">秩父温泉満願の湯源泉所</a>（<a href="https://mangan.jp/user_data/station" target="_blank" class="underline hover:text-primary-500">温泉スタンド</a>）／
+        <a href="https://sun-green.com/company/" target="_blank" class="underline hover:text-primary-500">サン・グリーン 会社案内</a>・<a href="https://sun-green.com/project/" target="_blank" class="underline hover:text-primary-500">運営事業</a>／
+        <a href="https://www.city.chichibu.lg.jp/3246.html" target="_blank" class="underline hover:text-primary-500">秩父市 大滝温泉スタンド</a>／
+        <a href="https://www.town.tokigawa.lg.jp/info/145" target="_blank" class="underline hover:text-primary-500">ときがわ町 温泉スタンド</a>／
+        <a href="https://ogano-machi.jp/spot/1843/" target="_blank" class="underline hover:text-primary-500">おがのまち「大竜寺温泉」</a>／
+        <a href="https://yusui.sumai.biz/archives/21966" target="_blank" class="underline hover:text-primary-500">Sumai湧水「大竜寺温泉スタンド」</a>／
+        <a href="https://www.mapple.net/spot/11011774/" target="_blank" class="underline hover:text-primary-500">mapple「秩父温泉 満願の湯源泉所」</a>
       </p>
     </section>
 
