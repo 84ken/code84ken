@@ -959,3 +959,7 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
   .oc h3{margin-top:54px}
   .oc-wide img{aspect-ratio:4/3}
 }
+
+/* 協力欄：ロゴの代わりに写真を入れる場合 */
+.logo-slot.is-photo{height:auto;aspect-ratio:16/9;border:0;padding:0;overflow:hidden;background:#f5f4ef}
+.logo-slot.is-photo img{width:100%;height:100%;max-height:none;object-fit:cover;display:block}
