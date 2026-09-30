@@ -827,10 +827,10 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 .story{max-width:760px}
 .story-lead{font-family:var(--serif);font-size:1.12em;line-height:2.1;margin-bottom:1.4em}
 .makers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:26px 0 8px;max-width:760px}
-.maker{border:1px solid #d9d7cf;background:#fff;padding:20px 20px 14px}
+.maker{padding:18px 0 4px;border-top:1px solid #d9d7cf}
 .maker img{display:block;height:34px;width:auto;margin-bottom:14px}
 .maker p{margin:0;font-size:14px;line-height:1.9;color:var(--muted)}
-.logo-slot:has(img){border-style:solid;background:#fff;padding:0 14px}
+.logo-slot:has(img){border:0;background:none;padding:0;justify-items:start}
 .logo-slot img{max-height:34px}
 
 /* ===== 公募ページ：写真と図で見せる（2026/9/30） ===== */
