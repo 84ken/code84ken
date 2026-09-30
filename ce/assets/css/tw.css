@@ -2009,6 +2009,14 @@ video {
 }
 @media (min-width: 1280px) {
 
+  .xl\:inline {
+    display: inline;
+  }
+
+  .xl\:hidden {
+    display: none;
+  }
+
   .xl\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;

@@ -483,7 +483,8 @@ summary:focus-visible,
 .hc-sticker {
   position: absolute;
   z-index: 1;
-  right: calc(1.5% + clamp(7rem, 10vw, 12.5rem));
+  /* 所長（右下）の左隣に置く。所長の幅＋すきま分だけ右をあける */
+  right: calc(1.5% + clamp(10rem, 16vw, 16rem) + 1rem);
   bottom: 6%;
   display: flex;
   flex-direction: column;
@@ -497,9 +498,15 @@ summary:focus-visible,
   transition: transform 0.2s;
 }
 .hc-sticker:hover { transform: rotate(-2deg) translateY(-3px); }
+/* 1280〜1439px：ステッカーが中央の小さな文字に届かないよう、所長を少し小さくして右へ寄せる */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .hc-mascot { width: 12.5vw; }
+  .hc-sticker { right: calc(1.5% + 12.5vw + 1rem); bottom: 4%; padding: 0.75rem 1rem 0.85rem; }
+  .hc-sticker .display-num { font-size: 1.9rem; }
+}
 @media (min-width: 1024px) and (max-width: 1279px) {
   .hero-inner { min-height: max(47rem, calc(100svh - 3rem)); }
-  .hc-sticker { bottom: 2%; padding: 0.7rem 1rem 0.8rem; }
+  .hc-sticker { bottom: 0.5%; padding: 0.7rem 1rem 0.8rem; }
   .hc-sticker .display-num { font-size: 1.75rem; }
 }
 
