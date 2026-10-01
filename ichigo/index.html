@@ -145,6 +145,17 @@
       .concept-step:not(:last-child)::after { content:""; position:absolute; top:74px; right:-22px; width:16px; height:16px; border-top:3px solid #F4C9D5; border-right:3px solid #F4C9D5; border-radius:2px; transform:rotate(45deg); }
     }
 
+    /* 商品スライダー（トップ） */
+    .pslide { animation: pslide-in .45s cubic-bezier(.22,1,.36,1); }
+    @keyframes pslide-in { from { opacity:0; transform:translateX(var(--from, 24px)); } to { opacity:1; transform:none; } }
+    .pslider-nav { display:flex; align-items:center; justify-content:center; gap:16px; margin-top:24px; }
+    .pslider-btn { width:44px; height:44px; border-radius:999px; border:1.5px solid #F4C9D5; background:#fff; color:#C92A57; display:inline-flex; align-items:center; justify-content:center; transition:background .2s ease, color .2s ease, border-color .2s ease; }
+    .pslider-btn:hover { background:#C92A57; color:#fff; border-color:#C92A57; }
+    .pslider-dots { display:flex; gap:8px; }
+    .pslider-dots button { width:10px; height:10px; border-radius:999px; background:#F4C9D5; transition:width .25s ease, background .25s ease; }
+    .pslider-dots button[aria-selected="true"] { width:28px; background:#C92A57; }
+    @media (prefers-reduced-motion: reduce) { .pslide { animation:none; } }
+
     /* イラストのまばたき */
     .fv-art { position:relative; width:100%; }
     .fv-art .fv-blink { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; pointer-events:none; }
@@ -270,28 +281,59 @@
     <!-- スマホでは動画をここ（赤帯の下）に移す -->
     <div id="mv-slot-sp" class="sm:hidden bg-white px-4 pt-6"></div>
 
-    <!-- 🆕 新発売告知：ちちぶ いちごハンカチ（10/2発売） -->
+    <!-- 🆕 商品スライダー：いちごハンカチ（10/2発売）⇄ いちご塩 -->
     <div class="bg-white">
       <div class="max-w-5xl mx-auto px-5 sm:px-6 pt-8 pb-6 sm:pt-12 sm:pb-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
-          <a href="lab.html#handkerchief" class="block aspect-[3/2] overflow-hidden rounded-3xl img-zoom">
-            <img width="1600" height="1066" src="images/products/handkerchief-main.webp" alt="ちちぶ いちごハンカチ。2種類のパッケージと、生成り色のガーゼハンカチ" class="w-full h-full object-cover">
-          </a>
-          <div class="text-center md:text-left">
-            <div class="flex items-center justify-center md:justify-start gap-2 mb-3">
-              <span class="inline-flex items-center px-3 py-1 text-xs font-bold bg-ichigo text-white rounded-full">NEW</span>
-              <span class="label-en text-ichigo">ON SALE 10.2 FRI</span>
-            </div>
-            <h2 class="h-display text-2xl sm:text-3xl text-ink mb-2">ちちぶ いちごハンカチ</h2>
-            <p class="text-sm font-bold text-ichigo mb-3">10月2日（金）発売｜数量限定 70枚</p>
-            <p class="text-sm text-mute leading-relaxed mb-5">あまりんのヘタで染めた、やさしい生成り色の草木染めガーゼハンカチ。<br class="hidden sm:inline">パッケージは2種類。ONLINE SHOP とウニクス秩父のチャレフェスで販売します。</p>
-            <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
-              <a href="lab.html#handkerchief" class="btn-primary text-sm">くわしく見る</a>
-              <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="btn-ichigo text-sm">
-                ONLINE SHOP
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        <div class="pslider" id="pslider" aria-roledescription="カルーセル" aria-label="いちご大學の商品">
+
+          <div class="pslide" role="group" aria-roledescription="スライド" aria-label="1 / 2：ちちぶ いちごハンカチ">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+              <a href="lab.html#handkerchief" class="block aspect-[3/2] overflow-hidden rounded-3xl img-zoom">
+                <img width="1600" height="1066" src="images/products/handkerchief-main.webp" alt="ちちぶ いちごハンカチ。2種類のパッケージと、生成り色のガーゼハンカチ" class="w-full h-full object-cover">
               </a>
+              <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-3">
+                  <span class="inline-flex items-center px-3 py-1 text-xs font-bold bg-ichigo text-white rounded-full">NEW</span>
+                  <span class="label-en text-ichigo">ON SALE 10.2 FRI</span>
+                </div>
+                <h2 class="h-display text-2xl sm:text-3xl text-ink mb-2">ちちぶ いちごハンカチ</h2>
+                <p class="text-sm font-bold text-ichigo mb-3">10月2日（金）発売｜数量限定 70枚</p>
+                <p class="text-sm text-mute leading-relaxed mb-5">あまりんのヘタで染めた、やさしい生成り色の草木染めガーゼハンカチ。<br class="hidden sm:inline">パッケージは2種類。ONLINE SHOP とウニクス秩父のチャレフェスで販売します。</p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                  <a href="lab.html#handkerchief" class="btn-primary text-sm">くわしく見る</a>
+                  <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="btn-ichigo text-sm">ONLINE SHOP <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div class="pslide" role="group" aria-roledescription="スライド" aria-label="2 / 2：CHICHIBU ICHIGO SALT" hidden>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+              <a href="lab.html#salt" class="block aspect-[3/2] overflow-hidden rounded-3xl img-zoom">
+                <img loading="lazy" decoding="async" width="2048" height="1536" src="images/products/ichigobin.jpg" alt="いちご塩 CHICHIBU ICHIGO SALT" class="w-full h-full object-cover">
+              </a>
+              <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-3">
+                  <span class="inline-flex items-center px-3 py-1 text-xs font-bold bg-seed text-ink rounded-full">第一弾</span>
+                  <span class="label-en text-ichigo">CHICHIBU ICHIGO SALT</span>
+                </div>
+                <h2 class="h-display text-2xl sm:text-3xl text-ink mb-2">いちご塩</h2>
+                <p class="text-sm font-bold text-ichigo mb-3">10g ¥400 ／ 50g ¥1,800</p>
+                <p class="text-sm text-mute leading-relaxed mb-5">秩父のいちごをぎゅっと凝縮した、新感覚の調味料。<br class="hidden sm:inline">お肉、サラダ、おにぎり、天ぷらに。</p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                  <a href="lab.html#salt" class="btn-primary text-sm">くわしく見る</a>
+                  <a href="https://ichigouniv.theshop.jp/" target="_blank" rel="noopener" class="btn-ichigo text-sm">ONLINE SHOP <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pslider-nav">
+            <button type="button" class="pslider-btn" data-dir="-1" aria-label="前の商品"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 6l-6 6 6 6"/></svg></button>
+            <div class="pslider-dots" role="tablist" aria-label="商品を選ぶ">
+              <button type="button" role="tab" aria-selected="true" aria-label="いちごハンカチ" data-i="0"></button>
+              <button type="button" role="tab" aria-selected="false" aria-label="いちご塩" data-i="1"></button>
+            </div>
+            <button type="button" class="pslider-btn" data-dir="1" aria-label="次の商品"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 6l6 6-6 6"/></svg></button>
           </div>
         </div>
       </div>
@@ -696,6 +738,26 @@
         }, wait);
       };
       loop();
+    })();
+
+    // 商品スライダー：左右ボタン・ドット・スワイプで切り替え（自動では送らない）
+    (() => {
+      const root = document.getElementById('pslider'); if (!root) return;
+      const slides = [...root.querySelectorAll('.pslide')], dots = [...root.querySelectorAll('.pslider-dots button')];
+      let cur = 0;
+      const show = (n, dir) => {
+        n = (n + slides.length) % slides.length; if (n === cur) return;
+        slides[cur].hidden = true; slides[n].hidden = false;
+        slides[n].style.setProperty('--from', (dir < 0 ? -24 : 24) + 'px');
+        slides[n].style.animation = 'none'; void slides[n].offsetWidth; slides[n].style.animation = '';
+        dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === n)));
+        cur = n;
+      };
+      root.querySelectorAll('.pslider-btn').forEach(b => b.addEventListener('click', () => show(cur + +b.dataset.dir, +b.dataset.dir)));
+      dots.forEach(d => d.addEventListener('click', () => show(+d.dataset.i, +d.dataset.i - cur)));
+      let x0 = null;
+      root.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+      root.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); x0 = null; }, { passive: true });
     })();
 
     const btn = document.getElementById('menu-btn');
