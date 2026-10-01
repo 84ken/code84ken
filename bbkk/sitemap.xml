@@ -4,14 +4,17 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://bbkk.llschema.com/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ja" href="https://bbkk.llschema.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://bbkk.llschema.com/en.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://bbkk.llschema.com/" />
     <image:image>
-      <image:loc>https://bbkk.llschema.com/img/pair-cream.jpg</image:loc>
+      <image:loc>https://bbkk.llschema.com/img/hero-bouba.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://bbkk.llschema.com/img/hero-kiki.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://bbkk.llschema.com/img/pair-front.jpg</image:loc>
