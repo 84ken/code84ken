@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
+<title>にんぎょに おかし</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Yomogi&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#fbfaf3;
+  --rule:#c8d3ea;
+  --ink:#24222a;
+  --ink-soft:#6a6878;
+  --sea:#d9ecf4;
+  --red:#e2493f;
+  --pink:#f4a9bf;
+}
+html,body{height:100%}
+body{
+  background-color:var(--paper);
+  background-image:repeating-linear-gradient(to bottom, transparent 0 33px, var(--rule) 33px 34px);
+  color:var(--ink);
+  font-family:"Klee One","Yomogi","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+  padding-inline:16px;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none; -webkit-user-select:none;
+}
+.wrap{max-width:560px;margin:0 auto;padding-block:16px 28px;display:flex;flex-direction:column;gap:12px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+h1{font-family:"Yomogi","Klee One",sans-serif;font-weight:400;font-size:clamp(28px,8vw,40px);line-height:1.1;margin:0;letter-spacing:.03em}
+h1 span{background:linear-gradient(transparent 60%, #bfe3f2 60%)}
+.byline{margin:6px 0 0;color:var(--ink-soft);font-size:14px}
+.sound{font:inherit;font-size:14px;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:18px 14px 20px 12px;padding:4px 12px;cursor:pointer}
+
+.status{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:15px}
+.hearts{display:flex;gap:4px;font-size:22px;letter-spacing:0}
+.hearts span{color:#d9d4cc}
+.hearts span.on{color:var(--red)}
+.stagename{font-family:"Yomogi",sans-serif;font-size:20px}
+
+.stage{position:relative;border:2.5px solid var(--ink);border-radius:26px 20px 30px 18px;overflow:hidden;background:var(--paper);touch-action:manipulation;cursor:pointer}
+.stage svg{display:block;width:100%;height:auto;max-width:100%}
+.overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:16px;background:rgba(251,250,243,.86)}
+.overlay[hidden]{display:none!important}
+.overlay .big{font-family:"Yomogi",sans-serif;font-size:clamp(30px,9vw,46px);line-height:1.15;text-wrap:balance}
+.overlay .small{font-size:16px;line-height:1.6;max-width:28em}
+.go{font:inherit;font-family:"Yomogi",sans-serif;font-size:24px;padding:10px 28px;background:var(--ink);color:var(--paper);border:0;border-radius:22px 30px 20px 28px;cursor:pointer;box-shadow:0 5px 0 var(--red)}
+.go:active{transform:translateY(4px);box-shadow:0 1px 0 var(--red)}
+
+.tap{font:inherit;font-family:"Yomogi",sans-serif;font-size:30px;letter-spacing:.1em;min-height:96px;background:var(--pink);color:var(--ink);border:3px solid var(--ink);border-radius:40px 34px 44px 30px;box-shadow:0 6px 0 var(--ink);cursor:pointer;touch-action:manipulation}
+.tap:active,.tap.pressed{transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
+.tap small{display:block;font-family:"Klee One",sans-serif;font-size:12px;letter-spacing:0;color:var(--ink-soft)}
+.go:focus-visible,.sound:focus-visible,.tap:focus-visible{outline:3px dashed var(--red);outline-offset:3px}
+.how{margin:0;font-size:14px;color:var(--ink-soft);line-height:1.7}
+@media (prefers-reduced-motion: reduce){ *{animation:none!important} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1><span>にんぎょ</span>に おかし</h1>
+      <p class="byline">かんがえた ひと：むすめ（5さい）</p>
+    </div>
+    <button class="sound" id="soundBtn" type="button" aria-pressed="true">🔊 おと あり</button>
+  </header>
+
+  <div class="status">
+    <div class="stagename" id="stageName">1ぴき</div>
+    <div class="hearts" id="hearts" aria-label="せいこう"></div>
+  </div>
+
+  <div class="stage" id="stage">
+    <svg id="scene" viewBox="0 0 360 420" aria-hidden="true">
+      <defs>
+        <filter id="wob"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter>
+        <filter id="wash" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="11"/><feDisplacementMap in="SourceGraphic" scale="10"/></filter>
+      </defs>
+      <!-- うみ -->
+      <rect x="-20" y="30" width="400" height="420" fill="#d9ecf4" filter="url(#wash)"/>
+      <g id="bubbles" fill="none" stroke="#24222a" stroke-width="1.5" opacity=".45"></g>
+      <rect id="dark" x="0" y="0" width="360" height="420" fill="#2a2350" opacity="0"/>
+      <!-- かず -->
+      <text id="count" x="180" y="36" text-anchor="middle" font-family="Yomogi, sans-serif" font-size="30" fill="#24222a"></text>
+      <g id="mermaids"></g>
+      <g id="rings"></g>
+      <!-- あげる こ -->
+      <g id="feeder" transform="translate(74,330)"></g>
+      <!-- はこ -->
+      <g transform="translate(206,352)" filter="url(#wob)" stroke="#24222a" stroke-width="2.6" stroke-linejoin="round">
+        <path d="M-36 -18 L36 -18 L34 30 L-34 30 Z" fill="#f6dfa4"/>
+        <path d="M-40 -28 L40 -28 L38 -16 L-38 -16 Z" fill="#f4a9bf"/>
+        <path d="M-10 -28 V30 M10 -28 V30" stroke="#e2493f" stroke-width="2"/>
+        <text x="0" y="14" text-anchor="middle" font-family="Yomogi, sans-serif" font-size="13" fill="#24222a" stroke="none">おかし</text>
+      </g>
+      <g id="flyers"></g>
+      <g id="pops"></g>
+      <text id="judge" x="180" y="250" text-anchor="middle" font-family="Yomogi, sans-serif" font-size="34" fill="#24222a" stroke="#fbfaf3" stroke-width="6" paint-order="stroke"></text>
+    </svg>
+    <div class="overlay" id="overlay">
+      <div class="big" id="ovBig">にんぎょに おかしを あげよう</div>
+      <div class="small" id="ovSmall">「いち・に」は かってに あげるよ。<br>「さん！」で ボタンを おしてね。</div>
+      <button class="go" id="ovBtn" type="button">はじめる</button>
+    </div>
+  </div>
+
+  <button class="tap" id="tapBtn" type="button">さん！<small>ここ か えを タッチ（スペースキーでも OK）</small></button>
+  <p class="how">しっぱい すると にんぎょが どんどん こわく なるよ。ハートを 4つ あつめたら つぎへ。さいごは 3びき いっしょに「はーっ」。</p>
+</div>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var $=function(id){return document.getElementById(id)};
+  var INK='#24222a';
+  var POS=[{x:70,y:118},{x:180,y:118},{x:290,y:118}];
+  var TAIL=['#f4a9bf','#a9d9b8','#b9a7e6'];
+  var STAGES=[
+    {name:'1ぴき', show:[1], auto:[1,1], player:function(){return [1]}, bpm:76, intro:'まずは 1ぴき'},
+    {name:'2ひき', show:[0,2], auto:[0,2], player:function(m){return [m%2?0:2]}, bpm:82, intro:'つぎは 2ひき'},
+    {name:'3びき いっしょに', show:[0,1,2], auto:[0,2], player:function(){return [0,1,2]}, bpm:82, intro:'さいごは 3びき<br>いっしょに はーっ！'}
+  ];
+  var NEED=4, WIN=380;
+
+  // ---- え ----
+  function el(tag,attrs,parent){ var e=document.createElementNS(NS,tag); for(var k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; }
+  var M=[];
+  POS.forEach(function(p,i){
+    var g=el('g',{transform:'translate('+p.x+','+p.y+')'},$('mermaids'));
+    var bob=el('g',{},g);
+    var art=el('g',{filter:'url(#wob)',stroke:INK,'stroke-width':2.6,'stroke-linecap':'round','stroke-linejoin':'round'},bob);
+    el('path',{d:'M-14 18 C-22 46 -10 70 14 76 C26 78 34 74 40 68 L34 62 C28 66 20 68 12 64 C-2 56 -4 40 8 20 Z',fill:TAIL[i]},art);
+    el('path',{d:'M36 64 L54 46 L58 74 L40 74 Z',fill:TAIL[i]},art);
+    el('path',{d:'M-2 44 a3 3 0 1 0 0.1 0 M6 56 a3 3 0 1 0 0.1 0 M18 64 a3 3 0 1 0 0.1 0',fill:'none','stroke-width':1.6},art);
+    el('path',{d:'M-14 26 q-10 4 -12 12 M10 24 q10 2 12 10',fill:'none'},art);
+    el('path',{d:'M-8 -18 C-12 -30 -10 -38 -6 -44 M8 -18 C12 -30 14 -36 18 -42',fill:'none'},art);
+    el('circle',{r:22,fill:'#fbfaf3'},art);
+    el('path',{d:'M-14 -12 Q0 -24 14 -12',fill:'none'},art);
+    el('circle',{cx:-8,cy:0,r:2.8,fill:INK,stroke:'none'},art);
+    el('circle',{cx:8,cy:0,r:2.8,fill:INK,stroke:'none'},art);
+    var cheeks=el('g',{fill:'#f4a9bf',stroke:'none'},bob);
+    el('circle',{cx:-14,cy:8,r:3.6},cheeks); el('circle',{cx:14,cy:8,r:3.6},cheeks);
+    var brows=el('path',{d:'',fill:'none',stroke:INK,'stroke-width':2.4,'stroke-linecap':'round'},bob);
+    var mouth=el('path',{d:'',fill:'none',stroke:INK,'stroke-width':2.4,'stroke-linejoin':'round'},bob);
+    var teeth=el('path',{d:'M-5 9 L-3 12.5 L-1 9 M1 9 L3 12.5 L5 9',fill:'#fff',stroke:INK,'stroke-width':1},bob);
+    var anger=el('path',{d:'M16 -22 l6 6 M22 -22 l-6 6 M14 -19 h10 M19 -24 v10',stroke:'#e2493f','stroke-width':2.2,'stroke-linecap':'round',fill:'none'},bob);
+    M.push({g:g,bob:bob,brows:brows,mouth:mouth,teeth:teeth,cheeks:cheeks,anger:anger,open:0,chew:0,x:p.x,y:p.y});
+  });
+
+  // あげる こ（おおきい にんぎょ）
+  (function(){
+    var f=$('feeder');
+    var a=el('g',{filter:'url(#wob)',stroke:INK,'stroke-width':2.6,'stroke-linecap':'round','stroke-linejoin':'round'},f);
+    el('path',{d:'M-10 26 C-6 60 30 76 70 66 L80 54 L94 74 L72 80 C40 92 -14 80 -20 30 Z',fill:'#f6c9a8'},a);
+    el('path',{d:'M14 56 a4 4 0 1 0 .1 0 M34 64 a4 4 0 1 0 .1 0 M52 66 a4 4 0 1 0 .1 0',fill:'none','stroke-width':1.8},a);
+    el('path',{d:'M14 22 q16 -4 26 -16',fill:'none'},a);
+    el('circle',{r:30,fill:'#fbfaf3'},a);
+    el('path',{d:'M-30 -4 C-30 -30 -8 -36 6 -34 C20 -32 30 -22 30 -6 C18 -14 4 -18 -12 -14 C-20 -12 -26 -8 -30 -4 Z',fill:INK},a);
+    el('path',{d:'M-10 -32 L-28 -46 L-24 -28 Z M-10 -32 L4 -48 L6 -30 Z',fill:'#f4a9bf'},a);
+    el('circle',{cx:-11,cy:4,r:7,fill:'#fbfaf3'},a); el('circle',{cx:11,cy:4,r:7,fill:'#fbfaf3'},a);
+    el('circle',{cx:-11,cy:5,r:4,fill:INK,stroke:'none'},a); el('circle',{cx:11,cy:5,r:4,fill:INK,stroke:'none'},a);
+    el('circle',{cx:-12.5,cy:3.5,r:1.4,fill:'#fff',stroke:'none'},a); el('circle',{cx:9.5,cy:3.5,r:1.4,fill:'#fff',stroke:'none'},a);
+    el('path',{d:'M-5 16 Q0 21 6 15',fill:'none'},a);
+  })();
+
+  // あわ
+  var bubbles=[]; for(var i=0;i<9;i++){ var b={x:20+Math.random()*320,y:60+Math.random()*340,r:3+Math.random()*5,s:8+Math.random()*14}; b.e=el('circle',{r:b.r},$('bubbles')); bubbles.push(b); }
+
+  var SWEETS=[
+    '<path d="M-15 -6 L-8 0 L-15 6 Z M15 -6 L8 0 L15 6 Z" fill="#f4a9bf"/><circle r="8.5" fill="#f4a9bf"/><path d="M-3 -7 Q2 0 -3 7 M3 -7 Q8 0 3 7" fill="none"/>',
+    '<circle r="10" fill="#e0b47c"/><circle cx="-4" cy="-3" r="1.4" fill="#6f4e3d" stroke="none"/><circle cx="3" cy="2" r="1.4" fill="#6f4e3d" stroke="none"/><circle cx="-1" cy="5" r="1.4" fill="#6f4e3d" stroke="none"/><circle cx="4" cy="-5" r="1.4" fill="#6f4e3d" stroke="none"/>',
+    '<circle r="10" fill="#c98b5a"/><path d="M-9 -3 C-6 -10 6 -10 9 -3 C6 -6 -6 -6 -9 -3 Z" fill="#f4a9bf"/><circle r="3.4" fill="#fbfaf3"/>',
+    '<path d="M0 -10 C8 -10 10 -2 8 4 C6 10 2 12 0 12 C-2 12 -6 10 -8 4 C-10 -2 -8 -10 0 -10 Z" fill="#e2493f"/><path d="M-5 -10 L0 -14 L5 -10" fill="#a9d9b8"/>'
+  ];
+
+  // ---- おと ----
+  var ac=null, sound=true;
+  function tone(f,d,type,vol,delay,slide){
+    if(!sound) return;
+    try{
+      ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+      if(ac.state==='suspended') ac.resume();
+      var t=ac.currentTime+(delay||0), o=ac.createOscillator(), g=ac.createGain();
+      o.type=type||'triangle'; o.frequency.setValueAtTime(f,t);
+      if(slide) o.frequency.exponentialRampToValueAtTime(slide,t+d);
+      g.gain.setValueAtTime(vol||0.06,t); g.gain.exponentialRampToValueAtTime(0.0001,t+d);
+      o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t+d+0.03);
+    }catch(e){}
+  }
+  $('soundBtn').addEventListener('click',function(e){
+    e.stopPropagation();
+    sound=!sound; this.setAttribute('aria-pressed',sound); this.textContent=sound?'🔊 おと あり':'🔇 おと なし';
+  });
+
+  // ---- じょうたい ----
+  var S={state:'title', stage:0, hearts:0, mood:0, songStart:0, beatMs:0, m:-1, f:{}, judged:false, targets:[], flash:{text:'',t:0}};
+  var flyers=[], rings=[];
+
+  function drawHearts(){
+    var h=''; for(var i=0;i<NEED;i++) h+='<span class="'+(i<S.hearts?'on':'')+'">♥</span>';
+    $('hearts').innerHTML=h;
+    $('stageName').textContent=STAGES[S.stage].name;
+  }
+  function overlay(big,small,btn){
+    $('ovBig').innerHTML=big; $('ovSmall').innerHTML=small||''; $('ovSmall').hidden=!small;
+    $('ovBtn').textContent=btn||''; $('ovBtn').hidden=!btn;
+    $('overlay').hidden=false;
+  }
+  function hideOverlay(){ $('overlay').hidden=true; }
+
+  function startStage(i){
+    S.stage=i; S.hearts=0; S.mood=0; S.m=-1; S.f={}; S.judged=true;
+    var st=STAGES[i];
+    S.beatMs=60000/st.bpm;
+    M.forEach(function(mm,k){ mm.g.style.display = st.show.indexOf(k)>=0 ? '' : 'none'; mm.open=0; });
+    drawHearts();
+    overlay(st.intro, '', '');
+    setTimeout(function(){ hideOverlay(); S.state='play'; S.songStart=performance.now(); },1500);
+    S.state='intro';
+  }
+  $('ovBtn').addEventListener('click',function(e){
+    e.stopPropagation();
+    tone(660,0.1);
+    if(S.state==='title'||S.state==='end') startStage(0);
+  });
+
+  function setFlash(t){ S.flash={text:t,t:performance.now()}; }
+  function launch(target, fast, onArrive){
+    var mm=M[target];
+    var g=el('g',{stroke:INK,'stroke-width':1.8,'stroke-linejoin':'round'},$('flyers'));
+    g.innerHTML=SWEETS[Math.floor(Math.random()*SWEETS.length)];
+    flyers.push({g:g,x0:206,y0:318,x1:mm.x,y1:mm.y+10,t0:performance.now(),dur:fast?200:300,target:target,cb:onArrive});
+  }
+  function pop(x,y,text){
+    var t=el('text',{x:x,y:y,'text-anchor':'middle','font-family':'Yomogi, sans-serif','font-size':16,fill:INK},$('pops'));
+    t.textContent=text; var t0=performance.now();
+    (function step(){ var k=(performance.now()-t0)/600; if(k>=1){ t.remove(); return; } t.setAttribute('y',y-k*22); t.setAttribute('opacity',1-k); requestAnimationFrame(step); })();
+  }
+  function eat(target){
+    var mm=M[target]; mm.open=0; mm.chew=performance.now();
+    pop(mm.x+26,mm.y-6,'ぱく');
+    tone(880,0.07,'square',0.03,0,1200);
+  }
+
+  function tap(){
+    if(S.state!=='play') return;
+    $('tapBtn').classList.add('pressed'); setTimeout(function(){ $('tapBtn').classList.remove('pressed'); },80);
+    if(S.m<1 || S.judged){ return; }
+    var now=performance.now();
+    var expect=S.songStart+(S.m*4+2)*S.beatMs;
+    var diff=now-expect;
+    if(diff < -WIN){ pop(180,300,'まだだよ'); return; }
+    if(Math.abs(diff)<=WIN){
+      S.judged=true;
+      var great=Math.abs(diff)<=160;
+      S.targets.forEach(function(t){ launch(t,true,function(){ eat(t); }); });
+      rings.forEach(function(r){ r.e.remove(); }); rings=[];
+      S.hearts=Math.min(NEED,S.hearts+1); S.mood=Math.max(0,S.mood-1);
+      drawHearts();
+      setFlash(great?'ぴったり！':'いいね！');
+      [784,988,1175].forEach(function(f,i){ tone(f,0.12,'triangle',0.06,i*0.07); });
+    }
+  }
+  function miss(){
+    S.judged=true; S.mood++;
+    rings.forEach(function(r){ r.e.remove(); }); rings=[];
+    S.targets.forEach(function(t){ M[t].open=0; });
+    setFlash(S.mood>=3?'がおーっ！':'あれれ…');
+    tone(220,0.35,'sawtooth',0.05,0,140);
+    if(S.mood>=4){
+      S.state='angry';
+      setTimeout(function(){
+        overlay('ぷんぷん！','にんぎょが おこっちゃった。<br>もういっかい やってみよう','');
+        setTimeout(function(){ startStage(S.stage); },1800);
+      },500);
+    }
+  }
+  $('tapBtn').addEventListener('pointerdown',function(e){ e.preventDefault(); tap(); });
+  $('tapBtn').addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); tap(); } });
+  $('stage').addEventListener('pointerdown',function(e){ if(e.target.closest('button')) return; tap(); });
+  document.addEventListener('keydown',function(e){
+    if(e.repeat) return;
+    if(e.code==='Space'){ e.preventDefault(); if(S.state==='title'||S.state==='end'){ $('ovBtn').click(); } else tap(); }
+  });
+
+  // ---- リズム ----
+  var NOTES=[[523,659,784],[523,622,784]];
+  function beatTick(i){
+    var scale=NOTES[S.mood>=2?1:0];
+    var low=S.mood>=3?0.5:1;
+    tone(scale[i]*low,0.18,'triangle',i===2?0.04:0.07);
+    tone(scale[i]*low/2,0.12,'sine',0.05);
+  }
+  function measureStep(now){
+    var el_=now-S.songStart;
+    var m=Math.floor(el_/(4*S.beatMs));
+    var bp=(el_ - m*4*S.beatMs)/S.beatMs;
+    if(m!==S.m){ S.m=m; S.f={}; S.judged=(m<1); }
+    var st=STAGES[S.stage], f=S.f;
+    if(m===0){
+      var labels=['よーい','','',''];
+      for(var b=0;b<4;b++) if(bp>=b && !f['c'+b]){ f['c'+b]=1; $('count').textContent=labels[b]||$('count').textContent; tone(440,0.06,'square',0.03); }
+      return;
+    }
+    if(bp>=0 && !f.b0){ f.b0=1; $('count').textContent='いち'; beatTick(0);
+      var t1=st.auto[0]; M[t1].open=1; launch(t1,false,function(){ eat(t1); }); }
+    if(bp>=1 && !f.b1){ f.b1=1; $('count').textContent='に'; beatTick(1);
+      var t2=st.auto[1]; M[t2].open=1; launch(t2,false,function(){ eat(t2); });
+      S.targets=st.player(m);
+    }
+    if(bp>=1.35 && !f.open){ f.open=1;
+      S.targets.forEach(function(t){
+        M[t].open=1;
+        var r=el('circle',{cx:M[t].x,cy:M[t].y+10,r:44,fill:'none',stroke:'#e2493f','stroke-width':3,'stroke-dasharray':'6 5'},$('rings'));
+        rings.push({e:r,t:t});
+      });
+      if(S.targets.length>1) pop(180,206,'はーっ');
+    }
+    if(bp>=2 && !f.b2){ f.b2=1; $('count').textContent='さん！'; beatTick(2); }
+    if(!S.judged && el_ > (m*4+2)*S.beatMs + WIN){ miss(); }
+    if(bp>=3 && !f.b3){ f.b3=1; $('count').textContent='';
+      if(S.state==='play' && S.hearts>=NEED){
+        S.state='clear';
+        [523,659,784,1047].forEach(function(fq,i){ tone(fq,0.2,'triangle',0.07,i*0.12); });
+        setTimeout(function(){
+          if(S.stage<STAGES.length-1){ startStage(S.stage+1); }
+          else { S.state='end'; overlay('みんな おなか いっぱい！','ぜんぶ クリア。すごーい！','もういちど'); }
+        },900);
+      }
+    }
+  }
+
+  // ---- ループ ----
+  var last=performance.now();
+  function frame(now){
+    var dt=Math.min(0.05,(now-last)/1000); last=now;
+    if(S.state==='play') measureStep(now);
+
+    // こわさ
+    var mood=Math.min(3,S.mood);
+    var darkTarget=[0,0.12,0.26,0.42][mood];
+    var d=$('dark'); var cur=parseFloat(d.getAttribute('opacity'))||0;
+    d.setAttribute('opacity',(cur+(darkTarget-cur)*Math.min(1,dt*4)).toFixed(3));
+    $('count').setAttribute('fill', mood>=2 ? '#fbfaf3' : INK);
+
+    M.forEach(function(mm,i){
+      var chewing = now-mm.chew < 350;
+      var browsD = mood===0 ? 'M-12 -9 q4 -3 8 0 M4 -9 q4 -3 8 0' : mood===1 ? 'M-12 -8 h8 M4 -8 h8' : 'M-13 -12 L-4 -7 M13 -12 L4 -7';
+      mm.brows.setAttribute('d',browsD);
+      var mouthD, fill='none';
+      if(mm.open){ mouthD = mood>=3 ? 'M-8 7 Q0 -2 8 7 Q0 22 -8 7 Z' : 'M-6 8 Q0 1 6 8 Q0 18 -6 8 Z'; fill=INK; }
+      else if(chewing){ mouthD='M-4 10 q2 3 4 0 q2 3 4 0'; }
+      else if(mood>=2){ mouthD='M-6 13 Q0 7 6 13'; }
+      else { mouthD='M-5 9 Q0 14 5 9'; }
+      mm.mouth.setAttribute('d',mouthD); mm.mouth.setAttribute('fill',fill);
+      mm.teeth.style.display = (mm.open && mood>=3) ? '' : 'none';
+      mm.cheeks.style.display = mood>=2 ? 'none' : '';
+      mm.anger.style.display = mood>=2 ? '' : 'none';
+      var shake = mood>=3 ? Math.sin(now/40+i)*1.6 : 0;
+      var bob = Math.sin(now/500+i*1.7)*3;
+      var chewS = chewing ? 1+Math.sin((now-mm.chew)/350*Math.PI)*0.08 : 1;
+      mm.bob.setAttribute('transform','translate('+shake+','+bob+') scale('+chewS+')');
+    });
+
+    rings.forEach(function(r){
+      var target=S.songStart+(S.m*4+2)*S.beatMs, start=S.songStart+(S.m*4+1.35)*S.beatMs;
+      var k=Math.max(0,Math.min(1.2,(now-start)/(target-start)));
+      r.e.setAttribute('r',Math.max(10,44-k*32).toFixed(1));
+      r.e.setAttribute('stroke-width', k>0.85 && k<1.15 ? 5 : 3);
+    });
+
+    for(var j=flyers.length-1;j>=0;j--){
+      var fl=flyers[j], k=(now-fl.t0)/fl.dur;
+      if(k>=1){ fl.g.remove(); flyers.splice(j,1); if(fl.cb) fl.cb(); continue; }
+      var x=fl.x0+(fl.x1-fl.x0)*k, y=fl.y0+(fl.y1-fl.y0)*k - Math.sin(k*Math.PI)*60;
+      fl.g.setAttribute('transform','translate('+x.toFixed(1)+','+y.toFixed(1)+') rotate('+(k*360)+') scale('+(1-k*0.35)+')');
+    }
+
+    bubbles.forEach(function(b){ b.y-=b.s*dt; if(b.y<40){ b.y=410; b.x=20+Math.random()*320; } b.e.setAttribute('cx',(b.x+Math.sin(now/700+b.r)*4).toFixed(1)); b.e.setAttribute('cy',b.y.toFixed(1)); });
+
+    var fk=(now-S.flash.t)/800, jt=$('judge');
+    if(fk<1){ jt.textContent=S.flash.text; jt.setAttribute('opacity',(1-Math.max(0,fk-0.5)*2).toFixed(2)); jt.setAttribute('font-size',(34+Math.sin(Math.min(1,fk*4)*Math.PI)*6).toFixed(1)); }
+    else jt.textContent='';
+
+    requestAnimationFrame(frame);
+  }
+
+  // さいしょの え
+  M.forEach(function(mm,k){ mm.g.style.display = ''; });
+  drawHearts();
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>

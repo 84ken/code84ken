@@ -84,4 +84,40 @@ const GAMES = [
       { src: "sketches/yari-boss.jpg",    label: "ボスせっけいず" },
     ],
   },
+  {
+    file: "usagi-neko-kakekko.html",
+    title: "うさぎと ねこの かけっこ",
+    maker: "hana",
+    date: "2026-09-28",
+    age: 5,
+    emoji: "🐰",
+    memo: "うさぎのボタンをピピピピって連打して、ねこと どっちが はやく走れるか競走！ねこのはやさは3だんかい。ふたりで対戦もできる。",
+    sketch: [
+      { src: "sketches/kakekko-usagi-neko.jpg", label: "うさぎと ねこ" },
+    ],
+  },
+  {
+    file: "nikuman-gacha.html",
+    title: "ぱかっと にくまん",
+    maker: "hana",
+    date: "2026-09-28",
+    age: 5,
+    emoji: "🥟",
+    memo: "にくまんを ぎゅーっと引っぱると、ぱかっと開いて中の子の色がわかる。きいろ・オレンジ・むらさき…シークレットはぎんいろ、ちょうシークレットは きんピカ！出た子はキーホルダーずかんに集まる。",
+    sketch: [
+      { src: "sketches/nikuman-iroiro.jpg", label: "いろんな色の にくまん" },
+    ],
+  },
+  {
+    file: "ningyo-okashi.html",
+    title: "にんぎょに おかし",
+    maker: "hana",
+    date: "2026-10-02",
+    age: 5,
+    emoji: "🧜",
+    memo: "歌に合わせて「いち・に・さん」で人魚におかしをあげるリズムゲーム。1と2は自動、3だけ自分でタイミングよく押す。できないと人魚がどんどん怖くなる…。さいごは3びき一緒に「はーっ」と口を開ける。",
+    sketch: [
+      { src: "sketches/ningyo-okashi.jpg", label: "にんぎょたちと おかしの はこ" },
+    ],
+  },
 ];
