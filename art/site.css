@@ -976,5 +976,5 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 /* 公募ページ：デザインの条件の下の補足 */
 .oc .oc-note{font-size:14px;line-height:2;color:var(--muted);max-width:820px;margin:0 0 30px}
 
-/* トップの「観る・つくる・出る」の線は、走る緯糸と区別して最初から引いておく（動かさない） */
-.program-grid article::before{transform:scaleX(1)!important;transition:background-color .6s}
+/* トップの「観る・つくる・出る」「わたしたち・協賛のご案内」の線は、走る緯糸と区別して最初から引いておく（動かさない） */
+.program-grid article::before,.together-links>a::before{transform:scaleX(1)!important;transition:background-color .6s}
