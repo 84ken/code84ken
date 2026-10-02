@@ -972,3 +972,6 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 .oc .oc-origin-text p{font-size:17px;line-height:2.2;margin:0 0 1.2em}
 .oc .oc-origin-text p.oc-story-end{font-family:var(--serif);font-size:20px!important;margin-top:1.8em}
 @media(max-width:700px){.oc .oc-origin-text p{font-size:17px;line-height:2.1}.oc .oc-origin-text p.oc-story-end{font-size:18px!important}.oc-origin-logos img{height:30px}}
+
+/* 公募ページ：デザインの条件の下の補足 */
+.oc .oc-note{font-size:14px;line-height:2;color:var(--muted);max-width:820px;margin:0 0 30px}
