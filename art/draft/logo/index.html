@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ロゴ案の検証｜CAC 2027</title>
+<style>
+:root{--ink:#292a27;--muted:#5f625a;--kon:#2e3452;--shu:#b65a38;--line:#d3d2cb}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#e9e8e3;font:500 14px/1.7 'Noto Sans JP','Yu Gothic',sans-serif;color:var(--ink)}
+.app{display:grid;grid-template-columns:300px 1fr;height:100%}
+.panel{background:#fff;border-right:1px solid var(--line);padding:22px 20px;overflow:auto}
+.panel h1{font:600 18px/1.5 'Noto Serif JP',serif;margin:0 0 4px}
+.panel p{margin:0 0 16px;font-size:12.5px;color:var(--muted)}
+.grp{margin:18px 0 6px;font-size:11px;letter-spacing:.2em;color:var(--kon)}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:6px;padding:10px 12px;margin:0 0 8px;cursor:pointer;font:inherit;color:inherit}
+.opt b{display:block;font-size:14px}
+.opt span{display:block;font-size:12px;color:var(--muted);line-height:1.6}
+.opt[aria-pressed="true"]{border-color:var(--kon);box-shadow:inset 3px 0 0 var(--kon);background:#f3f4f8}
+.opt img{height:26px;width:auto;display:block;margin:6px 0 2px}
+.sizes{display:flex;gap:6px}
+.sizes .opt{text-align:center;padding:7px 0}
+.stage{display:grid;place-items:start center;overflow:auto;padding:22px}
+.frame{background:#fff;box-shadow:0 10px 40px #0000001a;transition:width .3s}
+iframe{display:block;border:0;width:100%;height:100%}
+.note{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:18px}
+@media(max-width:900px){.app{grid-template-columns:1fr;grid-template-rows:auto 1fr}.panel{border-right:0;border-bottom:1px solid var(--line);max-height:42vh}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="panel">
+<h1>ロゴ案の検証</h1>
+<p>いまのサイトに、届いたロゴ2案を当てはめて比べるためのページです（検証用・公開前）。</p>
+
+<div class="grp">比べる</div>
+<button class="opt" data-v="now" aria-pressed="true"><b>いまのロゴ</b><span>現状のサイト</span></button>
+
+<div class="grp">案A　四角の墨</div>
+<button class="opt" data-v="a1"><img src="logo-a-lock.png" alt=""><b>A-1　ロゴだけ差し替え</b><span>キービジュアル（3Dの繭）はそのまま</span></button>
+<button class="opt" data-v="a2"><b>A-2　キービジュアルごと見直す</b><span>3Dの繭を外し、ロゴの墨を最初の画面の主役に</span></button>
+
+<div class="grp">案B　繭のかたち</div>
+<button class="opt" data-v="b1"><img src="logo-b-lock.png" alt=""><b>B-1　ロゴだけ差し替え</b><span>キービジュアル（3Dの繭）はそのまま</span></button>
+<button class="opt" data-v="b2"><b>B-2　キービジュアルごと見直す</b><span>3Dの繭を外し、ロゴのかたちを繭として浮かべる</span></button>
+
+<div class="grp">画面の幅</div>
+<div class="sizes">
+<button class="opt" data-w="1280" aria-pressed="true">PC</button>
+<button class="opt" data-w="390">スマホ</button>
+</div>
+
+<p class="note">ロゴは届いた画像（JPEG）から切り出したもので、拡大すると少しぼやけます。採用が決まったら、ベクターデータをいただいて差し替えます。</p>
+</div>
+<div class="stage"><div class="frame" id="frame"><iframe id="site" src="../../index.html" title="サイト"></iframe></div></div>
+</div>
+
+<script>
+(function(){
+  var state={v:'now',w:1280};
+  var site=document.getElementById('site'),frame=document.getElementById('frame');
+
+  /* 案ごとの差し込み。ヘッダー・フッターのロゴは横組み、最初の画面は 2 のときだけ組み替える */
+  var LOGO={a:{lock:'logo-a-lock.png',mark:'logo-a-mark.png',word:'logo-a-word.png'},b:{lock:'logo-b-lock.png',mark:'logo-b-mark.png',word:'logo-b-word.png'}};
+  function css(v){
+    if(v==='now')return '';
+    var k=v.charAt(0),two=v.charAt(1)==='2',L=LOGO[k],base=new URL('.',location.href).href;
+    var o='.brand img{width:auto!important;height:44px!important}'+
+      '@media(max-width:700px){.brand img{height:36px!important}}'+
+      '.footer-brand img{width:220px!important;height:auto!important}';
+    if(two){
+      o+='.visual,.reading-light,#weft-ground{display:none!important}'+
+        '.cac-hero-mark{position:absolute;pointer-events:none;z-index:0;display:flex;flex-direction:column;align-items:center;gap:26px}'+
+        '.cac-hero-mark img{display:block;width:100%;height:auto}'+
+        '.cac-hero-mark .w{width:92%;opacity:0;animation:cacIn 1.2s .9s ease forwards}'+
+        '.hero{position:relative}.hero-caption{display:none!important}';
+      if(k==='a'){
+        // 墨がにじみ出るように現れて、そのまま止まる
+        o+='.cac-hero-mark{right:10%;top:50%;width:min(31vw,450px);transform:translateY(-50%)}'+
+          '.cac-hero-mark .m{clip-path:circle(0% at 45% 55%);animation:cacInk 2.2s cubic-bezier(.65,0,.2,1) .2s forwards}'+
+          '@keyframes cacInk{to{clip-path:circle(75% at 45% 55%)}}';
+      }else{
+        // 繭がゆっくり浮かんで揺れる
+        o+='.cac-hero-mark{right:8%;top:50%;width:min(36vw,520px);transform:translateY(-50%)}'+
+          '.cac-hero-mark .m{opacity:0;animation:cacIn 1.4s .2s ease forwards,cacFloat 7s 1.6s ease-in-out infinite;transform-origin:50% 60%}'+
+          '@keyframes cacFloat{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-10px) rotate(1.4deg)}}';
+      }
+      o+='@keyframes cacIn{to{opacity:1}}'+
+        '@media(max-width:700px){.cac-hero-mark{left:50%;right:auto;top:650px;bottom:auto;width:62vw;transform:translateX(-50%);gap:16px}.hero{min-height:max(1020px,100svh)!important}}'+
+        '@media (prefers-reduced-motion:reduce){.cac-hero-mark .m,.cac-hero-mark .w{animation:none;opacity:1;clip-path:none}}';
+    }
+    return o;
+  }
+  function inject(){
+    var d=site.contentDocument;if(!d||!d.head)return;
+    var st=d.getElementById('cac-logo-probe');if(!st){st=d.createElement('style');st.id='cac-logo-probe';d.head.appendChild(st);}
+    st.textContent=css(state.v);
+    if(state.v!=='now'){var LL=LOGO[state.v.charAt(0)];d.querySelectorAll('.brand img').forEach(function(i){i.src=new URL(LL.mark,location.href).href;});d.querySelectorAll('.footer-brand img').forEach(function(i){i.src=new URL(LL.lock,location.href).href;});}
+    var old=d.querySelector('.cac-hero-mark');if(old)old.remove();
+    if(state.v.charAt(1)==='2'){
+      var L=LOGO[state.v.charAt(0)],hero=d.getElementById('home'),box=d.createElement('div');
+      box.className='cac-hero-mark';box.setAttribute('aria-hidden','true');
+      box.innerHTML='<img class="m" src="'+new URL(L.mark,location.href).href+'" alt=""><img class="w" src="'+new URL(L.word,location.href).href+'" alt="">';
+      hero.appendChild(box);
+    }
+  }
+  function mark(){
+    document.querySelectorAll('[data-v]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===state.v));});
+    document.querySelectorAll('[data-w]').forEach(function(b){b.setAttribute('aria-pressed',String(+b.dataset.w===state.w));});
+  }
+  function size(){
+    frame.style.width=state.w+'px';
+    frame.style.height=(state.w<500?844:Math.min(820,window.innerHeight-44))+'px';
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.opt');if(!b)return;
+    if(b.dataset.v){state.v=b.dataset.v;site.src='../../index.html?'+Date.now();}
+    if(b.dataset.w){state.w=+b.dataset.w;size();}
+    mark();
+  });
+  site.addEventListener('load',inject);
+  window.addEventListener('resize',size);
+  var q=new URLSearchParams(location.search);if(q.get('v'))state.v=q.get('v');if(q.get('w'))state.w=+q.get('w');
+  if(q.get('only')){document.querySelector('.panel').style.display='none';document.querySelector('.app').style.gridTemplateColumns='1fr';document.querySelector('.stage').style.padding='0';}
+  size();mark();
+})();
+</script>
+</body>
+</html>
