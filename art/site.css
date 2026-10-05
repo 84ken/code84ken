@@ -978,3 +978,8 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 
 /* トップの「観る・つくる・出る」「わたしたち・協賛のご案内」の線は、走る緯糸と区別して最初から引いておく（動かさない） */
 .program-grid article::before,.together-links>a::before{transform:scaleX(1)!important;transition:background-color .6s}
+
+/* 協力欄：縦長のロゴ（墨鹿屋）は少し大きく。Instagram へのリンク */
+.logo-slot.is-tall img{max-height:64px}
+.logo-link{border-bottom:1px solid #a6a79b;padding-bottom:1px}
+.logo-link::after{content:" ↗";font-size:.9em;color:var(--muted)}
