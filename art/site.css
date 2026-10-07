@@ -1003,18 +1003,12 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 @media (prefers-reduced-motion:reduce){.cac-svg .v-sen path,.cac-svg .v-dot .sp{transition:none}}
 
 /* SYMBOL：C と C のあいだで、人は繭になる */
-.symbol{position:relative;margin-top:80px;max-width:1040px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px 60px;align-items:center;background:#f5f4efeb;padding:50px 48px 44px}
+.symbol{position:relative;margin-top:110px;max-width:560px}
+.symbol .eyebrow{margin-bottom:22px}
+.symbol-mark{width:min(400px,100%);margin-left:-14px}
 .symbol-mark .cac-svg,.symbol-mark img{width:100%;height:auto}
-.symbol-caption{display:flex;align-items:baseline;gap:14px;margin:18px 0 0;min-height:1.9em;font-size:13px;letter-spacing:.12em;color:var(--muted)}
-.symbol-caption b{font:400 17px/1 Georgia,var(--serif);letter-spacing:.06em;color:var(--kon);min-width:2.6em}
-.symbol-copy .eyebrow{font-size:12px;letter-spacing:.18em;margin:0 0 14px}
-.symbol-copy h3{font:400 clamp(22px,2.2vw,28px)/1.75 var(--serif);letter-spacing:.05em;margin:0 0 16px}
-.symbol-copy p{font-size:15px;line-height:2.1;margin:0 0 22px}
-.symbol-key{margin:0;border-top:1px solid var(--line)}
-.symbol-key div{display:grid;grid-template-columns:3.2em 1fr;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
-.symbol-key dt{font:400 22px/1 Georgia,var(--serif);color:var(--kon)}
-.symbol-key dd{margin:0;font-size:14px;line-height:1.8}
-.symbol-key dd span{display:block;font:12px/1.7 Georgia,serif;letter-spacing:.13em;color:var(--muted)}
-.about-section{padding-bottom:200px}
-@media(max-width:900px){.symbol{grid-template-columns:1fr;padding:36px 28px 30px;gap:24px}}
-@media(max-width:700px){.about-section{padding-bottom:110px}.symbol{margin-top:56px;padding:28px 20px 24px;width:93%}.symbol-copy p{font-size:14px}}
+.symbol-key{display:flex;flex-wrap:wrap;gap:4px 26px;margin:20px 0 44px;padding-top:14px;border-top:1px solid var(--line);font:12px/1.8 Georgia,serif;letter-spacing:.13em;color:var(--muted)}
+.symbol-key b{font-weight:400;color:var(--kon);margin-right:8px}
+.symbol h3{font:400 clamp(24px,2.3vw,32px)/1.75 var(--serif);letter-spacing:.05em;margin:0 0 24px}
+.symbol p:not(.eyebrow):not(.symbol-key){line-height:2.2;margin:0 0 14px}
+@media(max-width:700px){.about-section{padding-bottom:110px}.symbol{margin-top:70px;background:linear-gradient(90deg,#ffffffcb,#ffffff55);padding:12px 8px 12px 0}.symbol-mark{margin-left:-8px}.symbol p:not(.eyebrow):not(.symbol-key){font-size:14px}.symbol-key{gap:2px 14px;font-size:10.5px;letter-spacing:.06em}}
