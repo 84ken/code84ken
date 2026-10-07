@@ -23,13 +23,12 @@ p.lead{color:var(--muted);margin:0 0 8px;max-width:720px}
 .cac{width:min(640px,90%);height:auto;display:block;overflow:visible;--fill:#2b2d33}
 .cac .mid{fill:var(--fill)}
 .stage.dark .cac use{filter:invert(.93) sepia(.08)}
-.v{opacity:0;transition:opacity .9s ease,filter .9s ease,transform .9s cubic-bezier(.2,.7,.2,1);filter:blur(6px);transform:translateY(6px);transform-box:fill-box;transform-origin:50% 50%}
-.v.on{opacity:1;filter:blur(0);transform:none}
+.weft line{stroke-linecap:round}
 .v text{stroke:none}
-.v-sen path{fill:none;stroke:var(--fill);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.6s ease .1s}
+.v-sen path{fill:none;stroke:var(--fill);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset .7s ease}
 .v-sen.on path{stroke-dashoffset:0}
 .v-mayu .thread{fill:none;stroke-width:.7;opacity:.55}
-.v-dot .sp{transition:transform 1.2s cubic-bezier(.2,.7,.2,1);transform:scale(.2);transform-box:fill-box;transform-origin:50% 50%}
+.v-dot .sp{transition:transform .6s cubic-bezier(.2,.7,.2,1);transform:scale(.2);transform-box:fill-box;transform-origin:50% 50%}
 .v-dot.on .sp{transform:none}
 .label{margin-top:22px;font-size:12px;letter-spacing:.2em;color:var(--muted);min-height:1.9em}
 .stage.dark .label{color:#a9a69c}
@@ -53,13 +52,13 @@ p.lead{color:var(--muted);margin:0 0 8px;max-width:720px}
 <body>
 <main>
 <p class="eyebrow">DYNAMIC LOGO — 試作</p>
-<h1>真ん中は、いつも生まれ変わる。</h1>
-<p class="lead">確定ロゴの左右の「C」と英字はそのままに、真ん中だけを入れ替えます。「A」を基本形として長めにとどまり、ほかの姿はゆっくり通り過ぎる設定です。</p>
+<h1>横糸が通るたび、真ん中が織り替わる。</h1>
+<p class="lead">確定ロゴの左右の「C」と英字はそのままに、真ん中だけが入れ替わります。銘仙の色の横糸が左から差し込まれ、糸が通ったところから新しい姿に織り替わります。横糸は、つながりと変化のしるしです。</p>
 
 <div class="stage" id="s1"><svg class="cac" data-cac viewBox="87.75 212 420 171.25" role="img" aria-label="CAC CHICHIBU ART CREATION"></svg><div class="label" data-label></div></div>
 <div class="ctrl" id="speed">
-<button data-s="slow" aria-pressed="true">ゆっくり（Aで5秒・ほか2.4秒）</button>
-<button data-s="fast" aria-pressed="false">はやめ（Aで2.4秒・ほか1.4秒）</button>
+<button data-s="fast" aria-pressed="true">はやめ（Aで1.6秒・ほか0.8秒）</button>
+<button data-s="slow" aria-pressed="false">ゆっくり（Aで3秒・ほか1.6秒）</button>
 <button data-s="stop" aria-pressed="false">止める（Aのまま）</button>
 </div>
 
@@ -70,7 +69,7 @@ p.lead{color:var(--muted);margin:0 0 8px;max-width:720px}
 <div class="grid" id="grid"></div>
 
 <h2>ヘッダーの大きさでは</h2>
-<p class="lead">小さいと動きがうるさく、「CAC」とも読みにくくなるので、ふだんは「A」で止め、マウスを乗せたときだけ切り替わる案です。</p>
+<p class="lead">小さいと動きがうるさく、「CAC」とも読みにくくなるので、ふだんは「A」で止め、マウスを乗せたときだけ横糸が走って切り替わる案です。</p>
 <div class="hdr" id="hdr"><svg class="cac" data-cac data-hover viewBox="87.75 212 420 171.25" role="img" aria-label="CAC"></svg><span>ちちぶアート<br>クリエーション 2027</span><em>← マウスを乗せる</em></div>
 
 <ul class="note">
@@ -82,23 +81,27 @@ p.lead{color:var(--muted);margin:0 0 8px;max-width:720px}
 <script>
 (function(){
   /* 真ん中の姿。座標は確定ロゴの viewBox に合わせる（A は x251〜341・y214〜328、中心 x296） */
-  var CX=296,CY=271,BASE=328;
+  var CX=296,CY=271,BASE=328,MX=232,MW=124;
+  /* 横糸の色（逸見織物さんの銘仙の写真から取った差し色） */
+  var LOOM=['#b65a38','#3a8193','#b0667a','#7f7a3a','#2f5d8b','#9a2d29','#7c86a8','#2e3452'];
+  var LANE=[244,271,298];
   var mayu=function(x,y,w,h){var P=[[.5,0],[.8,0,.98,.14,.98,.3],[.98,.42,.93,.46,.935,.5],[.94,.54,.99,.6,.99,.72],[.99,.88,.8,1,.5,1],[.2,1,.01,.88,.01,.72],[.01,.6,.06,.54,.065,.5],[.07,.46,.02,.42,.02,.3],[.02,.14,.2,0,.5,0]];
     var d='M'+(x+P[0][0]*w)+' '+(y+P[0][1]*h);for(var i=1;i<P.length;i++){var q=P[i];d+='C'+(x+q[0]*w)+' '+(y+q[1]*h)+' '+(x+q[2]*w)+' '+(y+q[3]*h)+' '+(x+q[4]*w)+' '+(y+q[5]*h);}return d+'Z';};
-  var threads='';for(var i=0;i<9;i++){var yy=226+i*11.5,a=8+((i*7)%5)*3;threads+='<path class="thread" d="M'+(258)+' '+yy+'Q'+CX+' '+(yy-a)+' '+(334)+' '+(yy+((i%2)?4:-4))+'"/>';}
+  var threads='';for(var i=0;i<9;i++){var yy=226+i*11.5,a=8+((i*7)%5)*3;threads+='<path class="thread" d="M258 '+yy+'Q'+CX+' '+(yy-a)+' 334 '+(yy+((i%2)?4:-4))+'"/>';}
   var dots='';[[-30,-34,5],[34,-28,3.5],[38,30,6],[-36,32,3],[-8,48,2.5],[20,-48,2.2],[46,4,2.6]].forEach(function(p){dots+='<circle class="sp" cx="'+(CX+p[0])+'" cy="'+(CY+p[1])+'" r="'+p[2]+'"/>';});
   var V=[
-    {k:'A',  name:'01 ｜ A（基本形）',  svg:'<use href="#cacbase" clip-path="url(#cacmid)"/>'},
-    {k:'a',  name:'02 ｜ a（小文字）',  svg:'<text x="'+CX+'" y="'+BASE+'" text-anchor="middle" font-family="Georgia,\'Noto Serif JP\',serif" font-size="158">a</text>'},
-    {k:'あ', name:'03 ｜ あ（日本語）', svg:'<text x="'+CX+'" y="'+(CY+4)+'" text-anchor="middle" dominant-baseline="central" font-family="\'Noto Serif JP\',serif" font-weight="400" font-size="112">あ</text>'},
-    {k:'線', name:'04 ｜ 線（ドローイング）', cls:'v-sen', svg:'<path d="M248 300C262 250 276 226 290 236S280 300 300 292 318 230 330 238 322 300 346 280"/>'},
-    {k:'繭', name:'05 ｜ 繭（シンボル）', cls:'v-mayu', svg:'<path d="'+mayu(256,222,80,104)+'" opacity=".9"/><g style="fill:none;stroke:#fff">'+threads+'</g>'},
-    {k:'●',  name:'06 ｜ 粒（生命）', cls:'v-dot', svg:'<circle cx="'+CX+'" cy="'+CY+'" r="30"/>'+dots},
-    {k:'ART',name:'07 ｜ ART（芸術）', svg:'<text x="'+CX+'" y="'+(CY+2)+'" text-anchor="middle" dominant-baseline="central" font-family="Georgia,\'Noto Serif JP\',serif" font-size="44" letter-spacing="4">ART</text>'},
-    {k:'?',  name:'08 ｜ ？（これからも…）', svg:'<text x="'+CX+'" y="'+BASE+'" text-anchor="middle" font-family="Georgia,\'Noto Serif JP\',serif" font-size="150">?</text>'}
+    {name:'01 ｜ A（基本形）',  svg:'<use href="#cacbase" clip-path="url(#cacmid)"/>'},
+    {name:'02 ｜ a（小文字）',  svg:'<text x="'+CX+'" y="'+BASE+'" text-anchor="middle" font-family="Georgia,\'Noto Serif JP\',serif" font-size="158">a</text>'},
+    {name:'03 ｜ あ（日本語）', svg:'<text x="'+CX+'" y="'+(CY+4)+'" text-anchor="middle" dominant-baseline="central" font-family="\'Noto Serif JP\',serif" font-weight="400" font-size="112">あ</text>'},
+    {name:'04 ｜ 線（ドローイング）', cls:'v-sen', svg:'<path d="M248 300C262 250 276 226 290 236S280 300 300 292 318 230 330 238 322 300 346 280"/>'},
+    {name:'05 ｜ 繭（シンボル）', cls:'v-mayu', svg:'<path d="'+mayu(256,222,80,104)+'" opacity=".9"/><g style="fill:none;stroke:#fff">'+threads+'</g>'},
+    {name:'06 ｜ 粒（生命）', cls:'v-dot', svg:'<circle cx="'+CX+'" cy="'+CY+'" r="30"/>'+dots},
+    {name:'07 ｜ ART（芸術）', svg:'<text x="'+CX+'" y="'+(CY+2)+'" text-anchor="middle" dominant-baseline="central" font-family="Georgia,\'Noto Serif JP\',serif" font-size="44" letter-spacing="4">ART</text>'},
+    {name:'08 ｜ ？（これからも…）', svg:'<text x="'+CX+'" y="'+BASE+'" text-anchor="middle" font-family="Georgia,\'Noto Serif JP\',serif" font-size="150">?</text>'}
   ];
-  var SPEED={slow:[5000,2400],fast:[2400,1400],stop:[0,0]},speed='slow';
+  var SPEED={fast:[1600,800,520],slow:[3000,1600,700],stop:[0,0,0]},speed='fast';
   var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ease=function(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;};
 
   fetch('../../logo.svg?v=20261007').then(function(r){return r.text();}).then(function(t){
     var inner=t.replace(/^[\s\S]*?<svg[^>]*>/,'').replace(/<\/svg>\s*$/,'');
@@ -108,33 +111,65 @@ p.lead{color:var(--muted);margin:0 0 8px;max-width:720px}
       var body=inner.replace(/id="([^"]+)"/g,'id="$1_'+n+'"').replace(/url\(#([^)]+)\)/g,'url(#$1_'+n+')');
       var html='<defs><g id="'+base+'">'+body+'</g>'+
         '<clipPath id="'+side+'"><rect x="80" y="200" width="152" height="140"/><rect x="356" y="200" width="160" height="140"/><rect x="80" y="340" width="440" height="60"/></clipPath>'+
-        '<clipPath id="'+mid+'"><rect x="232" y="200" width="124" height="140"/></clipPath></defs>'+
-        '<use href="#'+base+'" clip-path="url(#'+side+')"/><g class="mid">';
+        '<clipPath id="'+mid+'"><rect x="232" y="200" width="124" height="140"/></clipPath>';
+      V.forEach(function(v,i){if(idx==null)html+='<clipPath id="w'+n+'_'+i+'"><rect class="wr" x="'+MX+'" y="200" width="'+(i===0?MW:0)+'" height="140"/></clipPath>';});
+      html+='<linearGradient id="wg'+n+'" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="currentColor" stop-opacity="0"/><stop offset=".75" stop-color="currentColor" stop-opacity=".9"/><stop offset="1" stop-color="currentColor" stop-opacity="1"/></linearGradient>';
+      html+='</defs><use href="#'+base+'" clip-path="url(#'+side+')"/><g class="mid">';
       V.forEach(function(v,i){if(idx!=null&&i!==idx)return;
-        html+='<g class="v '+(v.cls||'')+(idx!=null?' on':'')+'" data-i="'+i+'">'+v.svg.replace('#cacbase','#'+base).replace('#cacmid','#'+mid)+'</g>';});
-      svg.innerHTML=html+'</g>';
+        html+='<g class="v '+(v.cls||'')+(idx!=null||i===0?' on':'')+'" data-i="'+i+'"'+(idx==null?' clip-path="url(#w'+n+'_'+i+')"':'')+'>'+v.svg.replace('#cacbase','#'+base).replace('#cacmid','#'+mid)+'</g>';});
+      html+='</g>';
+      if(idx==null)html+='<g class="weft" style="color:#b65a38;opacity:0"><line x1="0" y1="271" x2="1" y2="271" stroke="url(#wg'+n+')" stroke-width="3"/></g>';
+      svg.innerHTML=html;
+      return n;
     }
-    // 8つの姿の一覧
     var grid=document.getElementById('grid');
     V.forEach(function(v,i){var c=document.createElement('div');c.className='cell';c.innerHTML='<svg class="cac" viewBox="87.75 212 420 171.25"></svg><small>'+v.name+'</small>';grid.appendChild(c);build(c.querySelector('svg'),i);});
 
-    // 動くもの
     var players=[];
     document.querySelectorAll('[data-cac]').forEach(function(svg){
-      build(svg,null);
-      var p={svg:svg,i:0,timer:null,label:svg.parentNode.querySelector('[data-label]'),hover:svg.hasAttribute('data-hover')};
-      p.show=function(i){p.i=i;svg.querySelectorAll('.v').forEach(function(g){g.classList.toggle('on',+g.dataset.i===i);});if(p.label)p.label.textContent=V[i].name;};
-      p.next=function(){var sp=SPEED[p.hover?'fast':speed];if(!sp[0]||still||document.hidden){p.show(0);return;}
-        p.show((p.i+1)%V.length);p.timer=setTimeout(p.next,p.i===0?sp[0]:sp[1]);};
-      p.start=function(){clearTimeout(p.timer);p.show(0);var sp=SPEED[p.hover?'fast':speed];if(sp[0]&&!still)p.timer=setTimeout(p.next,p.hover?600:sp[0]);};
-      p.stop=function(){clearTimeout(p.timer);p.show(0);};
-      players.push(p);
-      if(p.hover){var h=svg.closest('.hdr');h.addEventListener('mouseenter',p.start);h.addEventListener('mouseleave',p.stop);p.show(0);}
+      var id=build(svg,null);
+      var rects=[].map.call(V,function(_,i){return svg.querySelector('#w'+id+'_'+i+' rect');});
+      var groups=[].slice.call(svg.querySelectorAll('.mid .v'));
+      var weft=svg.querySelector('.weft'),line=weft.querySelector('line'),grad=svg.querySelector('#wg'+id);
+      var p={i:0,k:0,timer:null,raf:0,label:svg.parentNode.querySelector('[data-label]'),hover:svg.hasAttribute('data-hover')};
+      function setLabel(){if(p.label)p.label.textContent=V[p.i].name;}
+      /* 横糸を左から右へ通し、通ったところから次の姿に織り替える */
+      p.weave=function(to,dur,done){
+        var from=p.i,col=LOOM[p.k%LOOM.length],y=LANE[p.k%LANE.length];p.k++;
+        grad.querySelectorAll('stop').forEach(function(st){st.setAttribute('stop-color',col);});weft.style.transition='none';weft.style.opacity=1;
+        line.setAttribute('y1',y);line.setAttribute('y2',y);
+        var t0=performance.now();
+        groups[to].classList.remove('on');
+        (function step(now){
+          var t=Math.min(1,(now-t0)/dur);p.paint(from,to,t);
+          if(t<1){p.raf=requestAnimationFrame(step);return;}
+          groups[from].classList.remove('on');rects[from].setAttribute('width',0);
+          p.i=to;setLabel();
+          weft.style.transition='opacity .35s ease';weft.style.opacity=0;
+          done&&done();
+        })(t0);
+      };
+      p.paint=function(from,to,t){
+          var L0=60,L1=540,tail=170,x=L0+(L1-L0)*ease(t);
+          line.setAttribute('x1',x-tail);line.setAttribute('x2',x);grad.setAttribute('x1',x-tail);grad.setAttribute('x2',x);
+          var w=Math.max(0,Math.min(MW,x-MX));
+          rects[to].setAttribute('x',MX);rects[to].setAttribute('width',w);
+          rects[from].setAttribute('x',MX+w);rects[from].setAttribute('width',MW-w);
+          if(w>0&&!groups[to].classList.contains('on'))groups[to].classList.add('on');
+      };
+      p.loop=function(){var sp=SPEED[p.hover?'fast':speed];if(!sp[0]||still||document.hidden)return;
+        p.weave((p.i+1)%V.length,sp[2],function(){p.timer=setTimeout(p.loop,p.i===0?sp[0]:sp[1]);});};
+      p.reset=function(){clearTimeout(p.timer);cancelAnimationFrame(p.raf);weft.style.opacity=0;
+        groups.forEach(function(g,i){g.classList.toggle('on',i===0);rects[i].setAttribute('x',MX);rects[i].setAttribute('width',i===0?MW:0);});p.i=0;setLabel();};
+      p.start=function(){p.reset();var sp=SPEED[p.hover?'fast':speed];if(sp[0]&&!still)p.timer=setTimeout(p.loop,p.hover?150:sp[0]);};
+      players.push(p);setLabel();
+      if(p.hover){var h=svg.closest('.hdr');h.addEventListener('mouseenter',p.start);h.addEventListener('mouseleave',p.reset);}
       else p.start();
     });
+    var q=new URLSearchParams(location.search);if(q.has('frame')){var P0=players[0],to=+(q.get('to')||1);P0.reset();var f=document.querySelector('#s1 .weft');f.style.transition='none';f.style.opacity=1;document.querySelectorAll('#s1 linearGradient[id^=wg] stop').forEach(function(st){st.setAttribute('stop-color',LOOM[+(q.get('c')||0)]);});P0.paint(0,to,+q.get('frame'));}
     document.getElementById('speed').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;speed=b.dataset.s;
       this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});players.forEach(function(p){if(!p.hover)p.start();});});
-    document.addEventListener('visibilitychange',function(){players.forEach(function(p){if(!p.hover)(document.hidden?p.stop():p.start());});});
+    document.addEventListener('visibilitychange',function(){players.forEach(function(p){if(!p.hover)(document.hidden?p.reset():p.start());});});
   });
 })();
 </script>
