@@ -1003,7 +1003,7 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 @media (prefers-reduced-motion:reduce){.cac-svg .v-sen path,.cac-svg .v-dot .sp{transition:none}}
 
 /* SYMBOL：C と C のあいだで、人は繭になる */
-.symbol{position:relative;margin-top:110px;max-width:560px}
+.symbol{position:relative;margin-top:90px;max-width:560px}
 .symbol .eyebrow{margin-bottom:22px}
 .symbol-mark{width:min(400px,100%);margin-left:-14px}
 .symbol-mark .cac-svg,.symbol-mark img{width:100%;height:auto}
