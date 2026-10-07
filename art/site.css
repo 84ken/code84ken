@@ -9,7 +9,7 @@ a:hover{opacity:.65}
 ::selection{background:#dedbce}
 header{position:fixed;z-index:20;inset:0 0 auto;padding:20px 4%;display:flex;align-items:center;justify-content:space-between;gap:30px;background:#ffffffed;border-bottom:1px solid #eee}
 .brand{display:flex;align-items:center;gap:17px}
-.brand img{width:102px;height:46px;object-fit:contain}
+.brand img,.brand .cac-svg{width:102px;height:46px;object-fit:contain}
 .brand span{font-size:12px;line-height:1.65;letter-spacing:.06em}
 header nav{display:flex;gap:30px;align-items:center;font-size:14px}
 .nav-call{border-bottom:1px solid var(--ink);padding:8px 0}
@@ -107,7 +107,7 @@ p{margin-bottom:23px}
 .motion small{font-size:10px;letter-spacing:.1em;color:#656b60;background:#ffffffb8}
 .motion button{font-size:12px;padding:7px 12px;border:1px solid #c9ccbf;background:#fffffff0}
 footer{padding:65px 8% 85px;background:#f1f2ed;border-top:1px solid #d9dcd1;display:grid;grid-template-columns:1fr 1fr;gap:45px}
-.footer-brand img{width:180px;height:auto}
+.footer-brand img,.footer-brand .cac-svg{width:180px;height:auto}
 .footer-brand p{font-size:13px;margin:25px 0 0}
 .footer-nav{display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:18px;font-size:14px}
 .footer-bottom{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:24px;align-items:center;border-top:1px solid var(--line);padding-top:24px;font-size:12px}
@@ -139,7 +139,7 @@ footer{padding:65px 8% 85px;background:#f1f2ed;border-top:1px solid #d9dcd1;disp
 }
 
 @media(max-width:700px){header{padding:14px 6%}
-.brand img{width:84px;height:37px}
+.brand img,.brand .cac-svg{width:84px;height:37px}
 .brand span{display:block;font-size:10px}
 .brand{gap:12px}
 header nav{display:none}
@@ -197,7 +197,7 @@ h2{font-size:29px;line-height:1.8;letter-spacing:.02em}
 .motion small{display:none}
 .motion button{font-size:11px}
 footer{display:block;padding:45px 7% 90px}
-.footer-brand img{width:160px}
+.footer-brand img,.footer-brand .cac-svg{width:160px}
 .footer-nav{margin:40px 0;gap:18px;font-size:13px}
 .footer-bottom{gap:17px}
 .footer-bottom span{flex-basis:100%}
@@ -989,3 +989,32 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 .logo-mini{display:block;line-height:0;opacity:.85;transition:opacity .3s}
 .logo-mini:hover{opacity:1}
 .logo-mini img{height:var(--h,36px);width:auto;max-width:none}
+
+/* 動くロゴ（scripts/cac-logo.js）
+   左の C＝CHICHIBU／COCOON、右の C＝CREATION。あいだの A＝ART だけが、横糸が通るたびに織り替わる */
+.cac-svg{display:block;overflow:visible}
+.cac-svg .cac-mid{fill:#2c2e35}
+.cac-svg .v-sen path{fill:none;stroke:#2c2e35;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset .7s ease}
+.cac-svg .v-sen.on path{stroke-dashoffset:0}
+.cac-svg .v-mayu .th path{fill:none;stroke:#fff;stroke-width:.7;opacity:.55}
+.cac-svg .v-dot .sp{transform:scale(.2);transform-box:fill-box;transform-origin:50% 50%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.cac-svg .v-dot.on .sp{transform:none}
+.brand:hover{opacity:1}
+@media (prefers-reduced-motion:reduce){.cac-svg .v-sen path,.cac-svg .v-dot .sp{transition:none}}
+
+/* SYMBOL：C と C のあいだで、人は繭になる */
+.symbol{position:relative;margin-top:80px;max-width:1040px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px 60px;align-items:center;background:#f5f4efeb;padding:50px 48px 44px}
+.symbol-mark .cac-svg,.symbol-mark img{width:100%;height:auto}
+.symbol-caption{display:flex;align-items:baseline;gap:14px;margin:18px 0 0;min-height:1.9em;font-size:13px;letter-spacing:.12em;color:var(--muted)}
+.symbol-caption b{font:400 17px/1 Georgia,var(--serif);letter-spacing:.06em;color:var(--kon);min-width:2.6em}
+.symbol-copy .eyebrow{font-size:12px;letter-spacing:.18em;margin:0 0 14px}
+.symbol-copy h3{font:400 clamp(22px,2.2vw,28px)/1.75 var(--serif);letter-spacing:.05em;margin:0 0 16px}
+.symbol-copy p{font-size:15px;line-height:2.1;margin:0 0 22px}
+.symbol-key{margin:0;border-top:1px solid var(--line)}
+.symbol-key div{display:grid;grid-template-columns:3.2em 1fr;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.symbol-key dt{font:400 22px/1 Georgia,var(--serif);color:var(--kon)}
+.symbol-key dd{margin:0;font-size:14px;line-height:1.8}
+.symbol-key dd span{display:block;font:12px/1.7 Georgia,serif;letter-spacing:.13em;color:var(--muted)}
+.about-section{padding-bottom:200px}
+@media(max-width:900px){.symbol{grid-template-columns:1fr;padding:36px 28px 30px;gap:24px}}
+@media(max-width:700px){.about-section{padding-bottom:110px}.symbol{margin-top:56px;padding:28px 20px 24px;width:93%}.symbol-copy p{font-size:14px}}
