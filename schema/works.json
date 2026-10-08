@@ -74,6 +74,26 @@
     "year": 2025
   },
   {
+    "title": "かきだ鮨",
+    "client": "かきだ鮨",
+    "category": "海外向けWebサイト",
+    "role": "Webディレクション／ビジュアルディレクション",
+    "img": "assets/kakida-sushi.webp",
+    "width": 1600,
+    "height": 900,
+    "thumbnail": "assets/kakida-sushi.webp",
+    "thumbnailWidth": 1600,
+    "thumbnailHeight": 900,
+    "url": "https://kakida-sushi.com/",
+    "linkLabel": "公式サイトを見る",
+    "sourceGroup": "facebook",
+    "topics": [
+      "食・農"
+    ],
+    "detailPage": "works/kakida-sushi.html",
+    "year": 2026
+  },
+  {
     "title": "ちょこたび観光プロモーション",
     "client": "埼玉県物産観光協会",
     "category": "観光プロモーション",
