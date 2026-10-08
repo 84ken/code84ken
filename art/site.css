@@ -527,7 +527,9 @@ header nav{gap:22px}
 .faq p{font-size:14px;color:#4a4b45;margin:0 0 16px;padding-left:2px;line-height:2}
 .cta-apply{margin-top:34px;border:2px solid #8a7a55;background:#faf7f0;padding:22px 24px;max-width:740px}
 .cta-apply b{display:block;font-size:17px;font-family:var(--serif);font-weight:400;letter-spacing:.04em;margin-bottom:6px}
-.cta-apply span{font-size:13px;color:var(--muted)}
+.cta-apply>span{display:block;font-size:13px;color:var(--muted)}
+.cta-apply .button{display:inline-flex;margin-top:18px}
+.oc dd a,.detail-main dd a{text-decoration:underline;text-underline-offset:3px}
 .nav-ig{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;flex-shrink:0;color:inherit}
 .nav-ig svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.3}
 .nav-ig svg .dot{fill:currentColor;stroke:none}
