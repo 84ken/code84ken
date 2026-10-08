@@ -1014,3 +1014,11 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 .symbol h3{font:400 clamp(24px,2.3vw,32px)/1.75 var(--serif);letter-spacing:.05em;margin:0 0 24px}
 .symbol p:not(.eyebrow):not(.symbol-key){line-height:2.2;margin:0 0 14px}
 @media(max-width:700px){.about-section{padding-bottom:110px}.symbol{margin-top:70px;background:linear-gradient(90deg,#ffffffcb,#ffffff55);padding:12px 8px 12px 0}.symbol-mark{margin-left:-8px}.symbol p:not(.eyebrow):not(.symbol-key){font-size:14px}.symbol-key{gap:2px 14px;font-size:10.5px;letter-spacing:.06em}}
+
+/* お知らせ（10/15 公開） */
+.news-item{display:flex;gap:18px;flex-wrap:wrap;align-items:baseline;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:14px}
+.news-item time,.news-date time{font:13px Georgia,serif;letter-spacing:.08em;color:var(--kon)}
+.news-item a{flex:1;min-width:14em}
+.news-entry{border-top:1px solid var(--line);padding-top:20px;margin-top:10px}
+.news-entry h3{margin-top:4px}
+.news-date{margin:0}
