@@ -1014,3 +1014,6 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 .symbol h3{font:400 clamp(24px,2.3vw,32px)/1.75 var(--serif);letter-spacing:.05em;margin:0 0 24px}
 .symbol p:not(.eyebrow):not(.symbol-key){line-height:2.2;margin:0 0 14px}
 @media(max-width:700px){.about-section{padding-bottom:110px}.symbol{margin-top:70px;background:linear-gradient(90deg,#ffffffcb,#ffffff55);padding:12px 8px 12px 0}.symbol-mark{margin-left:-8px}.symbol p:not(.eyebrow):not(.symbol-key){font-size:14px}.symbol-key{gap:2px 14px;font-size:10.5px;letter-spacing:.06em}}
+
+/* 2026-10-10 主催・共催の表記 */
+.footer-brand p.footer-credit{font-size:11px;line-height:1.9;margin:16px 0 0;color:var(--muted);letter-spacing:.04em}
