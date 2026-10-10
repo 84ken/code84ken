@@ -1022,3 +1022,5 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 .news-entry{border-top:1px solid var(--line);padding-top:20px;margin-top:10px}
 .news-entry h3{margin-top:4px}
 .news-date{margin:0}
+/* 2026-10-10 主催・共催の表記 */
+.footer-brand p.footer-credit{font-size:11px;line-height:1.9;margin:16px 0 0;color:var(--muted);letter-spacing:.04em}
