@@ -1017,3 +1017,10 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 
 /* 2026-10-10 主催・共催の表記 */
 .footer-brand p.footer-credit{font-size:11px;line-height:1.9;margin:16px 0 0;color:var(--muted);letter-spacing:.04em}
+
+/* 2026-10-14 協賛ロゴ */
+.sponsor-logos{display:flex;flex-wrap:wrap;align-items:center;gap:24px 48px;max-width:1050px;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px}
+.sponsor-logo{display:block;line-height:0;transition:opacity .3s}
+.sponsor-logo:hover{opacity:.75}
+.sponsor-logo img{height:46px;width:auto;max-width:100%}
+@media(max-width:700px){.sponsor-logo img{height:36px}}
