@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700;900&amp;display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@700;900&amp;display=swap"></noscript>
 <link rel="stylesheet" href="/assets/css/site.css?v=04ebf531">
-<link rel="stylesheet" href="/assets/css/tw.css?v=89338518">
+<link rel="stylesheet" href="/assets/css/tw.css?v=76967ac0">
 <script src="/assets/js/site.js?v=c4dad567" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"サーキュラーエコノミーラボ","alternateName":"CIRCULAR ECONOMY LAB. SAITAMA","url":"https://ce.llschema.com/","inLanguage":"ja","publisher":{"@type":"Organization","name":"株式会社スキーマ","url":"https://llschema.com/"}}</script>
 </head>
@@ -55,6 +55,7 @@
         <a href="/lab/events/" class="font-round relative px-3 py-2 text-[0.9375rem] font-bold text-white/85 hover:text-white leading-normal transition-colors after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[3px] after:rounded-full after:bg-sun after:opacity-0 hover:after:opacity-60 after:transition-opacity">開催情報</a>
         <a href="/lab/exhibitors/" class="font-round relative px-3 py-2 text-[0.9375rem] font-bold text-white/85 hover:text-white leading-normal transition-colors after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[3px] after:rounded-full after:bg-sun after:opacity-0 hover:after:opacity-60 after:transition-opacity">出展企業</a>
         <a href="/lab/reports/" class="font-round relative px-3 py-2 text-[0.9375rem] font-bold text-white/85 hover:text-white leading-normal transition-colors after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[3px] after:rounded-full after:bg-sun after:opacity-0 hover:after:opacity-60 after:transition-opacity">開催レポート</a>
+        <a href="/articles/" class="font-round relative px-3 py-2 text-[0.9375rem] font-bold text-white/85 hover:text-white leading-normal transition-colors after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[3px] after:rounded-full after:bg-sun after:opacity-0 hover:after:opacity-60 after:transition-opacity">よみもの</a>
         <a href="/lab/events/koshigaya-2026/" class="font-round ml-3 inline-flex items-center justify-center gap-1.5 h-11 px-5 text-[0.9375rem] font-bold bg-sun text-navy rounded-full hover:bg-sun-300 transition-colors cursor-pointer leading-normal">
           次回開催
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
@@ -73,6 +74,7 @@
       <a href="/lab/events/" class="font-round py-3.5 text-lg font-bold text-white border-b border-white/15 leading-normal">開催情報</a>
       <a href="/lab/exhibitors/" class="font-round py-3.5 text-lg font-bold text-white border-b border-white/15 leading-normal">出展企業</a>
       <a href="/lab/reports/" class="font-round py-3.5 text-lg font-bold text-white border-b border-white/15 leading-normal">開催レポート</a>
+      <a href="/articles/" class="font-round py-3.5 text-lg font-bold text-white border-b border-white/15 leading-normal">よみもの</a>
       <a href="/about/" class="font-round py-3.5 text-lg font-bold text-white leading-normal">このサイトについて</a>
       <a href="/lab/events/koshigaya-2026/" class="font-round mt-4 mb-4 inline-flex items-center justify-center gap-2 h-14 px-6 text-lg font-bold bg-sun text-navy rounded-full leading-normal">
         次回開催をチェック
@@ -382,6 +384,43 @@
   <!-- ============================================================
        出展企業
        ============================================================ -->
+  <!-- ============================================================
+       よみもの（記事）… _build/articles/*.md から自動で並ぶ
+       ============================================================ -->
+  <section aria-labelledby="articles-heading" class="paper paper-cream on-light">
+    <div class="max-w-6xl mx-auto px-5 lg:px-8 pb-14 lg:pb-20">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow">READING</p>
+          <h2 id="articles-heading" class="mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-800">よみもの</h2>
+          <p class="mt-3 text-base lg:text-lg text-body leading-relaxed">ラボのまわりで出会った、人と、ものと、循環の話。</p>
+        </div>
+        <a href="/articles/" class="font-round inline-flex items-center gap-1.5 text-base font-bold text-primary-700 hover:text-primary-800 leading-normal">すべての記事を見る
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      </div>
+      <div class="mt-8">
+      <ul class="grid gap-5 lg:gap-6">
+        <li>
+          <a href="/articles/koshigaya-2026-talk/" class="group grid md:grid-cols-[1fr_1.15fr] bg-white border-[3px] border-primary-100 rounded-3xl overflow-hidden hover:border-sun transition-colors">
+            <span class="photo-figure block aspect-[3/2] md:aspect-auto md:min-h-[18rem] bg-primary-50"><img src="/assets/img/photo/koshigaya26-talk-5.jpg" alt="スクリーンに「（仮称）水上WOVEN CITY」が映るステージで話す登壇者" loading="lazy" decoding="async" width="1600" height="1200"></span>
+            <span class="p-6 lg:p-8 flex flex-col">
+              <span class="flex flex-wrap items-center gap-x-2 gap-y-1 leading-normal">
+                <span class="font-round bg-sun text-navy px-4 py-1.5 rounded-full text-sm font-bold">トークセッション</span>
+                <span class="display-num text-lg text-primary-700">2026.10.03</span>
+                <span class="text-sm text-soft">越谷</span>
+              </span>
+              <span class="mt-4 text-xl lg:text-2xl font-bold text-primary-800 leading-snug">木は旅をして、まちをめぐる。<span class="block mt-1 text-base lg:text-lg">レイクタウンの水辺で聞いた「いちばん身近な循環」の話</span></span>
+              <span class="mt-3 text-[0.9375rem] lg:text-base text-body leading-relaxed">建築家の畔上順平さんと、埼玉大学の髙木宗房さんが、木が旅すること、人がつながること、まちが循環することを語り合いました。</span>
+              <span class="font-round mt-5 md:mt-auto md:pt-5 inline-flex items-center gap-1.5 text-base font-bold text-primary-700 leading-normal">記事を読む <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
+            </span>
+          </a>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </section>
+
   <section aria-labelledby="exhibitors-heading" class="paper paper-cream on-light">
     <div class="max-w-6xl mx-auto px-5 lg:px-8 pb-14 lg:pb-20">
       <div class="card-y overflow-hidden">
@@ -467,7 +506,7 @@
     <div class="max-w-6xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
       <p class="eyebrow">NEWS</p>
       <h2 id="news-heading" class="mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-800">お知らせ</h2>
-      <div class="mt-7" data-news data-limit="3" data-sig="1en3xye-2629"><ul class="space-y-3"><li><a href="/lab/reports/koshigaya-2026-talk/" class="group flex flex-col gap-2 rounded-2xl bg-white border-2 border-primary-100 hover:border-sun p-5 transition-colors sm:flex-row sm:items-center sm:gap-5"><span class="flex items-center gap-3 leading-normal shrink-0"><time datetime="2026-10-07" class="display-num text-lg text-primary-700">2026.10.07</time><span class="font-round bg-sun text-navy px-3 py-1 rounded-full text-xs font-bold">レポート</span></span><span class="text-base text-ink group-hover:text-primary-700 leading-relaxed flex-1">越谷のトークセッション「木は旅をして、まちをめぐる。」のレポートを公開しました</span><span class="hidden sm:inline-flex text-primary-700 shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span></a></li><li><a href="/lab/events/koshigaya-2026/#rally" class="group flex flex-col gap-2 rounded-2xl bg-white border-2 border-primary-100 hover:border-sun p-5 transition-colors sm:flex-row sm:items-center sm:gap-5"><span class="flex items-center gap-3 leading-normal shrink-0"><time datetime="2026-09-22" class="display-num text-lg text-primary-700">2026.09.22</time><span class="font-round bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-bold">イベント</span></span><span class="text-base text-ink group-hover:text-primary-700 leading-relaxed flex-1">越谷会場で「なぞときラリー」を開催！正解するとオリジナルグッズがもらえます</span><span class="hidden sm:inline-flex text-primary-700 shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span></a></li><li><a href="/lab/events/koshigaya-2026/" class="group flex flex-col gap-2 rounded-2xl bg-white border-2 border-primary-100 hover:border-sun p-5 transition-colors sm:flex-row sm:items-center sm:gap-5"><span class="flex items-center gap-3 leading-normal shrink-0"><time datetime="2026-09-21" class="display-num text-lg text-primary-700">2026.09.21</time><span class="font-round bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-bold">イベント</span></span><span class="text-base text-ink group-hover:text-primary-700 leading-relaxed flex-1">10月3日・4日「サーキュラーエコノミーラボ in 越谷」の出展企業13団体が決まりました</span><span class="hidden sm:inline-flex text-primary-700 shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span></a></li></ul></div>
+      <div class="mt-7" data-news data-limit="3" data-sig="bn5fhs-2626"><ul class="space-y-3"><li><a href="/articles/koshigaya-2026-talk/" class="group flex flex-col gap-2 rounded-2xl bg-white border-2 border-primary-100 hover:border-sun p-5 transition-colors sm:flex-row sm:items-center sm:gap-5"><span class="flex items-center gap-3 leading-normal shrink-0"><time datetime="2026-10-07" class="display-num text-lg text-primary-700">2026.10.07</time><span class="font-round bg-sun text-navy px-3 py-1 rounded-full text-xs font-bold">レポート</span></span><span class="text-base text-ink group-hover:text-primary-700 leading-relaxed flex-1">越谷のトークセッション「木は旅をして、まちをめぐる。」のレポートを公開しました</span><span class="hidden sm:inline-flex text-primary-700 shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span></a></li><li><a href="/lab/events/koshigaya-2026/#rally" class="group flex flex-col gap-2 rounded-2xl bg-white border-2 border-primary-100 hover:border-sun p-5 transition-colors sm:flex-row sm:items-center sm:gap-5"><span class="flex items-center gap-3 leading-normal shrink-0"><time datetime="2026-09-22" class="display-num text-lg text-primary-700">2026.09.22</time><span class="font-round bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-bold">イベント</span></span><span class="text-base text-ink group-hover:text-primary-700 leading-relaxed flex-1">越谷会場で「なぞときラリー」を開催！正解するとオリジナルグッズがもらえます</span><span class="hidden sm:inline-flex text-primary-700 shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span></a></li><li><a href="/lab/events/koshigaya-2026/" class="group flex flex-col gap-2 rounded-2xl bg-white border-2 border-primary-100 hover:border-sun p-5 transition-colors sm:flex-row sm:items-center sm:gap-5"><span class="flex items-center gap-3 leading-normal shrink-0"><time datetime="2026-09-21" class="display-num text-lg text-primary-700">2026.09.21</time><span class="font-round bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-xs font-bold">イベント</span></span><span class="text-base text-ink group-hover:text-primary-700 leading-relaxed flex-1">10月3日・4日「サーキュラーエコノミーラボ in 越谷」の出展企業13団体が決まりました</span><span class="hidden sm:inline-flex text-primary-700 shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span></a></li></ul></div>
     </div>
   </section>
 
@@ -498,6 +537,7 @@
           <li><a href="/lab/events/" class="text-white/80 hover:text-white leading-normal">開催情報</a></li>
           <li><a href="/lab/exhibitors/" class="text-white/80 hover:text-white leading-normal">出展企業</a></li>
           <li><a href="/lab/reports/" class="text-white/80 hover:text-white leading-normal">開催レポート</a></li>
+          <li><a href="/articles/" class="text-white/80 hover:text-white leading-normal">よみもの</a></li>
           <li><a href="/about/" class="text-white/80 hover:text-white leading-normal">このサイトについて</a></li>
         </ul>
       </nav>

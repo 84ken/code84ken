@@ -21,26 +21,6 @@
       "summary": "2年ぶりの越谷レイクタウン。13の企業・団体が出展し、ブースをめぐる「なぞときラリー」も楽しめます。"
     },
     {
-      "id": "kawagoe-2026",
-      "status": "upcoming",
-      "title": "サーキュラーエコノミーラボ 2026 in 川越",
-      "titleNote": null,
-      "dateLabel": "2026年11月28日（土）・29日（日） 10:00〜16:00",
-      "dateStart": "2026-11-28",
-      "dateEnd": "2026-11-29",
-      "venue": "ウニクス川越 サブプラザ（屋根のある屋外）",
-      "area": "川越市",
-      "concurrent": null,
-      "fee": "参加無料",
-      "booking": "事前申込不要",
-      "photo": null,
-      "photoAlt": "",
-      "url": "/lab/events/kawagoe-2026/",
-      "reportUrl": null,
-      "summary": "川越での初開催。ただいま出展企業・団体を募集しています（出展費用無料／申込締切 9月30日17:00）。",
-      "recruiting": true
-    },
-    {
       "id": "hanyu-2026",
       "status": "past",
       "title": "サーキュラーエコノミーラボ in 羽生",
