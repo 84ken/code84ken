@@ -70,3 +70,17 @@ AddDefaultCharset UTF-8
 #   RewriteCond %{HTTPS} !=on
 #   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # </IfModule>
+
+# ---- 移転したページ ----------------------------------------
+# 記事は /articles/ にまとめた（2026-10-08）
+<IfModule mod_alias.c>
+  Redirect 301 /lab/reports/koshigaya-2026-talk/ https://ce.llschema.com/articles/koshigaya-2026-talk/
+</IfModule>
+
+# ---- 解禁前のページを出さない ------------------------------
+# 川越2026 は 2026/11/11 の知事記者会見で情報解禁。それまでは 404 にする。
+# 解禁したらこのブロックを消す（手順：_作業ファイル/解禁待ち_川越2026_1111/戻し方.txt）
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^lab/events/kawagoe-2026(/.*)?$ - [R=404,L]
+</IfModule>

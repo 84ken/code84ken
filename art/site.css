@@ -1031,3 +1031,10 @@ header nav a[aria-current="page"]:not(.nav-call):not(.nav-ig),#mobile-menu a[ari
 .sponsor-logo:hover{opacity:.75}
 .sponsor-logo img{height:46px;width:auto;max-width:100%}
 @media(max-width:700px){.sponsor-logo img{height:36px}}
+
+/* 2026-10-14 協賛ロゴの段（ブロンズは小さく）・チーフ・ディレクションの表示 */
+.sponsor-logos.is-small{border-top:0;padding-top:0;margin-top:-6px;gap:16px 36px}
+.sponsor-logos.is-small .sponsor-logo img{height:30px}
+.mchief{display:inline-block;margin:0 0 6px;padding:4px 10px;background:var(--kon);color:#fff;font-size:11px;line-height:1.6;letter-spacing:.12em}
+@media(max-width:700px){.sponsor-logos.is-small .sponsor-logo img{height:24px}.mgrid .mchief{font-size:10px;padding:3px 7px;letter-spacing:.06em}}
+.detail-main .mchief+.mname{margin-top:2px}
