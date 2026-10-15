@@ -1,0 +1,4 @@
+# www なしに統一（検索で同じページが2つに分かれないように）
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.chichibu-art\.jp$ [NC]
+RewriteRule ^(.*)$ https://chichibu-art.jp/$1 [R=301,L]
