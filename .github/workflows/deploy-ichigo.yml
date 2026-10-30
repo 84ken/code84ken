@@ -29,3 +29,4 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            **/*.data.php

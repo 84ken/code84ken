@@ -1,0 +1,83 @@
+/*
+ * みんなのアイデア：カード一覧・拡大表示・スタンプ（いいね／ほしい！／おいしそう）
+ *   <div id="ideas" data-set="yokoze2026" data-count="47" data-dir="images/yokoze/"></div>
+ * スタンプの数は api/reactions.php に保存。押したものはこのブラウザに記録し、二重に押せないようにする。
+ */
+(() => {
+  const root = document.getElementById('ideas'); if (!root) return;
+  const SET = root.dataset.set, N = +root.dataset.count, DIR = root.dataset.dir;
+  const API = 'api/reactions.php';
+  const STAMPS = [
+    { key: 'like', icon: '👍', label: 'いいね' },
+    { key: 'want', icon: '🙌', label: 'ほしい！' },
+    { key: 'yummy', icon: '🍓', label: 'おいしそう' },
+  ];
+  const pad = (n) => String(n).padStart(2, '0');
+  const MINE_KEY = 'ichigo-stamps-' + SET;
+  let mine = {}; try { mine = JSON.parse(localStorage.getItem(MINE_KEY) || '{}'); } catch (e) { /* 使えない環境では記録しない */ }
+  const saveMine = () => { try { localStorage.setItem(MINE_KEY, JSON.stringify(mine)); } catch (e) { /* 何もしない */ } };
+  let counts = {};
+
+  // カードを描く
+  root.innerHTML = '<ul class="idea-grid">' + Array.from({ length: N }, (_, i) => {
+    const id = i + 1;
+    return `<li class="idea-card" data-id="${id}">
+      <button type="button" class="idea-thumb" data-open="${id}" aria-label="アイデア No.${pad(id)} を大きく見る">
+        <img loading="lazy" decoding="async" width="640" height="452" src="${DIR}idea${pad(id)}-a-s.webp" alt="5年生のアイデアシート No.${pad(id)}">
+      </button>
+      <div class="idea-meta"><span class="label-en text-ichigo">No.${pad(id)}</span></div>
+      <div class="idea-stamps" role="group" aria-label="No.${pad(id)} にスタンプを送る">
+        ${STAMPS.map(s => `<button type="button" class="stamp" data-id="${id}" data-stamp="${s.key}" aria-pressed="false"><span class="stamp-icon" aria-hidden="true">${s.icon}</span><span class="stamp-label">${s.label}</span><span class="stamp-count" data-count="${id}-${s.key}">0</span></button>`).join('')}
+      </div>
+    </li>`;
+  }).join('') + '</ul>';
+
+  const paint = () => {
+    root.querySelectorAll('.stamp').forEach(b => {
+      const id = b.dataset.id, k = b.dataset.stamp;
+      b.querySelector('.stamp-count').textContent = (counts[id] && counts[id][k]) || 0;
+      const on = !!(mine[id] && mine[id][k]);
+      b.setAttribute('aria-pressed', String(on)); b.disabled = on;
+    });
+    const total = Object.values(counts).reduce((s, c) => s + Object.values(c).reduce((a, b) => a + b, 0), 0);
+    const t = document.getElementById('ideas-total'); if (t) t.textContent = total.toLocaleString();
+  };
+
+  fetch(`${API}?set=${SET}`, { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(d => { counts = d.counts || {}; paint(); })
+    .catch(() => { root.classList.add('stamps-offline'); paint(); });
+
+  // スタンプを押す
+  root.addEventListener('click', (e) => {
+    const b = e.target.closest('.stamp'); if (!b || b.disabled) return;
+    const id = b.dataset.id, k = b.dataset.stamp;
+    // 先に表示を進めて、失敗したら戻す
+    counts[id] = counts[id] || {}; counts[id][k] = (counts[id][k] || 0) + 1;
+    mine[id] = mine[id] || {}; mine[id][k] = 1; saveMine(); paint();
+    b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
+    const body = new URLSearchParams({ set: SET, id, stamp: k });
+    fetch(API, { method: 'POST', body })
+      .then(r => r.json().then(j => ({ ok: r.ok, j })))
+      .then(({ ok, j }) => {
+        if (ok && j.counts) { counts[id] = j.counts; paint(); }
+        else if (j && j.error === 'already') { /* 既に押していた：表示はそのまま */ }
+        else throw new Error(j && j.error);
+      })
+      .catch(() => { counts[id][k] = Math.max(0, counts[id][k] - 1); delete mine[id][k]; saveMine(); paint(); });
+  });
+
+  // 拡大表示
+  const dlg = document.getElementById('idea-dialog');
+  if (dlg) {
+    const img = dlg.querySelector('img'), cap = dlg.querySelector('[data-cap]');
+    let cur = 1;
+    const show = (id) => { cur = (id + N - 1) % N + 1; img.src = `${DIR}idea${pad(cur)}-a.webp`; img.alt = `5年生のアイデアシート No.${pad(cur)}`; cap.textContent = `No.${pad(cur)} / ${N}`; };
+    root.addEventListener('click', (e) => { const t = e.target.closest('[data-open]'); if (!t) return; show(+t.dataset.open); dlg.showModal(); });
+    dlg.querySelector('[data-prev]').addEventListener('click', () => show(cur - 1));
+    dlg.querySelector('[data-next]').addEventListener('click', () => show(cur + 1));
+    dlg.querySelector('[data-close]').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+  }
+})();
