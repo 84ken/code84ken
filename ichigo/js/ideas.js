@@ -1,11 +1,15 @@
 /*
  * みんなのアイデア：カード一覧・拡大表示・スタンプ（いいね／ほしい！／おいしそう）
  *   <div id="ideas" data-set="yokoze2026" data-count="47" data-dir="images/yokoze/"></div>
+ * 一覧は「絵のシート（-b）」をメインに表示し、拡大表示で「アイデアシート（-a）」に切り替えられる。
+ *   絵のシートが白紙の回（data-blank="18,19"）はアイデアシートを表示する。
  * スタンプの数は api/reactions.php に保存。押したものはこのブラウザに記録し、二重に押せないようにする。
  */
 (() => {
   const root = document.getElementById('ideas'); if (!root) return;
   const SET = root.dataset.set, N = +root.dataset.count, DIR = root.dataset.dir;
+  const BLANK = new Set((root.dataset.blank || '').split(',').filter(Boolean).map(Number));
+  const main = (id) => BLANK.has(id) ? 'a' : 'b';
   const API = 'api/reactions.php';
   const STAMPS = [
     { key: 'like', icon: '👍', label: 'いいね' },
@@ -23,7 +27,7 @@
     const id = i + 1;
     return `<li class="idea-card" data-id="${id}">
       <button type="button" class="idea-thumb" data-open="${id}" aria-label="アイデア No.${pad(id)} を大きく見る">
-        <img loading="lazy" decoding="async" width="640" height="452" src="${DIR}idea${pad(id)}-a-s.webp" alt="5年生のアイデアシート No.${pad(id)}">
+        <img loading="lazy" decoding="async" width="640" height="452" src="${DIR}idea${pad(id)}-${main(id)}-s.webp" alt="5年生のアイデア No.${pad(id)}（${main(id) === 'b' ? '商品の絵' : 'アイデアシート'}）">
       </button>
       <div class="idea-meta"><span class="label-en text-ichigo">No.${pad(id)}</span></div>
       <div class="idea-stamps" role="group" aria-label="No.${pad(id)} にスタンプを送る">
@@ -71,9 +75,18 @@
   const dlg = document.getElementById('idea-dialog');
   if (dlg) {
     const img = dlg.querySelector('img'), cap = dlg.querySelector('[data-cap]');
-    let cur = 1;
-    const show = (id) => { cur = (id + N - 1) % N + 1; img.src = `${DIR}idea${pad(cur)}-a.webp`; img.alt = `5年生のアイデアシート No.${pad(cur)}`; cap.textContent = `No.${pad(cur)} / ${N}`; };
-    root.addEventListener('click', (e) => { const t = e.target.closest('[data-open]'); if (!t) return; show(+t.dataset.open); dlg.showModal(); });
+    const tabs = [...dlg.querySelectorAll('[data-side]')];
+    let cur = 1, side = 'b';
+    const paintDlg = () => {
+      const s = BLANK.has(cur) ? 'a' : side;
+      img.src = `${DIR}idea${pad(cur)}-${s}.webp`;
+      img.alt = `5年生のアイデア No.${pad(cur)}（${s === 'b' ? '商品の絵' : 'アイデアシート'}）`;
+      cap.textContent = `No.${pad(cur)} / ${N}`;
+      tabs.forEach(t => { t.setAttribute('aria-pressed', String(t.dataset.side === s)); t.disabled = BLANK.has(cur) && t.dataset.side === 'b'; });
+    };
+    const show = (id) => { cur = (id + N - 1) % N + 1; paintDlg(); };
+    tabs.forEach(t => t.addEventListener('click', () => { side = t.dataset.side; paintDlg(); }));
+    root.addEventListener('click', (e) => { const t = e.target.closest('[data-open]'); if (!t) return; side = 'b'; show(+t.dataset.open); dlg.showModal(); });
     dlg.querySelector('[data-prev]').addEventListener('click', () => show(cur - 1));
     dlg.querySelector('[data-next]').addEventListener('click', () => show(cur + 1));
     dlg.querySelector('[data-close]').addEventListener('click', () => dlg.close());

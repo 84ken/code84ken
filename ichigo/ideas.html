@@ -96,6 +96,10 @@
     .idea-dialog-bar button { width:44px; height:44px; border-radius:999px; border:1.5px solid #F4C9D5; background:#fff; color:#C92A57; font-size:24px; line-height:1; }
     .idea-dialog-bar .idea-dialog-close { position:absolute; top:12px; right:12px; }
     .idea-dialog-inner { position:relative; }
+    .idea-dialog-tabs { display:flex; justify-content:center; gap:8px; padding:14px 12px 0; }
+    .idea-dialog-tabs button { padding:8px 18px; border-radius:999px; border:1.5px solid #F4C9D5; background:#fff; color:#43373B; font-weight:700; font-size:14px; }
+    .idea-dialog-tabs button[aria-pressed="true"] { background:#C92A57; border-color:#C92A57; color:#fff; }
+    .idea-dialog-tabs button:disabled { opacity:.35; }
     @media (prefers-reduced-motion: reduce) { .stamp.pop { animation:none; } .idea-thumb img { transition:none; } }
   </style>
 </head>
@@ -140,7 +144,7 @@
       <p class="body-jp text-sm sm:text-base text-mute">
         2026年10月、横瀬小学校の5年生と「いちご大學」の授業をしました。<br class="hidden sm:inline">
         テーマは「あまりんで、新しい商品を考えよう」。<br class="hidden sm:inline">
-        47人が考えたアイデアシートを紹介します。
+        47人が考えた商品の絵とアイデアシートを紹介します。
       </p>
     </div>
   </section>
@@ -159,9 +163,9 @@
   <!-- アイデア一覧 -->
   <section class="bg-white pb-24 sm:pb-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div id="ideas" data-set="yokoze2026" data-count="47" data-dir="images/yokoze/"><p class="topic-empty">読み込み中…</p></div>
+      <div id="ideas" data-set="yokoze2026" data-count="47" data-dir="images/yokoze/" data-blank="18,19"><p class="topic-empty">読み込み中…</p></div>
       <p class="text-xs text-mute text-center mt-12 leading-relaxed">
-        ※ 子どもたちの名前は伏せて、番号で紹介しています。シートの画像は、学校の了承を得て掲載しています。<br class="hidden sm:inline">
+        ※ 子どもたちの名前と、友だちの書き込み（サイン）は伏せて、番号で紹介しています。シートの画像は、学校の了承を得て掲載しています。<br class="hidden sm:inline">
         ※ スタンプはひとつのアイデアにつき、各1回ずつ押せます。
       </p>
     </div>
@@ -171,6 +175,10 @@
   <dialog id="idea-dialog" class="idea-dialog" aria-label="アイデアシートを拡大">
     <div class="idea-dialog-inner">
       <img src="" alt="" width="1600" height="1131">
+      <div class="idea-dialog-tabs" role="group" aria-label="表示するシート">
+        <button type="button" data-side="b" aria-pressed="true">商品の絵</button>
+        <button type="button" data-side="a" aria-pressed="false">アイデアシート</button>
+      </div>
       <div class="idea-dialog-bar">
         <button type="button" data-prev aria-label="前のアイデア">‹</button>
         <span data-cap class="label-en"></span>
