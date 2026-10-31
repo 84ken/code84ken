@@ -89,11 +89,19 @@
     .stamp.pop { animation:stamp-pop .45s cubic-bezier(.34,1.56,.64,1); }
     @keyframes stamp-pop { 0%{transform:scale(1)} 40%{transform:scale(1.15)} 100%{transform:scale(1)} }
     .stamps-offline .idea-stamps { display:none; }
-    .idea-dialog { padding:0; border:0; border-radius:24px; max-width:min(96vw,1400px); width:100%; background:#fff; }
+    .idea-dialog { padding:0; border:0; border-radius:24px; max-width:min(98vw,1600px); max-height:98dvh; width:100%; background:#fff; overflow:hidden; }
     .idea-dialog::backdrop { background:rgba(67,55,59,.7); }
-    .idea-dialog img { width:100%; height:auto; display:block; max-height:80vh; object-fit:contain; }
+    /* 押すと拡大（もう一度押すと元に戻る）。拡大中はスクロール・ドラッグで動かせる */
+    .idea-zoom { overflow:auto; max-height:calc(98dvh - 150px); cursor:zoom-in; overscroll-behavior:contain; border-radius:24px 24px 0 0; }
+    .idea-zoom:focus-visible { outline:3px solid #F4C9D5; outline-offset:-3px; }
+    .idea-zoom img { width:100%; height:auto; display:block; max-height:calc(98dvh - 150px); object-fit:contain; user-select:none; -webkit-user-drag:none; }
+    .idea-zoom.is-zoomed { cursor:grab; }
+    .idea-zoom.is-zoomed.is-dragging { cursor:grabbing; }
+    .idea-zoom.is-zoomed img { width:min(2380px, 300%); max-width:none; max-height:none; }
+    .idea-zoom-hint { margin:8px 12px 0; text-align:center; font-size:12px; color:#6E5E63; }
     .idea-dialog-bar { display:flex; align-items:center; justify-content:center; gap:16px; padding:12px; }
     .idea-dialog-bar button { width:44px; height:44px; border-radius:999px; border:1.5px solid #F4C9D5; background:#fff; color:#C92A57; font-size:24px; line-height:1; }
+    .idea-dialog button:focus-visible { outline:3px solid #F4C9D5; outline-offset:2px; }
     .idea-dialog-bar .idea-dialog-close { position:absolute; top:12px; right:12px; }
     .idea-dialog-inner { position:relative; }
     .idea-dialog-tabs { display:flex; justify-content:center; gap:8px; padding:14px 12px 0; }
@@ -174,7 +182,10 @@
   <!-- 拡大表示 -->
   <dialog id="idea-dialog" class="idea-dialog" aria-label="アイデアシートを拡大">
     <div class="idea-dialog-inner">
-      <img src="" alt="" width="1600" height="1131">
+      <div class="idea-zoom" data-zoom tabindex="0" role="button" aria-label="画像を拡大する">
+        <img src="" alt="" width="2380" height="1682" draggable="false">
+      </div>
+      <p class="idea-zoom-hint" data-zoom-hint>画像を押すと、文字が読める大きさに拡大します</p>
       <div class="idea-dialog-tabs" role="group" aria-label="表示するシート">
         <button type="button" data-side="b" aria-pressed="true">商品の絵</button>
         <button type="button" data-side="a" aria-pressed="false">アイデアシート</button>
@@ -183,7 +194,7 @@
         <button type="button" data-prev aria-label="前のアイデア">‹</button>
         <span data-cap class="label-en"></span>
         <button type="button" data-next aria-label="次のアイデア">›</button>
-        <button type="button" data-close class="idea-dialog-close" aria-label="閉じる">×</button>
+        <button type="button" data-close class="idea-dialog-close" aria-label="閉じる" autofocus>×</button>
       </div>
     </div>
   </dialog>

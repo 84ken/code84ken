@@ -76,8 +76,45 @@
   if (dlg) {
     const img = dlg.querySelector('img'), cap = dlg.querySelector('[data-cap]');
     const tabs = [...dlg.querySelectorAll('[data-side]')];
+    const zoom = dlg.querySelector('[data-zoom]'), hint = dlg.querySelector('[data-zoom-hint]');
     let cur = 1, side = 'b';
+
+    // 押した場所を中心に拡大／もう一度押すと全体表示に戻る
+    const setZoom = (on, fx = 0.5, fy = 0.5) => {
+      zoom.classList.toggle('is-zoomed', on);
+      zoom.setAttribute('aria-label', on ? '拡大をやめる' : '画像を拡大する');
+      if (hint) hint.textContent = on ? 'ドラッグやスクロールで動かせます。もう一度押すと元に戻ります' : '画像を押すと、文字が読める大きさに拡大します';
+      if (on) {
+        zoom.scrollLeft = img.offsetWidth * fx - zoom.clientWidth / 2;
+        zoom.scrollTop = img.offsetHeight * fy - zoom.clientHeight / 2;
+      }
+    };
+    // マウスはドラッグで動かす（タッチは指でそのままスクロールできる）
+    let drag = null, moved = false;
+    zoom.addEventListener('pointerdown', (e) => {
+      moved = false;
+      if (!zoom.classList.contains('is-zoomed') || e.pointerType !== 'mouse') return;
+      drag = { x: e.clientX, y: e.clientY, l: zoom.scrollLeft, t: zoom.scrollTop };
+      zoom.classList.add('is-dragging');
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (Math.abs(dx) + Math.abs(dy) > 5) moved = true;
+      zoom.scrollLeft = drag.l - dx; zoom.scrollTop = drag.t - dy;
+    });
+    window.addEventListener('pointerup', () => { drag = null; zoom.classList.remove('is-dragging'); });
+    zoom.addEventListener('click', (e) => {
+      if (moved) return;
+      const r = img.getBoundingClientRect();
+      setZoom(!zoom.classList.contains('is-zoomed'), (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+    });
+    zoom.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setZoom(!zoom.classList.contains('is-zoomed')); }
+    });
+
     const paintDlg = () => {
+      setZoom(false);
       const s = BLANK.has(cur) ? 'a' : side;
       img.src = `${DIR}idea${pad(cur)}-${s}.webp`;
       img.alt = `5年生のアイデア No.${pad(cur)}（${s === 'b' ? '商品の絵' : 'アイデアシート'}）`;
