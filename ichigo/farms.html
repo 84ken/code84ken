@@ -332,9 +332,10 @@
 
     // マップ初期化
     const map = L.map('farm-map', { scrollWheelZoom: false }).setView([36.005, 139.075], 11);
+    map.attributionControl.setPrefix('<a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet</a>');
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
     }).addTo(map);
 
     // いちご型のピン（連携農家は濃いいちご色、それ以外はうすピンク）
