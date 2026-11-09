@@ -1045,8 +1045,9 @@ header nav .nav-ig+.nav-ig{margin-left:-6px}
 
 /* 2026-11-07 協賛ロゴ シルバーの段（ゴールド以上より小さく、ブロンズより大きく） */
 .sponsor-logos.is-medium{border-top:0;padding-top:0;margin-top:-6px;gap:20px 42px}
-.sponsor-logos.is-medium .sponsor-logo img{height:52px}
-@media(max-width:700px){.sponsor-logos.is-medium .sponsor-logo img{height:42px}}
+/* ロゴの形が横長のときは --h で高さを下げて、見た目の大きさをそろえる */
+.sponsor-logos.is-medium .sponsor-logo img{height:var(--h,52px)}
+@media(max-width:700px){.sponsor-logos.is-medium .sponsor-logo img{height:calc(var(--h,52px)*.8)}}
 /* 2026-11-07 ロゴのない協賛者は明朝の文字でロゴ風に（愛の架け橋プロジェクト／プラチナ） */
 .sponsor-wordmark{font-family:var(--serif);font-size:26px;line-height:46px;letter-spacing:.14em;color:var(--ink);white-space:nowrap}
 .sponsor-wordmark:hover{opacity:1}
