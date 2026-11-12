@@ -1052,3 +1052,7 @@ header nav .nav-ig+.nav-ig{margin-left:-6px}
 .sponsor-wordmark{font-family:var(--serif);font-size:26px;line-height:46px;letter-spacing:.14em;color:var(--ink);white-space:nowrap}
 .sponsor-wordmark:hover{opacity:1}
 @media(max-width:700px){.sponsor-wordmark{font-size:20px;line-height:36px;letter-spacing:.1em}}
+/* 2026-11-12 協賛ロゴ ゴールドの段（プラチナとシルバーの間） */
+.sponsor-logos.is-gold{border-top:0;padding-top:0;margin-top:-6px;gap:22px 44px}
+.sponsor-logos.is-gold .sponsor-logo img{height:var(--h,60px)}
+@media(max-width:700px){.sponsor-logos.is-gold .sponsor-logo img{height:calc(var(--h,60px)*.8)}}
