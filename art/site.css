@@ -1056,3 +1056,6 @@ header nav .nav-ig+.nav-ig{margin-left:-6px}
 .sponsor-logos.is-gold{border-top:0;padding-top:0;margin-top:-6px;gap:22px 44px}
 .sponsor-logos.is-gold .sponsor-logo img{height:var(--h,60px)}
 @media(max-width:700px){.sponsor-logos.is-gold .sponsor-logo img{height:calc(var(--h,60px)*.8)}}
+/* 2026-11-13 ブロンズ段の文字ロゴ（ロゴ未着の協賛者。ロゴ画像の高さ30pxに合わせる） */
+.sponsor-logos.is-small .sponsor-wordmark{font-size:17px;line-height:30px;letter-spacing:.12em}
+@media(max-width:700px){.sponsor-logos.is-small .sponsor-wordmark{font-size:14px;line-height:24px;letter-spacing:.08em}}
