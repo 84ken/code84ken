@@ -1060,9 +1060,9 @@ header nav .nav-ig+.nav-ig{margin-left:-6px}
 .sponsor-logos.is-small .sponsor-wordmark{font-size:17px;line-height:30px;letter-spacing:.12em}
 @media(max-width:700px){.sponsor-logos.is-small .sponsor-wordmark{font-size:14px;line-height:24px;letter-spacing:.08em}}
 /* 2026-11-14 協賛のランク名。各段の左上に小さく（eyebrow と同じ字間の英字）。負のマージンで段の行間を打ち消し、ロゴとの間を約10pxにそろえる */
-.sponsor-tier{flex:0 0 100%;margin:0 0 -14px;font-size:11px;line-height:1;letter-spacing:.2em;color:var(--muted)}
+.sponsor-logos .sponsor-tier{flex:0 0 100%;max-width:none;width:100%;margin:0 0 -14px;font-size:11px;line-height:1;letter-spacing:.2em;color:var(--muted)}
 .sponsor-logos.is-gold .sponsor-tier{margin-bottom:-12px}
 .sponsor-logos.is-medium .sponsor-tier{margin-bottom:-10px}
 .sponsor-logos.is-small .sponsor-tier{margin-bottom:-6px}
 .sponsor-logos:is(.is-gold,.is-medium,.is-small) .sponsor-tier{margin-top:4px}
-@media(max-width:700px){.sponsor-tier{font-size:10px;letter-spacing:.16em}}
+@media(max-width:700px){.sponsor-logos .sponsor-tier{font-size:10px;letter-spacing:.16em}}
