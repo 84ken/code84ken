@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ビリビリ君 - 電気風呂が探せるマップ｜全国91施設・メーカー別検索</title>
-<meta name="description" content="全国91件の電気風呂データベース「ビリビリ君」。東京・大阪・名古屋の銭湯から、小西電機・坂田電気・水野通信工業のメーカー別検索、最寄り駅、パワー別まで。マツコの知らない世界で話題の電気風呂を見つけよう。">
+<title>ビリビリ君 - 電気風呂が探せるマップ｜全国93施設・メーカー別検索</title>
+<meta name="description" content="全国93件の電気風呂データベース「ビリビリ君」。東京・大阪・名古屋の銭湯から、小西電機・坂田電気・水野通信工業のメーカー別検索、最寄り駅、パワー別まで。マツコの知らない世界で話題の電気風呂を見つけよう。">
 <meta name="keywords" content="電気風呂,銭湯,サウナ,電浴,小西電機,坂田電気,水野通信工業,けんちん,マツコの知らない世界,東京,大阪,銭湯マップ">
 <meta name="author" content="84ken / schema.tokyo">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://denki.schema.tokyo/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="ビリビリ君 - 電気風呂が探せるマップ｜全国91施設">
-<meta property="og:description" content="全国91件の電気風呂データベース。メーカー別（小西/坂田/水野）・駅名・パワーで検索。「ビリビリ」を探しに行こう。">
+<meta property="og:title" content="ビリビリ君 - 電気風呂が探せるマップ｜全国93施設">
+<meta property="og:description" content="全国93件の電気風呂データベース。メーカー別（小西/坂田/水野）・駅名・パワーで検索。「ビリビリ」を探しに行こう。">
 <meta property="og:url" content="https://denki.schema.tokyo/">
 <meta property="og:image" content="https://denki.schema.tokyo/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ビリビリ君 - 電気風呂が探せるマップ">
-<meta name="twitter:description" content="全国91件の電気風呂を、メーカー別・駅名・パワーで検索。⚡ビリビリを探しに行こう。">
+<meta name="twitter:description" content="全国93件の電気風呂を、メーカー別・駅名・パワーで検索。⚡ビリビリを探しに行こう。">
 <meta name="twitter:image" content="https://denki.schema.tokyo/og-image.png">
 <!-- Theme -->
 <meta name="theme-color" content="#0c1222">
@@ -30,7 +30,7 @@
 <link rel="apple-touch-icon" href="favicon.svg">
 <!-- JSON-LD: WebSite -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"ビリビリ君","alternateName":"BIRIBIRI-KUN","url":"https://denki.schema.tokyo/","description":"全国91件の電気風呂データベース。メーカー別・駅名・パワーで検索できる銭湯マップ。","inLanguage":"ja","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://denki.schema.tokyo/?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"ビリビリ君","alternateName":"BIRIBIRI-KUN","url":"https://denki.schema.tokyo/","description":"全国93件の電気風呂データベース。メーカー別・駅名・パワーで検索できる銭湯マップ。","inLanguage":"ja","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://denki.schema.tokyo/?q={search_term_string}"},"query-input":"required name=search_term_string"}}
 </script>
 <!-- JSON-LD: Organization -->
 <script type="application/ld+json">
@@ -1022,7 +1022,8 @@ function seedVisited(){
     89: Date.now()-86400000*9,   // かるまる池袋
     90: Date.now()-86400000*11,  // 江戸川湯
     92: Date.now()-86400000*1,   // たちばな温泉 たちばな湯（直近訪問）
-    93: Date.now(),              // 吉野湯（昨日訪問）
+    93: Date.now()-86400000*1,   // 吉野湯
+    94: Date.now(),              // 天然温泉ヌーランドさがみ湯（直近訪問）
   };
   localStorage.setItem('denki-visited', JSON.stringify(myVisits));
 }
