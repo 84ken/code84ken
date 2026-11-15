@@ -1068,3 +1068,7 @@ header nav .nav-ig+.nav-ig{margin-left:-6px}
 @media(max-width:700px){.sponsor-logos .sponsor-tier{font-size:10px;letter-spacing:.16em}}
 /* 2026-11-15 愛の架け橋プロジェクトの文字ロゴに、先方ロゴの赤いハートを添える */
 .sponsor-wordmark .wm-heart{display:inline-block;width:.86em;height:.86em;margin-right:.32em;vertical-align:-.1em;fill:#b5223f}
+/* 2026-11-15 ロゴ＋名前を並べる協賛（愛の架け橋プロジェクト：ロゴの右に名前を明朝で） */
+.sponsor-lockup{display:inline-flex;align-items:center;gap:18px}
+.sponsor-lockup-name{font-family:var(--serif);font-size:22px;line-height:1.4;letter-spacing:.12em;color:var(--ink);white-space:nowrap}
+@media(max-width:700px){.sponsor-lockup{gap:12px}.sponsor-lockup-name{font-size:17px;letter-spacing:.08em}}
